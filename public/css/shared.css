@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap");
+
+:root {
+  --primaryColor: #f17300;
+  --DarkBlue: #054a91;
+  --LightBlue: #3e7cb1;
+  --Black: #212121;
+  --BackgroungColor: #f3f3f3;
+  --AlternateLightGrey: #dbe4ee;
+  --SuccessColor: #4bb543;
+  --DangerColor: #dc3545;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  list-style: none;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--BackgroungColor);
+}
+
+/*To remove the border outline of all the inputs*/
+input:focus {
+  outline: none;
+}
+
+/* Common 1 - Display Flex Column*/
+.display-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Common 2 - Input Box*/
+.common-input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid var(--AlternateLightGrey);
+  color: var(--Black);
+  font-size: 0.9rem;
+}
+
+/* Common 3 -  Blue Button */
+.common-blue-btn {
+  margin: auto;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  border-style: none;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+}
+/* Common 4 -  Orange Border Button */
+
+/* Common 5 -  Delete Button */
+
+/* /-------------- MAIN SIDEBAR ---------------/ */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  gap: 4rem;
+  max-width: 220px;
+  background-color: #fff;
+  border-right: 1px solid var(--BackgroungColor);
+  /* box-shadow:  6px 0px 4px 4px #F3F3F3; */
+  transition-duration: 800ms;
+}
+
+.material-symbols-rounded {
+  font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 200, "opsz" 48;
+}
+
+nav .navbar-main-logo {
+  display: flex;
+  justify-content: center;
+}
+
+nav .navbar-main-logo img {
+  width: 70%;
+  object-fit: cover;
+}
+
+.sidebar-items a,
+.sidebar-bottom a {
+  color: var(--Black);
+  display: flex;
+  align-items: center;
+  column-gap: 0.8rem;
+  padding: 0.6rem 1.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar-items a:hover,
+.sidebar-bottom a:hover {
+  background-color: var(--BackgroungColor);
+}
+
+.sidebar-bottom ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-profile-link a {
+  /* background-color: var(--primary-color-2); */
+  color: var(--Black);
+}
+
+.nav-profile-link a p {
+  padding: 0.5rem 0.2rem;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.nav-profile-link img {
+  width: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+main {
+  position: relative;
+  width: calc(100% - 220px);
+  left: 220px;
+  transition-duration: 800ms;
+}
+
+.top-nav {
+  overflow: hidden;
+  position: fixed;
+  width: calc(100% - 220px);
+  top: 0;
+  left: 220px;
+  padding: 0 2rem;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  background-color: #fff;
+  color: var(--primaryColor);
+  border-bottom: 1px solid var(--BackgroungColor);
+  transition-duration: 800ms;
+}
+
+/* .top-nav a:hover {
+    overflow: hidden;
+    background-color: var(--Black);
+    color: white;
+  } */
+
+.topNav-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition-duration: 800ms;
+}
+
+.topNav-left p {
+  color: var(--Black);
+}
+
+.topNav-icon {
+  border-radius: 10px;
+  background-color: var(--BackgroungColor);
+  padding: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.topNav-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.topNav-notification {
+  background-color: var(--BackgroungColor);
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.topNav-right img {
+  width: 40px;
+  border-radius: 50%;
+}
+
+/* Nav-Bar Menu Collapsing */
+
+.toggle-sidenavbar {
+  left: -220px;
+}
+
+.toggle-topnavbar {
+  width: 100%;
+  left: 0;
+}
+
+.toggle-main {
+  width: calc(100% - 60px);
+  left: 0;
+}
+
+.toggle-nav-logo {
+  opacity: 1;
+  transition-duration: 800ms;
+  position: absolute;
+  left: -50px;
+}
+
+.toggle-nav-logo img{
+  width: 50px;
+}
+
+.nav-logo-show{
+  opacity: 1;
+  left: 10px;
+}
+
+.top-nav-left{
+  padding-left: 3rem;
+}
+
+/* Main Content Container*/
+.main-content {
+  color: black;
+  margin: 2rem;
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: var(--BackgroungColor);
+  border-radius: 10px;
+  width: calc(100% - 60px);
+}
