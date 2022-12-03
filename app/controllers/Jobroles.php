@@ -8,9 +8,9 @@ class Jobroles extends BaseController
     {
         $this->jobroleModel = $this->model('Jobrole');
 
-        if (!isset($_SESSION['user_id'])) { //If the user not logged, redirected to login(PDC) 
-            redirect('users/pdc-login');
-        }
+        // if (!isset($_SESSION['user_id'])) { //If the user not logged, redirected to login(PDC) 
+        //     redirect('users/pdc-login');
+        // }
     }
 
     public function index()
