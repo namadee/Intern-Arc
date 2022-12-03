@@ -283,3 +283,289 @@
   gap: 0.5rem;
   margin-top: 1rem;
 }
+
+
+/* COMPANY - ADVERTISEMENTS*/
+
+.advertisement_list {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.advertisement_list_top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 3rem;
+  margin-bottom: 2rem;
+}
+
+.advertisement-list-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 2rem;
+  margin: 1rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 15rem;
+  border: 1px solid var(--backgrund-color);
+  border-radius: 5px;
+  padding: 0.3rem 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: white;
+  color: var(--primary-color-1);
+}
+
+.search-bar input {
+  border: none;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.advertisement-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 7rem;
+  color: var(--primary-color-1);
+}
+
+.advertisement-filter select {
+  border: 1px solid var(--backgrund-color);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.material-symbols-outlined {
+  fill: 1;
+  color: #f17300;
+}
+.advertisement-list-topbar .material-symbols-rounded {
+  fill: 1;
+  color: #f17300;
+}
+
+.advertisement_list_content {
+  width: 100%;
+  background-color: #fff;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.advertisement_list_content h3 {
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+}
+
+.advertisement_list_content table {
+  width: 90%;
+  margin-left: 3rem;
+  text-align: center;
+  table-layout: fixed;
+  word-wrap: break-word; /*To keep the layout fixed with any number of word count*/
+}
+
+.advertisement_list_content table th {
+  height: 2rem;
+  background-color: #d9d9d9;
+  padding: 0.5rem;
+}
+
+.advertisement_list_content table td {
+  padding: 0.3rem;
+}
+
+.advertisement_list_content table th:nth-child(1) {
+  width: 40%;
+}
+
+.advertisement_list_content table th:nth-child(3) {
+  width: 20%;
+}
+
+.viewBtn {
+  padding: 0.2rem 1rem;
+  background-color: transparent;
+  border-radius: 5px;
+  border: solid 1px var(--primaryColor);
+  color: var(--primaryColor);
+}
+
+.viewBtn:hover {
+  background-color: var(--primaryColor);
+  cursor: pointer;
+  color: #fff;
+}
+.deleteBtn {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* .addBtn {
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+} */
+
+.addBtn {
+  color: #fff;
+  background-repeat: no-repeat;
+  background: linear-gradient(
+    90deg,
+    rgba(62, 124, 177, 1) 0%,
+    rgba(5, 74, 145, 1) 100%
+  );
+  border-radius: 5px;
+  cursor: pointer;
+}
+.addBtn a {
+  color: #fff;
+ text-decoration: none;
+ padding: 0.5rem 2rem;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.addBtn button{
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.addBtn .material-symbols-outlined {
+  color: #fff;
+}
+#addIcon {
+  color: #fff;
+  margin-right: 0.5rem;
+  /* background-color: transparent; */
+}
+
+/*end of advertisement page*/
+
+/*start of add advertisement page*/
+
+#add_Advertisement_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.add_advertisement {
+  /* width: 100%; */
+  /* display: block; */
+  text-align: center;
+  width: 60%;
+}
+.add_advertisement form {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* display: inline-block; */
+  padding: 3rem;
+  border-radius: 8px;
+  /* margin-left: auto;
+  margin-right: auto; */
+  text-align: left;
+}
+.add_advertisement form input,
+.add_advertisement form select {
+  /* display: block; */
+  /* padding: 12px 20px;
+  margin: 10px; */
+  /* padding: 0.5rem;
+  width: 80%; */
+  /* border: 1px solid #ccc;
+  border-radius: 4px; */
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid var(--AlternateLightGrey);
+  width: 70%;
+}
+
+.add_advertisement form input[type="checkbox"] {
+  border: 1px solid var(--AlternateLightGrey);
+}
+
+/* .time_period {
+  display: flex;
+}
+.time_period p {
+  margin: auto;
+} */
+
+/* .add_advertisement form input[type="number"] {
+  width: 6rem;
+  border: solid 1px;
+} */
+
+/* .add_advertisement for input {
+  border: solid 1px #212121;
+} */
+
+/* .add_advertisement form li {
+  overflow: hidden;
+  display: inline-block;
+} */
+
+/* .add_advertisement form input[type="checkbox"] {
+  float: left;
+} */
+
+/* .check {
+  float: left;
+} */
+
+.add_advertisement .time_period {
+  display: flex;
+  gap: 2rem;
+}
+
+.add_advertisement .addAdvertisement-items ul li input {
+  width: auto;
+}
+.add_advertisement .addAdvertisement-items ul li {
+  display: flex;
+  gap: 1rem;
+}
+
+.add_advertisement .addBtn {
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.add_advertisement .addAdvertisement-items {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  gap: 0.5rem;
+}
+
+.add_advertisement form h3 {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #054a91;
+}
+
+
