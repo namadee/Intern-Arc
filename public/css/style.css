@@ -284,6 +284,88 @@
   margin-top: 1rem;
 }
 
+/*sign in page company*/
+
+.loginContainer {
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  width: 60%;
+  height: 90vh;
+  display: flex;
+}
+.leftBox {
+  width: 50%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.leftBox h1 {
+  color: var(--primaryColor);
+  margin-bottom: 10%;
+}
+
+.leftBox a {
+  color: var(--primaryColor);
+  text-align: center;
+  margin: auto;
+  display: block;
+}
+.rightBox {
+  width: 50%;
+  background: var(--Black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rightBox h1 {
+  color: #fff;
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+.rightBox img {
+  width: 80%;
+  max-width: 500px;
+}
+
+#loginForm input,
+#loginForm select {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#loginForm input[type="submit"] {
+  width: 100px;
+  color: var(--primaryColor);
+  padding: 0.8rem 1rem;
+  width: 60%;
+  background: #fff;
+  margin: auto;
+  margin-top: 15%;
+  border: 1px solid var(--primaryColor);
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  font-size: 1.2em;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--primaryColor);
+  color: #fff;
+}
 
 /* COMPANY - ADVERTISEMENTS*/
 
@@ -413,15 +495,6 @@
   cursor: pointer;
 }
 
-/* .addBtn {
-  align-self: flex-start;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem 2rem;
-  border-radius: 5px;
-} */
-
 .addBtn {
   color: #fff;
   background-repeat: no-repeat;
@@ -490,13 +563,6 @@
 }
 .add_advertisement form input,
 .add_advertisement form select {
-  /* display: block; */
-  /* padding: 12px 20px;
-  margin: 10px; */
-  /* padding: 0.5rem;
-  width: 80%; */
-  /* border: 1px solid #ccc;
-  border-radius: 4px; */
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid var(--AlternateLightGrey);
@@ -506,35 +572,6 @@
 .add_advertisement form input[type="checkbox"] {
   border: 1px solid var(--AlternateLightGrey);
 }
-
-/* .time_period {
-  display: flex;
-}
-.time_period p {
-  margin: auto;
-} */
-
-/* .add_advertisement form input[type="number"] {
-  width: 6rem;
-  border: solid 1px;
-} */
-
-/* .add_advertisement for input {
-  border: solid 1px #212121;
-} */
-
-/* .add_advertisement form li {
-  overflow: hidden;
-  display: inline-block;
-} */
-
-/* .add_advertisement form input[type="checkbox"] {
-  float: left;
-} */
-
-/* .check {
-  float: left;
-} */
 
 .add_advertisement .time_period {
   display: flex;
