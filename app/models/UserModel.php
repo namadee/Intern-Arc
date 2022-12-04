@@ -27,6 +27,23 @@ class UserModel extends Database
     }
   }
 
+  public function getCompanyUserId($foreignKey)
+  {
+    $this->db->query("SELECT company_id FROM company_tbl WHERE user_id_fk = :foreign_key");
+    $this->db->bind(':foreign_key', $foreignKey);
+
+    $row = $this->db->single();
+
+    $companyId = $row->company_id;
+
+    //Check Rows
+    if ($this->db->rowCount() > 0) {
+      return $companyId;
+    } else {
+      return false;
+    }
+  }
+
   //Get User Roles
   public function getUserRoles()
   {

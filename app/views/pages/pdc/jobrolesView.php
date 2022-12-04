@@ -2,9 +2,9 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <!-- To get Navigation Menu - MUST ADD TO DASHBOARD OF EACH USER-->
-<?php $navigationMenu = $_SESSION['user_role']; ?>
+<?php $navSidebar = $_SESSION['user_role']; ?>
 <script type="text/javascript">
-    let navigationMenu = `<?php echo $navigationMenu; ?>`;
+    sessionStorage.setItem("navSidebar", "<?php echo $navSidebar; ?>");
 </script>
 
 <section id="pdc_jobroles_page" class="main-content">

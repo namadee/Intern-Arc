@@ -5,14 +5,18 @@ class Advertisements extends BaseController
 
     public function __construct()
     {
-        $this->AdvertisementModel = $this->model('Advertisement');
+        $this->advertisementModel = $this->model('Advertisement');
+        $this->jobroleModel = $this->model('Jobrole');
+        $this->jobroleList = $this->jobroleModel->getJobroles();
+        $this->userModel = $this->model('User');
+        
+        
     }
 
     public function index()
     {
-        $advertisements = $this->AdvertisementModel->getAdvertisements(); //Model function
+        $advertisements = $this->advertisementModel->getAdvertisements(); 
         //view pass data values $data
-
 
         $data = [
             
@@ -23,29 +27,33 @@ class Advertisements extends BaseController
 
         $this->view('company/advertisementList', $data);
     }
-
+    
     public function addAdvertisement()
     {
+        
+        
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             // Sanitize POST
             $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $companyId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
 
+            
             $data = [
+                'company_id' => $companyId,
                 'position' => trim($_POST['position']),
                 'job_description' => trim($_POST['job_description']),
-                'other_requirements' => trim($_POST['other_requirements']),
+                'requirements' => trim($_POST['requirements']),
                 'internship_start' => date('y-m-d',strtotime($_POST['internship_start'])),
                 'internship_end' => date('y-m-d',strtotime($_POST['internship_end'])),
                 'no_of_interns' => trim($_POST['no_of_interns']),
                 'working_mode' => trim($_POST['working_mode']),
-                'required_year' => trim($_POST['required_year'])
-                
+                'required_year' => trim($_POST['required_year']),
             ];
 
             //Execute
-            if ($this->AdvertisementModel->addAdvertisement($data)) { 
+            if ($this->advertisementModel->addAdvertisement($data)) { 
                 
                 
                 redirect('advertisements');
@@ -59,14 +67,17 @@ class Advertisements extends BaseController
             
             // Init data
             $data = [
+                
                 'position' => '',
                 'job_description' => '',
-                'other_requirements' => '',
+                'requirements' => '',
                 'internship_start' => '',
                 'internship_end' => '',
                 'no_of_interns' => '',
                 'working_mode' => '',
-                'required_year' => ''
+                'required_year' => '',
+                'formAction' => 'advertisements/add-advertisement/',
+                'jobroleList' => $this->jobroleList
             ];
 
             // Load View
@@ -74,27 +85,30 @@ class Advertisements extends BaseController
         }
     }
 
-    public function showAdvertisement($id)
+    public function showAdvertisement($advertisementId)
     {
 
-        $advertisement = $this->AdvertisementModel->showAdvertisementById($id); //To get the Advertisement Name
+        $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
         
         $data = [
             'className'=> 'selectedTab',
             'title' => 'Advertisements',
-            'inputVal' =>$advertisement->job_description,
-            'other_requirements' => $advertisement->requirements,
+            'position' => $advertisement->position,
+            'job_description' =>$advertisement->job_description,
+            'requirements' => $advertisement->requirements,
             'no_of_interns' => $advertisement->intern_count,
             'working_mode' => $advertisement->working_mode,
             'required_year' => $advertisement->applicable_year,
-            'advertisements' => $advertisement,
-            'formAction' => 'advertisements/updateAdvertisement/'.$advertisement->advertisement_id
+            'internship_start' => $advertisement->start_date,
+            'internship_end' => $advertisement->end_date,
+            'jobroleList' => $this->jobroleList,
+            'formAction' => 'advertisements/update-advertisement/'.$advertisement->advertisement_id
         ];
 
         $this->view('company/addAdvertisement', $data);
     }
 
-    public function updateAdvertisement($id)
+    public function updateAdvertisement($advertisementId)
     {
                 // Check if POST
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -105,17 +119,17 @@ class Advertisements extends BaseController
                     $data = [
                         'position' => trim($_POST['position']),
                         'job_description' => trim($_POST['job_description']),
-                        'other_requirements' => trim($_POST['other_requirements']),
+                        'requirements' => trim($_POST['requirements']),
                         'internship_start' => date('y-m-d',strtotime($_POST['internship_start'])),
                         'internship_end' => date('y-m-d',strtotime($_POST['internship_end'])),
                         'no_of_interns' => trim($_POST['no_of_interns']),
                         'working_mode' => trim($_POST['working_mode']),
                         'required_year' => trim($_POST['required_year']),
-                        'id' => $id
+                        'advertisement_id' => $advertisementId
                     ];
         
                     //Execute
-                    if ($this->AdvertisementModel->updateAdvertisement($data)) { 
+                    if ($this->advertisementModel->updateAdvertisement($data)) { 
                         
                         // Redirect
                         redirect('advertisements');
@@ -131,13 +145,13 @@ class Advertisements extends BaseController
                     ];
         
                     // Load View
-                    $this->view('company/addAdvertisement', $data);
+                    $this->view('company/add-advertisement', $data);
                 }
     }
 
-    public function deleteAdvertisement($id)
+    public function deleteAdvertisement($advertisementId)
     {
-        $this->AdvertisementModel->deleteAdvertisement($id);
+        $this->advertisementModel->deleteAdvertisement($advertisementId);
     }
 }
 

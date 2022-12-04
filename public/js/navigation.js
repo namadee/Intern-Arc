@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
+
   const pdcMenu = [
     ["#", "dashboard", "Dashboard"],
     ["#", "cases", "Manage Company"],
@@ -39,7 +40,7 @@ window.addEventListener("DOMContentLoaded", function () {
     ["#", "manage_accounts", "Profile"],
   ];
 
-  getNavigationMenu(navigationMenu); //Calling the function
+  
 
   //Selecting Navigation based On User Role which is got from the session
   function getNavigationMenu(navigationMenu) {
@@ -78,6 +79,10 @@ window.addEventListener("DOMContentLoaded", function () {
       </li>`;
     }
   }
+
+  let navigationMenu = sessionStorage.getItem("navSidebar"); //Getting the value stored in the session storage
+
+  getNavigationMenu(navigationMenu); //Calling the function
 });
 
 // window.onload = function navigationPDC() {

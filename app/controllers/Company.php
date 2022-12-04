@@ -1,16 +1,16 @@
 <?php
 
-class Pdc extends BaseController
+class Company extends BaseController
 {
     
     public function __construct()
     {
-        $this->pdcModel = $this->model('Pdc');
+        $this->companyModel = $this->model('Company');
     }
 
     public function index() //default method and view
     {
-        $this->view('pdc/login');
+        $this->view('company/login');
     }
 
 
