@@ -52,15 +52,28 @@ window.onload = function navigationPDC() {
 };
 
 /*set date input limits*/
-const start_date = document.getElementById("internship_start").valueAsDate;
+function addMonths(date, months) {
+  var d = date.getDate();
+  date.setMonth(date.getMonth() + +months);
+  if (date.getDate() != d) {
+    date.setDate(0);
+  }
+  return date;
+}
+// const start_date = new Date();
+
+
 document.getElementById("internship_start").min = new Date().toISOString().split("T")[0];
-document.getElementById("internship_end").max = start_date - 6;
 
-// end date mm + 6
-// if (mm+6) > 12 
-// {
-//   mm =  end_date - 12
-//   yyyy = yyyy+1
-// }
+let start_date = document.getElementById("internship_start").valueAsDate.toISOString().split("T")[0];
+let end_date = new Date(start_date.setMonth(start_date.getMonth()+6));
+document.getElementById("internship_end").max = end_date.toISOString().split("T")[0];
 
-// 2022-12-3 - 2023-6-3
+
+// let end_date = start_date.addMonths(6);
+// if(end_date)
+console.log(start_date);
+console.log(end_date);
+
+
+
