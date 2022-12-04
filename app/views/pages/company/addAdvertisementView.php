@@ -34,14 +34,14 @@
                 <p><label for="time_period">Internship Period</label></p>
                 <div class="time_period">
                   <input type="date" id="internship_start" name="internship_start" value="<?php echo $data['internship_start'] ?>"><p>-</p>
-                  <input type="date" id="internship_end" name="internship_end" value="<?php echo $data['internship_end'] ?>">
+                  <input type="date" max='2030-13-13' id="internship_end" name="internship_end" value="<?php echo $data['internship_end'] ?>">
             </div>
   
             </div>
 
             <div class="addAdvertisement-items">
                 <p><label>No of interns</label></p>
-                <input type="number" name="no_of_interns" value="<?php echo $data['no_of_interns'] ?>">
+                <input type="number" min="0" name="no_of_interns" value="<?php echo $data['no_of_interns'] ?>">
             </div>
 
             <div class="addAdvertisement-items">
