@@ -14,7 +14,7 @@
           </span> PDC </a>
       </li>
       <li>
-        <a href="#">
+        <a href="<?php echo URLROOT . 'company'; ?>">
           <span class="material-symbols-rounded">
             person
           </span> Company </a>

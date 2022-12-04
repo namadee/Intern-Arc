@@ -50,3 +50,17 @@ window.onload = function navigationPDC() {
     </li>`;
   }
 };
+
+/*set date input limits*/
+const start_date = document.getElementById("internship_start").valueAsDate;
+document.getElementById("internship_start").min = new Date().toISOString().split("T")[0];
+document.getElementById("internship_end").max = start_date - 6;
+
+// end date mm + 6
+// if (mm+6) > 12 
+// {
+//   mm =  end_date - 12
+//   yyyy = yyyy+1
+// }
+
+// 2022-12-3 - 2023-6-3
