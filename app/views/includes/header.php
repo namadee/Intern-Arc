@@ -12,6 +12,8 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="<?php echo URLROOT; ?>css/shared.css">
         <link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
         <script src="<?php echo URLROOT . 'js/navigation.js' ?>"></script>
 </head>
 <body>
