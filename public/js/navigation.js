@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", function () {
     ["#", "school", "Student Requests"],
     ["#", "list_alt", "Shortlisted"],
     ["#", "calendar_month", "Schedule"],
-    ["#", "approval_delegation", "Comlpaint"],
+    ["#", "approval_delegation", "Complaint"],
     ["#", "manage_accounts", "Profile"],
   ];
 
@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", function () {
     ["#", "cases", "Company"],
     ["#", "manage_accounts", "Profile"],
     ["#", "text_to_speech", "Advertisements"],
-    ["#", "approval_delegation", "Comlpaint"],
+    ["#", "approval_delegation", "Complaint"],
     ["#", "calendar_month", "Schedule"],
   ];
 
@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", function () {
     ["#", "school", "Student"],
     ["#", "groups", "PDC"],
     ["#", "text_to_speech", "Advertisements"],
-    ["#", "approval_delegation", "Comlpaint"],
+    ["#", "approval_delegation", "Complaint"],
     ["#", "monitoring", "Reports"],
     ["#", "manage_accounts", "Profile"],
   ];

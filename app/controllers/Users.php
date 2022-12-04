@@ -97,14 +97,14 @@ class Users extends BaseController
         } else {
           //Password is incorrect
           $data = [
-            'error_class' => 'signin-error-alert',
+            'error_class' => 'main-signin-error-alert',
             'error_msg' => 'Password is incorrect!'
           ];
         }
       } else {
         // No User found by that email
         $data = [
-          'error_class' => 'signin-error-alert',
+          'error_class' => 'main-signin-error-alert',
           'error_msg' => 'User email is not found!'
         ];
       }

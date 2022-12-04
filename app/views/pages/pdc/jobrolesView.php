@@ -14,7 +14,7 @@
         </h3>
         <form class="display-flex-col" action="<?php echo URLROOT . $data['formAction']; ?>" method="POST">
             <label for="jobrole">Name</label>
-            <input type="text" class="common-input" name="jobrole" id="jobrole" value="<?php echo $data['inputValue'] ?>">
+            <input type="text" class="common-input" name="jobrole" id="jobrole" value="<?php echo $data['inputValue'] ?>" required>
             <button type="submit" class="common-blue-btn">
                 <?php echo $data['buttonName'] ?>
             </button>
