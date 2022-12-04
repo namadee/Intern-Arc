@@ -2,9 +2,9 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <!-- To get Navigation Menu - MUST ADD TO DASHBOARD OF EACH USER-->
-<?php $navigationMenu = $_SESSION['user_role']; ?>
+<?php $navSidebar = $_SESSION['user_role']; ?>
 <script type="text/javascript">
-    let navigationMenu = `<?php echo $navigationMenu; ?>`;
+    sessionStorage.setItem("navSidebar", "<?php echo $navSidebar; ?>");
 </script>
 
 <section id="pdc_jobroles_page" class="main-content">
@@ -14,7 +14,7 @@
         </h3>
         <form class="display-flex-col" action="<?php echo URLROOT . $data['formAction']; ?>" method="POST">
             <label for="jobrole">Name</label>
-            <input type="text" class="common-input" name="jobrole" id="jobrole" value="<?php echo $data['inputValue'] ?>">
+            <input type="text" class="common-input" name="jobrole" id="jobrole" value="<?php echo $data['inputValue'] ?>" required>
             <button type="submit" class="common-blue-btn">
                 <?php echo $data['buttonName'] ?>
             </button>

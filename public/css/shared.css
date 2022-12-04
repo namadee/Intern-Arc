@@ -7,8 +7,9 @@
   --Black: #212121;
   --BackgroungColor: #f3f3f3;
   --AlternateLightGrey: #dbe4ee;
-  --SuccessColor: #4bb543;
-  --DangerColor: #dc3545;
+  --SuccessColor: #4F8A10;
+  --DangerColor: #ba3939;
+  --DangerBackground:#ffe0e0;
 }
 
 * {
@@ -72,6 +73,7 @@ nav {
   border-right: 1px solid var(--BackgroungColor);
   /* box-shadow:  6px 0px 4px 4px #F3F3F3; */
   transition-duration: 800ms;
+  padding-top: 1.5rem;
 }
 
 .material-symbols-rounded {
@@ -86,6 +88,10 @@ nav .navbar-main-logo {
 nav .navbar-main-logo img {
   width: 70%;
   object-fit: cover;
+}
+
+.sidebar-items{
+  gap: 1rem;
 }
 
 .sidebar-items a,
@@ -245,3 +251,5 @@ main {
   border-radius: 10px;
   width: calc(100% - 60px);
 }
+
+

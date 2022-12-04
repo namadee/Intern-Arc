@@ -2,16 +2,16 @@
 <div class="loginContainer">
         <div class="leftBox">
             <h1>Login</h1>
-            <form id="loginForm" action="<?php echo URLROOT; ?>users/company-login" method="POST">
+            <form id="loginForm" class="display-flex-col" action="<?php echo URLROOT; ?>users/company-login" method="POST">
                
-                <input type="email" id="userName" name="email" placeholder="email" required>
+                <input class="common-input" type="email" id="userName" name="email" placeholder="Enter your email" required>
             
                 
-                <input type="password" id="pword" name="password" placeholder="Pass Word">
-                <br>
+                <input class="common-input" type="password" id="pword" name="password" placeholder="Enter your password" required>
+                
                 <a href="#">Forgot your Password?</a>
-                <br>
-                <div class="signin-error-hide <?php echo $data['error_class']; ?>">
+                
+                <div class="main-signin-error-hide <?php echo $data['error_class']; ?>">
                     <span class="material-symbols-rounded">
                     report
                     </span>
@@ -22,8 +22,10 @@
               </form>
         </div>
         <div class="rightBox">
+          
+            <h1>Hello there!</h1>
             <img src="<?php echo URLROOT . 'img/logo.png' ?>">
-            <h1>Hello There!</h1>
+            <p>Welcome to InternArc</p>
         </div>
     </div>
 <?php require APPROOT . '/views/includes/footer.php'; ?>

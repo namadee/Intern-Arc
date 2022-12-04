@@ -2,7 +2,7 @@
 
 class Pdc extends BaseController
 {
-    public $pdcNavbar;
+    
     public function __construct()
     {
         $this->pdcModel = $this->model('Pdc');

@@ -1,14 +1,3 @@
-:root {
-  --primaryColor: #f17300;
-  --DarkBlue: #054a91;
-  --LightBlue: #3e7cb1;
-  --Black: #212121;
-  --BackgroungColor: #f3f3f3;
-  --AlternateLightGrey: #dbe4ee;
-  --SuccessColor: #4bb543;
-  --DangerColor: #dc3545;
-}
-
 /* Sign in Page - PDC*/
 
 .signin-main-container {
@@ -188,7 +177,8 @@
   height: 80vh;
   margin-top: 3rem;
   overflow: hidden;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;}
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
 .home-user-img {
   width: 60%;
@@ -228,7 +218,7 @@
   width: 70%;
   border-radius: 10px;
   box-shadow: var(--primaryColor) 0px 2px 2px;
-  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
   cursor: pointer;
 }
 
@@ -240,23 +230,23 @@
   align-items: center;
 }
 
-.home-user-list li:hover{
+.home-user-list li:hover {
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
 
 /* TEMPERARY REGISTER PAGE - ADD USERS*/
-#register-main-container{
+#register-main-container {
   height: 90vh;
   margin-top: 2rem;
   padding: 1rem;
 }
-.register-user-form{
+.register-user-form {
   width: 40%;
   padding: 1rem;
 }
 
-.register-user-form h2{
+.register-user-form h2 {
   color: var(--DarkBlue);
   text-align: center;
   margin-bottom: 1.2rem;
@@ -267,7 +257,6 @@
   margin: 0;
   margin: 1rem 0;
   width: 100%;
-
 }
 
 .register-user-form .common-input {
@@ -284,20 +273,24 @@
   margin-top: 1rem;
 }
 
-/*sign in page company*/
+/*Sign In page company*/
 
 .loginContainer {
   margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-
-  width: 60%;
-  height: 90vh;
+  margin-top: 2rem;
+  width: 50%;
+  height: 80vh;
   display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+.loginContainer form {
+  gap: 1rem;
+  width: 70%;
+}
+
 .leftBox {
   width: 50%;
   background: #fff;
@@ -306,17 +299,18 @@
   justify-content: center;
   align-items: center;
 }
+
 .leftBox h1 {
   color: var(--primaryColor);
   margin-bottom: 10%;
 }
 
-.leftBox a {
+.leftBox form a {
   color: var(--primaryColor);
   text-align: center;
-  margin: auto;
-  display: block;
+  font-size: 0.9rem;
 }
+
 .rightBox {
   width: 50%;
   background: var(--Black);
@@ -324,47 +318,60 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .rightBox h1 {
-  color: #fff;
-  font-size: 2.5em;
-  font-weight: 600;
+  color: var(--primaryColor);
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+.rightBox p {
+  color: var(--primaryColor);
 }
 
 .rightBox img {
-  width: 80%;
+  width: 70%;
   max-width: 500px;
 }
 
-#loginForm input,
-#loginForm select {
-  display: block;
-  width: 100%;
-  padding: 12px 20px;
-  margin: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
 #loginForm input[type="submit"] {
-  width: 100px;
   color: var(--primaryColor);
-  padding: 0.8rem 1rem;
-  width: 60%;
+  padding: 0.5rem 1rem;
+  width: 80%;
   background: #fff;
   margin: auto;
-  margin-top: 15%;
-  border: 1px solid var(--primaryColor);
-  border-radius: 8px;
+  background-color: var(--Black);
+  border-radius: 20px;
   cursor: pointer;
   display: block;
-  font-size: 1.2em;
+  font-size: 1rem;
+  transition: ease-in-out 300ms;
+  margin-top: 2rem;
+  
 }
 
-input[type="submit"]:hover {
-  background-color: var(--primaryColor);
-  color: #fff;
+#loginForm input[type="submit"]:hover {
+  background-color: rgb(62, 62, 62);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.main-signin-error-hide{
+  display: none;
+}
+
+.main-signin-error-alert{
+  padding: 0.2rem 0.5rem;
+  color: var(--DangerColor);
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #d2a6a6;
+  align-self: flex-start;
+  background-color: var(--DangerBackground);
 }
 
 /* COMPANY - ADVERTISEMENTS*/
@@ -508,20 +515,19 @@ input[type="submit"]:hover {
 }
 .addBtn a {
   color: #fff;
- text-decoration: none;
- padding: 0.5rem 2rem;
- display: flex;
- justify-content: center;
- align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.addBtn button{
+.addBtn button {
   color: #fff;
   text-decoration: none;
   padding: 0.5rem 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 .addBtn .material-symbols-outlined {
   color: #fff;
@@ -604,5 +610,3 @@ input[type="submit"]:hover {
   text-align: center;
   color: #054a91;
 }
-
-
