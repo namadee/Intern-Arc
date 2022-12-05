@@ -1,0 +1,167 @@
+/* Sign in Page - PDC*/
+
+.signin-main-container {
+    margin: auto;
+    margin-top: 5%;
+    width: 30%;
+    gap: 1rem;
+    padding: 3% 3% 4% 3%;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid var(--DarkBlue);
+    align-items: center;
+  }
+  
+  .signin-main-container img {
+    width: 50%;
+    object-fit: cover;
+  }
+  
+  .signin-main-container form {
+    gap: 1.5rem;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0 8%;
+    text-align: left;
+    align-items: center;
+  }
+  
+  .signin-main-container form h2 {
+    color: var(--DarkBlue);
+  }
+  
+  .signin-form-content {
+    flex-direction: row;
+    gap: 0.2rem;
+    border: 1px solid var(--AlternateLightGrey);
+    width: 100%;
+    padding: 0.3rem;
+    border-radius: 5px;
+    align-items: center;
+  }
+  
+  .signin-main-container form input {
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+  }
+  
+  .signin-main-container form button {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    border-radius: 20px;
+    transition: ease-in-out 0.2s;
+    font-size: 1rem;
+  }
+  
+  .signin-main-container form button:hover {
+    transform: scale(1.02);
+  }
+  
+  .signin-error-hide {
+    display: none;
+  }
+  
+  .signin-error-alert {
+    color: var(--DangerColor);
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    align-items: center;
+    width: fit-content;
+    align-self: flex-start;
+    margin-top: -1rem;
+  }
+  
+  /* Job Roles List Page PDC*/
+  
+  #pdc_jobroles_page {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+  }
+  
+  #pdc_jobroles_page .jobroles-quickAdd,
+  #pdc_jobroles_page .jobroles-rolesList {
+    background-color: white;
+    width: 40%;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 3rem 2rem;
+  }
+  
+  #pdc_jobroles_page .jobroles-quickAdd form {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .jobroles-quickAdd {
+    gap: 2.5rem;
+    height: fit-content;
+  }
+  
+  #pdc_jobroles_page h3 {
+    text-align: center;
+  }
+  
+  .jobroles-quickAdd label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .jobroles-quickAdd input {
+    width: 100%;
+  }
+  
+  .jobroles-quickAdd button {
+    width: 60%;
+    margin-top: 2rem;
+    padding: 0.7rem 0.9rem;
+  }
+  
+  .jobroles-rolesList {
+    height: 70vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  
+  .jobroles-rolesList table {
+    width: 100%;
+    table-layout: fixed;
+    word-wrap: break-word;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    border-collapse: collapse;
+  }
+  
+  .jobroles-rolesList table td:nth-child(1) {
+    width: 70%;
+  }
+  
+  .jobroles-rolesList table td:nth-child(2),
+  .jobroles-rolesList table td:nth-child(3) {
+    width: fit-content;
+  }
+  
+  .jobroles-rolesList table td {
+    padding: 0.3rem;
+  }
+  
+  .jobroles-rolesList table span {
+    font-size: 0.9rem;
+    color: var(--LightBlue);
+  }
+  
+  .jobroles-rolesList table a {
+    display: flex;
+    background-color: var(--BackgroungColor);
+    padding: 0.4rem;
+    border-radius: 10px;
+    width: fit-content;
+    justify-content: center;
+  }
+  
+  .jobroles-rolesList table #delete {
+    color: var(--DangerColor);
+  }
