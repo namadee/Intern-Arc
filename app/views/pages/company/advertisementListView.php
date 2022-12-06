@@ -1,11 +1,6 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
-
-<!-- To get Navigation Menu - MUST ADD TO DASHBOARD OF EACH USER-->
-<?php $navSidebar = $_SESSION['user_role']; ?>
-<script type="text/javascript">
-  sessionStorage.setItem("navSidebar", "<?php echo $navSidebar; ?>");
-</script>
 
 <section class="main-content">
   <div class="advertisement_list">
@@ -30,7 +25,13 @@
     </div>
 
     <div class="advertisement_list_content">
+      
+      <div class="addBtn">
       <h3>Advertisement List</h3>
+<a href="<?php echo URLROOT; ?>Advertisements/add-advertisement" class="common-blue-btn"><span id="addIcon" class="material-symbols-outlined">
+    library_add
+  </span>Add</a>
+</div>
       <table class="advertisements">
         <tr>
           <th>Advertisement Name</th>
@@ -43,14 +44,16 @@
             <td><?php echo $advertisement->position ?></td>
             <td><?php echo $advertisement->intern_count ?></td>
             <td><?php echo $advertisement->status ?></td>
-            <td><a href="<?php echo URLROOT; ?>advertisements/showAdvertisement/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
-                  drive_file_rename_outline
-                </span></a>
+            <td>
+              <a class="common-edit-btn" href="<?php echo URLROOT; ?>advertisements/showAdvertisement/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
+              edit_square
+                </span>
+              </a>
             </td>
             <td>
-              <a href="<?php echo URLROOT; ?>advertisements/deleteAdvertisement/<?php echo $advertisement->advertisement_id; ?>"><span id="delete" class="material-symbols-outlined">
-                  delete
-                </span></a>
+            <a class="common-edit-btn" id="common-delete-btn" href="<?php echo URLROOT; ?>advertisements/deleteAdvertisement/<?php echo $advertisement->advertisement_id; ?>"  id="delete"><span class="material-symbols-outlined">
+                                delete
+                            </span></a>
             </td>
           </tr>
         <?php endforeach; ?>
@@ -145,12 +148,7 @@
                     </tr>
                   </table>  -->
     </div>
-    <div class="addBtn">
 
-      <a href="<?php echo URLROOT; ?>Advertisements/add-advertisement"><span id="addIcon" class="material-symbols-outlined">
-          library_add
-        </span>Add</a>
-    </div>
   </div>
 
 </section>

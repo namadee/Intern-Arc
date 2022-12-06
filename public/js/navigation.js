@@ -2,8 +2,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const pdcMenu = [
     ["#", "dashboard", "Dashboard"],
-    ["#", "cases", "Manage Company"],
-    ["#", "school", "Manage Student"],
+    ["#", "cases", "Companies"],
+    ["#", "school", "Students"],
     ["#", "category", "Job Roles"],
     ["#", "text_to_speech", "Advertisements"],
     ["#", "compare_arrows", "Requests"],

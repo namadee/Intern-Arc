@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 :root {
   --primaryColor: #f17300;
   --DarkBlue: #054a91;
@@ -7,20 +6,24 @@
   --Black: #212121;
   --BackgroungColor: #f3f3f3;
   --AlternateLightGrey: #dbe4ee;
-  --SuccessColor: #4F8A10;
+  --SuccessColor: #4f8a10;
   --DangerColor: #ba3939;
-  --DangerBackground:#ffe0e0;
+  --DangerBackground: #ffe0e0;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Lato", sans-serif;
-  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
   list-style: none;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+h1,h2,h3,h4 {
+  font-weight: 500;
 }
 
 body {
@@ -54,9 +57,29 @@ input:focus {
   cursor: pointer;
   border-style: none;
   border-radius: 3px;
-  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  font-size: 0.9rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background: linear-gradient(270deg, #5ECAE4 0%, #168EB4 100%);
 }
-/* Common 4 -  Orange Border Button */
+
+/* Common 4 -  Common Edit Button */
+.common-edit-btn {
+  display: flex;
+  background-color: var(--BackgroungColor);
+  padding: 0.4rem;
+  border-radius: 10px;
+  width: fit-content;
+  justify-content: center;
+
+}
+
+.common-edit-btn span {
+  font-size: 1.1rem;
+  /* color: var(--LightBlue); */
+  color: var(--DarkBlue);
+}
+
+
 
 /* Common 5 -  Delete Button */
 
@@ -90,7 +113,11 @@ nav .navbar-main-logo img {
   object-fit: cover;
 }
 
-.sidebar-items{
+nav p {
+  font-size: 0.9rem;
+}
+
+.sidebar-items {
   gap: 1rem;
 }
 
@@ -107,29 +134,13 @@ nav .navbar-main-logo img {
 .sidebar-items a:hover,
 .sidebar-bottom a:hover {
   background-color: var(--BackgroungColor);
+  color: var(--primaryColor);
 }
 
 .sidebar-bottom ul {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.nav-profile-link a {
-  /* background-color: var(--primary-color-2); */
-  color: var(--Black);
-}
-
-.nav-profile-link a p {
-  padding: 0.5rem 0.2rem;
-  font-size: 0.9rem;
-  width: 100%;
-}
-
-.nav-profile-link img {
-  width: 3rem;
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 main {
@@ -150,7 +161,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background-color: #fff;
   color: var(--primaryColor);
   border-bottom: 1px solid var(--BackgroungColor);
@@ -184,6 +195,7 @@ main {
   cursor: pointer;
 }
 
+
 .topNav-right {
   display: flex;
   align-items: center;
@@ -201,7 +213,7 @@ main {
 }
 
 .topNav-right img {
-  width: 40px;
+  width: 30px;
   border-radius: 50%;
 }
 
@@ -228,16 +240,16 @@ main {
   left: -50px;
 }
 
-.toggle-nav-logo img{
+.toggle-nav-logo img {
   width: 50px;
 }
 
-.nav-logo-show{
+.nav-logo-show {
   opacity: 1;
   left: 10px;
 }
 
-.top-nav-left{
+.top-nav-left {
   padding-left: 3rem;
 }
 
@@ -251,9 +263,6 @@ main {
   border-radius: 10px;
   width: calc(100% - 60px);
 }
-
-
-
 
 /* HOME PAGE - SELECT USERS*/
 

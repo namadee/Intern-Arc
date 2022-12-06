@@ -147,21 +147,4 @@
   .jobroles-rolesList table td {
     padding: 0.3rem;
   }
-  
-  .jobroles-rolesList table span {
-    font-size: 0.9rem;
-    color: var(--LightBlue);
-  }
-  
-  .jobroles-rolesList table a {
-    display: flex;
-    background-color: var(--BackgroungColor);
-    padding: 0.4rem;
-    border-radius: 10px;
-    width: fit-content;
-    justify-content: center;
-  }
-  
-  .jobroles-rolesList table #delete {
-    color: var(--DangerColor);
-  }
+    
