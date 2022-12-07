@@ -40,7 +40,8 @@ window.addEventListener("DOMContentLoaded", function () {
     ["#", "manage_accounts", "Profile"],
   ];
 
-  
+  let navigationMenu = sessionStorage.getItem("navSidebar"); //Getting the value stored in the session storage
+
 
   //Selecting Navigation based On User Role which is got from the session
   function getNavigationMenu(navigationMenu) {
@@ -80,9 +81,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
 
- //Getting the value stored in the session storage
-  if (sessionStorage.getItem("navSidebar")) {
-    getNavigationMenu(navigationMenu); //Calling the function
-  }
+
+  getNavigationMenu(navigationMenu); //Calling the function
   
 });

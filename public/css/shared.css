@@ -4,11 +4,12 @@
   --DarkBlue: #054a91;
   --LightBlue: #3e7cb1;
   --Black: #212121;
-  --BackgroungColor: #f3f3f3;
+  --BackgroungColor: #efeff3;
   --AlternateLightGrey: #dbe4ee;
   --SuccessColor: #4f8a10;
   --DangerColor: #ba3939;
   --DangerBackground: #ffe0e0;
+  --BoxShadow1:rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 * {
@@ -61,7 +62,7 @@ input:focus {
   border-style: none;
   border-radius: 3px;
   font-size: 0.9rem;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: var(--BoxShadow1);
   background: linear-gradient(270deg, #5ecae4 0%, #168eb4 100%);
 }
 
@@ -78,7 +79,8 @@ input:focus {
 .common-edit-btn span {
   font-size: 1.1rem;
   /* color: var(--LightBlue); */
-  color: var(--DarkBlue);
+  /* color: var(--DarkBlue); */
+  color: #168eb4;
 }
 
 /* Common 5 -  Main Modal Box [ ID ] */
@@ -179,11 +181,13 @@ main {
   position: relative;
   width: calc(100% - 220px);
   left: 220px;
+  top: 0;
+  height: 100%;
   transition-duration: 800ms;
+  overflow: hidden;
 }
 
 .top-nav {
-  overflow: hidden;
   position: fixed;
   width: calc(100% - 220px);
   top: 0;
@@ -198,6 +202,7 @@ main {
   color: var(--primaryColor);
   border-bottom: 1px solid var(--BackgroungColor);
   transition-duration: 800ms;
+  overflow: hidden;
 }
 
 /* .top-nav a:hover {
@@ -287,13 +292,13 @@ main {
 /* Main Content Container*/
 .main-content {
   color: black;
-  margin: 2rem;
-  margin-top: 3rem;
-  padding: 2rem;
+  margin-top: 50px;
+  padding: 1.8rem;
   background-color: var(--BackgroungColor);
   border-radius: 10px;
-  width: calc(100% - 60px);
+  width: 100%;
   font-size: 0.9rem;
+  overflow: auto;
 }
 
 /* HOME PAGE - SELECT USERS*/
