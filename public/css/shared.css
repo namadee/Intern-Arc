@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 :root {
   --primaryColor: #f17300;
   --DarkBlue: #054a91;
@@ -15,14 +15,17 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   list-style: none;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-h1,h2,h3,h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: 500;
 }
 
@@ -59,7 +62,7 @@ input:focus {
   border-radius: 3px;
   font-size: 0.9rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  background: linear-gradient(270deg, #5ECAE4 0%, #168EB4 100%);
+  background: linear-gradient(270deg, #5ecae4 0%, #168eb4 100%);
 }
 
 /* Common 4 -  Common Edit Button */
@@ -70,7 +73,6 @@ input:focus {
   border-radius: 10px;
   width: fit-content;
   justify-content: center;
-
 }
 
 .common-edit-btn span {
@@ -79,9 +81,39 @@ input:focus {
   color: var(--DarkBlue);
 }
 
+/* Common 5 -  Main Modal Box [ ID ] */
 
+#common-modal-box {
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
 
-/* Common 5 -  Delete Button */
+#common-modal-box form {
+  position: relative;
+}
+
+#common-modal-box span {
+  cursor: pointer;
+}
+
+#common-modal-box a {
+  width: fit-content;
+  position: absolute;
+  right: 1rem;
+  top:1rem;
+}
+
+#common-modal-box a:hover {
+  color: var(--Black);
+}
 
 /* /-------------- MAIN SIDEBAR ---------------/ */
 
@@ -195,7 +227,6 @@ main {
   cursor: pointer;
 }
 
-
 .topNav-right {
   display: flex;
   align-items: center;
@@ -262,6 +293,7 @@ main {
   background-color: var(--BackgroungColor);
   border-radius: 10px;
   width: calc(100% - 60px);
+  font-size: 0.9rem;
 }
 
 /* HOME PAGE - SELECT USERS*/

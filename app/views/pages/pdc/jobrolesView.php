@@ -7,11 +7,11 @@
         <h3>
             Add a new Job Role
         </h3>
-        <form class="display-flex-col" action="<?php echo URLROOT . $data['formAction']; ?>" method="POST">
+        <form class="display-flex-col" action="<?php echo URLROOT ."jobroles/add-jobrole" ?>" method="POST">
             <label for="jobrole">Name</label>
             <input type="text" class="common-input" name="jobrole" id="jobrole" value="<?php echo $data['inputValue'] ?>" required>
             <button type="submit" class="common-blue-btn">
-                <?php echo $data['buttonName'] ?>
+                 Add Job Role
             </button>
         </form>
     </div>
@@ -21,12 +21,12 @@
             <?php foreach ($data['jobroles'] as $jobrole) : ?>
                 <tr>
                     <td><?php echo $jobrole->name ?></td>
-                    <td><a class="common-edit-btn" href="<?php echo URLROOT; ?>jobroles/showJobrole/<?php echo $jobrole->jobrole_id; ?>"><span class="material-symbols-outlined">
-                                edit_square
+                    <td><a class="common-edit-btn" href="<?php echo URLROOT; ?>jobroles/show-jobrole/<?php echo $jobrole->jobrole_id; ?>"><span class="material-symbols-outlined">
+                    edit_square
                             </span></a>
                     </td>
                     <td>
-                        <a class="common-edit-btn" href="<?php echo URLROOT; ?>jobroles/deleteJobrole/<?php echo $jobrole->jobrole_id; ?>"><span id="delete" class="material-symbols-outlined">
+                        <a class="common-edit-btn"  href="<?php echo URLROOT; ?>jobroles/delete-jobrole/<?php echo $jobrole->jobrole_id; ?>"><span id="delete" class="material-symbols-outlined">
                                 delete
                             </span></a>
                     </td>

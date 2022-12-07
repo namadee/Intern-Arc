@@ -92,6 +92,9 @@
   width: 100px;
   border-radius: 50%;
 }
+.update-profile-container form {
+  gap: 1rem;
+}
 
 .update-profile-container form input {
   width: 90%;
@@ -100,6 +103,7 @@
 .update-profile-container form ul {
   width: 100%;
   margin: auto;
+  font-size: 0.9rem;
 }
 .update-profile-container form li {
   display: flex;

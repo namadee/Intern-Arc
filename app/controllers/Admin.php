@@ -48,10 +48,10 @@ class Admin extends BaseController
             ];
 
             //Execute
-            if ($this->userModel->updateProfile($data)) {
+            if ($this->userModel->updateUserDetails($data)) {
 
                 // Redirect
-                redirect('admin/viewprofile');
+                redirect('admin/view-profile');
             } else {
                 die('Something went wrong');
             }

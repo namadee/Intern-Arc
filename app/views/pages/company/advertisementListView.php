@@ -45,108 +45,19 @@
             <td><?php echo $advertisement->intern_count ?></td>
             <td><?php echo $advertisement->status ?></td>
             <td>
-              <a class="common-edit-btn" href="<?php echo URLROOT; ?>advertisements/showAdvertisement/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
+              <a class="common-edit-btn" href="<?php echo URLROOT; ?>advertisements/show-advertisement/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
               edit_square
                 </span>
               </a>
             </td>
             <td>
-            <a class="common-edit-btn" id="common-delete-btn" href="<?php echo URLROOT; ?>advertisements/deleteAdvertisement/<?php echo $advertisement->advertisement_id; ?>"  id="delete"><span class="material-symbols-outlined">
+            <a class="common-edit-btn" id="common-delete-btn" href="<?php echo URLROOT; ?>advertisements/delete-advertisement/<?php echo $advertisement->advertisement_id; ?>"  id="delete"><span class="material-symbols-outlined">
                                 delete
                             </span></a>
             </td>
           </tr>
         <?php endforeach; ?>
       </table>
-      <!-- <table>                    
-                    <tr>
-                      <th>Advertisement Name</th>
-                      <th>No of Interns</th>
-                      <th>Status</th>
-                    </tr>
-                    <tr>
-                      <td>Software Engineer - Virtusa</td>
-                      <td>10</td>
-                      <td>Accepted</td>
-                     
-                      <td><button class="viewBtn">View</button></td>
-                      <td><button class="deleteBtn"><span class="material-symbols-outlined">
-                        delete
-                        </span></button></td>
-                     
-                    </tr>
-                    <tr>
-                      <td>Software Engineer - Virtusa</td>
-                      <td>10</td>
-                      <td>Accepted</td>
-                      
-                      <td><button class="viewBtn">View</button></td>
-                      <td><button class="deleteBtn"><span class="material-symbols-outlined">
-                        delete
-                        </span></button></td>
-                      
-                    </tr>
-                    <tr>
-                      <td>Software Engineer - Virtusa</td>
-                      <td>10</td>
-                      <td>Accepted</td>
-                      
-                      <td><button class="viewBtn">View</button></td>
-                      <td><button class="deleteBtn"><span class="material-symbols-outlined">
-                        delete
-                        </span></button></td>
-                    </tr>
-                    <tr>
-                      <td>Software Engineer - Virtusa</td>
-                      <td>10</td>
-                      <td>Accepted</td>
-                     
-                      <td><button class="viewBtn">View</button></td>
-                      <td><button class="deleteBtn"><span class="material-symbols-outlined">
-                        delete
-                        </span></button></td>
-                    </tr>
-                    <tr>
-                      <td>Software Engineer - Virtusa</td>
-                      <td>10</td>
-                      <td>Accepted</td>
-                      
-                      <td><button class="viewBtn">View</button></td>
-                      <td><button class="deleteBtn"><span class="material-symbols-outlined">
-                        delete
-                        </span></button></td>
-                    </tr>
-                    <tr>
-                      <td>Software Engineer - Virtusa</td>
-                      <td>10</td>
-                      <td>Accepted</td>
-                      
-                      <td><button class="viewBtn">View</button></td>
-                      <td><button class="deleteBtn"><span class="material-symbols-outlined">
-                        delete
-                        </span></button></td>
-                    </tr>
-                    <tr>
-                      <td>Software Engineer - Virtusa</td>
-                      <td>10</td>
-                      <td>Accepted</td>
-                      
-                      <td><button class="viewBtn">View</button></td>
-                      <td><button class="deleteBtn"><span class="material-symbols-outlined">
-                        delete
-                        </span></button></td>
-                    </tr>
-                    <tr>
-                      <td>Software Engineer - Virtusa</td>
-                      <td>10</td>
-                      <td>Accepted</td>
-                      
-                      <td><button class="viewBtn">View</button></td>
-                      <td><button class="deleteBtn"><span class="material-symbols-outlined">
-                        delete
-                        </span></button></td>
-                    </tr>
-                  </table>  -->
     </div>
 
   </div>

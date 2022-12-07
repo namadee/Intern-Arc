@@ -80,7 +80,9 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  let navigationMenu = sessionStorage.getItem("navSidebar"); //Getting the value stored in the session storage
-
-  getNavigationMenu(navigationMenu); //Calling the function
+ //Getting the value stored in the session storage
+  if (sessionStorage.getItem("navSidebar")) {
+    getNavigationMenu(navigationMenu); //Calling the function
+  }
+  
 });

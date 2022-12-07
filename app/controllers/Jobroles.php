@@ -18,11 +18,8 @@ class Jobroles extends BaseController
         $jobroles = $this->jobroleModel->getJobroles(); //Model function
 
         $data = [
-            'title' => 'JobRoles',
-            'buttonName' => 'Add Job Role',
             'inputValue' => '',
             'jobroles' => $jobroles,
-            'formAction' => 'jobroles/addJobrole'
         ];
 
         $this->view('pdc/jobroles', $data);
@@ -34,7 +31,7 @@ class Jobroles extends BaseController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Sanitize POST
-            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             //Associative Array
             $data = [
@@ -53,8 +50,7 @@ class Jobroles extends BaseController
 
             // Init data
             $data = [
-                'name' => '',
-                'buttonName' => 'Add Job Role'
+                'inputValue' => ''
             ];
 
             // Load View
@@ -69,15 +65,12 @@ class Jobroles extends BaseController
         $jobrole = $this->jobroleModel->showJobroleById($id); //To get the JobRole Name
 
         $data = [
-            'className' => 'selectedTab',
-            'title' => 'JobRoles',
-            'buttonName' => 'Update',
             'inputValue' => $jobrole->name,
+            'jobrole_id' => $jobrole->jobrole_id,
             'jobroles' => $jobroles,
-            'formAction' => 'jobroles/updateJobrole/' . $jobrole->jobrole_id
         ];
 
-        $this->view('pdc/jobroles', $data);
+        $this->view('pdc/jobrolesUpdate', $data);
     }
 
     public function updateJobrole($id)
@@ -86,10 +79,10 @@ class Jobroles extends BaseController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Sanitize POST
-            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             $data = [
-                'jobrole' => trim($_POST['jobrole']),
+                'jobrole' => trim($_POST['jobrole-update']),
                 'id' => $id
             ];
 
@@ -99,18 +92,10 @@ class Jobroles extends BaseController
                 // Redirect
                 redirect('jobroles');
             } else {
-                die('Something went wrong'); 
+                die('Something went wrong');
             }
         } else {
-
-            // Init data
-            $data = [
-                'name' => '',
-                'buttonName' => 'Add Job Role'
-            ];
-
-            // Load View
-            $this->view('pdc/jobroles', $data);
+            //redirect to error page
         }
     }
 
