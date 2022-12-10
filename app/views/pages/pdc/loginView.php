@@ -1,4 +1,7 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/pdc.css">
+</head>
+<body>
 <section class="signin-main-container display-flex-col">
     <img src="<?php echo URLROOT . 'img/logo.png' ?>" alt="Intern Arc Logo">
     <form action="<?php echo URLROOT; ?>users/pdc-login" method="POST" class="display-flex-col">
