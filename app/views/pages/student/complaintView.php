@@ -1,4 +1,5 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/student.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <?php $navSidebar = $_SESSION['user_role']; ?>
@@ -6,24 +7,22 @@
     sessionStorage.setItem("navSidebar", "<?php echo $navSidebar; ?>");
 </script>
 
-<section class="complaint-main-container">
-<div class="top">
-	<h3>Submit Complaints</h3>
-
-<div class="flex-container">
-	<div>
-
-  	<form class="complaint-box" action="<?php echo URLROOT. $data['formAction']; ?>" method="POST" >
+<section id="student_complaints_page" class="main-content">
+	<div class="complaints-quickAdd display-flex-col">
+		<h3>
+            Submit your complaint
+    	</h3>
+  		<form class="display-flex-col" action="<?php echo URLROOT. $data['formAction']; ?>" method="POST" >
     	<label for="subject">Subject</label>
-    	<input type="text" name="subject" id="subject" value="<?php echo $data['inputValue'] ?>" required placeholder="Your subject goes here...">
+    	<input type="text" class="common-input" name="subject" id="subject" value="<?php echo $data['subject'] ?>" required>
     	<label for="complaint">Description</label>
-    	<textarea id="description" name="description" placeholder="Write your complaint here..." style="height:200px"></textarea>
+    	<textarea id="description" name="description" required><?php echo $data['description'] ?></textarea>
   	
 
 		<button type="submit" class="common-blue-btn">
 			<?php echo $data['buttonName'] ?>
 		</button>
-	</form>
+		</form>
 
  	</div>
 
@@ -37,12 +36,13 @@
 	   		<button class="login-btn" >View</button>	
 		</div>
 	</div> -->
-	<div class="jobroles-rolesList">
+	<div class="complaints-list">
         <h3>Complaints List</h3>
-        <table class="jobroles">
-            <?php foreach ($data['subject'] as $complaint) : ?>
+        <table class="complaints">
+            <?php foreach ($data['complaints'] as $complaint) : ?>
                 <tr>
                     <td><?php echo $complaint->subject ?></td>
+					<td><?php echo $complaint->description ?></td>
                     <td><a href="<?php echo URLROOT; ?>Complaints/showComplaint/<?php echo $complaint->complaint_id; ?>"><span class="material-symbols-outlined">
                                 drive_file_rename_outline
                             </span></a>
@@ -57,8 +57,6 @@
 
         </table>
     </div>
-</div>
-</div>
 
 </section>
 

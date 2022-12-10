@@ -1,4 +1,5 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/style.css">
 
 
 <section class="home-user-container">

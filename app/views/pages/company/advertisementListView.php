@@ -1,4 +1,5 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <!-- To get Navigation Menu - MUST ADD TO DASHBOARD OF EACH USER-->
@@ -37,7 +38,7 @@
           <th>No of Interns</th>
           <th>Working Mode</th>
           <th>Status</th>
-        </tr>s
+        </tr>
         <?php foreach ($data['advertisements'] as $advertisement) : ?>
 
           <tr>

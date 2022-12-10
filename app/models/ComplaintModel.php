@@ -45,7 +45,10 @@ public function addComplaint($data)
 
     public function updateComplaint($data){
         // Prepare Query
-        $this->db->query('UPDATE complaint_tbl  SET name = :name WHERE complaint_id = :id');
+        $this->db->query('UPDATE complaint_tbl  SET 
+        subject = :subject,
+        description = :description
+        WHERE complaint_id = :id');
   
         // Bind Values
         $this->db->bind(':id', $data['id']);

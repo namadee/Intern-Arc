@@ -18,9 +18,10 @@ class Complaints extends BaseController
         $complaints = $this->complaintModel->getComplaint(); //Model function
 
         $data = [
-            'title' => 'JobRoles',
+            'title' => 'Complaints',
             'buttonName' => 'Submit',
-            'inputValue' => '',
+            'subject' => '',
+            'description' => '',
             'complaints' => $complaints,
             'formAction' => 'Complaints/addComplaint'
         ];
@@ -68,19 +69,60 @@ class Complaints extends BaseController
     }
     public function showComplaint($complaintId)
     {
-
+        $complaints = $this->complaintModel->getComplaint();
         $complaint = $this->complaintModel->showComplaintById($complaintId); //To get the Advertisement Name
         
         $data = [
             'className'=> 'selectedTab',
             'title' => 'Complaints',
+            'complaints'=> $complaints,
             'subject' => $complaint->subject,
             'description' => $complaint->description,
+            'buttonName' => 'Update',
            
-            'complaints/updateComplaints/' . $complaint->complaint_id 
+            'formAction' => 'complaints/update-Complaint/' . $complaint->complaint_id 
         ];
 
         $this->view('student/complaint', $data);
+    }
+    public function updateComplaint($id)
+    {
+        // Check if POST
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // Sanitize POST
+            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'subject' => trim($_POST['subject']),
+                'description' => trim($_POST['description']),
+                'id' => $id
+            ];
+
+            //Execute
+            if ($this->complaintModel->updateComplaint($data)) {
+
+                // Redirect
+                redirect('complaints');
+            } else {
+                die('Something went wrong'); 
+            }
+        } else {
+
+            // Init data
+            $data = [
+                'name' => '',
+                'buttonName' => 'Add Complaint'
+            ];
+
+            // Load View
+            $this->view('student/complaint', $data);
+        }
+    }
+
+    public function deleteComplaint($id)
+    {
+        $this->complaintModel->deleteComplaint($id);
     }
 }
 

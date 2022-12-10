@@ -1,4 +1,5 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/pdc.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <!-- To get Navigation Menu - MUST ADD TO DASHBOARD OF EACH USER-->

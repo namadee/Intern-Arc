@@ -1,4 +1,5 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/student.css">
 <!-- partial:index.partial.html -->
 <div class="student-login-container">
 <div class="box-form">

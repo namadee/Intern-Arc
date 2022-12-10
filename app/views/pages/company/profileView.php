@@ -1,4 +1,5 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section id="profile_page" class="main-content profile-main-content"> 

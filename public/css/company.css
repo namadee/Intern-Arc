@@ -187,7 +187,7 @@
     margin-left: 3rem;
     text-align: center;
     table-layout: fixed;
-    word-wrap: break-word; /*To keep the layout fixed with any number of word count*/
+    word-wrap: normal; /*To keep the layout fixed with any number of word count*/
   }
   
   .advertisement_list_content table th {
@@ -336,4 +336,75 @@
     text-align: center;
     color: #054a91;
   }
+
+  /* profile page ui*/
+.profile-main-content{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.profile-main-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #fff;
+  border-radius: 10;
+  width: 80%;
+}
+
+.profile-left{
+  width: 60%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+}
+
+.profile-left-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.profile-left-top img{
+  width: 1.5rem;
+}
+
+.profile-left .profileImg{
+  width: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+}
+
+.profile-bottom{
+  display: flex;
+  margin-top: 1rem;
+}
+.profile-right{
+  padding: 5rem 2rem;
+  width: 40%;
+  background: var(--DarkBlue);
+  color: #fff;
+  border-radius: 0 10px 10px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.profile-btn{
+  margin-top: 3rem;
+  background: #fff;
+  padding: 1rem 2.5rem;
+  color: var(--DarkBlue);
+  outline: none;
+  border: none;
+}
   

@@ -1,4 +1,5 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <div class="loginContainer">
         <div class="leftBox">
             <h1>Login</h1>
