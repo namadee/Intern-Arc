@@ -25,7 +25,7 @@
           </span> Student </a>
       </li>
       <li>
-        <a href="#"> <span class="material-symbols-rounded">
+        <a href="<?php echo URLROOT . 'admin'; ?>"> <span class="material-symbols-rounded">
             person
           </span> Admin </a>
       </li>
