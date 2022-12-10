@@ -3,8 +3,6 @@
 class Users extends BaseController
 {
 
-  public $userModel;
-
   public function __construct()
   {
     $this->userModel = $this->model('User');
@@ -133,6 +131,60 @@ class Users extends BaseController
     $_SESSION['user_role'] = $user->user_role;
   }
 
+  public function studentLogin()
+  {
+    // Check if POST
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Sanitize POST
+      $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+      $data = [
+        'email' => trim($_POST['email']),
+        'password' => trim($_POST['password']),
+        'error_class' => '',
+        'error_msg' => ''
+      ];
+
+      // Check for user
+      if ($this->userModel->findUserByEmail($data['email'])) {
+        // User Found
+        $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+        if ($loggedInUser) {
+          //Password is correct
+          $this->createUserSession($loggedInUser);
+          redirect('complaints');
+        } else {
+          //Password is incorrect
+          $data = [
+            'error_class' => 'signin-error-alert',
+            'error_msg' => 'Password is incorrect!'
+          ];
+        }
+      } else {
+        // No User found by that email
+        $data = [
+          'error_class' => 'signin-error-alert',
+          'error_msg' => 'User email is not found!'
+        ];
+      }
+      $this->view('student/login', $data);
+
+    } else // If NOT a POST
+    {
+      // Init data
+      $data = [
+        'email' => '',
+        'password' => '',
+        'error_class' => '',
+        'error_msg' => ''
+      ];
+
+      // Load View
+      $this->view('student/login', $data);
+    }
+      
+  }
 
   public function logout()
   {

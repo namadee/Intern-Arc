@@ -8,8 +8,7 @@ class Advertisements extends BaseController
         $this->advertisementModel = $this->model('Advertisement');
         $this->jobroleModel = $this->model('Jobrole');
         $this->jobroleList = $this->jobroleModel->getJobroles();
-        $this->userModel = $this->model('User');
-        
+        $this->userModel = $this->model('User');        
         
     }
 

@@ -99,7 +99,7 @@ class Jobroles extends BaseController
                 // Redirect
                 redirect('jobroles');
             } else {
-                die('Something went wrong');
+                die('Something went wrong'); 
             }
         } else {
 

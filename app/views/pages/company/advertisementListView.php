@@ -35,13 +35,15 @@
         <tr>
           <th>Advertisement Name</th>
           <th>No of Interns</th>
+          <th>Working Mode</th>
           <th>Status</th>
-        </tr>
+        </tr>s
         <?php foreach ($data['advertisements'] as $advertisement) : ?>
 
           <tr>
             <td><?php echo $advertisement->position ?></td>
             <td><?php echo $advertisement->intern_count ?></td>
+            <td><?php echo $advertisement->working_mode ?></td>
             <td><?php echo $advertisement->status ?></td>
             <td><a href="<?php echo URLROOT; ?>advertisements/showAdvertisement/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
                   drive_file_rename_outline

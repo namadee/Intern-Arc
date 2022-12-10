@@ -14,7 +14,8 @@
         <input type="email" class="common-input" name="email" required>
         <br>
         <label for="password">Password</label>
-        <input type="password" class="common-input" name="password" required>
+        <input type="password" class="common-input" name="password" id="password" required>
+        <span id = "message" style="color:red"> </span> <br>
         <br>
         <label for="contact">Contact</label>
         <input type="text" class="common-input" name="contact" required>
@@ -38,6 +39,4 @@
 
 </section>
 
-</body>
-
-</html>
+<?php require APPROOT . '/views/includes/footer.php'; ?>

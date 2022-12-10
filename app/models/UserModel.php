@@ -44,6 +44,23 @@ class UserModel extends Database
     }
   }
 
+  public function getStudentUserId($foreignKey)
+  {
+    $this->db->query("SELECT student_id FROM student_tbl WHERE user_id_fk = :foreign_key");
+    $this->db->bind(':foreign_key', $foreignKey);
+
+    $row = $this->db->single();
+
+    $userID = $row->user_id;
+
+    //Check Rows
+    if ($this->db->rowCount() > 0) {
+      return $userID;
+    } else {
+      return false;
+    }
+  }
+
   //Get User Roles
   public function getUserRoles()
   {
