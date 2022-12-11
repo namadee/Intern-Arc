@@ -13,7 +13,7 @@
         </div>
         <div class="leftBox">
             <h1>Login</h1>
-            <form id="loginForm" class="display-flex-col" action="<?php echo URLROOT; ?>login/company-login" method="POST">
+            <form id="loginForm" class="display-flex-col" action="<?php echo URLROOT; ?>users/company-login" method="POST">
 
                 <input class="common-input" type="email" id="userName" name="email" placeholder="Enter your email" required>
 

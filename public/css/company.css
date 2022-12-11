@@ -233,7 +233,7 @@
   margin-bottom: 1.5rem;
 }
 
-.addBtn a {
+.addBtn a, .addBtn button {
   margin: 0;
   color: #fff;
   text-decoration: none;

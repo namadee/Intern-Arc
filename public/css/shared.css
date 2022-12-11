@@ -63,7 +63,8 @@ input:focus {
   border-radius: 3px;
   font-size: 0.9rem;
   box-shadow: var(--BoxShadow1);
-  background: linear-gradient(270deg, #5ecae4 0%, #168eb4 100%);
+  /* background: linear-gradient(270deg, #5ecae4 0%, #168eb4 100%); */
+  background-color: var(--DarkBlue);
 }
 
 /* Common 4 -  Common Edit Button */
@@ -265,8 +266,8 @@ main {
 }
 
 .toggle-main {
-  width: calc(100% - 60px);
   left: 0;
+  width: 100%;
 }
 
 .toggle-nav-logo {
