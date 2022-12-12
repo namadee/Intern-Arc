@@ -20,7 +20,7 @@ class Advertisements extends BaseController
         $data = [
             
             'advertisements' => $advertisements,
-            'formAction' => 'Advertisements/addAdvertisement'
+            'formAction' => 'Advertisements/add-advertisement'
             
         ];
 

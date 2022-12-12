@@ -10,14 +10,11 @@ function toggleNav() {
 
 
 
-
-
 //   if (typeof(localStorage) !== "undefined") {
 //     console.log(' have local storage');
 //   } else {
 //     // Sorry! No Web Storage support..
 //   }
-
 
 
 

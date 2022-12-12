@@ -82,4 +82,30 @@ class UserModel extends Database
       return false;
     }
   }
+
+  // Get User Details from User tbl
+  public function getUserDetails($userId)
+  {
+      $this->db->query('SELECT * FROM user_tbl WHERE user_id = :userId ');
+      $this->db->bind(':userId', $userId); 
+      return $this->db->single();
+  }
+
+    // Get User Details
+    public function updateUserDetails($data)
+    {
+        $this->db->query('UPDATE user_tbl  SET username = :username, email = :email, contact = :contact WHERE user_id = :user_id');
+        $this->db->bind(':user_id', $data['user_id']);
+        $this->db->bind(':username', $data['username']);
+        $this->db->bind(':email', $data['email']); 
+        $this->db->bind(':contact', $data['contact']);
+        
+      //Execute
+      if($this->db->execute()){
+        return true;
+      } else {
+        return false;
+      }
+
+      }
 }
