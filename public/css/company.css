@@ -128,7 +128,7 @@
   margin: 1rem;
 }
 
-.search-bar {
+.advertisement-list-topbar .search-bar {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -141,7 +141,7 @@
   color: var(--primary-color-1);
 }
 
-.search-bar input {
+.advertisement-list-topbar .search-bar input {
   border: none;
   width: 100%;
   padding: 0.5rem;

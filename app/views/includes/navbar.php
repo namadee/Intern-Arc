@@ -38,6 +38,9 @@
                 <p>Dashboard</p>
             </div>
             <div class="topNav-right">
+            <div class="topNav-icon">
+                    <span class="material-symbols-outlined">notifications</span>
+                </div>
                 <p><?php echo $_SESSION['username'] ?></p>
                 <img src="<?php echo URLROOT . 'img/profile-img/profile-icon.svg' ?>">
             </div>

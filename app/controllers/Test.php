@@ -1,6 +1,6 @@
 <?php
 
-class Errors extends BaseController
+class Test extends BaseController
 {
 
     public function __construct()
@@ -10,7 +10,7 @@ class Errors extends BaseController
     public function index()
     {
 
-        $this->view('test');
+        $this->view('pdc/addCompany');
     }
 
 
