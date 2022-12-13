@@ -407,3 +407,20 @@ main {
   gap: 0.5rem;
   margin-top: 1rem;
 }
+
+.error-page-container img{
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+.error-page-container .four04{
+
+  width: 40%;
+
+}
+.error-page-container h1{
+  display: block;
+  text-align: center;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
