@@ -16,5 +16,14 @@ class Errors extends BaseController
         $this->view('error', $data);
     }
 
+    public function noResult()
+    {
+        $data = [
+            'title' => 'no result'
+        ];
+
+        $this->view('noResult', $data);
+    }
+
 
 }
