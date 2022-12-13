@@ -3,8 +3,6 @@
 class Users extends BaseController
 {
 
-  public $userModel;
-
   public function __construct()
   {
     $this->userModel = $this->model('User');

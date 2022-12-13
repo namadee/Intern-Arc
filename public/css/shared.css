@@ -1,26 +1,33 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 :root {
   --primaryColor: #f17300;
   --DarkBlue: #054a91;
   --LightBlue: #3e7cb1;
   --Black: #212121;
-  --BackgroungColor: #f3f3f3;
+  --BackgroungColor: #efeff3;
   --AlternateLightGrey: #dbe4ee;
-  --SuccessColor: #4F8A10;
+  --SuccessColor: #4f8a10;
   --DangerColor: #ba3939;
-  --DangerBackground:#ffe0e0;
+  --DangerBackground: #ffe0e0;
+  --BoxShadow1:rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Lato", sans-serif;
-  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
   list-style: none;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
 }
 
 body {
@@ -54,11 +61,61 @@ input:focus {
   cursor: pointer;
   border-style: none;
   border-radius: 3px;
-  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  font-size: 0.9rem;
+  box-shadow: var(--BoxShadow1);
+  background: linear-gradient(270deg, #5ecae4 0%, #168eb4 100%);
 }
-/* Common 4 -  Orange Border Button */
 
-/* Common 5 -  Delete Button */
+/* Common 4 -  Common Edit Button */
+.common-edit-btn {
+  display: flex;
+  background-color: var(--BackgroungColor);
+  padding: 0.4rem;
+  border-radius: 10px;
+  width: fit-content;
+  justify-content: center;
+}
+
+.common-edit-btn span {
+  font-size: 1.1rem;
+  /* color: var(--LightBlue); */
+  /* color: var(--DarkBlue); */
+  color: #168eb4;
+}
+
+/* Common 5 -  Main Modal Box [ ID ] */
+
+#common-modal-box {
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+#common-modal-box form {
+  position: relative;
+}
+
+#common-modal-box span {
+  cursor: pointer;
+}
+
+#common-modal-box a {
+  width: fit-content;
+  position: absolute;
+  right: 1rem;
+  top:1rem;
+}
+
+#common-modal-box a:hover {
+  color: var(--Black);
+}
 
 /* /-------------- MAIN SIDEBAR ---------------/ */
 
@@ -90,7 +147,11 @@ nav .navbar-main-logo img {
   object-fit: cover;
 }
 
-.sidebar-items{
+nav p {
+  font-size: 0.9rem;
+}
+
+.sidebar-items {
   gap: 1rem;
 }
 
@@ -107,6 +168,7 @@ nav .navbar-main-logo img {
 .sidebar-items a:hover,
 .sidebar-bottom a:hover {
   background-color: var(--BackgroungColor);
+  color: var(--primaryColor);
 }
 
 .sidebar-bottom ul {
@@ -115,32 +177,17 @@ nav .navbar-main-logo img {
   gap: 0.5rem;
 }
 
-.nav-profile-link a {
-  /* background-color: var(--primary-color-2); */
-  color: var(--Black);
-}
-
-.nav-profile-link a p {
-  padding: 0.5rem 0.2rem;
-  font-size: 0.9rem;
-  width: 100%;
-}
-
-.nav-profile-link img {
-  width: 3rem;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
 main {
   position: relative;
   width: calc(100% - 220px);
   left: 220px;
+  top: 0;
+  height: 100%;
   transition-duration: 800ms;
+  overflow: hidden;
 }
 
 .top-nav {
-  overflow: hidden;
   position: fixed;
   width: calc(100% - 220px);
   top: 0;
@@ -150,11 +197,12 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background-color: #fff;
   color: var(--primaryColor);
   border-bottom: 1px solid var(--BackgroungColor);
   transition-duration: 800ms;
+  overflow: hidden;
 }
 
 /* .top-nav a:hover {
@@ -201,7 +249,7 @@ main {
 }
 
 .topNav-right img {
-  width: 40px;
+  width: 30px;
   border-radius: 50%;
 }
 
@@ -228,28 +276,134 @@ main {
   left: -50px;
 }
 
-.toggle-nav-logo img{
+.toggle-nav-logo img {
   width: 50px;
 }
 
-.nav-logo-show{
+.nav-logo-show {
   opacity: 1;
   left: 10px;
 }
 
-.top-nav-left{
+.top-nav-left {
   padding-left: 3rem;
 }
 
 /* Main Content Container*/
 .main-content {
   color: black;
-  margin: 2rem;
-  margin-top: 3rem;
-  padding: 2rem;
+  margin-top: 50px;
+  padding: 1.8rem;
   background-color: var(--BackgroungColor);
   border-radius: 10px;
-  width: calc(100% - 60px);
+  width: 100%;
+  font-size: 0.9rem;
+  overflow: auto;
 }
 
+/* HOME PAGE - SELECT USERS*/
 
+.home-user-container {
+  display: flex;
+  margin: auto;
+  border-radius: 10px;
+  background-color: var(--BackgroungColor);
+  width: 60%;
+  height: 80vh;
+  margin-top: 3rem;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.home-user-img {
+  width: 60%;
+}
+
+.home-user-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-select-user {
+  width: 40%;
+  background-color: var(--Black);
+  color: white;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.home-select-user h1 {
+  text-align: center;
+  color: var(--primaryColor);
+  font-size: 2rem;
+}
+
+.home-user-list {
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.home-user-list li {
+  color: white;
+  padding: 1rem 1rem;
+  gap: 0.5rem;
+  background: var(--Black);
+  border: 1px solid var(--primaryColor);
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: var(--primaryColor) 0px 2px 2px;
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+}
+
+.home-user-list li a {
+  color: var(--BackgroungColor);
+  gap: 0.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.home-user-list li:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+/* TEMPERARY REGISTER PAGE - ADD USERS*/
+#register-main-container {
+  height: 90vh;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+.register-user-form {
+  width: 40%;
+  padding: 1rem;
+}
+
+.register-user-form h2 {
+  color: var(--DarkBlue);
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.register-user-form button {
+  padding: 0.5rem 2rem;
+  margin: 0;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.register-user-form .common-input {
+  width: 100%;
+  padding: 0.2rem 0.6rem;
+}
+
+.register-user-form a {
+  font-size: 0.9rem;
+  color: var(--LightBlue);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
