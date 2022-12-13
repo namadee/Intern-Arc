@@ -47,7 +47,7 @@ input:focus {
 
 /* Common 2 - Input Box*/
 .common-input {
-  padding: 0.5rem;
+  padding: 0.4rem 0.5rem;
   border-radius: 5px;
   border: 1px solid var(--AlternateLightGrey);
   color: var(--Black);
@@ -154,14 +154,14 @@ input:focus {
 .common-back-btn {
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 10px;
   display: flex;
   background-color: #D9D9D9;
   border-radius: 50%;
   align-items: center;
-  justify-content: center;
   cursor: pointer;
-
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
 }
 
 .common-back-btn span {

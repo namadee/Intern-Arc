@@ -125,57 +125,6 @@
                         <td>0712015478</td>
                         <td><a href="#">View</a></td>
                     </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
                 </tbody>
             </table>
         </div>

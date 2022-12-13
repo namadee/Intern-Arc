@@ -187,11 +187,10 @@
   justify-content: space-between;
 }
 
-.manage-company-top-left {
-  gap: 1rem;
-}
-
-.manage-company-access {
+.manage-company-top-left,
+.manage-company-top-right,
+.manage-company-access 
+ {
   gap: 1rem;
 }
 
@@ -199,10 +198,6 @@
 .manage-company-top-right a {
   padding: 0.3rem 1rem;
   margin: 0;
-}
-
-.manage-company-top-right {
-  gap: 1rem;
 }
 
 .manage-company-top-right a {
@@ -225,7 +220,8 @@
   padding: 1.5rem 2rem;
   height: 68vh;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
+  border-radius: 5px;
 }
 
 .company-content-top {
@@ -235,7 +231,7 @@
 
 .manage-company-table {
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .company-content-container table {
@@ -253,9 +249,10 @@
   position: sticky;
   border-right: 2px solid white;
   top: 0;
-  font-weight: 600;
+  font-weight: 500;
   padding: 0.5rem;
   background-color: var(--AlternateLightGrey);
+  border-bottom: 10px solid white;
 }
 
 .company-content-container table td {
@@ -263,8 +260,10 @@
   width: 200px;
 }
 
+
 .company-content-container table td:nth-child(5) {
   width: 8%;
+  padding: 0 1.5rem ;
 }
 
 .company-content-container table a {
@@ -286,7 +285,6 @@
   gap: 3rem;
   justify-content: center;
   position: relative;
-  top: -1.5rem;
 }
 
 .register-company,
@@ -301,19 +299,19 @@
 .register-company h2,
 .csv-company h2 {
   text-align: center;
+  font-size: 1.1rem;
 }
 
-.register-company {
-  gap: 2rem;
-}
-
+.register-company,
+.csv-company,
+.csv-company-middle,
 .register-company form,
 .register-company form ul {
   gap: 1.5rem;
 }
 
 .register-company form button {
-  padding: 0.5rem 2rem;
+  padding: 0.4rem 2rem;
   margin-top: 0.5rem;
 }
 
@@ -323,13 +321,6 @@
 
 .register-company-item label {
   width: 40%;
-}
-
-.csv-company {
-  gap: 2rem;
-}
-.csv-company-middle {
-  gap: 1.5rem;
 }
 
 .csv-instructions {
@@ -392,5 +383,50 @@ display: none;
 
 .csv-company-bottom button {
   width: fit-content;
-  padding: 0.5rem 2rem;
+  padding: 0.4rem 2rem;
+}
+
+
+
+/*Manage Student - Student List Page*/
+
+.student-list-container{
+  width: 90%;
+  height: 78vh;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+
+.student-list-container table th:nth-child(2){
+  width: 30%;
+} 
+
+.student-list-container table th:nth-child(4){
+  width: 15%;
+
+} 
+
+
+/*Manage Student - Add student Page*/
+.register-student-top{
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+  margin-left: 5.3rem;
+}
+.register-student-top div{
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  gap: 1rem;
+  width: fit-content;
+}
+
+.register-student-top div p {
+  color: var(--primaryColor);
+}
+
+.add-student-container .register-company,
+.add-student-container .csv-company{
+  height: 73vh;
 }
