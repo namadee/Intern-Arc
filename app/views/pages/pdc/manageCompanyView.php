@@ -8,7 +8,7 @@
             <div class="manage-company-access display-flex-row">
                 System Access :
                 <div class="common-status display-flex-row">
-                    <span>
+                    <span class="common-status-span">
                     </span>
                     Active
                 </div>

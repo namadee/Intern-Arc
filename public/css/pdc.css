@@ -244,7 +244,8 @@
   background-color: white;
 }
 
-.company-content-container table th {
+.company-content-container table th,
+.student-batches-table table th {
   border-top: none;
   position: sticky;
   border-right: 2px solid white;
@@ -266,7 +267,8 @@
   padding: 0 1.5rem ;
 }
 
-.company-content-container table a {
+.company-content-container table a,
+ .student-batches-btn{
   border: 1px solid var(--primaryColor);
   padding: 0.1rem 1rem;
   border-radius: 5px;
@@ -274,7 +276,8 @@
   transition: ease-in-out 50ms;
 }
 
-.company-content-container table a:hover {
+.company-content-container table a:hover,
+.student-batches-btn:hover {
   background-color: var(--primaryColor);
   color: white;
 }
@@ -387,7 +390,6 @@ display: none;
 }
 
 
-
 /*Manage Student - Student List Page*/
 
 .student-list-container{
@@ -404,7 +406,6 @@ display: none;
 
 .student-list-container table th:nth-child(4){
   width: 15%;
-
 } 
 
 
@@ -429,4 +430,89 @@ display: none;
 .add-student-container .register-company,
 .add-student-container .csv-company{
   height: 73vh;
+} 
+
+
+
+/*Manage Student - Landing Page*/
+
+.student-batches-container{
+  background-color: white;
+  width: 90%;
+  padding: 2rem;
+  height: 80vh;
+  gap: 1rem;
+  border-radius: 5px;
+}
+
+.student-batches-top{
+  justify-content: space-between;
+}
+
+.student-batches-top button{
+  margin: 0;
+  padding: 0.4rem 1.2rem;
+  gap: 0.5rem;
+}
+
+.student-batches-container table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-batches-container table th:nth-child(6){
+background-color: white;
+width: 20%;
+}
+
+.student-batches-container table th:nth-child(5){
+  width: 12%;
+  background-color: white;
+}
+
+.student-batches-table{
+  overflow: hidden;
+  text-align: center;
+  overflow-y: auto;
+}
+
+.student-batches-table td .common-status {
+  width:fit-content;
+  margin: auto;
+}
+
+.student-batches-table td {
+  padding: 0.5rem;
+}
+
+.student-batches-table td button {
+  padding: 0.2rem 1rem;
+  border: none;
+  background-color: var(--primaryColor);
+  border-radius: 5px;
+}
+
+.student-batches-table td button a {
+  color: white;
+}
+
+.student-batches-table thead span {
+  text-align: center;
+}
+
+table th {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.student-batch-status div {
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+
+.student-batch-status div span {
+  font-size: 1.1rem;
+  cursor: pointer;
 }

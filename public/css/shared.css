@@ -9,7 +9,7 @@
   --SuccessColor: #4f8a10;
   --DangerColor: #ba3939;
   --DangerBackground: #ffe0e0;
-  --BoxShadow1: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --BoxShadow1: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 * {
@@ -143,12 +143,22 @@ input:focus {
   color: var(--SuccessColor);
 }
 
-.common-status span {
+.common-status-span {
   height: 0.8rem;
   width: 0.8rem;
   background-color: var(--SuccessColor);
   border-radius: 50%;
 }
+
+.red-status {
+  background-color: var(--DangerColor);
+}
+
+.red-status-font {
+  color: var(--DangerColor);
+  border: 1px solid var(--DangerColor);
+}
+
 
 /* Common 8 - Common Back Button  */
 .common-back-btn {

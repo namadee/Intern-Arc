@@ -21,11 +21,13 @@
             </ul>
         </div>
     </nav>
+    
     <!-- To get Navigation Menu - MUST ADD TO DASHBOARD OF EACH USER-->
     <?php $navSidebar = $_SESSION['user_role']; ?>
     <script type="text/javascript">
         sessionStorage.setItem("navSidebar", "<?php echo $navSidebar; ?>");
     </script>
+
     <main id="main" class="">
         <section id="topnav" class="top-nav">
             <div class="topNav-left" id="top-nav-left">

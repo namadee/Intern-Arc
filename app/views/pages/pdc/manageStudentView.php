@@ -3,154 +3,202 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
-        <!-- Common Back button -->
-        <a href="#" class="common-back-btn">
-        <span class="material-symbols-rounded">
-            arrow_back
-        </span>
-    </a>
-
-    <div class="student-list-container company-content-container display-flex-col">
-        <div class="company-content-top display-flex-row">
-            <h2>Information System Student List - 2019 Batch</h2>
-            <!-- Common Search Bar Style-->
-            <form action="" class="common-search-bar display-flex-row">
-                <span class="material-symbols-rounded">
-                    search
+    <div class="student-batches-container display-flex-col">
+        <div class="student-batches-top display-flex-row">
+            <h2>Student Batches</h2>
+            <button class="common-blue-btn display-flex-row">
+                <span class="material-symbols-outlined">
+                    library_add
                 </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Student">
-            </form>
+                Add</button>
+
+
         </div>
-        <div class="manage-company-table">
+        <div class="student-batches-table">
             <table>
                 <thead>
-                    <th>Student Name</th>
-                    <th>Student Email</th>
-                    <th>Registration Number</th>
-                    <th>Index Number</th>
-                    <th id="action-th"></th>
+                    <tr>
+                        <th>Batch Year</th>
+                        <th>CS Count</th>
+                        <th>IS Count</th>
 
+                        <th class="student-batch-status">
+                            <div class="display-flex-row">
+                                Status <span class="material-symbols-outlined">
+                                    help
+                                </span>
+                            </div>
+                        </th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.comasdasdasd</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
+                        <td>2016 Batch</td>
+                        <td>250</td>
+                        <td>140</td>
+
+                        <td>
+                            <div class="common-status display-flex-row">
+                                <span class="common-status-span">
+                                </span>
+                                Active
+                            </div>
+                        </td>
+                        <td> <a href="" class="student-batches-btn">View</a></button></td>
+                        <td>
+                            <button> <a href="">Change Access</a></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>2016 Batch</td>
+                        <td>250</td>
+                        <td>140</td>
+
+                        <td>
+                            <div class="common-status display-flex-row">
+                                <span class="common-status-span">
+                                </span>
+                                Active
+                            </div>
+                        </td>
+                        <td> <a href="" class="student-batches-btn">View</a></button></td>
+                        <td>
+                            <button> <a href="">Change Access</a></button>
+                        </td>
                     </tr>
                     <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
+                        <td>2016 Batch</td>
+                        <td>250</td>
+                        <td>140</td>
+
+                        <td>
+                            <div class="common-status display-flex-row">
+                                <span class="common-status-span">
+                                </span>
+                                Active
+                            </div>
+                        </td>
+                        <td> <a href="" class="student-batches-btn">View</a></button></td>
+                        <td>
+                            <button> <a href="">Change Access</a></button>
+                        </td>
                     </tr>
                     <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
+                        <td>2016 Batch</td>
+                        <td>250</td>
+                        <td>140</td>
+
+                        <td>
+                            <div class="common-status display-flex-row red-status-font">
+                                <span class="common-status-span red-status">
+                                </span>
+                                Inactive
+                            </div>
+                        </td>
+                        <td> <a href="" class="student-batches-btn">View</a></button></td>
+                        <td>
+                            <button> <a href="" >Change Access</a></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>2016 Batch</td>
+                        <td>250</td>
+                        <td>140</td>
+
+                        <td>
+                            <div class="common-status display-flex-row red-status-font">
+                                <span class="common-status-span red-status">
+                                </span>
+                                Inactive
+                            </div>
+                        </td>
+                        <td> <a href="" class="student-batches-btn">View</a></button></td>
+                        <td>
+                            <button> <a href="" >Change Access</a></button>
+                        </td>
                     </tr>
                     <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
+                        <td>2016 Batch</td>
+                        <td>250</td>
+                        <td>140</td>
+
+                        <td>
+                            <div class="common-status display-flex-row red-status-font">
+                                <span class="common-status-span red-status">
+                                </span>
+                                Inactive
+                            </div>
+                        </td>
+                        <td> <a href="" class="student-batches-btn">View</a></button></td>
+                        <td>
+                            <button> <a href="" >Change Access</a></button>
+                        </td>
                     </tr>
                     <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
+                        <td>2016 Batch</td>
+                        <td>250</td>
+                        <td>140</td>
+
+                        <td>
+                            <div class="common-status display-flex-row red-status-font">
+                                <span class="common-status-span red-status">
+                                </span>
+                                Inactive
+                            </div>
+                        </td>
+                        <td> <a href="" class="student-batches-btn">View</a></button></td>
+                        <td>
+                            <button> <a href="" >Change Access</a></button>
+                        </td>
                     </tr>
                     <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
+                        <td>2016 Batch</td>
+                        <td>250</td>
+                        <td>140</td>
+
+                        <td>
+                            <div class="common-status display-flex-row red-status-font">
+                                <span class="common-status-span red-status">
+                                </span>
+                                Inactive
+                            </div>
+                        </td>
+                        <td> <a href="" class="student-batches-btn">View</a></button></td>
+                        <td>
+                            <button> <a href="" >Change Access</a></button>
+                        </td>
                     </tr>
                     <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
+                        <td>2016 Batch</td>
+                        <td>250</td>
+                        <td>140</td>
+
+                        <td>
+                            <div class="common-status display-flex-row red-status-font">
+                                <span class="common-status-span red-status">
+                                </span>
+                                Inactive
+                            </div>
+                        </td>
+                        <td> <a href="" class="student-batches-btn">View</a></button></td>
+                        <td>
+                            <button> <a href="" >Change Access</a></button>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>   
+                    
+                    
                 </tbody>
             </table>
         </div>
+
+
+
+    </div>
 </section>
 
 
