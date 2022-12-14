@@ -4,7 +4,7 @@
 <body>
 <section class="signin-main-container display-flex-col">
     <img src="<?php echo URLROOT . 'img/logo.png' ?>" alt="Intern Arc Logo">
-    <form action="<?php echo URLROOT; ?>users/pdc-login" method="POST" class="display-flex-col">
+    <form action="<?php echo URLROOT; ?>login/pdc-login" method="POST" class="display-flex-col">
         <h2>Sign In to Intern Arc</h2>
         <div class="signin-form-content display-flex-col">
             <span class="material-symbols-rounded">

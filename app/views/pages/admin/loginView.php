@@ -12,7 +12,7 @@
 
 			</div>
 			<div class="admin-signin-content">
-				<form action="" method="POST" class="display-flex-col">
+				<form action="<?php echo URLROOT."login/admin-login" ?>" method="POST" class="display-flex-col">
 					<h2>Welcome to Intern Arc</h2>
 					<div class="admin-signin-item">
 						<span class="material-symbols-outlined">

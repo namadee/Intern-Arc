@@ -162,14 +162,357 @@
 }
 
 .jobroles-modal-box label {
-padding-bottom: 0.8rem;
+  padding-bottom: 0.8rem;
 }
 
 .jobroles-modal-box a {
-right: -10rem;
+  right: -10rem;
 }
 
 .jobroles-modal-box form button {
   margin-top: 1.5rem;
   padding: 0.3rem 1rem;
+}
+
+/*Manage Company Page*/
+
+.manage-company-top {
+  width: 80%;
+  gap: 1rem;
+  background-color: white;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  margin: auto;
+  box-shadow: var(--Boxshadow1);
+  justify-content: space-between;
+}
+
+.manage-company-top-left,
+.manage-company-top-right,
+.manage-company-access 
+ {
+  gap: 1rem;
+}
+
+.manage-company-top button,
+.manage-company-top-right a {
+  padding: 0.3rem 1rem;
+  margin: 0;
+}
+
+.manage-company-top-right a {
+  gap: 0.5rem;
+}
+
+.manage-company-top-right span {
+  font-size: 1.2rem;
+}
+
+.manage-company-top-right #blacklist-company-btn {
+  background-color: var(--primaryColor);
+}
+
+.company-content-container {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: white;
+  box-shadow: var(--Boxshadow1);
+  padding: 1.5rem 2rem;
+  height: 68vh;
+  overflow: hidden;
+  overflow-y: auto;
+  border-radius: 5px;
+}
+
+.company-content-top {
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.manage-company-table {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.company-content-container table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.company-content-container table #action-th {
+  background-color: white;
+}
+
+.company-content-container table th,
+.student-batches-table table th {
+  border-top: none;
+  position: sticky;
+  border-right: 2px solid white;
+  top: 0;
+  font-weight: 500;
+  padding: 0.5rem;
+  background-color: var(--AlternateLightGrey);
+  border-bottom: 10px solid white;
+}
+
+.company-content-container table td {
+  padding: 0.5rem;
+  width: 200px;
+}
+
+
+.company-content-container table td:nth-child(5) {
+  width: 8%;
+  padding: 0 1.5rem ;
+}
+
+.company-content-container table a,
+ .student-batches-btn{
+  border: 1px solid var(--primaryColor);
+  padding: 0.1rem 1rem;
+  border-radius: 5px;
+  color: var(--primaryColor);
+  transition: ease-in-out 50ms;
+}
+
+.company-content-container table a:hover,
+.student-batches-btn:hover {
+  background-color: var(--primaryColor);
+  color: white;
+}
+
+/*Manage Company - Add Company Page*/
+
+.add-company-container {
+  gap: 3rem;
+  justify-content: center;
+  position: relative;
+}
+
+.register-company,
+.csv-company {
+  background-color: white;
+  width: 40%;
+  height: 75vh;
+  padding: 2rem 3rem;
+  border-radius: 5px;
+}
+
+.register-company h2,
+.csv-company h2 {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.register-company,
+.csv-company,
+.csv-company-middle,
+.register-company form,
+.register-company form ul {
+  gap: 1.5rem;
+}
+
+.register-company form button {
+  padding: 0.4rem 2rem;
+  margin-top: 0.5rem;
+}
+
+.register-company-item {
+ gap: 1rem;
+}
+
+.register-company-item label {
+  width: 40%;
+}
+
+.csv-instructions {
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primaryColor);
+  font-weight: 500;
+}
+
+
+
+.csv-company-middle a {
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  border: 1px solid var(--primaryColor);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  color: var(--primaryColor);
+  font-weight: 500;
+  transition: ease-in-out 100ms;
+}
+
+.csv-company-middle a:hover{
+background-color: var(--primaryColor);
+color: white;
+}
+
+.csv-company-bottom {
+  align-items: center;
+  width: 100%;
+  background-color: rgb(248, 248, 248);
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1.8px dashed #d9d9d9;
+}
+
+.csv-company-bottom form {
+  text-align: center;
+  gap:1.5rem;
+}
+
+.csv-company-bottom form input{
+display: none;
+}
+
+.csv-company-bottom form label{
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  width: fit-content;
+  margin: auto;
+  background-color: #424242;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+
+.csv-company-bottom button {
+  width: fit-content;
+  padding: 0.4rem 2rem;
+}
+
+
+/*Manage Student - Student List Page*/
+
+.student-list-container{
+  width: 90%;
+  height: 78vh;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+
+.student-list-container table th:nth-child(2){
+  width: 30%;
+} 
+
+.student-list-container table th:nth-child(4){
+  width: 15%;
+} 
+
+
+/*Manage Student - Add student Page*/
+.register-student-top{
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+  margin-left: 5.3rem;
+}
+.register-student-top div{
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  gap: 1rem;
+  width: fit-content;
+}
+
+.register-student-top div p {
+  color: var(--primaryColor);
+}
+
+.add-student-container .register-company,
+.add-student-container .csv-company{
+  height: 73vh;
+} 
+
+
+
+/*Manage Student - Landing Page*/
+
+.student-batches-container{
+  background-color: white;
+  width: 90%;
+  padding: 2rem;
+  height: 80vh;
+  gap: 1rem;
+  border-radius: 5px;
+}
+
+.student-batches-top{
+  justify-content: space-between;
+}
+
+.student-batches-top button{
+  margin: 0;
+  padding: 0.4rem 1.2rem;
+  gap: 0.5rem;
+}
+
+.student-batches-container table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-batches-container table th:nth-child(6){
+background-color: white;
+width: 20%;
+}
+
+.student-batches-container table th:nth-child(5){
+  width: 12%;
+  background-color: white;
+}
+
+.student-batches-table{
+  overflow: hidden;
+  text-align: center;
+  overflow-y: auto;
+}
+
+.student-batches-table td .common-status {
+  width:fit-content;
+  margin: auto;
+}
+
+.student-batches-table td {
+  padding: 0.5rem;
+}
+
+.student-batches-table td button {
+  padding: 0.2rem 1rem;
+  border: none;
+  background-color: var(--primaryColor);
+  border-radius: 5px;
+}
+
+.student-batches-table td button a {
+  color: white;
+}
+
+.student-batches-table thead span {
+  text-align: center;
+}
+
+table th {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.student-batch-status div {
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+
+.student-batch-status div span {
+  font-size: 1.1rem;
+  cursor: pointer;
 }

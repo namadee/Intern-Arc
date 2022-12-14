@@ -13,5 +13,9 @@ class Pdc extends BaseController
         $this->view('pdc/login');
     }
 
+    public function addUsers(){
+        
+    }
+
 
 }

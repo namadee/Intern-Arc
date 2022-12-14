@@ -21,7 +21,7 @@ class UserModel extends Database
 
     //Check Rows
     if ($this->db->rowCount() > 0) {
-      return true;
+      return $row;
     } else {
       return false;
     }
@@ -77,9 +77,37 @@ class UserModel extends Database
     $row = $this->db->single();
     $hashed_password = $row->password;
     if (password_verify($password, $hashed_password)) {
-      return $row;
+      return true;
     } else {
       return false;
     }
   }
+
+  // Get User Details from User tbl
+  public function getUserDetails($userId)
+  {
+      $this->db->query('SELECT * FROM user_tbl WHERE user_id = :userId ');
+      $this->db->bind(':userId', $userId); 
+      $row = $this->db->single();
+      
+      return $row; 
+  }
+
+    // Get Update User Details
+    public function updateUserDetails($data)
+    {
+        $this->db->query('UPDATE user_tbl  SET username = :username, email = :email, contact = :contact WHERE user_id = :user_id');
+        $this->db->bind(':user_id', $data['user_id']);
+        $this->db->bind(':username', $data['username']);
+        $this->db->bind(':email', $data['email']); 
+        $this->db->bind(':contact', $data['contact']);
+        
+      //Execute
+      if($this->db->execute()){
+        return true;
+      } else {
+        return false;
+      }
+
+      }
 }

@@ -33,5 +33,4 @@
   </div>
 </section>
 
-
 <?php require APPROOT . '/views/includes/footer.php'; ?>
