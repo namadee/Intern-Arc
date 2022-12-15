@@ -394,3 +394,40 @@
   border: 1px solid blue;
   color: blue;
 }
+
+/*company dashboard view*/
+
+.company-top-notif{
+  width: 100%;
+  margin: 1rem;
+  padding: 0.5rem;
+  background: linear-gradient(90deg, rgba(241,115,0,1) 0%, rgba(234,168,70,1) 100%);
+  color: #fff;
+}
+
+.company-dashboard-top{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1rem;
+
+}
+
+.company-dashboard-box{
+  width: 40%;
+  padding: 0.5rem;
+  color: var(--DarkBlue);
+  background: #fff;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.blue-line{
+  width: 0.5rem;
+  background: var(--DarkBlue);
+
+}

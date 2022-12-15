@@ -26,6 +26,10 @@ class Company extends BaseController
        
     }
 
+    public function dashboard(){
+        $this->view('company/dashboard');
+    }
+
 
 
 

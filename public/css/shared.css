@@ -141,7 +141,7 @@ input:focus {
 
 /* Common 7 - Search Bar*/
 .common-search-bar {
-  background-color: var(--BackgroungColor);
+  background-color: #fff;
   gap: 0.2rem;
   padding: 0 0.5rem;
   border-radius: 5px;
@@ -149,7 +149,7 @@ input:focus {
 }
 
 .common-search-bar input {
-  background-color: var(--BackgroungColor);
+  background-color: #fff;
   border: none;
 }
 
