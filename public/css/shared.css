@@ -546,3 +546,7 @@ justify-content: flex-start;
     margin: 0;
   
   }
+
+  #validate-msg{
+    color: red;
+  }

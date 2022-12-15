@@ -1,27 +1,36 @@
 
 
-
-var password = "123456"; 
-
-if(password.length < 8) { 
-
-console.log("Password must be at least 8 characters"); 
-
-}
-
-function ValidateEmail(inputText)
+function Validate(emailText, passText)
 {
-var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-if(inputText.value.match(mailformat))
+let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+let passwordPattern = /(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+if(emailText.value.match(mailformat))
 {
-alert("Valid email address!");
-document.reg_form.email.focus();
-return true;
+    document.reg_form.email.focus();
+    if(!passText.value.match(passwordPattern)){
+        document.getElementById('validate-msg').innerHTML = "Password must contain atleast one lower class letter one upperclass letter and 6 characters";
+        document.reg_form.password.focus();
+        return false;
+    }else{
+        document.getElementById('validate-msg').innerHTML = " ";
+        document.reg_form.password.focus();
+        return true;
+    }
 }
 else
 {
-alert("You have entered an invalid email address!");
-document.reg_form.email.focus();
-return false;
+    document.getElementById('validate-msg').innerHTML = "Enter a valid Email";
+    document.reg_form.email.focus();
+    if(!passText.value.match(passwordPattern)){
+        document.getElementById('validate-msg').innerHTML = "Password must contain atleast one lower class letter one upperclass letter and 6 characters";
+        document.reg_form.password.focus();
+        return false;
+    }else{
+        document.getElementById('validate-msg').innerHTML = " ";
+        document.reg_form.password.focus();
+        return true;
+    }
 }
+
 }
+
