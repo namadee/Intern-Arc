@@ -25,17 +25,6 @@
 		</form>
 
  	</div>
-
-  	<!-- <div>Complaint List
-		<div class="complaint-box-row">
-	   		Subject 1
-	   		<button class="login-btn">View</button>
-		</div>
-		<div class="complaint-box-row">
-	   		Subject 2
-	   		<button class="login-btn" >View</button>	
-		</div>
-	</div> -->
 	<div class="complaints-list">
         <h3>Complaints List</h3>
         <table class="complaints">
