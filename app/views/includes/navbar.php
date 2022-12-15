@@ -21,11 +21,13 @@
             </ul>
         </div>
     </nav>
+    
     <!-- To get Navigation Menu - MUST ADD TO DASHBOARD OF EACH USER-->
     <?php $navSidebar = $_SESSION['user_role']; ?>
     <script type="text/javascript">
         sessionStorage.setItem("navSidebar", "<?php echo $navSidebar; ?>");
     </script>
+
     <main id="main" class="">
         <section id="topnav" class="top-nav">
             <div class="topNav-left" id="top-nav-left">
@@ -38,6 +40,9 @@
                 <p>Dashboard</p>
             </div>
             <div class="topNav-right">
+            <div class="topNav-icon">
+                    <span class="material-symbols-outlined">notifications</span>
+                </div>
                 <p><?php echo $_SESSION['username'] ?></p>
                 <img src="<?php echo URLROOT . 'img/profile-img/profile-icon.svg' ?>">
             </div>

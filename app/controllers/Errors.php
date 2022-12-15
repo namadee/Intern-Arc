@@ -9,11 +9,8 @@ class Errors extends BaseController
 
     public function index()
     {
-        $data = [
-            'title' => 'This is the Home',
-        ];
 
-        $this->view('error', $data);
+        $this->view('test');
     }
 
     public function noResult()
