@@ -515,3 +515,34 @@ main {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
+
+.forgot-pword-container{
+  width: 100%;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.forgot-pword-leftbox{
+  width: 45%;
+}
+
+.forgot-pword-rightbox{
+  width: 45%;
+  gap: 4rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+}
+
+.forgot-pword-rightbox form{
+justify-content: flex-start;
+  align-items: flex-start;
+
+}
+
+.forgot-pword-rightbox button{
+    padding: 0.3rem 1rem;
+    margin: 0;
+  
+  }

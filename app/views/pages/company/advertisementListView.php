@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
-<section class="main-content">
+<section id="advertisement-list" class="main-content">
   <div class="common_list">
     <div class="common-list-topbar">
       <form action="" class="common-search-bar display-flex-row">
@@ -37,6 +37,9 @@
           <th>Advertisement Name</th>
           <th>No of Interns</th>
           <th>Status</th>
+          <th></th>
+          <th></th>
+         
         </tr>
         <?php foreach ($data['advertisements'] as $advertisement) : ?>
 
@@ -44,6 +47,7 @@
             <td><?php echo $advertisement->position ?></td>
             <td><?php echo $advertisement->intern_count ?></td>
             <td><?php echo $advertisement->status ?></td>
+           
             <td>
               <a class="common-edit-btn" href="<?php echo URLROOT; ?>advertisements/show-advertisement/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
               edit_square

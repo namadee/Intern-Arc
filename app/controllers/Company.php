@@ -30,6 +30,13 @@ class Company extends BaseController
         $this->view('company/dashboard');
     }
 
+    public function forgotPassword()
+    {
+    
+        $this->view('forgotPassword');
+
+    }
+
 
 
 

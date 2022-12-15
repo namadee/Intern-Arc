@@ -5,12 +5,12 @@
 <section class="main-content">
   <div class="common_list">
     <div class="common-list-topbar">
-      <div class="search-bar">
-        <span class="material-symbols-rounded">
-          search
-        </span>
-        <input type="text" name="search-student-req" placeholder="Search student">
-      </div>
+    <form action="" class="common-search-bar display-flex-row">
+                <span class="material-symbols-rounded">
+                    search
+                </span>
+                <input class="common-input" type="text" name="search-item" placeholder="Search Student">
+      </form>
       <div class="common-filter">
         <span class="material-symbols-rounded">
           filter_alt

@@ -11,10 +11,10 @@ window.addEventListener("DOMContentLoaded", function () {
   ];
 
   const companyMenu = [
-    ["#", "dashboard", "Dashboard"],
+    ["company/dashboard", "dashboard", "Dashboard"],
     ["advertisements", "text_to_speech", "Advertisements"],
     ["studentRequests", "school", "Student Requests"],
-    ["#", "list_alt", "Shortlisted"],
+    ["StudentShortlist", "list_alt", "Shortlisted"],
     ["#", "calendar_month", "Schedule"],
     ["#", "approval_delegation", "Complaint"],
     ["company/profile", "manage_accounts", "Profile"],
