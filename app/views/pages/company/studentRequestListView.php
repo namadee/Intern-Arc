@@ -27,36 +27,27 @@
     <div class="common_list_content">
       
       <div class="addBtn">
-      <h3>Advertisement List</h3>
-<a href="<?php echo URLROOT; ?>Advertisements/add-advertisement" class="common-blue-btn"><span id="addIcon" class="material-symbols-outlined">
-    library_add
-  </span>Add</a>
+      <h3>Advertisement List-Student Requests</h3>
 </div>
       <table class="common-table">
         <tr>
           <th>Advertisement Name</th>
           <th>No of Interns</th>
-          <th>Status</th>
+          <th>Total Requests</th>
+       
         </tr>
-        <?php foreach ($data['advertisements'] as $advertisement) : ?>
+        
 
           <tr>
-            <td><?php echo $advertisement->position ?></td>
-            <td><?php echo $advertisement->intern_count ?></td>
-            <td><?php echo $advertisement->status ?></td>
+            <td>Software Engineer-Virtusa</td>
+            <td>10</td>
+            <td>25</td>
             <td>
-              <a class="common-edit-btn" href="<?php echo URLROOT; ?>advertisements/show-advertisement/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
-              edit_square
-                </span>
-              </a>
+             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentRequests/viewStudentRequest" >View</a>
             </td>
-            <td>
-            <a class="common-edit-btn" id="common-delete-btn" href="<?php echo URLROOT; ?>advertisements/delete-advertisement/<?php echo $advertisement->advertisement_id; ?>"  id="delete"><span class="material-symbols-outlined">
-                                delete
-                            </span></a>
-            </td>
+          
           </tr>
-        <?php endforeach; ?>
+       
       </table>
     </div>
 
