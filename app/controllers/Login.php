@@ -237,6 +237,14 @@ class Login extends BaseController
         }
     }
 
+    public function forgotPassword()
+    {
+        $data = [];
+        $this->view('forgotPassword', $data);
+
+    }
+
+
 
     public function createSession($user)
     {

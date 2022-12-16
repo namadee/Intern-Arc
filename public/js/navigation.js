@@ -11,13 +11,13 @@ window.addEventListener("DOMContentLoaded", function () {
   ];
 
   const companyMenu = [
-    ["#", "dashboard", "Dashboard"],
-    ["#", "text_to_speech", "Advertisements"],
-    ["#", "school", "Student Requests"],
-    ["#", "list_alt", "Shortlisted"],
+    ["company/dashboard", "dashboard", "Dashboard"],
+    ["advertisements", "text_to_speech", "Advertisements"],
+    ["studentRequests", "school", "Student Requests"],
+    ["StudentShortlist", "list_alt", "Shortlisted"],
     ["#", "calendar_month", "Schedule"],
     ["#", "approval_delegation", "Complaint"],
-    ["#", "manage_accounts", "Profile"],
+    ["company/profile", "manage_accounts", "Profile"],
   ];
 
   const studentMenu = [
