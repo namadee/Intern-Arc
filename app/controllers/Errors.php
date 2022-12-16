@@ -10,10 +10,19 @@ class Errors extends BaseController
     public function index()
     {
 
-        $this->view('test');
+        $this->view('error');
     }
 
-    public function noResult()
+    public function error404()
+    {
+        $data = [
+            'title' => 'page not found'
+        ];
+
+        $this->view('error', $data);
+    }
+
+    public function error403()
     {
         $data = [
             'title' => 'no result'

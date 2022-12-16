@@ -20,7 +20,7 @@
 
                 <input class="common-input" type="password" id="pword" name="password" placeholder="Enter your password" required>
 
-                <a href="#">Forgot your Password?</a>
+                <a href="<?php echo URLROOT ?> login/forgotPassword">Forgot your Password?</a>
 
                 <div class="main-signin-error-hide <?php echo $data['error_class']; ?>">
                     <span class="material-symbols-rounded">

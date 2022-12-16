@@ -184,7 +184,7 @@
   margin-left: 3rem;
   text-align: center;
   table-layout: fixed;
-  word-wrap: break-word; /*To keep the layout fixed with any number of word count*/
+  word-wrap: normal;
 }
 
 .common_list_content table th {
@@ -418,16 +418,68 @@
 
 .company-dashboard-box{
   width: 40%;
-  padding: 0.5rem;
+  height: 2rem;
+  padding-right: 0.2rem;
   color: var(--DarkBlue);
   background: #fff;
+  font-weight: 800;
 
   display: flex;
   justify-content: space-between;
 }
-
+.company-dashboard-box div{
+  display: flex;
+  gap: 0.5rem;
+}
+.company-dashboard-box p{
+  align-self: center;
+  font-weight: bold;
+}
 .blue-line{
   width: 0.5rem;
+  height: 100%;
   background: var(--DarkBlue);
 
+}
+
+.common-table{
+  width: 90%;
+}
+#company-dashboard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+#company-dashboard  .common_list_content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#company-dashboard table{
+  word-break: normal;
+  word-wrap: normal;
+  width: 100%;
+
+}
+#company-dashboard .common-list-topbar{
+  padding: 0 1rem;
+}
+
+#company-dashboard .common-blue-btn{
+  padding: 0.3rem 1rem;
+  align-self: flex-end;
+  position: absolute;
+  right: 2rem;
+  bottom: 0rem;
+} 
+
+#advertisement-list .common-table th:nth-child(4),
+#advertisement-list .common-table th:nth-child(5) {
+  background: transparent;
+  width: 3rem;
 }

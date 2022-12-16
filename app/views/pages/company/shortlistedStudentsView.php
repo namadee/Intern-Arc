@@ -9,7 +9,7 @@
                 <span class="material-symbols-rounded">
                     search
                 </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
+                <input class="common-input" type="text" name="search-item" placeholder="Search Student">
       </form>
       <div class="common-filter">
         <span class="material-symbols-rounded">
@@ -26,24 +26,28 @@
 
     <div class="common_list_content">
       
-      <div class="addBtn">
-      <h3>Advertisement List-Student Requests</h3>
-</div>
+    <div class="addBtn">
+        <h3>Software Engineer - Shortlisted Students</h3>
+    </div>
       <table class="common-table">
         <tr>
-          <th>Advertisement Name</th>
-          <th>No of Interns</th>
-          <th>Total Requests</th>
-       
+          <th>Student Name</th>
+          <th>Student Degree</th>
+          <th>Student Year</th>
+          
         </tr>
         
 
           <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
+            <td>Ruchira Bogahawaththa</td>
+            <td>CS</td>
+            <td>3</td>
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentRequests/viewStudentRequest" >View</a>
+             <select class="student-req-action">
+                <option class="none" value=""></option>
+                <option class="shortlist-op" value="">Recruit</option>
+                <option class="reject-op" value="">Reject</option>
+             </select>
             </td>
           
           </tr>

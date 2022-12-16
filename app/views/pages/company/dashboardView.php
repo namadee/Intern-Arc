@@ -2,14 +2,14 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
-<section class="main-content">
+<section class="main-content" id="company-dashboard">
     <div class="company-top-notif">
         <p>Ending date of reqruitment period: </p>
     </div>
     <div class="company-dashboard-top">
         <div class="company-dashboard-box">
             <div>
-            <span class="blue-line"></span>
+            <div class="blue-line"> </div>
             <p>Total Students Applied</p>
             </div>
             <p>180</p>
@@ -59,9 +59,45 @@
             </td>
           
           </tr>
-          <a href="<?php echo URLROOT; ?>Advertisements/add-advertisement" class="common-blue-btn">View All</a>
+          <tr>
+            <td>Ruchira Bogahawaththa</td>
+            <td>CS</td>
+            <td>4th year</td>
+            <td>Software Engineering</td>
+            <td>Pending</td>
+            <td>
+             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentRequests/viewStudentRequest" >View</a>
+            </td>
+          
+          </tr>
+          <tr>
+            <td>Ruchira Bogahawaththa</td>
+            <td>CS</td>
+            <td>4th year</td>
+            <td>Software Engineering</td>
+            <td>Pending</td>
+            <td>
+             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentRequests/viewStudentRequest" >View</a>
+            </td>
+          
+          </tr>
+          <tr>
+            <td>Ruchira Bogahawaththa</td>
+            <td>CS</td>
+            <td>4th year</td>
+            <td>Software Engineering</td>
+            <td>Pending</td>
+            <td>
+             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentRequests/viewStudentRequest" >View</a>
+            </td>
+          
+          </tr>
       </table>
+
     </div>
+    <a href="<?php echo URLROOT; ?>Advertisements/add-advertisement" class="common-blue-btn">View All</a>
 
   </div>
 </section>
+
+<?php require APPROOT . '/views/includes/footer.php'; ?>
