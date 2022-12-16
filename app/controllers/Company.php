@@ -8,36 +8,18 @@ class Company extends BaseController
         $this->companyModel = $this->model('Company');
     }
 
+    // Company Dashboard
     public function index() 
     {
-        $this->view('company/login');
-       
-    }
-
-    public function studentRequests() //default method and view
-    {
-        $this->view('company/studentRequestList');
-       
-    }
-
-    public function profile() //default method and view
-    {
-        $this->view('company/profile');
-       
-    }
-
-    public function dashboard(){
         $this->view('company/dashboard');
+       
     }
 
-    public function forgotPassword()
+    // Manage Company
+    public function manageCompany()
     {
-    
-        $this->view('forgotPassword');
-
+        $this->view('pdc/manageCompany');
     }
-
-
 
 
 }

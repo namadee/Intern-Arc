@@ -56,7 +56,7 @@ class Profiles extends BaseController
     }
 
     public function viewCompanyProfile(){
-
+        $this->view('company/profile');
     }
 
     public function viewStudentProfile(){

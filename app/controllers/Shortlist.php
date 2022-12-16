@@ -1,6 +1,6 @@
 <?php
 
-class StudentShortlist extends BaseController
+class Shortlist extends BaseController
 {
 
     public function __construct()
@@ -8,12 +8,14 @@ class StudentShortlist extends BaseController
 
     }
 
+    //All the Shortlisted Students of All the Advertisements
     public function index()
     {
         $this->view('company/shortlist');
     }
-    
-    public function viewStudentShortlist()
+
+    //All the Shortlisted Students under 1 Advertisement
+    public function viewShortlistStudents()
     {
             $this->view('company/shortlistedStudents');
     }

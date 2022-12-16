@@ -14,4 +14,11 @@ class Users extends BaseController
     $this->view('home');
   }
 
+
+  public function forgotPassword()
+  {
+    $this->view('forgotPassword');
+  }
+  
+
 }

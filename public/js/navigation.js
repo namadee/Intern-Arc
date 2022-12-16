@@ -1,5 +1,6 @@
 window.addEventListener("DOMContentLoaded", function () {
 
+  let urlRoot = 'http://localhost/internarc/';
   const pdcMenu = [
     ["#", "dashboard", "Dashboard"],
     ["#", "cases", "Companies"],
@@ -11,8 +12,8 @@ window.addEventListener("DOMContentLoaded", function () {
   ];
 
   const companyMenu = [
-    ["company/dashboard", "dashboard", "Dashboard"],
-    ["advertisements", "text_to_speech", "Advertisements"],
+    [urlRoot +"company", "dashboard", "Dashboard"],
+    [urlRoot + "advertisements", "text_to_speech", "Advertisements"],
     ["studentRequests", "school", "Student Requests"],
     ["StudentShortlist", "list_alt", "Shortlisted"],
     ["#", "calendar_month", "Schedule"],
@@ -72,7 +73,7 @@ window.addEventListener("DOMContentLoaded", function () {
       // loop the inner array
       document.getElementById("navbarItems").innerHTML +=
         ` <li>
-          <a href="http://localhost/internarc/` + navigationMenu[i][0] + `">
+          <a href="` + navigationMenu[i][0] + `">
               <span class="material-symbols-rounded"> ` + navigationMenu[i][1] + `
               </span>
               <p>` + navigationMenu[i][2] + `</p>

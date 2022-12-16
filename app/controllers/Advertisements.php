@@ -30,8 +30,7 @@ class Advertisements extends BaseController
     
     public function addAdvertisement()
     {
-        
-        
+
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
@@ -54,18 +53,14 @@ class Advertisements extends BaseController
 
             //Execute
             if ($this->advertisementModel->addAdvertisement($data)) { 
-                
-                
+            
                 redirect('advertisements');
-               
                 
-                // header('location: http://localhost/internarc/Advertisements');
             } else {
                 die('Something went wrong');
             }
         } else {
             
-            // Init data
             $data = [
                 
                 'position' => '',
@@ -80,7 +75,7 @@ class Advertisements extends BaseController
                 'jobroleList' => $this->jobroleList
             ];
 
-            // Load View
+           
             $this->view('company/addAdvertisement', $data);
         }
     }
