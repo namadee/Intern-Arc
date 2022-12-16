@@ -1,5 +1,5 @@
 <?php
-session_start();
+
   // Load Config
   require_once 'config/config.php';
 
@@ -7,6 +7,8 @@ session_start();
   require_once 'helpers/url_helper.php';
   require_once 'helpers/Email.php';
   require_once 'helpers/validation_helper.php';
+  require_once 'helpers/Session.php';
+
   //Load PHP Mailer files
   require_once '../vendor/autoload.php';
 

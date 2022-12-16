@@ -15,21 +15,21 @@
             <form action="" method="POST" class="display-flex-col">
                 <ul class="display-flex-col">
                     <li class="display-flex-col">
-                        <label for="company-name">Company Name</label>
-                        <input type="text" name="company-name" id="company-name" class="common-input" required>
+                        <label for="company_name">Company Name</label>
+                        <input type="text" name="company_name" id="company_name" class="common-input" required>
                     </li>
                     <li class="display-flex-col">
                         <label for="email">Contact Email</label>
                         <input type="text" name="email" id="email" class="common-input" required>
                     </li>
                     <li class="display-flex-row register-company-item">
-                        <label for="contact-person">Contact Person</label>
-                        <input type="text" name="contact-person" id="contact-person" class="common-input" required>
+                        <label for="username">Contact Person</label>
+                        <input type="text" name="username" id="username" class="common-input" required>
                     </li>
 
                     <li class="display-flex-row register-company-item">
-                        <label for="contact-number">Contact Number</label>
-                        <input type="text" name="contact-number" id="contact-number" class="common-input" required>
+                        <label for="contact">Contact Number</label>
+                        <input type="text" name="contact" id="contact" class="common-input" required>
                     </li>
                 </ul>
                 <button type="submit" class="common-blue-btn">Add Company</button>

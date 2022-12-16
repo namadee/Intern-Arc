@@ -72,7 +72,7 @@ window.addEventListener("DOMContentLoaded", function () {
       // loop the inner array
       document.getElementById("navbarItems").innerHTML +=
         ` <li>
-          <a href="` + navigationMenu[i][0] + `">
+          <a href="http://localhost/internarc/` + navigationMenu[i][0] + `">
               <span class="material-symbols-rounded"> ` + navigationMenu[i][1] + `
               </span>
               <p>` + navigationMenu[i][2] + `</p>

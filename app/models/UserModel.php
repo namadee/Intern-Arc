@@ -11,20 +11,38 @@ class UserModel extends Database
 
 
 
-  // Find users by the Email
-  public function findUserByEmail($email)
+  // Find users by the Email [return resultRow /false]
+  public function getUserByEmail($email)
   {
     $this->db->query("SELECT * FROM user_tbl WHERE email = :email");
     $this->db->bind(':email', $email);
 
-    $row = $this->db->single();
+    $result = $this->db->single();
 
     //Check Rows
     if ($this->db->rowCount() > 0) {
-      return $row;
+      return $result;
     } else {
       return false;
     }
+  }
+
+  public function getUserId($email)
+  {
+    $this->db->query("SELECT user_id FROM user_tbl WHERE email = :email");
+    $this->db->bind(':email', $email);
+
+    $row = $this->db->single();
+
+    $userId = $row->user_id;
+
+    //Check Rows
+    if ($this->db->rowCount() > 0) {
+      return $userId;
+    } else {
+      return false;
+    }
+
   }
 
   public function getCompanyUserId($foreignKey)
@@ -61,14 +79,14 @@ class UserModel extends Database
     }
   }
 
-  //Get User Roles
+  //Get User Roles 
   public function getUserRoles()
   {
     $this->db->query("SELECT user_role FROM user_tbl");
     return $this->db->resultset();
   }
 
-  // Login Users
+  // Login Users [return true/false]
   public function login($email, $password)
   {
     $this->db->query("SELECT * FROM user_tbl WHERE email = :email");
@@ -83,31 +101,21 @@ class UserModel extends Database
     }
   }
 
-  // Get User Details from User tbl
-  public function getUserDetails($userId)
+
+  //Update User Details - Main User Table
+  public function updateUserDetails($data)
   {
-      $this->db->query('SELECT * FROM user_tbl WHERE user_id = :userId ');
-      $this->db->bind(':userId', $userId); 
-      $row = $this->db->single();
-      
-      return $row; 
+    $this->db->query('UPDATE user_tbl  SET username = :username, email = :email, contact = :contact WHERE user_id = :user_id');
+    $this->db->bind(':user_id', $data['user_id']);
+    $this->db->bind(':username', $data['username']);
+    $this->db->bind(':email', $data['email']);
+    $this->db->bind(':contact', $data['contact']);
+
+    //Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
   }
-
-    // Get Update User Details
-    public function updateUserDetails($data)
-    {
-        $this->db->query('UPDATE user_tbl  SET username = :username, email = :email, contact = :contact WHERE user_id = :user_id');
-        $this->db->bind(':user_id', $data['user_id']);
-        $this->db->bind(':username', $data['username']);
-        $this->db->bind(':email', $data['email']); 
-        $this->db->bind(':contact', $data['contact']);
-        
-      //Execute
-      if($this->db->execute()){
-        return true;
-      } else {
-        return false;
-      }
-
-      }
 }

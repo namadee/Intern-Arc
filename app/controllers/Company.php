@@ -8,10 +8,11 @@ class Company extends BaseController
         $this->companyModel = $this->model('Company');
     }
 
-    public function index() //default method and view
+    public function index() 
     {
-        $this->view('company/login');
+        
     }
+
 
 
 }

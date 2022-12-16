@@ -1,4 +1,5 @@
 <?php
+use helpers\Session;
 
 class Jobroles extends BaseController
 {

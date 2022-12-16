@@ -23,24 +23,24 @@
     <div class="add-student-container add-company-container display-flex-row">
         <div class="register-company display-flex-col">
             <h2>Register a Student</h2>
-            <form action="" method="POST" class="display-flex-col">
+            <form action="<?php echo URLROOT . "register/user-add"; ?>" method="POST" class="display-flex-col">
                 <ul class="display-flex-col">
                     <li class="display-flex-col">
-                        <label for="student-name">Student Name</label>
-                        <input type="text" name="student-name" id="student-name" class="common-input" required>
+                        <label for="username">Student Name</label>
+                        <input type="text" name="username" id="username" class="common-input" required>
                     </li>
                     <li class="display-flex-col">
                         <label for="email">Student Email</label>
                         <input type="text" name="email" id="email" class="common-input" required>
                     </li>
                     <li class="display-flex-col">
-                        <label for="reg-num">Registration Number</label>
-                        <input type="text" name="reg-num" id="reg-num" class="common-input" required>
+                        <label for="registration_number">Registration Number</label>
+                        <input type="text" name="registration_number" id="registration_number" class="common-input" required>
                     </li>
 
                     <li class="display-flex-row register-company-item">
-                        <label for="index-num">Index Number</label>
-                        <input type="text" name="index-num" id="index-num" class="common-input" required>
+                        <label for="index_number">Index Number</label>
+                        <input type="text" name="index_number" id="index_number" class="common-input" required>
                     </li>
                 </ul>
                 <button type="submit" class="common-blue-btn">Add Student</button>

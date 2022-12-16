@@ -29,14 +29,7 @@
                 </li>
                 <li>
                     <label for="email">Email</label>
-                    <input class="common-input" type="email" id="email" name="email" placeholder="Email" value="<?php echo $data['useremail']; ?>">
-                    <a href="" class="common-edit-btn "><span class="material-symbols-outlined">
-                            edit_square
-                        </span></a>
-                </li>
-                <li>
-                    <label for="contact">Contact</label>
-                    <input class="common-input" type="text" id="contact" name="contact" placeholder="Contact Number" value="<?php echo $data['contact']; ?>">
+                    <input class="common-input" type="email" id="email" name="email" placeholder="Email" value="<?php echo $data['email']; ?>">
                     <a href="" class="common-edit-btn "><span class="material-symbols-outlined">
                             edit_square
                         </span></a>

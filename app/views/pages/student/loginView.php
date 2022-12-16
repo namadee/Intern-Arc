@@ -16,7 +16,7 @@
 	
 		<div class="right">
 		<h5>Login</h5>
-        <form action="<?php echo URLROOT; ?>users/student-login" method="POST" class="display-flex-col">
+        <form action="<?php echo URLROOT; ?>login/student-login" method="POST" class="display-flex-col">
 		<div class="inputs">
 			<input type="email" placeholder="Email" name="email">
 			<br>

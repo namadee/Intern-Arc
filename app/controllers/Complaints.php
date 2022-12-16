@@ -7,7 +7,7 @@ class Complaints extends BaseController
     public function __construct()
     {
         $this->complaintModel = $this->model('Complaint');
-        $this->userModel = $this->model('User');        
+        $this->userModel = $this->model('User');
         // if (!isset($_SESSION['user_id'])) { //If the user not logged, redirected to login(PDC) 
         //     redirect('users/student-login');
         // }
@@ -33,15 +33,16 @@ class Complaints extends BaseController
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            // Sanitize POST
-            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            // Strip Tags in URL
+            stripTags();
+
             $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
 
 
             //Associative Array
             $data = [
-                'student_id' => $studentId ,
-                'subject' => trim($_POST['subject']) ,
+                'student_id' => $studentId,
+                'subject' => trim($_POST['subject']),
                 'description' => trim($_POST['description'])
             ];
 
@@ -71,16 +72,16 @@ class Complaints extends BaseController
     {
         $complaints = $this->complaintModel->getComplaint();
         $complaint = $this->complaintModel->showComplaintById($complaintId); //To get the Advertisement Name
-        
+
         $data = [
-            'className'=> 'selectedTab',
+            'className' => 'selectedTab',
             'title' => 'Complaints',
-            'complaints'=> $complaints,
+            'complaints' => $complaints,
             'subject' => $complaint->subject,
             'description' => $complaint->description,
             'buttonName' => 'Update',
-           
-            'formAction' => 'complaints/update-Complaint/' . $complaint->complaint_id 
+
+            'formAction' => 'complaints/update-Complaint/' . $complaint->complaint_id
         ];
 
         $this->view('student/complaint', $data);
@@ -90,8 +91,8 @@ class Complaints extends BaseController
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            // Sanitize POST
-            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            // Strip Tags in URL
+            stripTags();
 
             $data = [
                 'subject' => trim($_POST['subject']),
@@ -105,7 +106,7 @@ class Complaints extends BaseController
                 // Redirect
                 redirect('complaints');
             } else {
-                die('Something went wrong'); 
+                die('Something went wrong');
             }
         } else {
 
@@ -125,4 +126,3 @@ class Complaints extends BaseController
         $this->complaintModel->deleteComplaint($id);
     }
 }
-
