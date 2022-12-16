@@ -9,23 +9,23 @@
     <h1>Select a User</h1>
     <ul class="home-user-list display-flex-col ">
       <li>
-        <a href="<?php echo URLROOT . 'pdc'; ?>"> <span class="material-symbols-rounded">
+        <a href="<?php echo URLROOT . 'login/pdc-login'; ?>"> <span class="material-symbols-rounded">
             person
           </span> PDC </a>
       </li>
       <li>
-        <a href="<?php echo URLROOT . 'company'; ?>">
+        <a href="<?php echo URLROOT . 'login/company-login'; ?>">
           <span class="material-symbols-rounded">
             person
           </span> Company </a>
       </li>
       <li>
-        <a href="<?php echo URLROOT . 'student'; ?>"> <span class="material-symbols-rounded">
+        <a href="<?php echo URLROOT . 'login/student-login'; ?>"> <span class="material-symbols-rounded">
             person
           </span> Student </a>
       </li>
       <li>
-        <a href="<?php echo URLROOT . 'admin'; ?>"> <span class="material-symbols-rounded">
+        <a href="<?php echo URLROOT . 'login/admin-login'; ?>"> <span class="material-symbols-rounded">
             person
           </span> Admin </a>
       </li>

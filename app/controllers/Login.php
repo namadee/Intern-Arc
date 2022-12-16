@@ -239,8 +239,7 @@ class Login extends BaseController
 
     public function forgotPassword()
     {
-        $data = [];
-        $this->view('forgotPassword', $data);
+        $this->view('forgotPassword');
 
     }
 

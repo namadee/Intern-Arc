@@ -1,6 +1,13 @@
 </head>
 
 <body>
+    <?php
+    if (!isset($_SESSION['user_id'])) { //If the user not logged, redirected to login(PDC) 
+        redirect('login/pdc-login');
+    }
+
+    ?>
+
     <nav class="display-flex-col" id="nav" class="">
         <div class="sidebar-items display-flex-col">
             <div class="navbar-main-logo">
@@ -13,7 +20,7 @@
         <div class="sidebar-bottom">
             <ul>
                 <li>
-                    <a href="<?php echo URLROOT . 'users/logout' ?>">
+                    <a href="<?php echo URLROOT . 'login/logout' ?>">
                         <span class="material-symbols-rounded"> logout</span>
                         <p>Sign Out</p>
                     </a>
@@ -21,7 +28,7 @@
             </ul>
         </div>
     </nav>
-    
+
     <!-- To get Navigation Menu - MUST ADD TO DASHBOARD OF EACH USER-->
     <?php $navSidebar = $_SESSION['user_role']; ?>
     <script type="text/javascript">
@@ -40,7 +47,7 @@
                 <p>Dashboard</p>
             </div>
             <div class="topNav-right">
-            <div class="topNav-icon">
+                <div class="topNav-icon">
                     <span class="material-symbols-outlined">notifications</span>
                 </div>
                 <p><?php echo $_SESSION['username'] ?></p>
