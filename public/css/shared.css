@@ -528,21 +528,42 @@ main {
   margin-top: 1rem;
 }
 
-.error-page-container img {
-  display: block;
-  margin: auto;
-  width: 50%;
-}
-.error-page-container .four04 {
-  width: 40%;
-}
-.error-page-container h1 {
-  display: block;
-  text-align: center;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
+/*Error Page Page*/
+
+.error-page-container{
+  width: 95%;
 }
 
+.error-page-container div{
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.error-page-container img {
+  width: 40%;
+  margin: auto;
+}
+
+
+.error-page-container a {
+  padding: 0.5rem;
+  background-color: var(--primaryColor);
+  color: white;
+  width: 50%;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.error-page-container a:hover {
+  background-color: #c25e00;
+}
+
+/*No Access Page*/
+.no-access-page{
+  margin: auto;
+}
+
+/*Forgot Password Page*/
 .forgot-pword-container {
   width: 100%;
   padding: 1rem;

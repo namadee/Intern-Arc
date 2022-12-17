@@ -13,22 +13,11 @@ class Errors extends BaseController
         $this->view('error');
     }
 
-    public function error404()
+
+    public function noAccess()
     {
-        $data = [
-            'title' => 'page not found'
-        ];
 
-        $this->view('error', $data);
-    }
-
-    public function error403()
-    {
-        $data = [
-            'title' => 'no result'
-        ];
-
-        $this->view('noResult', $data);
+        $this->view('noAccess');
     }
 
 
