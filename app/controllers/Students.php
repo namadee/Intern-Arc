@@ -8,21 +8,22 @@ class Students extends BaseController
     }
 
     //Student Dashboard
-    public function index() 
+    public function index()
     {
         $this->view('student/login');
-
     }
-  
+
     //Manage Students - PDC
     public function manageStudent()
     {
-        
+
         $this->view('pdc/manageStudent');
     }
 
+    //Manage Students - PDC
+    public function studentList()
+    {
 
-
-
-
+        $this->view('pdc/studentList');
+    }
 }

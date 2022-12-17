@@ -6,11 +6,11 @@
     <div class="student-batches-container display-flex-col">
         <div class="student-batches-top display-flex-row">
             <h2>Student Batches</h2>
-            <button class="common-blue-btn display-flex-row">
+            <a  href='<?php echo URLROOT.'register/register-student' ?>' class="common-blue-btn display-flex-row">
                 <span class="material-symbols-outlined">
                     library_add
                 </span>
-                Add</button>
+                Add</a>
 
 
         </div>

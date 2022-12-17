@@ -19,4 +19,16 @@ class Requests extends BaseController
         $this->view('company/studentRequest');
     }
 
+
+    //All the Shortlisted Students of All the Advertisements
+    public function shortlistedList()
+    {
+        $this->view('company/shortlist');
+    }
+
+    //All the Shortlisted Students under 1 Advertisement
+    public function shortlistedStudents()
+    {
+        $this->view('company/shortlistedStudents');
+    }
 }

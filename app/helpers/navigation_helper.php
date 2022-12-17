@@ -9,23 +9,23 @@ function getNavigationByUser($userType)
 
     case 'pdc': //PDC User Menu
       $navigation = array(
-        array('#', 'dashboard', 'Dashboard'),
-        array('#', 'cases', 'Companies'),
-        array('#', 'school', 'Students'),
-        array('#', 'category', 'Job Roles'),
-        array('#', 'text_to_speech', 'Advertisements'),
-        array('#', 'compare_arrows', 'Requests'),
-        array('#', 'manage_accounts', 'Profile')
+        array(URLROOT.'pdc', 'dashboard', 'Dashboard'),
+        array(URLROOT.'companies/manage-company', 'cases', 'Companies'),
+        array(URLROOT.'students/manage-student', 'school', 'Students'),
+        array(URLROOT.'jobroles', 'category', 'Job Roles'),
+        array(URLROOT.'#', 'text_to_speech', 'Advertisements'),
+        array(URLROOT.'#', 'compare_arrows', 'Requests'),
+        array(URLROOT.'#', 'manage_accounts', 'Profile')
       );
       return $navigation;
       break;
 
     case 'company': //Company User Menu
       $navigation = array(
-        array(URLROOT.'company', 'dashboard', 'Dashboard'),
+        array(URLROOT.'companies', 'dashboard', 'Dashboard'),
         array(URLROOT.'advertisements', 'text_to_speech', 'Advertisements'),
         array(URLROOT.'requests', 'school', 'Student Requests'),
-        array(URLROOT.'shortlist', 'list_alt', 'Shortlisted'),
+        array(URLROOT.'requests/shortlisted-list', 'list_alt', 'Shortlisted'),
         array(URLROOT.'advertisements', 'calendar_month', 'Schedule'),
         array(URLROOT.'advertisements', 'approval_delegation', 'Complaint'),
         array(URLROOT.'profiles/company-profile', 'manage_accounts', 'Profile')
