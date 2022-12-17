@@ -3,8 +3,9 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
-
-
+    <div>
+        
+    </div>
 </section>
 
 

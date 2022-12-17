@@ -674,18 +674,17 @@ table th {
 
 /*----------------------- Invitation Page -----------------------*/
 
-.company-details-main-container{
+.company-details-main-container {
   height: 75%;
 }
 
-.company-details-container{
+.company-details-container {
   background-color: white;
   width: 50%;
   padding: 2rem;
   border-radius: 5px;
   gap: 1rem;
   height: 100%;
-  
 }
 
 .company-details-container .container-top {
@@ -700,7 +699,6 @@ table th {
 .container-top-update div {
   padding: 0.5rem;
 }
-
 
 .company-details-container .container-body li label {
   width: 35%;
@@ -745,13 +743,13 @@ table th {
   color: white;
 }
 
-.company-details-container #toggleUpdateBtn{
+.company-details-container #toggleUpdateBtn {
   display: none;
   margin: auto;
   transition: ease-in-out 0.2s;
 }
 
-.company-details-analysis{
+.company-details-analysis {
   width: 40%;
   margin-left: 2rem;
   gap: 2rem;
@@ -762,10 +760,68 @@ table th {
 }
 
 .company-details-analysis .analysis-items,
-.company-details-analysis .analysis-items div{
+.company-details-analysis .analysis-items div {
   gap: 1.5rem;
 }
 
 .company-details-analysis .analysis-items div p {
   width: 70%;
 }
+
+/*----------------------- Student Request Page -----------------------*/
+
+.student-request-container {
+  background-color: white;
+  width: 100%;
+  border-radius: 5px;
+  height: 95%;
+  padding: 1.5rem;
+}
+
+.student-request-container .student-request-top {
+  justify-content: flex-start;
+  gap: 2rem;
+  width: 100%;
+}
+
+.student-request-body {
+  gap: 1rem;
+  height: 95%;
+  overflow-y: auto;
+}
+
+.student-requests-box {
+  gap: 1rem;
+  width: 50%;
+  background-color: var(--BackgroungColor);
+  padding: 1rem;
+  height: 95%;
+  border-radius: 5px;
+  overflow-y: auto;
+}
+
+.student-requests-box .container-top {
+  justify-content: space-between;
+}
+
+.student-request-body .common-filter {
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.student-request-body .student-list td{
+  padding: 0.2rem;
+}
+
+.student-request-body .student-list a {
+  color: var(--primaryColor);
+  border: 1px solid var(--primaryColor);
+  padding: 0.1rem 1rem;
+  border-radius: 5px;
+}
+
+.student-request-body .student-list .common-status {
+  width: 7rem;
+}
+
+/*----------------------- Student Request Page -----------------------*/
