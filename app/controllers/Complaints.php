@@ -8,9 +8,6 @@ class Complaints extends BaseController
     {
         $this->complaintModel = $this->model('Complaint');
         $this->userModel = $this->model('User');
-        // if (!isset($_SESSION['user_id'])) { //If the user not logged, redirected to login(PDC) 
-        //     redirect('users/student-login');
-        // }
     }
 
     public function index()
@@ -23,7 +20,7 @@ class Complaints extends BaseController
             'subject' => '',
             'description' => '',
             'complaints' => $complaints,
-            'formAction' => 'Complaints/addComplaint'
+            'formAction' => 'complaints/add-complaint'
         ];
         $this->view('student/complaint', $data);
     }

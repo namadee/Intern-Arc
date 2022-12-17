@@ -105,11 +105,10 @@ class UserModel extends Database
   //Update User Details - Main User Table
   public function updateUserDetails($data)
   {
-    $this->db->query('UPDATE user_tbl  SET username = :username, email = :email, contact = :contact WHERE user_id = :user_id');
+    $this->db->query('UPDATE user_tbl  SET username = :username, email = :email WHERE user_id = :user_id');
     $this->db->bind(':user_id', $data['user_id']);
     $this->db->bind(':username', $data['username']);
     $this->db->bind(':email', $data['email']);
-    $this->db->bind(':contact', $data['contact']);
 
     //Execute
     if ($this->db->execute()) {

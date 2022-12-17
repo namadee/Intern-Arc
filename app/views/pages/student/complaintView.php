@@ -30,8 +30,10 @@
         <table class="complaints">
             <?php foreach ($data['complaints'] as $complaint) : ?>
                 <tr>
-                    <td><?php echo $complaint->subject ?></td>
-					<td><?php echo $complaint->description ?></td>
+                    <td><?php echo $complaint->complaint_id ?></td>
+					<td><?php echo $complaint->subject ?></td>
+                    <td><?php echo ($complaint->status  == 0) ?  'Pending' : 'Reviewed'; ?></td>
+                    
                     <td><a href="<?php echo URLROOT; ?>Complaints/showComplaint/<?php echo $complaint->complaint_id; ?>"><span class="material-symbols-outlined">
                                 drive_file_rename_outline
                             </span></a>

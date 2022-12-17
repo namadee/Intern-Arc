@@ -8,7 +8,7 @@
     <div class="update-profile-container display-flex-col">
         <h3>View Profile</h3>
 
-        <form class="display-flex-col" method="POST" action="<?php echo URLROOT . "profile/update-main-profile/" . $data['user_id']; ?>">
+        <form class="display-flex-col" method="POST" action="<?php echo URLROOT . "profiles/update-profile-details/" . $data['user_id']; ?>">
             <div class="admin-user-profile-icon">
                 <div>
                     <img src="<?php echo URLROOT; ?>img/profile-img/profile-icon.svg">
