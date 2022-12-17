@@ -17,7 +17,7 @@
     <div class="add-student-container add-company-container display-flex-row">
         <div class="register-company display-flex-col">
             <h2>Register a Student</h2>
-            <form action="<?php echo URLROOT . "pdc/register-student"; ?>" method="POST" class="display-flex-col">
+            <form action="<?php echo URLROOT . "register/register-student"; ?>" method="POST" class="display-flex-col">
                 <ul class="display-flex-col">
                     <li class="display-flex-col">
                         <label for="username">Student Name</label>
