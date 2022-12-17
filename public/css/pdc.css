@@ -809,7 +809,7 @@ table th {
   width: 100%;
 }
 
-.student-request-body .student-list td{
+.student-request-body .student-list td {
   padding: 0.2rem;
 }
 
@@ -825,3 +825,170 @@ table th {
 }
 
 /*----------------------- Student Request Page -----------------------*/
+
+/* #student-main-profile{
+  height: auto;
+  overflow-y: auto;
+} */
+
+.student-profile-view {
+  width: 90%;
+  overflow: auto;
+  border-radius: 5px;
+}
+
+.student-profile-view .std-profile-container-top {
+  background-color: white;
+  justify-content: right;
+  padding: 2rem;
+  padding-bottom: 3.5rem;
+}
+
+.student-profile-view .std-profile-container-body {
+  background: linear-gradient(269.96deg, #3e7cb1 5.25%, #054a91 88.31%);
+  padding: 2rem;
+  position: relative;
+}
+
+.student-profile-bio {
+  justify-content: right;
+  width: 100%;
+}
+
+.student-profile-bio div {
+  width: 50%;
+  text-align: justify;
+}
+
+.student-profile-bio span {
+  color: var(--primaryColor);
+}
+
+.std-profile-container-body {
+  align-items: flex-start;
+}
+
+.std-profile-container-body .body-left {
+  padding-top: 8rem;
+  width: 50%;
+}
+
+.std-profile-container-body .body-left span {
+  background: #eeeeee5b;
+  padding: 0.2rem 0.8rem;
+  border-radius: 10px;
+}
+
+.std-profile-container-body .body-left p,
+.std-profile-container-body h3 {
+  color: white;
+}
+
+.std-profile-container-body .body-left ul {
+  gap: 1rem;
+  width: 100%;
+}
+
+.std-profile-container-body .body-left li {
+  gap: 1rem;
+}
+
+.std-profile-container-body .body-left li p {
+  width: 10rem;
+}
+
+.std-profile-container-body .body-left li span {
+  width: 12rem;
+  padding: 0.8rem;
+  color: white;
+}
+
+.std-profile-container-body .interested-areas .interested-area-items {
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.std-profile-container-body .interested-areas span {
+  width: 8rem;
+  text-align: center;
+}
+
+.std-profile-container-body .extra-curricular div {
+  background: #eeeeee5b;
+  width: 75%;
+  padding: 1rem;
+  border-radius: 10px;
+  color: white;
+}
+
+.std-profile-container-body .body-right {
+  width: 50%;
+  gap: 2rem;
+  margin-left: 4rem;
+}
+
+.std-profile-container-body .student-experience {
+  width: 100%;
+}
+
+.std-profile-container-body .student-experience div {
+  background-color: #eeeeee5b;
+  width: 80%;
+  padding: 1rem;
+  color: white;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.std-profile-container-body .student-experience .experience-items {
+  gap: 0.5rem;
+}
+
+.std-profile-container-body .student-qualifications {
+  gap: 1rem;
+}
+
+.student-profile-view .std-profile-container-bottom {
+  background: linear-gradient(270deg, #eaa846 4.01%, #f17300 95.01%);
+  padding: 0.3rem 1rem;
+}
+
+.std-profile-container-bottom {
+  justify-content: space-between;
+}
+
+.std-profile-container-bottom img {
+  color: #ffffff;
+  width: 25px;
+}
+
+.std-profile-container-bottom .bottom-left {
+  gap: 1rem;
+}
+
+.std-profile-container-bottom .bottom-left div {
+  gap: 0.3rem;
+  color: white;
+}
+
+.std-profile-container-bottom .bottom-right a {
+  gap: 0.5rem;
+  color: var(--primaryColor);
+  background-color: white;
+  padding: 0.2rem 1rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.std-profile-container-body .std-profile-image img {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  border-radius: 50%;
+  object-fit: cover;
+  left: 2.5rem;
+  top: -8rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+  rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
