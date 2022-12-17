@@ -14,7 +14,7 @@ class Profiles extends BaseController
     }
 
     //View - Main User Details [User Table]
-    public function viewProfile() 
+    public function viewProfileDetails() 
     {
         $email = $_SESSION['user_email'];
         $userDetails = $this->userModel->getUserByEmail($email);
@@ -25,11 +25,18 @@ class Profiles extends BaseController
             'user_id' => $userDetails->user_id
         ];
 
-        $this->view('admin/adminProfile', $data);
+        //If not admin then view directed to PDC
+        if ($_SESSION['user_role'] == 'admin') {
+            $this->view('admin/adminProfile', $data);
+        }else {
+            $this->view('pdc/updateProfile', $data);
+        }
+
+        
     }
 
     //Update - Main User Details [User Table]
-    public function updateProfile($userId)
+    public function updateProfileDetails($userId)
     {
 
         // Check if POST
@@ -46,7 +53,6 @@ class Profiles extends BaseController
 
             //Execute
             if ($this->userModel->updateUserDetails($data)) {
-
                 // Redirect
                 redirect('admin/view-profile');
             } else {
@@ -60,7 +66,7 @@ class Profiles extends BaseController
     }
 
     public function studentProfile(){
-        
+        $this->view('pdc/studentMainProfile');
     }
 
 }

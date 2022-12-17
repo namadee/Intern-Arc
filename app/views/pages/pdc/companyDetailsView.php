@@ -42,7 +42,7 @@
             </div>
 
             <div class="container-btns display-flex-row">
-                <button id="view-btn"><a href="" id="view-btn">View Profile</a></button>
+                <button id="view-btn"><a href="<?php echo URLROOT.'profiles/company-profile';?>" id="view-btn">View Profile</a></button>
                 <button id="blacklist-btn"><a href="" id="blacklist-btn" class="display-flex-row">
                         <span class="material-symbols-outlined">
                             flag

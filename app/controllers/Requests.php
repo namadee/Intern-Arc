@@ -31,4 +31,11 @@ class Requests extends BaseController
     {
         $this->view('company/shortlistedStudents');
     }
+
+    //Student Request List - PDC
+    public function allRequests()
+    {
+        $this->view('pdc/studentRequest');
+    }
+
 }

@@ -26,4 +26,11 @@ class Students extends BaseController
 
         $this->view('pdc/studentList');
     }
+
+    //Manage Students - PDC
+    public function studentDetails()
+    {
+
+        $this->view('pdc/studentDetails');
+    }
 }

@@ -3,12 +3,6 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
-    <!-- Common Back button -->
-    <a href="#" class="common-back-btn">
-        <span class="material-symbols-rounded" >
-            arrow_back
-        </span>
-    </a>
     <div class="display-flex-row register-student-top">
         <div class="display-flex-row">Batch
             <p>2022 Batch</p>

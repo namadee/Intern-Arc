@@ -215,6 +215,11 @@
   margin-bottom: 1.5rem;
 }
 
+.company-content-top form,
+.company-content-top form input {
+background-color: var(--BackgroungColor);
+}
+
 .manage-company-table {
   overflow: hidden;
   overflow-y: auto;
@@ -375,9 +380,14 @@
 
 .student-list-container {
   width: 90%;
-  height: 78vh;
+  height: 96%;
   margin: auto;
   margin-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.student-list-container .manage-company-table {
+  height: 85%;
 }
 
 .student-list-container table th:nth-child(2) {
@@ -386,6 +396,22 @@
 
 .student-list-container table th:nth-child(4) {
   width: 15%;
+}
+
+.student-list-container .company-content-top form,
+.student-list-container .company-content-top form input {
+  background-color: var(--BackgroungColor);
+}
+
+.student-list-container .add-new-students {
+  margin-top: 1rem;
+}
+
+.student-list-container .add-new-students a {
+  padding: 0.4rem 1rem;
+  margin: auto;
+  margin-top: 1rem;
+  color: white;
 }
 
 /*Manage Student - Add student Page*/
@@ -675,7 +701,7 @@ table th {
 /*----------------------- Invitation Page -----------------------*/
 
 .company-details-main-container {
-  height: 75%;
+  height: 85%;
 }
 
 .company-details-container {
@@ -691,6 +717,7 @@ table th {
   justify-content: space-between;
   width: 100%;
   margin-bottom: 0.5rem;
+  align-items: flex-start;
 }
 .company-details-container .container-body ul {
   gap: 1rem;
@@ -860,6 +887,10 @@ table th {
   text-align: justify;
 }
 
+.student-profile-bio h3{
+  font-size: 1.5rem;
+}
+
 .student-profile-bio span {
   color: var(--primaryColor);
 }
@@ -990,5 +1021,20 @@ table th {
   left: 2.5rem;
   top: -8rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-  rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+/*----------------------- Student Details Page -----------------------*/
+
+#student-details-view {
+  width: 55%;
+}
+
+#student-details-view form li label {
+  width: 45%;
+}
+
+#student-details-view .container-btns {
+  justify-content: flex-start;
+  gap: 2rem;
 }

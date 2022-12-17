@@ -1,6 +1,12 @@
 </head>
 
 <body>
+    <?php
+    if (!isset($_SESSION['user_id'])) { //If the user not logged, redirected to login(PDC) 
+        redirect('users');
+    }
+
+    ?>
     <nav class="display-flex-col" id="nav" class="">
         <div class="sidebar-items display-flex-col">
             <div class="navbar-main-logo">

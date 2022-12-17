@@ -19,14 +19,14 @@
         </div>
     </div>
     <div class="dashboard-topbar-btns display-flex-row">
-        <a href="" class="send-invitation display-flex-row common-blue-btn">
+        <a href="<?php echo URLROOT.'register/send-invitation';?>" class="send-invitation display-flex-row common-blue-btn">
             <span class="material-symbols-outlined">
                 mail
             </span>
             Send Invitation
         </a>
 
-        <a href="" class="round-period display-flex-row common-blue-btn">
+        <a href="<?php echo URLROOT.'pdc/set-round-durations';?>" class="round-period display-flex-row common-blue-btn">
             <span class="material-symbols-outlined">
                 published_with_changes
             </span>
