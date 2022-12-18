@@ -3,12 +3,6 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
-        <!-- Common Back button -->
-        <a href="#" class="common-back-btn">
-        <span class="material-symbols-rounded">
-            arrow_back
-        </span>
-    </a>
 
     <div class="student-list-container company-content-container display-flex-col">
         <div class="company-content-top display-flex-row">
@@ -35,122 +29,32 @@
                     <tr>
                         <td>P.M.B.R Vimukthi</td>
                         <td>ruchira.ucsc@gmail.comasdasdasd</td>
-                        <td>IS/2020/109</td>
+                        <td>2020/IS/109</td>
                         <td>20021054</td>
-                        <td><a href="#">View</a></td>
+                        <td><a href="<?php echo URLROOT . 'students/student-details'; ?>">View</a></td>
                     </tr>
                     <tr>
                         <td>P.M.B.R Vimukthi</td>
                         <td>ruchira.ucsc@gmail.com</td>
                         <td>IS/2020/109</td>
                         <td>20021054</td>
-                        <td><a href="#">View</a></td>
+                        <td><a href="<?php echo URLROOT . 'students/student-details'; ?>">View</a></td>
                     </tr>
                     <tr>
                         <td>P.M.B.R Vimukthi</td>
                         <td>ruchira.ucsc@gmail.com</td>
                         <td>IS/2020/109</td>
                         <td>20021054</td>
-                        <td><a href="#">View</a></td>
+                        <td><a href="<?php echo URLROOT . 'students/student-details'; ?>">View</a></td>
                     </tr>
-                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="#">View</a></td>
-                    </tr>   
+
                 </tbody>
             </table>
         </div>
+        <div class="add-new-students display-flex-row">
+            <a class="common-blue-btn" href="<?php echo URLROOT . 'register/register-student'; ?>">Register New Students</a>
+        </div>
+    </div>
 </section>
 
 

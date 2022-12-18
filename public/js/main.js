@@ -44,3 +44,12 @@ console.log(end_date);
 
 
 
+function toggleProfileUpdate(){
+  let updateBtn = document.getElementById('toggleUpdateBtn');
+
+  if (updateBtn.style.display === "none") {
+    updateBtn.style.display = "block";
+  } else {
+    updateBtn.style.display = "none";
+  }
+}

@@ -23,13 +23,37 @@ class Email{
           $this->mail->Port       = 587;                         
 
      }
+     
+     //Single Mail
+     public function sendLoginEmail($email,$password,$username){
 
-     public function sendLoginEmail(){
           $this->mail->isHTML(true);
-          $this->mail->Subject = 'Just a Test Email';
+          $this->mail->Subject = 'Getting Started with Intern Arc';
           $this->mail->setFrom('ruchira.commercialtp@gmail.com');
-          $this->mail->Body = 'This is email Body';
-          $this->mail->addAddress('ruchira.bogahawatta@gmail.com');
+
+          $this->mail->Body = "
+          <div style='background-color: #054a91; margin:0; padding: 0; height: 20px;'>
+
+          </div>
+          <div
+              style='text-align: center;padding-top: 15px;'>
+              <h2 style='margin:0 ;'>Hi <span style='color: #f17300;'>".$username."</span></h2>
+              <h4 style='margin:5px;font-weight: 600;'>Welcome to Intern Arc</h4>
+              <p>Now you can logged in to Intern Arc using following credentials.</p>
+      
+              <p style='margin: 0;text-align: center;'>Email</p>
+              <p
+                  style='padding:5px 10px;background-color: #dbe4ee;margin:0 auto;width: fit-content;font-weight: bold;text-align: center;margin-top: 5px;'>
+                  ".$email."</p>
+              <p style='margin: 0;text-align: center;  margin-top: 10px;'>Password</p>
+              <p
+                  style='padding:5px 10px;background-color: #dbe4ee;margin:0 auto;width: 150px;font-weight: bold;text-align: center;margin-top: 5px;'>
+                  ".$password."</p>
+              <p style='color:#f17300; margin: 0;'>
+                  Please Change your password right after you logged in to the system</p>
+          ";
+          
+          $this->mail->addAddress($email);
           $this->mail->Send();
           $this->mail->smtpClose();
      }

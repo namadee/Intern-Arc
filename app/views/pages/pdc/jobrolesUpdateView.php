@@ -35,7 +35,7 @@
         </table>
     </div>
 
-    <div class="jobroles-modal-box" id="common-modal-box">
+    <div class="common-modal-box" id="jobroles-modal-box">
         <form method="POST" action="<?php echo URLROOT . "jobroles/update-jobrole/" . $data['jobrole_id'] ?>" class="display-flex-col">
             <a href="<?php echo URLROOT . "jobroles" ?> ">
             <span class="material-symbols-outlined" id="jobrole-modal-span" class="common-modal-close">

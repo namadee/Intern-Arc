@@ -57,85 +57,49 @@
 		<tr>
 		  <td>Virtusa</td>
 		  <td>Software Engineer</td>
-		  <td><button>view</button></td>
+		  <td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
 		</tr>
 
 		<tr>
 			<td>WSO2</td>
 			<td>Quality Assurance</td>
-			<td><button>view</button></td>
+			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
 		</tr>
 
 		<tr>
 			<td>Codegen International</td>
 			<td>Business Analyst</td>
-			<td><button>view</button></td>
+			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
 		</tr>
 
 		<tr>
 			<td>Sysco Labs</td>
 			<td>UI/UX Engineer</td>
-			<td><button>view</button></td>
+			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
 		</tr>
 
 		<tr>
 			<td>Tech Venturas</td>
 			<td>Mobile Application Developer </td>
-			<td><button>view</button></td>
+			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
 		</tr>
 
 		<tr>
 			<td>Commercial Technologies Plus</td>
 			<td>DevOps Engineer </td>
-			<td><button>view</button></td>
+			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
 		</tr>
 
 		<tr>
 			<td>99x Technology</td>
 			<td>Full Stack Engineer</td>
-			<td><button>view</button></td>
+			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
 		</tr>
 
 		<tr>
 			<td>Virtusa</td>
 			<td>Software Engineer </td>
-			<td><button>view</button></td>
-		</tr>
-		
-		<tr>
-			<td>Virtusa</td>
-			<td>Software Engineer </td>
-			<td><button>view</button></td>
-		</tr>
-
-		<tr>
-			<td>Virtusa</td>
-			<td>Software Engineer </td>
-			<td><button>view</button></td>
-		</tr>
-
-		<tr>
-			<td>Virtusa</td>
-			<td>Software Engineer </td>
-			<td><button>view</button></td>
-		</tr>
-
-		<tr>
-			<td>Virtusa</td>
-			<td>Software Engineer </td>
-			<td><button>view</button></td>
-		</tr>
-
-		<tr>
-			<td>Virtusa</td>
-			<td>Software Engineer </td>
-			<td><button>view</button></td>
-		</tr>
-
-		<tr>
-			<td >Virtusa</td>
-			<td>Software Engineer </td>
-			<td><button>view</button></td>
+			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
 		</tr>
 	  </table>
 	       

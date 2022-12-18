@@ -3,421 +3,421 @@
 
 .student-login-container {
 
-    width: 100%;
-    height: 100vh;
-    margin: auto;
-    position: absolute;
-    background: linear-gradient(135deg, #f18118 10%, #1904E5 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-  
-  }
-  .image-wrapper img {
-    width: 67%;
-    float:right; 
-    margin: 0px 70px 0px 50px;
-  }
-  
-  .box-form {
-  
-    margin: auto;
-    width: 70%;
-    background: #FFFFFF;
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    align-items: stretch;
-    justify-content:baseline;
-    box-shadow: 0 0 20px 6px #3b3b3b85;
-  }
-  @media (max-width: 980px) {
-    .box-form {
-      flex-flow: wrap;
-      text-align: center;
-      align-content: center;
-      align-items: center;
-    }
-  }
-  .box-form div {
-    height: auto;
-  }
-  .box-form .left {
-    color: #f86808;
-    background-size: cover;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    width: 50%;
-  }
-  .box-form .left .overlay {
-    padding: 30px;
-    width: 100%;
-    height: 100%;
-    background: #212121;
-    overflow: hidden;
-    box-sizing: border-box;
-  }
-  .box-form .left .overlay h1 {
-    font-size: 7vmax;
-    line-height: 1;
-    font-weight: 900;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  .box-form .right {
-    padding: 40px;
-    display: block;
-    margin: auto;
-    overflow: hidden;
-    width: 50%;
-  }
-  @media (max-width: 980px) {
-    .box-form .right {
-      width: 100%;
-    }
-  }
-  .box-form .right h5 {
-    font-size: 5vmax;
-    color: #f86808;
-  }
-  .box-form .right p {
-    font-size: 14px;
-    color: #ffffff;
-  }
-  .box-form .right .inputs {
-    overflow: hidden;
-    margin-bottom: 2rem;
-  }
-  .box-form .right input {
-    width: 85%;
-    padding: 10px;
-    margin-top: 25px;
-    font-size: 16px;
-    border: 5;
-    outline: 0;
-    border-radius: 7px;
-    border-color: #B0B3B9;
-    
-  }
-  
-  .box-form .right .login-btn {
+  width: 100%;
+  height: 100vh;
   margin: auto;
-    color: rgb(255, 255, 255);
-    padding: 12px 85px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-style: none;
-    border-radius: 3px;
-    background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
-    margin-left: 0;
-    width: 60%;
-  }
+  position: absolute;
+  background: linear-gradient(135deg, #f18118 10%, #1904E5 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  .main-signin-error-hide{
-    display: none;
-  }
-  
-  .main-signin-error-alert{
-    padding: 0.2rem 0.5rem;
-    color: var(--DangerColor);
-    display: flex;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    align-items: center;
-    width: 100%;
-    border: 1px solid #d2a6a6;
-    align-self: flex-start;
-    background-color: var(--DangerBackground);
-  }
-  
-  
-  /* Job Roles List Page Student*/
-  
-  #student_complaints_page {
-    justify-content: center;
-    display: flex;
-  }
-  
-  #student_complaints_page .complaints-quickAdd,
-  #student_complaints_page .complaints-list {
-    background-color: white;
-    width: 100%;
-    margin: 2rem;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    padding: 3rem 2rem;
-  }
-  
-  /* #student_complaints_page .complaints-quickAdd form {
-    gap: 1rem;
-    margin-top: 1.5rem;
-  } */
-  
-  .complaints-quickAdd {
-    height: fit-content;
-  }
-  .complaints-quickAdd #description{
-    height: 200px;
-  }
-  #student_complaints_page h3 {
+
+}
+.image-wrapper img {
+  width: 67%;
+  float:right; 
+  margin: 0px 70px 0px 50px;
+}
+
+.box-form {
+
+  margin: auto;
+  width: 70%;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  justify-content:baseline;
+  box-shadow: 0 0 20px 6px #3b3b3b85;
+}
+@media (max-width: 980px) {
+  .box-form {
+    flex-flow: wrap;
     text-align: center;
+    align-content: center;
+    align-items: center;
   }
-  
-  .complaints-quickAdd label {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  
-  .complaints-quickAdd input {
-    width: 50%;
-  }
-  
-  .complaints-quickAdd button {
-    width: 60%;
-    margin-top: 2rem;
-    padding: 0.7rem 0.9rem;
-  }
-  
-  .complaints-list {
-
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-  
-  .complaints-list table {
+}
+.box-form div {
+  height: auto;
+}
+.box-form .left {
+  color: #f86808;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 50%;
+}
+.box-form .left .overlay {
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  background: #212121;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.box-form .left .overlay h1 {
+  font-size: 7vmax;
+  line-height: 1;
+  font-weight: 900;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.box-form .right {
+  padding: 40px;
+  display: block;
+  margin: auto;
+  overflow: hidden;
+  width: 50%;
+}
+@media (max-width: 980px) {
+  .box-form .right {
     width: 100%;
-    margin: auto;
-    table-layout: fixed;
-    word-wrap: normal;
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
-    border-collapse: collapse;
   }
+}
+.box-form .right h5 {
+  font-size: 5vmax;
+  color: #f86808;
+}
+.box-form .right p {
+  font-size: 14px;
+  color: #ffffff;
+}
+.box-form .right .inputs {
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+.box-form .right input {
+  width: 85%;
+  padding: 10px;
+  margin-top: 25px;
+  font-size: 16px;
+  border: 5;
+  outline: 0;
+  border-radius: 7px;
+  border-color: #B0B3B9;
   
-  /* .complaints-list table td:nth-child(1) {
-    width: 70%;
-  } */
-  
-  .complaints-list table td:nth-child(2),
-  .complaints-list table td:nth-child(3) {
-    width: fit-content;
-  }
-  
-  .complaints-list table td {
-    padding: 0.3rem;
-  }
-  
-  .complaints-list table span {
-    font-size: 0.9rem;
-    color: var(--LightBlue);
-  }
-  
-  .complaints-list table a {
-    display: flex;
-    background-color: var(--BackgroungColor);
-    padding: 0.4rem;
-    border-radius: 10px;
-    width: fit-content;
-    justify-content: center;
-  }
-  
-  .complaints-list table #delete {
-    color: var(--DangerColor);
-  }
+}
+
+.box-form .right .login-btn {
+margin: auto;
+  color: rgb(255, 255, 255);
+  padding: 12px 85px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-style: none;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  margin-left: 0;
+  width: 60%;
+}
+
+.main-signin-error-hide{
+  display: none;
+}
+
+.main-signin-error-alert{
+  padding: 0.2rem 0.5rem;
+  color: var(--DangerColor);
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #d2a6a6;
+  align-self: flex-start;
+  background-color: var(--DangerBackground);
+}
+
+
+/* Job Roles List Page Student*/
+
+#student_complaints_page {
+  justify-content: center;
+  display: flex;
+}
+
+#student_complaints_page .complaints-quickAdd,
+#student_complaints_page .complaints-list {
+  background-color: white;
+  width: 100%;
+  margin: 2rem;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 3rem 2rem;
+}
+
+/* #student_complaints_page .complaints-quickAdd form {
+  gap: 1rem;
+  margin-top: 1.5rem;
+} */
+
+.complaints-quickAdd {
+  height: fit-content;
+}
+.complaints-quickAdd #description{
+  height: 200px;
+}
+#student_complaints_page h3 {
+  text-align: center;
+}
+
+.complaints-quickAdd label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.complaints-quickAdd input {
+  width: 50%;
+}
+
+.complaints-quickAdd button {
+  width: 60%;
+  margin-top: 2rem;
+  padding: 0.7rem 0.9rem;
+}
+
+.complaints-list {
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.complaints-list table {
+  width: 100%;
+  margin: auto;
+  table-layout: fixed;
+  word-wrap: normal;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  border-collapse: collapse;
+}
+
+/* .complaints-list table td:nth-child(1) {
+  width: 70%;
+} */
+
+.complaints-list table td:nth-child(2),
+.complaints-list table td:nth-child(3) {
+  width: fit-content;
+}
+
+.complaints-list table td {
+  padding: 0.3rem;
+}
+
+.complaints-list table span {
+  font-size: 0.9rem;
+  color: var(--LightBlue);
+}
+
+.complaints-list table a {
+  display: flex;
+  background-color: var(--BackgroungColor);
+  padding: 0.4rem;
+  border-radius: 10px;
+  width: fit-content;
+  justify-content: center;
+}
+
+.complaints-list table #delete {
+  color: var(--DangerColor);
+}
 
 
 
-  /* added later with the UIs */
+/* added later with the UIs */
 
-  /* published Advertiement list styles */
+/* published Advertiement list styles */
 
 body {
+background-color: #f1f1f1;
+font-family: "Open Sans", sans-serif;
+}
+
+.published-ad-list-top {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 65%;
+  margin: auto;
+  margin-top: 0px;
+}
+
+.published-ad-list-flex-container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.published-ad-list-headingfloat {
   background-color: #f1f1f1;
+  padding: 0px;
+  margin: auto;
+  width: 65%;
+}
+
+.published-ad-list-secheading {
+  background-color: rgb(255, 255, 255);
+  padding-left: 20px;
+  padding-top: 10px;
+  margin: auto;
+  width: 68%;
+  }
+
+
+.published-ad-list-flex-wrap { 
+  display: flex; 
+}
+
+.published-ad-list-flex-wrap > * {
+  box-sizing: border-box;
+  width: 50%; 
+  background: #f1f1f1;
+}
+
+.published-ad-list-flex-wrap2 { 
+  display: flex; 
+  flex-direction: row;
+  width: 100%;
+}
+
+.published-ad-list-heading {
+  display: flex;
+  width: 50%;
+}
+
+.published-ad-list-dropdown-section {
+  display: flex;
+  width: 50%;
+}
+
+.published-ad-list-container {
+  display:flex;
+  width: 50%;
+}
+
+.published-ad-list-container input[type=text], select, textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+}
+::placeholder {
   font-family: "Open Sans", sans-serif;
-  }
-  
-  .published-ad-list-top {
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    width: 65%;
-    margin: auto;
-    margin-top: 0px;
-  }
-  
-  .published-ad-list-flex-container {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  .published-ad-list-headingfloat {
-    background-color: #f1f1f1;
-    padding: 0px;
-    margin: auto;
-    width: 65%;
-  }
-  
-  .published-ad-list-secheading {
-    background-color: rgb(255, 255, 255);
-    padding-left: 20px;
-    padding-top: 10px;
-    margin: auto;
-    width: 68%;
-    }
-  
-  
-  .published-ad-list-flex-wrap { 
-    display: flex; 
-  }
-  
-  .published-ad-list-flex-wrap > * {
-    box-sizing: border-box;
-    width: 50%; 
-    background: #f1f1f1;
-  }
-  
-  .published-ad-list-flex-wrap2 { 
-    display: flex; 
-    flex-direction: row;
-    width: 100%;
-  }
-  
-  .published-ad-list-heading {
-    display: flex;
-    width: 50%;
-  }
-  
-  .published-ad-list-dropdown-section {
-    display: flex;
-    width: 50%;
-  }
-  
-  .published-ad-list-container {
-    display:flex;
-    width: 50%;
-  }
-  
-  .published-ad-list-container input[type=text], select, textarea {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    
-  }
-  ::placeholder {
-    font-family: "Open Sans", sans-serif;
-  }
-  
-  .published-ad-list-ad-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .published-ad-list-ad-table td {
-    text-align: center;
-    padding: 4px;
-  }
-  
-  .published-ad-list-ad-table th {
-    text-align:center;
-    padding: 8px;
-    background-color: #f1f1f1;
-  }
-  
-  .published-ad-list-ad-table button {
-   
-    color: #f86808;
-    background-color: rgb(255, 255, 255);
-    font-size: 16px;
-    padding: 12px 40px;
-    border-radius: 5px;
-    border-color: #f86808;
-    display: inline-block;
-    border: 1;
-  
-  }
-  
-  /* .search-container {
-    float: right;
-    position: absolute;
-    top: 355px;
-    left: 575px;
-  }
-  
-  .search-container input[type=text] {
-    padding: 3px;
-    margin-top: 8px;
-    font-size: 10px;
-    border: none;
-  } */
-  
-  .published-ad-list-search-btn {
-    float: left;
-    padding: 12px;
-    background: #ddd;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-  }
-  .published-ad-list-search-btn:hover {
-    background: rgb(255, 255, 255);
-  }
-  
-  .published-ad-list-dropbtn {
-    background-color: #f86808;
-    color: white;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .published-ad-list-dropbtn:hover, .published-ad-list-dropbtn:focus {
-    background-color: #ddd;
-  }
-  
-  #myInput {
-    box-sizing: border-box;
-    background-image: url('searchicon.png');
-    background-position: 14px 12px;
-    background-repeat: no-repeat;
-    font-size: 16px;
-    padding: 14px 20px 12px 45px;
-    border: none;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  #myInput:focus {outline: 3px solid #ddd;}
-  
-  .published-ad-list-dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .published-ad-list-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f6f6f6;
-    min-width: 230px;
-    overflow: auto;
-    border: 1px solid #ddd;
-    z-index: 1;
-  }
-  
-  .published-ad-list-dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .published-ad-list-dropdown a:hover {background-color: #ddd;}
-  
-  .show {display: block;}
+}
+
+.published-ad-list-ad-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.published-ad-list-ad-table td {
+  text-align: center;
+  padding: 4px;
+}
+
+.published-ad-list-ad-table th {
+  text-align:center;
+  padding: 8px;
+  background-color: #f1f1f1;
+}
+
+.published-ad-list-ad-table button {
+ 
+  color: #f86808;
+  background-color: rgb(255, 255, 255);
+  font-size: 16px;
+  padding: 12px 40px;
+  border-radius: 5px;
+  border-color: #f86808;
+  display: inline-block;
+  border: 1;
+
+}
+
+/* .search-container {
+  float: right;
+  position: absolute;
+  top: 355px;
+  left: 575px;
+}
+
+.search-container input[type=text] {
+  padding: 3px;
+  margin-top: 8px;
+  font-size: 10px;
+  border: none;
+} */
+
+.published-ad-list-search-btn {
+  float: left;
+  padding: 12px;
+  background: #ddd;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+.published-ad-list-search-btn:hover {
+  background: rgb(255, 255, 255);
+}
+
+.published-ad-list-dropbtn {
+  background-color: #f86808;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.published-ad-list-dropbtn:hover, .published-ad-list-dropbtn:focus {
+  background-color: #ddd;
+}
+
+#myInput {
+  box-sizing: border-box;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {outline: 3px solid #ddd;}
+
+.published-ad-list-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.published-ad-list-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.published-ad-list-dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.published-ad-list-dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
 
 
 
@@ -429,13 +429,116 @@ font-family: "Open Sans", sans-serif;
 }
 
 .view-companies-top {
+background-color: rgb(255, 255, 255);
+padding: 30px;
+width: 55%;
+margin-left: 10%;
+}
+
+.view-companies-flex-container {
+display: flex;
+background-color: rgb(255, 255, 255);
+align-items: center;
+flex-direction: column;
+height: 100%;
+}
+
+.view-companies-flex-wrap { 
+display: flex; 
+width: 100%;
+flex-direction: row;
+}
+
+.view-companies-heading {
+display:flex;
+width: 50%;
+}
+
+.view-companies-search {
+display: flex;
+width: 50%;
+align-items: center;
+justify-content: right;
+}
+
+.view-companies-search-container {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 50%;
+}
+
+
+.view-companies-search-container input[type=text], select, textarea {
+padding: 12px;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+width: 100%;
+
+
+}
+::placeholder {
+font-family: "Open Sans", sans-serif;
+
+}
+
+.view-companies-table button {
+
+color: #f86808;
+font-size: 16px;
+padding: 12px 40px;
+border-radius: 5px;
+border-color: #f86808;
+display: inline-block;
+border: 1;
+
+}
+
+.view-companies-table {
+border-collapse: collapse;
+width: 100%;
+}
+
+.view-companies-table-data {
+text-align: center;
+padding: 4px;
+}
+
+.view-companies-table-header {
+text-align:center;
+padding: 8px;
+background-color: #f1f1f1;
+}
+
+.view-companies-search-btn {
+padding: 12px;
+background: #ddd;
+font-size: 1rem;
+border: none;
+cursor: pointer;
+color: #f86808;
+display: inline-block;
+}
+.view-companies-search-btn:hover {
+background: rgb(255, 255, 255);
+}
+
+/* view ads styles */
+
+body {
+background-color: #f1f1f1;
+font-family: "Open Sans", sans-serif;
+}
+
+.view-ads-top {
   background-color: rgb(255, 255, 255);
   padding: 30px;
   width: 55%;
   margin-left: 10%;
 }
 
-.view-companies-flex-container {
+.view-ads-flex-container {
   display: flex;
   background-color: rgb(255, 255, 255);
   align-items: center;
@@ -443,25 +546,25 @@ font-family: "Open Sans", sans-serif;
   height: 100%;
 }
 
-.view-companies-flex-wrap { 
+.view-ads-flex-wrap { 
   display: flex; 
   width: 100%;
   flex-direction: row;
 }
 
-.view-companies-heading {
+.view-ads-heading {
   display:flex;
   width: 50%;
 }
 
-.view-companies-search {
+.view-ads-search {
   display: flex;
   width: 50%;
   align-items: center;
   justify-content: right;
 }
 
-.view-companies-search-container {
+.view-ads-search-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -469,7 +572,7 @@ font-family: "Open Sans", sans-serif;
 }
 
 
-.view-companies-search-container input[type=text], select, textarea {
+.view-ads-search-container input[type=text], select, textarea {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -483,7 +586,7 @@ font-family: "Open Sans", sans-serif;
 
 }
 
-.view-companies-table button {
+.view-ads-table button {
  
   color: #f86808;
   font-size: 16px;
@@ -495,23 +598,23 @@ font-family: "Open Sans", sans-serif;
 
 }
 
-.view-companies-table {
+.view-ads-table {
   border-collapse: collapse;
   width: 100%;
 }
 
-.view-companies-table-data {
+.view-ads-table-data {
   text-align: center;
   padding: 4px;
 }
 
-.view-companies-table-header {
+.view-ads-table-header {
   text-align:center;
   padding: 8px;
   background-color: #f1f1f1;
 }
 
-.view-companies-search-btn {
+.view-ads-search-btn {
   padding: 12px;
   background: #ddd;
   font-size: 1rem;
@@ -520,560 +623,198 @@ font-family: "Open Sans", sans-serif;
   color: #f86808;
   display: inline-block;
 }
-.view-companies-search-btn:hover {
+.view-ads-search-btn:hover {
   background: rgb(255, 255, 255);
 }
-
-/* view ads styles */
-
-body {
-  background-color: #f1f1f1;
-  font-family: "Open Sans", sans-serif;
-  }
-  
-  .view-ads-top {
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    width: 55%;
-    margin-left: 10%;
-  }
-  
-  .view-ads-flex-container {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  .view-ads-flex-wrap { 
-    display: flex; 
-    width: 100%;
-    flex-direction: row;
-  }
-  
-  .view-ads-heading {
-    display:flex;
-    width: 50%;
-  }
-  
-  .view-ads-search {
-    display: flex;
-    width: 50%;
-    align-items: center;
-    justify-content: right;
-  }
-  
-  .view-ads-search-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-  }
-  
-  
-  .view-ads-search-container input[type=text], select, textarea {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    width: 100%;
-  
-    
-  }
-  ::placeholder {
-    font-family: "Open Sans", sans-serif;
-  
-  }
-  
-  .view-ads-table button {
-   
-    color: #f86808;
-    font-size: 16px;
-    padding: 12px 40px;
-    border-radius: 5px;
-    border-color: #f86808;
-    display: inline-block;
-    border: 1;
-  
-  }
-  
-  .view-ads-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .view-ads-table-data {
-    text-align: center;
-    padding: 4px;
-  }
-  
-  .view-ads-table-header {
-    text-align:center;
-    padding: 8px;
-    background-color: #f1f1f1;
-  }
-  
-  .view-ads-search-btn {
-    padding: 12px;
-    background: #ddd;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    color: #f86808;
-    display: inline-block;
-  }
-  .view-ads-search-btn:hover {
-    background: rgb(255, 255, 255);
-  }
 
 /* applied companies styles */
 
 body {
-  background-color: #f1f1f1;
-  font-family: "Open Sans", sans-serif;
-  }
-  
-  .applied-companies-top {
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    width: 80%;
-    margin: auto;
-  }
-  
-  .applied-companies-flex-container {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    align-items: center;
-    flex-direction: column;
-    height: 500px;
-  }
-  
-  
-  .applied-companies-statusbtn {
-   
-    margin: auto;
-    color: rgb(255, 255, 255);
-    padding: 12px 20px;
-    font-size: 1rem;
-    border-style: none;
-    border-radius: 3px;
-    background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
-    margin-left: 0;
-    width: 60%;
-  }
-  
-  
-  
-  .applied-companies-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .applied-companies-table td {
-    text-align: center;
-    padding: 8px;
-  }
-  
-  .applied-companies-table th {
-    text-align:center;
-    padding: 8px;
-    background-color: #f1f1f1;
-  }
-  
-  /* dashboard styles */
-  
-  .dashboard-top {
-    background-color: rgb(255, 255, 255);
-    padding: 40px;
-    width: 60%;
-    margin: auto;
-  }
-  
-  .dashboard-flex-container {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    align-items: center;
-    flex-direction: row;
-    height: 250px;
-  }
-  
-  .dashboard-textarea {
-    padding: 30px;
-    width: 80%;
-    height: 60%;
-    margin: auto;
-  }
-  
-  .dashboard-btnarea {
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    width: 80%;
-    height: 60%;
-    margin-left: 20%;
-  }
-  
-  .dashboard-statusbtn {
-   
-    margin: auto;
-    color: rgb(255, 255, 255);
-    padding: 8px 5px;
-    font-size: 1rem;
-    border-style: none;
-    background-color:rgb(22, 128, 27); 
-    margin-left: 0;
-    width: 30%;
-  }
-  
-  .dashboard-profile-view-btn {
-   
-    margin: auto;
-    color: rgb(255, 255, 255);
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    border-style: none;
-    border-radius: 3px;
-    background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
-    margin-left: 0;
-    width: 60%;
-  }
-  
-  .dashboard-top h3 {
-    color: #022f73;
-  }
-  
-  .dashboard-bottom-strip {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    flex-direction: row;
-    width: 30%;
-    margin-left: 20%;
-    gap: 4rem;
-    height: 3.5rem;
-    
-  }
-  
-  .bottom-strip-blue-line {
-    background-color: #022f73;
-  }
-  
-  .bottom-strip-blue-line p {
-    color: #022f73;
-  }
-  
-  .bottom-strip-description {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .bottom-strip-description p {
-    color: #022f73;
-  }
-  
-  .bottom-strip-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .bottom-strip-number {
-    color: #022f73;
-  }
-  
-  .bottom-strip-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    margin: auto;
-    color: rgb(255, 255, 255);
-    padding: 5px 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    border-style: none;
-    border-radius: 3px;
-    background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
-    margin-right: 1rem;
-    width: 30%;
-  }
-
-  /* CV status styles */
-
-body {
-  background-color: #f1f1f1;
-  font-family: "Open Sans", sans-serif;
-  }
-  
-  .cv-status-top {
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    width: 45%;
-    margin-left: 5rem;
-    margin-top: 5rem;
-  }
-  
-  .cv-status-flex-container {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  .cv-status-flex-wrap2 { 
-    display: flex; 
-    width: 100%;
-  }
-  
-  .cv-status-flex-wrap2 > * {
-    box-sizing: border-box;
-    width: 50%; 
-    background: rgb(255, 255, 255);
-  }
-  
-  .cv-status-flex-wrap3 {
-    box-sizing: border-box;
-    width: 100%;
-    height: 25rem; 
-    background: #f1f1f1;
-  }
-  
-  .cv-status-input-field {
-    margin-top: 3rem;
-    margin-left: 2rem;
-  }
-  
-  .cv-status-myCV {
-    background-color: #D9D9D9;
-    width: 30%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    margin-left: 2rem;
-    padding: 2rem;
-  }
-  
-  .cv-status-cv-submit-button {
-    color: #ffffff;
-    background-color: #158811;
-    font-size: 16px;
-    padding: 6px 50px;
-    border-radius: 0px;
-    display: inline-block;
-    cursor: pointer;
-    border: none;
-  }
-
-/* Company profile */
-
-body {
-  background-color: #f1f1f1;
-  font-family: "Open Sans", sans-serif;
-  }
-  
-  .company-profile-top {
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    margin-left: 5rem;
-    margin-top: 5rem;
-    margin-right: 5rem;
-  }
-  
-  .company-profile-container {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  .company-profile-flex-wrap2 { 
-    display: flex; 
-    width: 100%;
-    margin-left: 4rem;
-  }
-  
-  .company-profile-details-container {
-    display: flex;
-    width: 100%;
-  }
-  
-  .company-profile-logo {
-    display: flex;
-  }
-  
-  .company-profile-description {
-    display: flex;
-    flex-direction: column;
-  
-  }
-  .company-profile-logo-icon {
-    border-radius: 100%;
-    width: 20rem;
-    height: auto;
-    border: 1px solid #ebe8e8;
-  }
-  
-  .company-profile-bottom {
-    background-color:#054A91;
-    padding: 30px;
-    margin-left: 5rem;
-    margin-right: 5rem;
-    display: flex;
-    gap: 6rem;
-  }
-  
-  .company-technologies {
-    display: flex;
-    flex-direction: column;
-    /* background-color: aqua; */
-    margin-left: 2rem;
-    width: 100%;
-  }
-  
-  .company-contact {
-    display: flex;
-    background-color:chartreuse;
-  }
-  
-  .technologies-btn {
-    margin: auto;
-    color: #054A91;
-    padding: 8px 5px;
-    font-size: 1rem;
-    border-style: none;
-    border-radius: 10px;
-    background-color: rgb(255, 255, 255);
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-    width: 25%;
-  }
-  
-  
-  .visit-web-btn {
-    margin: auto;
-    color:darkorange;
-    padding: 9px 20px;
-    font-size: 1rem;
-    border-style: none;
-    border-radius: 3px;
-    background-color: rgb(255, 255, 255);
-    margin-left: 0;
-    margin-bottom: 1rem;
-    width: 30%;
-    cursor: pointer;
-  }
-  
-  .company-contact-area {
-    width: 100%;
-  }
-  
-  .view-ads-btn {
-    margin: auto;
-    color:rgb(255, 255, 255);
-    padding: 9px 20px;
-    font-size: 1rem;
-    border-style: none;
-    border-radius: 3px;
-    background-color: #158811;
-    margin-left: 0;
-    margin-bottom: 1rem;
-    width: 40%;
-    cursor: pointer;
-  }
-
-  /* advertisement list styles */
-
-body {
-  background-color: #f1f1f1;
-  font-family: "Open Sans", sans-serif;
-  }
-  
-  .ad-list-top {
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    width: 80%;
-    margin: auto;
-  }
-  
-  .ad-list-flex-container {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    align-items: center;
-    flex-direction: column;
-    height: 500px;
-  }
-  
-  
-  .ad-list-table button {
-   
-    margin: auto;
-      color: rgb(255, 255, 255);
-      padding: 12px 20px;
-      font-size: 1rem;
-      border-style: none;
-      border-radius: 3px;
-      background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
-      margin-left: 0;
-      width: 60%;
-  }
-  
-  .ad-list-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .ad-list-table td {
-    text-align: center;
-    padding: 8px;
-  }
-  
-  .ad-list-table th {
-    text-align:center;
-    padding: 8px;
-    background-color: #f1f1f1;
-  }
-  
-  /* schedule ad styles */
-  
-    body {
-      background-color: #f1f1f1;
-      font-family: "Open Sans", sans-serif;
-    }
-    
-    .schedule-ad-top {
-      background-color: rgb(255, 255, 255);
-      padding: 30px;
-      width: 80%;
-      margin: auto;
-    }
-    
-    .schedule-ad-flex-container {
-      display: flex;
-      background-color: rgb(255, 255, 255);
-      align-items: center;
-      flex-direction: column;
-      height: 500px;
-    }
-  
-
-/* view ad styles */
-
-.view-ad-top {
-  background-color: rgb(255, 255, 255);
-  padding: 30px;
-  width: 65%;
-  margin: auto;
-  margin-top: 3rem;
+background-color: #f1f1f1;
+font-family: "Open Sans", sans-serif;
 }
 
-.view-ad-flex-wrap2 { 
-  display: flex; 
+.applied-companies-top {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 80%;
+  margin: auto;
+}
+
+.applied-companies-flex-container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  flex-direction: column;
+  height: 500px;
+}
+
+
+.applied-companies-statusbtn {
+ 
+  margin: auto;
+  color: rgb(255, 255, 255);
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-style: none;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  margin-left: 0;
+  width: 60%;
+}
+
+
+
+.applied-companies-table {
+  border-collapse: collapse;
   width: 100%;
 }
 
-.view-ad-flex-container {
+.applied-companies-table td {
+  text-align: center;
+  padding: 8px;
+}
+
+.applied-companies-table th {
+  text-align:center;
+  padding: 8px;
+  background-color: #f1f1f1;
+}
+
+/* dashboard styles */
+
+.dashboard-top {
+  background-color: rgb(255, 255, 255);
+  padding: 40px;
+  width: 60%;
+  margin: auto;
+}
+
+.dashboard-flex-container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  flex-direction: row;
+  height: 250px;
+}
+
+.dashboard-textarea {
+  padding: 30px;
+  width: 80%;
+  height: 60%;
+  margin: auto;
+}
+
+.dashboard-btnarea {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 80%;
+  height: 60%;
+  margin-left: 20%;
+}
+
+.dashboard-statusbtn {
+ 
+  margin: auto;
+  color: rgb(255, 255, 255);
+  padding: 8px 5px;
+  font-size: 1rem;
+  border-style: none;
+  background-color:rgb(22, 128, 27); 
+  margin-left: 0;
+  width: 30%;
+}
+
+.dashboard-profile-view-btn {
+ 
+  margin: auto;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-style: none;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  margin-left: 0;
+  width: 60%;
+}
+
+.dashboard-top h3 {
+  color: #022f73;
+}
+
+.dashboard-bottom-strip {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  flex-direction: row;
+  width: 30%;
+  margin-left: 20%;
+  gap: 4rem;
+  height: 3.5rem;
+  
+}
+
+.bottom-strip-blue-line {
+  background-color: #022f73;
+}
+
+.bottom-strip-blue-line p {
+  color: #022f73;
+}
+
+.bottom-strip-description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-strip-description p {
+  color: #022f73;
+}
+
+.bottom-strip-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-strip-number {
+  color: #022f73;
+}
+
+.bottom-strip-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: auto;
+  color: rgb(255, 255, 255);
+  padding: 5px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-style: none;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  margin-right: 1rem;
+  width: 30%;
+}
+
+/* CV status styles */
+
+body {
+background-color: #f1f1f1;
+font-family: "Open Sans", sans-serif;
+}
+
+.cv-status-top {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 45%;
+  margin-left: 5rem;
+  margin-top: 5rem;
+}
+
+.cv-status-flex-container {
   display: flex;
   background-color: rgb(255, 255, 255);
   align-items: center;
@@ -1081,37 +822,39 @@ body {
   height: 100%;
 }
 
-.view-ad-basic-details-row {
+.cv-status-flex-wrap2 { 
+  display: flex; 
+  width: 100%;
+}
+
+.cv-status-flex-wrap2 > * {
+  box-sizing: border-box;
   width: 50%; 
-} 
-
-.basic-details {
-  border-spacing: 0.5rem;
-  width: 90%;
-  padding: 0.5rem;
+  background: rgb(255, 255, 255);
 }
 
-.ad-data {
-  background-color:#f1f1f1;
-  padding: 0.5rem;
+.cv-status-flex-wrap3 {
+  box-sizing: border-box;
+  width: 100%;
+  height: 25rem; 
+  background: #f1f1f1;
 }
 
-.view-ad-descriptions{
-  display: flex;
-  gap: 1rem;
+.cv-status-input-field {
+  margin-top: 3rem;
+  margin-left: 2rem;
 }
 
-.view-ad-requirements {
-  background-color: #f1f1f1;
-  display: flex;
+.cv-status-myCV {
+  background-color: #D9D9D9;
+  width: 30%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  padding: 2rem;
 }
 
-.view-ad-section{
-width: 50%;
-}
-
-.view-ad-apply-button {
-  margin-top: 1rem;
+.cv-status-cv-submit-button {
   color: #ffffff;
   background-color: #158811;
   font-size: 16px;
@@ -1122,84 +865,341 @@ width: 50%;
   border: none;
 }
 
-/* job roles styles */
+/* Company profile */
 
 body {
+background-color: #f1f1f1;
+font-family: "Open Sans", sans-serif;
+}
+
+.company-profile-top {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  margin-left: 5rem;
+  margin-top: 5rem;
+  margin-right: 5rem;
+}
+
+.company-profile-container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.company-profile-flex-wrap2 { 
+  display: flex; 
+  width: 100%;
+  margin-left: 4rem;
+}
+
+.company-profile-details-container {
+  display: flex;
+  width: 100%;
+}
+
+.company-profile-logo {
+  display: flex;
+}
+
+.company-profile-description {
+  display: flex;
+  flex-direction: column;
+
+}
+.company-profile-logo-icon {
+  border-radius: 100%;
+  width: 20rem;
+  height: auto;
+  border: 1px solid #ebe8e8;
+}
+
+.company-profile-bottom {
+  background-color:#054A91;
+  padding: 30px;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  display: flex;
+  gap: 6rem;
+}
+
+.company-technologies {
+  display: flex;
+  flex-direction: column;
+  /* background-color: aqua; */
+  margin-left: 2rem;
+  width: 100%;
+}
+
+.company-contact {
+  display: flex;
+  background-color:chartreuse;
+}
+
+.technologies-btn {
+  margin: auto;
+  color: #054A91;
+  padding: 8px 5px;
+  font-size: 1rem;
+  border-style: none;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  width: 25%;
+}
+
+
+.visit-web-btn {
+  margin: auto;
+  color:darkorange;
+  padding: 9px 20px;
+  font-size: 1rem;
+  border-style: none;
+  border-radius: 3px;
+  background-color: rgb(255, 255, 255);
+  margin-left: 0;
+  margin-bottom: 1rem;
+  width: 30%;
+  cursor: pointer;
+}
+
+.company-contact-area {
+  width: 100%;
+}
+
+.view-ads-btn {
+  margin: auto;
+  color:rgb(255, 255, 255);
+  padding: 9px 20px;
+  font-size: 1rem;
+  border-style: none;
+  border-radius: 3px;
+  background-color: #158811;
+  margin-left: 0;
+  margin-bottom: 1rem;
+  width: 40%;
+  cursor: pointer;
+}
+
+/* advertisement list styles */
+
+body {
+background-color: #f1f1f1;
+font-family: "Open Sans", sans-serif;
+}
+
+.ad-list-top {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 80%;
+  margin: auto;
+}
+
+.ad-list-flex-container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  flex-direction: column;
+  height: 500px;
+}
+
+
+.ad-list-table button {
+ 
+  margin: auto;
+    color: rgb(255, 255, 255);
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-style: none;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+    margin-left: 0;
+    width: 60%;
+}
+
+.ad-list-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.ad-list-table td {
+  text-align: center;
+  padding: 8px;
+}
+
+.ad-list-table th {
+  text-align:center;
+  padding: 8px;
   background-color: #f1f1f1;
-  font-family: "Open Sans", sans-serif;
+}
+
+/* schedule ad styles */
+
+  body {
+    background-color: #f1f1f1;
+    font-family: "Open Sans", sans-serif;
   }
   
-  .job-roles-top {
+  .schedule-ad-top {
     background-color: rgb(255, 255, 255);
-    padding: 2rem;
-    width: 35%;
-    margin-left: 4rem;
-    margin-top: 4rem;
+    padding: 30px;
+    width: 80%;
+    margin: auto;
   }
   
-  .job-roles-flex-container {
+  .schedule-ad-flex-container {
     display: flex;
     background-color: rgb(255, 255, 255);
     align-items: center;
     flex-direction: column;
-    height: 100%;
+    height: 500px;
   }
-  
-  .job-roles-flex-wrap2 { 
-    display: flex; 
-    width: 100%;
-  }
-  
-  .job-roles-flex-wrap2 > * {
-    box-sizing: border-box;
-    width: 50%; 
-    background: rgb(255, 255, 255);
-  }
-  
-  .job-roles-flex-wrap3 {
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%; 
-    background: #f1f1f1;
-  }
-  
-  .job-roles-select-data {
-    border-collapse: collapse;
+
+
+/* view ad styles */
+
+.view-ad-top {
+background-color: rgb(255, 255, 255);
+padding: 30px;
+width: 65%;
+margin: auto;
+margin-top: 3rem;
+}
+
+.view-ad-flex-wrap2 { 
+display: flex; 
+width: 100%;
+}
+
+.view-ad-flex-container {
+display: flex;
+background-color: rgb(255, 255, 255);
+align-items: center;
+flex-direction: column;
+height: 100%;
+}
+
+.view-ad-basic-details-row {
+width: 50%; 
+} 
+
+.basic-details {
+border-spacing: 0.5rem;
+width: 90%;
+padding: 0.5rem;
+}
+
+.ad-data {
+background-color:#f1f1f1;
+padding: 0.5rem;
+}
+
+.view-ad-descriptions{
+display: flex;
+gap: 1rem;
+}
+
+.view-ad-requirements {
+background-color: #f1f1f1;
+display: flex;
+}
+
+.view-ad-section{
+width: 50%;
+}
+
+.view-ad-apply-button {
+margin-top: 1rem;
+color: #ffffff;
+background-color: #158811;
+font-size: 16px;
+padding: 6px 50px;
+border-radius: 0px;
+display: inline-block;
+cursor: pointer;
+border: none;
+}
+
+/* job roles styles */
+
+body {
+background-color: #f1f1f1;
+font-family: "Open Sans", sans-serif;
+}
+
+.job-roles-top {
+  background-color: rgb(255, 255, 255);
+  padding: 2rem;
+  width: 35%;
+  margin-left: 4rem;
+  margin-top: 4rem;
+}
+
+.job-roles-flex-container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.job-roles-flex-wrap2 { 
+  display: flex; 
   width: 100%;
-  }
-  
-  .job-role-table-name {
-    padding: 0.8rem;
-  }
+}
 
-  .job-role-table-submit {
-    text-align: center;
-    padding: 4px;
-  }
-  
-  .job-role-table-header-name {
-    text-align:left;
-    padding: 0.8rem;
-    background-color: #f1f1f1;
-  }
+.job-roles-flex-wrap2 > * {
+  box-sizing: border-box;
+  width: 50%; 
+  background: rgb(255, 255, 255);
+}
 
-  .job-role-table-header-select {
-    text-align:center;
-    padding: 0.8rem;
-    background-color: #f1f1f1;
-  }
+.job-roles-flex-wrap3 {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%; 
+  background: #f1f1f1;
+}
 
-  .job-role-submit-button {
-  margin-left: 12rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  color: rgb(255, 255, 255);
-  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
-  font-size: 1rem;
-  padding: 6px 25px;
-  border-radius: 3px;
-  border-style: none;
-  display: inline-block;
-  cursor: pointer;
-  border: none;
-  }
+.job-roles-select-data {
+  border-collapse: collapse;
+width: 100%;
+}
+
+.job-role-table-name {
+  padding: 0.8rem;
+}
+
+.job-role-table-submit {
+  text-align: center;
+  padding: 4px;
+}
+
+.job-role-table-header-name {
+  text-align:left;
+  padding: 0.8rem;
+  background-color: #f1f1f1;
+}
+
+.job-role-table-header-select {
+  text-align:center;
+  padding: 0.8rem;
+  background-color: #f1f1f1;
+}
+
+.job-role-submit-button {
+margin-left: 12rem;
+margin-top: 1rem;
+margin-bottom: 1rem;
+color: rgb(255, 255, 255);
+background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+font-size: 1rem;
+padding: 6px 25px;
+border-radius: 3px;
+border-style: none;
+display: inline-block;
+cursor: pointer;
+border: none;
+}
