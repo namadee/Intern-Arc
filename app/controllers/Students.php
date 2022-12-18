@@ -4,13 +4,12 @@ class Students extends BaseController
 {
     public function __construct()
     {
-        $this->studentModel = $this->model('Student');
     }
 
-    //Student Dashboard
+    //Student User Dashboard
     public function index()
     {
-        $this->view('student/login');
+        $this->view('student/dashboard');
     }
 
     //Manage Students - PDC

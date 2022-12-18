@@ -20,6 +20,8 @@
         <select class="common-input" name="user_role" id="user_role" required>
             <option value='admin'>Admin</option>
             <option value='pdc'>PDC</option>
+            <option value='student'>Student</option>
+            <option value='company'>Company</option>
         </select>
         <br>
         <button class="common-blue-btn" type="submit" onclick="Validate(document.reg_form.email, document.reg_form.password)">Register</button>

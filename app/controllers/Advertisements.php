@@ -146,4 +146,12 @@ class Advertisements extends BaseController
     {
         $this->advertisementModel->deleteAdvertisement($advertisementId);
     }
+
+    //SHOW ADVERTISEMENTS - STUDENT
+    public function showStudentAdvertisements(){
+        $this->view('student/advertisements');
+
+    }
+
+
 }

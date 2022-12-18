@@ -25,4 +25,11 @@ class Companies extends BaseController
     {
         $this->view('pdc/companyDetails');
     }
+
+    //View Company List - STUDENT
+    public function viewCompanyList(){
+       
+        $this->view('student/viewcompanies');
+    }
+
 }

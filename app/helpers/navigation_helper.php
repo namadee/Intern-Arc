@@ -36,12 +36,12 @@ function getNavigationByUser($userType)
 
     case 'student': //Student User Menu
       $navigation = array(
-        array('#', 'dashboard', 'Dashboard'),
-        array('#', 'cases', 'Companies'),
-        array('#', 'manage_accounts', 'Profile'),
-        array('#', 'text_to_speech', 'Advertisements'),
-        array('#', 'approval_delegation', 'Complaint'),
-        array('#', 'calendar_month', 'Schedule')
+        array(URLROOT.'students', 'dashboard', 'Dashboard'),
+        array(URLROOT.'companies/view-company-list', 'cases', 'Companies'),
+        array(URLROOT.'profiles/student-profile', 'manage_accounts', 'Profile'),
+        array(URLROOT.'advertisements/show-student-advertisements', 'text_to_speech', 'Advertisements'),
+        array(URLROOT.'complaints', 'approval_delegation', 'Complaint'),
+        array(URLROOT.'schedule', 'calendar_month', 'Schedule')
       );
       return $navigation;
       break;
