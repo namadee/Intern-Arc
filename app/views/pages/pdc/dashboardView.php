@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="dashboard-topbar-btns display-flex-row">
-        <a href="<?php echo URLROOT.'register/send-invitation';?>" class="send-invitation display-flex-row common-blue-btn">
+        <a href="<?php echo URLROOT.'pdc/send-invitation';?>" class="send-invitation display-flex-row common-blue-btn">
             <span class="material-symbols-outlined">
                 mail
             </span>
