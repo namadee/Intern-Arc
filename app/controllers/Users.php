@@ -11,8 +11,7 @@ class Users extends BaseController
 
   public function index()
   {
-    // $this->view('home');
-    $this->view('student/viewads');
+    $this->view('home');
   }
 
 

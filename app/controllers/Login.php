@@ -41,7 +41,7 @@ class Login extends BaseController
                 if ($this->userModel->login($data['email'], $data['password'])) {
                     //Password is correct
                     $this->createSession($userDetails);
-                    redirect('jobroles');
+                    redirect('pdc');
                 } else {
                     //Password is incorrect
                     $data = [
@@ -96,7 +96,7 @@ class Login extends BaseController
                 if ($this->userModel->login($data['email'], $data['password'])) {
                     //Password is correct
                     $this->createSession($userDetails);
-                    redirect('advertisements');
+                    redirect('companies');
                 } else {
                     //Password is incorrect
                     $data = [
@@ -206,7 +206,7 @@ class Login extends BaseController
                 if ($this->userModel->login($data['email'], $data['password'])) {
                     //Password is correct
                     $this->createSession($userDetails);
-                    redirect('complaints/');
+                    redirect('students/');
                 } else {
                     //Password is incorrect
                     $data = [
