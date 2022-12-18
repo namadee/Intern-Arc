@@ -18,7 +18,7 @@
 		</div>
 
 		<div class="company-profile-details-container">
-			<div class="company-profile-logo"> <img class="company-profile-logo-icon" src="./img/Virtusalogo.jpg" alt="virtusa logo"> </div>
+			<div class="company-profile-logo"> <img class="company-profile-logo-icon" src="<?php echo URLROOT.'img/virtusa-logo.jpeg';?>" alt="virtusa logo"> </div>
 			<div class="company-profile-description">
 				<p style="margin-bottom: 0; font-size:2rem;">Welcome to <span style="color:darkorange ;"> Virtusa </span></p>
 				<p style="margin-top: 0; color:darkorange ;">Sparking innovation, one sprint at a time</p>
@@ -48,7 +48,7 @@
 
 	<div class="company-contact-area">
 		<a href="#"><button class="visit-web-btn">Visit Web Site</button></a>
-		<a href="#"><button class="view-ads-btn">View Advertisements</button></a>
+		<a href="#"><button class="view-ads-btn"><a href="<?php echo URLROOT.'companies/show-advertisements-by-company';?>"> View Advertisements </a> </button></a>
 		<br>
 		<table class="links-and-address">
 		<tr>

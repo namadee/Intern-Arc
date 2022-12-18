@@ -12,7 +12,7 @@ class Users extends BaseController
   public function index()
   {
     // $this->view('home');
-    $this->view('student/scheduleadvertisement');
+    $this->view('student/viewads');
   }
 
 

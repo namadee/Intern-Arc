@@ -22,7 +22,9 @@
 		<br/><br/>
 		Round : 1st round 
 	</div>
-	<div class="dashboard-btnarea"><form><button class="dashboard-profile-view-btn">View my profile</button></div></form>
+	<div class="dashboard-btnarea">
+	<a href="<?php echo URLROOT.'profiles/student-profile';?>">	
+	<button class="dashboard-profile-view-btn">View my profile</button></a></div>
 </div>
 </div>
 <br/>
@@ -30,14 +32,14 @@
 	<div class="bottom-strip-blue-line"><p>1</p></div>
 	<div class="bottom-strip-description"><p>Applied Companies</p></div>
 	<div class="bottom-strip-number"><p>5</p></div>
-	<div class="bottom-strip-button">View</div>
+	<div class="bottom-strip-button"><a href="<?php echo URLROOT.'companies/view-applied-company-list';?>"> View </a> </div>
 </div>
 <br/>
 <div class="dashboard-bottom-strip">
 	<div class="bottom-strip-blue-line"><p>1</p></div>
 	<div class="bottom-strip-description"><p>Schedule Interview</p></div>
 	<div class="bottom-strip-number"><p>5</p></div>
-	<div class="bottom-strip-button">View</div>
+	<div class="bottom-strip-button"><a href="<?php echo URLROOT.'schedule';?>">View</a> </div>
 </div>
 
 </section>

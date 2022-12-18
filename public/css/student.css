@@ -431,7 +431,7 @@ font-family: "Open Sans", sans-serif;
 .view-companies-top {
 background-color: rgb(255, 255, 255);
 padding: 30px;
-width: 55%;
+width: 85%;
 margin-left: 10%;
 }
 
@@ -736,7 +736,7 @@ font-family: "Open Sans", sans-serif;
   border-radius: 3px;
   background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
   margin-left: 0;
-  width: 60%;
+  width: 100%;
 }
 
 .dashboard-top h3 {
@@ -786,7 +786,6 @@ font-family: "Open Sans", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin: auto;
   color: rgb(255, 255, 255);
   padding: 5px 20px;
@@ -799,6 +798,9 @@ font-family: "Open Sans", sans-serif;
   width: 30%;
 }
 
+.bottom-strip-button a {
+  color: white;
+}
 /* CV status styles */
 
 body {

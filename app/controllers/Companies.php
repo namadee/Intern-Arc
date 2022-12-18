@@ -27,9 +27,21 @@ class Companies extends BaseController
     }
 
     //View Company List - STUDENT
-    public function viewCompanyList(){
-       
+    public function viewCompanyList()
+    {
+
         $this->view('student/viewcompanies');
     }
 
+    //View Applied Company List - STUDENT
+    public function viewAppliedCompanyList()
+    {
+        $this->view('student/appliedcompanies');
+    }
+
+    //View Applied Company List - STUDENT
+    public function viewCompanyDetails()
+    {
+        $this->view('student/appliedcompanies');
+    }
 }
