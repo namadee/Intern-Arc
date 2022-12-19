@@ -146,3 +146,706 @@
 }
 
 
+/* dashboard */
+
+.dashboard-bottm-strip {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  flex-direction: row;
+  width: 30%;
+  margin-left: 17%;
+  gap: 4rem;
+  height: 3.5rem;
+  
+}
+
+.bottm-strip-blue-line {
+  background-color: #022f73;
+}
+
+.bottm-strip-blue-line p {
+  color: #022f73;
+}
+
+.bottm-strip-description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottm-strip-description p {
+  color: #022f73;
+}
+
+.bottm-strip-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottm-strip-number {
+  color: #022f73;
+}
+
+/* complaint */
+
+.com-top {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 65%;
+  margin: auto;
+  margin-top: 3rem;
+}
+
+.com-flex-wrap2 { 
+  display: flex; 
+  width: 100%;
+}
+
+.com-descriptions{
+  display: flex;
+  gap: 1rem;
+}
+
+.com-requirements {
+  background-color: #f1f1f1;
+  display: flex;
+}
+
+.ccflex-container button {
+ 
+  color: #f86808;
+  background-color: rgb(255, 255, 255);
+  font-size: 16px;
+  padding: 12px 40px;
+  border-radius: 5px;
+  border-color: #f86808;
+  display: inline-block;
+  border: 1;
+
+}
+
+.com-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.com-table-data {
+  text-align: center;
+  padding: 3px;
+}
+
+.com-table-header {
+  text-align:center;
+  padding: 8px;
+  background-color: #f1f1f1;
+}
+
+/* view complaint */
+
+.view-com-top {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 65%;
+  margin: auto;
+  margin-top: 3rem;
+}
+
+.view-com-flex-wrap2 { 
+  display: flex; 
+  width: 100%;
+}
+
+.view-com-flex-container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.combasic-details {
+  border-spacing: 0.5rem;
+  width: 90%;
+  padding: 0.5rem;
+}
+
+.comp-data {
+  background-color:#f1f1f1;
+  padding: 0.5rem;
+}
+
+.view-com-reviewed-button {
+  margin-top: 1rem;
+  color: #ffffff;
+  background-color: #054a91;
+  font-size: 16px;
+  padding: 6px 50px;
+  border-radius: 0px;
+  display: flex;
+  cursor: pointer;
+  border: none;
+  margin: 20px auto;
+  align-items: center;
+}
+
+ /* view company */
+    
+ .vtop {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 65%;
+  margin: auto;
+  margin-top: 0px;
+}
+
+.vflex-wrap2 { 
+  display: flex; 
+  width: 100%;
+}
+
+.vflex-wrap2 > * {
+  box-sizing: border-box;
+  width: 100%; 
+
+ 
+  background: rgb(255, 255, 255);
+}
+
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+}
+
+.vflex-container button {
+ 
+  color: #f86808;
+  background-color: rgb(255, 255, 255);
+  font-size: 16px;
+  padding: 12px 40px;
+  border-radius: 5px;
+  border-color: #f86808;
+  display: inline-block;
+  border: 1;
+
+}
+
+.co-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.co-table-data {
+  text-align: center;
+  padding: 4px;
+}
+
+.co-table-header {
+  text-align:center;
+  padding: 8px;
+  background-color: #f1f1f1;
+}
+
+.company-list-blacklisted-button {
+  margin-left: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  font-size: 1rem;
+  padding: 6px 25px;
+  border-radius: 3px;
+  border-style: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  }
+
+    /* view company details */
+
+    .view-co-top {
+      background-color: rgb(255, 255, 255);
+      padding: 30px;
+      width: 65%;
+      margin: auto;
+      margin-top: 4rem;
+    }
+    
+    .vbasic-details {
+      border-spacing: 0.5rem;
+      width: 90%;
+      padding: 0.5rem;
+    }
+    
+    .co-data {
+      background-color:#f1f1f1;
+      padding: 0.5rem;
+    }
+    
+    .view-co-descriptions{
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .view-co-analysis {
+      background-color: #f1f1f1;
+      display: flex;
+    }
+    
+    .view-co-section{
+    width: 50%;
+    }
+    
+    .view-co-profile-button {
+      margin-top: 2rem;
+      color: #ffffff;
+      background-color: #022f73;
+      font-size: 16px;
+      padding: 6px 50px;
+      border-radius: 0px;
+      display: inline-block;
+      cursor: pointer;
+      border: none;
+    }
+
+    .view-co-blacklist-button{
+      color: #ffffff;
+      background-color: #f17300;
+      font-size: 16px;
+      padding: 6px 50px;
+      border-radius: 0px;
+      display: inline-block;
+      cursor: pointer;
+      border: none;
+    }
+
+    .view-co-delete-button{
+      color: #ffffff;
+      background-color: #B83B3B;
+      font-size: 16px;
+      padding: 6px 50px;
+      border-radius: 0px;
+      display: inline-block;
+      cursor: pointer;
+      border: none;
+    }
+
+     
+    /* view batches */
+
+    .s-top {
+      background-color: rgb(255, 255, 255);
+      padding: 50px;
+      
+      width: 55%;
+      margin-left: 20%;
+    }
+    
+    
+    .sflex-wrap2 { 
+      display: flex; 
+      width: 100%;
+    }
+    
+    .sflex-wrap2 > * {
+      box-sizing: border-box;
+      width: 50%; 
+    
+     
+      background: rgb(255, 255, 255);
+    }
+    
+    
+    input[type=text], select, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      
+    }
+    
+    .s-flex-container button {
+     
+      color: #f86808;
+      font-size: 16px;
+      padding: 12px 40px;
+      border-radius: 5px;
+      border-color: #f86808;
+      display: inline-block;
+      border: 1;
+    
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td {
+      text-align: center;
+      padding: 2px;
+    }
+
+    /* view student list */
+  
+    .vstop {
+      background-color: rgb(255, 255, 255);
+      padding: 30px;
+      width: 65%;
+      margin: auto;
+      margin-top: 0px;
+    }
+    
+    .vsflex-wrap2 { 
+      display: flex; 
+      width: 100%;
+    }
+    
+    .vsflex-wrap2 > * {
+      box-sizing: border-box;
+      width: 100%; 
+    
+     
+      background: rgb(255, 255, 255);
+    }
+    
+    
+    input[type=text], select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      
+    }
+    
+    .vsflex-container button {
+     
+      color: #f86808;
+      background-color: rgb(255, 255, 255);
+      font-size: 16px;
+      padding: 12px 40px;
+      border-radius: 5px;
+      border-color: #f86808;
+      display: inline-block;
+      border: 1;
+    
+    }
+    
+    .st-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    .st-table-data {
+      text-align: center;
+      padding: 4px;
+    }
+    
+    .st-table-header {
+      text-align:center;
+      padding: 8px;
+      background-color: #f1f1f1;
+    }
+
+     /* view student  */
+  
+     .view-st-top {
+      background-color: rgb(255, 255, 255);
+      padding: 30px;
+      width: 65%;
+      margin: auto;
+      margin-top: 4rem;
+    }
+    
+    .vst-basic-details {
+      border-spacing: 0.5rem;
+      width: 90%;
+      padding: 0.5rem;
+    }
+    
+    .st-data {
+      background-color:#f1f1f1;
+      padding: 0.5rem;
+    }
+    
+    .view-st-profile-button {
+      margin-top: 2rem;
+      color: #ffffff;
+      background-color: #022f73;
+      font-size: 16px;
+      padding: 6px 50px;
+      border-radius: 0px;
+      display: inline-block;
+      cursor: pointer;
+      border: none;
+    }
+
+    .view-st-delete-button{
+      color: #ffffff;
+      background-color: #B83B3B;
+      font-size: 16px;
+      padding: 6px 50px;
+      border-radius: 0px;
+      display: inline-block;
+      cursor: pointer;
+      border: none;
+    }
+
+    .vst-basic-details tr{
+      margin-top: 100px;
+    }
+
+     /* view pdc staff */
+
+   .pdctop {
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    width: 65%;
+    margin: auto;
+    margin-top: 0px;
+  }
+  
+  .pflex-wrap2 { 
+    display: flex; 
+    width: 100%;
+  }
+  
+  .pflex-wrap2 > * {
+    box-sizing: border-box;
+    width: 100%; 
+  
+   
+    background: rgb(255, 255, 255);
+  }
+  
+  
+  input[type=text], select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    
+  }
+  
+  .pflex-container button {
+   
+    color: #f86808;
+    background-color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 12px 40px;
+    border-radius: 5px;
+    border-color: #f86808;
+    display: inline-block;
+    border: 1;
+  
+  }
+  
+  .pdc-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .pdc-table-data {
+    text-align: center;
+    padding: 4px;
+  }
+  
+  .pdc-table-header {
+    text-align:center;
+    padding: 8px;
+    background-color: #f1f1f1;
+  }
+
+  .pdc-staff-add-button {
+    margin-left: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+    font-size: 1rem;
+    padding: 6px 25px;
+    border-radius: 3px;
+    border-style: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    }
+
+    /* view pdc user */
+
+  .p-top {
+    background-color: rgb(255, 255, 255);
+    padding: 50px;
+    width: fit-content;
+    margin: auto;
+  }
+  
+  .pdc-flex-container {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: fit-content; 
+  }
+  
+  .btn{
+    display: flex;
+  }
+  
+  .view{
+    border: 1px solid #000000;
+  }
+
+  .vpflex-container div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    width: 100%;
+    padding: 10px;
+  }
+  
+  button {
+    color: #f86808;
+    font-size: 16px;
+    padding: 12px 85px;
+    border-radius: 10px;
+    border-color: #f17300;
+    display: inline-block;
+    border: 1;
+    box-shadow: 0px 1px 1px 0px #272727a6;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+   /* report */
+
+   .rtop {
+    background-color: rgb(255, 255, 255);
+    padding: 100px;
+    width: 75%;
+    margin-left: 10%;
+  }
+  
+  
+  .rflex-container button {
+    color: #f86808;
+    font-size: 16px;
+    padding: 12px 40px;
+    border-radius: 5px;
+    border-color: #f86808;
+    display: inline-block;
+    border: 1;
+  
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 90%;
+  }
+  
+  td {
+    text-align: center;
+    padding: 5px;
+  }
+  
+  th {
+    text-align:center;
+    padding: 8px;
+    background-color: #f1f1f1;
+  }
+
+  /* registration report */
+
+  .rrtop {
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    width: 65%;
+    margin: auto;
+    margin-top: 0px;
+  }
+  
+  .rrflex-wrap2 { 
+    display: flex; 
+    width: 100%;
+  }
+  
+  .rrflex-wrap2 > * {
+    box-sizing: border-box;
+    width: 100%; 
+  
+   
+    background: rgb(255, 255, 255);
+  }
+  
+  
+  input[type=text], select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    
+  }
+  
+  .rrflex-container button {
+   
+    color: #f86808;
+    background-color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 12px 40px;
+    border-radius: 5px;
+    border-color: #f86808;
+    display: inline-block;
+    border: 1;
+  
+  }
+  
+  .re-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .re-table-data {
+    text-align: center;
+    padding: 4px;
+  }
+  
+  .re-table-header {
+    text-align:center;
+    padding: 8px;
+    background-color: #f1f1f1;
+  }
+
+  .registration-report-download-button {
+    margin-left: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+    font-size: 1rem;
+    padding: 6px 25px;
+    border-radius: 3px;
+    border-style: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    }
+
+    .registration-report-filter-button {
+      margin-left: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      color: rgb(255, 255, 255);
+      background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+      font-size: 1rem;
+      padding: 6px 25px;
+      border-radius: 3px;
+      border-style: none;
+      display: inline-block;
+      cursor: pointer;
+      border: none;
+      }

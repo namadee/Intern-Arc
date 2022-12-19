@@ -50,8 +50,8 @@ function getNavigationByUser($userType)
     default:
     // 4 == Admin
       $navigation = array(
-        array('#', 'dashboard', 'Company'),
-        array('#', 'contact_phone', 'Manage Company'),
+        array('admin/dashboard', 'dashboard', 'Company'),
+        array('admin/company  ', 'contact_phone', 'Manage Company'),
         array('#', 'school', 'Manage Student'),
         array('#', 'work', 'Job Roles'),
         array('#', 'text_to_speech', 'Advertisements'),
