@@ -50,6 +50,7 @@ class Profiles extends BaseController
             ];
 
             $_SESSION['user_email'] = $data['email'];
+            $_SESSION['username'] = $data['username'];
 
             //Execute
             if ($this->userModel->updateUserDetails($data)) {

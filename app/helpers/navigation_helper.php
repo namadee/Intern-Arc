@@ -55,7 +55,7 @@ function getNavigationByUser($userType)
         array(URLROOT.'admin/viewPdcStaff', 'groups', 'PDC'),
         array(URLROOT.'admin/complaint', 'approval_delegation', 'Complaints'),
         array(URLROOT.'admin/report', 'monitoring', 'Reports'),
-        array(URLROOT.'admin/viewprofile', 'manage_accounts', 'Profile')
+        array(URLROOT.'profiles/viewProfileDetails', 'manage_accounts', 'Profile')
       );
       return $navigation;
   }
