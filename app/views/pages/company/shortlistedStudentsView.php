@@ -34,9 +34,8 @@
           <th>Student Name</th>
           <th>Student Degree</th>
           <th>Student Year</th>
-          
         </tr>
-        
+    
 
           <tr>
             <td>Ruchira Bogahawaththa</td>
@@ -44,7 +43,7 @@
             <td>3</td>
             <td>
              <select class="student-req-action">
-                <option class="none" value=""></option>
+                <option class="none" value="">Pending</option>
                 <option class="shortlist-op" value="">Recruit</option>
                 <option class="reject-op" value="">Reject</option>
              </select>

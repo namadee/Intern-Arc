@@ -3,14 +3,9 @@
 class Jobroles extends BaseController
 {
 
-
     public function __construct()
     {
         $this->jobroleModel = $this->model('Jobrole');
-
-        // if (!isset($_SESSION['user_id'])) { //If the user not logged, redirected to login(PDC) 
-        //     redirect('users/pdc-login');
-        // }
     }
 
     public function index()
@@ -30,8 +25,8 @@ class Jobroles extends BaseController
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            // Sanitize POST
-            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // Strip Tags
+            stripTags();
 
             //Associative Array
             $data = [
@@ -78,8 +73,8 @@ class Jobroles extends BaseController
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            // Sanitize POST
-            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // Strip Tags
+            stripTags();
 
             $data = [
                 'jobrole' => trim($_POST['jobrole-update']),

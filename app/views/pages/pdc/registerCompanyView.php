@@ -3,50 +3,32 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
-    <!-- Common Back button -->
-    <a href="#" class="common-back-btn">
-        <span class="material-symbols-rounded" >
-            arrow_back
-        </span>
-    </a>
-    <div class="display-flex-row register-student-top">
-        <div class="display-flex-row">Batch
-            <p>2022 Batch</p>
-        </div>
-        <span class="material-symbols-outlined " id="add-student-top-icon">
-            keyboard_double_arrow_right
-        </span>
-        <div class="display-flex-row">Stream
-            <p>Information System</p>
-        </div>
-    </div>
-    <div class="add-student-container add-company-container display-flex-row">
+    <div class="add-company-container display-flex-row">
         <div class="register-company display-flex-col">
-            <h2>Register a Student</h2>
-            <form action="" method="POST" class="display-flex-col">
+            <h2>Register a Company</h2>
+            <form action="<?php echo URLROOT . "register/register-company"; ?>" method="POST" class="display-flex-col">
                 <ul class="display-flex-col">
                     <li class="display-flex-col">
-                        <label for="student-name">Student Name</label>
-                        <input type="text" name="student-name" id="student-name" class="common-input" required>
+                        <label for="company_name">Company Name</label>
+                        <input type="text" name="company_name" id="company_name" class="common-input" required>
                     </li>
                     <li class="display-flex-col">
-                        <label for="email">Student Email</label>
+                        <label for="email">Contact Email</label>
                         <input type="text" name="email" id="email" class="common-input" required>
                     </li>
-                    <li class="display-flex-col">
-                        <label for="reg-num">Registration Number</label>
-                        <input type="text" name="reg-num" id="reg-num" class="common-input" required>
+                    <li class="display-flex-row register-company-item">
+                        <label for="username">Contact Person</label>
+                        <input type="text" name="username" id="username" class="common-input" required>
                     </li>
 
                     <li class="display-flex-row register-company-item">
-                        <label for="index-num">Index Number</label>
-                        <input type="text" name="index-num" id="index-num" class="common-input" required>
+                        <label for="contact">Contact Number</label>
+                        <input type="text" name="contact" id="contact" class="common-input" required>
                     </li>
                 </ul>
-                <button type="submit" class="common-blue-btn">Add Student</button>
+                <button type="submit" class="common-blue-btn">Add Company</button>
             </form>
         </div>
-
         <div class="csv-company display-flex-col">
             <h2>Upload CSV</h2>
             <div class="csv-company-middle display-flex-col">

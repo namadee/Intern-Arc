@@ -2,8 +2,7 @@
 
 class Register extends BaseController
 {
-
-    public $registerModel;
+    //All the Registration Processes
 
     public function __construct()
     {
@@ -11,52 +10,31 @@ class Register extends BaseController
         $this->userModel = $this->model('User');
     }
 
-
-    public function index()
+    public function index() //Users Register - TEMP FUNCTION
     {
+        
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            // Sanitize POST
-            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            // Strip Tags
+            stripTags();
+
+
+            // Hash Password
+            $password = $_POST['password'];
+            $password = password_hash($password, PASSWORD_DEFAULT);
 
             $data = [
                 'username' => trim($_POST['username']),
                 'email' => trim($_POST['email']),
-                'password' => trim($_POST['password']),
-                'contact' => trim($_POST['contact']),
-                'user_role' => trim($_POST['user_role']),
-                'error_class' => '',
-                'error_msg' => ''
+                'password' => $password,
+                'user_role' => trim($_POST['user_role'])
             ];
 
+            //Execute
+            $this->registerModel->registerUser($data);
+            redirect('users');
 
-            if ($this->userModel->findUserByEmail($data['email'])) {
-                //Email is already taken
-                $data = [
-                    'error_class' => 'signin-error-alert',
-                    'error_msg' => 'Email is already registered!'
-                ];
-                $this->view('registerUsers', $data);
-            } else {
-
-                // Hash Password
-                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
-                //Execute
-                if ($this->registerModel->register($data)) { //if true only it redirects
-                    // Redirect to login
-                    $email = new Email();
-                    $email->sendLoginEmail();
-                    redirect('users');
-                } else {
-                    $data = [
-                        'error_class' => 'signin-error-alert',
-                        'error_msg' => 'Oops! Something went wrong!'
-                    ];
-                    $this->view('registerUsers', $data);
-                }
-            }
         } else {
             // IF NOT A POST REQUEST
 
@@ -65,14 +43,119 @@ class Register extends BaseController
                 'username' => '',
                 'email' => '',
                 'password' => '',
-                'contact' => '',
-                'user_role' => '',
-                'error_class' => '',
-                'error_msg' => ''
+                'user_role' => ''
             ];
 
             // Load View
             $this->view('registerUsers', $data);
         }
+
     }
+
+    public function registerStudent() //Single Student User Registration
+    {
+        // Check if POST
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // Strip Tags
+            stripTags();
+
+            //Random Password
+            $password = generatePassword();
+
+            // Hash Password
+            $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+            $data = [
+                'username' => trim($_POST['username']),
+                'email' => trim($_POST['email']),
+                'password' => $hashPassword,
+                'user_role' => 'student'
+            ];
+
+            //Execute
+            $this->registerModel->registerUser($data);
+
+            //Get that User_Id
+            $user_id = $this->userModel->getUserId($data['email']);
+            $data = [
+                'user_id' => $user_id,
+                'registration_number' => trim($_POST['registration_number']),
+                'index_number' => trim($_POST['index_number']),
+            ];
+
+            $email = new Email();
+            $email->sendLoginEmail(trim($_POST['email']), $password, $_POST['username']);
+            $this->registerModel->registerStudent($data);
+            redirect('register/register-student');
+        } else {
+            // IF NOT A POST REQUEST
+
+            // Init data
+            $data = [
+                'username' => '',
+                'email' => '',
+                'password' => '',
+                'user_role' => ''
+            ];
+
+            // Load View
+            $this->view('pdc/registerStudent', $data);
+        }
+    }
+
+    public function registerCompany() //Single Company User Registration
+    {
+        // Check if POST
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // Strip Tags
+            stripTags();
+            //Random Password
+            $password = generatePassword();
+
+            // Hash Password
+            $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+            $data = [
+                'username' => trim($_POST['username']),
+                'email' => trim($_POST['email']),
+                'password' => $hashPassword,
+                'user_role' => 'company'
+            ];
+
+            //Execute
+            $this->registerModel->registerUser($data);
+
+            //Get that User_Id
+            $user_id = $this->userModel->getUserId($data['email']);
+            $data = [
+                'user_id' => $user_id,
+                'company_name' => trim($_POST['company_name']),
+                'contact' => trim($_POST['contact']),
+            ];
+
+            $email = new Email();
+            $email->sendLoginEmail(trim($_POST['email']), $password, $_POST['username']);
+            $this->registerModel->registerCompany($data);
+            redirect('register/register-company');
+        } else {
+            // IF NOT A POST REQUEST
+
+            // Init data
+            $data = [
+                'username' => '',
+                'email' => '',
+                'password' => '',
+                'user_role' => ''
+            ];
+
+            // Load View
+            $this->view('pdc/registerCompany', $data);
+        }
+    }
+
+
+
+
+
+
 }

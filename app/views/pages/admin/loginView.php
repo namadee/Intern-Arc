@@ -18,13 +18,13 @@
 						<span class="material-symbols-outlined">
 							person
 						</span>
-						<input type="text" class="input" placeholder="Username">
+						<input type="text"  name="email" placeholder="Email">
 					</div>
 					<div class="admin-signin-item">
 						<span class="material-symbols-outlined">
 							lock
 						</span>
-						<input type="password" class="input" placeholder="Password">
+						<input type="password" name="password" placeholder="Password">
 					</div>
 					<a href="#">Forgot Password?</a>
 					<button type="submit">Login</button>

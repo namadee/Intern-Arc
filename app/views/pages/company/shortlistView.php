@@ -44,7 +44,7 @@
             <td>25</td>
             <td>25</td>
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentShortlist/viewStudentShortlist" >View</a>
+             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/shortlisted-students" >View</a>
             </td>
           
           </tr>
@@ -54,7 +54,7 @@
             <td>25</td>
             <td>25</td>
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentShortlist/viewStudentShortlist" >View</a>
+             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/shortlisted-students" >View</a>
             </td>
           
           </tr>
@@ -64,7 +64,7 @@
             <td>25</td>
             <td>25</td>
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentShortlist/viewStudentShortlist" >View</a>
+             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/shortlisted-students" >View</a>
             </td>
           
           </tr>

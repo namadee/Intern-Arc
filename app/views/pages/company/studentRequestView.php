@@ -44,7 +44,7 @@
             <td>4</td>
             <td>
              <select class="student-req-action">
-                <option class="none" value=""></option>
+                <option class="none" value="">Pending</option>
                 <option class="shortlist-op" value="">Shortlist</option>
                 <option class="reject-op" value="">Reject</option>
              </select>

@@ -1,5 +1,7 @@
 window.addEventListener("DOMContentLoaded", function () {
 
+  let urlRoot = 'http://localhost/internarc/';
+  
   const pdcMenu = [
     ["#", "dashboard", "Dashboard"],
     ["#", "cases", "Companies"],
@@ -11,8 +13,8 @@ window.addEventListener("DOMContentLoaded", function () {
   ];
 
   const companyMenu = [
-    ["company/dashboard", "dashboard", "Dashboard"],
-    ["advertisements", "text_to_speech", "Advertisements"],
+    [urlRoot +"company", "dashboard", "Dashboard"],
+    [urlRoot + "advertisements", "text_to_speech", "Advertisements"],
     ["studentRequests", "school", "Student Requests"],
     ["StudentShortlist", "list_alt", "Shortlisted"],
     ["#", "calendar_month", "Schedule"],
