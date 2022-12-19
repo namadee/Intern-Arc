@@ -11,11 +11,6 @@ class Admin extends BaseController
 
     public function index() //default method and view
     {
-        $this->view('admin/login');
-    }
-
-    public function dashboard() //default method and view
-    {
         $this->view('admin/dashboard');
     }
 
@@ -79,5 +74,11 @@ class Admin extends BaseController
         $this->view('admin/advertisementReport');
     }
 
+    public function viewprofile() //default method and view
+    {
+        $this->view('admin/updateProfile');
+    }
+
+    
 
 }

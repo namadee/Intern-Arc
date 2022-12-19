@@ -34,7 +34,7 @@
                       <td class="co-table-data">Ruchira Bogahawatta</td>
                       <td class="co-table-data">ruchirab@virtusa</td>
                       <td class="co-table-data">0712412545</td>
-                      <td class="co-table-data"><button>view</button></td>
+                      <td class="co-table-data"><button> <a href="<?php echo URLROOT.'admin/viewCompany'; ?>">view</a>  </button></td>
                     </tr>
             
                     <tr>

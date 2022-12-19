@@ -151,7 +151,7 @@ class Login extends BaseController
                 if ($this->userModel->login($data['email'], $data['password'])) {
                     //Password is correct
                     $this->createSession($userDetails);
-                    redirect('profiles/view-profile-details');
+                    redirect('admin/');
                 } else {
                     //Password is incorrect
                     $data = [
@@ -242,16 +242,6 @@ class Login extends BaseController
         $this->view('forgotPassword');
 
     }
-
-    public function forgotPassword()
-    {
-        $data = [];
-        $this->view('forgotPassword', $data);
-
-    }
-
-
-
 
     public function createSession($user)
     {

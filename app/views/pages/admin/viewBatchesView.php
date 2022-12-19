@@ -61,7 +61,7 @@
 			<td>2019 Batch</td>
             <td>CS 250</td>
             <td>IS 140</td>			
-			<td><button>view</button></td>
+			<td><button><a href="<?php echo URLROOT.'admin/viewCompany'; ?>">view</a> view</button></td>
 		</tr>
 	  </table>
 	       
