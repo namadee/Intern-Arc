@@ -27,7 +27,7 @@ function getNavigationByUser($userType)
         array(URLROOT.'requests', 'school', 'Student Requests'),
         array(URLROOT.'requests/shortlisted-list', 'list_alt', 'Shortlisted'),
         array(URLROOT.'advertisements', 'calendar_month', 'Schedule'),
-        array(URLROOT.'advertisements', 'approval_delegation', 'Complaint'),
+        array(URLROOT.'complaints', 'approval_delegation', 'Complaint'),
         array(URLROOT.'profiles/company-profile', 'manage_accounts', 'Profile')
       );
 
@@ -49,14 +49,13 @@ function getNavigationByUser($userType)
     default:
     // 4 == Admin
       $navigation = array(
-        array('#', 'dashboard', 'Dashboard'),
-        array('#', 'cases', 'Companies'),
-        array('#', 'school', 'Student'),
-        array('#', 'groups', 'PDC'),
-        array('#', 'text_to_speech', 'Advertisements'),
-        array('#', 'approval_delegation', 'Complaints'),
-        array('#', 'monitoring', 'Reports'),
-        array('#', 'manage_accounts', 'Profile')
+        array(URLROOT.'admin', 'dashboard', 'Dashboard'),
+        array(URLROOT.'admin/company', 'cases', 'Companies'),
+        array(URLROOT.'admin/viewStudentList', 'school', 'Student'),
+        array(URLROOT.'admin/viewPdcStaff', 'groups', 'PDC'),
+        array(URLROOT.'admin/complaint', 'approval_delegation', 'Complaints'),
+        array(URLROOT.'admin/report', 'monitoring', 'Reports'),
+        array(URLROOT.'admin/viewprofile', 'manage_accounts', 'Profile')
       );
       return $navigation;
   }

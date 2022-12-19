@@ -16,7 +16,7 @@
                     <option value="<?php echo $jobrole->name ?>" <?php if($data['position'] == $jobrole->name){echo "selected";} ?>> <?php echo $jobrole->name ?></option>
                     <?php endforeach; ?>
                 </select>
-
+                    
             </div>
             <div class="addAdvertisement-items">
             <p><label for="job_description">Job Description</label></p>

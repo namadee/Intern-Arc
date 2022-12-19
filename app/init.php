@@ -12,7 +12,7 @@
 
 
   //Load PHP Mailer files
-  //require_once '../vendor/autoload.php';
+  require_once '../vendor/autoload.php';
 
   // Autoload Core Libraries
   spl_autoload_register(function($className){
