@@ -27,7 +27,7 @@ function getNavigationByUser($userType)
         array(URLROOT.'requests', 'school', 'Student Requests'),
         array(URLROOT.'requests/shortlisted-list', 'list_alt', 'Shortlisted'),
         array(URLROOT.'advertisements', 'calendar_month', 'Schedule'),
-        array(URLROOT.'advertisements', 'approval_delegation', 'Complaint'),
+        array(URLROOT.'complaints', 'approval_delegation', 'Complaint'),
         array(URLROOT.'profiles/company-profile', 'manage_accounts', 'Profile')
       );
 
