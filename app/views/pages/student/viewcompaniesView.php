@@ -35,37 +35,28 @@
 
 		<tr>
 		  <td class="view-companies-table-data">Virtusa</td>
-		  <td class="view-companies-table-data"><a href="<?php echo URLROOT.'profiles/company-profile';?>"><button>view</button></a></td>
+		  
+		  <td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
 		</tr>
 
 		<tr>
 			<td class="view-companies-table-data">WSO2</td>
-			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'profiles/company-profile';?>"><button>view</button></a></td>
+			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
 		</tr>
 
 		<tr>
 			<td class="view-companies-table-data">Codegen International</td>
-			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'profiles/company-profile';?>"><button>view</button></a></td>
+			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
 		</tr>
 
 		<tr>
 			<td class="view-companies-table-data">Sysco Labs</td>
-			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'profiles/company-profile';?>"><button>view</button></a></td>
+			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
 		</tr>
 
 		<tr>
 			<td class="view-companies-table-data">Tech Venturas</td>			
-			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'profiles/company-profile';?>"><button>view</button></a></td>
-		</tr>
-
-		<tr>
-			<td class="view-companies-table-data">Commercial Technologies Plus</td>			
-			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'profiles/company-profile';?>"><button>view</button></a></td>
-		</tr>
-
-		<tr>
-			<td class="view-companies-table-data">99x Technology</td>			
-			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'profiles/company-profile';?>"><button>view</button></a></td>
+			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
 		</tr>
 	  </table>
 	       

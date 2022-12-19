@@ -15,7 +15,7 @@
 
 	<div class="view-ads-flex-wrap">
 		<div class="view-ads-heading">
-			<h3>Advertisements by Virtusa</h3>
+			<h3>Advertisements - Virtusa</h3>
 		</div>
 		<div class="view-ads-search">
 			<form class="view-ads-search-container">
@@ -33,37 +33,37 @@
 
 		<tr>
 		  <td class="view-ads-table-data">Software Engineer</td>
-		  <td class="view-ads-table-data"><button>view</button></td>
+		  <td class="view-ads-table-data"><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></td>
 		</tr>
 
 		<tr>
 			<td class="view-ads-table-data">Business Analyst</td>
-			<td class="view-ads-table-data"><button>view</button></td>
+			<td class="view-ads-table-data"><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></td>
 		</tr>
 
 		<tr>
 			<td class="view-ads-table-data">Quality Assurance</td>
-			<td class="view-ads-table-data"><button>view</button></td>
+			<td class="view-ads-table-data"><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></td>
 		</tr>
 
 		<tr>
 			<td class="view-ads-table-data">UI/UX Engineer</td>
-			<td class="view-ads-table-data"><button>view</button></td>
+			<td class="view-ads-table-data"><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></td>
 		</tr>
 
 		<tr>
 			<td class="view-ads-table-data">Web Developer</td>			
-			<td class="view-ads-table-data"><button>view</button></td>
+			<td class="view-ads-table-data"><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></td>
 		</tr>
 
 		<tr>
 			<td class="view-ads-table-data">DevOps Engineer</td>			
-			<td class="view-ads-table-data"><button>view</button></td>
+			<td class="view-ads-table-data"><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></td>
 		</tr>
 
 		<tr>
 			<td class="view-ads-table-data">Mobile Applications Developer</td>			
-			<td class="view-ads-table-data"><button>view</button></td>
+			<td class="view-ads-table-data"><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></td>
 		</tr>
 	  </table>
 	       

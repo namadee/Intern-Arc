@@ -71,4 +71,9 @@ class Profiles extends BaseController
     {
         $this->view('pdc/studentMainProfile');
     }
+
+    public function studentCompanyProfile()
+    {
+        $this->view('student/companyprofile');
+    }
 }
