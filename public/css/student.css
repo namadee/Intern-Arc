@@ -235,7 +235,12 @@ margin: auto;
 
 body {
 background-color: #f1f1f1;
-font-family: "Open Sans", sans-serif;
+font-family: "Poppinns", sans-serif;
+}
+
+.advertisements-view-container {
+  overflow: auto;
+  height: 100%;
 }
 
 .published-ad-list-top {
@@ -425,7 +430,7 @@ font-family: "Open Sans", sans-serif;
 
 body {
 background-color: #f1f1f1;
-font-family: "Open Sans", sans-serif;
+font-family: "Poppinns", sans-serif;
 }
 
 .view-companies-top {
@@ -528,7 +533,7 @@ background: rgb(255, 255, 255);
 
 body {
 background-color: #f1f1f1;
-font-family: "Open Sans", sans-serif;
+font-family: "Poppinns", sans-serif;
 }
 
 .view-ads-top {
@@ -631,7 +636,7 @@ font-family: "Open Sans", sans-serif;
 
 body {
 background-color: #f1f1f1;
-font-family: "Open Sans", sans-serif;
+font-family: "Poppinns", sans-serif;
 }
 
 .applied-companies-top {
@@ -686,7 +691,8 @@ font-family: "Open Sans", sans-serif;
 .dashboard-top {
   background-color: rgb(255, 255, 255);
   padding: 40px;
-  width: 60%;
+  padding-bottom: 5rem;
+  width: 70%;
   margin: auto;
 }
 
@@ -747,8 +753,8 @@ font-family: "Open Sans", sans-serif;
   display: flex;
   background-color: rgb(255, 255, 255);
   flex-direction: row;
-  width: 30%;
-  margin-left: 20%;
+  width: 40%;
+  margin-left: 15%;
   gap: 4rem;
   height: 3.5rem;
   
@@ -803,7 +809,7 @@ font-family: "Open Sans", sans-serif;
 
 body {
 background-color: #f1f1f1;
-font-family: "Open Sans", sans-serif;
+font-family: "Poppinns", sans-serif;
 }
 
 .cv-status-top {
@@ -869,7 +875,7 @@ font-family: "Open Sans", sans-serif;
 
 body {
 background-color: #f1f1f1;
-font-family: "Open Sans", sans-serif;
+font-family: "Poppinns", sans-serif;
 }
 
 .company-profile-top {
@@ -892,11 +898,13 @@ font-family: "Open Sans", sans-serif;
   display: flex; 
   width: 100%;
   margin-left: 4rem;
+  margin-bottom: 1rem;
 }
 
 .company-profile-details-container {
   display: flex;
   width: 100%;
+  margin-left: 2rem;
 }
 
 .company-profile-logo {
@@ -987,7 +995,7 @@ font-family: "Open Sans", sans-serif;
 
 body {
 background-color: #f1f1f1;
-font-family: "Open Sans", sans-serif;
+font-family: "Poppinns", sans-serif;
 }
 
 .ad-list-top {
@@ -1039,7 +1047,7 @@ font-family: "Open Sans", sans-serif;
 
   body {
     background-color: #f1f1f1;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Poppinns", sans-serif;
   }
   
   .schedule-ad-top {
@@ -1059,6 +1067,11 @@ font-family: "Open Sans", sans-serif;
 
 
 /* view ad styles */
+.view-advertisement-container {
+  overflow: auto;
+  height: 100%;
+}
+
 
 .view-ad-top {
 background-color: rgb(255, 255, 255);
@@ -1126,7 +1139,7 @@ border: none;
 
 body {
 background-color: #f1f1f1;
-font-family: "Open Sans", sans-serif;
+font-family: "Poppinns", sans-serif;
 }
 
 .job-roles-top {

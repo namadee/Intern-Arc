@@ -23,7 +23,7 @@
 		Round : 1st round 
 	</div>
 	<div class="dashboard-btnarea">
-	<a href="<?php echo URLROOT.'profiles/student-profile';?>">	
+	<a href="<?php echo URLROOT.'students/student-profile';?>">	
 	<button class="dashboard-profile-view-btn">View my profile</button></a></div>
 </div>
 </div>

@@ -48,7 +48,7 @@
 
 	<div class="company-contact-area">
 		<a href="#"><button class="visit-web-btn">Visit Web Site</button></a>
-		<a href="#"><button class="view-ads-btn"><a href="<?php echo URLROOT.'companies/show-advertisements-by-company';?>"> View Advertisements </a> </button></a>
+		<a href="#"><button class="view-ads-btn"><a href="<?php echo URLROOT.'students/viewads';?>"> View Advertisements </a> </button></a>
 		<br>
 		<table class="links-and-address">
 		<tr>

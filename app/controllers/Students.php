@@ -32,4 +32,25 @@ class Students extends BaseController
 
         $this->view('pdc/studentDetails');
     }
+
+    public function studentProfile()
+    {
+
+        $this->view('student/studentprofile');
+    }
+
+    public function companyProfile()
+    {
+
+        $this->view('student/companyprofile');
+    }
+
+    public function viewads()
+    {
+
+        $this->view('student/viewads');
+    }
+
+
+
 }
