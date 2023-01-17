@@ -319,3 +319,44 @@
   text-align: center;
   color: #054a91;
 }
+
+/*profile view css*/
+.profile-left-top{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+}
+
+.profileImg{
+  width: 10rem;
+  border-radius: 50%;
+  margin: 1rem;
+}
+.profile-main-container{
+  width: 100%;
+  display: flex;
+}
+
+.profile-left{
+  width: 55%;
+  height: 80vh;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.profile-right{
+  width: 45%;
+}
+
+.orange-text{
+  color: var(--primaryColor);
+}
+
+.profile-left-text{
+  padding-left: 1rem;
+}
+
+.profile-bottom{
+  display: flex;
+  margin-top: 2rem;
+}

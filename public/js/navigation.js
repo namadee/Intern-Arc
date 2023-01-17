@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", function () {
     ["#", "list_alt", "Shortlisted"],
     ["#", "calendar_month", "Schedule"],
     ["#", "approval_delegation", "Complaint"],
-    ["#", "manage_accounts", "Profile"],
+    ["company/profile", "manage_accounts", "Profile"],
   ];
 
   const studentMenu = [

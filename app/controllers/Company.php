@@ -13,5 +13,10 @@ class Company extends BaseController
         $this->view('company/login');
     }
 
+    public function profile() //default method and view
+    {
+        $this->view('company/profile');
+    }
+
 
 }
