@@ -27,12 +27,6 @@ class Company extends BaseController
        
     }
 
-    public function profile() //default method and view
-    {
-        $this->view('company/profile');
-       
-    }
-
     public function dashboard(){
         $this->view('company/dashboard');
     }
