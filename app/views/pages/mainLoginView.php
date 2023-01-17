@@ -13,14 +13,14 @@
         </div>
         <div class="leftBox">
             <h1>Login</h1>
-            <form id="loginForm" class="display-flex-col" action="<?php echo URLROOT; ?>login/company-login" method="POST">
+            <form id="loginForm" class="display-flex-col" action="<?php echo URLROOT; ?>users/company-login" method="POST">
 
                 <input class="common-input" type="email" id="userName" name="email" placeholder="Enter your email" required>
 
 
                 <input class="common-input" type="password" id="pword" name="password" placeholder="Enter your password" required>
 
-                <a href="<?php echo URLROOT ?> login/forgotPassword">Forgot your Password?</a>
+                <a href="#">Forgot your Password?</a>
 
                 <div class="main-signin-error-hide <?php echo $data['error_class']; ?>">
                     <span class="material-symbols-rounded">

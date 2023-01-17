@@ -20,7 +20,7 @@
           </span> Company </a>
       </li>
       <li>
-        <a href="#"> <span class="material-symbols-rounded">
+        <a href="<?php echo URLROOT . 'student'; ?>"> <span class="material-symbols-rounded">
             person
           </span> Student </a>
       </li>
@@ -32,6 +32,5 @@
     </ul>
   </div>
 </section>
-
 
 <?php require APPROOT . '/views/includes/footer.php'; ?>

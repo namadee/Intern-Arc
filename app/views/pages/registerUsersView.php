@@ -15,7 +15,11 @@
         <input type="email" class="common-input" name="email" required>
         <br>
         <label for="password">Password</label>
+<<<<<<< HEAD
         <input type="password" class="common-input" id="password" name="password" required>
+=======
+        <input type="password" class="common-input" id="password" name="password" pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
+>>>>>>> 4eb739667e5b1599d4cbd087c8bf2190218b0129
         <br>
         <label for="contact">Contact</label>
         <input type="text" class="common-input" name="contact" required>
@@ -28,7 +32,12 @@
             <option value='pdc'>PDC</option>
         </select>
         <br>
+<<<<<<< HEAD
         <button class="common-blue-btn" type="submit" onclick="ValidateEmail(document.reg_form.email)">Register</button>
+=======
+        <button class="common-blue-btn" type="submit" onclick="Validate(document.reg_form.email, document.reg_form.password)">Register</button>
+        <p id="validate-msg"></p>
+>>>>>>> 4eb739667e5b1599d4cbd087c8bf2190218b0129
         <div class="signin-error-hide <?php echo $data['error_class']; ?>">
             <span class="material-symbols-rounded">
                 report

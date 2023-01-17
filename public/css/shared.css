@@ -9,7 +9,7 @@
   --SuccessColor: #4f8a10;
   --DangerColor: #ba3939;
   --DangerBackground: #ffe0e0;
-  --BoxShadow1:rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --BoxShadow1: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 * {
@@ -47,7 +47,7 @@ input:focus {
 
 /* Common 2 - Input Box*/
 .common-input {
-  padding: 0.5rem;
+  padding: 0.4rem 0.5rem;
   border-radius: 5px;
   border: 1px solid var(--AlternateLightGrey);
   color: var(--Black);
@@ -63,7 +63,7 @@ input:focus {
   border-radius: 3px;
   font-size: 0.9rem;
   box-shadow: var(--BoxShadow1);
-  background: linear-gradient(270deg, #5ecae4 0%, #168eb4 100%);
+  background-color: var(--DarkBlue);
 }
 
 /* Common 4 -  Common Edit Button */
@@ -78,13 +78,10 @@ input:focus {
 
 .common-edit-btn span {
   font-size: 1.1rem;
-  /* color: var(--LightBlue); */
-  /* color: var(--DarkBlue); */
   color: #168eb4;
 }
 
 /* Common 5 -  Main Modal Box [ ID ] */
-
 #common-modal-box {
   position: fixed;
   z-index: 1;
@@ -110,12 +107,98 @@ input:focus {
   width: fit-content;
   position: absolute;
   right: 1rem;
-  top:1rem;
+  top: 1rem;
 }
 
 #common-modal-box a:hover {
   color: var(--Black);
 }
+
+/*common view button*/
+.common-view-btn {
+  margin: auto;
+  color: var(--primaryColor);
+  cursor: pointer;
+  border: solid 1px var(--primaryColor);
+  border-radius: 3px;
+  font-size: 0.9rem;
+  padding: 0.2rem 1.2rem;
+  background: #fff;
+
+}
+
+.common-view-btn:hover{
+  color: rgb(255, 255, 255);
+  background: var(--primaryColor);
+
+}
+
+/* Common 6 - Display Flex Row*/
+.display-flex-row {
+  display: flex;
+  align-items: center;
+}
+
+/* Common 7 - Search Bar*/
+.common-search-bar {
+  background-color: #fff;
+  gap: 0.2rem;
+  padding: 0 0.5rem;
+  border-radius: 5px;
+  color: var(--primaryColor);
+}
+
+.common-search-bar input {
+  background-color: #fff;
+  border: none;
+}
+
+/* Common 7 - Status Div*/
+.common-status {
+  border: 1px solid var(--SuccessColor);
+  padding: 0.3rem 0.5rem;
+  gap: 0.5rem;
+  border-radius: 15px;
+  color: var(--SuccessColor);
+}
+
+.common-status-span {
+  height: 0.8rem;
+  width: 0.8rem;
+  background-color: var(--SuccessColor);
+  border-radius: 50%;
+}
+
+.red-status {
+  background-color: var(--DangerColor);
+}
+
+.red-status-font {
+  color: var(--DangerColor);
+  border: 1px solid var(--DangerColor);
+}
+
+
+/* Common 8 - Common Back Button  */
+.common-back-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  background-color: #D9D9D9;
+  border-radius: 50%;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+}
+
+.common-back-btn span {
+  font-size: 1.3rem;
+  color: var(--Black);
+  font-variation-settings: "wght" 400;
+}
+
 
 /* /-------------- MAIN SIDEBAR ---------------/ */
 
@@ -135,6 +218,10 @@ nav {
 
 .material-symbols-rounded {
   font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 200, "opsz" 48;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 200, "opsz" 48;
 }
 
 nav .navbar-main-logo {
@@ -232,6 +319,10 @@ main {
   cursor: pointer;
 }
 
+.topNav-icon span {
+  font-variation-settings: "wght" 400;
+}
+
 .topNav-right {
   display: flex;
   align-items: center;
@@ -265,8 +356,8 @@ main {
 }
 
 .toggle-main {
-  width: calc(100% - 60px);
   left: 0;
+  width: 100%;
 }
 
 .toggle-nav-logo {
@@ -424,3 +515,38 @@ main {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
+
+.forgot-pword-container{
+  width: 100%;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.forgot-pword-leftbox{
+  width: 45%;
+}
+
+.forgot-pword-rightbox{
+  width: 45%;
+  gap: 4rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+}
+
+.forgot-pword-rightbox form{
+justify-content: flex-start;
+  align-items: flex-start;
+
+}
+
+.forgot-pword-rightbox button{
+    padding: 0.3rem 1rem;
+    margin: 0;
+  
+  }
+
+  #validate-msg{
+    color: red;
+  }

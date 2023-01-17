@@ -75,12 +75,8 @@
             </div>
 
             <div class="addBtn">
-<!--               
-                  <a  href="<php echo URLROOT; ?>/Advertisements/" ><span id="addIcon" class="material-symbols-outlined">
-                    save
-                    </span>Save</a> -->
                 <button class="common-blue-btn" type="submit">save</button>
-                  </div>
+                </div>
            
         </form> 
 

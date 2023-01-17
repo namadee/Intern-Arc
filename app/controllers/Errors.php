@@ -9,14 +9,20 @@ class Errors extends BaseController
 
     public function index()
     {
+
+        $this->view('error');
+    }
+
+    public function error404()
+    {
         $data = [
-            'title' => 'This is the Home',
+            'title' => 'page not found'
         ];
 
         $this->view('error', $data);
     }
 
-    public function noResult()
+    public function error403()
     {
         $data = [
             'title' => 'no result'
@@ -27,3 +33,5 @@ class Errors extends BaseController
 
 
 }
+
+//error 403

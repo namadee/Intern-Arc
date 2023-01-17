@@ -46,6 +46,8 @@ class Register extends BaseController
                 //Execute
                 if ($this->registerModel->register($data)) { //if true only it redirects
                     // Redirect to login
+                    $email = new Email();
+                    $email->sendLoginEmail();
                     redirect('users');
                 } else {
                     $data = [

@@ -21,7 +21,7 @@ class UserModel extends Database
 
     //Check Rows
     if ($this->db->rowCount() > 0) {
-      return true;
+      return $row;
     } else {
       return false;
     }
@@ -44,6 +44,23 @@ class UserModel extends Database
     }
   }
 
+  public function getStudentUserId($foreignKey)
+  {
+    $this->db->query("SELECT student_id FROM student_tbl WHERE user_id_fk = :foreign_key");
+    $this->db->bind(':foreign_key', $foreignKey);
+
+    $row = $this->db->single();
+
+    $userID = $row->user_id;
+
+    //Check Rows
+    if ($this->db->rowCount() > 0) {
+      return $userID;
+    } else {
+      return false;
+    }
+  }
+
   //Get User Roles
   public function getUserRoles()
   {
@@ -60,7 +77,7 @@ class UserModel extends Database
     $row = $this->db->single();
     $hashed_password = $row->password;
     if (password_verify($password, $hashed_password)) {
-      return $row;
+      return true;
     } else {
       return false;
     }
@@ -71,10 +88,12 @@ class UserModel extends Database
   {
       $this->db->query('SELECT * FROM user_tbl WHERE user_id = :userId ');
       $this->db->bind(':userId', $userId); 
-      return $this->db->single();
+      $row = $this->db->single();
+      
+      return $row; 
   }
 
-    // Get User Details
+    // Get Update User Details
     public function updateUserDetails($data)
     {
         $this->db->query('UPDATE user_tbl  SET username = :username, email = :email, contact = :contact WHERE user_id = :user_id');
