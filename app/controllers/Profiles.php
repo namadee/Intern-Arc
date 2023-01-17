@@ -2,7 +2,7 @@
 
 class Profiles extends BaseController
 {
-    
+
     public function __construct()
     {
         $this->userModel = $this->model('User');
@@ -13,48 +13,67 @@ class Profiles extends BaseController
         $this->view('error');
     }
 
-    public function viewMainProfile()
+    //View - Main User Details [User Table]
+    public function viewProfileDetails()
     {
-        $userId = $_SESSION['user_id'];
-
-        $userDetails = $this->userModel->getUserDetails($userId);
+        $email = $_SESSION['user_email'];
+        $userDetails = $this->userModel->getUserByEmail($email);
 
         $data = [
             'username' => $userDetails->username,
-            'useremail' => $userDetails->email,
-            'contact' => $userDetails->contact,
+            'email' => $userDetails->email,
             'user_id' => $userDetails->user_id
         ];
 
-        $this->view('admin/adminProfile', $data);
+        //If not admin then view directed to PDC
+        if ($_SESSION['user_role'] == 'admin') {
+            $this->view('admin/updateProfile', $data);
+        } else {
+            $this->view('pdc/updateProfile', $data);
+        }
     }
 
-
-    public function updateMainProfile($userId)
+    //Update - Main User Details [User Table]
+    public function updateProfileDetails($userId)
     {
 
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            // Sanitize POST
-            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            // Strip Tags
+            stripTags();
 
             $data = [
                 'username' => trim($_POST['username']),
                 'email' => trim($_POST['email']),
-                'contact' => trim($_POST['contact']),
                 'user_id' => $userId
             ];
 
+            $_SESSION['user_email'] = $data['email'];
+
             //Execute
             if ($this->userModel->updateUserDetails($data)) {
-
                 // Redirect
-                redirect('admin/view-profile');
+                redirect('profiles/viewProfileDetails');
+                //If not admin then view directed to PDC
             } else {
                 die('Something went wrong');
             }
-        } 
+        }
     }
 
+    public function companyProfile()
+    {
+        $this->view('company/profile');
+    }
+
+    public function studentProfile()
+    {
+        $this->view('pdc/studentMainProfile');
+    }
+
+    public function studentCompanyProfile()
+    {
+        $this->view('student/companyprofile');
+    }
 }

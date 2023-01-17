@@ -28,12 +28,14 @@ public function showComplaintById($id)
 
 public function addComplaint($data)
     {
-        $this->db->query('INSERT INTO complaint_tbl (subject,description) 
-        VALUES (:subject,:description)');
+        $user_id = $_SESSION['user_id'];
+        $this->db->query('INSERT INTO complaint_tbl (subject,description, user_id_fk) 
+        VALUES (:subject,:description, :user_id_fk)');
 
         // Bind Values
         $this->db->bind(':subject', $data['subject']);
         $this->db->bind(':description', $data['description']);
+        $this->db->bind(':user_id_fk',  $user_id);
 
         //Execute
         if ($this->db->execute()) {

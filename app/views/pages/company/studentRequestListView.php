@@ -43,7 +43,7 @@
             <td>10</td>
             <td>25</td>
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentRequests/viewStudentRequest" >View</a>
+             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
             </td>
           
           </tr>

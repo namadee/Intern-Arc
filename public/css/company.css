@@ -109,6 +109,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .common_list_top {
@@ -175,8 +176,8 @@
   background-color: #fff;
   padding: 1.5rem;
   margin: 1rem;
+  height: 100%;
 }
-
 
 .common_list_content table {
   font-size: 0.9rem;
@@ -233,7 +234,8 @@
   margin-bottom: 1.5rem;
 }
 
-.addBtn a, .addBtn button {
+.addBtn a,
+.addBtn button {
   margin: 0;
   color: #fff;
   text-decoration: none;
@@ -248,16 +250,9 @@
 
 /*start of add advertisement page*/
 
-#add_Advertisement_page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
 
 .add_advertisement {
-  /* width: 100%; */
-  /* display: block; */
+  margin: auto;
   text-align: center;
   width: 60%;
 }
@@ -321,52 +316,51 @@
 }
 
 /*profile view css*/
-.profile-left-top{
+.profile-left-top {
   display: flex;
   justify-content: space-between;
   padding: 0 0.5rem;
 }
 
-.profileImg{
+.profileImg {
   width: 10rem;
   border-radius: 50%;
   margin: 1rem;
 }
-.profile-main-container{
+.profile-main-container {
   width: 100%;
   display: flex;
   padding: 1rem 3rem;
 }
 
-.profile-left{
+.profile-left {
   width: 60%;
   height: 80vh;
   padding: 1rem;
   background-color: #fff;
 }
 
-.profile-right{
+.profile-right {
   width: 40%;
-
 }
 
-.orange-text{
+.orange-text {
   color: var(--primaryColor);
 }
 
-.profile-left-text{
+.profile-left-text {
   padding-left: 1rem;
 }
-.profile-left-text h1{
+.profile-left-text h1 {
   margin: 1rem 0;
 }
-.profile-bottom{
+.profile-bottom {
   display: flex;
   margin-top: 5rem;
   padding-left: 1rem;
 }
 
-.profile-right{
+.profile-right {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -374,38 +368,46 @@
   gap: 3rem;
   font-size: 1.1rem;
   text-align: justify;
-  background: linear-gradient(90deg, rgba(62,124,177,1) 0%, rgba(5,74,145,1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(62, 124, 177, 1) 0%,
+    rgba(5, 74, 145, 1) 100%
+  );
   color: #fff;
 
   padding: 0 4rem;
 }
-.profile-btn{
+.profile-btn {
   padding: 0.5rem 2rem;
   outline: none;
 }
 /*student request page */
-.student-req-action{
+.student-req-action {
   border: 1px solid var(--primaryColor);
 }
-.none{
+.none {
   color: var(--primaryColor);
 }
-.shortlist-op{
+.shortlist-op {
   border: 1px solid blue;
   color: blue;
 }
 
 /*company dashboard view*/
 
-.company-top-notif{
+.company-top-notif {
   width: 100%;
   margin: 1rem;
   padding: 0.5rem;
-  background: linear-gradient(90deg, rgba(241,115,0,1) 0%, rgba(234,168,70,1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(241, 115, 0, 1) 0%,
+    rgba(234, 168, 70, 1) 100%
+  );
   color: #fff;
 }
 
-.company-dashboard-top{
+.company-dashboard-top {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -413,10 +415,9 @@
   align-items: center;
   width: 100%;
   margin: 1rem;
-
 }
 
-.company-dashboard-box{
+.company-dashboard-box {
   width: 40%;
   height: 2rem;
   padding-right: 0.2rem;
@@ -427,22 +428,21 @@
   display: flex;
   justify-content: space-between;
 }
-.company-dashboard-box div{
+.company-dashboard-box div {
   display: flex;
   gap: 0.5rem;
 }
-.company-dashboard-box p{
+.company-dashboard-box p {
   align-self: center;
   font-weight: bold;
 }
-.blue-line{
+.blue-line {
   width: 0.5rem;
   height: 100%;
   background: var(--DarkBlue);
-
 }
 
-.common-table{
+.common-table {
   width: 90%;
 }
 #company-dashboard {
@@ -453,30 +453,29 @@
   align-items: center;
   overflow: hidden;
 }
-#company-dashboard  .common_list_content {
+#company-dashboard .common_list_content {
   padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-#company-dashboard table{
+#company-dashboard table {
   word-break: normal;
   word-wrap: normal;
   width: 100%;
-
 }
-#company-dashboard .common-list-topbar{
+#company-dashboard .common-list-topbar {
   padding: 0 1rem;
 }
 
-#company-dashboard .common-blue-btn{
+#company-dashboard .common-blue-btn {
   padding: 0.3rem 1rem;
   align-self: flex-end;
   position: absolute;
   right: 2rem;
   bottom: 0rem;
-} 
+}
 
 #advertisement-list .common-table th:nth-child(4),
 #advertisement-list .common-table th:nth-child(5) {

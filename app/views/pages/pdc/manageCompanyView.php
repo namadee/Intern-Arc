@@ -18,11 +18,11 @@
             </button>
         </div>
         <div class="manage-company-top-right display-flex-row">
-            <a href="" class="common-blue-btn display-flex-row">
+            <a href="<?php echo URLROOT.'register/register-company';?>" class="common-blue-btn display-flex-row">
                 <span class="material-symbols-outlined">
                     add_to_photos
                 </span>
-                Add Company</a>
+                Register Company</a>
             <a href="" class="common-blue-btn display-flex-row" id="blacklist-company-btn">
                 <span class="material-symbols-outlined">
                     flag
@@ -58,7 +58,7 @@
                         <td>Ruchira</td>
                         <td>ruchira@gmail.com</td>
                         <td>0712015478</td>
-                        <td><a href="#">View</a></td>
+                        <td><a href="<?php echo URLROOT.'companies/company-details';?>">View</a></td>
                     </tr>
 
                     <tr>
@@ -66,65 +66,9 @@
                         <td>Ruchira</td>
                         <td>ruchira@gmail.com</td>
                         <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
+                        <td><a href="<?php echo URLROOT.'companies/company-details';?>">View</a></td>
                     </tr>
 
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
                 </tbody>
             </table>
         </div>

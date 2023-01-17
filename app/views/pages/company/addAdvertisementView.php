@@ -7,9 +7,8 @@
 
 <section id="add_Advertisement_page" class="main-content"> 
        <div class="add_advertisement">
-
-        <form id="addAdvertisement" action="<?php echo URLROOT. $data['formAction']; ?>" method="POST">
-          <h3>Add a new Advertisement</h3>
+       <form id="addAdvertisement" action="<?php echo URLROOT. $data['formAction']; ?>" method="POST">
+          <h3>Add a New Advertisement</h3>
                 <div class="addAdvertisement-items">
                 <p><label for="position">Position</label></p>
                 <select id="position" name="position" required>
@@ -17,7 +16,7 @@
                     <option value="<?php echo $jobrole->name ?>" <?php if($data['position'] == $jobrole->name){echo "selected";} ?>> <?php echo $jobrole->name ?></option>
                     <?php endforeach; ?>
                 </select>
-
+                    
             </div>
             <div class="addAdvertisement-items">
             <p><label for="job_description">Job Description</label></p>
@@ -43,7 +42,7 @@
 
             <div class="addAdvertisement-items">
                 <p><label>No of interns</label></p>
-                <input type="number" min="1" name="no_of_interns" value="<?php echo $data['no_of_interns'] ?>" required>
+                <input type="number" min="1" name="no_of_interns" value="<?php echo $data['no_of_interns'] ?>" max="10" required>
             </div>
 
             <div class="addAdvertisement-items">
@@ -75,10 +74,11 @@
             </div>
 
             <div class="addBtn">
-                <button class="common-blue-btn" type="submit">save</button>
+                <button class="common-blue-btn" type="submit">Submit</button>
                 </div>
            
         </form> 
+
 
        </div>  
       </section>

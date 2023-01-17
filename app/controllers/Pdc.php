@@ -2,24 +2,28 @@
 
 class Pdc extends BaseController
 {
-    
+
     public function __construct()
     {
-        $this->pdcModel = $this->model('Pdc');
+        $this->registerModel = $this->model('Register');
+        $this->userModel = $this->model('User');
     }
 
-    public function index() //default method and view
+    public function index() //Load Dashboard
     {
-        $this->view('pdc/login');
+        $this->view('pdc/dashboard');
     }
 
-<<<<<<< HEAD
-    
-=======
-    public function addUsers(){
-        
+    public function sendInvitation() //Load Dashboard
+    {
+        $this->view('pdc/companyInvitation');
+    }
+
+    public function setRoundDurations() //Load Dashboard
+    {
+        $this->view('pdc/setRoundDuration');
     }
 
 
->>>>>>> 4eb739667e5b1599d4cbd087c8bf2190218b0129
+
 }

@@ -8,7 +8,7 @@
     <div class="update-profile-container display-flex-col">
         <h3>View Profile</h3>
 
-        <form class="display-flex-col" method="POST" action="<?php echo URLROOT . "profile/update-main-profile/" . $data['user_id']; ?>">
+        <form class="display-flex-col" method="POST" action="<?php echo URLROOT . "profiles/update-profile-details/" . $data['user_id']; ?>">
             <div class="admin-user-profile-icon">
                 <div>
                     <img src="<?php echo URLROOT; ?>img/profile-img/profile-icon.svg">
@@ -29,14 +29,7 @@
                 </li>
                 <li>
                     <label for="email">Email</label>
-                    <input class="common-input" type="email" id="email" name="email" placeholder="Email" value="<?php echo $data['useremail']; ?>">
-                    <a href="" class="common-edit-btn "><span class="material-symbols-outlined">
-                            edit_square
-                        </span></a>
-                </li>
-                <li>
-                    <label for="contact">Contact</label>
-                    <input class="common-input" type="text" id="contact" name="contact" placeholder="Contact Number" value="<?php echo $data['contact']; ?>">
+                    <input class="common-input" type="email" id="email" name="email" placeholder="Email" value="<?php echo $data['email']; ?>">
                     <a href="" class="common-edit-btn "><span class="material-symbols-outlined">
                             edit_square
                         </span></a>
