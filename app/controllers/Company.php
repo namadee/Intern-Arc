@@ -15,13 +15,12 @@ class Company extends BaseController
        
     }
 
-<<<<<<< HEAD
     public function profile() //default method and view
     {
         $this->view('company/profile');
     }
 
-=======
+
     public function studentRequests() //default method and view
     {
         $this->view('company/studentRequestList');
@@ -45,8 +44,5 @@ class Company extends BaseController
 
     }
 
-
-
->>>>>>> 4eb739667e5b1599d4cbd087c8bf2190218b0129
 
 }
