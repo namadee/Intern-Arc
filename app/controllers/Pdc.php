@@ -3,6 +3,9 @@
 class Pdc extends BaseController
 {
 
+    public $userModel;
+    public $registerModel;
+    
     public function __construct()
     {
         $this->registerModel = $this->model('Register');

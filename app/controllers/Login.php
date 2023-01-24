@@ -4,6 +4,7 @@ use helpers\Session;
 
 class Login extends BaseController
 {
+    public $userModel;
 
     public function __construct()
     {

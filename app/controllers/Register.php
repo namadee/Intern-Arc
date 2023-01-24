@@ -2,6 +2,8 @@
 
 class Register extends BaseController
 {
+    public $userModel;
+    public $registerModel;
     //All the Registration Processes
 
     public function __construct()

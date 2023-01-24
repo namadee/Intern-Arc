@@ -2,6 +2,7 @@
 
 class StudentRequests extends BaseController
 {
+    public $studentRequestModel;
 
     public function __construct()
     {
@@ -49,7 +50,7 @@ class StudentRequests extends BaseController
 
     public function deleteStudentRequest($StudentRequestId)
     {
-        $this->StudentRequestModel->deleteStudentRequest($StudentRequestId);
+        $this->studentRequestModel->deleteStudentRequest($StudentRequestId);
     }
 }
 
