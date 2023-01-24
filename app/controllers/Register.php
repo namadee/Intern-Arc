@@ -12,47 +12,7 @@ class Register extends BaseController
         $this->userModel = $this->model('User');
     }
 
-    public function index() //Users Register - TEMP FUNCTION
-    {
-        
-        // Check if POST
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            // Strip Tags
-            stripTags();
-
-
-            // Hash Password
-            $password = $_POST['password'];
-            $password = password_hash($password, PASSWORD_DEFAULT);
-
-            $data = [
-                'username' => trim($_POST['username']),
-                'email' => trim($_POST['email']),
-                'password' => $password,
-                'user_role' => trim($_POST['user_role'])
-            ];
-
-            //Execute
-            $this->registerModel->registerUser($data);
-            redirect('users');
-
-        } else {
-            // IF NOT A POST REQUEST
-
-            // Init data
-            $data = [
-                'username' => '',
-                'email' => '',
-                'password' => '',
-                'user_role' => ''
-            ];
-
-            // Load View
-            $this->view('registerUsers', $data);
-        }
-
-    }
+    public function index() {}
 
     public function registerStudent() //Single Student User Registration
     {
