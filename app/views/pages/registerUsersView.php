@@ -24,8 +24,12 @@
             <option value='company'>Company</option>
         </select>
         <br>
+<<<<<<< HEAD
+        <button class="common-blue-btn" type="submit" onclick="ValidateEmail(document.reg_form.email)">Register</button>
+=======
         <button class="common-blue-btn" type="submit" onclick="Validate(document.reg_form.email, document.reg_form.password)">Register</button>
         <p id="validate-msg"></p>
+>>>>>>> 4eb739667e5b1599d4cbd087c8bf2190218b0129
         <div class="signin-error-hide <?php echo $data['error_class']; ?>">
         </div>
     </form>
