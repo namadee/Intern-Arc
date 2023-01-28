@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/pdc.css">
+<script src="<?php echo URLROOT; ?>js/pdc.js" defer></script>
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section id="pdc_jobroles_page" class="main-content">
