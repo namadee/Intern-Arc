@@ -56,4 +56,9 @@ abstract class Session
     {
         session_destroy();
     }
+
+    //Get the User Type
+    public static function getUserRole(){
+        return $_SESSION['user_role'];
+    }
 }

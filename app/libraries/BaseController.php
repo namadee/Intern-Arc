@@ -15,7 +15,8 @@ class BaseController {
         $model = ucwords($model).'Model';
         return new $model;
     }else{
-        die('<b>Error:</b>'.$model.'Model file Not Found.');
+        // die('<b>Error:</b>'.$model.'Model file Not Found.');
+        redirect('errors'); 
     }   
 
     }
@@ -26,7 +27,8 @@ class BaseController {
             require_once '../app/views/pages/'. $view . 'View.php';
         }
         else {
-            die('<br>view does not exist');
+            // die('<br>view does not exist');
+            redirect('errors'); 
         }
     }
     
