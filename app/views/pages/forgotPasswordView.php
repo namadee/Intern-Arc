@@ -8,7 +8,7 @@
 
     <div class="display-flex-col forgot-pword-rightbox">
         <?php flashMessage('email_notfound'); ?>
-        <form action="<?php echo URLROOT . "users/forgot-password" ?>" method="POST" class="display-flex-col forgot-pwd-form">
+        <form action="<?php echo URLROOT . "login/forgot-password" ?>" method="POST" class="display-flex-col forgot-pwd-form">
             <h1>Forgot Your Password? </h1>
             <ul class="display-flex-col">
                 <li class="display-flex-col">

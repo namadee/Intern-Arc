@@ -3,7 +3,7 @@
 <section class="forgot-pword-container display-flex-row">
 
     <div class="display-flex-col forgot-pword-rightbox verification-main-container">
-        <form action="<?php echo URLROOT . "users/verify-password" ?>" class="display-flex-col forgot-pwd-form pwd-verification-form" method="POST">
+        <form action="<?php echo URLROOT . "login/verify-password" ?>" class="display-flex-col forgot-pwd-form pwd-verification-form" method="POST">
             <ul class="display-flex-row">
                 <li>
                     <img src="<?php echo URLROOT . "img/verification-pending.svg" ?>">

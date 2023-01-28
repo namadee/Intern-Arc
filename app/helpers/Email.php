@@ -74,7 +74,7 @@ class Email
         <div
             style='text-align: center;padding-top: 15px;'>
             <h2 style='margin:0 ;'>Hi <span style='color: #f17300;'>" . $username . "</span></h2>
-            <h4 style='margin:5px;font-weight: 600;'>Paste the following verification code to reset your password</h4>
+            <h4 style='margin:5px;font-weight: 600;'>Use the following verification code to reset your password</h4>
     
             <p style='margin: 0;text-align: center;'>Verification Code</p>
             <p

@@ -4,7 +4,7 @@
 
 <section class="update-pwd-container">
     <h2>Add your New Password</h2>
-    <form action="<?php echo URLROOT; ?>users/update-password" class="display-flex-col" method="POST">
+    <form action="<?php echo URLROOT; ?>login/update-password" class="display-flex-col" method="POST">
     <?php flashMessage('verification_code_success'); ?>
         <ul class="display-flex-col update-pwd-list">
             <li class="display-flex-row">

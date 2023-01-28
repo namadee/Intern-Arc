@@ -21,7 +21,7 @@
 
                     <input class="common-input <?php echo $data['input_class']; ?>" type="password" id="pword" name="password" placeholder="Enter your password" required>
 
-                    <a href="<?php echo URLROOT . 'users/forgot-password' ?>">Forgot your Password?</a>
+                    <a href="<?php echo URLROOT . 'login/forgot-password' ?>">Forgot your Password?</a>
 
                     <input type="submit" value="Login">
                 </form>
