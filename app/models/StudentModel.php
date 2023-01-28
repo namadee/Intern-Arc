@@ -9,34 +9,37 @@ class StudentModel
         $this->db = new Database;
     }
 
-    // public function getPdcUsers(){
-    //     $this->db->query('SELECT * FROM pdc_users');
+    //Check for Std Index Availability - Ruchira
+    public function checkIndexNumber($indexNum)
+    {
+        $this->db->query('SELECT * FROM `student_tbl` WHERE `index_number` = :index_number');
 
-    //     return $this->db->resultset();
-    // }
+        // Bind Values
+        $this->db->bind(':index_number', $indexNum);
 
-    // public function getPdcJobroles()
-    // {
-    //     $this->db->query('SELECT * FROM pdc_jobroles');
+        $row = $this->db->single();
 
-    //     return $this->db->resultset();
-    // }
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    // public function addJobrole($data)
-    // {
-    //     $this->db->query('INSERT INTO pdc_jobroles(name) 
-    //     VALUES (:jobrole)');
+    //Check for Std Reg Num Availability - Ruchira
+    public function checkRegistrationNumber($registrationNum)
+    {
+        $this->db->query('SELECT * FROM `student_tbl` WHERE `registration_number` = :registration_number');
 
-    //     // Bind Values
-    //     $this->db->bind(':jobrole', $data['jobrole']);
+        // Bind Values
+        $this->db->bind(':registration_number', $registrationNum);
 
-    //     //Execute
-    //     if ($this->db->execute()) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+        $row = $this->db->single();
 
-
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

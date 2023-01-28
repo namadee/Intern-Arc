@@ -220,7 +220,7 @@ background-color: var(--BackgroungColor);
   background-color: white;
   width: 40%;
   height: 78vh;
-  padding: 2rem 3rem;
+  padding: 1rem 3rem;
   border-radius: 5px;
 }
 
@@ -247,6 +247,7 @@ background-color: var(--BackgroungColor);
   color: red;
   font-size: 0.8rem;
   font-weight: 400;
+  margin-top: 0.1rem;
 }
 
 .csv-instructions {
@@ -347,7 +348,7 @@ background-color: var(--BackgroungColor);
   color: white;
 }
 
-/*Manage Student - Add student Page*/
+/*-----------------------  Manage Student - Add student Page ----------------------- */
 .register-student-top {
   justify-content: flex-start;
   margin-bottom: 1rem;
@@ -355,7 +356,7 @@ background-color: var(--BackgroungColor);
 }
 .register-student-top div {
   background-color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 1rem;
   border-radius: 5px;
   gap: 1rem;
   width: fit-content;

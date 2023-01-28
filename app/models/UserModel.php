@@ -35,7 +35,9 @@ class UserModel extends Database
 
     $row = $this->db->single();
 
-    $userId = $row->user_id;
+    if ($row) {
+      $userId = $row->user_id;
+    }
 
     //Check Rows
     if ($this->db->rowCount() > 0) {
