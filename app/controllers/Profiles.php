@@ -3,6 +3,8 @@
 class Profiles extends BaseController
 {
 
+    public $userModel;
+    
     public function __construct()
     {
         $this->userModel = $this->model('User');
@@ -50,6 +52,7 @@ class Profiles extends BaseController
             ];
 
             $_SESSION['user_email'] = $data['email'];
+            $_SESSION['username'] = $data['username'];
 
             //Execute
             if ($this->userModel->updateUserDetails($data)) {

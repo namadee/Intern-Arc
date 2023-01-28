@@ -68,5 +68,17 @@ class RegisterModel extends Database
     }
   }
 
+  public function updatePassword($data){
+    $this->db->query('UPDATE user_tbl  SET password = :password WHERE user_id = :user_id');
+    $this->db->bind(':user_id', $data['user_id']);
+    $this->db->bind(':password', $data['password']);
+
+    //Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }

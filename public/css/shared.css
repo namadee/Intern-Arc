@@ -8,7 +8,8 @@
   --AlternateLightGrey: #dbe4ee;
   --SuccessColor: #4f8a10;
   --DangerColor: #ba3939;
-  --DangerBackground: #ffe0e0;
+  --DangerBackground: #ffbaba;
+  --SuccessBackground: #dff2bf;
   --BoxShadow1: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -21,6 +22,10 @@
   list-style: none;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+input::placeholder {
+  font-family: "Poppins", sans-serif;
 }
 
 h1,
@@ -39,13 +44,13 @@ input:focus {
   outline: none;
 }
 
-/* Common 1 - Display Flex Column*/
+/********************************* Common 1 - Display Flex Column *********************************/
 .display-flex-col {
   display: flex;
   flex-direction: column;
 }
 
-/* Common 2 - Input Box*/
+/********************************* Common 2 - Input Box *********************************/
 .common-input {
   padding: 0.4rem 0.5rem;
   border-radius: 5px;
@@ -54,7 +59,7 @@ input:focus {
   font-size: 0.8rem;
 }
 
-/* Common 3 -  Blue Button */
+/********************************* Common 3 -  Blue Button *********************************/
 .common-blue-btn {
   margin: auto;
   color: rgb(255, 255, 255);
@@ -70,7 +75,7 @@ input:focus {
   font-size: 1.2rem;
 }
 
-/* Common 4 -  Common Edit Button */
+/********************************* Common 4 -  Common Edit Button *********************************/
 .common-edit-btn {
   display: flex;
   background-color: var(--BackgroungColor);
@@ -86,7 +91,7 @@ input:focus {
   color: var(--DarkBlue);
 }
 
-/* Common 5 -  Main Modal Box [ ID ] */
+/********************************* Common 5 -  Main Modal Box [ ID ] *********************************/
 .common-modal-box {
   position: fixed;
   z-index: 1;
@@ -129,7 +134,7 @@ input:focus {
   color: var(--Black);
 }
 
-/*common view button*/
+/********************************* common view button *********************************/
 .common-view-btn {
   margin: auto;
   color: var(--primaryColor);
@@ -146,13 +151,13 @@ input:focus {
   background: var(--primaryColor);
 }
 
-/* Common 6 - Display Flex Row*/
+/********************************* Common 6 - Display Flex Row *********************************/
 .display-flex-row {
   display: flex;
   align-items: center;
 }
 
-/* Common 7 - Search Bar*/
+/********************************* Common 7 - Search Bar *********************************/
 .common-search-bar {
   background-color: #fff;
   gap: 0.2rem;
@@ -166,7 +171,7 @@ input:focus {
   border: none;
 }
 
-/* Common 7 - Status Div*/
+/********************************* Common 7 - Status Div *********************************/
 .common-status {
   border: 1px solid var(--SuccessColor);
   padding: 0.2rem 0.5rem;
@@ -192,7 +197,7 @@ input:focus {
   border: 1px solid var(--DangerColor);
 }
 
-/* Common 8 - Common Back Button  */
+/********************************* Common 8 - Common Back Button  *********************************/
 .common-back-btn {
   width: 2.5rem;
   height: 2.5rem;
@@ -212,7 +217,7 @@ input:focus {
   font-variation-settings: "wght" 400;
 }
 
-/* Common 9 - Common Filter  */
+/******************************** Common 9 - Common Filter  *********************************/
 .common-filter {
   display: flex;
   align-items: center;
@@ -228,7 +233,7 @@ input:focus {
   box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
 }
 
-/* /-------------- MAIN SIDEBAR ---------------/ */
+/********************************* MAIN SIDEBAR*********************************/
 
 nav {
   position: fixed;
@@ -372,7 +377,7 @@ main {
   border-radius: 50%;
 }
 
-/* Nav-Bar Menu Collapsing */
+/********************************* Nav-Bar Menu Collapsing *********************************/
 
 .toggle-sidenavbar {
   left: -220px;
@@ -408,7 +413,7 @@ main {
   padding-left: 3rem;
 }
 
-/* Main Content Container*/
+/********************************* Main Content Container *********************************/
 .main-content {
   color: black;
   margin-top: 50px;
@@ -421,120 +426,13 @@ main {
   height: calc(100vh - 50px);
 }
 
-/* HOME PAGE - SELECT USERS*/
+/********************************* Error Page Page *********************************/
 
-.home-user-container {
-  display: flex;
-  margin: auto;
-  border-radius: 10px;
-  background-color: var(--BackgroungColor);
-  width: 60%;
-  height: 80vh;
-  margin-top: 3rem;
-  overflow: hidden;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.home-user-img {
-  width: 60%;
-}
-
-.home-user-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.home-select-user {
-  width: 40%;
-  background-color: var(--Black);
-  color: white;
-  padding: 2rem;
-  gap: 2rem;
-}
-
-.home-select-user h1 {
-  text-align: center;
-  color: var(--primaryColor);
-  font-size: 2rem;
-}
-
-.home-user-list {
-  gap: 1.5rem;
-  align-items: center;
-}
-
-.home-user-list li {
-  color: white;
-  padding: 1rem 1rem;
-  gap: 0.5rem;
-  background: var(--Black);
-  border: 1px solid var(--primaryColor);
-  width: 70%;
-  border-radius: 10px;
-  box-shadow: var(--primaryColor) 0px 2px 2px;
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-  cursor: pointer;
-}
-
-.home-user-list li a {
-  color: var(--BackgroungColor);
-  gap: 0.5rem;
-  text-align: center;
-  display: flex;
-  align-items: center;
-}
-
-.home-user-list li:hover {
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
-}
-
-/* TEMPERARY REGISTER PAGE - ADD USERS*/
-#register-main-container {
-  height: 90vh;
-  margin-top: 2rem;
-  padding: 1rem;
-}
-.register-user-form {
-  width: 40%;
-  padding: 1rem;
-}
-
-.register-user-form h2 {
-  color: var(--DarkBlue);
-  text-align: center;
-  margin-bottom: 1.2rem;
-}
-
-.register-user-form button {
-  padding: 0.5rem 2rem;
-  margin: 0;
-  margin: 1rem 0;
-  width: 100%;
-}
-
-.register-user-form .common-input {
-  width: 100%;
-  padding: 0.2rem 0.6rem;
-}
-
-.register-user-form a {
-  font-size: 0.9rem;
-  color: var(--LightBlue);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-/*Error Page Page*/
-
-.error-page-container{
+.error-page-container {
   width: 95%;
 }
 
-.error-page-container div{
+.error-page-container div {
   padding: 2rem;
   gap: 1rem;
 }
@@ -543,7 +441,6 @@ main {
   width: 40%;
   margin: auto;
 }
-
 
 .error-page-container a {
   padding: 0.5rem;
@@ -558,17 +455,17 @@ main {
   background-color: #c25e00;
 }
 
-/*No Access Page*/
-.no-access-page{
+/************************************ No Access Page ********************************/
+.no-access-page {
   margin: auto;
 }
 
-/*Forgot Password Page*/
+/**************************** Forgot Password Page ********************************/
 .forgot-pword-container {
   width: 100%;
-  padding: 1rem;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
 .forgot-pword-leftbox {
@@ -577,21 +474,281 @@ main {
 
 .forgot-pword-rightbox {
   width: 45%;
-  gap: 4rem;
   justify-content: flex-start;
   align-items: flex-start;
+  gap: 1.5rem;
 }
 
-.forgot-pword-rightbox form {
-  justify-content: flex-start;
-  align-items: flex-start;
+.forgot-pword-rightbox .forgot-pwd-form {
+  gap: 2rem;
 }
 
-.forgot-pword-rightbox button {
+.forgot-pword-rightbox .forgot-pwd-form button {
   padding: 0.3rem 1rem;
   margin: 0;
+  width: fit-content;
 }
 
-#validate-msg {
-  color: red;
+.forgot-pwd-form input {
+  width: 70%;
+  margin-top: 1rem;
+}
+
+/**************************** Password Verification Page ********************************/
+
+.pwd-verification-form {
+  border: 1px solid var(--AlternateLightGrey);
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.pwd-verification-form input {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 0;
+  border: none;
+}
+
+.pwd-verification-form img {
+  width: 14rem;
+}
+
+.verification-main-container {
+  margin-top: 5rem;
+  width: 55%;
+}
+
+.pwd-verification-form li {
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+}
+
+.pwd-verification-form #email-span{
+  font-weight: 600;
+  background-color: var(--BackgroungColor);
+  padding: 0.2rem 1.5rem;
+}
+
+.pwd-verification-form div{
+  align-items: center;
+  width: 50%;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  gap: 0.2rem;
+  margin:1rem 0;
+  justify-content: center;
+  border: 1px solid var(--AlternateLightGrey);
+
+}
+
+.pwd-verification-form span.material-symbols-outlined{
+  font-size: 2rem;
+}
+
+/******************** Main Log-In page ******************************/
+
+.loginContainer {
+  margin: auto;
+  margin-top: 2rem;
+  width: 50%;
+  height: 80vh;
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #fff;
+}
+
+.loginContainer form {
+  gap: 1rem;
+  width: 70%;
+}
+
+.leftBox {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6rem;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.leftBox h1 {
+  color: var(--primaryColor);
+}
+
+.leftBox form a {
+  color: var(--primaryColor);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.leftBox-innerContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.rightBox {
+  width: 50%;
+  background: var(--Black);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding-top: 6.1rem;
+  gap: 1.5rem;
+}
+
+.rightBox h1 {
+  color: var(--primaryColor);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.rightBox p {
+  color: var(--primaryColor);
+  padding-top: 3rem;
+}
+
+.rightBox img {
+  width: 60%;
+  max-width: 500px;
+}
+
+#loginForm input {
+  padding: 0.7rem;
+}
+
+#loginForm input[type="submit"] {
+  color: var(--primaryColor);
+  padding: 0.5rem 1rem;
+  width: 80%;
+  background: #fff;
+  margin: auto;
+  margin-top: 1rem;
+  background-color: var(--Black);
+  border-radius: 20px;
+  cursor: pointer;
+  display: block;
+  font-size: 1rem;
+  transition: ease-in-out 300ms;
+  border: none;
+}
+
+#loginForm input[type="submit"]:hover {
+  background-color: rgb(62, 62, 62);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.signin-error-hide {
+  display: none;
+}
+
+.signin-error-alert {
+  margin-top: 1rem;
+  padding: 0.6rem;
+  color: var(--DangerColor);
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  align-items: center;
+  width: 80%;
+  background-color: var(--DangerBackground);
+  border-radius: 5px;
+}
+
+.input-error {
+  background-color: var(--DangerBackground);
+  border-color: var(--DangerColor);
+}
+
+/********************************* FLASH MESSAGE *********************************/
+
+#flash-message {
+  position: absolute;
+  max-width: 18rem;
+  right: 0.5rem;
+  top: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+}
+
+#flash-message.success-alert {
+  border: 1px solid rgb(39, 150, 39);
+  background-color: var(--SuccessBackground);
+  color: var(--SuccessColor);
+  border-left-width: 8px;
+}
+
+#flash-message.danger-alert {
+  border: 1px solid rgb(240, 61, 61);
+  background-color: var(--DangerBackground);
+  color: var(--DangerColor);
+  border-left-width: 8px;
+}
+
+/********************************* Update Password Page *********************************/
+.update-pwd-container {
+  background-color: white;
+  width: 40%;
+  margin: auto;
+  margin-top: 5rem;
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.update-pwd-container h2 {
+  color: var(--Black);
+  margin-bottom: 3rem;
+}
+
+.update-pwd-list li {
+  gap: 1rem;
+}
+
+.update-pwd-list {
+  gap: 2rem;
+}
+
+.update-pwd-list li label {
+  width: 12rem;
+}
+
+.update-pwd-container button {
+  padding: 0.5rem 2rem;
+  margin-top: 2rem;
+}
+
+.update-pwd-container form span {
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 50%;
+  color: var(--Black);
+}
+
+.update-pwd-container form input {
+  font-size: 0.9rem;
+}
+
+.update-pwd-container form span:hover {
+  background-color: var(--BackgroungColor);
+}
+
+#pwd-validate-error {
+  color: var(--DangerColor);
+  background-color: var(--DangerBackground);
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: none;
 }

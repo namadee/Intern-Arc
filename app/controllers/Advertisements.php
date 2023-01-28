@@ -2,6 +2,10 @@
 
 class Advertisements extends BaseController
 {
+    public $jobroleList;
+    public $jobroleModel;
+    public $advertisementModel;
+    public $userModel;
 
     public function __construct()
     {

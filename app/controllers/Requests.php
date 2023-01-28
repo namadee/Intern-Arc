@@ -2,6 +2,7 @@
 
 class Requests extends BaseController
 {
+    public $studentRequestModel;
 
     public function __construct()
     {
