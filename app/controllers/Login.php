@@ -23,8 +23,9 @@ class Login extends BaseController
             $data = [
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
-                'error_class' => '',
-                'error_msg' => ''
+                'error_class' => 'signin-error-hide',
+                'error_msg' => '',
+                'input_class' =>''
             ];
 
 
@@ -40,14 +41,16 @@ class Login extends BaseController
                     //Password is incorrect
                     $data = [
                         'error_class' => 'signin-error-alert',
-                        'error_msg' => 'Password is incorrect!'
+                        'error_msg' => 'Password is incorrect!',
+                        'input_class' =>'input-error'
                     ];
                 }
             } else {
                 // No User found by that email
                 $data = [
                     'error_class' => 'signin-error-alert',
-                    'error_msg' => 'User email is not found!'
+                    'error_msg' => 'User email is not found!',
+                    'input_class' =>'input-error'
                 ];
             }
             $this->view('mainLogin', $data);
@@ -57,20 +60,13 @@ class Login extends BaseController
             $data = [
                 'email' => '',
                 'password' => '',
-                'error_class' => '',
+                'error_class' => 'signin-error-hide',
                 'error_msg' => ''
             ];
 
             // Load View
             $this->view('mainLogin', $data);
         }
-    }
-
-
-    public function forgotPassword()
-    {
-        $this->view('forgotPassword');
-
     }
 
     public function createSession($user)
@@ -90,6 +86,6 @@ class Login extends BaseController
         Session::unset('user_email');
         Session::unset('user_role');
         Session::unset('profile_pic');
-        redirect('users');
+        redirect('login');
     }
 }

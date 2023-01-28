@@ -27,6 +27,7 @@ class UserModel extends Database
     }
   }
 
+  //Return User_id from User_tbl
   public function getUserId($email)
   {
     $this->db->query("SELECT user_id FROM user_tbl WHERE email = :email");
@@ -42,9 +43,9 @@ class UserModel extends Database
     } else {
       return false;
     }
-
   }
 
+  //Return company_id from company_tbl
   public function getCompanyUserId($foreignKey)
   {
     $this->db->query("SELECT company_id FROM company_tbl WHERE user_id_fk = :foreign_key");
@@ -117,4 +118,46 @@ class UserModel extends Database
       return false;
     }
   }
+
+  //Store Temp Verification Code - Ruchira
+  public function storeVerificationCode($data)
+  {
+    $userId = $this->getUserId($data['email']);
+
+    $this->db->query('UPDATE `user_tbl` SET `verification_code` = :verification_code WHERE `user_id` = :user_id');
+    $this->db->bind(':user_id', $userId);
+    $this->db->bind(':verification_code', $data['verification_code']);
+    $this->db->execute();
+  }
+
+  //Retrieve Temp Verification Code - Ruchira
+  public function retrieveVerificationCode($email)
+  {
+    $userId = $this->getUserId('ruchirxv2@gmail.com');
+
+    $this->db->query('SELECT `verification_code` FROM `user_tbl` WHERE `user_id` = :user_id');
+    $this->db->bind(':user_id', $userId);
+
+    $row = $this->db->single();
+    $verification_code = $row->verification_code;
+
+    //Check Rows
+    if ($this->db->rowCount() > 0) {
+      return $verification_code;
+    } else {
+      return false;
+    }
+  }
+
+
+  //Update Temp Verification Code to 0 - Ruchira
+  public function updateVerificationCode($email)
+  {
+    $userId = $this->getUserId($email);
+
+    $this->db->query('UPDATE `user_tbl` SET `verification_code` = 0 WHERE `user_id` = :user_id');
+    $this->db->bind(':user_id', $userId);
+    $this->db->execute();
+  }
+  
 }

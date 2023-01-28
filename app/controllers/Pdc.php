@@ -12,17 +12,17 @@ class Pdc extends BaseController
         $this->userModel = $this->model('User');
     }
 
-    public function index() //Load Dashboard
+    public function index() //Load PDC Dashboard
     {
         $this->view('pdc/dashboard');
     }
 
-    public function sendInvitation() //Load Dashboard
+    public function sendInvitation() 
     {
         $this->view('pdc/companyInvitation');
     }
 
-    public function setRoundDurations() //Load Dashboard
+    public function setRoundDurations() 
     {
         $this->view('pdc/setRoundDuration');
     }

@@ -14,5 +14,16 @@ function generatePassword() {
 }
 
 
-
+//Generate and return a random verification code
+function generateVerificationCode(){
+    $length = 6;
+    $characters = '0123456789';
+    $charactersLength = strlen($characters);
+    $verificationCode = '';
+    for ($i = 0; $i < $length; $i++) {
+        $verificationCode .= $characters[rand(0, $charactersLength - 1)];
+    }
+    
+    return $verificationCode;
+}
 

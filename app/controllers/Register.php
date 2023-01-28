@@ -12,7 +12,7 @@ class Register extends BaseController
         $this->userModel = $this->model('User');
     }
 
-    public function index() {}
+    public function index() {} //Register PDC users
 
     public function registerStudent() //Single Student User Registration
     {
@@ -114,10 +114,6 @@ class Register extends BaseController
             $this->view('pdc/registerCompany', $data);
         }
     }
-
-
-
-
 
 
 }
