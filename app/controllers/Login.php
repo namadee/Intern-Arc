@@ -80,7 +80,6 @@ class Login extends BaseController
         Session::setValues('profile_pic', $user->profile_pic);
     }
 
-
     public function logout()
     {
         Session::unset('user_id');
@@ -233,5 +232,9 @@ class Login extends BaseController
         {
             redirect('login');
         }
+    }
+
+    public function test(){
+        $this->view('updatePwd');
     }
 }

@@ -9,26 +9,32 @@ function toggleNav() {
 
 //Toggle Password Visibility Function
 const toggleIcon1 = document.getElementById("togglePasswordIcon1");
-const toggleIcon2 = document.getElementById("togglePasswordIcon2");
+const passwordField1 =document.getElementById('password');
+const passwordField2 =document.getElementById('confirm_password');
 
-toggleIcon1.addEventListener("click", togglePasswordVisibility);
-toggleIcon2.addEventListener("click", togglePasswordVisibility);
+if (toggleIcon1) {
+  toggleIcon1.addEventListener("click", togglePasswordVisibility);
+}
 
-function togglePasswordVisibility(event) {
-  //Selecting the Input field from DOM [Not with ID or classes]
-  passwordField = event.target.previousElementSibling;
+function togglePasswordVisibility() {
 
-  if (passwordField.type === "password") {
-    passwordField.type = "text";
+  if (passwordField1.type === "password") {
+    passwordField1.type = "text";
+    passwordField2.type = "text";
+    toggleIcon1.textContent = 'visibility_off';
   } else {
-    passwordField.type = "password";
+    passwordField1.type = "password";
+    passwordField2.type = "password";
+    toggleIcon1.textContent = 'visibility';
   }
 }
 
 //Validate Passwords
 const updatePwdForm = document.querySelector(".update-pwd-container form");
 const validateError = document.getElementById("pwd-validate-error");
-updatePwdForm.addEventListener("submit", checkConfirmPassword);
+if (updatePwdForm) {
+  updatePwdForm.addEventListener("submit", checkConfirmPassword);
+}
 
 const specialChar = new RegExp("(?=.*[!@#$%^&*])");
 const upperCase = new RegExp("(?=.*[A-Z])");
