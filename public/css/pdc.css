@@ -1,3 +1,14 @@
+/*-----------------------  Common Styles  ----------------------- */
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
 /*-----------------------  Job Roles List Page PDC ----------------------- */
 
 #pdc_jobroles_page {
@@ -208,7 +219,7 @@ background-color: var(--BackgroungColor);
 .csv-company {
   background-color: white;
   width: 40%;
-  height: 75vh;
+  height: 78vh;
   padding: 2rem 3rem;
   border-radius: 5px;
 }
@@ -232,12 +243,10 @@ background-color: var(--BackgroungColor);
   margin-top: 0.5rem;
 }
 
-.register-company-item {
-  gap: 1rem;
-}
-
-.register-company-item label {
-  width: 40%;
+.input-validate-error{
+  color: red;
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 
 .csv-instructions {

@@ -12,7 +12,9 @@ class Register extends BaseController
         $this->userModel = $this->model('User');
     }
 
-    public function index() {} //Register PDC users
+    public function index()
+    {
+    } //Register PDC users
 
     public function registerStudent() //Single Student User Registration
     {
@@ -72,33 +74,51 @@ class Register extends BaseController
 
             // Strip Tags
             stripTags();
-            //Random Password
-            $password = generatePassword();
 
-            // Hash Password
-            $hashPassword = password_hash($password, PASSWORD_DEFAULT);
-            $data = [
-                'username' => trim($_POST['username']),
-                'email' => trim($_POST['email']),
-                'password' => $hashPassword,
-                'user_role' => 'company'
-            ];
+            //Check for User
+            $user_id = $this->userModel->getUserId(trim($_POST['email']));
 
-            //Execute
-            $this->registerModel->registerUser($data);
+            if ($user_id) {
+                //User available -  Cant register
+                $data = [
+                    'username' => trim($_POST['username']),
+                    'email' => trim($_POST['email']),
+                    'company_name' => trim($_POST['company_name']),
+                    'contact' => trim($_POST['contact']),
+                    'email_error' => '*Email already exists!'
+                ];
 
-            //Get that User_Id
-            $user_id = $this->userModel->getUserId($data['email']);
-            $data = [
-                'user_id' => $user_id,
-                'company_name' => trim($_POST['company_name']),
-                'contact' => trim($_POST['contact']),
-            ];
+                $this->view('pdc/registerCompany', $data);
+            } else {
+                //Random Password
+                $password = generatePassword();
 
-            $email = new Email();
-            $email->sendLoginEmail(trim($_POST['email']), $password, $_POST['username']);
-            $this->registerModel->registerCompany($data);
-            redirect('register/register-company');
+                // Hash Password
+                $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+                $data = [
+                    'username' => trim($_POST['username']),
+                    'email' => trim($_POST['email']),
+                    'password' => $hashPassword,
+                    'user_role' => 'company'
+                ];
+
+                //Execute
+                $this->registerModel->registerUser($data);
+
+                //Get that User_Id
+                $user_id = $this->userModel->getUserId($data['email']);
+
+                $data = [
+                    'user_id' => $user_id,
+                    'company_name' => trim($_POST['company_name']),
+                    'contact' => trim($_POST['contact']),
+                ];
+
+                $email = new Email();
+                $email->sendLoginEmail(trim($_POST['email']), $password, $_POST['username']);
+                $this->registerModel->registerCompany($data);
+                redirect('register/register-company');
+            }
         } else {
             // IF NOT A POST REQUEST
 
@@ -106,14 +126,13 @@ class Register extends BaseController
             $data = [
                 'username' => '',
                 'email' => '',
-                'password' => '',
-                'user_role' => ''
+                'company_name' => '',
+                'contact' => '',
+                'email_error' => ''
             ];
 
             // Load View
             $this->view('pdc/registerCompany', $data);
         }
     }
-
-
 }
