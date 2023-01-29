@@ -18,9 +18,7 @@
             <li class="display-flex-row">
                 <label for="confirm_password">Confirm Password</label>
                 <input type="password" name="confirm_password" id="confirm_password" class="common-input" required>
-                <span class="material-symbols-outlined" id="togglePasswordIcon2">
-                    visibility
-                </span>
+
             </li>
             <li id="pwd-validate-error"></li>
         </ul>

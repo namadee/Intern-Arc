@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/pdc.css">
+<script src="<?php echo URLROOT; ?>js/pdc.js" defer></script>
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
@@ -21,20 +22,29 @@
                 <ul class="display-flex-col">
                     <li class="display-flex-col">
                         <label for="username">Student Name</label>
-                        <input type="text" name="username" id="username" class="common-input" required>
+                        <input type="text" name="username" id="username" class="common-input" value="<?php echo $data['username']; ?>" required>
                     </li>
                     <li class="display-flex-col">
-                        <label for="email">Student Email</label>
-                        <input type="text" name="email" id="email" class="common-input" required>
+                        <div class="display-flex-col">
+                            <label for="email">Student Email</label>
+                            <input type="text" name="email" id="email" class="common-input" required value="<?php echo $data['email']; ?>">
+                        </div>
+                        <span class="input-validate-error"><?php echo $data['email_error']; ?></span>
                     </li>
                     <li class="display-flex-col">
-                        <label for="registration_number">Registration Number</label>
-                        <input type="text" name="registration_number" id="registration_number" class="common-input" required>
+                        <div class="display-flex-col">
+                            <label for="registration_number">Registration Number</label>
+                            <input type="text" name="registration_number" id="registration_number" class="common-input" value="<?php echo $data['registration_number']; ?>" required>
+                        </div>
+
                     </li>
 
-                    <li class="display-flex-row register-company-item">
-                        <label for="index_number">Index Number</label>
-                        <input type="text" name="index_number" id="index_number" class="common-input" required>
+                    <li class="display-flex-col ">
+                        <div class="display-flex-col">
+                            <label for="index_number">Index Number</label>
+                            <input type="text" name="index_number" id="index_number" class="common-input" required value="<?php echo $data['index_number']; ?>">
+                        </div>
+                        <span class="input-validate-error" > <?php echo $data['credential_error']; ?></span>
                     </li>
                 </ul>
                 <button type="submit" class="common-blue-btn">Register Student</button>

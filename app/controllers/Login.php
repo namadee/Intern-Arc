@@ -38,7 +38,22 @@ class Login extends BaseController
                 if ($this->userModel->login($data['email'], $data['password'])) {
                     //Password is correct
                     $this->createSession($userDetails);
-                    redirect('pdc');
+                    //Get User Role to direct them to the Dashboard
+                    $userRole = Session::getUserRole();
+
+                    switch ($userRole) {
+                        case "pdc":
+                            redirect('pdc');
+                            break;
+                        case "student":
+                            redirect('students');
+                            break;
+                        case "company":
+                            redirect('companies');
+                            break;
+                        default:
+                            redirect('admin');
+                    }
                 } else {
                     //Password is incorrect
                     $data = [
@@ -79,7 +94,6 @@ class Login extends BaseController
         Session::setValues('user_role', $user->user_role);
         Session::setValues('profile_pic', $user->profile_pic);
     }
-
 
     public function logout()
     {
@@ -233,5 +247,10 @@ class Login extends BaseController
         {
             redirect('login');
         }
+    }
+
+    public function test()
+    {
+        $this->view('updatePwd');
     }
 }
