@@ -67,56 +67,57 @@ class Profiles extends BaseController
 
     public function companyProfile()
     {
-        $email = $_SESSION['user_email'];
-        $userDetails = $this->userModel->getUserByEmail($email);
         $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
         $company_details = $this->userModel->getCompanyDetails($companyId);
 
-        // $company = $this->userModel->showCompanyById($companyId); //To get the Company Name
 
         $data = [
             'company_id' => $companyId,
             'company_name' => $company_details->company_name,
-            //'company_address' => $company->company_address,
-            // 'company_slogan' => $company->company_slogan,
-            // 'company_email' => $company->company_email,
-            // 'formAction' => 'Profiles/update-company-profile/' . $company->company_id
+            'company_address' => $company_details->company_address,
+            'company_slogan' => $company_details->company_slogan,
+            'company_email' => $company_details->company_email,
+            'company_description' => $company_details->company_description,
+            'formAction' => 'Profiles/update-company-profile/' . $company_details->company_id
         ];
 
         $this->view('company/profile', $data);
     }
 
-    public function showCompany()
+    public function showCompanyProfile()
     {
-        $companyId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
-
-        $company = $this->userModel->showCompanyById($companyId); //To get the Company Name
+        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+        $company_details = $this->userModel->getCompanyDetails($companyId);
 
         $data = [
-            'company_name' => $company->company_name,
-            'company_address' => $company->company_address,
-            'company_slogan' => $company->company_slogan,
-            'company_email' => $company->company_email,
-            'formAction' => 'Profiles/update-company-profile/' . $company->company_id
+            'company_id' => $companyId,
+            'company_name' => $company_details->company_name,
+            'company_address' => $company_details->company_address,
+            'company_slogan' => $company_details->company_slogan,
+            'company_email' => $company_details->company_email,
+            'company_description' => $company_details->company_description,
+            'formAction' => 'Profiles/update-company-profile/' . $company_details->company_id
         ];
 
-        $this->view('company/addCompany', $data);
+        $this->view('company/editProfile', $data);
     }
 
     public function updateCompanyProfile(){
+
+        $companyId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
+        $company_details = $this->userModel->getCompanyDetails($companyId);
        
          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Strip Tags
             stripTags();
 
-            $companyId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
-
             $data = [
                 'company_name' => trim($_POST['company_name']),
                 'company_address' => trim($_POST['company_address']),
                 'company_slogan' => trim($_POST['company_slogan']),
                 'company_email' => trim($_POST['company_email']),
+                'company_description' => trim($_POST['company_description']),
                 'company_id' => $companyId
             ];
 
@@ -130,8 +131,17 @@ class Profiles extends BaseController
             }
         } else {
 
-            // Load View
-            $this->view('company/editProfile');
+            $data = [
+                'company_id' => $companyId,
+                'company_name' => $company_details->company_name,
+                'company_address' => $company_details->company_address,
+                'company_slogan' => $company_details->company_slogan,
+                'company_email' => $company_details->company_email,
+                'company_description' => $company_details->company_description,
+                'formAction' => 'Profiles/company-profile/'
+            ];
+    
+            $this->view('company/editProfile', $data);
         }
         
     }
