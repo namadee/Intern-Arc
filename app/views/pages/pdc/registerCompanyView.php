@@ -22,7 +22,7 @@
                     </li>
                     <li class="display-flex-col ">
                         <label for="username">Contact Person</label>
-                        <input type="text" name="username" id="username" class="common-input" value="<?php echo $data['username']; ?>"  required>
+                        <input type="text" name="username" id="username" class="common-input" value="<?php echo $data['username']; ?>" required>
                     </li>
 
                     <li class="display-flex-col ">
@@ -46,7 +46,7 @@
                     </span>
                     Instructions
                 </div>
-                <p>
+                <p><span>Step 1 : </span>
                     Download this CSV template and enter the details accordingly.
                 </p>
                 <a href="" class="display-flex-row">
@@ -56,14 +56,23 @@
                     Download CSV Template
                 </a>
             </div>
+            <div class="display-flex-col">
+                
+                <p><span>Step 2 : </span> Enter comapny details without changing the layout of the csv.</p>
+            </div>
+            <div class="display-flex-col">
+                
+                <p><span>Step 3 : </span> Upload and press submit to complete the registration.</p>
+            </div>
             <div class="csv-company-bottom">
-                <form action="" method="POST" class="display-flex-col">
+                <form action="<?php echo URLROOT . "register/register-companies"; ?>" name="uploadCsv" enctype="multipart/form-data" method="POST" class="display-flex-col">
                     <label for="company-csv" class="display-flex-row">
                         <span class="material-symbols-outlined">
                             drive_folder_upload
                         </span>
                         Choose a File</label>
-                    <input type="file" name="company-csv" id="company-csv">
+
+                    <input type="file" name="company-csv" id="company-csv" accept=".csv">
                     <button type="submit" class="common-blue-btn">Upload CSV</button>
                 </form>
             </div>

@@ -1,13 +1,11 @@
 /*-----------------------  Common Styles  ----------------------- */
 
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 
 /*-----------------------  Job Roles List Page PDC ----------------------- */
 
@@ -152,7 +150,7 @@ input::-webkit-inner-spin-button {
 
 .company-content-top form,
 .company-content-top form input {
-background-color: var(--BackgroungColor);
+  background-color: var(--BackgroungColor);
 }
 
 .manage-company-table {
@@ -230,12 +228,21 @@ background-color: var(--BackgroungColor);
   font-size: 1.1rem;
 }
 
-.register-company,
-.csv-company,
-.csv-company-middle,
-.register-company form,
+.register-company .register-company form,
 .register-company form ul {
   gap: 1.5rem;
+}
+
+.csv-company {
+  gap: 1rem;
+}
+
+.csv-company p {
+  font-size: 0.85rem;
+}
+
+.csv-company p span {
+  font-weight: bold;
 }
 
 .register-company form button {
@@ -243,7 +250,7 @@ background-color: var(--BackgroungColor);
   margin-top: 0.5rem;
 }
 
-.input-validate-error{
+.input-validate-error {
   color: red;
   font-size: 0.8rem;
   font-weight: 400;
@@ -255,15 +262,17 @@ background-color: var(--BackgroungColor);
   gap: 0.5rem;
   color: var(--primaryColor);
   font-weight: 500;
+  margin-bottom: 1rem;
 }
 
 .csv-company-middle a {
   align-items: center;
+  margin: 0.5rem 0;
   gap: 0.5rem;
   width: 100%;
   border: 1px solid var(--primaryColor);
   border-radius: 5px;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   justify-content: center;
   color: var(--primaryColor);
   font-weight: 500;
@@ -301,7 +310,7 @@ background-color: var(--BackgroungColor);
   margin: auto;
   background-color: #424242;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 5px;
 }
 
@@ -821,7 +830,7 @@ table th {
   text-align: justify;
 }
 
-.student-profile-bio h3{
+.student-profile-bio h3 {
   font-size: 1.5rem;
 }
 
