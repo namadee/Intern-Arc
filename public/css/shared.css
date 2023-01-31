@@ -526,33 +526,39 @@ main {
   text-align: center;
 }
 
-.pwd-verification-form #email-span{
+.pwd-verification-form #email-span {
   font-weight: 600;
   background-color: var(--BackgroungColor);
   padding: 0.2rem 1.5rem;
 }
 
-.pwd-verification-form div{
+.pwd-verification-form div {
   align-items: center;
   width: 50%;
   padding: 0.2rem 0.5rem;
   border-radius: 5px;
   gap: 0.2rem;
-  margin:1rem 0;
+  margin: 1rem 0;
   justify-content: center;
   border: 1px solid var(--AlternateLightGrey);
-
 }
 
-.pwd-verification-form span.material-symbols-outlined{
+.pwd-verification-form span.material-symbols-outlined {
   font-size: 2rem;
 }
+
+.pwd-verification-form input::-webkit-outer-spin-button,
+.pwd-verification-form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 
 /******************** Main Log-In page ******************************/
 
 .loginContainer {
   margin: auto;
-  margin-top: 5rem;
+  margin-top: 5%;
   width: 45%;
   display: flex;
   border-radius: 5px;
@@ -571,10 +577,11 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 8rem 1rem;
+  padding: 15% 2%;
   align-items: center;
   gap: 1.5rem;
   text-align: center;
+  position: relative;
 }
 
 .leftBox h1 {
@@ -602,7 +609,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 8rem 1rem;
+  padding: 15% 2%;
   align-items: center;
   gap: 1.5rem;
 }
@@ -653,20 +660,22 @@ main {
 }
 
 .signin-error-alert {
-  margin-top: 1rem;
-  padding: 0.6rem;
+  padding: 0.3rem 0.5rem;
   color: var(--DangerColor);
   display: flex;
   gap: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   align-items: center;
   width: 80%;
   background-color: var(--DangerBackground);
   border-radius: 5px;
+  position: absolute;
+  bottom: 5%;
+  
 }
 
 .input-error {
-  background-color: var(--DangerBackground);
+  background-color: rgb(255, 233, 233);
   border-color: var(--DangerColor);
 }
 

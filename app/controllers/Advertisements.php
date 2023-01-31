@@ -68,7 +68,7 @@ class Advertisements extends BaseController
                 'position' => '',
                 'job_description' => '',
                 'requirements' => '',
-                'internship_start' => '',
+                'internship_start' => '2030-13-13',
                 'internship_end' => '',
                 'no_of_interns' => '',
                 'working_mode' => '',

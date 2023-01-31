@@ -169,4 +169,56 @@ class Register extends BaseController
             $this->view('pdc/registerCompany', $data);
         }
     }
+
+
+    public function registerCompanies()
+    {
+
+        $fileName = $_FILES["company-csv"]["tmp_name"];
+
+        if ($_FILES["company-csv"]["size"] > 0) {
+            $file = fopen($fileName, "r");
+
+            $counter = 0;
+
+            while (($column = fgetcsv($file, 1000, ",")) !== FALSE) {
+
+                $counter++; //To skip the header of the csv
+                if ($counter > 1) {
+                    //Random Password
+                    $password = generatePassword();
+
+                    // Hash Password
+                    $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+                    $data = [
+                        'username' => $column[2],
+                        'email' => $column[1],
+                        'password' => $hashPassword,
+                        'user_role' => 'company'
+                    ];
+
+                    //Execute
+                    $this->registerModel->registerUser($data);
+
+                    //Get that User_Id
+                    $user_id = $this->userModel->getUserId($data['email']);
+
+                    $data = [
+                        'user_id' => $user_id,
+                        'company_name' => $column[0],
+                        'contact' => '0'.$column[3],
+                    ];
+
+                    $email = new Email();
+                    $email->sendLoginEmail($column[1], $password, $column[2]);
+                    $this->registerModel->registerCompany($data);
+                }
+                redirect('register/register-company');
+            }
+        }
+    }
+
+    public function test()
+    {
+    }
 }

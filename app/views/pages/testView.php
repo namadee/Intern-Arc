@@ -8,7 +8,10 @@
 </head>
 <body>
     <h2>
-
+    THIS IS TEST VIEW
     </h2>
+    <?php 
+
+    ?>
 </body>
 </html>

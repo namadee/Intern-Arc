@@ -1,13 +1,11 @@
 /*-----------------------  Common Styles  ----------------------- */
 
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 
 /*-----------------------  Job Roles List Page PDC ----------------------- */
 
@@ -139,7 +137,7 @@ input::-webkit-inner-spin-button {
   background-color: white;
   box-shadow: var(--Boxshadow1);
   padding: 1.5rem 2rem;
-  height: 82%;
+  height: 80%;
   overflow: hidden;
   overflow-y: auto;
   border-radius: 5px;
@@ -152,7 +150,7 @@ input::-webkit-inner-spin-button {
 
 .company-content-top form,
 .company-content-top form input {
-background-color: var(--BackgroungColor);
+  background-color: var(--BackgroungColor);
 }
 
 .manage-company-table {
@@ -215,13 +213,15 @@ background-color: var(--BackgroungColor);
   position: relative;
 }
 
-.register-company,
+.register-company,  
 .csv-company {
   background-color: white;
   width: 40%;
-  height: 78vh;
+  height: 100%;
   padding: 1rem 3rem;
   border-radius: 5px;
+  justify-content: start;
+  padding-top: 2rem;
 }
 
 .register-company h2,
@@ -230,20 +230,33 @@ background-color: var(--BackgroungColor);
   font-size: 1.1rem;
 }
 
-.register-company,
-.csv-company,
-.csv-company-middle,
-.register-company form,
+.register-company h2 {
+  margin-bottom: 1.5rem;
+}
+
+.register-company .register-company form,
 .register-company form ul {
   gap: 1.5rem;
 }
 
-.register-company form button {
-  padding: 0.4rem 2rem;
-  margin-top: 0.5rem;
+.csv-company {
+  gap: 1rem;
 }
 
-.input-validate-error{
+.csv-company p {
+  font-size: 0.85rem;
+}
+
+.csv-company p span {
+  font-weight: bold;
+}
+
+.register-company form button {
+  padding: 0.4rem 2rem;
+  margin-top: 1.5rem;
+}
+
+.input-validate-error {
   color: red;
   font-size: 0.8rem;
   font-weight: 400;
@@ -255,15 +268,17 @@ background-color: var(--BackgroungColor);
   gap: 0.5rem;
   color: var(--primaryColor);
   font-weight: 500;
+  margin-bottom: 1rem;
 }
 
 .csv-company-middle a {
   align-items: center;
+  margin: 0.5rem 0;
   gap: 0.5rem;
   width: 100%;
   border: 1px solid var(--primaryColor);
   border-radius: 5px;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   justify-content: center;
   color: var(--primaryColor);
   font-weight: 500;
@@ -286,11 +301,14 @@ background-color: var(--BackgroungColor);
 
 .csv-company-bottom form {
   text-align: center;
-  gap: 1.5rem;
 }
 
 .csv-company-bottom form input {
   display: none;
+}
+
+.csv-company-bottom form p {
+  margin: 0.5rem 0;
 }
 
 .csv-company-bottom form label {
@@ -301,7 +319,7 @@ background-color: var(--BackgroungColor);
   margin: auto;
   background-color: #424242;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 5px;
 }
 
@@ -368,7 +386,7 @@ background-color: var(--BackgroungColor);
 
 .add-student-container .register-company,
 .add-student-container .csv-company {
-  height: 73vh;
+  height: 100%;
 }
 
 /*----------------------- Manage Student - Landing Page -----------------------*/
@@ -531,7 +549,7 @@ table th {
   margin-top: 1rem;
   border-radius: 5px;
   overflow-y: auto;
-  height: 66%;
+  height: 63%;
 }
 
 .dashboard-advertisement-list .list-top {
@@ -551,10 +569,16 @@ table th {
 .dashboard-advertisement-list table {
   width: 100%;
   overflow: hidden;
+  text-align: center;
 }
 
 .dashboard-advertisement-list table td {
   padding: 0.5rem;
+}
+
+.dashboard-advertisement-list table th {
+  padding: 0.2rem;
+  background-color: var(--AlternateLightGrey);
 }
 
 .dashboard-advertisement-list table td:nth-child(4) {
@@ -821,7 +845,7 @@ table th {
   text-align: justify;
 }
 
-.student-profile-bio h3{
+.student-profile-bio h3 {
   font-size: 1.5rem;
 }
 

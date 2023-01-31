@@ -61,6 +61,20 @@ function checkConfirmPassword(event) {
 }
 
 
+//Stop multiple submission of form (All the forms selected)
+const allForms = document.querySelectorAll("form");
+
+if (allForms) {
+  for (let i = 0; i < allForms.length; i++) {
+    allForms[i].addEventListener("submit", disableFormButton);
+  }
+}
+
+function disableFormButton(event) {
+  event.submitter.disabled = true;
+}
+
+
 document.getElementById("internship_start").min = new Date().toISOString().split("T")[0];
 
 let start_date; // undefined
@@ -96,3 +110,5 @@ function toggleProfileUpdate() {
     updateBtn.style.display = "none";
   }
 }
+
+
