@@ -235,8 +235,11 @@
 .profile-left {
   width: 60%;
   height: 80vh;
-  padding: 1rem;
+  padding: 2rem 1rem;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .profile-right {
@@ -256,12 +259,17 @@
 .profile-bottom {
   display: flex;
   margin-top: 5rem;
-  padding-left: 1rem;
+  padding: 0 1rem;
+ flex-wrap:wrap;
+ justify-content: space-between;
 }
 
+#company-edit-btn{
+  padding: 0.5rem;
+  margin-left: none;
+}
 .profile-right {
-  display: flex;
-  flex-direction: column;
+  
   justify-content: center;
   align-items: center;
   gap: 3rem;
@@ -279,6 +287,22 @@
 .profile-btn {
   padding: 0.5rem 2rem;
   outline: none;
+}
+
+/*edit profile page*/
+
+.edit-profile-main-container{
+  width:100%;
+}
+.edit-company-Profile{
+  margin:0;
+ width: 90%;
+ padding: 1rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
 }
 /*student request page */
 .student-req-action {

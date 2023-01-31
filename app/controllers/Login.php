@@ -252,6 +252,10 @@ class Login extends BaseController
 
     public function test()
     {
-        $this->view('updatePwd');
+        $data = [
+            'email' => 'abc@gmail.com',
+            'verification_code' => '1234'
+        ];
+        $this->view('pwdVerification',$data);
     }
 }
