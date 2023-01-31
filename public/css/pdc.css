@@ -220,12 +220,18 @@ input::-webkit-inner-spin-button {
   height: 78vh;
   padding: 1rem 3rem;
   border-radius: 5px;
+  justify-content: start;
+  padding-top: 2rem;
 }
 
 .register-company h2,
 .csv-company h2 {
   text-align: center;
   font-size: 1.1rem;
+}
+
+.register-company h2 {
+  margin-bottom: 1.5rem;
 }
 
 .register-company .register-company form,
@@ -247,7 +253,7 @@ input::-webkit-inner-spin-button {
 
 .register-company form button {
   padding: 0.4rem 2rem;
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .input-validate-error {
@@ -295,11 +301,14 @@ input::-webkit-inner-spin-button {
 
 .csv-company-bottom form {
   text-align: center;
-  gap: 1.5rem;
 }
 
 .csv-company-bottom form input {
   display: none;
+}
+
+.csv-company-bottom form p {
+  margin: 0.5rem 0;
 }
 
 .csv-company-bottom form label {

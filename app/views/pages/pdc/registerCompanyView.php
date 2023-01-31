@@ -28,7 +28,7 @@
                     <li class="display-flex-col ">
                         <div class="display-flex-col register-company-item">
                             <label for="contact">Contact Number</label>
-                            <input type="number" name="contact" id="contact" class="common-input contact" value="<?php echo $data['contact']; ?>" required>
+                            <input type="number" name="contact" id="contact" maxlength="10" class="common-input contact" value="<?php echo $data['contact']; ?>" required>
                         </div>
                         <span class="input-validate-error" id="input-contact-error"></span>
 
@@ -57,11 +57,11 @@
                 </a>
             </div>
             <div class="display-flex-col">
-                
+
                 <p><span>Step 2 : </span> Enter comapny details without changing the layout of the csv.</p>
             </div>
             <div class="display-flex-col">
-                
+
                 <p><span>Step 3 : </span> Upload and press submit to complete the registration.</p>
             </div>
             <div class="csv-company-bottom">
@@ -71,7 +71,7 @@
                             drive_folder_upload
                         </span>
                         Choose a File</label>
-
+                    <p id="register-csv-file">No file Choosen</p>
                     <input type="file" name="company-csv" id="company-csv" accept=".csv">
                     <button type="submit" class="common-blue-btn">Upload CSV</button>
                 </form>

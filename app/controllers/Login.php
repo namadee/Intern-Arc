@@ -123,10 +123,11 @@ class Login extends BaseController
 
             // Check for user availability
             $userDetails = $this->userModel->getUserByEmail($data['email']);
+
             if (!$userDetails) {
                 // User Not Found
                 flashMessage('email_notfound', 'Email is not found!', 'danger-alert');
-                redirect('users/forgotPassword');
+                redirect('login/forgotPassword');
             } else {
                 //User Found
                 //Send the Verification Code
