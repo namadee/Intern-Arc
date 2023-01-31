@@ -161,5 +161,46 @@ class UserModel extends Database
     $this->db->bind(':user_id', $userId);
     $this->db->execute();
   }
+
+  public function getCompanyDetails($company_id){
+    $this->db->query("SELECT * FROM company_tbl WHERE company_id = :company_id");
+    $this->db->bind(':company_id', $company_id);
+
+    $company_details = $this->db->single();
+
+    //Check Rows
+    if ($this->db->rowCount() > 0) {
+      return $company_details;
+    } else {
+      return false;
+    }
+
+  }
+
+  public function updateCompanyProfile($data)
+  {
+      // Prepare Query
+      $this->db->query('UPDATE company_tbl SET company_name = :company_name
+      company_address = :company_address, company_slogan = :company_slogan, 
+      company_email = :company_email WHERE company_id = :company_id');
+
+      // Bind Values
+      $this->db->bind(':company_id', $data['company_id']);
+      $this->db->bind(':company_name', $data['company_name']);
+      $this->db->bind(':company_address', $data['company_address']);
+      $this->db->bind(':company_slogan', $data['company_slogan']);
+      $this->db->bind(':company_email', $data['company_email']);
+      $this->db->bind('company_description', $data['company_description']);
+
+      //Execute
+      if ($this->db->execute()) {
+          return true;
+      } else {
+          return false;
+      }
+  }
   
 }
+
+
+

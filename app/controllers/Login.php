@@ -126,7 +126,7 @@ class Login extends BaseController
             if (!$userDetails) {
                 // User Not Found
                 flashMessage('email_notfound', 'Email is not found!', 'danger-alert');
-                redirect('users/forgotPassword');
+                redirect('login/forgotPassword');
             } else {
                 //User Found
                 //Send the Verification Code
@@ -251,6 +251,10 @@ class Login extends BaseController
 
     public function test()
     {
-        $this->view('updatePwd');
+        $data = [
+            'email' => 'abc@gmail.com',
+            'verification_code' => '1234'
+        ];
+        $this->view('pwdVerification',$data);
     }
 }
