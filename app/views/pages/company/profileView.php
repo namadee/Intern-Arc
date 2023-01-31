@@ -16,7 +16,7 @@
             <div class="profile-left-text">
                 <h1>Welcome To <span class="orange-text"><?php echo $data['company_name']?></span></h1>
                 <p class="orange-text"><?php echo $data['company_slogan'] ?></p><br>
-                <p><?php echo $data['company-email'] ?></p>
+                <p>Email: <?php echo $data['company_email'] ?></p>
             </div>
             </div>
 
