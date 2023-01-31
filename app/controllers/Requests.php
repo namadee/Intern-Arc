@@ -2,41 +2,24 @@
 
 class Requests extends BaseController
 {
-    public $studentRequestModel;
 
+    public $userModel;
+    public $registerModel;
+    
     public function __construct()
     {
-        $this->studentRequestModel = $this->model('StudentRequest');
     }
 
-    public function index()
-    {
-
-        $this->view('company/studentRequestList');
-    }
-
-    public function viewStudentRequest()
-    {
-        $this->view('company/studentRequest');
-    }
-
-
-    //All the Shortlisted Students of All the Advertisements
-    public function shortlistedList()
+    public function index() //Load PDC Dashboard
     {
         $this->view('company/shortlist');
     }
 
-    //All the Shortlisted Students under 1 Advertisement
-    public function shortlistedStudents()
+    public function allRequests() 
     {
-        $this->view('company/shortlistedStudents');
+        $this->view('company/addAdvertisement');
     }
 
-    //Student Request List - PDC
-    public function allRequests()
-    {
-        $this->view('pdc/studentRequest');
-    }
+
 
 }

@@ -34,7 +34,7 @@
 
                     </li>
                 </ul>
-                <button type="submit" class="common-blue-btn">Add Company</button>
+                <button type="submit" class="common-blue-btn" id="register-company-btn">Add Company</button>
             </form>
         </div>
         <div class="csv-company display-flex-col">
@@ -49,7 +49,7 @@
                 <p><span>Step 1 : </span>
                     Download this CSV template and enter the details accordingly.
                 </p>
-                <a href="" class="display-flex-row">
+                <a href="<?php echo URLROOT . "templates/companyListTemplate.csv"; ?>" class="display-flex-row">
                     <span class="material-symbols-outlined">
                         downloading
                     </span>
@@ -73,7 +73,7 @@
                         Choose a File</label>
                     <p id="register-csv-file">No file Choosen</p>
                     <input type="file" name="company-csv" id="company-csv" accept=".csv">
-                    <button type="submit" class="common-blue-btn">Upload CSV</button>
+                    <button type="submit" class="common-blue-btn">Register</button>
                 </form>
             </div>
         </div>

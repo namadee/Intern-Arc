@@ -4,7 +4,7 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
-
+<?php flashMessage('login_success'); ?>
     <div class="dashboard-topbar display-flex-row">
 
         <div class="dash-top-left">
@@ -20,14 +20,14 @@
         </div>
     </div>
     <div class="dashboard-topbar-btns display-flex-row">
-        <a href="<?php echo URLROOT.'pdc/send-invitation';?>" class="send-invitation display-flex-row common-blue-btn">
+        <a href="<?php echo URLROOT . 'pdc/send-invitation'; ?>" class="send-invitation display-flex-row common-blue-btn">
             <span class="material-symbols-outlined">
                 mail
             </span>
             Send Invitation
         </a>
 
-        <a href="<?php echo URLROOT.'pdc/set-round-durations';?>" class="round-period display-flex-row common-blue-btn">
+        <a href="<?php echo URLROOT . 'pdc/set-round-durations'; ?>" class="round-period display-flex-row common-blue-btn">
             <span class="material-symbols-outlined">
                 published_with_changes
             </span>
@@ -63,14 +63,22 @@
                     </select>
                 </form>
             </div>
+
         </div>
         <div class="list-body">
             <table>
+                <thead>
+                    <th>Company Name</th>
+                    <th>Position</th>
+                    <th>Interns</th>
+                    <th>Status</th>
+                    <th></th>
+                </thead>
                 <tbody>
                     <tr>
                         <td>99x Technology</td>
                         <td>Software Engineering</td>
-                        <td>5 interns</td>
+                        <td>5</td>
                         <td>
                             <div class="common-status display-flex-row">
                                 <span class="common-status-span">
@@ -83,7 +91,7 @@
                     <tr>
                         <td>99x Technology</td>
                         <td>Software Engineering</td>
-                        <td>5 interns</td>
+                        <td>5</td>
                         <td>
                             <div class="common-status display-flex-row">
                                 <span class="common-status-span">
@@ -96,7 +104,7 @@
                     <tr>
                         <td>99x Technology</td>
                         <td>Software Engineering</td>
-                        <td>5 interns</td>
+                        <td>5</td>
                         <td>
                             <div class="common-status display-flex-row">
                                 <span class="common-status-span">
@@ -109,7 +117,7 @@
                     <tr>
                         <td>99x Technology</td>
                         <td>Software Engineering</td>
-                        <td>5 interns</td>
+                        <td>5</td>
                         <td>
                             <div class="common-status display-flex-row">
                                 <span class="common-status-span">
@@ -118,8 +126,59 @@
                             </div>
                         </td>
                         <td> <a href="">View</a></td>
-                    </tr>                   
-
+                    </tr>
+                    <tr>
+                        <td>99x Technology</td>
+                        <td>Software Engineering</td>
+                        <td>5</td>
+                        <td>
+                            <div class="common-status display-flex-row">
+                                <span class="common-status-span">
+                                </span>
+                                Active
+                            </div>
+                        </td>
+                        <td> <a href="">View</a></td>
+                    </tr>
+                    <tr>
+                        <td>99x Technology</td>
+                        <td>Software Engineering</td>
+                        <td>5</td>
+                        <td>
+                            <div class="common-status display-flex-row">
+                                <span class="common-status-span">
+                                </span>
+                                Active
+                            </div>
+                        </td>
+                        <td> <a href="">View</a></td>
+                    </tr>
+                    <tr>
+                        <td>99x Technology</td>
+                        <td>Software Engineering</td>
+                        <td>5</td>
+                        <td>
+                            <div class="common-status display-flex-row">
+                                <span class="common-status-span">
+                                </span>
+                                Active
+                            </div>
+                        </td>
+                        <td> <a href="">View</a></td>
+                    </tr>
+                    <tr>
+                        <td>99x Technology</td>
+                        <td>Software Engineering</td>
+                        <td>5</td>
+                        <td>
+                            <div class="common-status display-flex-row">
+                                <span class="common-status-span">
+                                </span>
+                                Active
+                            </div>
+                        </td>
+                        <td> <a href="">View</a></td>
+                    </tr>
                 </tbody>
             </table>
 

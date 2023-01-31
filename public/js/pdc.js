@@ -9,8 +9,11 @@ const registerCompanyFormElement = document.querySelector(
   ".register-company form"
 );
 
+let isSubmmited = false;
+
 if (registerCompanyFormElement) {
   registerCompanyFormElement.addEventListener("submit", validateContact);
+  registerCompanyFormElement.addEventListener("submit", disableFormButton);
 }
 
 function validateContact(event) {
@@ -37,3 +40,4 @@ function showFileName(event) {
   let filename = event.srcElement.files[0].name;
   registerCsvFileName.textContent = filename;
 }
+

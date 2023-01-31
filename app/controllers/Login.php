@@ -43,6 +43,7 @@ class Login extends BaseController
 
                     switch ($userRole) {
                         case "pdc":
+                            flashMessage('login_success', 'Login Successfully!');
                             redirect('pdc');
                             break;
                         case "student":
@@ -126,6 +127,7 @@ class Login extends BaseController
 
             if (!$userDetails) {
                 // User Not Found
+                //Flash Message
                 flashMessage('email_notfound', 'Email is not found!', 'danger-alert');
                 redirect('login/forgotPassword');
             } else {

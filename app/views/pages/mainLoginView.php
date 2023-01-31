@@ -2,7 +2,8 @@
 </head>
 
 <body>
-<!-- <div class="success-alert" id="flash-message">Password is successfully Changed!</div> -->
+    <!-- <div class="success-alert" id="flash-message">Password is successfully Changed!</div> -->
+    <?php flashMessage('password_updated'); ?>
     <div class="loginContainer">
         <div class="rightBox">
 
@@ -12,7 +13,7 @@
         </div>
         <div class="leftBox">
             <div class="leftBox-innerContainer">
-            <?php flashMessage('password_updated'); ?>
+
                 <h1>Login</h1>
                 <form id="loginForm" class="display-flex-col" action="<?php echo URLROOT; ?>login" method="POST">
 
@@ -25,15 +26,17 @@
 
                     <input type="submit" value="Login">
                 </form>
+                <div class="<?php echo $data['error_class']; ?>">
+                    <span class="material-symbols-rounded">
+                        report
+                    </span>
+                    <?php echo $data['error_msg']; ?>
+
+                </div>
             </div>
 
 
-            <div class="<?php echo $data['error_class']; ?>">
-                <span class="material-symbols-rounded">
-                    report
-                </span>
-                <?php echo $data['error_msg']; ?>
-            </div>
+
         </div>
 
 

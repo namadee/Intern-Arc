@@ -206,7 +206,7 @@ class Register extends BaseController
                     $data = [
                         'user_id' => $user_id,
                         'company_name' => $column[0],
-                        'contact' => $column[3],
+                        'contact' => '0'.$column[3],
                     ];
 
                     $email = new Email();

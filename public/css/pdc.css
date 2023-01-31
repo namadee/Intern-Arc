@@ -137,7 +137,7 @@ input::-webkit-inner-spin-button {
   background-color: white;
   box-shadow: var(--Boxshadow1);
   padding: 1.5rem 2rem;
-  height: 82%;
+  height: 80%;
   overflow: hidden;
   overflow-y: auto;
   border-radius: 5px;
@@ -213,11 +213,11 @@ input::-webkit-inner-spin-button {
   position: relative;
 }
 
-.register-company,
+.register-company,  
 .csv-company {
   background-color: white;
   width: 40%;
-  height: 78vh;
+  height: 100%;
   padding: 1rem 3rem;
   border-radius: 5px;
   justify-content: start;
@@ -386,7 +386,7 @@ input::-webkit-inner-spin-button {
 
 .add-student-container .register-company,
 .add-student-container .csv-company {
-  height: 73vh;
+  height: 100%;
 }
 
 /*----------------------- Manage Student - Landing Page -----------------------*/
@@ -549,7 +549,7 @@ table th {
   margin-top: 1rem;
   border-radius: 5px;
   overflow-y: auto;
-  height: 66%;
+  height: 63%;
 }
 
 .dashboard-advertisement-list .list-top {
@@ -569,10 +569,16 @@ table th {
 .dashboard-advertisement-list table {
   width: 100%;
   overflow: hidden;
+  text-align: center;
 }
 
 .dashboard-advertisement-list table td {
   padding: 0.5rem;
+}
+
+.dashboard-advertisement-list table th {
+  padding: 0.2rem;
+  background-color: var(--AlternateLightGrey);
 }
 
 .dashboard-advertisement-list table td:nth-child(4) {
