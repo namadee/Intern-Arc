@@ -16,10 +16,10 @@
                 <h1>Login</h1>
                 <form id="loginForm" class="display-flex-col" action="<?php echo URLROOT; ?>login" method="POST">
 
-                    <input class="common-input <?php echo $data['input_class']; ?>" type="email" id="userName" name="email" placeholder="Enter your email" required>
+                    <input class="common-input" type="email" id="userName" name="email" placeholder="Enter your email" required>
 
 
-                    <input class="common-input <?php echo $data['input_class']; ?>" type="password" id="pword" name="password" placeholder="Enter your password" required>
+                    <input class="common-input" type="password" id="pword" name="password" placeholder="Enter your password" required>
 
                     <a href="<?php echo URLROOT . 'login/forgot-password' ?>">Forgot your Password?</a>
 

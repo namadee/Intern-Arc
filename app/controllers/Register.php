@@ -17,6 +17,7 @@ class Register extends BaseController
 
     public function index()
     {
+        
     } //Register PDC users
 
     public function registerStudent() //Single Student User Registration - Ruchira
