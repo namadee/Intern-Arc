@@ -7,7 +7,7 @@
         <div class="profile-left">
             <div>
             <div class="profile-left-top">
-                <h2>Welcome</h2>
+                <h2>Company Profile</h2>
                 <!-- <h2>Company Profile</h2> -->
                 <img src="<?php echo URLROOT . 'img/linkedIn_icon.png' ?>">
             </div>

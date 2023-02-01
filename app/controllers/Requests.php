@@ -12,12 +12,17 @@ class Requests extends BaseController
 
     public function index() //Load PDC Dashboard
     {
-        $this->view('company/shortlist');
+        $this->view('company/studentRequestList');
     }
 
     public function allRequests() 
     {
         $this->view('company/addAdvertisement');
+    }
+
+    public function shortlistedList() 
+    {
+        $this->view('company/shortlist');
     }
 
 

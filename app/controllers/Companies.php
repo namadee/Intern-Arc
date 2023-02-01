@@ -45,4 +45,12 @@ class Companies extends BaseController
     {
         $this->view('student/appliedcompanies');
     }
+
+    public function shortlistedStudents(){
+        $this->view('company/shortlistedStudents');
+    }
+
+    public function scheduleInterview(){
+        $this->view('company/scheduleInterview');
+    }
 }
