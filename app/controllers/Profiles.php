@@ -4,16 +4,19 @@ class Profiles extends BaseController
 {
 
     public $userModel;
+    public $companyModel;
     
     public function __construct()
     {
         $this->userModel = $this->model('User');
+        $this->companyModel = $this->model('Company');
     }
 
     public function index() //default method and view
     {
         $this->view('error');
     }
+
 
     //View - Main User Details [User Table]
     public function viewProfileDetails()
@@ -78,6 +81,7 @@ class Profiles extends BaseController
             'company_slogan' => $company_details->company_slogan,
             'company_email' => $company_details->company_email,
             'company_description' => $company_details->company_description,
+            'image' => $company_details->profile_image,
             'formAction' => 'Profiles/update-company-profile/' . $company_details->company_id
         ];
 
@@ -106,13 +110,63 @@ class Profiles extends BaseController
 
         $companyId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
         $company_details = $this->userModel->getCompanyDetails($companyId);
-       
+        $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id']));
+
+
          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Strip Tags
             stripTags();
 
-            $data = [
+            if(!isset($_FILES['file'])){
+                
+                $data = [
+                    'company_id' => $companyId,
+                    'company_name' => $company_details->company_name,
+                    'company_address' => $company_details->company_address,
+                    'company_slogan' => $company_details->company_slogan,
+                    'company_email' => $company_details->company_email,
+                    'company_description' => $company_details->company_description,
+                    'image' => $profile_image_name->profile_pic,
+                    'formAction' => 'Profiles/company-profile/'
+                ];
+
+                $this->view('company/editProfile', $data);
+                
+             }else
+             {
+                redirect('login');
+                //check for files
+ 				if(count($_FILES) > 0)
+ 				{
+                
+ 					//we have an image
+ 					$allowed[] = "image/jpeg";
+ 					$allowed[] = "image/png";
+
+ 					if($_FILES['image']['error'] == 0 && in_array($_FILES['image']['type'], $allowed))
+ 					{
+                      
+ 						$folder = "uploads/";
+ 						if(!file_exists($folder)){
+ 							mkdir($folder,0777,true);
+ 						}
+ 						$destination = $folder . $_FILES['image']['name'];
+ 						move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+                    $_POST['image'] = $destination;
+ 					}
+                     
+ 					
+ 				}
+                $data = [
+                    'user_id' => $_SESSION['user_id'],
+                    'profile_pic' => trim($_POST['image']),
+                ];
+
+                $this->userModel->updateProfileImage($data);
+
+
+                 $data = [
                 'company_name' => trim($_POST['company_name']),
                 'company_address' => trim($_POST['company_address']),
                 'company_slogan' => trim($_POST['company_slogan']),
@@ -122,22 +176,27 @@ class Profiles extends BaseController
             ];
 
             //Execute
-            if ($this->userModel->updateCompanyProfile($data)) {
+            if ($this->companyModel->updateCompanyProfile($data)) {
 
                 // Redirect
-                redirect('Profiles/updateCompanyProfile');
+                redirect('Companies');
             } else {
                 die('Something went wrong');
             }
+
+
+             }
+
         } else {
 
             $data = [
                 'company_id' => $companyId,
                 'company_name' => $company_details->company_name,
                 'company_address' => $company_details->company_address,
-                'company_slogan' => $company_details->company_slogan,
+                'company_slogan' => 'Hello',
                 'company_email' => $company_details->company_email,
                 'company_description' => $company_details->company_description,
+                'image' => $profile_image_name->profile_pic,
                 'formAction' => 'Profiles/company-profile/'
             ];
     
