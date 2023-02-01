@@ -230,6 +230,9 @@
 
 .profileImg {
   width: 10rem;
+  height: 10rem;
+  border: 1px solid #000;
+  object-fit: cover;
   border-radius: 50%;
   margin: 1rem;
 }

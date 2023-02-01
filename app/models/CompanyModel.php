@@ -9,34 +9,33 @@ class CompanyModel
         $this->db = new Database;
     }
 
-    // public function getCompanyUsers(){
-    //     $this->db->query('SELECT * FROM Company_users');
+    public function updateCompanyProfile($data)
+  {
+    
+      // Prepare Query
+      $this->db->query('UPDATE company_tbl SET company_name = :company_name,
+      company_address = :company_address, company_slogan = :company_slogan, 
+      company_email = :company_email, company_description = :company_description WHERE company_id = :company_id');
 
-    //     return $this->db->resultset();
-    // }
+      // Bind Values
+      $this->db->bind(':company_id', $data['company_id']);
+      $this->db->bind(':company_name', $data['company_name']);
+      $this->db->bind(':company_address', $data['company_address']);
+      $this->db->bind(':company_slogan', $data['company_slogan']);
+      $this->db->bind(':company_email', $data['company_email']);
+      $this->db->bind(':company_description', $data['company_description']);
 
-    // public function getCompanyJobroles()
-    // {
-    //     $this->db->query('SELECT * FROM Company_jobroles');
+      //Execute
+      if ($this->db->execute()) {
+          return true;
+      } else {
+          return false;
+      }
+  }
 
-    //     return $this->db->resultset();
-    // }
+  public function getProfileImageName($companyId) {
 
-    // public function addJobrole($data)
-    // {
-    //     $this->db->query('INSERT INTO Company_jobroles(name) 
-    //     VALUES (:jobrole)');
-
-    //     // Bind Values
-    //     $this->db->bind(':jobrole', $data['jobrole']);
-
-    //     //Execute
-    //     if ($this->db->execute()) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+  }
 
 
 }
