@@ -175,7 +175,7 @@ class Register extends BaseController
         //Checks whether a file is uploaded
         if (!is_uploaded_file($_FILES['company-csv']['tmp_name'])) {
             flashMessage('upload_file_error', 'Please select a csv file to register!', 'danger-alert');
-                redirect('register/register-company');
+            redirect('register/register-company');
         }
 
         $fileName = $_FILES["company-csv"]["tmp_name"];
