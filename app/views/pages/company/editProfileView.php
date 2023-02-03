@@ -4,16 +4,22 @@
 
 <section id="profile_page" class="main-content profile-main-content"> 
     <div class="edit-profile-main-container">
-        
-    <form id="editCompanyPofile" action="<?php echo URLROOT. $data['formAction']; ?>" method="POST">
+    <!-- <a class="common-blue-btn" id="company-edit-btn" href="<?php echo URLROOT; ?>profiles/update-company-profile"><span class="material-symbols-outlined ">edit_square</span> Edit Profile</a> -->
+     
+    <form id="editCompanyPofile"  method="POST" action="<?php echo URLROOT . 'profiles/update-company-profile' ?>" enctype="multipart/form-data">
         <div class="edit-company-Profile">
             <div>
             <div class="profile-left-top">
                 <h2>Company Profile</h2>
                 <img src="<?php echo URLROOT . 'img/linkedIn_icon.png' ?>">
             </div>
-            <img class="profileImg" src="<?php echo URLROOT . 'img/profile-img/profile-icon.svg' ?>">
-            
+            <img class="profileImg" src="<?php echo URLROOT . $data['image'] ?>"><br>
+           
+            <label for="profile_image" class="common-blue-btn" id="company-edit-btn">
+                <input onchange="displayImageName(this.files[0].name)" id="profile_image" type="file" name="image" style="display:none" > Upload Image 
+            </label><br>
+            <small class="file-info text-muted"></small>
+            <br><br><br>
             <div class="profile-left-text">
                 <p><input type="text" name="company_name" id="company_name" placeholder="Company Name" value="<?php echo $data['company_name'] ?>"></p><br>
                 <textarea name="company_slogan" id= "company_slogan" placeholder="Company tagline"><?php echo $data['company_slogan'] ?></textarea><br>

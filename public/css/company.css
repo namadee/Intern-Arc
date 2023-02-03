@@ -215,6 +215,13 @@
 }
 
 /*profile view css*/
+.profile-main-container {
+  width: 65%;
+  margin: auto;
+  display: flex;
+  padding: 1rem 3rem;
+}
+
 .profile-left-top {
   display: flex;
   justify-content: space-between;
@@ -223,18 +230,15 @@
 
 .profileImg {
   width: 10rem;
+  height: 10rem;
+  border: 1px solid #000;
+  object-fit: cover;
   border-radius: 50%;
   margin: 1rem;
 }
-.profile-main-container {
-  width: 100%;
-  display: flex;
-  padding: 1rem 3rem;
-}
 
 .profile-left {
-  width: 60%;
-  height: 80vh;
+  width: 45%;
   padding: 2rem 1rem;
   background-color: #fff;
   display: flex;
@@ -292,7 +296,9 @@
 /*edit profile page*/
 
 .edit-profile-main-container{
-  width:100%;
+  width: 65%;
+  margin: auto;
+  padding: 1rem 3rem;
 }
 .edit-company-Profile{
   margin:0;
@@ -405,43 +411,15 @@
   background: transparent;
   width: 3rem;
 }
-/*profile view css*/
-.profile-left-top{
-  display: flex;
-  justify-content: space-between;
-  padding: 0 0.5rem;
-}
 
-.profileImg{
-  width: 10rem;
-  border-radius: 50%;
-  margin: 1rem;
-}
-.profile-main-container{
-  width: 100%;
-  display: flex;
-}
 
-.profile-left{
-  width: 55%;
-  height: 80vh;
-  padding: 1rem;
-  background-color: #fff;
-}
+/*Schedule Interview Page 1 */
 
-.profile-right{
-  width: 45%;
-}
+.scheduleBtn a{
+  margin: 0;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.3rem 1.5rem;
+  background-color: var(--DarkBlue);
 
-.orange-text{
-  color: var(--primaryColor);
-}
-
-.profile-left-text{
-  padding-left: 1rem;
-}
-
-.profile-bottom{
-  display: flex;
-  margin-top: 2rem;
 }

@@ -7,11 +7,11 @@
         <div class="profile-left">
             <div>
             <div class="profile-left-top">
-                <h2>Welcome</h2>
+                <h2>Company Profile</h2>
                 <!-- <h2>Company Profile</h2> -->
                 <img src="<?php echo URLROOT . 'img/linkedIn_icon.png' ?>">
             </div>
-            <img class="profileImg" src="<?php echo URLROOT . 'img/profile-img/profile-icon.svg' ?>">
+            <img class="profileImg" src="<?php echo URLROOT .$data['image'] ?>">
             
             <div class="profile-left-text">
                 <h1>Welcome To <span class="orange-text"><?php echo $data['company_name']?></span></h1>

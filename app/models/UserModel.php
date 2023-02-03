@@ -177,28 +177,29 @@ class UserModel extends Database
 
   }
 
-  public function updateCompanyProfile($data)
-  {
-    
-      // Prepare Query
-      $this->db->query('UPDATE company_tbl SET company_name = :company_name,
-      company_address = :company_address, company_slogan = :company_slogan, 
-      company_email = :company_email, company_description = :company_description WHERE company_id = :company_id');
+  //Adding profile picture - User table
 
-      // Bind Values
-      $this->db->bind(':company_id', $data['company_id']);
-      $this->db->bind(':company_name', $data['company_name']);
-      $this->db->bind(':company_address', $data['company_address']);
-      $this->db->bind(':company_slogan', $data['company_slogan']);
-      $this->db->bind(':company_email', $data['company_email']);
-      $this->db->bind(':company_description', $data['company_description']);
+  public function updateProfileImage($data){
 
-      //Execute
-      if ($this->db->execute()) {
-          return true;
-      } else {
-          return false;
-      }
+    $this->db->query('UPDATE `user_tbl` SET `profile_pic` = :profile_pic WHERE `user_id` = :user_id');
+    $this->db->bind(':user_id', $data['user_id']);
+    $this->db->bind(':profile_pic', $data['profile_pic']);
+    $this->db->execute();
+  }
+
+  public function getProfileImageName($userId){
+    $this->db->query("SELECT profile_pic FROM user_tbl WHERE user_id = :user_id");
+    $this->db->bind(':user_id', $userId);
+
+    $profile_image_name = $this->db->single();
+
+    //Check Rows
+    if ($this->db->rowCount() > 0) {
+      return $profile_image_name;
+    } else {
+      return false;
+    }
+
   }
   
 }

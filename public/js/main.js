@@ -79,32 +79,34 @@ function checkConfirmPassword(event) {
 
 
 
-document.getElementById("internship_start").min = new Date()
-  .toISOString()
-  .split("T")[0];
+// document.getElementById("internship_start").min = new Date().toISOString().split("T")[0];
 
-let start_date; // undefined
-let end_date_input;
-function add_months(dt, n) {
-  return new Date(dt.setMonth(dt.getMonth() + n));
+// let start_date; // undefined
+// let end_date_input;
+// function add_months(dt, n) 
+// {
+//     return new Date(dt.setMonth(dt.getMonth() + n));      
+// }
+
+// document.getElementById("internship_start").addEventListener("change", function() {
+//     start_date = this.valueAsDate; // Update newSelectedDate value.
+//     end_date = add_months(start_date,5);
+//     console.log(end_date.toISOString().split("T")[0]); // Now has a string.
+//     console.log("end date" + end_date_input);
+//     document.getElementById("internship_end").addEventListener("change", function () {
+//         end_date_input = document.getElementById("internship_end").valueAsDate;
+//         if(end_date_input > end_date)
+//         {
+//             console.log("invalid");
+//         }
+//     });
+    
+// });
+
+//Upload image on edit profile
+function displayImageName(fileName){
+  var fileInfo = document.querySelector(".file-info").innerHTML = 'Selected file: <br>' + fileName;
 }
-
-document
-  .getElementById("internship_start")
-  .addEventListener("change", function () {
-    start_date = this.valueAsDate; // Update newSelectedDate value.
-    end_date = add_months(start_date, 5);
-    console.log(end_date.toISOString().split("T")[0]); // Now has a string.
-    console.log("end date" + end_date_input);
-    document
-      .getElementById("internship_end")
-      .addEventListener("change", function () {
-        end_date_input = document.getElementById("internship_end").valueAsDate;
-        if (end_date_input > end_date) {
-          console.log("invalid");
-        }
-      });
-  });
 
 //let end_date = new Date(start_date.setMonth(start_date.getMonth()+6));
 
