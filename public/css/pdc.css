@@ -221,7 +221,6 @@ input::-webkit-inner-spin-button {
   padding: 1rem 3rem;
   border-radius: 5px;
   justify-content: start;
-  padding-top: 2rem;
 }
 
 .register-company h2,
@@ -301,21 +300,22 @@ input::-webkit-inner-spin-button {
 
 .csv-company-bottom form {
   text-align: center;
+  gap: 0.5rem;
 }
 
 .csv-company-bottom form input {
   display: none;
 }
 
-.csv-company-bottom form p {
-  margin: 0.5rem 0;
+.csv-company-bottom form #form-file-name{
+  font-size: 0.8rem;
 }
 
 .csv-company-bottom form label {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  width: fit-content;
+  max-width: 100%;
   margin: auto;
   background-color: #424242;
   color: white;
@@ -326,6 +326,12 @@ input::-webkit-inner-spin-button {
 .csv-company-bottom button {
   width: fit-content;
   padding: 0.4rem 2rem;
+}
+
+#upload-file-error{
+  color: var(--DangerColor);
+  padding: 0.2rem;
+  font-weight: 500;
 }
 
 /*-----------------------  Manage Student - Student List Page ----------------------- */
@@ -489,7 +495,7 @@ table th {
 .dashboard-topbar-btns {
   justify-content: flex-end;
   gap: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .dashboard-topbar-btns a {

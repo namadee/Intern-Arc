@@ -13,7 +13,6 @@ let isSubmmited = false;
 
 if (registerCompanyFormElement) {
   registerCompanyFormElement.addEventListener("submit", validateContact);
-  registerCompanyFormElement.addEventListener("submit", disableFormButton);
 }
 
 function validateContact(event) {
@@ -23,21 +22,45 @@ function validateContact(event) {
     event.preventDefault();
   } else {
     validateMsgElement.textContent = "";
+    event.submitter.disabled = true;
   }
 }
 
+
 // 2. Showing Upload File Name
 
-const registerCsvFileName = document.getElementById("register-csv-file");
-const registerCsvFile = document.getElementById("company-csv");
+const uploadFileName = document.getElementById("form-file-name");
+const companyCsvFile = document.getElementById("company-csv");
+const studentsCsvFile = document.getElementById("students-csv");
 
-if (registerCsvFile) {
-  registerCsvFile.addEventListener("change", showFileName);
+if (companyCsvFile) {
+  companyCsvFile.addEventListener("change", showFileName);
+}
+
+if (studentsCsvFile) {
+  studentsCsvFile.addEventListener("change", showFileName);
 }
 
 function showFileName(event) {
-  console.log(event);
   let filename = event.srcElement.files[0].name;
-  registerCsvFileName.textContent = filename;
+  uploadFileName.textContent = filename;
 }
 
+// 3. Stop Multiple Submissions - CSV Registration Forms & Student Registration Form
+
+const csvRegistrationElement = document.getElementById('csvFormRegistration');
+const studentRegFormElement = document.getElementById('student-register-form');
+
+if(csvRegistrationElement){
+  csvRegistrationElement.addEventListener('submit',preventMultipleSubmissions);
+}
+
+if(studentRegFormElement){
+  studentRegFormElement.addEventListener('submit',preventMultipleSubmissions);
+}
+
+function preventMultipleSubmissions(event){
+  event.submitter.disabled = true;
+}
+
+// 4. 

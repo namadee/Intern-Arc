@@ -9,23 +9,22 @@ function toggleNav() {
 
 //Toggle Password Visibility Function
 const toggleIcon1 = document.getElementById("togglePasswordIcon1");
-const passwordField1 =document.getElementById('password');
-const passwordField2 =document.getElementById('confirm_password');
+const passwordField1 = document.getElementById("password");
+const passwordField2 = document.getElementById("confirm_password");
 
 if (toggleIcon1) {
   toggleIcon1.addEventListener("click", togglePasswordVisibility);
 }
 
 function togglePasswordVisibility() {
-
   if (passwordField1.type === "password") {
     passwordField1.type = "text";
     passwordField2.type = "text";
-    toggleIcon1.textContent = 'visibility_off';
+    toggleIcon1.textContent = "visibility_off";
   } else {
     passwordField1.type = "password";
     passwordField2.type = "password";
-    toggleIcon1.textContent = 'visibility';
+    toggleIcon1.textContent = "visibility";
   }
 }
 
@@ -60,44 +59,52 @@ function checkConfirmPassword(event) {
   }
 }
 
-
 //Stop multiple submission of form (All the forms selected)
-const allForms = document.querySelectorAll("form");
+// const allForms = document.querySelectorAll("form");
 
-if (allForms) {
-  for (let i = 0; i < allForms.length; i++) {
-    allForms[i].addEventListener("submit", disableFormButton);
-  }
-}
+// if (allForms) {
+//   for (let i = 0; i < allForms.length; i++) {
+//     allForms[i].addEventListener("submit", disableFormButton);
+//   }
+// }
 
-function disableFormButton(event) {
-  event.submitter.disabled = true;
-}
+// function disableFormButton(event) {
+//   event.submitter.disabled = true;
+// }
+
+// function enableFormButton(event){
+//   event.submitter.disabled = false;
+// }
+//*****Cant use this all Form function -> It clashes with form validations
 
 
-document.getElementById("internship_start").min = new Date().toISOString().split("T")[0];
+
+document.getElementById("internship_start").min = new Date()
+  .toISOString()
+  .split("T")[0];
 
 let start_date; // undefined
 let end_date_input;
-function add_months(dt, n) 
-{
-    return new Date(dt.setMonth(dt.getMonth() + n));      
+function add_months(dt, n) {
+  return new Date(dt.setMonth(dt.getMonth() + n));
 }
 
-document.getElementById("internship_start").addEventListener("change", function() {
+document
+  .getElementById("internship_start")
+  .addEventListener("change", function () {
     start_date = this.valueAsDate; // Update newSelectedDate value.
-    end_date = add_months(start_date,5);
+    end_date = add_months(start_date, 5);
     console.log(end_date.toISOString().split("T")[0]); // Now has a string.
     console.log("end date" + end_date_input);
-    document.getElementById("internship_end").addEventListener("change", function () {
+    document
+      .getElementById("internship_end")
+      .addEventListener("change", function () {
         end_date_input = document.getElementById("internship_end").valueAsDate;
-        if(end_date_input > end_date)
-        {
-            console.log("invalid");
+        if (end_date_input > end_date) {
+          console.log("invalid");
         }
-    });
-    
-});
+      });
+  });
 
 //let end_date = new Date(start_date.setMonth(start_date.getMonth()+6));
 
@@ -110,5 +117,3 @@ function toggleProfileUpdate() {
     updateBtn.style.display = "none";
   }
 }
-
-

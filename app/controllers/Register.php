@@ -17,7 +17,6 @@ class Register extends BaseController
 
     public function index()
     {
-        
     } //Register PDC users
 
     public function registerStudent() //Single Student User Registration - Ruchira
@@ -173,6 +172,11 @@ class Register extends BaseController
 
     public function registerCompanies()
     {
+        //Checks whether a file is uploaded
+        if (!is_uploaded_file($_FILES['company-csv']['tmp_name'])) {
+            flashMessage('upload_file_error', 'Please select a csv file to register!', 'danger-alert');
+                redirect('register/register-company');
+        }
 
         $fileName = $_FILES["company-csv"]["tmp_name"];
 
@@ -206,7 +210,7 @@ class Register extends BaseController
                     $data = [
                         'user_id' => $user_id,
                         'company_name' => $column[0],
-                        'contact' => '0'.$column[3],
+                        'contact' => '0' . $column[3],
                     ];
 
                     $email = new Email();
@@ -216,8 +220,67 @@ class Register extends BaseController
                 redirect('register/register-company');
             }
         }
+
+        //If the upload csv is empty it gets redirected
+        redirect('register/register-company');
     }
 
+    public function registerStudents()
+    {
+        //Checks whether a file is uploaded
+        if (!is_uploaded_file($_FILES['students-csv']['tmp_name'])) {
+            flashMessage('upload_file_error', 'Please select a csv file to register!', 'danger-alert');
+            redirect('register/register-student');
+        }
+
+
+        $fileName = $_FILES["students-csv"]["tmp_name"];
+
+        if ($_FILES["students-csv"]["size"] > 0) {
+            $file = fopen($fileName, "r");
+
+            $counter = 0;
+
+            while (($column = fgetcsv($file, 1000, ",")) !== FALSE) {
+
+                $counter++; //To skip the header of the csv
+                if ($counter > 1) {
+                    //Random Password
+                    $password = generatePassword();
+
+                    // Hash Password
+                    $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                    $data = [
+                        'username' => $column[0],
+                        'email' => $column[1],
+                        'password' => $hashPassword,
+                        'user_role' => 'student'
+                    ];
+
+                    //Execute
+                    $this->registerModel->registerUser($data);
+
+                    //Get that User_Id
+                    $user_id = $this->userModel->getUserId($data['email']);
+
+                    $data = [
+                        'user_id' => $user_id,
+                        'registration_number' => $column[2],
+                        'index_number' => '0' . $column[3],
+                    ];
+
+                    $email = new Email();
+                    $email->sendLoginEmail($column[1], $password, $column[0]);
+                    $this->registerModel->registerStudent($data);
+                }
+                redirect('register/register-student');
+            }
+        }
+
+        //If the upload csv is empty it gets redirected
+        redirect('register/register-student');
+    }
     public function test()
     {
     }

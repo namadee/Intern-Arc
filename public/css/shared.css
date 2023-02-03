@@ -553,7 +553,6 @@ main {
   margin: 0;
 }
 
-
 /******************** Main Log-In page ******************************/
 
 .loginContainer {
@@ -671,7 +670,6 @@ main {
   border-radius: 5px;
   position: absolute;
   bottom: 5%;
-  
 }
 
 .input-error {
@@ -689,6 +687,9 @@ main {
   font-size: 0.8rem;
   padding: 0.4rem 0.8rem;
   border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 #flash-message.success-alert {
@@ -703,6 +704,21 @@ main {
   background-color: var(--DangerBackground);
   color: var(--DangerColor);
   border-left-width: 8px;
+}
+
+#flash-message span {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#flash-message.success-alert span:hover {
+  background-color: var(--SuccessColor);
+  color: white;
+}
+
+#flash-message.danger-alert span:hover {
+  background-color: var(--DangerColor);
+  color: white;
 }
 
 /********************************* Update Password Page *********************************/

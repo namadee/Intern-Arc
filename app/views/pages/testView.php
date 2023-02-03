@@ -10,6 +10,7 @@
     <h2>
     THIS IS TEST VIEW
     </h2>
+    <h2><?php echo $data['msg']; ?></h2>
     <?php 
 
     ?>
