@@ -50,7 +50,15 @@ class Companies extends BaseController
         $this->view('company/shortlistedStudents');
     }
 
-    public function scheduleInterview(){
-        $this->view('company/scheduleInterview');
+    public function InterviewScheduleList(){
+        $this->view('company/InterviewScheduleList');
+    }
+
+    public function InterviewScheduleCreate(){
+        $this->view('company/InterviewScheduleCreate');
+    }
+
+    public function InterviewSchedule(){
+        $this->view('company/InterviewSchedule');
     }
 }
