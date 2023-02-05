@@ -1,24 +1,23 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
-<link rel="stylesheet" href="<?php echo URLROOT; ?>css/pdc.css">
-<script src="<?php echo URLROOT; ?>js/pdc.js" defer></script>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 
 <section id="update-main-profile" class="main-content">
     <?php flashMessage('profile_update_status'); ?>
     <div class="update-profile-container display-flex-col">
-        <h2>Profile Details</h2>
+        <div class="display-flex-col">
+            <h2>Profile Details</h2>
+            <a href="<?php echo URLROOT . "profiles/company-profile" ?>" id="go-to-profile-btn" class="display-flex-row"><span class="material-symbols-outlined">
+                    recent_actors
+                </span>Go to Profile</a>
+        </div>
+        
 
         <form class="display-flex-col" method="POST" action="<?php echo URLROOT . "profiles/update-profile-details" ?> " enctype="multipart/form-data">
             <div class="main-user-profile-icon display-flex-col">
                 <div class="display-flex-col">
                     <img src="<?php echo URLROOT . $_SESSION['profile_pic']; ?>">
-                    <label for="upload-img" id="main-profile-edit" class="display-flex-row">
-                        <span class="material-symbols-outlined">
-                            edit_square
-                        </span>
-                        Change</label>
-                    <input type="file" name="upload_img" id="upload-img">
                 </div>
                 <p id="form-file-name"></p>
             </div>

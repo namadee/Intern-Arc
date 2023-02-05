@@ -32,6 +32,7 @@ function validateContact(event) {
 const uploadFileName = document.getElementById("form-file-name");
 const companyCsvFile = document.getElementById("company-csv");
 const studentsCsvFile = document.getElementById("students-csv");
+const profileImgElement = document.getElementById("upload-img");
 
 if (companyCsvFile) {
   companyCsvFile.addEventListener("change", showFileName);
@@ -39,6 +40,10 @@ if (companyCsvFile) {
 
 if (studentsCsvFile) {
   studentsCsvFile.addEventListener("change", showFileName);
+}
+
+if (profileImgElement) {
+  profileImgElement.addEventListener("change", showFileName);
 }
 
 function showFileName(event) {
@@ -63,4 +68,12 @@ function preventMultipleSubmissions(event){
   event.submitter.disabled = true;
 }
 
-// 4. 
+// 4. Check Image Size
+
+//binds to onchange event of your input field
+$('#myFile').bind('change', function() {
+  console.log(this.files[0].size);
+  //this.files[0].size gets the size of your file.
+  alert(this.files[0].size);
+
+});

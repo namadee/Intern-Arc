@@ -162,7 +162,8 @@ class UserModel extends Database
     $this->db->execute();
   }
 
-  public function getCompanyDetails($company_id){
+  public function getCompanyDetails($company_id)
+  {
     $this->db->query("SELECT * FROM company_tbl WHERE company_id = :company_id");
     $this->db->bind(':company_id', $company_id);
 
@@ -174,20 +175,25 @@ class UserModel extends Database
     } else {
       return false;
     }
-
   }
 
   //Adding profile picture - User table
-
-  public function updateProfileImage($data){
+  public function updateProfileImage($data)
+  {
 
     $this->db->query('UPDATE `user_tbl` SET `profile_pic` = :profile_pic WHERE `user_id` = :user_id');
     $this->db->bind(':user_id', $data['user_id']);
     $this->db->bind(':profile_pic', $data['profile_pic']);
-    $this->db->execute();
+
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  public function getProfileImageName($userId){
+  public function getProfileImageName($userId)
+  {
     $this->db->query("SELECT profile_pic FROM user_tbl WHERE user_id = :user_id");
     $this->db->bind(':user_id', $userId);
 
@@ -199,10 +205,5 @@ class UserModel extends Database
     } else {
       return false;
     }
-
   }
-  
 }
-
-
-
