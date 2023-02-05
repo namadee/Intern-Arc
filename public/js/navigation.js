@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", function () {
     [urlRoot + "advertisements", "text_to_speech", "Advertisements"],
     ["studentRequests", "school", "Student Requests"],
     ["StudentShortlist", "list_alt", "Shortlisted"],
-    ["#", "calendar_month", "Schedule"],
+    [urlRoot + "Companies/scheduleInterview", "calendar_month", "Schedule"],
     ["#", "approval_delegation", "Complaint"],
     ["company/profile", "manage_accounts", "Profile"],
   ];

@@ -19,7 +19,7 @@
             <td>Web Development</td>
             <td>7</td>
             <td>Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
+            <td><div class="scheduleBtn"><a href="<?php echo URLROOT; ?>companies/InterviewScheduleCreate" class="common-blue-btn">Schedule</a></div></td>
         </tr>
         <tr>
             <td>Web Development</td>

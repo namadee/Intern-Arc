@@ -6,7 +6,6 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 100%;
 }
@@ -73,9 +72,8 @@
 .common_list_content {
   width: 100%;
   background-color: #fff;
-  padding: 1.5rem;
   margin: 1rem;
-  height: 100%;
+  padding: 1rem;
 }
 
 .common_list_content table {
@@ -97,13 +95,13 @@
   padding: 0.3rem;
 }
 
-.common_list_content table th:nth-child(1) {
+/* .common_list_content table th:nth-child(1) {
   width: 40%;
 }
 
 .common_list_content table th:nth-child(3) {
   width: 20%;
-}
+} */
 
 .viewBtn {
   padding: 0.2rem 1rem;
@@ -379,8 +377,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
 }
 #company-dashboard .common_list_content {
@@ -544,4 +540,151 @@
 
 .update-profile-container #go-to-profile-btn:hover{
   background-color: #dadada;
+}
+
+/* Create Interview Schedule Page */
+
+
+.dowtable{
+  width:30%;
+  border-spacing: 0.5rem;
+}
+
+.dowtable td{
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--DarkBlue);
+}
+.create-sche-main-container {
+  position: relative;
+  width: 55%;
+  margin: auto;
+  display: flex;
+  padding: 1rem 3rem;
+  padding-bottom: 5rem;
+  background: #FFF;
+
+  display:flex;
+  flex-direction: column;
+  gap: 2rem;
+
+}
+
+.create-sche-top{
+  justify-content: space-between;
+}
+
+.create-sche-top h1{
+  font-size: 1.2em;
+}
+
+.duration-divs{
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.dowPickerOption {
+  display: inline-block;
+}
+
+.dowPickerOption input[type=checkbox] {
+  display: none;
+}
+.dowPickerOption label {
+font-size: 1em;
+color: #A7A7A7;
+cursor: pointer;
+}
+.dowPickerOption input[type=checkbox]:checked ~ label {
+color: #464646;
+font-weight: 500;
+}
+.time-slot-table{
+  border-spacing: 0.5rem;
+}
+.time-slot-table .slot{
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--DarkBlue);
+  color: var(--DarkBlue);
+}
+
+.time-slot-table td div{
+  display: inline-block;
+}
+.create-sche-bottom{
+  display: flex;
+  justify-content: space-between;
+}
+
+.time-period{
+  display: flex;
+  gap: 1rem;
+}
+
+.add-slot-btn{
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  padding: 0.5rem 0.2rem;
+  color: var(--primaryColor);
+  border: solid 1px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.saveBtn{
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+}
+
+#Interviewee_count{
+  width: 2rem;
+}
+
+.sche-inputs{
+  justify-content: space-between;
+}
+
+.sche-inputs input{
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--DarkBlue);
+}
+
+/* view schedule page*/
+
+.collapsible {
+  background-color: var(--DarkBlue);
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 50%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  display: flex;
+  margin-bottom: -2rem;
+}
+
+.active, .collapsible:hover {
+  background-color: var(--LightBlue);
+}
+
+.content {
+  padding: 0 1rem;
+  max-height: 0rem;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.content table{
+  border-spacing: 1rem;
+}
+.content table td a{
+  padding: 0.5rem;
 }
