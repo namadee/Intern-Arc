@@ -4,6 +4,8 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
+    <?php flashMessage('upload_file_error'); ?>
+
     <div class="display-flex-row register-student-top">
         <div class="display-flex-row">Batch
             <p>2022 Batch</p>
@@ -18,7 +20,7 @@
     <div class="add-student-container add-company-container display-flex-row">
         <div class="register-company display-flex-col">
             <h2>Register a Student</h2>
-            <form action="<?php echo URLROOT . "register/register-student"; ?>" method="POST" class="display-flex-col">
+            <form action="<?php echo URLROOT . "register/register-student"; ?>" method="POST" class="display-flex-col" id="student-register-form">
                 <ul class="display-flex-col">
                     <li class="display-flex-col">
                         <label for="username">Student Name</label>
@@ -75,17 +77,17 @@
             </div>
             <div class="display-flex-col">
 
-                <p><span>Step 3 : </span> Upload and press submit to complete the registration.</p>
+                <p><span>Step 3 : </span> Upload and press register to complete the registration.</p>
             </div>
             <div class="csv-company-bottom">
-                <form action="<?php echo URLROOT . "register/register-students"; ?>" name="uploadCsv" enctype="multipart/form-data" method="POST" class="display-flex-col">
-                    <label for="company-csv" class="display-flex-row">
+                <form action="<?php echo URLROOT . "register/register-students"; ?>" name="uploadCsv" enctype="multipart/form-data" method="POST" class="display-flex-col" id="csvFormRegistration">
+                    <label for="students-csv" class="display-flex-row">
                         <span class="material-symbols-outlined">
                             drive_folder_upload
                         </span>
-                        Choose a File</label>
-                    <p id="register-csv-file">No file Choosen</p>
-                    <input type="file" name="company-csv" id="company-csv" accept=".csv">
+                        <p id="form-file-name">No file Choosen</p>
+                    </label>
+                    <input type="file" name="students-csv" id="students-csv" accept=".csv">
                     <button type="submit" class="common-blue-btn">Register</button>
                 </form>
             </div>

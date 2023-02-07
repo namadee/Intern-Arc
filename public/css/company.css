@@ -214,7 +214,8 @@
 
 /*profile view css*/
 .profile-main-container {
-  width: 65%;
+  justify-content: center;
+  width: 80%;
   margin: auto;
   display: flex;
   padding: 1rem 3rem;
@@ -236,7 +237,7 @@
 }
 
 .profile-left {
-  width: 45%;
+  width: 50%;
   padding: 2rem 1rem;
   background-color: #fff;
   display: flex;
@@ -271,7 +272,7 @@
   margin-left: none;
 }
 .profile-right {
-  
+  width: 50%;
   justify-content: center;
   align-items: center;
   gap: 3rem;
@@ -418,6 +419,127 @@
   padding: 0.3rem 1.5rem;
   background-color: var(--DarkBlue);
 
+}
+
+/*----------------------- MAIN Profile Update Page -----------------------*/
+
+.update-profile-container {
+  padding: 2rem;
+  width: 50%;
+  margin: auto;
+  gap: 1rem;
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.update-profile-container h3 {
+  text-align: left;
+}
+
+.update-profile-container img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.update-profile-container form input {
+  width: 90%;
+}
+
+.update-profile-container form ul {
+  width: 100%;
+  margin: auto;
+  font-size: 0.9rem;
+}
+.update-profile-container form li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 95%;
+  margin-top: 1rem;
+}
+
+.update-profile-container form li label {
+  width: 25%;
+}
+
+.update-profile-container-btn {
+  display: flex;
+  width: fit-content;
+  margin: auto;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.update-profile-container-btn button {
+  padding: 0.5rem;
+}
+
+.main-user-profile-icon div {
+  position: relative;
+  align-items: center;
+  display: flex;
+  width: 120px;
+  justify-content: center;
+  margin: auto;
+}
+
+.main-user-profile-icon #main-profile-edit {
+  background-color: var(--BackgroungColor );;
+  color: var(--Black);
+  padding: 0.2rem 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  align-items: center;
+  gap: 0.3rem;
+  box-shadow: var(--Boxshadow1);
+  cursor: pointer;
+  transition: ease-in-out 200ms;
+}
+
+.main-user-profile-icon #main-profile-edit:hover{
+  background-color: var(--DarkBlue);
+  color: white;
+}
+
+.main-user-profile-icon #main-profile-edit span {
+  font-size: 1.1rem;
+}
+
+.update-profile-container form input {
+  padding: 0.5rem;
+}
+
+.update-profile-container input[type=file]{
+  display: none;
+}
+
+.update-profile-container #form-file-name {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+}
+
+.update-profile-container #reset-btn {
+  background-color: var(--primaryColor);
+} 
+
+.update-profile-container #go-to-profile-btn{
+  color:var(--primaryColor);
+  background-color: var(--BackgroungColor);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  margin-top: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.update-profile-container #go-to-profile-btn:hover{
+  background-color: #dadada;
 }
 
 /* Create Interview Schedule Page */

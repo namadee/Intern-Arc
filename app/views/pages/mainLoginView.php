@@ -2,7 +2,6 @@
 </head>
 
 <body>
-    <!-- <div class="success-alert" id="flash-message">Password is successfully Changed!</div> -->
     <?php flashMessage('password_updated'); ?>
     <div class="loginContainer">
         <div class="rightBox">

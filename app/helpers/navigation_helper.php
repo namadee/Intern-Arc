@@ -28,7 +28,7 @@ function getNavigationByUser($userType)
         array(URLROOT.'requests/shortlisted-list', 'list_alt', 'Shortlisted'),
         array(URLROOT.'companies/InterviewScheduleList', 'calendar_month', 'Schedule'),
         array(URLROOT.'complaints', 'approval_delegation', 'Complaint'),
-        array(URLROOT.'profiles/company-profile', 'manage_accounts', 'Profile')
+        array(URLROOT.'profiles/view-profile-details', 'manage_accounts', 'Profile')
       );
 
       return $navigation;

@@ -4,7 +4,10 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
+    <?php flashMessage('upload_file_error'); ?>
+
     <div class="add-company-container display-flex-row">
+
         <div class="register-company display-flex-col" id="register-company">
             <h2>Register a Company</h2>
             <form action="<?php echo URLROOT . "register/register-company"; ?>" method="POST" class="display-flex-col">
@@ -62,16 +65,16 @@
             </div>
             <div class="display-flex-col">
 
-                <p><span>Step 3 : </span> Upload and press submit to complete the registration.</p>
+                <p><span>Step 3 : </span> Upload and press register to complete the registration.</p>
             </div>
             <div class="csv-company-bottom">
-                <form action="<?php echo URLROOT . "register/register-companies"; ?>" name="uploadCsv" enctype="multipart/form-data" method="POST" class="display-flex-col">
+                <form action="<?php echo URLROOT . "register/register-companies"; ?>" name="uploadCsv" enctype="multipart/form-data" method="POST" class="display-flex-col" id="csvFormRegistration">
                     <label for="company-csv" class="display-flex-row">
                         <span class="material-symbols-outlined">
                             drive_folder_upload
                         </span>
-                        Choose a File</label>
-                    <p id="register-csv-file">No file Choosen</p>
+                        <p id="form-file-name">No file Choosen</p>
+                    </label>
                     <input type="file" name="company-csv" id="company-csv" accept=".csv">
                     <button type="submit" class="common-blue-btn">Register</button>
                 </form>
