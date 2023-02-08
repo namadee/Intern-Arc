@@ -172,7 +172,10 @@
   border: 1px solid var(--AlternateLightGrey);
   width: 70%;
 }
-
+.add-req-btn{
+  width: 0;
+  background: transparent;
+}
 .add_advertisement form input[type="checkbox"] {
   border: 1px solid var(--AlternateLightGrey);
 }
@@ -697,6 +700,8 @@ font-weight: 500;
   background: #fff;
   margin: auto;
   padding: 1rem 2rem;
+  padding-bottom: 4rem;
+  position: relative;
 }
 
 #addreq{
@@ -746,6 +751,7 @@ font-weight: 500;
   background: linear-gradient(269.96deg, #3e7cb1 5.25%, #054a91 88.31%);
     padding: 2rem;
     position: relative;
+    border-radius: 5px;
 }
 
 .advertisement-container-body .body-left{
@@ -793,4 +799,13 @@ font-weight: 500;
   color: white;
   border-radius: 10px;
   padding: 1rem;
+}
+
+.apply-btn{
+  padding: 0.5rem 2rem;
+  margin: 1rem;
+  position: absolute;
+  right: 1rem;
+  background: var(--primaryColor);
+  
 }

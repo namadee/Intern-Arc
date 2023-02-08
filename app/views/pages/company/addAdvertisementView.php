@@ -28,7 +28,7 @@
             <div class="addAdvertisement-items">
                 <p><label for="requirements">Requirements</label></p>
                 <div class="display-flex-row addreqs">
-                    <input type="text" id="requirements" name="requirements" value="">
+                    <input type="text" class="add-req-btn" id="requirements" name="requirements" value="">
                         <label id="addreq" for="add"><span id="addIcon" class="material-symbols-outlined">library_add</span></label>
                     <input type='button'>
                 </div>

@@ -67,7 +67,7 @@
             </div>
        </div>
        </div>
-
+        <button class="common-blue-btn apply-btn">Apply</button>
     </div> 
 
 </section>
