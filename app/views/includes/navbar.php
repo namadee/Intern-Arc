@@ -2,9 +2,10 @@
 
 <body>
     <?php
+
     use helpers\Session;
 
-    if(!SESSION::isLoggedIn()){
+    if (!SESSION::isLoggedIn()) {
         redirect('login');
     }
 
@@ -48,9 +49,12 @@
     </nav>
     <main id="main" class="">
         <section id="topnav" class="top-nav">
-            <div class="topNav-left">
-                <div class="topNav-icon">
-                    <span class="material-symbols-rounded" onclick="toggleNav()">sort</span>
+            <div class="topNav-left" id="top-nav-left">
+                <div class="toggle-nav-logo" id="toggle-nav-logo">
+                    <img src="<?php echo URLROOT . 'img/logo-icon.png' ?>">
+                </div>
+                <div class="topNav-icon" onclick="toggleNav()">
+                    <span class="material-symbols-rounded">sort</span>
                 </div>
                 <p>Dashboard</p>
             </div>
@@ -59,6 +63,6 @@
                     <span class="material-symbols-outlined">notifications</span>
                 </div>
                 <p><?php echo $_SESSION['username'] ?></p>
-                <img src="<?php echo URLROOT . 'img/profile-img/profile-icon.svg' ?>">
+                <img src="<?php echo URLROOT . $_SESSION['profile_pic'] ?>">
             </div>
         </section>

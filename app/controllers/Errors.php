@@ -13,6 +13,7 @@ class Errors extends BaseController
         $this->view('error'); 
     }
 
+
     public function errorRedirect(){
         if (Session::isLoggedIn()) {
             //If user logged in, then gets redirected back to dashboard of that user

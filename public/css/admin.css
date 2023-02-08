@@ -139,10 +139,12 @@
   margin: auto;
 }
 
-.admin-user-profile-icon a {
-  position: absolute;
-  right: 0;
-  bottom: 1rem;
+.admin-user-profile-icon #admin-profile-edit {
+  background-color: var(--primaryColor);;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 3px;
 }
 
 

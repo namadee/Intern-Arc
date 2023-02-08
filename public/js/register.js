@@ -1,6 +1,5 @@
 
 
-<<<<<<< HEAD
 
 var password = "123456"; 
 
@@ -26,7 +25,6 @@ document.reg_form.email.focus();
 return false;
 }
 }
-=======
 function Validate(emailText, passText)
 {
 let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -61,4 +59,3 @@ else
 
 }
 
->>>>>>> 4eb739667e5b1599d4cbd087c8bf2190218b0129

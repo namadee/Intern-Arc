@@ -9,23 +9,22 @@ function toggleNav() {
 
 //Toggle Password Visibility Function
 const toggleIcon1 = document.getElementById("togglePasswordIcon1");
-const passwordField1 =document.getElementById('password');
-const passwordField2 =document.getElementById('confirm_password');
+const passwordField1 = document.getElementById("password");
+const passwordField2 = document.getElementById("confirm_password");
 
 if (toggleIcon1) {
   toggleIcon1.addEventListener("click", togglePasswordVisibility);
 }
 
 function togglePasswordVisibility() {
-
   if (passwordField1.type === "password") {
     passwordField1.type = "text";
     passwordField2.type = "text";
-    toggleIcon1.textContent = 'visibility_off';
+    toggleIcon1.textContent = "visibility_off";
   } else {
     passwordField1.type = "password";
     passwordField2.type = "password";
-    toggleIcon1.textContent = 'visibility';
+    toggleIcon1.textContent = "visibility";
   }
 }
 
@@ -60,19 +59,24 @@ function checkConfirmPassword(event) {
   }
 }
 
-
 //Stop multiple submission of form (All the forms selected)
-const allForms = document.querySelectorAll("form");
+// const allForms = document.querySelectorAll("form");
 
-if (allForms) {
-  for (let i = 0; i < allForms.length; i++) {
-    allForms[i].addEventListener("submit", disableFormButton);
-  }
-}
+// if (allForms) {
+//   for (let i = 0; i < allForms.length; i++) {
+//     allForms[i].addEventListener("submit", disableFormButton);
+//   }
+// }
 
-function disableFormButton(event) {
-  event.submitter.disabled = true;
-}
+// function disableFormButton(event) {
+//   event.submitter.disabled = true;
+// }
+
+// function enableFormButton(event){
+//   event.submitter.disabled = false;
+// }
+//*****Cant use this all Form function -> It clashes with form validations
+
 
 
 // document.getElementById("internship_start").min = new Date().toISOString().split("T")[0];
@@ -115,5 +119,3 @@ function toggleProfileUpdate() {
     updateBtn.style.display = "none";
   }
 }
-
-
