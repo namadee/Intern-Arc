@@ -10,8 +10,8 @@
     <h2>
     THIS IS TEST VIEW
     </h2>
-    <?php 
-
-    ?>
+    <?php print_r( $data['requirements-list'] ) ?><br>
+    <?php echo $data['length'] ?>
+    
 </body>
 </html>

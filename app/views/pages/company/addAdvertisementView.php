@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
+<script src="<?php echo URLROOT; ?>js/addAdvertisement.js" defer></script>
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 
@@ -25,9 +26,18 @@
             </div>
            
             <div class="addAdvertisement-items">
-            <p><label for="requirements">Other Requirements</label></p>
-            <textarea id="requirements" name="requirements"rows="6" cols="50" required><?php echo $data['requirements'] ?></textarea>
-
+                <p><label for="requirements">Requirements</label></p>
+                <div class="display-flex-row addreqs">
+                    <input type="text" id="requirements" name="requirements" value="">
+                        <label id="addreq" for="add"><span id="addIcon" class="material-symbols-outlined">library_add</span></label>
+                    <input type='button'>
+                </div>
+                <?php 
+                    $string = $data['requirements'];
+                    //$convertedString = str_replace('\n','new line',  $string);
+                ?>
+                <textarea cols=100 rows=10 id="requirements-list" name="requirements-list"><?php echo $data['requirements'];  ?></textarea>
+                
             </div>
 
             <div class="addAdvertisement-items">
@@ -64,7 +74,6 @@
                     <li>
                         <input type="radio" id="4thyear" name="required_year" value="4" <?php if($data['required_year'] == 4){echo "checked";} ?> required>
                         <label for="4thyear" >4th year</label>
-
                     </li>
                     <li>
                       <input type="radio" id="both" name="required_year" value="both" <?php if($data['required_year'] == 'both'){echo "checked";} ?> required>

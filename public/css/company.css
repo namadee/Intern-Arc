@@ -379,11 +379,12 @@
   overflow: hidden;
 }
 #company-dashboard .common_list_content {
-  padding: 1rem;
+  padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 #company-dashboard table {
   word-break: normal;
@@ -398,12 +399,12 @@
   padding: 0.3rem 1rem;
   align-self: flex-end;
   position: absolute;
-  right: 2rem;
-  bottom: 0rem;
+  right: 3rem;
+  bottom: 1rem;
 }
 
-#advertisement-list .common-table th:nth-child(4),
-#advertisement-list .common-table th:nth-child(5) {
+#advertisement-list .common-table th:nth-child(5),
+#advertisement-list .common-table th:nth-child(6) {
   background: transparent;
   width: 3rem;
 }
@@ -565,4 +566,109 @@ font-weight: 500;
 }
 .content table td a{
   padding: 0.5rem;
+}
+
+/* view advertisement page */
+
+.advertisement-main-container{
+  width: 70%;
+  background: #fff;
+  margin: auto;
+  padding: 1rem 2rem;
+}
+
+#addreq{
+  background: none;
+  outline: none;
+  border: none;
+  width: fit-content;
+}
+
+.addreqs{
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  
+}
+
+.addAdvertisement-items #requirements{
+  width: 100%;
+}
+
+/* .addAdvertisement-items ul{
+  list-style-type: disc;
+} */
+
+#dot-icon{
+  font-variation-settings:
+  'FILL' 1
+}
+
+.ucsc-logo{
+  width: 5%;
+}
+
+.internarc-logo{
+  width: 10%;
+}
+
+.ad-header-top{
+  justify-content: center;
+}
+
+.ad-header-bottom{
+  align-items: center;
+}
+
+.advertisement-container-body{
+  background: linear-gradient(269.96deg, #3e7cb1 5.25%, #054a91 88.31%);
+    padding: 2rem;
+    position: relative;
+}
+
+.advertisement-container-body .body-left{
+  width: 50%;
+}
+
+.advertisement-container-body .body-left ul{
+  width: 100%;
+  gap: 1rem;
+}
+.advertisement-container-body .body-left ul li,
+.advertisement-container-body .body-right .job-description h3
+{
+  color: white;
+  gap: 1rem;
+}
+.advertisement-container-body .body-left li p{
+  color: white;
+  width: 10rem;
+}
+
+.advertisement-container-body .body-left li span {
+  width: 12rem;
+  padding: 0.8rem;
+  color: white;
+  background: #eeeeee5b;
+  border-radius: 10px;
+}
+
+.advertisement-container-body .body-left li .period-items{
+  gap: 1rem;
+
+}
+
+.advertisement-container-body .body-right{
+  width: 50%;
+  gap: 2rem;
+  margin-left: 4rem;
+}
+
+.advertisement-container-body .body-right .job-description div{
+  background-color: #eeeeee5b;
+  width: 80%;
+  padding: 1rem;
+  color: white;
+  border-radius: 10px;
+  padding: 1rem;
 }

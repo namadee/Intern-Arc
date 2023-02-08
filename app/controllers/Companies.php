@@ -61,4 +61,5 @@ class Companies extends BaseController
     public function InterviewSchedule(){
         $this->view('company/InterviewSchedule');
     }
+
 }

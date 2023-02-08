@@ -183,8 +183,6 @@ class Profiles extends BaseController
             } else {
                 die('Something went wrong');
             }
-
-
              }
 
         } else {
