@@ -67,6 +67,9 @@ class Profiles extends BaseController
     // public function showCompanyProfile()
     // {
     //     $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+
+
+    
     //     $company_details = $this->userModel->getCompanyDetails($companyId);
 
     //     $data = [
@@ -96,7 +99,7 @@ class Profiles extends BaseController
             // File upload path
             $targetDir = "img/profile-img/";
             //Change image file name - Unique Name for each user with the help of userId
-            $fileName = 'user' . $_SESSION['user_id'] . '_profile_img' . rand(0, 100000);
+            $fileName = 'user' . $_SESSION['user_id'] . '_profileimg' . rand(0, 100000);
             //Get the extension
             $extension = pathinfo($_FILES["profile_image"]["name"], PATHINFO_EXTENSION);
             //Full image name
@@ -350,5 +353,6 @@ class Profiles extends BaseController
             ];
             $this->view('test', $data);
         }
+
     }
 }

@@ -86,4 +86,28 @@ class Email
         $this->mail->Send();
         $this->mail->smtpClose();
     }
+
+    //Forgot
+    public function sendInvitationEmail($companyEmail, $attachment, $mailSubject, $mailBody)
+    {
+
+        $this->mail->isHTML(true);
+        $this->mail->Subject = $mailSubject;
+        $this->mail->setFrom('ruchira.commercialtp@gmail.com');
+
+        $this->mail->Body = "
+            <div style='background-color: #054a91; margin:0; padding: 0; height: 20px;'>
+    
+            </div>
+            <div
+                style='text-align: center;padding-top: 15px;'>
+                <p>" . $mailBody . "</p>
+            </div>
+            ";
+
+        $this->mail->addAttachment($attachment);
+        $this->mail->addAddress($companyEmail);
+        $this->mail->Send();
+        $this->mail->smtpClose();
+    }
 }
