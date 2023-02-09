@@ -26,9 +26,9 @@ function getNavigationByUser($userType)
         array(URLROOT.'advertisements', 'text_to_speech', 'Advertisements'),
         array(URLROOT.'requests', 'school', 'Student Requests'),
         array(URLROOT.'requests/shortlisted-list', 'list_alt', 'Shortlisted'),
-        array(URLROOT.'advertisements', 'calendar_month', 'Schedule'),
+        array(URLROOT.'companies/InterviewScheduleList', 'calendar_month', 'Schedule'),
         array(URLROOT.'complaints', 'approval_delegation', 'Complaint'),
-        array(URLROOT.'profiles/company-profile', 'manage_accounts', 'Profile')
+        array(URLROOT.'profiles/view-profile-details', 'manage_accounts', 'Profile')
       );
 
       return $navigation;
@@ -55,7 +55,7 @@ function getNavigationByUser($userType)
         array(URLROOT.'admin/viewPdcStaff', 'groups', 'PDC'),
         array(URLROOT.'admin/complaint', 'approval_delegation', 'Complaints'),
         array(URLROOT.'admin/report', 'monitoring', 'Reports'),
-        array(URLROOT.'admin/viewprofile', 'manage_accounts', 'Profile')
+        array(URLROOT.'profiles/viewProfileDetails', 'manage_accounts', 'Profile')
       );
       return $navigation;
   }

@@ -2,6 +2,7 @@
 
 class Companies extends BaseController
 {
+    public $companyModel;
 
     public function __construct()
     {
@@ -43,5 +44,21 @@ class Companies extends BaseController
     public function viewCompanyDetails()
     {
         $this->view('student/appliedcompanies');
+    }
+
+    public function shortlistedStudents(){
+        $this->view('company/shortlistedStudents');
+    }
+
+    public function InterviewScheduleList(){
+        $this->view('company/InterviewScheduleList');
+    }
+
+    public function InterviewScheduleCreate(){
+        $this->view('company/InterviewScheduleCreate');
+    }
+
+    public function InterviewSchedule(){
+        $this->view('company/InterviewSchedule');
     }
 }

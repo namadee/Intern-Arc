@@ -1,78 +1,13 @@
-/*-----------------------  Sign in Page - PDC ----------------------- */
+/*-----------------------  Common Styles  ----------------------- */
 
-.signin-main-container {
-  margin: auto;
-  margin-top: 5%;
-  width: 30%;
-  gap: 1rem;
-  padding: 3% 3% 4% 3%;
-  border-radius: 10px;
-  background-color: white;
-  border: 1px solid var(--DarkBlue);
-  align-items: center;
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.signin-main-container img {
-  width: 50%;
-  object-fit: cover;
-}
 
-.signin-main-container form {
-  gap: 1.5rem;
-  justify-content: space-around;
-  width: 100%;
-  padding: 0 8%;
-  text-align: left;
-  align-items: center;
-}
-
-.signin-main-container form h2 {
-  color: var(--DarkBlue);
-}
-
-.signin-form-content {
-  flex-direction: row;
-  gap: 0.2rem;
-  border: 1px solid var(--AlternateLightGrey);
-  width: 100%;
-  padding: 0.3rem;
-  border-radius: 5px;
-  align-items: center;
-}
-
-.signin-main-container form input {
-  width: 100%;
-  font-size: 1rem;
-  border: none;
-}
-
-.signin-main-container form button {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 0.8rem;
-  border-radius: 20px;
-  transition: ease-in-out 0.2s;
-  font-size: 1rem;
-}
-
-.signin-main-container form button:hover {
-  transform: scale(1.02);
-}
-
-.signin-error-hide {
-  display: none;
-}
-
-.signin-error-alert {
-  color: var(--DangerColor);
-  display: flex;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  align-items: center;
-  width: fit-content;
-  align-self: flex-start;
-  margin-top: -1rem;
-}
 
 /*-----------------------  Job Roles List Page PDC ----------------------- */
 
@@ -204,7 +139,7 @@
   background-color: white;
   box-shadow: var(--Boxshadow1);
   padding: 1.5rem 2rem;
-  height: 82%;
+  height: 80%;
   overflow: hidden;
   overflow-y: auto;
   border-radius: 5px;
@@ -217,7 +152,7 @@
 
 .company-content-top form,
 .company-content-top form input {
-background-color: var(--BackgroungColor);
+  background-color: var(--BackgroungColor);
 }
 
 .manage-company-table {
@@ -280,13 +215,14 @@ background-color: var(--BackgroungColor);
   position: relative;
 }
 
-.register-company,
+.register-company,  
 .csv-company {
   background-color: white;
   width: 40%;
-  height: 75vh;
-  padding: 2rem 3rem;
+  height: 100%;
+  padding: 1rem 3rem;
   border-radius: 5px;
+  justify-content: start;
 }
 
 .register-company h2,
@@ -295,25 +231,37 @@ background-color: var(--BackgroungColor);
   font-size: 1.1rem;
 }
 
-.register-company,
-.csv-company,
-.csv-company-middle,
-.register-company form,
+.register-company h2 {
+  margin-bottom: 1.5rem;
+}
+
+.register-company .register-company form,
 .register-company form ul {
   gap: 1.5rem;
 }
 
-.register-company form button {
-  padding: 0.4rem 2rem;
-  margin-top: 0.5rem;
-}
-
-.register-company-item {
+.csv-company {
   gap: 1rem;
 }
 
-.register-company-item label {
-  width: 40%;
+.csv-company p {
+  font-size: 0.85rem;
+}
+
+.csv-company p span {
+  font-weight: bold;
+}
+
+.register-company form button {
+  padding: 0.4rem 2rem;
+  margin-top: 1.5rem;
+}
+
+.input-validate-error {
+  color: red;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-top: 0.1rem;
 }
 
 .csv-instructions {
@@ -321,15 +269,17 @@ background-color: var(--BackgroungColor);
   gap: 0.5rem;
   color: var(--primaryColor);
   font-weight: 500;
+  margin-bottom: 1rem;
 }
 
 .csv-company-middle a {
   align-items: center;
+  margin: 0.5rem 0;
   gap: 0.5rem;
   width: 100%;
   border: 1px solid var(--primaryColor);
   border-radius: 5px;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   justify-content: center;
   color: var(--primaryColor);
   font-weight: 500;
@@ -352,28 +302,38 @@ background-color: var(--BackgroungColor);
 
 .csv-company-bottom form {
   text-align: center;
-  gap: 1.5rem;
+  gap: 0.5rem;
 }
 
 .csv-company-bottom form input {
   display: none;
 }
 
+.csv-company-bottom form #form-file-name{
+  font-size: 0.8rem;
+}
+
 .csv-company-bottom form label {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  width: fit-content;
+  max-width: 100%;
   margin: auto;
   background-color: #424242;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 5px;
 }
 
 .csv-company-bottom button {
   width: fit-content;
   padding: 0.4rem 2rem;
+}
+
+#upload-file-error{
+  color: var(--DangerColor);
+  padding: 0.2rem;
+  font-weight: 500;
 }
 
 /*-----------------------  Manage Student - Student List Page ----------------------- */
@@ -414,7 +374,7 @@ background-color: var(--BackgroungColor);
   color: white;
 }
 
-/*Manage Student - Add student Page*/
+/*-----------------------  Manage Student - Add student Page ----------------------- */
 .register-student-top {
   justify-content: flex-start;
   margin-bottom: 1rem;
@@ -422,7 +382,7 @@ background-color: var(--BackgroungColor);
 }
 .register-student-top div {
   background-color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 1rem;
   border-radius: 5px;
   gap: 1rem;
   width: fit-content;
@@ -434,7 +394,7 @@ background-color: var(--BackgroungColor);
 
 .add-student-container .register-company,
 .add-student-container .csv-company {
-  height: 73vh;
+  height: 100%;
 }
 
 /*----------------------- Manage Student - Landing Page -----------------------*/
@@ -537,7 +497,7 @@ table th {
 .dashboard-topbar-btns {
   justify-content: flex-end;
   gap: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .dashboard-topbar-btns a {
@@ -597,7 +557,7 @@ table th {
   margin-top: 1rem;
   border-radius: 5px;
   overflow-y: auto;
-  height: 66%;
+  height: 63%;
 }
 
 .dashboard-advertisement-list .list-top {
@@ -617,10 +577,16 @@ table th {
 .dashboard-advertisement-list table {
   width: 100%;
   overflow: hidden;
+  text-align: center;
 }
 
 .dashboard-advertisement-list table td {
   padding: 0.5rem;
+}
+
+.dashboard-advertisement-list table th {
+  padding: 0.2rem;
+  background-color: var(--AlternateLightGrey);
 }
 
 .dashboard-advertisement-list table td:nth-child(4) {
@@ -887,7 +853,7 @@ table th {
   text-align: justify;
 }
 
-.student-profile-bio h3{
+.student-profile-bio h3 {
   font-size: 1.5rem;
 }
 
@@ -1038,3 +1004,109 @@ table th {
   justify-content: flex-start;
   gap: 2rem;
 }
+
+
+/*----------------------- Profile Update Page -----------------------*/
+
+.update-profile-container {
+  padding: 2rem;
+  width: 50%;
+  margin: auto;
+  gap: 1rem;
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.update-profile-container h3 {
+  text-align: left;
+}
+
+.update-profile-container img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.update-profile-container form input {
+  width: 90%;
+}
+
+.update-profile-container form ul {
+  width: 100%;
+  margin: auto;
+  font-size: 0.9rem;
+}
+.update-profile-container form li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 95%;
+  margin-top: 1rem;
+}
+
+.update-profile-container form li label {
+  width: 25%;
+}
+
+.update-profile-container-btn {
+  display: flex;
+  width: fit-content;
+  margin: auto;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.update-profile-container-btn button {
+  padding: 0.5rem;
+}
+
+.main-user-profile-icon div {
+  position: relative;
+  align-items: center;
+  display: flex;
+  width: 120px;
+  justify-content: center;
+  margin: auto;
+}
+
+.main-user-profile-icon #main-profile-edit {
+  background-color: var(--BackgroungColor );;
+  color: var(--Black);
+  padding: 0.2rem 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  align-items: center;
+  gap: 0.3rem;
+  box-shadow: var(--Boxshadow1);
+  cursor: pointer;
+  transition: ease-in-out 200ms;
+}
+
+.main-user-profile-icon #main-profile-edit:hover{
+  background-color: var(--DarkBlue);
+  color: white;
+}
+
+.main-user-profile-icon #main-profile-edit span {
+  font-size: 1.1rem;
+}
+
+.update-profile-container form input {
+  padding: 0.5rem;
+}
+
+.update-profile-container input[type=file]{
+  display: none;
+}
+
+.update-profile-container #form-file-name {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+}
+
+.update-profile-container #reset-btn {
+  background-color: var(--primaryColor);
+} 

@@ -3,7 +3,8 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col" id="student-main-profile">
-    <div class="student-profile-view display-flex-col">
+<?php echo $_SESSION['user_id'] ?>    
+<div class="student-profile-view display-flex-col">
         <div class="std-profile-container-top display-flex-col">
 
             <h3>Student Profile</h3> <br/>

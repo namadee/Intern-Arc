@@ -3,6 +3,8 @@
 class Jobroles extends BaseController
 {
 
+    public $jobroleModel;
+    
     public function __construct()
     {
         $this->jobroleModel = $this->model('Jobrole');

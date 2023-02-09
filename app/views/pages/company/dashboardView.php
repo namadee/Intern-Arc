@@ -48,6 +48,15 @@
       </div>
 
         </div>
+          
+        <tr>
+          <th>Name</th>
+          <th>Degree</th>
+          <th>Academic Year</th>
+          <th>Advertisement</th>
+          <th>Status</th>
+         
+        </tr>
           <tr>
             <td>Ruchira Bogahawaththa</td>
             <td>CS</td>

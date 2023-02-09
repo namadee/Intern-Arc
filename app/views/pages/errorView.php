@@ -6,7 +6,7 @@
     <div class="display-flex-col">
         <h1>Ooops Page Not Found !!!</h1>
         <p>Seems like the page you are looking for is not available.</p>
-        <a href="<?php echo URLROOT."users"; ?>">Click Here to Redirect</a>
+        <a href="<?php echo URLROOT."errors/error-redirect"; ?>">Click Here to Redirect</a>
     </div>
 </section>
 

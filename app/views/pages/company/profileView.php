@@ -2,39 +2,47 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
-<section id="profile_page" class="main-content profile-main-content"> 
+<section id="profile_page" class="main-content profile-main-content">
+    <?php flashMessage('profile_update_status'); ?>
     <div class="profile-main-container">
         <div class="profile-left">
-            <div class="profile-left-top">
-                <h2>Company Profile</h2>
-                <img src="<?php echo URLROOT . 'img/linkedIn_icon.png' ?>">
-            </div>
-            <img class="profileImg" src="<?php echo URLROOT . 'img/profile-img/profile-icon.svg' ?>">
-            <div class="profile-left-text">
-                <h1>Welcome To <span class="orange-text">Virtusa</span></h1>
-                <p class="orange-text">Sparking innovation, one sprint at a time.</p><br>
-                <p>Eshtablished Date: 2000-08-08</p>
-                <p>Company Adress: Colombo</p>
-                <p>Description: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam ullam vel ad nobis culpa, expedita quidem labore, eos facilis, excepturi unde placeat soluta id. Dignissimos enim nulla sed sunt assumenda.</p>
-                <p>email: virtusa123@gmail.com</p>
+            <div>
+                <div class="profile-left-top">
+                    <h2>Company Profile</h2>
+                    <!-- <h2>Company Profile</h2> -->
+                    <img src="<?php echo URLROOT . 'img/linkedIn_icon.png' ?>">
+                </div>
+                <img class="profileImg" src="<?php echo URLROOT . $data['image'] ?>">
+
+                <div class="profile-left-text">
+                    <h1>Welcome To <span class="orange-text"><?php echo $data['company_name'] ?></span></h1>
+                    <p class="orange-text"><?php echo $data['company_slogan'] ?></p><br>
+                    <p>Email: <?php echo $data['company_email'] ?></p>
+                </div>
             </div>
 
             <div class="profile-bottom">
-                <span class="material-symbols-outlined">location_on</span>
-                <p>752 , Dr Danister De Silva Mawatha, Colombo 09</p>
-            </div>   
+                <div class="display-flex-row">
+                    <span class="material-symbols-outlined">location_on</span>
+                    <p><?php echo $data['company_address'] ?></p>
+                </div>
+
+                <div>
+                    <a class="common-blue-btn" id="company-edit-btn" href="<?php echo URLROOT; ?>profiles/update-company-profile"><span class="material-symbols-outlined ">edit_square</span> Edit Profile</a>
+                </div>
+            </div>
 
         </div>
-        <div class="profile-right">
+        <div class="profile-right display-flex-col">
             <p class="description">
-           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam laboriosam odit dolores soluta dolorem. Officia eaque, esse ipsam aliquam deleniti rem molestiae laborum corporis laboriosam id, harum architecto qui excepturi?
+                <?php echo $data['company_description'] ?>
             </p>
 
-            <button class="profile-btn" >Visit Website</button>
+            <button class="profile-btn">Visit Website</button>
 
         </div>
 
-    </div> 
+    </div>
 
 </section>
 
