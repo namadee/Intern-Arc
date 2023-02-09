@@ -67,7 +67,7 @@ class Complaints extends BaseController
             $this->view('student/complaint', $data);
         }
     }
-    public function showComplaint($complaintId)
+        public function showComplaint($complaintId)
     {
         $complaints = $this->complaintModel->getComplaint();
         $complaint = $this->complaintModel->showComplaintById($complaintId); //To get the Advertisement Name
