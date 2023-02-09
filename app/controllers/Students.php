@@ -2,8 +2,11 @@
 
 class Students extends BaseController
 {
-    public function __construct()
+    public $studentModel;
+
+    public function __construct()  
     {
+        $this->studentModel = $this->model('Student');
     }
 
     //Student User Dashboard
@@ -35,8 +38,31 @@ class Students extends BaseController
 
     public function studentProfile()
     {
+        $studentProfile = $this->studentModel->getStudentProfileData();
+        // $data = [
+        //     'student_id' => $studentId,
+        //     'experience' => $experience,
+        //     'interests' => $interests,
+        //     'qualifications' => $qualifications,
+        //     'school' => $school,
+        //     'contact' => $contact,
+        //     'stream' => $stream,
+        //     'profile_description' => $profile_description,
+        //     'extracurricular' => $extracurricular,
+        // ];
 
-        $this->view('student/studentprofile');
+        $data = [
+            'experience' => $studentProfile->experience,
+            'interests' => $studentProfile->interests,
+            'qualifications' => $studentProfile->qualifications,
+            'school' => $studentProfile->school,
+            'contact' => $studentProfile->contact,
+            'stream' => $studentProfile->stream,
+            'profile_description' => $studentProfile->profile_description,
+            'extracurricular' => $studentProfile->extracurricular,
+        ];
+
+        $this->view('student/studentprofile',$data);
     }
 
     public function companyProfile()
@@ -51,6 +77,11 @@ class Students extends BaseController
         $this->view('student/viewads');
     }
 
+    public function editProfile()
+    {
+
+        $this->view('student/editprofile');
+    }
 
 
 }
