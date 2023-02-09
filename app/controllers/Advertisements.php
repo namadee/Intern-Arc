@@ -178,7 +178,7 @@ class Advertisements extends BaseController
 
         //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
         public function showAdvertisementsDetails(){
-            $this->view('student/viewadvertisement');
+            $this->view('company/advertisement');
         }
     
     //load The advertisement UI of the relevant company 
