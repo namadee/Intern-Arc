@@ -37,6 +37,7 @@
           <th>Advertisement Name</th>
           <th>No of Interns</th>
           <th>Status</th>
+          <th>View</th>
           <th></th>
           <th></th>
          
@@ -47,6 +48,9 @@
             <td><?php echo $advertisement->position ?></td>
             <td><?php echo $advertisement->intern_count ?></td>
             <td><?php echo $advertisement->status ?></td>
+            <td>
+             <a class="common-view-btn" href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $advertisement->advertisement_id; ?>" >View</a>
+            </td>
            
             <td>
               <a class="common-edit-btn" href="<?php echo URLROOT; ?>advertisements/show-advertisement/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">

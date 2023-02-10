@@ -102,9 +102,9 @@
           
           </tr>
       </table>
-
+      <a href="<?php echo URLROOT; ?>Advertisements/add-advertisement" class="common-blue-btn">View All</a>
     </div>
-    <a href="<?php echo URLROOT; ?>Advertisements/add-advertisement" class="common-blue-btn">View All</a>
+    
 
   </div>
 </section>
