@@ -5,7 +5,7 @@ class Register extends BaseController
     public $userModel;
     public $registerModel;
     public $studentModel;
-
+    public $testModel;
     //All the Registration Processes
 
     public function __construct()
@@ -13,6 +13,7 @@ class Register extends BaseController
         $this->registerModel = $this->model('Register');
         $this->userModel = $this->model('User');
         $this->studentModel = $this->model('Student');
+        $this->testModel = $this->model('Test');
     }
 
     public function index()
@@ -281,7 +282,5 @@ class Register extends BaseController
         //If the upload csv is empty it gets redirected
         redirect('register/register-student');
     }
-    public function test()
-    {
-    }
+
 }
