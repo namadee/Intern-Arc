@@ -30,45 +30,39 @@
                     <tr>
                       <td class="pdc-table-data">Ruchira Bogahawatta</td>
                       <td class="pdc-table-data">ruchira@ucsc.cmb.lk</td>
-                      <td class="pdc-table-data"><button>view</button></td>
+                      <td class="pdc-table-data"><button><a href="<?php echo URLROOT.'admin/viewPdcUser'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
                         <td class="pdc-table-data">Geeth Weerasinghe</td>
                         <td class="pdc-table-data">geeth@ucsc.cmb.lk</td>
-                        <td class="pdc-table-data"><button>view</button></td>
+                        <td class="pdc-table-data"><button><a href="<?php echo URLROOT.'admin/viewPdcUser'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
                         <td class="pdc-table-data">Namadee Shakya</td>
                         <td class="pdc-table-data">namadee@ucsc.cmb.lk</td>
-                        <td class="pdc-table-data"><button>view</button></td>
+                        <td class="pdc-table-data"><button><a href="<?php echo URLROOT.'admin/viewPdcUser'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
                         <td class="pdc-table-data">Ravindu Viranga</td>
                         <td class="pdc-table-data">ravindu@ucsc.cmb.lk</td>
-                        <td class="pdc-table-data"><button>view</button></td>
+                        <td class="pdc-table-data"><button><a href="<?php echo URLROOT.'admin/viewPdcUser'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
                         <td class="pdc-table-data">Ruchira Bogahawatta</td>
                         <td class="pdc-table-data">ruchira@ucsc.cmb.lk</td>
-                        <td class="pdc-table-data"><button>view</button></td>
+                        <td class="pdc-table-data"><button><a href="<?php echo URLROOT.'admin/viewPdcUser'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
                         <td class="pdc-table-data">Ruchira Bogahawatta</td>
                         <td class="pdc-table-data">ruchira@ucsc.cmb.lk</td>
-                        <td class="pdc-table-data"><button>view</button></td>
+                        <td class="pdc-table-data"><button><a href="<?php echo URLROOT.'admin/viewPdcUser'; ?>">view</a></button></td>
                     </tr>
-            
-                    <tr>
-                        <td class="pdc-table-data">Ruchira Bogahawatta</td>
-                        <td class="pdc-table-data">ruchira@ucsc.cmb.lk</td>
-                        <td class="pdc-table-data"><button>view</button></td>
-                    </tr>
-                    
+                 
                   </table>
 
                   <input class="pdc-staff-add-button" type="submit" value="Add">

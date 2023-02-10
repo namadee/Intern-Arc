@@ -29,45 +29,30 @@
                                           <th class="com-table-header">Company Complaint</th>
                                           <th class="com-table-header"></th>
                                         </tr>
-                                
+                                        
                                         <tr>
                                           <td class="com-table-data">Virtusa</td>
-                                          <td class="com-table-data"><button>view</button></td>
+                                          <td class="com-table-data"><button><a href="<?php echo URLROOT.'admin/viewComplaint'; ?>">view</a></button></td>
                                         </tr>
                                 
                                         <tr>
                                             <td class="com-table-data">WSO2</td>
-                                            <td class="com-table-data"><button>view</button></td>
+                                            <td class="com-table-data"><button><a href="<?php echo URLROOT.'admin/viewComplaint'; ?>">view</a></button></td>
                                         </tr>
                                 
                                         <tr>
                                             <td class="com-table-data">Codegen International</td>
-                                            <td class="com-table-data"><button>view</button></td>
+                                            <td class="com-table-data"><button><a href="<?php echo URLROOT.'admin/viewComplaint'; ?>">view</a></button></td>
                                         </tr>
                                 
                                         <tr>
                                             <td class="com-table-data">Sysco Labs</td>
-                                            <td class="com-table-data"><button>view</button></td>
+                                            <td class="com-table-data"><button><a href="<?php echo URLROOT.'admin/viewComplaint'; ?>">view</a></button></td>
                                         </tr>
                                 
                                         <tr>
                                             <td class="com-table-data">Tech Venturas</td>
-                                            <td class="com-table-data"><button>view</button></td>
-                                        </tr>
-                                
-                                        <tr>
-                                            <td class="com-table-data">Commercial Technologies Plus</td>
-                                            <td class="com-table-data"><button>view</button></td>
-                                        </tr>
-                                
-                                        <tr>
-                                            <td class="com-table-data">99x Technology</td>
-                                            <td class="com-table-data"><button>view</button></td>
-                                        </tr>
-                                
-                                        <tr>
-                                            <td class="com-table-data">Virtusa</td>
-                                            <td class="com-table-data"><button>view</button></td>
+                                            <td class="com-table-data"><button><a href="<?php echo URLROOT.'admin/viewComplaint'; ?>">view</a></button></td>
                                         </tr>
                                         
                                       </table>
@@ -119,24 +104,6 @@
                                         <tr>
                                             <td class="com-table-data">2020/CS/100</td>
                                             <td class="com-table-data">20020234</td>
-                                            <td class="com-table-data"><button>view</button></td>
-                                        </tr>
-                                
-                                        <tr>
-                                            <td class="com-table-data">2020/IS/115</td>
-                                            <td class="com-table-data">20020501</td>
-                                            <td class="com-table-data"><button>view</button></td>
-                                        </tr>
-                                
-                                        <tr>
-                                            <td class="com-table-data">2020/CS/050</td>
-                                            <td class="com-table-data">20020240</td>
-                                            <td class="com-table-data"><button>view</button></td>
-                                        </tr>
-                                
-                                        <tr>
-                                            <td class="com-table-data">2020/CS/005</td>
-                                            <td class="com-table-data">20020986</td>
                                             <td class="com-table-data"><button>view</button></td>
                                         </tr>
                                         
