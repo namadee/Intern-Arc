@@ -64,24 +64,6 @@ class Profiles extends BaseController
         $this->view('company/profile', $data);
     }
 
-    // public function showCompanyProfile()
-    // {
-    //     $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
-    //     $company_details = $this->userModel->getCompanyDetails($companyId);
-
-    //     $data = [
-    //         'company_id' => $companyId,
-    //         'company_name' => $company_details->company_name,
-    //         'company_address' => $company_details->company_address,
-    //         'company_slogan' => $company_details->company_slogan,
-    //         'company_email' => $company_details->company_email,
-    //         'company_description' => $company_details->company_description,
-    //         'formAction' => 'Profiles/update-company-profile/' . $company_details->company_id
-    //     ];
-
-    //     $this->view('company/editProfile', $data);
-    // }
-
     public function updateCompanyProfile()
     {
 

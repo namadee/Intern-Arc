@@ -49,7 +49,7 @@
             <td><?php echo $advertisement->intern_count ?></td>
             <td><?php echo $advertisement->status ?></td>
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $advertisement->advertisement_id; ?>" >View</a>
+             <a class="common-view-btn" href="<?php echo URLROOT; ?>advertisements/view-advertisement?adId=<?php echo $advertisement->advertisement_id; ?>" >View</a>
             </td>
            
             <td>
