@@ -1215,3 +1215,14 @@ display: inline-block;
 cursor: pointer;
 border: none;
 }
+
+/* edit profile styles */
+
+.edit-profile-top {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  overflow: auto;
+}

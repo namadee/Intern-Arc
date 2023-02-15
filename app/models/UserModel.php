@@ -10,23 +10,6 @@ class UserModel extends Database
   }
 
 
-
-  // Find users by the Email [return resultRow /false]
-  public function getUserByEmail($email)
-  {
-    $this->db->query("SELECT * FROM user_tbl WHERE email = :email");
-    $this->db->bind(':email', $email);
-
-    $result = $this->db->single();
-
-    //Check Rows
-    if ($this->db->rowCount() > 0) {
-      return $result;
-    } else {
-      return false;
-    }
-  }
-
   //Return User_id from User_tbl
   public function getUserId($email)
   {
@@ -46,6 +29,24 @@ class UserModel extends Database
       return false;
     }
   }
+
+
+  // Find users by the Email [return resultRow /false]
+  public function getUserByEmail($email)
+  {
+    $this->db->query("SELECT * FROM user_tbl WHERE email = :email");
+    $this->db->bind(':email', $email);
+
+    $result = $this->db->single();
+
+    //Check Rows
+    if ($this->db->rowCount() > 0) {
+      return $result;
+    } else {
+      return false;
+    }
+  }
+
 
   //Return company_id from company_tbl
   public function getCompanyUserId($foreignKey)
@@ -72,7 +73,7 @@ class UserModel extends Database
 
     $row = $this->db->single();
 
-    $studentId = $row->student_id;
+    $userID = $row->student_id;
 
     //Check Rows
     if ($this->db->rowCount() > 0) {
@@ -121,6 +122,22 @@ class UserModel extends Database
     }
   }
 
+  //get student user details function
+  public function getStudentDetails($student_id)
+  {
+    $this->db->query("SELECT * FROM student_tbl WHERE student_id = :student_id");
+    $this->db->bind(':student_id', $student_id);
+
+    $student_details = $this->db->single();
+
+    //check rows
+    if ($this->db->rowCount() > 0){
+      return $student_details;
+    }else{
+      return false;
+    }
+  }
+    
   //Store Temp Verification Code - Ruchira
   public function storeVerificationCode($data)
   {
