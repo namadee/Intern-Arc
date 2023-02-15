@@ -15,8 +15,8 @@
                 <h3>Placement Advertisement</h3>
             </div>
         </div><br><br>
-       <div class=" display-flex-row advertisement-container-body">
         
+       <div class=" display-flex-row advertisement-container-body">
         <div class="body-left">
             <!-- <b>Company Name: WSO2</b> -->
             <!-- <p><b>Job Position: </b> QA Engineer</p><br>
@@ -66,8 +66,15 @@
                     </div>
             </div>
        </div>
+       
        </div>
-        <button class="common-blue-btn apply-btn">Apply</button>
+        <a href="<?php 
+            if($_SESSION['user_role'] == 'company'){
+                echo URLROOT . 'requests/showRequestsByAd?adId=' . $_GET['adId'];
+            }else if($_SESSION['user_role'] == 'student'){
+                echo URLROOT . 'requests/addStudentRequest?adId=' . $_GET['adId'];
+
+            } ?>" class="common-blue-btn apply-btn"><?php echo $data['button_name'] ?></a>
     </div> 
 
 </section>

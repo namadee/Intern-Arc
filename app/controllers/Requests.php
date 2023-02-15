@@ -3,21 +3,48 @@
 class Requests extends BaseController
 {
 
+    public $requestModel;
+    public $requestList;
     public $userModel;
-    public $registerModel;
+    public $advertisementModel;
     
     public function __construct()
     {
+        $this->requestModel = $this->model('Request');
+        $this->userModel = $this->model('User');
+        $this->advertisementModel = $this->model('Advertisement');
     }
 
-    public function index() //Load PDC Dashboard
+    public function index()
     {
         $this->view('company/studentRequestList');
     }
 
+    //Applying to advertisement
+    public function addStudentRequest(){
+        $advertisementId = $_GET['adId'];
+        $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
+        $data = [
+            'advertisement_id' => $advertisementId,
+            'student_id' => $studentId
+        ];
+
+        //Execute
+        if ($this->requestModel->addStudentRequest($data)) {
+
+            redirect('advertisements/test');
+        } else {
+            die('Something went wrong');
+        }
+    }
+
     public function allRequests() 
     {
-        $this->view('company/addAdvertisement');
+        $requests = $this->requestModel->getRequests();
+        $data = [
+            'requests' => $requests,
+        ];
+        $this->view('pdc/studentRequest', $data);
     }
 
     public function shortlistedList() 
@@ -25,6 +52,22 @@ class Requests extends BaseController
         $this->view('company/shortlist');
     }
 
+    public function showRequestsByAd(){
+        $advertisementId = $_GET['adId']; 
+        $students = $this->requestModel->getStudentByRequest($advertisementId);
 
+        $data = [
+            'student_name' => $students,
+        ];
+        
+        if ($this->requestModel->getStudentByRequest($advertisementId)) {
+
+            $this->view('company/RequestListByAdvertisement', $data);
+        } else {
+            die('Something went wrong');
+        }
+
+    }
 
 }
+?>

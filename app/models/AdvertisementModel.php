@@ -87,4 +87,14 @@ class AdvertisementModel
             return false;
         }
     }
+
+    //GET COMPANY details RELEVENT TO ADVERTISEMENT 
+    public function getCompanyByAd(){
+        $this->db->query('SELECT advertisement_tbl.position, advertisement_tbl.advertisement_id, company_tbl.company_name 
+        FROM company_tbl 
+        JOIN advertisement_tbl 
+        ON company_tbl.company_id = advertisement_tbl.company_id_fk');
+
+        return $this->db->resultset();
+    }
 }

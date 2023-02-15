@@ -55,7 +55,7 @@
 				</li>
 				<li>Prepare laptops for staffs, ensure all platforms/software used by the company are installed
 				</li>
-				<li>Collect laptops and reset upon staff’s resignations</li>
+				<li>Collect laptops and reset upon staffs resignations</li>
 				<li>Manage user accounts for staffs
 				</li>
 				<li>Contact vendor/manufacturer to fix hardware problems</li>
@@ -77,7 +77,7 @@
 				</li>
 				<li>Prepare laptops for staffs, ensure all platforms/software used by the company are installed
 				</li>
-				<li>Collect laptops and reset upon staff’s resignations
+				<li>Collect laptops and reset upon staffs resignations
 				</li>
 				<li>Manage user accounts for staffs
 				</li>
