@@ -2,7 +2,8 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
-<section id="advertisement_page" class="main-content advertisement-main-content"> 
+<section id="advertisement_page" class="main-content advertisement-main-content">
+    <?php flashMessage('student_request_msg'); ?> 
     <div class="advertisement-main-container">
         <div class="ad-header">
             <div class="display-flex-row ad-header-top">
