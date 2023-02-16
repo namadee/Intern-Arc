@@ -3,7 +3,6 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content">
-  <?php echo $_GET['adId'] ?>
   <div class="common_list">
     <div class="common-list-topbar">
     <form action="" class="common-search-bar display-flex-row">
@@ -54,8 +53,7 @@
                 <option value="<?php echo $students->status ?>t">Reject</option>
               </select>
             </td>
-            
-          
+
           </tr>
         
         <?php endforeach; ?>

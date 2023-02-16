@@ -194,8 +194,8 @@ class Advertisements extends BaseController
         }
     
     //load The advertisement UI of the relevant company 
-    public function viewAdvertisement(){
-        $advertisementId = $_GET['adId'];
+    public function viewAdvertisement($advertisementId){
+        // $advertisementId = $_GET['adId'];
         $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
        
             $text = explode("\r\n", trim($advertisement->requirements));
@@ -216,6 +216,7 @@ class Advertisements extends BaseController
         $data = [
             'className' => 'selectedTab',
             'title' => 'Advertisements',
+            'advertisement_id' => $advertisementId,
             'button_name' => $btnName,
             'position' => $advertisement->position,
             'job_description' => $advertisement->job_description,

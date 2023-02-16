@@ -52,8 +52,8 @@ class Requests extends BaseController
         $this->view('company/shortlist');
     }
 
-    public function showRequestsByAd(){
-        $advertisementId = $_GET['adId']; 
+    public function showRequestsByAd($advertisementId){
+        // $advertisementId = $_GET['adId']; 
         $students = $this->requestModel->getStudentByRequest($advertisementId);
 
         $data = [
