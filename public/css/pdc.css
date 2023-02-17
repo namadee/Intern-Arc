@@ -7,8 +7,6 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-
-
 /*-----------------------  Job Roles List Page PDC ----------------------- */
 
 #pdc_jobroles_page {
@@ -215,7 +213,7 @@ input::-webkit-inner-spin-button {
   position: relative;
 }
 
-.register-company,  
+.register-company,
 .csv-company {
   background-color: white;
   width: 40%;
@@ -309,7 +307,7 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
-.csv-company-bottom form #form-file-name{
+.csv-company-bottom form #form-file-name {
   font-size: 0.8rem;
 }
 
@@ -330,7 +328,7 @@ input::-webkit-inner-spin-button {
   padding: 0.4rem 2rem;
 }
 
-#upload-file-error{
+#upload-file-error {
   color: var(--DangerColor);
   padding: 0.2rem;
   font-weight: 500;
@@ -374,6 +372,131 @@ input::-webkit-inner-spin-button {
   color: white;
 }
 
+/*-----------------------  Manage Student - Adding Batches Modal ----------------------- */
+
+.std-batches-add {
+  position: relative;
+  margin: auto;
+  width: 30%;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 5px;
+  text-align: center;
+  gap: 0.5rem;
+  padding-bottom: 3rem;
+}
+
+#add-student-batch {
+  width: 100%;
+  padding: 0;
+  gap: 1rem;
+}
+
+#add-student-batch div {
+  gap: 1rem;
+  justify-content: center;
+}
+
+#add-student-batch input {
+  width: 4rem;
+}
+
+#add-student-batch button {
+  margin: 0;
+}
+
+#validate-error {
+  color: var(--DangerColor);
+}
+
+.std-batches-add #validate-error {
+  position: absolute;
+  bottom: 0.8rem;
+  width: fit-content;
+  margin: auto;
+}
+
+#status-dropdown {
+  width: 10rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#status-dropdown:focus {
+  border-color: #054a91;
+}
+
+/* CHANGE ACCESS MODAL BOX  */
+#change-access-modal {
+  padding-bottom: 2rem;
+}
+
+#change-access-modal form {
+  gap: 1rem;
+  margin-top: 1rem;
+}
+#change-access-modal label {
+  font-size: 1.1rem;
+}
+
+/* VIEW BATCH MODAL BOX  */
+
+#view-batch-modal {
+  width: 55%;
+  padding-bottom: 2rem;
+}
+
+#view-batch-modal .view-batch-div {
+  gap: 1rem;
+}
+
+#view-batch-modal ul {
+  gap: 1rem;
+}
+
+#view-batch-modal ul li {
+  justify-content: space-between;
+}
+
+#view-batch-modal ul li p {
+  width: 45%;
+  font-size: 1rem;
+}
+
+#view-batch-modal ul li a {
+  padding: 0.3rem 0.5rem;
+}
+
+#view-batch-modal ul li button {
+  padding: 0.3rem 0.5rem;
+}
+
+#view-batch-modal .delete-btn {
+  width: 15rem;
+  background-color: var(--DangerBackground);
+  margin: auto;
+  border: none;
+  padding: 0.3rem 1rem;
+  margin-top: 1.5rem;
+  border-radius: 3px;
+  color: var(--DangerColor);
+  cursor: pointer;
+}
+
+#view-batch-modal .delete-btn a {
+  color: inherit;
+}
+
+#view-batch-modal .delete-btn:hover {
+  background-color: var(--DangerColor);
+  color: white;
+}
+
+.hide-element {
+  display: none;
+}
+
 /*-----------------------  Manage Student - Add student Page ----------------------- */
 .register-student-top {
   justify-content: flex-start;
@@ -406,6 +529,7 @@ input::-webkit-inner-spin-button {
   height: 90%;
   gap: 1rem;
   border-radius: 5px;
+  margin: auto;
 }
 
 .student-batches-top {
@@ -668,7 +792,8 @@ table th {
 /*----------------------- Invitation Page -----------------------*/
 
 .company-details-main-container {
-  height: 85%;
+  /* height: 85%; */
+  justify-content: center;
 }
 
 .company-details-container {
@@ -699,14 +824,27 @@ table th {
 }
 
 .company-details-container .container-body li input {
-  width: 80%;
+  width: 55%;
+  background-color: var(--BackgroungColor);
+}
+
+.company-details-container .container-body li select {
   background-color: var(--BackgroungColor);
 }
 
 .company-details-container .container-body button {
-  padding: 0.4rem 2rem;
+  padding: 0.2rem 2rem;
   margin-top: 1rem;
-  background-color: var(--primaryColor);
+}
+
+.company-details-container .container-body button#update_btn {
+  background-color: var(--DarkBlue);
+}
+
+.company-details-container .container-body button#reset-btn {
+  border: 1px solid var(--DarkBlue);
+  background-color: var(--BackgroungColor);
+  color: var(--DarkBlue);
 }
 
 .company-details-container .container-btns {
@@ -724,11 +862,25 @@ table th {
 }
 
 .company-details-container .container-btns #view-btn {
-  background-color: var(--DarkBlue);
+  background-color: var(--primaryColor);
   color: white;
+  margin: 0;
 }
 .company-details-container .container-btns #delete-btn {
   background-color: var(--DangerColor);
+  color: white;
+}
+
+.company-details-container .container-body #delete-btn {
+  background-color: var(--DangerColor);
+  color: white;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 5px;
+}
+
+.company-details-container .container-body #delete-btn a {
   color: white;
 }
 
@@ -738,9 +890,9 @@ table th {
 }
 
 .company-details-container #toggleUpdateBtn {
-  display: none;
   margin: auto;
   transition: ease-in-out 0.2s;
+  gap: 2rem;
 }
 
 .company-details-analysis {
@@ -994,7 +1146,7 @@ table th {
 /*----------------------- Student Details Page -----------------------*/
 
 #student-details-view {
-  width: 55%;
+  width: 65%;
 }
 
 #student-details-view form li label {
@@ -1006,6 +1158,13 @@ table th {
   gap: 2rem;
 }
 
+#student-details-view .container-body #student-batch-stream {
+  justify-content: space-between;
+}
+
+#student-details-view .container-body #student-batch-stream div {
+  gap: 1rem;
+}
 
 /*----------------------- Profile Update Page -----------------------*/
 
@@ -1073,7 +1232,7 @@ table th {
 }
 
 .main-user-profile-icon #main-profile-edit {
-  background-color: var(--BackgroungColor );;
+  background-color: var(--BackgroungColor);
   color: var(--Black);
   padding: 0.2rem 0.5rem;
   margin-top: 0.5rem;
@@ -1086,7 +1245,7 @@ table th {
   transition: ease-in-out 200ms;
 }
 
-.main-user-profile-icon #main-profile-edit:hover{
+.main-user-profile-icon #main-profile-edit:hover {
   background-color: var(--DarkBlue);
   color: white;
 }
@@ -1099,7 +1258,7 @@ table th {
   padding: 0.5rem;
 }
 
-.update-profile-container input[type=file]{
+.update-profile-container input[type="file"] {
   display: none;
 }
 
@@ -1110,4 +1269,4 @@ table th {
 
 .update-profile-container #reset-btn {
   background-color: var(--primaryColor);
-} 
+}

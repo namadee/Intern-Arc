@@ -75,10 +75,17 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   font-size: 0.9rem;
   box-shadow: var(--BoxShadow1);
   background-color: var(--DarkBlue);
+  transition: all 0.3s ease-in-out;
 }
 
 .common-blue-btn span {
   font-size: 1.2rem;
+}
+
+.common-blue-btn:hover{
+  background-color: #033f7a;
+  transform: scale(1.02);
+  
 }
 
 /********************************* Common 4 -  Common Edit Button *********************************/
@@ -111,7 +118,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   overflow: hidden;
 }
 
-.common-modal-box form {
+.common-modal-box .common-modal-box-form {
   position: relative;
   margin: auto;
   width: 30%;
@@ -124,19 +131,19 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   cursor: pointer;
 }
 
-.common-modal-box a {
+.common-modal-box #modal-box-close {
   width: fit-content;
   position: absolute;
   right: 1rem;
   top: 1rem;
 }
 
-.common-modal-box button {
+.common-modal-box #modal-submit-btn {
   margin-top: 1.5rem;
   padding: 0.3rem 1rem;
 }
 
-.common-modal-box a:hover {
+.common-modal-box #modal-box-close:hover {
   color: var(--Black);
 }
 
@@ -150,6 +157,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   font-size: 0.9rem;
   padding: 0.2rem 1.2rem;
   background: #fff;
+  transition: all 0.3s ease-in-out;
 }
 
 .common-view-btn:hover {

@@ -10,7 +10,7 @@
     <h2>
     THIS IS TEST VIEW
     </h2>
-    <h4><?php echo $data['data']; ?></h4>
+    <h4><?php echo $data['url']; ?></h4>
 
 <?php 
 // foreach($allrows as $row){

@@ -19,7 +19,7 @@
                     <li class="display-flex-col">
                         <div class="display-flex-col">
                             <label for="email">Contact Email</label>
-                            <input type="text" name="email" id="email" class="common-input" value="<?php echo $data['email']; ?>" required>
+                            <input type="email" name="email" id="email" class="common-input" value="<?php echo $data['email']; ?>" required>
                         </div>
                         <span class="input-validate-error"><?php echo $data['email_error']; ?></span>
                     </li>

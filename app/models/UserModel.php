@@ -48,6 +48,22 @@ class UserModel extends Database
   }
 
 
+  //Get User by UserID //Check for availability
+  public function checkForUserById($user_id)
+  {
+    $this->db->query("SELECT * FROM user_tbl WHERE user_id = :user_id");
+    $this->db->bind(':user_id', $user_id);
+    $row = $this->db->single();
+
+    //Check Rows
+    if ($row) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
   //Return company_id from company_tbl
   public function getCompanyUserId($foreignKey)
   {
@@ -131,13 +147,13 @@ class UserModel extends Database
     $student_details = $this->db->single();
 
     //check rows
-    if ($this->db->rowCount() > 0){
+    if ($this->db->rowCount() > 0) {
       return $student_details;
-    }else{
+    } else {
       return false;
     }
   }
-    
+
   //Store Temp Verification Code - Ruchira
   public function storeVerificationCode($data)
   {

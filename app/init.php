@@ -12,7 +12,7 @@ require_once 'helpers/navigation_helper.php';
 require_once 'helpers/flashMessage_helper.php';
 
 //Load PHP Mailer files
-//require_once '../vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 // Autoload Core Libraries
 spl_autoload_register(function ($className) {
