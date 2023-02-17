@@ -173,8 +173,8 @@
   width: 70%;
 }
 .add-req-btn{
-  width: 0;
   background: transparent;
+  display:none;
 }
 .add_advertisement form input[type="checkbox"] {
   border: 1px solid var(--AlternateLightGrey);

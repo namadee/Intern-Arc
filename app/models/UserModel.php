@@ -89,11 +89,11 @@ class UserModel extends Database
 
     $row = $this->db->single();
 
-    $userID = $row->student_id;
+    $studentId = $row->student_id;
 
     //Check Rows
     if ($this->db->rowCount() > 0) {
-      return $userID;
+      return $studentId;
     } else {
       return false;
     }
@@ -238,5 +238,15 @@ class UserModel extends Database
     } else {
       return false;
     }
+  }
+
+  //get student users by ID
+  public function getStudentUserById($studentId)
+  {
+    $this->db->query("SELECT * FROM student_tbl WHERE student_id = :student_id");
+    $this->db->bind(':student_id', $studentId);
+    $row = $this->db->single();
+    return $row;
+
   }
 }

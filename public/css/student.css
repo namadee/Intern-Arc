@@ -1015,16 +1015,15 @@ font-family: "Poppinns", sans-serif;
 
 
 .ad-list-table button {
- 
   margin: auto;
-    color: rgb(255, 255, 255);
-    padding: 12px 20px;
-    font-size: 1rem;
-    border-style: none;
-    border-radius: 3px;
-    background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
-    margin-left: 0;
-    width: 60%;
+  color: rgb(255, 255, 255);
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-style: none;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  margin-left: 0;
+  width: 60%;
 }
 
 .ad-list-table {
