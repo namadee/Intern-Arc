@@ -21,8 +21,8 @@ class Requests extends BaseController
     }
 
     //Applying to advertisement
-    public function addStudentRequest(){
-        $advertisementId = $_GET['adId'];
+    public function addStudentRequest($advertisementId){
+        // $advertisementId = $_GET['adId'];
         $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
         $data = [
             'advertisement_id' => $advertisementId,
@@ -30,9 +30,14 @@ class Requests extends BaseController
         ];
 
         //Execute
-        if ($this->requestModel->addStudentRequest($data)) {
-
-            redirect('advertisements/test');
+        if($this->requestModel->checkStudentRequest($advertisementId, $studentId))
+        {
+            flashMessage('student_request_msg' , 'You have already applied to this advertisement!', 'danger-alert');
+            redirect('advertisements/viewAdvertisement/'. $advertisementId);
+            
+        }else if($this->requestModel->addStudentRequest($data)) {
+            flashMessage('student_request_msg' , 'Applied successfully');
+            redirect('advertisements/viewAdvertisement/'. $advertisementId);
         } else {
             die('Something went wrong');
         }
@@ -52,8 +57,8 @@ class Requests extends BaseController
         $this->view('company/shortlist');
     }
 
-    public function showRequestsByAd(){
-        $advertisementId = $_GET['adId']; 
+    public function showRequestsByAd($advertisementId){
+        // $advertisementId = $_GET['adId']; 
         $students = $this->requestModel->getStudentByRequest($advertisementId);
 
         $data = [

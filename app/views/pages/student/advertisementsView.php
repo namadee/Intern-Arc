@@ -58,7 +58,7 @@
 			<tr>
 				<td class="view-ads-table-data"><?php echo $companyData->company_name ?></td>
 				<td class="view-ads-table-data"><?php echo $companyData->position ?></td>
-  				<td class="view-ads-table-data"><a href="<?php echo URLROOT; ?>advertisements/view-advertisement?adId=<?php echo $companyData->advertisement_id; ?>"><button>view</button></td>
+  				<td class="view-ads-table-data"><a href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $companyData->advertisement_id; ?>"><button>view</button></td>
 			</tr>
 			<?php endforeach; ?>
 	  </table>

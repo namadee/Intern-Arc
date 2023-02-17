@@ -2,7 +2,8 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
-<section id="advertisement_page" class="main-content advertisement-main-content"> 
+<section id="advertisement_page" class="main-content advertisement-main-content">
+    <?php flashMessage('student_request_msg'); ?> 
     <div class="advertisement-main-container">
         <div class="ad-header">
             <div class="display-flex-row ad-header-top">
@@ -70,9 +71,9 @@
        </div>
         <a href="<?php 
             if($_SESSION['user_role'] == 'company'){
-                echo URLROOT . 'requests/showRequestsByAd?adId=' . $_GET['adId'];
+                echo URLROOT . 'requests/showRequestsByAd/'.$data['advertisement_id'];
             }else if($_SESSION['user_role'] == 'student'){
-                echo URLROOT . 'requests/addStudentRequest?adId=' . $_GET['adId'];
+                echo URLROOT . 'requests/addStudentRequest/' . $data['advertisement_id'];
 
             } ?>" class="common-blue-btn apply-btn"><?php echo $data['button_name'] ?></a>
     </div> 
