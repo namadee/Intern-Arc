@@ -15,7 +15,8 @@ class Requests extends BaseController
         $this->advertisementModel = $this->model('Advertisement');
     }
 
-    public function index() //Load PDC Dashboard
+    public function index()
+
     {
         $this->view('company/studentRequestList');
     }
@@ -45,7 +46,11 @@ class Requests extends BaseController
 
     public function allRequests() 
     {
-        $this->view('company/addAdvertisement');
+        $requests = $this->requestModel->getRequests();
+        $data = [
+            'requests' => $requests,
+        ];
+        $this->view('pdc/studentRequest', $data);
     }
 
     public function shortlistedList() 
