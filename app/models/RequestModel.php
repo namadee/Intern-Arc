@@ -1,6 +1,6 @@
 <?php
 
-class StudentRequestModel
+class RequestModel
 {
     private $db;
 

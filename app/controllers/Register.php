@@ -2,7 +2,7 @@
 
 class Register extends BaseController
 {
-    public $userModel,$registerModel,$studentModel,$testModel;
+    public $userModel, $registerModel, $studentModel, $testModel, $companyModel;
     //All the Registration Processes
 
     public function __construct()
@@ -11,6 +11,7 @@ class Register extends BaseController
         $this->userModel = $this->model('User');
         $this->studentModel = $this->model('Student');
         $this->testModel = $this->model('Test');
+        $this->companyModel = $this->model('Company');
     }
 
     public function index()
@@ -92,7 +93,6 @@ class Register extends BaseController
                         $this->registerModel->registerStudent($data);
                         flashMessage('std_register_msg', 'Student Registered Successfully!');
                         redirect('register/register-student/' . $year . '/' . $stream);
-
                     } else {
                         flashMessage('std_register_msg', 'Error Occured!, Email is not sent', 'danger-alert');
                         redirect('register/register-student/' . $year . '/' . $stream);
@@ -146,29 +146,36 @@ class Register extends BaseController
 
                 // Hash Password
                 $hashPassword = password_hash($password, PASSWORD_DEFAULT);
-                $data = [
-                    'username' => trim($_POST['username']),
-                    'email' => trim($_POST['email']),
-                    'password' => $hashPassword,
-                    'user_role' => 'company'
-                ];
-
-                //Execute
-                $this->registerModel->registerUser($data);
-
-                //Get that User_Id
-                $user_id = $this->userModel->getUserId($data['email']);
-
-                $data = [
-                    'user_id' => $user_id,
-                    'company_name' => trim($_POST['company_name']),
-                    'contact' => trim($_POST['contact']),
-                ];
 
                 $email = new Email();
-                $email->sendLoginEmail(trim($_POST['email']), $password, $_POST['username']);
-                $this->registerModel->registerCompany($data);
-                redirect('register/register-company');
+
+                if ($email->sendLoginEmail(trim($_POST['email']), $password, $_POST['username'])) {
+                    $data = [
+                        'username' => trim($_POST['username']),
+                        'email' => trim($_POST['email']),
+                        'password' => $hashPassword,
+                        'user_role' => 'company'
+                    ];
+
+                    //Execute
+                    $this->registerModel->registerUser($data);
+
+                    //Get that User_Id
+                    $user_id = $this->userModel->getUserId($data['email']);
+
+                    $data = [
+                        'user_id' => $user_id,
+                        'company_name' => trim($_POST['company_name']),
+                        'contact' => trim($_POST['contact']),
+                    ];
+                    $this->registerModel->registerCompany($data);
+                    flashMessage('company_register_msg', 'Company Registered Successfully!');
+                    redirect('register/register-company');
+
+                } else {
+                    flashMessage('company_register_msg', 'Error Occured!, Email is not sent', 'danger-alert');
+                    redirect('register/register-company/');
+                }
             }
         } else {
             // IF NOT A POST REQUEST
@@ -342,6 +349,45 @@ class Register extends BaseController
             }
         } else {
             redirect('pdc/main-student-details/' . $user_id);
+        }
+    }
+
+
+    public function resendCompanyCredentials($user_id = NULL) //Resend Student User Login Credentials - Ruchira
+    {
+        if ($user_id == NULL) {
+            redirect('students/manage-student');
+        }
+        // Check if POST
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // Strip Tags
+            stripTags();
+
+            $companyDetails = $this->companyModel->mainCompanyDetails($user_id);
+
+            //Random Password
+            $password = generatePassword();
+
+            // Hash Password
+            $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+            $data = [
+                'user_id' =>  $companyDetails->user_id,
+                'password' => $hashPassword
+            ];
+
+            $email = new Email();
+            if ($email->sendLoginEmail($companyDetails->email, $password,  $companyDetails->username)) {
+                //Update New Password (Only if the email is sent to the Company)
+                $this->registerModel->updatePassword($data);
+                flashMessage('main_details_msg', 'New Login Credentials Sent Successfully!');
+                redirect('pdc/main-company-details/' . $user_id);
+            } else {
+                flashMessage('main_details_msg', 'Error Occured!, Email is not sent', 'danger-alert');
+                redirect('pdc/main-company-details/' . $user_id);
+            }
+        } else {
+            redirect('pdc/main-company-details/' . $user_id);
         }
     }
 }

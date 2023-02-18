@@ -4,34 +4,39 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
-    <?php flashMessage('main_details_msg') ?>
     <div class="company-details-main-container display-flex-row">
-
         <div class="company-details-container display-flex-col">
             <div class="container-top display-flex-row">
                 <h2>Company Details</h2>
+                <div class="container-top-update">
+                    <button id="blacklist-btn-company"><a href="" id="blacklist-btn" class="display-flex-row">
+                            <span class="material-symbols-outlined">
+                                flag
+                            </span></a>
+                    </button>
+                    <p id="blacklist-tooltip">Blacklist Company</p>
+                </div>
             </div>
 
             <div class="container-body">
                 <!-- Update Form -->
-                <form action="<?php echo URLROOT . 'pdc/mainCompanyDetails/' . $data['user_id']; ?>" method="POST">
+                <form action="" method="POST">
                     <ul class=" display-flex-col">
                         <li class="display-flex-row">
-                            <label for="company_name">Company Name</label>
-                            <input type="text" class="common-input" name="company_name" id="company_name" value="<?php echo $data['company_name']; ?>" required>
+                            <label for="">Company Name</label>
+                            <input type="text" class="common-input" name="company-name" id="company-name">
                         </li>
                         <li class="display-flex-row">
                             <label for="">Contact Person</label>
-                            <input type="text" class="common-input" name="username" id="username" value="<?php echo $data['username']; ?>" required>
+                            <input type="text" class="common-input" name="username" id="username">
                         </li>
                         <li class="display-flex-row">
                             <label for="">Email</label>
-                            <input type="text" class="common-input" name="email" id="email" value="<?php echo $data['email']; ?>" required>
-                            <input type="hidden" class="common-input" name="old_email" id="old_email" value="<?php echo $data['email']; ?>" required>
+                            <input type="text" class="common-input" name="email" id="email">
                         </li>
                         <li class="display-flex-row">
                             <label for="">Contact Number</label>
-                            <input type="number" class="common-input" name="contact" id="contact" value="<?php echo $data['contact']; ?>" required>
+                            <input type="number" class="common-input" name="contact" id="contact">
                         </li>
                         <li class="display-flex-row" id="toggleUpdateBtn">
                             <button type="submit" class="common-blue-btn">Update</button>
@@ -46,7 +51,7 @@
             <div class="container-btns display-flex-row">
                 <button id="view-btn"><a href="<?php echo URLROOT . 'profiles/company-profile'; ?>" id="view-btn">View Profile</a></button>
 
-                <button id="delete-btn"><a href="<?php echo URLROOT . 'pdc/deleteCompany/'.$data['user_id'] ;?>" id="delete-btn" class="display-flex-row">
+                <button id="delete-btn"><a href="" id="delete-btn" class="display-flex-row">
                         <span class="material-symbols-outlined">
                             delete
                         </span>Delete</a>
@@ -54,17 +59,8 @@
             </div>
         </div>
         <div class="company-details-analysis display-flex-col">
-            <h2>Summarized Analysis</h2>
+            <h3>Summarized Analysis</h3>
             <div class="display-flex-col analysis-items">
-                <form action="">
-                    <label for="year">Select a Year</label>
-                    <select name="year" id="" class="common-input">
-                        <option value="2023">2023</option>
-                        <option value="2023">2023</option>
-                        <option value="2023">2023</option>
-                        <option value="2023">2023</option>
-                    </select>
-                </form>
                 <div class="display-flex-row">
                     <p>Total Advertisements Listed</p>
                     <span>10</span>

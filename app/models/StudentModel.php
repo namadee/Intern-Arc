@@ -202,12 +202,4 @@ class StudentModel
         return $this->db->execute();
     }
 
-    //delete a student - pdc - Ruchira (Through user table with the help of cascade delete)
-    public function deleteStudent($user_id)
-    {
-        $this->db->query('DELETE FROM user_tbl WHERE user_id = :user_id;');
-        // Bind Values
-        $this->db->bind(':user_id', $user_id);
-        return $this->db->execute();
-    }
 }

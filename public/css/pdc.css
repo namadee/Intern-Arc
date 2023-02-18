@@ -205,6 +205,94 @@ input::-webkit-inner-spin-button {
   color: white;
 }
 
+#resend-credential-form-company {
+  margin: auto;
+}
+
+#resend-credential-form-company button {
+  padding: 0.2rem 0.5rem;
+}
+
+#blacklist-btn-company {
+  border: none;
+  background-color: var(--DangerColor);
+  border-radius: 3px;
+}
+
+#blacklist-btn-company span {
+  color: white;
+  padding: 0.2rem;
+}
+
+#blacklist-tooltip {
+  position: absolute;
+  visibility: hidden;
+  right: 2rem;
+  top: 0;
+  width: 8rem;
+  font-size: 0.8rem;
+  background-color: rgba(0, 0, 0, 0.719);
+  border-radius: 2px;
+  text-align: center;
+  color: white;
+  padding: 0.2rem;
+}
+
+.container-top-update:hover #blacklist-tooltip {
+  visibility: visible;
+}
+
+/*Manage Company - View BlackListed Company Modal*/
+.blacklisted-main-modal{
+  padding-top: 50px;
+}
+
+.blacklisted-main-div{
+  position: relative;
+  width: 60%;
+  height: 90%;
+  margin: auto;
+}
+
+.blacklisted-companies-modal {
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  overflow-y: auto;
+}
+
+.blacklisted-companies-modal .top-bar{
+  position: sticky;
+  background-color: white;
+  padding: 0.5rem;
+  top: -1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.blacklisted-companies-modal table {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.blacklisted-companies-modal table th {
+  background-color: var(--AlternateLightGrey);
+  padding: 0.4rem;
+}
+
+.blacklisted-companies-modal table td {
+  padding: 0.2rem;
+  word-wrap: break-word;
+}
+
+.blacklisted-companies-modal #no-blacklist-msg{
+  margin: auto;
+  background-color: var(--BackgroungColor);
+  padding: 0.3rem;
+  width: 100%;
+  text-align: center;
+}
 /*-----------------------  Manage Company - Add Company Page ----------------------- */
 
 .add-company-container {
@@ -815,6 +903,10 @@ table th {
   gap: 1rem;
 }
 
+.container-top-update {
+  position: relative;
+}
+
 .container-top-update div {
   padding: 0.5rem;
 }
@@ -824,7 +916,7 @@ table th {
 }
 
 .company-details-container .container-body li input {
-  width: 55%;
+  width: 65%;
   background-color: var(--BackgroungColor);
 }
 
@@ -849,7 +941,8 @@ table th {
 
 .company-details-container .container-btns {
   justify-content: space-around;
-  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--AlternateLightGrey);
 }
 
 .company-details-container .container-btns button {
@@ -898,7 +991,7 @@ table th {
 .company-details-analysis {
   width: 40%;
   margin-left: 2rem;
-  gap: 2rem;
+  gap: 1rem;
   min-height: 20rem;
   background-color: white;
   padding: 2rem;
