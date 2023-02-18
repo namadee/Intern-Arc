@@ -68,6 +68,27 @@ class Profiles extends BaseController
         $this->view('company/profile', $data);
     }
 
+    // public function showCompanyProfile()
+    // {
+    //     $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+
+
+
+    //     $company_details = $this->userModel->getCompanyDetails($companyId);
+
+    //     $data = [
+    //         'company_id' => $companyId,
+    //         'company_name' => $company_details->company_name,
+    //         'company_address' => $company_details->company_address,
+    //         'company_slogan' => $company_details->company_slogan,
+    //         'company_email' => $company_details->company_email,
+    //         'company_description' => $company_details->company_description,
+    //         'formAction' => 'Profiles/update-company-profile/' . $company_details->company_id
+    //     ];
+
+    //     $this->view('company/editProfile', $data);
+    // }
+
     public function updateCompanyProfile()
     {
 
@@ -82,7 +103,7 @@ class Profiles extends BaseController
             // File upload path
             $targetDir = "img/profile-img/";
             //Change image file name - Unique Name for each user with the help of userId
-            $fileName = 'user' . $_SESSION['user_id'] . '_profile_img' . rand(0, 100000);
+            $fileName = 'user' . $_SESSION['user_id'] . '_profileimg' . rand(0, 100000);
             //Get the extension
             $extension = pathinfo($_FILES["profile_image"]["name"], PATHINFO_EXTENSION);
             //Full image name
@@ -327,7 +348,8 @@ class Profiles extends BaseController
                 'data' => $status,
                 'name' => $size
             ];
-        }}
+        }
+    }
     public function studentProfile()                //($_SESSION['user_id'])
     {
         $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
@@ -349,6 +371,8 @@ class Profiles extends BaseController
                 'stream' => trim($_POST['stream']),
                 'profile_description' => trim($_POST['profile_description']),
                 'extracurricular' => trim($_POST['extracurricular']),
+                'profile_name'=>trim($_POST['profile_name']),
+                'personal_email'=>trim($_POST['personal_email']),
             ];
 
             //Execute
@@ -362,7 +386,7 @@ class Profiles extends BaseController
 
             $studentProfile = $this->studentModel->getStudentProfileData();
 
-    
+
             $data = [
                 'experience' => $studentProfile->experience,
                 'interests' => $studentProfile->interests,
@@ -372,13 +396,15 @@ class Profiles extends BaseController
                 'stream' => $studentProfile->stream,
                 'profile_description' => $studentProfile->profile_description,
                 'extracurricular' => $studentProfile->extracurricular,
+                'profile_name' => $studentProfile->profile_name,
+                'personal_email' => $studentProfile->personal_email,
             ];
-    
+
             // $this->view('student/editprofile',$data);
 
-        $this->view('student/studentprofile',$data);
+            $this->view('student/studentprofile', $data);
+        }
     }
-}
 
     public function studentCompanyProfile()
     {
@@ -387,8 +413,11 @@ class Profiles extends BaseController
 
     //update student profile
     public function EditStudentProfileDetails()
+
     {
-        $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
+
+        $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
+ 
         //$student_details = $this->userModel->getStudentDetails($studentId);
 
         // Check if POST
@@ -418,9 +447,10 @@ class Profiles extends BaseController
             }
         } else {
 
-            $studentProfile = $this->studentModel->getStudentProfileData();
+            $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
+            $studentProfile = $this->studentModel->getStudentProfileData($studentId);
 
-    
+
             $data = [
                 'experience' => $studentProfile->experience,
                 'interests' => $studentProfile->interests,
@@ -430,9 +460,11 @@ class Profiles extends BaseController
                 'stream' => $studentProfile->stream,
                 'profile_description' => $studentProfile->profile_description,
                 'extracurricular' => $studentProfile->extracurricular,
+                'profile_name' => $studentProfile->profile_name,
+                'personal_email' => $studentProfile->personal_email,
             ];
-    
-            $this->view('student/editprofile',$data);
+
+            $this->view('student/editprofile', $data);
 
             // $data = [
             //     'student_id' => '',
@@ -450,5 +482,4 @@ class Profiles extends BaseController
             // $this->view('student/editprofile', $data);
         }
     }
-
 }

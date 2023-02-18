@@ -7,9 +7,9 @@
     <div class="advertisement-main-container">
         <div class="ad-header">
             <div class="display-flex-row ad-header-top">
-                <img class="ucsc-logo" src="<?php echo URLROOT ?>/img/ucsc-logo.png">
+                <img class="ucsc-logo" src="<?php echo URLROOT ?>img/ucsc-logo.png">
                 <h1>University of Colombo School Of Computing</h1>
-                <img class="internarc-logo" src="<?php echo URLROOT ?>/img/logo.png">
+                <img class="internarc-logo" src="<?php echo URLROOT ?>img/logo.png">
             </div>
             <div class="display-flex-col ad-header-bottom">
                 <h2>UCSC INDUSTRIAL PLACEMENTS-2024</h2>

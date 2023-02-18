@@ -110,12 +110,4 @@ function displayImageName(fileName){
 
 //let end_date = new Date(start_date.setMonth(start_date.getMonth()+6));
 
-function toggleProfileUpdate() {
-  let updateBtn = document.getElementById("toggleUpdateBtn");
 
-  if (updateBtn.style.display === "none") {
-    updateBtn.style.display = "block";
-  } else {
-    updateBtn.style.display = "none";
-  }
-}

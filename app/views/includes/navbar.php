@@ -56,7 +56,7 @@
                 <div class="topNav-icon" onclick="toggleNav()">
                     <span class="material-symbols-rounded">sort</span>
                 </div>
-                <p>Dashboard</p>
+                <p></p>
             </div>
             <div class="topNav-right">
                 <div class="topNav-icon">

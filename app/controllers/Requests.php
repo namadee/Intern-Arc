@@ -16,6 +16,7 @@ class Requests extends BaseController
     }
 
     public function index()
+
     {
         $requests = $this->requestModel->getStudentRequests();
         //view pass data values $data

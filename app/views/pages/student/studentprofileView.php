@@ -10,7 +10,7 @@
             <h3>Student Profile</h3> <br/>
             <div class="student-profile-bio display-flex-row">
                 <div class="display-flex-col">
-                    <h3>Hello! Im <span>Ruchira Bogahawatta</span></h3>
+                    <h3>Hello! Im <span>Geeth Weerasinghe</span></h3>
                     <!-- <p>Award-winning web developer and instructor with 10+ years of well-rounded experience in LAMP development, object-oriented and user-centered design, seeks a position with a top technology firm.</p> -->
                     <?php echo $data['profile_description'] ?>
                 </div>
@@ -35,12 +35,9 @@
                         <h3>Interested Areas</h3>
                         <div class="display-flex-row interested-area-items">
                             <span><?php echo $data['interests'] ?></span>
-                            <span><?php echo $data['interests'] ?></span>
                         </div>
-                        <div class="display-flex-row interested-area-items">
-                            <span><?php echo $data['interests'] ?></span>
-                            <span><?php echo $data['interests'] ?></span>
-                        </div>
+                        <!-- <div class="display-flex-row interested-area-items">
+                        </div> -->
                     </li>
                     <li class="display-flex-col extra-curricular">
                         <h3>Extra Curricular</h3>
@@ -49,11 +46,10 @@
                             St Joseph's College- Colombo -->
                             <?php echo $data['extracurricular'] ?>
                         </div>
-                        <div>
-                            <!-- Content Writer <br>
-                            Colombo Beacone -->
-                            <?php echo $data['extracurricular'] ?>
-                        </div>
+                        <!-- <div>
+                            Content Writer <br>
+                            Colombo Beacone
+                        </div> -->
 
                     </li>
                 </ul> 
@@ -69,12 +65,11 @@
                         <p>6 Months</p> -->
                         <?php echo $data['experience'] ?>
                     </div>
-                    <div class="display-flex-col experience-items">
-                        <!-- <p>SEO Intern</p>
+                    <!-- <div class="display-flex-col experience-items">
+                        <p>SEO Intern</p>
                         <p>Commercial Technologies Plus</p>
-                        <p>6 Months</p> -->
-                        <?php echo $data['experience'] ?>
-                    </div>
+                        <p>6 Months</p>
+                    </div> -->
 
                 </div>
                 <div class="display-flex-col student-experience">
@@ -85,11 +80,11 @@
                         <?php echo $data['qualifications'] ?>
                     </div>
 
-                    <div class="display-flex-col experience-items">
-                        <!-- <p>The Chartered Institute of Marketing</p>
-                        <p>Diploma in Porfessional Marketing</p> -->
-                        <?php echo $data['qualifications'] ?>
-                    </div>
+                    <!-- <div class="display-flex-col experience-items">
+                         <p>The Chartered Institute of Marketing</p>
+                        <p>Diploma in Porfessional Marketing</p> 
+                        
+                    </div> -->
                 </div>
             </div>
             <section class="std-profile-image">
@@ -105,7 +100,7 @@
                     <span class="material-symbols-outlined">
                         mail
                     </span>
-                    ruchira.bogahawatta@gmail.com
+                    geeth@gmail.com
                 </div>
             </div>
 

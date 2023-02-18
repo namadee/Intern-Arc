@@ -15,17 +15,12 @@
     <h2>
     THIS IS TEST VIEW
     </h2>
-    <div class="maind">
-        <div>
-    
-    <div>
-   
-    </div>
-    </div>
+    <h2><?php echo $data['data']; ?></h2>
+    <h2><?php print_r ($data['name']); ?></h2>
 
-    <!-- <form action="" >
+    <form action="<?php echo URLROOT . "profiles/test" ?> " >
         <input type="file" id="myFile" name="my_file">
         <button type="submit">submit</button>
-    </form> -->
+    </form>
 </body>
 </html>
