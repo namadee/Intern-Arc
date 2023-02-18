@@ -793,3 +793,12 @@ main {
   border-radius: 5px;
   display: none;
 }
+
+.no-data-page{
+  padding: 2rem;
+}
+
+.no-data-page img{
+  width: 30%;
+  margin: auto;
+}

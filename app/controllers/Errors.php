@@ -45,4 +45,10 @@ class Errors extends BaseController
 
         $this->view('noAccess');
     }
+
+    public function noData()
+    {
+
+        $this->view('noData');
+    }
 }
