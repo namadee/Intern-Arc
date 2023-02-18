@@ -17,7 +17,16 @@ class Requests extends BaseController
 
     public function index()
     {
-        $this->view('company/studentRequestList');
+        $requests = $this->requestModel->getStudentRequests();
+        //view pass data values $data
+
+        $data = [
+
+            'requests' => $requests,
+
+        ];
+
+        $this->view('company/studentRequestList', $data);
     }
 
     //Applying to advertisement
@@ -71,6 +80,38 @@ class Requests extends BaseController
         } else {
             die('Something went wrong');
         }
+
+    }
+
+    //DISPLAY ADVERTISEMENT LIST WITH RELEVENT REQUEST COUNT
+    public function AdvertisementListRequests(){
+        //loop through advertisements 
+        //if ad_id = ad_id display advertisement details and count
+        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+        $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+        
+        $requestCounts = array();
+        $x=0;
+        foreach($advertisements as $advertisement)
+        {
+            $requests = $this->requestModel->getAdvertisementByRequest($advertisement->advertisement_id);
+            $requestCounts[$x] = count($requests);
+            $positions[$x] = $advertisement->position;
+            $intern_counts[$x] = $advertisement->intern_count;
+            $x++;
+        }
+        
+        
+        $data = [
+            'count' => $requestCounts,
+            'length' => count($requestCounts),
+            'positions' => $positions,
+            'intern_counts' => $intern_counts,
+            'advertisements' =>$advertisements,
+            
+        ];
+
+        $this->view('company/studentRequestList', $data);
 
     }
 

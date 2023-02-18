@@ -24,7 +24,7 @@ function getNavigationByUser($userType)
       $navigation = array(
         array(URLROOT.'companies', 'dashboard', 'Dashboard'),
         array(URLROOT.'advertisements', 'text_to_speech', 'Advertisements'),
-        array(URLROOT.'requests', 'school', 'Student Requests'),
+        array(URLROOT.'requests/AdvertisementListRequests', 'school', 'Student Requests'),
         array(URLROOT.'requests/shortlisted-list', 'list_alt', 'Shortlisted'),
         array(URLROOT.'companies/InterviewScheduleList', 'calendar_month', 'Schedule'),
         array(URLROOT.'complaints', 'approval_delegation', 'Complaint'),
