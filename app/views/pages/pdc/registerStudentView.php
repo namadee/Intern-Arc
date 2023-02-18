@@ -5,22 +5,24 @@
 
 <section class="main-content display-flex-col">
     <?php flashMessage('upload_file_error'); ?>
+    <?php flashMessage('std_register_msg'); ?>
 
     <div class="display-flex-row register-student-top">
         <div class="display-flex-row">Batch
-            <p>2022 Batch</p>
+            <p><?php echo $data['year']; ?></p>
         </div>
         <span class="material-symbols-outlined " id="add-student-top-icon">
             keyboard_double_arrow_right
         </span>
-        <div class="display-flex-row">Stream
-            <p>Information System</p>
+        <div class="display-flex-row">Degree Programme
+            <p><?php echo $data['stream'] === 'IS'? 'Information Systems' : 'Computer Systems'; ?>        
+        </p>
         </div>
     </div>
     <div class="add-student-container add-company-container display-flex-row">
         <div class="register-company display-flex-col">
             <h2>Register a Student</h2>
-            <form action="<?php echo URLROOT . "register/register-student"; ?>" method="POST" class="display-flex-col" id="student-register-form">
+            <form action="<?php echo URLROOT . "register/register-student/".$data['year']."/".$data['stream']; ?>" method="POST" class="display-flex-col" id="student-register-form">
                 <ul class="display-flex-col">
                     <li class="display-flex-col">
                         <label for="username">Student Name</label>
@@ -29,7 +31,7 @@
                     <li class="display-flex-col">
                         <div class="display-flex-col">
                             <label for="email">Student Email</label>
-                            <input type="text" name="email" id="email" class="common-input" required value="<?php echo $data['email']; ?>">
+                            <input type="email" name="email" id="email" class="common-input" required value="<?php echo $data['email']; ?>">
                         </div>
                         <span class="input-validate-error"><?php echo $data['email_error']; ?></span>
                     </li>
@@ -50,6 +52,8 @@
                     </li>
                 </ul>
                 <button type="submit" class="common-blue-btn">Register Student</button>
+                <input type="hidden" name="year" value="<?php echo $data['year']; ?>">
+                <input type="hidden" name="stream" value="<?php echo $data['stream']; ?>">
             </form>
         </div>
         <div class="csv-company display-flex-col">
@@ -89,6 +93,8 @@
                     </label>
                     <input type="file" name="students-csv" id="students-csv" accept=".csv">
                     <button type="submit" class="common-blue-btn">Register</button>
+                    <input type="hidden" name="year" value="<?php echo $data['year']; ?>">
+                <input type="hidden" name="stream" value="<?php echo $data['stream']; ?>">
                 </form>
             </div>
         </div>

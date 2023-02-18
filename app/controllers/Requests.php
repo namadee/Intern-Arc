@@ -16,6 +16,7 @@ class Requests extends BaseController
     }
 
     public function index()
+
     {
         $this->view('company/studentRequestList');
     }

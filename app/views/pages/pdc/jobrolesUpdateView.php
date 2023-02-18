@@ -37,15 +37,15 @@
     </div>
 
     <div class="common-modal-box" id="jobroles-modal-box">
-        <form method="POST" action="<?php echo URLROOT . "jobroles/update-jobrole/" . $data['jobrole_id'] ?>" class="display-flex-col">
-            <a href="<?php echo URLROOT . "jobroles" ?> ">
+        <form method="POST" action="<?php echo URLROOT . "jobroles/update-jobrole/" . $data['jobrole_id'] ?>" class="display-flex-col common-modal-box-form">
+            <a href="<?php echo URLROOT . "jobroles" ?> " id="modal-box-close">
             <span class="material-symbols-outlined" id="jobrole-modal-span" class="common-modal-close">
                 close
                 </span></a>
             <label for="jobrole-update">Jobrole Name</label>
 
             <input type="text" name="jobrole-update" id="jobrole-update" class="common-input" value="<?php echo $data['inputValue'] ?>">
-            <button type="submit" class="common-blue-btn">Update</button>
+            <button type="submit" class="common-blue-btn" id="modal-submit-btn" >Update</button>
         </form>
     </div>
 </section>

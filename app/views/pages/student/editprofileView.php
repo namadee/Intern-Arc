@@ -7,6 +7,12 @@
     <form id="addProfileDetails" action="<?php echo URLROOT?>Profiles/edit-student-profile-details" method="POST">
    <br><br>
 
+   <label for="profile_name">Profile Name:</label>
+   <input type="text" id="profile_name" name="profile_name" value="Geeth Weerasinghe"><br><br> 
+
+   <label for="personal_email">Personal Email:</label>
+   <input type="text" id="personal_email" name="personal_email" value="geeth@gmail.com"><br><br> 
+
     <label for="stream">Stream:</label>
       <select id="stream" name="stream">
         <option value="Information Systems">Information Systems</option>
