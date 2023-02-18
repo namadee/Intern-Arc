@@ -88,12 +88,21 @@ class AdvertisementModel
         }
     }
 
-    //GET COMPANY details RELEVENT TO ADVERTISEMENT 
+    //GET COMPANY DETAILS RELEVENT TO ADVERTISEMENT 
     public function getCompanyByAd(){
         $this->db->query('SELECT advertisement_tbl.position, advertisement_tbl.advertisement_id, company_tbl.company_name 
         FROM company_tbl 
         JOIN advertisement_tbl 
         ON company_tbl.company_id = advertisement_tbl.company_id_fk');
+
+        return $this->db->resultset();
+    }
+
+    //SELECT ADVERTISEMENTS BASED ON COMPANY 
+    public function getAdvertisementsByCompany($companyId)
+    {
+        $this->db->query('SELECT * FROM advertisement_tbl WHERE company_id_fk = :company_id');
+        $this->db->bind(':company_id', $companyId);
 
         return $this->db->resultset();
     }

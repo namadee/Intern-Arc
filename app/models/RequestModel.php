@@ -73,4 +73,18 @@ class StudentRequestModel
         return $this->db->resultset();
     
     }
+
+    //join advertisement and student request table
+    public function getAdvertisementByRequest($advertisementId){
+        $this->db->query('SELECT advertisement_tbl.position , advertisement_tbl.intern_count, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round  
+        FROM advertisement_tbl 
+        JOIN student_requests_tbl 
+        ON advertisement_tbl.advertisement_id = student_requests_tbl.advertisement_id
+        WHERE student_requests_tbl.advertisement_id = :advertisement_id');
+        $this->db->bind(':advertisement_id', $advertisementId);
+
+        return $this->db->resultset();
+    
+    }
+
 }
