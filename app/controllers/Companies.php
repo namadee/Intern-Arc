@@ -62,4 +62,19 @@ class Companies extends BaseController
         $this->view('company/InterviewSchedule');
     }
 
+   //SHORTLIST STUDENTS
+   public function shortlistStudent(){
+    if(isset($_POST["status"])){
+        //Handling changing status to shortist or reject
+        $data = [
+            'request_id' => trim($_POST['request_id']),
+            'status' => trim($_POST['status'])
+        ];
+
+        $this->companyModel->shortlistStudent($data);
+        flashMessage('shortlist_student_msg', 'Student Added to Shortlist');
+        redirect('companies/shortlist-student');
+    }
+   }
+
 }

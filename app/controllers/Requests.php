@@ -72,6 +72,7 @@ class Requests extends BaseController
         $students = $this->requestModel->getStudentByRequest($advertisementId);
 
         $data = [
+            'advertisement_id' => $advertisementId,
             'student_name' => $students,
         ];
         
@@ -115,6 +116,8 @@ class Requests extends BaseController
         $this->view('company/studentRequestList', $data);
 
     }
+
+    //Get requestId from advertisementID
 
 }
 ?>

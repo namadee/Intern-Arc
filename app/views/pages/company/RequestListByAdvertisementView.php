@@ -45,13 +45,16 @@
             <td>
              <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
             </td>
+           
             <td>
-            <label for="status"></label>
-              <select id="status" name="status">
-              <option value="<?php echo $students->status ?>"><?php echo $students->status ?></option>
-                <option value="<?php echo $students->status ?>">Shortlist</option>
-                <option value="<?php echo $students->status ?>t">Reject</option>
-              </select>
+              <form action="<?php echo URLROOT . 'requests/showRequestsByAd/'.$data['advertisement_id'] ?>" id="shortlist_student" method="POST">
+                <select name="status" id="status-dropdown" class="common-input" onchange="this.form.submit()">
+                    <option value="<?php echo $students->status ?>" selected disabled></option>
+                    <option value="<?php echo $students->status ?>">Shortlist</option>
+                    <option value="<?php echo $students->status ?>">Reject</option>
+                </select>
+                <input name="request_id" value="<?php echo $students->student_request_id; ?>">
+              </form>
             </td>
 
           </tr>

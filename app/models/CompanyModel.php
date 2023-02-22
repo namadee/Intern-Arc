@@ -39,4 +39,20 @@ class CompanyModel
         $resultSet = $this->db->resultset();
         return $resultSet;
     }
+
+    public function shortlistStudent($data)
+    {
+        // Prepare Query
+        $this->db->query('UPDATE student_requests_tbl SET status = :status WHERE request_id = :request_id');
+        // Bind Values
+        $this->db->bind(':request_id', $data['request_id']);
+        $this->db->bind(':status', $data['status']);
+
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
