@@ -59,6 +59,8 @@ class Students extends BaseController
             'contact' => $studentProfile->contact,
             'stream' => $studentProfile->stream,
             'profile_description' => $studentProfile->profile_description,
+            'profile_name' => $studentProfile->profile_name,
+            'personal_email'=> $studentProfile->personal_email,
             'extracurricular' => $studentProfile->extracurricular,
         ];
 

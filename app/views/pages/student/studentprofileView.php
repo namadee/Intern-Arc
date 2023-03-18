@@ -10,7 +10,7 @@
             <h3>Student Profile</h3> <br/>
             <div class="student-profile-bio display-flex-row">
                 <div class="display-flex-col">
-                    <h3>Hello! Im <span>Ruchira Bogahawatta</span></h3>
+                    <h3>Hello! Im <span><?php echo $data['profile_name'] ?></span></h3>
                     <!-- <p>Award-winning web developer and instructor with 10+ years of well-rounded experience in LAMP development, object-oriented and user-centered design, seeks a position with a top technology firm.</p> -->
                     <?php echo $data['profile_description'] ?>
                 </div>
@@ -34,13 +34,25 @@
                     <li class="display-flex-col interested-areas" id="interests">
                         <h3>Interested Areas</h3>
                         <div class="display-flex-row interested-area-items">
-                            <span><?php echo $data['interests'] ?></span>
-                            <span><?php echo $data['interests'] ?></span>
-                        </div>
-                        <div class="display-flex-row interested-area-items">
-                            <span><?php echo $data['interests'] ?></span>
-                            <span><?php echo $data['interests'] ?></span>
-                        </div>
+                        <?php
+                        $text = explode("\n",$data['interests']);
+                        $length = count($text);
+                        echo $length;
+
+                        $emptyArray = array();
+                        // for ($x = 0; $x < $length; $x++) {
+                         
+                        //}
+
+                        for($x=0;$x<$length;$x++)
+                        {
+                            $emptyArray[$x] = trim($text[$x]);
+                            ?>
+                            <span><?php echo $text[$x] ?></span>
+                            <?php
+                        }
+                        ?>
+                            
                     </li>
                     <li class="display-flex-col extra-curricular">
                         <h3>Extra Curricular</h3>
@@ -105,7 +117,7 @@
                     <span class="material-symbols-outlined">
                         mail
                     </span>
-                    ruchira.bogahawatta@gmail.com
+                    <?php echo $data['personal_email']?>
                 </div>
             </div>
 
