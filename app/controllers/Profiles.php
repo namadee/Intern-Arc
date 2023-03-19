@@ -505,16 +505,16 @@ class Profiles extends BaseController
             $data = [
 
                 'student_id' => $studentId,
-                'experience' => trim($_POST['experience']),
+                'experience-list' => trim($_POST['experience-list']),
                 'interests-list' => trim($_POST['interests-list']),
-                'qualifications' => trim($_POST['qualifications']),
+                'qualifications-list' => trim($_POST['qualifications-list']),
                 'school' => trim($_POST['school']),
                 'contact' => trim($_POST['contact']),
                 'stream' => trim($_POST['stream']),
                 'profile_description' => trim($_POST['profile_description']),
                 'profile_name' => trim($_POST['profile_name']),
                 'personal_email' => trim($_POST['personal_email']),
-                'extracurricular' => trim($_POST['extracurricular']),
+                'extracurricular-list' => trim($_POST['extracurricular-list']),
             ];
 
             //Execute

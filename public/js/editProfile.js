@@ -18,7 +18,7 @@ document.getElementById("interested").onclick = function() {
     var li ="<li>" + '<span id="dot-icon" class="material-symbols-outlined">fiber_manual_record</span>' + text + "</li>";
     //document.getElementById("list").insertAdjacentHTML('beforeend', li);
     let element = document.getElementById("experience-list");
-    element.value += text + "\n";
+    element.value += "\n" + text + "\n";
     document.getElementById("experience").value = ""; // clear the value
     document.getElementById("list").style.listStyleType = "square";
   }
@@ -29,7 +29,7 @@ document.getElementById("interested").onclick = function() {
     var li ="<li>" + '<span id="dot-icon" class="material-symbols-outlined">fiber_manual_record</span>' + text + "</li>";
     //document.getElementById("list").insertAdjacentHTML('beforeend', li);
     let element = document.getElementById("qualifications-list");
-    element.value += text + "\n";
+    element.value += "\n" + text + "\n";
     document.getElementById("qualifications").value = ""; // clear the value
     document.getElementById("list").style.listStyleType = "square";
   }
@@ -40,7 +40,7 @@ document.getElementById("interested").onclick = function() {
     var li ="<li>" + '<span id="dot-icon" class="material-symbols-outlined">fiber_manual_record</span>' + text + "</li>";
     //document.getElementById("list").insertAdjacentHTML('beforeend', li);
     let element = document.getElementById("extracurricular-list");
-    element.value += text + "\n";
+    element.value += "\n" + text + "\n";
     document.getElementById("extracurricular").value = ""; // clear the value
     document.getElementById("list").style.listStyleType = "square";
   }

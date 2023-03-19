@@ -37,7 +37,7 @@
                         <?php
                         $text = explode("\n",$data['interests']);
                         $length = count($text);
-                        echo $length;
+                        //echo $length;
 
                         $emptyArray = array();
                         // for ($x = 0; $x < $length; $x++) {
@@ -56,16 +56,27 @@
                     </li>
                     <li class="display-flex-col extra-curricular">
                         <h3>Extra Curricular</h3>
-                        <div>
-                            <!-- First XV - Rugby <br>
-                            St Joseph's College- Colombo -->
-                            <?php echo $data['extracurricular'] ?>
-                        </div>
-                        <div>
-                            <!-- Content Writer <br>
-                            Colombo Beacone -->
-                            <?php echo $data['extracurricular'] ?>
-                        </div>
+
+                        <?php
+                        $text = explode("\n",$data['extracurricular']);
+                        $length = count($text);
+                        //echo $length;
+
+                        $emptyArray = array();
+                        // for ($x = 0; $x < $length; $x++) {
+                         
+                        //}
+
+                        for($x=0;$x<$length;$x++)
+                        {
+                            $emptyArray[$x] = trim($text[$x]);
+                            ?>
+                            <div class="display-flex-col experience-items">
+                                <?php echo $text[$x] ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
 
                     </li>
                 </ul> 
@@ -75,33 +86,53 @@
             <div class="body-right display-flex-col">
                 <div class="display-flex-col student-experience">
                     <h3>Experience</h3>
-                    <div class="display-flex-col experience-items">
-                        <!-- <p>SEO Intern</p>
-                        <p>Commercial Technologies Plus</p>
-                        <p>6 Months</p> -->
-                        <?php echo $data['experience'] ?>
-                    </div>
-                    <div class="display-flex-col experience-items">
-                        <!-- <p>SEO Intern</p>
-                        <p>Commercial Technologies Plus</p>
-                        <p>6 Months</p> -->
-                        <?php echo $data['experience'] ?>
-                    </div>
+
+                    <?php
+                        $text = explode("\n",$data['experience']);
+                        $length = count($text);
+                        //echo $length;
+
+                        $emptyArray = array();
+                        // for ($x = 0; $x < $length; $x++) {
+                         
+                        //}
+
+                        for($x=0;$x<$length;$x++)
+                        {
+                            $emptyArray[$x] = trim($text[$x]);
+                            ?>
+                            <div class="display-flex-col experience-items">
+                                <?php echo $text[$x] ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
 
                 </div>
                 <div class="display-flex-col student-experience">
                     <h3>Qualifications</h3>
-                    <div class="display-flex-col experience-items">
-                        <!-- <p>The Chartered Institute of Marketing</p>
-                        <p>Diploma in Porfessional Marketing</p> -->
-                        <?php echo $data['qualifications'] ?>
-                    </div>
 
-                    <div class="display-flex-col experience-items">
-                        <!-- <p>The Chartered Institute of Marketing</p>
-                        <p>Diploma in Porfessional Marketing</p> -->
-                        <?php echo $data['qualifications'] ?>
-                    </div>
+                    <?php
+                        $text = explode("\n",$data['qualifications']);
+                        $length = count($text);
+                        //echo $length;
+
+                        $emptyArray = array();
+                        // for ($x = 0; $x < $length; $x++) {
+                         
+                        //}
+
+                        for($x=0;$x<$length;$x++)
+                        {
+                            $emptyArray[$x] = trim($text[$x]);
+                            ?>
+                            <div class="display-flex-col experience-items">
+                                <?php echo $text[$x] ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        
                 </div>
             </div>
             <section class="std-profile-image">

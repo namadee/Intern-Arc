@@ -47,36 +47,36 @@
             <div class="addAdvertisement-items">
                 <p><label for="experience">Experience</label></p>
                 <div class="display-flex-row addreqs">
-                    <input type="text" class="add-req-btn" id="experience" name="experience" value="<?php echo $data['experience'] ?>">
+                    <input type="text" class="add-req-btn" id="experience" name="experience" value="">
                         <label id="exp" for="add"><span id="addIcon" class="material-symbols-outlined">library_add</span></label>
                     <input type='button'>
                 </div>
                
-                <textarea cols=10 rows=10 id="experience-list" name="experience-list"></textarea>
+                <textarea cols=10 rows=10 id="experience-list" name="experience-list"><?php echo $data['experience'] ?></textarea>
                 
             </div>
 
             <div class="addAdvertisement-items">
                 <p><label for="qualifications">Qualifications</label></p>
                 <div class="display-flex-row addreqs">
-                    <input type="text" class="add-req-btn" id="qualifications" name="qualifications" value="<?php echo $data['qualifications'] ?>">
+                    <input type="text" class="add-req-btn" id="qualifications" name="qualifications" value="">
                         <label id="qual" for="add"><span id="addIcon" class="material-symbols-outlined">library_add</span></label>
                     <input type='button'>
                 </div>
                
-                <textarea cols=10 rows=10 id="qualifications-list" name="qualifications-list"></textarea>
+                <textarea cols=10 rows=10 id="qualifications-list" name="qualifications-list"><?php echo $data['qualifications'] ?></textarea>
                 
             </div>
 
             <div class="addAdvertisement-items">
                 <p><label for="extracurricular">Extra Curricular Activities</label></p>
                 <div class="display-flex-row addreqs">
-                    <input type="text" class="add-req-btn" id="extracurricular" name="extracurricular" value="<?php echo $data['extracurricular'] ?>">
+                    <input type="text" class="add-req-btn" id="extracurricular" name="extracurricular" value="">
                         <label id="extra" for="add"><span id="addIcon" class="material-symbols-outlined">library_add</span></label>
                     <input type='button'>
                 </div>
                
-                <textarea cols=10 rows=10 id="extracurricular-list" name="extracurricular-list"></textarea>
+                <textarea cols=10 rows=10 id="extracurricular-list" name="extracurricular-list"><?php echo $data['extracurricular'] ?></textarea>
                 
             </div>
   
