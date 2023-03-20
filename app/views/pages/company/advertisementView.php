@@ -19,10 +19,6 @@
         
        <div class=" display-flex-row advertisement-container-body">
         <div class="body-left">
-            <!-- <b>Company Name: WSO2</b> -->
-            <!-- <p><b>Job Position: </b> QA Engineer</p><br>
-            <p><b>Job Description: </b>We are looking for self-motivated, dedicated and fun-loving team players to be a part of our culture and gain eal-world experience in software engineering with our professionals </p>
-            <p><b>Requirements / skills: </b> </p> -->
             <ul class="display-flex-col">
                     <li class="display-flex-row">
                         <p class="profile-item">Position</p>

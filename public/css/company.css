@@ -143,6 +143,8 @@
   align-items: center;
 }
 
+
+
 /*end of advertisement page*/
 
 /*start of add advertisement page*/
@@ -808,4 +810,12 @@ font-weight: 500;
   right: 1rem;
   background: var(--primaryColor);
   
+}
+
+#company-dashboard table td:nth-child(5){
+  padding: 0.5rem 3rem;
+}
+
+#request-list table td:nth-child(4){
+  padding: 0.5rem 3rem;
 }

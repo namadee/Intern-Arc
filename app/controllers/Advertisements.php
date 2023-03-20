@@ -59,7 +59,7 @@ class Advertisements extends BaseController
                 'position' => trim($_POST['position']),
                 'job_description' => trim($_POST['job_description']),
                 'requirements-list' => $emptyArray,
-                'requirements' => $emptyArray[0],
+                'requirements' => $emptyArray,
                 'textElement' => $text[0],
                 'internship_start' => date('y-m-d', strtotime($_POST['internship_start'])),
                 'internship_end' => date('y-m-d', strtotime($_POST['internship_end'])),

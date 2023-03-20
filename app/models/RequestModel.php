@@ -63,7 +63,7 @@ class RequestModel
 
 
     public function getStudentByRequest($advertisementId){
-        $this->db->query('SELECT student_tbl.profile_name ,student_tbl.personal_email, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round  
+        $this->db->query('SELECT student_tbl.profile_name , student_tbl.stream ,student_tbl.personal_email, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round  
         FROM student_tbl 
         JOIN student_requests_tbl 
         ON student_tbl.student_id = student_requests_tbl.student_id
@@ -86,5 +86,6 @@ class RequestModel
         return $this->db->resultset();
     
     }
+
 
 }

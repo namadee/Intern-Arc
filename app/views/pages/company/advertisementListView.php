@@ -53,7 +53,7 @@
             </td>
            
             <td>
-              <a class="common-edit-btn" href="<?php echo URLROOT; ?>advertisements/show-advertisement/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
+              <a class="common-edit-btn" href="<?php echo URLROOT; ?>advertisements/showAdvertisementById/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
               edit_square
                 </span>
               </a>

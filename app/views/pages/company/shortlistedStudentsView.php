@@ -32,24 +32,41 @@
       <table class="common-table">
         <tr>
           <th>Student Name</th>
-          <th>Student Degree</th>
-          <th>Student Year</th>
+          <th>Student Email</th>
+          <th>View</th>
+          <th>Status</th>
         </tr>
-    
 
-          <tr>
-            <td>Ruchira Bogahawaththa</td>
-            <td>CS</td>
-            <td>3</td>
+        <?php foreach ($data['student_name'] as $students) : ?>
+            <tr>
+            <td><?php echo $students->profile_name ?></p></td>
+            <td><?php echo $students->personal_email ?></td>
             <td>
-             <select class="student-req-action">
-                <option class="none" value="">Pending</option>
-                <option class="shortlist-op" value="">Recruit</option>
-                <option class="reject-op" value="">Reject</option>
-             </select>
+             <a class="common-view-btn" href="<?php echo URLROOT . 'requests/show-requests-by-ad/'.$data['advertisement_id']; ?>">View</a>
+            </td>
+            <td>
+              <div class="common-status display-flex-row">
+                <span class="common-status-span"></span>
+                <?php echo $students->recruit_status; ?>
+              </div>
             </td>
           
+            <td>
+              <form action="<?php echo URLROOT . 'companies/recruit-student/'.$data['advertisement_id'] ?>" id="recruit_student" method="POST">
+                <select name="recruit_status" id="status-dropdown" class="common-input" onchange="this.form.submit()">
+                <!-- Add new status column -->
+                    <option value="" selected disabled></option>
+                    <option value="recruited">Recruit</option>
+                    <option value="rejected">Reject</option>
+                </select>
+                <input type="hidden" name="request_id" value="<?php echo $students->student_request_id; ?>">
+                <input type="hidden" name="student_id" value="<?php echo $students->student_id; ?>">
+              </form>
+            </td>
+
           </tr>
+        
+        <?php endforeach; ?>
        
       </table>
     </div>
