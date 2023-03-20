@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
-<section class="main-content">
+<section class="main-content" id="request-list">
   <div class="common_list">
     <div class="common-list-topbar">
     <form action="" class="common-search-bar display-flex-row">
@@ -23,7 +23,6 @@
         </select>
       </div>
     </div>
-
     <div class="common_list_content">
       
       <div class="addBtn">
@@ -35,23 +34,33 @@
           <th>Student Email</th>
           <th>View</th>
           <th>Status</th>
-          
-       
-        </tr>
+       </tr>
+        
         <?php foreach ($data['student_name'] as $students) : ?>
             <tr>
             <td><?php echo $students->profile_name ?></p></td>
             <td><?php echo $students->personal_email ?></td>
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
+             <a class="common-view-btn" href="<?php echo URLROOT . 'requests/show-requests-by-ad/'.$data['advertisement_id']; ?>">View</a>
             </td>
             <td>
-            <label for="status"></label>
-              <select id="status" name="status">
-              <option value="<?php echo $students->status ?>"><?php echo $students->status ?></option>
-                <option value="<?php echo $students->status ?>">Shortlist</option>
-                <option value="<?php echo $students->status ?>t">Reject</option>
-              </select>
+             <div class="common-status display-flex-row">
+                <span class="common-status-span"></span>
+                <?php echo $students->status; ?>
+              </div>
+            </td>
+           
+            <td>
+              <form action="<?php echo URLROOT . 'companies/shortlistStudent/'.$data['advertisement_id'] ?>" id="shortlist_student" method="POST">
+                <select name="status" id="status-dropdown" class="common-input" onchange="this.form.submit()">
+                <!-- Add new status column -->
+                    <option value=""></option>
+                    <option value="Shortlist">Shortlist</option>
+                    <option value="Reject">Reject</option>
+                </select>
+                <input type="hidden" name="request_id" value="<?php echo $students->student_request_id; ?>">
+                <input type="hidden" name="student_id" value="<?php echo $students->student_id; ?>">
+              </form>
             </td>
 
           </tr>
