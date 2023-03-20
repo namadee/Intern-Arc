@@ -92,8 +92,8 @@ if (stdBatchYrForm) {
 function batchYearValidate(event) {
 
   let currentYear = new Date().getFullYear();
-  upperLimit = currentYear + 2;
-  lowerLimit = currentYear - 5;
+  upperLimit = currentYear - 4; //2019
+  lowerLimit = currentYear - 8; //2019 - 4
 
   if (batchYear.value.length != 4) {
     batchYrError.textContent = "*Please enter a valid Year!";

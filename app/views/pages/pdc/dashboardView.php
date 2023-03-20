@@ -4,7 +4,7 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
-<?php flashMessage('login_success'); ?>
+    <?php flashMessage('login_success'); ?>
     <div class="dashboard-topbar display-flex-row">
 
         <div class="dash-top-left">
@@ -38,147 +38,49 @@
         <div class="display-flex-row">
             <span></span>
             <p class="dashboard-card-item">Total Registered Companies</p>
-            <p class="dashboard-card-total">180</p>
+            <p class="dashboard-card-total"><?php echo $data['companyCount']; ?></p>
         </div>
         <div class="registered-companies display-flex-row">
             <span></span>
             <p class="dashboard-card-item">Total Registered Students</p>
-            <p class="dashboard-card-total">180</p>
+            <p class="dashboard-card-total"><?php echo $data['studentCount']; ?></p>
         </div>
     </div>
 
     <div class="dashboard-advertisement-list display-flex-col">
         <div class="list-top display-flex-row">
             <h3>Internship Advertisements</h3>
-            <div class="common-filter display-flex-row">
-                <span class="material-symbols-rounded">
-                    filter_alt
-                </span>
-                <form action="">
-                    <select name="filter-list" id="filterlist">
-                        <option value="all" selected>All</option>
-                        <option value="name">name</option>
-                        <option value="name">name</option>
-                        <option value="name">name</option>
-                    </select>
-                </form>
-            </div>
+            <a href="<?php echo URLROOT.'pdc/review-advertisement'  ?>" class="common-blue-btn view-all-btn">View All</a>
 
         </div>
         <div class="list-body">
             <table>
                 <thead>
+                    <th>Advertisement Name</th>
                     <th>Company Name</th>
-                    <th>Position</th>
                     <th>Interns</th>
                     <th>Status</th>
-                    <th></th>
+
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>99x Technology</td>
-                        <td>Software Engineering</td>
-                        <td>5</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Active
-                            </div>
-                        </td>
-                        <td> <a href="">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>99x Technology</td>
-                        <td>Software Engineering</td>
-                        <td>5</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Active
-                            </div>
-                        </td>
-                        <td> <a href="">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>99x Technology</td>
-                        <td>Software Engineering</td>
-                        <td>5</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Active
-                            </div>
-                        </td>
-                        <td> <a href="">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>99x Technology</td>
-                        <td>Software Engineering</td>
-                        <td>5</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Active
-                            </div>
-                        </td>
-                        <td> <a href="">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>99x Technology</td>
-                        <td>Software Engineering</td>
-                        <td>5</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Active
-                            </div>
-                        </td>
-                        <td> <a href="">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>99x Technology</td>
-                        <td>Software Engineering</td>
-                        <td>5</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Active
-                            </div>
-                        </td>
-                        <td> <a href="">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>99x Technology</td>
-                        <td>Software Engineering</td>
-                        <td>5</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Active
-                            </div>
-                        </td>
-                        <td> <a href="">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>99x Technology</td>
-                        <td>Software Engineering</td>
-                        <td>5</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Active
-                            </div>
-                        </td>
-                        <td> <a href="">View</a></td>
-                    </tr>
+                    <?php foreach ($data['advertisementList'] as $advertisement) : ?>
+                        <tr>
+                            <td><?php echo $advertisement->position ?></td>
+                            <td><?php echo $advertisement->company_name ?></td>
+                            <td><?php echo $advertisement->intern_count ?></td>
+                            <td>
+
+                                <div class="common-status display-flex-row <?php echo $advertisement->status == 'pending' ? 'yellow-status-font' : ($advertisement->status == 'rejected' ? 'red-status-font' : ''); ?> ">
+
+                                    <span class="common-status-span <?php echo $advertisement->status == 'pending' ? 'yellow-status' : ($advertisement->status == 'rejected' ? 'red-status' : ''); ?>">
+                                    </span>
+                                    <?php echo ucfirst($advertisement->status); ?>
+                                </div>
+
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+
                 </tbody>
             </table>
 

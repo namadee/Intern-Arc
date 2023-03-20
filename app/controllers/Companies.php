@@ -29,10 +29,32 @@ class Companies extends BaseController
         $this->view('company/dashboard', $data);
     }
 
-    // Manage Company- PDC
-    public function manageCompany()
+    // Manage Company- PDC - Ruchira
+    public function manageCompany($pg = NULL)
     {
-        $this->view('pdc/manageCompany');
+        $companyList = $this->companyModel->getCompanyList();
+
+        if ($pg == 'blacklisted') {
+
+            $blacklistedCompanyList = $this->companyModel->getBlacklistedCompanyList();
+            $data = [
+                'blacklisted_modal_class' => '',
+                'company_list' => $companyList,
+                'blacklisted_list' => $blacklistedCompanyList
+            ];
+
+            $this->view('pdc/manageCompany', $data);
+
+        } else {
+
+            $data = [
+                'blacklisted_modal_class' => 'hide-element',
+                'company_list' => $companyList,
+                'blacklisted_list' => NULL
+            ];
+
+            $this->view('pdc/manageCompany', $data);
+        }
     }
 
     // Company Details Company- PDC
@@ -60,19 +82,23 @@ class Companies extends BaseController
         $this->view('student/appliedcompanies');
     }
 
-    public function shortlistedStudents(){
+    public function shortlistedStudents()
+    {
         $this->view('company/shortlistedStudents');
     }
 
-    public function InterviewScheduleList(){
+    public function InterviewScheduleList()
+    {
         $this->view('company/InterviewScheduleList');
     }
 
-    public function InterviewScheduleCreate(){
+    public function InterviewScheduleCreate()
+    {
         $this->view('company/InterviewScheduleCreate');
     }
 
-    public function InterviewSchedule(){
+    public function InterviewSchedule()
+    {
         $this->view('company/InterviewSchedule');
     }
 
@@ -155,8 +181,5 @@ class Companies extends BaseController
     }
 
    }
-
-
-   
 
 }

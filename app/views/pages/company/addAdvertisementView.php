@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <script src="<?php echo URLROOT; ?>js/addAdvertisement.js" defer></script>
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
-
+    
 
 
 

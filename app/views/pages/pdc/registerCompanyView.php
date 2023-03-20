@@ -5,6 +5,7 @@
 
 <section class="main-content display-flex-col">
     <?php flashMessage('upload_file_error'); ?>
+    <?php flashMessage('company_register_msg'); ?>
 
     <div class="add-company-container display-flex-row">
 

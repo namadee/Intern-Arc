@@ -3,7 +3,7 @@
 class Pdc extends BaseController
 {
 
-    public $userModel, $registerModel, $companyModel, $studentModel;
+    public $userModel, $registerModel, $companyModel, $studentModel, $advertisementModel;
 
     public function __construct()
     {
@@ -11,11 +11,24 @@ class Pdc extends BaseController
         $this->userModel = $this->model('User');
         $this->companyModel = $this->model('Company');
         $this->studentModel = $this->model('Student');
+        $this->advertisementModel = $this->model('Advertisement');
     }
 
     public function index() //Load PDC Dashboard
     {
-        $this->view('pdc/dashboard');
+        $companyCount = $this->companyModel->getCompanyCount();
+        $studentCount = $this->studentModel->getStudentCount();
+
+        $advertisementList = $this->advertisementModel->getAdvertisementsList();
+
+        $data = [
+            'companyCount' => $companyCount->totalRows,
+            'studentCount' => $studentCount->totalRows,
+            'advertisementList' => $advertisementList
+
+        ];
+
+        $this->view('pdc/dashboard', $data);
     }
 
     public function sendInvitation()
@@ -109,6 +122,7 @@ class Pdc extends BaseController
                     'index_num' => trim($_POST['index_number']),
                     'batch_year' => trim($_POST['batch_year']),
                     'stream' => trim($_POST['stream']),
+                    'access' => trim($_POST['access']),
                     'old_email' => trim($_POST['old_email'])
                 ];
 
@@ -133,7 +147,8 @@ class Pdc extends BaseController
                     'user_id' => $user_id,
                     'batch_list' => $batch_list,
                     'std_batch' => $studentDetails->batch_year,
-                    'stream' => $studentDetails->stream
+                    'stream' => $studentDetails->stream,
+                    'access' => $studentDetails->access
                 ];
                 $this->view('pdc/studentDetails', $data);
             }
@@ -144,6 +159,7 @@ class Pdc extends BaseController
 
 
     //Delete a Student -PDC - Ruchira
+    //Deactivate A STUDENT
     //Delete this student straigly from user_tbl and automatically from student_tbl
     public function deleteStudent($year = NULL, $stream = NULL, $user_id = NULL)
     {
@@ -151,16 +167,111 @@ class Pdc extends BaseController
 
             if ($this->userModel->checkForUserById($user_id)) {
                 //user exists and can delete
-                $this->studentModel->deleteStudent($user_id);
-                flashMessage('student_list_msg', 'Student Deleted Successfully!');
+                // $this->userModel->deleteUser($user_id);
+                flashMessage('student_list_msg', 'Student Account Deactivated Successfully!');
                 redirect('pdc/student-list/' . $year . '/' . $stream);
             } else {
                 //user does not exist
-                flashMessage('student_list_msg', 'Student does not exist, Please check again!');
+                flashMessage('student_list_msg', 'Student does not exist, Please check again!', 'danger-alert');
                 redirect('pdc/student-list/' . $year . '/' . $stream);
             }
         } else {
             redirect('students/maanage-student');
+        }
+    }
+
+
+    //Update and View Main Company Details Update
+
+    public function mainCompanyDetails($user_id = NULL)
+    {
+        if ($user_id != NULL) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                //update main comapny details
+                stripTags();
+                $data = [
+                    'user_id' => $user_id,
+                    'username' => trim($_POST['username']),
+                    'email' => trim($_POST['email']),
+                    'contact' => trim($_POST['contact']),
+                    'company_name' => trim($_POST['company_name']),
+                    'old_email' => trim($_POST['old_email'])
+                ];
+
+                //Check for User Availability with the same email
+                $user = $this->userModel->getUserByEmail(trim($_POST['email']));
+
+                if ($user && $user->email != trim($_POST['old_email'])) {
+                    flashMessage('main_details_msg', 'Entered Email is already available, Please check again!', 'danger-alert');
+                    redirect('pdc/main-company-details/' . $user_id);
+                }
+
+                $this->companyModel->updateMainCompanyDetails($data);
+                flashMessage('main_details_msg', 'Company Details Updated Successfully!');
+                redirect('pdc/main-company-details/' . $user_id);
+            } else {
+                //view main comapny details
+                $companyDetails = $this->companyModel->mainCompanyDetails($user_id);
+
+                $data = [
+                    'username' => $companyDetails->username,
+                    'user_id' => $companyDetails->user_id,
+                    'company_name' => $companyDetails->company_name,
+                    'contact' => $companyDetails->contact,
+                    'email' => $companyDetails->email
+                ];
+
+                $this->view('pdc/companyDetails', $data);
+            }
+        } else {
+            redirect('companies/manage-company');
+        }
+    }
+
+
+    //Delete a Company -PDC - Ruchira
+    //Delete this company straigly from user_tbl and automatically from student_tbl
+    public function deleteCompany($user_id = NULL)
+    {
+        if ($user_id != NULL) {
+
+            if ($this->userModel->checkForUserById($user_id)) {
+                //user exists and can delete
+                $this->userModel->deleteUser($user_id);
+                flashMessage('company_list_msg', 'Company Deleted Successfully!');
+                redirect('companies/manage-company');
+            } else {
+                //user does not exist
+                flashMessage('company_list_msg', 'Company does not exist, Please check again!', 'danger-alert');
+                redirect('companies/manage-company');
+            }
+        } else {
+            redirect('companies/manage-company');
+        }
+    }
+
+
+    //Change Advertisement Status
+    public function reviewAdvertisement($advertisement_id = NULL)
+    {
+        $advertisementList = $this->advertisementModel->getAdvertisementsList();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            stripTags();
+            $data = [
+                'advertisement_id' => $advertisement_id,
+                'status' => trim($_POST['status']),
+            ];
+
+            $this->advertisementModel->changeAdvertisementStatus($data);
+            flashMessage('advertisement_status', 'Status Changed!');
+            redirect('pdc/review-advertisement');
+        } else {
+            $data = [
+                'advertisementList' => $advertisementList
+            ];
+
+            $this->view('pdc/advertisementList', $data);
         }
     }
 }

@@ -249,4 +249,16 @@ class UserModel extends Database
     return $row;
 
   }
+
+  //Delete a user - Students and Company user data from respective tables also will get deleted as a result of cascade delete
+  public function deleteUser($user_id)
+  {
+      $this->db->query('DELETE FROM user_tbl WHERE user_id = :user_id;');
+      // Bind Values
+      $this->db->bind(':user_id', $user_id);
+      return $this->db->execute();
+  }
+
+
+
 }
