@@ -153,7 +153,7 @@
             </div>
 
             <div class="bottom-right">
-                <a href="" class="display-flex-row">
+                <a href="<?php echo URLROOT.'students/cvstatus';?>" class="display-flex-row">
                     <span class="material-symbols-outlined">
                         upload
                     </span>

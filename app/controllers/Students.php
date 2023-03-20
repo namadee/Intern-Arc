@@ -85,5 +85,11 @@ class Students extends BaseController
         $this->view('student/editprofile');
     }
 
+    public function cvstatus()
+    {
+
+        $this->view('student/cvstatus');
+    }
+
 
 }

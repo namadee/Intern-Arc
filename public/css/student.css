@@ -1065,6 +1065,10 @@ font-family: "Poppinns", sans-serif;
     height: 500px;
   }
 
+  .schedule-ad-form {
+    padding: 30px;
+  }
+
 
 /* view ad styles */
 .view-advertisement-container {
