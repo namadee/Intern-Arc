@@ -690,10 +690,9 @@ font-family: "Poppinns", sans-serif;
 
 .dashboard-top {
   background-color: rgb(255, 255, 255);
-  padding: 40px;
-  padding-bottom: 5rem;
+  padding: 1rem;
   width: 70%;
-  margin: auto;
+  margin: 2rem auto;
 }
 
 .dashboard-flex-container {
@@ -701,7 +700,6 @@ font-family: "Poppinns", sans-serif;
   background-color: rgb(255, 255, 255);
   align-items: center;
   flex-direction: row;
-  height: 250px;
 }
 
 .dashboard-textarea {

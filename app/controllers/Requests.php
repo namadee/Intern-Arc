@@ -16,7 +16,6 @@ class Requests extends BaseController
     }
 
     public function index()
-
     {
         $requests = $this->requestModel->getStudentRequests();
         //view pass data values $data
@@ -72,12 +71,13 @@ class Requests extends BaseController
         $students = $this->requestModel->getStudentByRequest($advertisementId);
 
         $data = [
+            'advertisement_id' => $advertisementId,
             'student_name' => $students,
         ];
         
         if ($this->requestModel->getStudentByRequest($advertisementId)) {
 
-            $this->view('company/RequestListByAdvertisement', $data);
+            $this->view('company/AdvertisementListReqests', $data);
         } else {
             die('Something went wrong');
         }
@@ -86,8 +86,6 @@ class Requests extends BaseController
 
     //DISPLAY ADVERTISEMENT LIST WITH RELEVENT REQUEST COUNT
     public function AdvertisementListRequests(){
-        //loop through advertisements 
-        //if ad_id = ad_id display advertisement details and count
         $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
         $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
         
@@ -115,6 +113,8 @@ class Requests extends BaseController
         $this->view('company/studentRequestList', $data);
 
     }
+
+    
 
 }
 ?>

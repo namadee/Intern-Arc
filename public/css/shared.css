@@ -802,3 +802,7 @@ main {
   width: 30%;
   margin: auto;
 }
+
+.disabled-link {
+  pointer-events: none;
+}

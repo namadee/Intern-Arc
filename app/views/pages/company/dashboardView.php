@@ -51,56 +51,35 @@
           
         <tr>
           <th>Name</th>
-          <th>Degree</th>
-          <th>Academic Year</th>
+          <th>Academic year</th>
+          <th>Degree Program</th>
           <th>Advertisement</th>
           <th>Status</th>
          
         </tr>
+
+        <?php foreach ($data['dashboard'] as $dashboard) : ?>
           <tr>
-            <td>Ruchira Bogahawaththa</td>
-            <td>CS</td>
-            <td>4th year</td>
-            <td>Software Engineering</td>
-            <td>Pending</td>
+            <td><?php echo $dashboard->profile_name ?></p></td>
+            <td></td>
+            <td><?php echo $dashboard->stream ?></td>
+            <td><?php echo $dashboard->position ?></td>
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentRequests/viewStudentRequest" >View</a>
+              <div class="common-status display-flex-row">
+                <span class="common-status-span"></span>
+                <?php echo $dashboard->status; ?>
+              </div>
             </td>
-          
-          </tr>
-          <tr>
-            <td>Ruchira Bogahawaththa</td>
-            <td>CS</td>
-            <td>4th year</td>
-            <td>Software Engineering</td>
-            <td>Pending</td>
+
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentRequests/viewStudentRequest" >View</a>
+             <a class="common-view-btn" href="">View</a>
             </td>
-          
+           
+
           </tr>
-          <tr>
-            <td>Ruchira Bogahawaththa</td>
-            <td>CS</td>
-            <td>4th year</td>
-            <td>Software Engineering</td>
-            <td>Pending</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentRequests/viewStudentRequest" >View</a>
-            </td>
+        
+        <?php endforeach; ?>
           
-          </tr>
-          <tr>
-            <td>Ruchira Bogahawaththa</td>
-            <td>CS</td>
-            <td>4th year</td>
-            <td>Software Engineering</td>
-            <td>Pending</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>studentRequests/viewStudentRequest" >View</a>
-            </td>
-          
-          </tr>
       </table>
       <a href="<?php echo URLROOT; ?>Advertisements/add-advertisement" class="common-blue-btn">View All</a>
     </div>
