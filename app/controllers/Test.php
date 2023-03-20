@@ -4,7 +4,7 @@ class Test extends BaseController
 {
     public $userModel;
     public $registerModel;
-    public $studentModel;
+    public $companyModel;
     public $testModel;
 
 
@@ -12,7 +12,7 @@ class Test extends BaseController
     {
         $this->registerModel = $this->model('Register');
         $this->userModel = $this->model('User');
-        $this->studentModel = $this->model('Student');
+        $this->companyModel = $this->model('Company');
     }
 
     public function index()
@@ -29,9 +29,14 @@ class Test extends BaseController
 
     public function testing($id=-1)
     {
+        $count = $this->companyModel->getCompanyCount();
         $data = [
-            'url' => $id 
+            'url' => $count->totalRows 
         ];
         $this->view('test', $data);
     }
 }
+
+
+//Advertisemet Tab PDC - All Advertisements (Add Company Name also)
+// company css 750 align items flex start adv

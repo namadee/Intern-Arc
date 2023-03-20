@@ -13,7 +13,7 @@ function getNavigationByUser($userType)
         array(URLROOT.'companies/manage-company', 'cases', 'Companies'),
         array(URLROOT.'students/manage-student', 'school', 'Students'),
         array(URLROOT.'jobroles', 'category', 'Job Roles'),
-        array(URLROOT.'advertisements', 'text_to_speech', 'Advertisements'),
+        array(URLROOT.'pdc/review-advertisement', 'text_to_speech', 'Advertisements'),
         array(URLROOT.'requests/all-requests', 'compare_arrows', 'Requests'),
         array(URLROOT.'profiles/view-profile-details', 'manage_accounts', 'Profile')
       );

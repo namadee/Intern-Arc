@@ -91,4 +91,11 @@ class CompanyModel
         $resultSet = $this->db->resultset();
         return $resultSet;
     }
+
+    //Return Company Count
+    public function getCompanyCount()
+    {
+        $this->db->query("SELECT COUNT(*) as totalRows FROM company_tbl");
+        return $this->db->single();
+    }
 }

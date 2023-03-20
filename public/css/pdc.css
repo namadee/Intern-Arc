@@ -823,6 +823,13 @@ table th {
   color: white;
 }
 
+.dashboard-advertisement-list .view-all-btn{
+  margin: 0;
+  padding: 0.2rem 1rem;
+}
+
+
+
 /*----------------------- Invitation Page -----------------------*/
 
 .company-invitation-container {
@@ -1259,6 +1266,13 @@ table th {
   gap: 1rem;
 }
 
+#std-system-access {
+  margin-top: 1rem;
+}
+
+#std-system-access select {
+  border-radius: 3px;
+}
 /*----------------------- Profile Update Page -----------------------*/
 
 .update-profile-container {
@@ -1362,4 +1376,14 @@ table th {
 
 .update-profile-container #reset-btn {
   background-color: var(--primaryColor);
+}
+
+/*----------------------- Advertisement List -----------------------*/
+
+.pdc-advertisementlist {
+  height: auto;
+}
+
+.pdc-advertisementlist table td:nth-child(4){
+  width: 120px;
 }

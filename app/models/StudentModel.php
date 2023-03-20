@@ -113,10 +113,10 @@ class StudentModel
     public function changeBatchAccess($data)
     {
         // Prepare Query
-        $this->db->query('UPDATE student_batch_tbl SET status = :status WHERE batch_year = :batch_year');
+        $this->db->query('UPDATE student_batch_tbl SET access = :access WHERE batch_year = :batch_year');
         // Bind Values
         $this->db->bind(':batch_year', $data['batch_year']);
-        $this->db->bind(':status', $data['status']);
+        $this->db->bind(':access', $data['access']);
 
         //Execute
         if ($this->db->execute()) {
@@ -126,20 +126,6 @@ class StudentModel
         }
     }
 
-    //Delete Student Batch - Ruchira
-    public function deleteStudentBatch($batch_year)
-    {
-        // Prepare Query
-        $this->db->query('DELETE FROM student_batch_tbl WHERE batch_year = :batch_year');
-        // Bind Values
-        $this->db->bind(':batch_year', $batch_year);
-        //Execute
-        if ($this->db->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     //Check student batch availability - Ruchira
     public function checkStudentBatch($batch_year)
@@ -175,7 +161,7 @@ class StudentModel
     //Retreive main student information - Ruchira
     public function getMainStudentDetails($userId)
     {
-        $this->db->query('SELECT user_tbl.username, user_tbl.email,user_tbl.user_id, student_tbl.registration_number, student_tbl.index_number, student_tbl.batch_year,student_tbl.stream
+        $this->db->query('SELECT user_tbl.username, user_tbl.email,user_tbl.user_id, student_tbl.registration_number, student_tbl.index_number, student_tbl.batch_year,student_tbl.stream,student_tbl.access
         FROM student_tbl
         INNER JOIN user_tbl ON user_tbl.user_id = :user_id AND student_tbl.user_id_fk = :user_id ;');
 
@@ -188,7 +174,7 @@ class StudentModel
     public function updateMainStudentDetails($data)
     {
         $this->db->query('UPDATE student_tbl, user_tbl 
-        SET user_tbl.email = :email, user_tbl.username = :username, student_tbl.registration_number = :reg_num, student_tbl.index_number = :index_num,student_tbl.batch_year = :batch_year,student_tbl.stream = :stream
+        SET user_tbl.email = :email, user_tbl.username = :username, student_tbl.registration_number = :reg_num, student_tbl.index_number = :index_num,student_tbl.batch_year = :batch_year,student_tbl.stream = :stream,student_tbl.access = :access
         WHERE user_tbl.user_id = :user_id AND student_tbl.user_id_fk = :user_id;');
 
         // Bind Values
@@ -199,7 +185,20 @@ class StudentModel
         $this->db->bind(':index_num', $data['index_num']);
         $this->db->bind(':batch_year', $data['batch_year']);
         $this->db->bind(':stream', $data['stream']);
+        $this->db->bind(':access', $data['access']);
         return $this->db->execute();
     }
 
+    //Return Student Count
+    public function getStudentCount()
+    {
+        $this->db->query("SELECT COUNT(*) as totalRows FROM student_tbl");
+        return $this->db->single();
+    }
+
+    public function deactivateStudent()
+    {
+        $this->db->query("UPDATE student_tbl SET access = 'inactive'");
+        return $this->db->execute();
+    }
 }

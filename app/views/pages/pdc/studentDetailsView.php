@@ -61,12 +61,15 @@
                         <li class="display-flex-row" id="toggleUpdateBtn">
                             <button type="submit" class="common-blue-btn" id="update_btn">Update</button>
                             <button type="reset" class="common-blue-btn" id="reset-btn">Reset</button>
-                            <button id="delete-btn"><a href="<?php echo URLROOT . 'pdc/delete-student/' . $std_batch . '/' . $data['stream'] . '/' . $data['user_id']; ?>" class="display-flex-row">
-                                    <span class="material-symbols-outlined">
-                                        delete
-                                    </span>Delete</a>
-                            </button>
-                                            
+                            <div id="std-system-access">
+                                <label for="access">System Access</label>
+                                
+                                <select name="access" id="access">
+                                    <option value="active" <?php if ($data['access'] == "active") { echo "selected";} ?> >Active</option>
+                                    <option value="inactive" <?php if ($data['access'] == "inactive") { echo "selected";} ?> >Deactivate</option>
+                                </select>
+                            </div>
+
                         </li>
 
                     </ul>

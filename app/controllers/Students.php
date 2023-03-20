@@ -98,21 +98,15 @@ class Students extends BaseController
                 $this->studentModel->addStudentBatch($batch_year);
                 flashMessage('student_batch_msg', 'Student Batch ' . $batch_year . ' added');
                 redirect('students/manage-student');
-            } else if (isset($_POST["status"])) {
+            } else {
                 // Handle Changing Student Batch Status
                 $data = [
                     'batch_year' => trim($_POST['batch_year']),
-                    'status' => trim($_POST['status'])
+                    'access' => trim($_POST['access'])
                 ];
 
                 $this->studentModel->changeBatchAccess($data);
                 flashMessage('student_batch_msg', 'Status changed!');
-                redirect('students/manage-student');
-            } else {
-                // Handle Delete Student Batch
-                $batch_year = trim($_POST['batch_year']);
-                $this->studentModel->deleteStudentBatch($batch_year);
-                flashMessage('student_batch_msg', 'Batch Deleted Successfully!');
                 redirect('students/manage-student');
             }
         } else {

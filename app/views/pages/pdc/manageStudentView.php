@@ -26,7 +26,7 @@
 
                         <th class="student-batch-status">
                             <div class="display-flex-row">
-                                Status <span class="material-symbols-outlined">
+                               System Access <span class="material-symbols-outlined">
                                     help
                                 </span>
                             </div>
@@ -45,11 +45,11 @@
                             <td>0</td>
 
                             <td>
-                                <div class="common-status display-flex-row <?php echo $batch->status === 'active' ? '' : 'red-status-font'; ?>">
+                                <div class="common-status display-flex-row <?php echo $batch->access === 'active' ? '' : 'red-status-font'; ?>">
 
-                                    <span class="common-status-span <?php echo $batch->status === 'active' ? '' : 'red-status'; ?>">
+                                    <span class="common-status-span <?php echo $batch->access === 'active' ? '' : 'red-status'; ?>">
                                     </span>
-                                    <?php echo ucfirst($batch->status); ?>
+                                    <?php echo ucfirst($batch->access); ?>
                                 </div>
                             </td>
                             <td> <a href="<?php echo URLROOT . 'students/manage-student/view-batch/' . $batch->batch_year ?>" class="student-batches-btn">View</a></button></td>
@@ -110,10 +110,6 @@
                         </li>
                     </ul>
                 </div>
-                <form action="<?php echo URLROOT . 'students/manageStudentBatch' ?>" method="POST">
-                    <button type="submit" class="delete-btn" name="delete_form_submit">Delete Batch</button>
-                    <input type="hidden" name="batch_year" value="<?php echo $data['batch_year']; ?>">
-                </form>
             </div>
 
 
@@ -131,7 +127,7 @@
                     <h3>Change System Access - <?php echo $data['batch_year']; ?> Batch </h3>
                     <div class="display-flex-row">
                         <label for="status">STATUS</label>
-                        <select name="status" id="status-dropdown" class="common-input" onchange="this.form.submit()">
+                        <select name="access" id="status-dropdown" class="common-input" onchange="this.form.submit()">
                             <option value="" selected disabled></option>
                             <option value="active">Active</option>
                             <option value="inactive">Inactive</option>

@@ -55,11 +55,11 @@ class Requests extends BaseController
 
     public function allRequests() 
     {
-        $requests = $this->requestModel->getRequests();
-        $data = [
-            'requests' => $requests,
-        ];
-        $this->view('pdc/studentRequest', $data);
+        // $requests = $this->requestModel->getRequests();
+        // $data = [
+        //     'requests' => $requests,
+        // ];
+        $this->view('pdc/studentRequest');
     }
 
     public function shortlistedList() 
