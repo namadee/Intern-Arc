@@ -150,6 +150,8 @@ class Students extends BaseController
             'contact' => $studentProfile->contact,
             'stream' => $studentProfile->stream,
             'profile_description' => $studentProfile->profile_description,
+            'profile_name' => $studentProfile->profile_name,
+            'personal_email'=> $studentProfile->personal_email,
             'extracurricular' => $studentProfile->extracurricular,
             'profile_name' => $studentProfile->profile_name,
             'personal_email' => $studentProfile->personal_email,
@@ -175,4 +177,12 @@ class Students extends BaseController
 
         $this->view('student/editprofile');
     }
+
+    public function cvstatus()
+    {
+
+        $this->view('student/cvstatus');
+    }
+
+
 }

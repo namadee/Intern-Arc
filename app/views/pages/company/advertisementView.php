@@ -21,26 +21,30 @@
         <div class="body-left">
             <ul class="display-flex-col">
                     <li class="display-flex-row">
+                        <p class="profile-item">Company Name</p>
+                        <span>Virtusa</span>
+                    </li>
+                    <li class="display-flex-row">
                         <p class="profile-item">Position</p>
-                        <span><?php echo $data['position'] ?></span>
+                        <span>Software Engineering Intern</span>
                     </li>
                     <li class="display-flex-row">
                         <p>No of Interns</p>
-                        <span><?php echo $data['no_of_interns'] ?></span>
+                        <span>15</span>
                     </li>
                     <li class="display-flex-row">
                         <p>Applicable for</p>
-                        <span><?php echo $data['required_year'] ?></span>
+                        <span>4th year</span>
                     </li>
                     <li class="display-flex-row">
                         <p>Working Mode</p>
-                        <span><?php echo $data['working_mode'] ?></span>
+                        <span>On site</span>
                     </li><br><br>
                     <li class="display-flex-col period">
                         <h3>Internship Period</h3>
                         <div class="display-flex-row period-items">
-                            <span><?php echo $data['internship_start']  ?></span>
-                            <span><?php echo $data['internship_end'] ?></span>
+                            <span>2023.10.06</span>
+                            <span>2024.02.06</span>
                         </div>
                         
                     </li>
@@ -53,13 +57,13 @@
             <div class="display-flex-col job-description">
                     <h3>Job Description</h3><br>
                     <div class="display-flex-col job-description-items">
-                        <p><?php echo $data['job_description'] ?></p>
+                        <p>We are looking for self-motivated, dedicated and fun-loving team players to be a part of our culture and gain eal-world experience in software engineering with our professionals</p>
                     </div>
             </div><br>
             <div class="display-flex-col job-description">
                     <h3>Requirements</h3><br>
                     <div class="display-flex-col job-description-items">
-                        <p><?php echo $data["requirements"] ?></p>
+                        <p>Strong understanding of computer science fundamentals, including algorithms and data structures <br/> Experience with at least one programming language, such as Python, Java, C++, or Ruby</p>
                     </div>
             </div>
        </div>
