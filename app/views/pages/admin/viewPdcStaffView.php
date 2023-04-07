@@ -27,13 +27,20 @@
                       <th class="pdc-table-header"></th>
                     </tr>
             
-                    <tr>
+                    <!-- <tr>
                       <td class="pdc-table-data">Ruchira Bogahawatta</td>
                       <td class="pdc-table-data">ruchira@ucsc.cmb.lk</td>
                       <td class="pdc-table-data"><button><a href="<?php echo URLROOT.'admin/viewPdcUser'; ?>">view</a></button></td>
-                    </tr>
+                    </tr> -->
+                    <?php foreach ($data['staff'] as $staff) : ?>
+                        <tr>
+                            <td class="pdc-table-data"> <?php echo $staff->username; ?></td>
+                            <td class="pdc-table-data"> <?php echo $staff->email; ?></td>
+                            <td class="pdc-table-data"> <button><a href="<?php echo URLROOT; ?>/admin/viewPdcUser/<?php echo $staff->user_id; ?>" >View</a></button></td>
+                        </tr>
+                    <?php endforeach; ?>
             
-                    <tr>
+                    <!-- <tr>
                         <td class="pdc-table-data">Geeth Weerasinghe</td>
                         <td class="pdc-table-data">geeth@ucsc.cmb.lk</td>
                         <td class="pdc-table-data"><button><a href="<?php echo URLROOT.'admin/viewPdcUser'; ?>">view</a></button></td>
@@ -61,11 +68,11 @@
                         <td class="pdc-table-data">Ruchira Bogahawatta</td>
                         <td class="pdc-table-data">ruchira@ucsc.cmb.lk</td>
                         <td class="pdc-table-data"><button><a href="<?php echo URLROOT.'admin/viewPdcUser'; ?>">view</a></button></td>
-                    </tr>
+                    </tr> -->
                  
                   </table>
 
-                  <input class="pdc-staff-add-button" type="submit" value="Add">
+                  <button><a href="<?php echo URLROOT.'admin/addPdcUser'; ?>">Add</a></button>
                        
             </div>
             </div>

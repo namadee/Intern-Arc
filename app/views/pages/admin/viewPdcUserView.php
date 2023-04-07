@@ -14,13 +14,13 @@
 			<div>
 				Name
 				<br />
-				<div class="view">Ruchira Bogahawatta</div>
+				<div class="view"><?php echo $data['staff']->username;?></div>
 				Email
-				<div class="view">ruchira@ucsc.ac.cmb.lk </div>
+				<div class="view"><?php echo $data['staff']->email;?> </div>
 				<br />
-                <div class="btn">
+                <!-- <div class="btn">
                   <button>Delete</button>
-                </div>
+                </div> -->
 				
 			</div>
 		</div>
