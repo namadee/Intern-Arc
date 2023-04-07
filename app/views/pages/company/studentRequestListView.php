@@ -36,107 +36,26 @@
           <th>Total Requests</th>
        
         </tr>
-        
-
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
-            </td>
+        <?php $x =0; ?>
+        <?php foreach ($data['advertisements'] as $advertisement) :?> 
           
-          </tr>
           <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
+            <td><?php echo $data['positions'][$x] ?></td>
+            <td><?php echo $data['intern_counts'][$x] ?></td>
+            <td><?php echo $data['count'][$x] ?></td>
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
+             <a class="common-view-btn" href="<?php 
+                                    if($data['count'][$x] != 0){ echo URLROOT.'requests/showRequestsByAd/'.$advertisement->advertisement_id; }
+                                    else{
+                                      echo URLROOT.'Errors/noData';
+                                    }
+                                    
+                                    ?>" >View</a>
             </td>
-          
+            
           </tr>
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
-            </td>
-          
-          </tr>
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
-            </td>
-          
-          </tr>
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
-            </td>
-          
-          </tr>
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
-            </td>
-          
-          </tr>
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
-            </td>
-          
-          </tr>
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
-            </td>
-          
-          </tr>
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
-            </td>
-          
-          </tr>
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
-            </td>
-          
-          </tr>
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/view-student-request" >View</a>
-            </td>
-          
-          </tr>
+        <?php $x++ ?>
+        <?php endforeach; ?>
        
       </table>
     </div>

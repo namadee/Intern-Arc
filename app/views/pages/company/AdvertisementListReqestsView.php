@@ -2,14 +2,14 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
-<section class="main-content">
+<section class="main-content" id="request-list">
   <div class="common_list">
     <div class="common-list-topbar">
     <form action="" class="common-search-bar display-flex-row">
                 <span class="material-symbols-rounded">
                     search
                 </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Student">
+                <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
       </form>
       <div class="common-filter">
         <span class="material-symbols-rounded">
@@ -23,20 +23,19 @@
         </select>
       </div>
     </div>
-
     <div class="common_list_content">
       
-    <div class="addBtn">
-        <h3>Software Engineer - Shortlisted Students</h3>
-    </div>
+      <div class="addBtn">
+      <h3>Student Requests</h3>
+</div>
       <table class="common-table">
         <tr>
           <th>Student Name</th>
           <th>Student Email</th>
           <th>View</th>
           <th>Status</th>
-        </tr>
-
+       </tr>
+        
         <?php foreach ($data['student_name'] as $students) : ?>
             <tr>
             <td><?php echo $students->profile_name ?></p></td>
@@ -45,19 +44,19 @@
              <a class="common-view-btn" href="<?php echo URLROOT . 'requests/show-requests-by-ad/'.$data['advertisement_id']; ?>">View</a>
             </td>
             <td>
-              <div class="common-status display-flex-row">
+             <div class="common-status display-flex-row">
                 <span class="common-status-span"></span>
-                <?php echo $students->recruit_status; ?>
+                <?php echo $students->status; ?>
               </div>
             </td>
-          
+           
             <td>
-              <form action="<?php echo URLROOT . 'companies/recruit-student/'.$data['advertisement_id'] ?>" id="recruit_student" method="POST">
-                <select name="recruit_status" id="status-dropdown" class="common-input" onchange="this.form.submit()">
+              <form action="<?php echo URLROOT . 'companies/shortlistStudent/'.$data['advertisement_id'] ?>" id="shortlist_student" method="POST">
+                <select name="status" id="status-dropdown" class="common-input" onchange="this.form.submit()">
                 <!-- Add new status column -->
-                    <option value="" selected disabled></option>
-                    <option value="recruited">Recruit</option>
-                    <option value="rejected">Reject</option>
+                    <option value=""></option>
+                    <option value="Shortlist">Shortlist</option>
+                    <option value="Reject">Reject</option>
                 </select>
                 <input type="hidden" name="request_id" value="<?php echo $students->student_request_id; ?>">
                 <input type="hidden" name="student_id" value="<?php echo $students->student_id; ?>">

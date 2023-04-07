@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <script src="<?php echo URLROOT; ?>js/addAdvertisement.js" defer></script>
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
-
+    
 
 
 
@@ -28,9 +28,9 @@
             <div class="addAdvertisement-items">
                 <p><label for="requirements">Requirements</label></p>
                 <div class="display-flex-row addreqs">
-                    <input type="text" class="add-req-btn" id="requirements" name="requirements" value="">
+                    <input type="text" id="requirements" value="">
                         <label id="addreq" for="add"><span id="addIcon" class="material-symbols-outlined">library_add</span></label>
-                    <input type='button'>
+                    <input type='button' class="add-req-btn">
                 </div>
                 <?php 
                     $string = $data['requirements'];

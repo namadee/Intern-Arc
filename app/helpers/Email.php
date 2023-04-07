@@ -55,8 +55,13 @@ class Email
           ";
 
         $this->mail->addAddress($email);
-        $this->mail->Send();
+        $sent = $this->mail->Send();
         $this->mail->smtpClose();
+        if ($sent) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     //Forgot
@@ -87,7 +92,7 @@ class Email
         $this->mail->smtpClose();
     }
 
-    //Forgot
+    //Send Company Invitation
     public function sendInvitationEmail($companyEmail, $attachment, $mailSubject, $mailBody)
     {
 
@@ -110,4 +115,7 @@ class Email
         $this->mail->Send();
         $this->mail->smtpClose();
     }
+
+
+
 }
