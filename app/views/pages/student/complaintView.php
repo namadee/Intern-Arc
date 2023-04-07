@@ -30,7 +30,7 @@
         <table class="complaints">
             <?php foreach ($data['complaints'] as $complaint) : ?>
                 <tr>
-                    <td><?php echo $complaint->complaint_id ?></td>
+                    
 					<td><?php echo $complaint->subject ?></td>
                     <td><?php echo ($complaint->status  == 0) ?  'Pending' : 'Reviewed'; ?></td>
                     
