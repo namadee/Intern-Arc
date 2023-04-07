@@ -4,6 +4,7 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
+    <?php flashMessage('company_list_msg') ?>
     <div class="manage-company-top display-flex-row">
         <div class="manage-company-top-left display-flex-row">
             <div class="manage-company-access display-flex-row">
@@ -19,12 +20,12 @@
             </button>
         </div>
         <div class="manage-company-top-right display-flex-row">
-            <a href="<?php echo URLROOT.'register/register-company';?>" class="common-blue-btn display-flex-row">
+            <a href="<?php echo URLROOT . 'register/register-company'; ?>" class="common-blue-btn display-flex-row">
                 <span class="material-symbols-outlined">
                     add_to_photos
                 </span>
                 Register Company</a>
-            <a href="" class="common-blue-btn display-flex-row" id="blacklist-company-btn">
+            <a href="<?php echo URLROOT . 'companies/manage-company/blacklisted'; ?>" class="common-blue-btn display-flex-row" id="blacklist-company-btn">
                 <span class="material-symbols-outlined">
                     flag
                 </span>
@@ -54,22 +55,15 @@
 
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="<?php echo URLROOT.'companies/company-details';?>">View</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>Virtusa</td>
-                        <td>Ruchira</td>
-                        <td>ruchira@gmail.com</td>
-                        <td>0712015478</td>
-                        <td><a href="<?php echo URLROOT.'companies/company-details';?>">View</a></td>
-                    </tr>
-
+                    <?php foreach ($data['company_list'] as $company) : ?>
+                        <tr>
+                            <td><?php echo $company->company_name ?></td>
+                            <td><?php echo $company->username ?></td>
+                            <td><?php echo $company->email ?></td>
+                            <td><?php echo $company->contact ?></td>
+                            <td><a href="<?php echo URLROOT . 'pdc/main-company-details/' . $company->user_id; ?>">View</a></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -77,5 +71,47 @@
     </div>
 </section>
 
+<!-- VIEW  BLACKLISTED COMPANIES MODAL -->
+<div class="common-modal-box blacklisted-main-modal <?php echo $data['blacklisted_modal_class']; ?>">
+    <div class="display-flex-col blacklisted-main-div">
 
-<?php require APPROOT . '/views/includes/footer.php'; ?>
+        <div class="display-flex-col blacklisted-companies-modal">
+            <div class="top-bar display-flex-row">
+                <h3>Blacklisted Company List</h3>
+                <a href="<?php echo URLROOT . 'companies/manage-company'; ?>">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span></a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Contact Person</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                    if ($data['blacklisted_list'] == NULL) {
+                        echo '<p id="no-blacklist-msg"> No Blacklisted companies to show yet </p>';
+                    } else {
+                        foreach ($data['blacklisted_list'] as $blacklisted) {
+                            echo "<tr>";
+                            echo "<td>" . $blacklisted->company_name . "</td>";
+                            echo "<td>" . $blacklisted->username . "</td>";
+                            echo "<td>" . $blacklisted->email . "</td>";
+                            echo "<td>" . $blacklisted->contact . "</td>";
+                            echo "</tr>";
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <?php require APPROOT . '/views/includes/footer.php'; ?>

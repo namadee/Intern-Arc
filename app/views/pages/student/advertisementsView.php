@@ -46,65 +46,24 @@
 			</form>
 		</div>
 	</div>
-
-	<table class="published-ad-list-ad-table" >
+</div>
+	<table class="published-ad-list-ad-table">
 		<tr>
 		  <th>Company Name</th>
-		  <th>Job position</th>
+		  <th>Advertisement Name</th>
 		  <th></th>
 		</tr>
-
-		<tr>
-		  <td>Virtusa</td>
-		  <td>Software Engineer</td>
-		  <td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
-		</tr>
-
-		<tr>
-			<td>WSO2</td>
-			<td>Quality Assurance</td>
-			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
-		</tr>
-
-		<tr>
-			<td>Codegen International</td>
-			<td>Business Analyst</td>
-			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
-		</tr>
-
-		<tr>
-			<td>Sysco Labs</td>
-			<td>UI/UX Engineer</td>
-			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
-		</tr>
-
-		<tr>
-			<td>Tech Venturas</td>
-			<td>Mobile Application Developer </td>
-			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
-		</tr>
-
-		<tr>
-			<td>Commercial Technologies Plus</td>
-			<td>DevOps Engineer </td>
-			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
-		</tr>
-
-		<tr>
-			<td>99x Technology</td>
-			<td>Full Stack Engineer</td>
-			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
-		</tr>
-
-		<tr>
-			<td>Virtusa</td>
-			<td>Software Engineer </td>
-			<td><a href="<?php echo URLROOT.'advertisements/show-advertisements-details';?>"><button>view</button></a></td>
-		</tr>
+		
+			<?php foreach ($data['companyData'] as $companyData) : ?>
+			<tr>
+				<td class="view-ads-table-data"><?php echo $companyData->company_name ?></td>
+				<td class="view-ads-table-data"><?php echo $companyData->position ?></td>
+  				<td class="view-ads-table-data"><a href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $companyData->advertisement_id; ?>"><button>view</button></td>
+			</tr>
+			<?php endforeach; ?>
 	  </table>
 	       
-</div>
-</div>
+
 
 <script>
 	/* When the user clicks on the button,

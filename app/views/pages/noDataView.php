@@ -27,36 +27,12 @@
     <div class="common_list_content">
       
       <div class="addBtn">
-      <h3>Advertisement List-Student Shortlist</h3>
-</div>
+      </div>
       <table class="common-table">
-        <tr>
-          <th>Advertisement Name</th>
-          <th>No of Interns</th>
-          <th>Shortlisted students</th>
-       
-        </tr>
-        <?php $x =0; ?>
-        <?php foreach ($data['advertisements'] as $advertisement) :?> 
-          
-          <tr>
-            <td><?php echo $data['positions'][$x] ?></td>
-            <td><?php echo $data['intern_counts'][$x] ?></td>
-            <td><?php echo $data['count'][$x] ?></td>
-            <td>
-             <a class="common-view-btn" href="<?php 
-                                    if($data['count'][$x] != 0){ echo URLROOT.'companies/get-shortlisted-students/'.$advertisement->advertisement_id; }
-                                    else{
-                                      echo URLROOT.'Errors/noData';
-                                    }
-                                    
-                                    ?>" >View</a>
-            </td>
-            
-          </tr>
-        <?php $x++ ?>
-        <?php endforeach; ?>
-       
+      <div class="no-data-page display-flex-col">
+        <h1>Oops! No data yet!!</h1>
+          <img src="<?php echo URLROOT . "img/no-data-img.svg"?>">
+      </div>
       </table>
     </div>
 

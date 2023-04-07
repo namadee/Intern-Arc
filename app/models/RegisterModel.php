@@ -33,12 +33,14 @@ class RegisterModel extends Database
   // Register a single Student
   public function registerStudent($data)
   {
-    $this->db->query('INSERT INTO `student_tbl` ( `index_number`, `registration_number`, `user_id_fk`)
-    VALUES (:index_number, :registration_number, :user_id)');
+    $this->db->query('INSERT INTO `student_tbl` ( `index_number`, `registration_number`, `stream` , `batch_year` , `user_id_fk`)
+    VALUES (:index_number, :registration_number, :stream, :batch_year, :user_id)');
 
     // Bind Values
     $this->db->bind(':index_number', $data['index_number']);
     $this->db->bind(':registration_number', $data['registration_number']);
+    $this->db->bind(':stream', $data['stream']);
+    $this->db->bind(':batch_year', $data['batch_year']);
     $this->db->bind(':user_id', $data['user_id']);
 
     //Execute

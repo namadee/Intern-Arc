@@ -6,6 +6,7 @@ class Advertisements extends BaseController
     public $jobroleModel;
     public $advertisementModel;
     public $userModel;
+    public $companyData;
 
     public function __construct()
     {
@@ -13,6 +14,7 @@ class Advertisements extends BaseController
         $this->jobroleModel = $this->model('Jobrole');
         $this->jobroleList = $this->jobroleModel->getJobroles();
         $this->userModel = $this->model('User');
+        $this->companyData = $this->advertisementModel->getCompanyByAd();
     }
 
     public function index()
@@ -38,7 +40,7 @@ class Advertisements extends BaseController
 
             // Strip Tags
             stripTags();
-
+           
             $companyId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
             $text = explode("\r<\br>", trim($_POST['requirements-list']));
             $length = count($text);
@@ -47,8 +49,8 @@ class Advertisements extends BaseController
             for ($x = 0; $x < $length; $x++) {
                 $emptyArray[$x] = trim($text[$x]); 
             }
-            $completeString = implode("", $emptyArray);
-       
+            //$completeString = implode("", $emptyArray);
+            
 
 
 
@@ -57,7 +59,7 @@ class Advertisements extends BaseController
                 'position' => trim($_POST['position']),
                 'job_description' => trim($_POST['job_description']),
                 'requirements-list' => $emptyArray,
-                'requirements' => $completeString,
+                'requirements' => $emptyArray,
                 'textElement' => $text[0],
                 'internship_start' => date('y-m-d', strtotime($_POST['internship_start'])),
                 'internship_end' => date('y-m-d', strtotime($_POST['internship_end'])),
@@ -80,7 +82,6 @@ class Advertisements extends BaseController
 
                 'position' => '',
                 'job_description' => '',
-                'requirements-list' => '',
                 'requirements' => '',
                 'internship_start' => '2030-13-13',
                 'internship_end' => '',
@@ -95,7 +96,7 @@ class Advertisements extends BaseController
         }
     }
 
-    public function showAdvertisement($advertisementId)
+    public function showAdvertisementById($advertisementId)
     {
 
         $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
@@ -125,11 +126,19 @@ class Advertisements extends BaseController
 
             // Strip Tags
             stripTags();
+            $text = explode("\r<\br>", trim($_POST['requirements-list']));
+            $length = count($text);
+
+            $emptyArray = array();
+            for ($x = 0; $x < $length; $x++) {
+                $emptyArray[$x] = trim($text[$x]); 
+            }
+            //$completeString = implode("", $emptyArray);
 
             $data = [
                 'position' => trim($_POST['position']),
                 'job_description' => trim($_POST['job_description']),
-                'requirements' => trim($_POST['requirements']),
+                'requirements' => $emptyArray[0],
                 'internship_start' => date('y-m-d', strtotime($_POST['internship_start'])),
                 'internship_end' => date('y-m-d', strtotime($_POST['internship_end'])),
                 'no_of_interns' => trim($_POST['no_of_interns']),
@@ -165,9 +174,12 @@ class Advertisements extends BaseController
         $this->advertisementModel->deleteAdvertisement($advertisementId);
     }
 
-    //SHOW ADVERTISEMENTS - STUDENT
+    //SHOW All ADVERTISEMENTS FROM ALL COMPANIES - STUDENT
     public function showStudentAdvertisements(){
-        $this->view('student/advertisements');
+        $data = [
+            'companyData' => $this->companyData
+        ];
+        $this->view('student/advertisements', $data);
 
     }
 
@@ -183,6 +195,7 @@ class Advertisements extends BaseController
     
     //load The advertisement UI of the relevant company 
     public function viewAdvertisement($advertisementId){
+        // $advertisementId = $_GET['adId'];
         $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
        
             $text = explode("\r\n", trim($advertisement->requirements));
@@ -193,9 +206,18 @@ class Advertisements extends BaseController
                 $emptyArray[$x] = trim($text[$x]); 
             }
             $completeString = implode("", $emptyArray);
+            //BUTTON NAME : if user role is student apply btn else view requests btn
+            //BUTTON LINK : if user role is student apply link else view requests link
+            if($_SESSION['user_role'] == 'student'){ 
+                $btnName = 'Apply'; 
+            }else{
+                $btnName = 'View Requests';
+            }
         $data = [
             'className' => 'selectedTab',
             'title' => 'Advertisements',
+            'advertisement_id' => $advertisementId,
+            'button_name' => $btnName,
             'position' => $advertisement->position,
             'job_description' => $advertisement->job_description,
             'requirements' => $completeString,
@@ -205,37 +227,17 @@ class Advertisements extends BaseController
             'internship_start' => $advertisement->start_date,
             'internship_end' => $advertisement->end_date,
         ];
-
+        
         $this->view('company/advertisement', $data);
         
     }
     
     
     public function test(){
-        // $text = explode("\r\n", trim($_POST['requirements-list']));
-        // $length = count($text);
 
-        // foreach ($text as $value) {
-        //     $value .= 'this is a text';
-        // }
-        // $emptyArray = array();
-        // for ($x = 0; $x < $length; $x++) {
-        //     $emptyArray[$x] = trim($text[$x]) .'\n'; 
-        // }
-        // $completeString = implode("", $emptyArray);
-        // $data = [
-        //     'requirements-list' => $emptyArray,
-        //     'length' => $completeString,
-        //     'textElement' => $text[0],
-        // ];
-
-        //$this->view('test', $data);
+        $this->view('test');
 
     }
-    
-    //store completestring in the requirements column
-    //take the value from data base and explode /n wena wenama and add it to a array same thing as above text var 
-    //display it in the atextarea
-    //before second step try third step and check
+     
 }
 

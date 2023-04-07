@@ -48,6 +48,22 @@ class UserModel extends Database
   }
 
 
+  //Get User by UserID //Check for availability
+  public function checkForUserById($user_id)
+  {
+    $this->db->query("SELECT * FROM user_tbl WHERE user_id = :user_id");
+    $this->db->bind(':user_id', $user_id);
+    $row = $this->db->single();
+
+    //Check Rows
+    if ($row) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
   //Return company_id from company_tbl
   public function getCompanyUserId($foreignKey)
   {
@@ -131,14 +147,13 @@ class UserModel extends Database
     $student_details = $this->db->single();
 
     //check rows
-    if ($this->db->rowCount() > 0){
+    if ($this->db->rowCount() > 0) {
       return $student_details;
-    }else{
+    } else {
       return false;
     }
   }
-  
-    
+
   //Store Temp Verification Code - Ruchira
   public function storeVerificationCode($data)
   {
@@ -224,4 +239,26 @@ class UserModel extends Database
       return false;
     }
   }
+
+  //get student users by ID
+  public function getStudentUserById($studentId)
+  {
+    $this->db->query("SELECT * FROM student_tbl WHERE student_id = :student_id");
+    $this->db->bind(':student_id', $studentId);
+    $row = $this->db->single();
+    return $row;
+
+  }
+
+  //Delete a user - Students and Company user data from respective tables also will get deleted as a result of cascade delete
+  public function deleteUser($user_id)
+  {
+      $this->db->query('DELETE FROM user_tbl WHERE user_id = :user_id;');
+      // Bind Values
+      $this->db->bind(':user_id', $user_id);
+      return $this->db->execute();
+  }
+
+
+
 }
