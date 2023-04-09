@@ -33,31 +33,21 @@
 		  <th class="view-companies-table-header"></th>
 		</tr>
 
-		<tr>
-		  <td class="view-companies-table-data">Virtusa</td>
-		  
-		  <td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
-		</tr>
+		
+		<?php foreach ($data['listCompanies'] as $listCompanies) : ?>
+			<tr>
+				<td class="view-companies-table-data"><?php echo $listCompanies->company_name ?></td>
+				<td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
+			</tr>
 
-		<tr>
-			<td class="view-companies-table-data">WSO2</td>
-			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
-		</tr>
+			
 
-		<tr>
-			<td class="view-companies-table-data">Codegen International</td>
-			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
-		</tr>
+			<?php endforeach; ?>
+		
+			
 
-		<tr>
-			<td class="view-companies-table-data">Sysco Labs</td>
-			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
-		</tr>
+		
 
-		<tr>
-			<td class="view-companies-table-data">Tech Venturas</td>			
-			<td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
-		</tr>
 	  </table>
 	       
 </div>

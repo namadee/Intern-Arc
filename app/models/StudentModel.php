@@ -44,7 +44,7 @@ class StudentModel
 
     
     //bIND STUDENT id
-        $this->db->query('SELECT * FROM student_tbl WHERE student_id= 69');
+        $this->db->query('SELECT * FROM student_tbl WHERE student_id= 99');
         //$this->db->bind(':student_id', $data['student_id']);
 
         $row = $this->db->single();

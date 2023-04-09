@@ -85,9 +85,10 @@
 
             <div class="body-right display-flex-col">
                 <div class="display-flex-col student-experience">
-                    <h3>Experience</h3>
 
-                    <?php
+                <?php if (!empty($data['experience'])): ?>
+                <h3>Experience</h3>
+                <?php
                         $text = explode("\n",$data['experience']);
                         $length = count($text);
                         //echo $length;
@@ -107,6 +108,9 @@
                             <?php
                         }
                         ?>
+                <?php endif; ?>
+
+                    
 
                 </div>
                 <div class="display-flex-col student-experience">

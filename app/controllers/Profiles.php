@@ -497,7 +497,7 @@ class Profiles extends BaseController
             stripTags();
 
             //$studentId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
-            $studentId = 69;
+            $studentId = 99;
             //$text = explode("\r<\br>", trim($_POST['interests-list']));
             //$length = count($text);
 

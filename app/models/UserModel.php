@@ -89,7 +89,7 @@ class UserModel extends Database
 
     $row = $this->db->single();
 
-    $studentId = $row->student_id;
+    //$studentId = $row->student_id;
 
     //Check Rows
     if ($this->db->rowCount() > 0) {

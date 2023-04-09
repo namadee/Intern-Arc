@@ -5,12 +5,14 @@ class Companies extends BaseController
     public $companyModel;
     public $userModel;
     public $advertisementModel;
+    public $listCompanies;
 
     public function __construct()
     {
         $this->companyModel = $this->model('Company');
         $this->userModel = $this->model('User');
         $this->advertisementModel = $this->model('Advertisement');
+        
     }
 
     //COMPANY USER DASHBOARD 
@@ -66,8 +68,13 @@ class Companies extends BaseController
     //View Company List - STUDENT
     public function viewCompanyList()
     {
+        $listCompanies = $this->companyModel->getCompanyList();
+        
+        $data = [
+            'listCompanies' => $listCompanies
+        ];
 
-        $this->view('student/viewcompanies');
+        $this->view('student/viewcompanies', $data);
     }
 
     //View Applied Company List - STUDENT

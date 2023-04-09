@@ -183,6 +183,16 @@ class Advertisements extends BaseController
 
     }
 
+    // public function showStudentAdvertisementsabc(){
+    //     $data = [
+    //         'companyData' => $this->companyData
+    //     ];
+    //     $this->view('student/viewcompanies', $data);
+
+    // }
+
+    
+
     //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
     public function showAdvertisementsByCompany(){
         $this->view('student/viewads');

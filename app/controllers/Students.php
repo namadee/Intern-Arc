@@ -4,11 +4,13 @@ class Students extends BaseController
 {
     public $studentModel;
     public $userModel;
+    public $studentData;
 
     public function __construct()
     {
         $this->studentModel = $this->model('Student');
         $this->userModel = $this->model('User');
+        //$this->studentData = $this->studentModel->getStudentProfileData();
     }
 
     //Student User Dashboard
@@ -153,11 +155,21 @@ class Students extends BaseController
             'profile_name' => $studentProfile->profile_name,
             'personal_email'=> $studentProfile->personal_email,
             'extracurricular' => $studentProfile->extracurricular,
-            'profile_name' => $studentProfile->profile_name,
-            'personal_email' => $studentProfile->personal_email,
+            // 'profile_name' => $studentProfile->profile_name,
+            // 'personal_email' => $studentProfile->personal_email,
         ];
 
         $this->view('student/studentprofile', $data);
+    }
+
+    public function showStudentData(){
+        $studentData = $this->studentModel->getStudentProfileData();
+
+        $data = [
+            'studentData' => $this->studentData
+        ];
+        $this->view('student/viewcompanies', $data);
+
     }
 
     public function companyProfile()
