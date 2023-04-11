@@ -353,7 +353,7 @@ class Profiles extends BaseController
     public function studentProfile()                
     {
         $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
-        //$student_details = $this->userModel->getStudentDetails($studentId);
+        $student_details = $this->userModel->getStudentDetails($studentId); //commented
 
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -384,7 +384,7 @@ class Profiles extends BaseController
             }
         } else {
 
-            $studentProfile = $this->studentModel->getStudentProfileData();
+            $studentProfile = $this->studentModel->getStudentProfileData($studentId);
 
 
             $data = [

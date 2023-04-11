@@ -39,13 +39,13 @@ class StudentModel
         }
     }
 
-  public function getStudentProfileData()
+  public function getStudentProfileData($student_id)
   {
 
     
     //bIND STUDENT id
-        $this->db->query('SELECT * FROM student_tbl WHERE student_id= 99');
-        //$this->db->bind(':student_id', $data['student_id']);
+        $this->db->query('SELECT * FROM student_tbl WHERE student_id= :student_id'); //99
+        $this->db->bind(':student_id', $student_id); //comment krla thibune
 
         $row = $this->db->single();
         return $row;

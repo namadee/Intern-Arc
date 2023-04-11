@@ -44,3 +44,6 @@ document.getElementById("interested").onclick = function() {
     document.getElementById("extracurricular").value = ""; // clear the value
     document.getElementById("list").style.listStyleType = "square";
   }
+
+  //edit profile form validations
+

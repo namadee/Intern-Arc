@@ -61,6 +61,18 @@ class RequestModel
         }
     }
 
+    public function getRequestCountPerStudent ($std_id){
+        $this->db->query('SELECT * FROM student_requests_tbl WHERE student_id = :student_id');
+
+        //bind values
+        $this->db->bind(':student_id', $std_id);
+
+        $result = $this->db->single();
+        $count = $this->db->rowCount();
+
+
+    }
+
 
     public function getStudentByRequest($advertisementId){
         $this->db->query('SELECT student_tbl.profile_name , student_tbl.stream ,student_tbl.personal_email, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round  

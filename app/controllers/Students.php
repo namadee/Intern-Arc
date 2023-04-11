@@ -5,18 +5,26 @@ class Students extends BaseController
     public $studentModel;
     public $userModel;
     public $studentData;
+    public $reqCount;
 
     public function __construct()
     {
         $this->studentModel = $this->model('Student');
         $this->userModel = $this->model('User');
-        //$this->studentData = $this->studentModel->getStudentProfileData();
+        $this->requestModel = $this->model('Request');
+        //$this->studentData = $this->studentModel->getStudentProfileData($studentId);
     }
 
     //Student User Dashboard
     public function index()
     {
-        $this->view('student/dashboard');
+        // $reqCount  = $this->requestModel->getRequestCountPerStudent ($student_Id);
+
+        // $data = [
+        //  'reqCount' => $this->$reqCount
+        //  ];
+         $this->view('student/dashboard');
+
     }
 
     //Manage Students - PDC - RuchiraS
@@ -131,18 +139,7 @@ class Students extends BaseController
     public function studentProfile()
     {
         $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
-        $studentProfile = $this->studentModel->getStudentProfileData($studentId);
-        // $data = [
-        //     'student_id' => $studentId,
-        //     'experience' => $experience,
-        //     'interests' => $interests,
-        //     'qualifications' => $qualifications,
-        //     'school' => $school,
-        //     'contact' => $contact,
-        //     'stream' => $stream,
-        //     'profile_description' => $profile_description,
-        //     'extracurricular' => $extracurricular,
-        // ];
+        $studentProfile = $this->studentModel->getStudentProfileData($studentId); 
 
         $data = [
             'experience' => $studentProfile->experience,
@@ -155,8 +152,6 @@ class Students extends BaseController
             'profile_name' => $studentProfile->profile_name,
             'personal_email'=> $studentProfile->personal_email,
             'extracurricular' => $studentProfile->extracurricular,
-            // 'profile_name' => $studentProfile->profile_name,
-            // 'personal_email' => $studentProfile->personal_email,
         ];
 
         $this->view('student/studentprofile', $data);

@@ -114,6 +114,10 @@ class Requests extends BaseController
 
     }
 
+    // public function showNumberRequested(){
+    //     $reqCount  = $this->RequestModel->getRequestCountPerStudent ($std_id);
+    // }
+
     
 
 }

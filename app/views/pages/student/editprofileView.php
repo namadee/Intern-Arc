@@ -10,7 +10,7 @@
           <h3>Edit Profile</h3>
                 <div class="addAdvertisement-items">
                 <label for="profile_name">Profile Name:</label>
-                <input type="text" id="profile_name" name="profile_name" value="<?php echo $data['profile_name'] ?>">
+                <input type="text" id="profile_name" name="profile_name" value="<?php echo $data['profile_name'] ?>" required>
 
                 <label for="stream">Stream:</label>
                     <select id="stream" name="stream">
@@ -18,14 +18,15 @@
                     <option value="Computer Science">Computer Science</option>
                 </select>
 
-                <label for="contact">Contact Number:</label>
-                <input type="text" id="contact" name="contact" value="<?php echo $data['contact'] ?>">
+                <label for="contact">Contact Number: <small>(Use format 07XXXXXXXX)</small></label>
+                <input type="tel" id="contact" name="contact" value="<?php echo $data['contact'] ?>" pattern="[0-9]{10}" required>
+                
 
                 <label for="personal_email">Personal Email:</label>
-                <input type="text" id="personal_email" name="personal_email" value="<?php echo $data['personal_email'] ?>">
+                <input type="text" id="personal_email" name="personal_email" value="<?php echo $data['personal_email'] ?>" required>
 
                 <label for="school">School:</label>
-                <input type="text" id="school" name="school" value="<?php echo $data['school'] ?>">
+                <input type="text" id="school" name="school" value="<?php echo $data['school'] ?>" required>
                 
                 <label for="profile_description">Profile Description:</label>
                 <textarea id="profile_description" name="profile_description" rows="6" cols="70" required><?php echo $data['profile_description'] ?></textarea>
@@ -35,12 +36,12 @@
             <div class="addAdvertisement-items">
                 <p><label for="interests">Interested Areas</label></p>
                 <div class="display-flex-row addreqs">
-                    <input type="text" class="add-req-btn" id="interests" name="interests" value="">
+                    <input type="text" class="add-req-btn" id="interests" name="interests" value="" >
                         <label id="interested" for="add"><span id="addIcon" class="material-symbols-outlined">library_add</span></label>
                     <input type='button'>
                 </div>
                
-                <textarea cols=10 rows=10 id="interests-list" name="interests-list"><?php echo $data['interests'] ?></textarea>
+                <textarea cols=10 rows=10 id="interests-list" name="interests-list" required><?php echo $data['interests'] ?></textarea>
                 
             </div>
 
@@ -64,7 +65,7 @@
                     <input type='button'>
                 </div>
                
-                <textarea cols=10 rows=10 id="qualifications-list" name="qualifications-list"><?php echo $data['qualifications'] ?></textarea>
+                <textarea cols=10 rows=10 id="qualifications-list" name="qualifications-list" required><?php echo $data['qualifications'] ?></textarea>
                 
             </div>
 
@@ -72,7 +73,7 @@
                 <p><label for="extracurricular">Extra Curricular Activities</label></p>
                 <div class="display-flex-row addreqs">
                     <input type="text" class="add-req-btn" id="extracurricular" name="extracurricular" value="">
-                        <label id="extra" for="add"><span id="addIcon" class="material-symbols-outlined">library_add</span></label>
+                        <label id="extra" for="add"><span id="addIcon" class="material-symbols-outlined" required>library_add</span></label>
                     <input type='button'>
                 </div>
                
