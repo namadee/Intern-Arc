@@ -67,8 +67,10 @@ class RequestModel
         //bind values
         $this->db->bind(':student_id', $std_id);
 
-        $result = $this->db->single();
+        $result = $this->db->resultset();
         $count = $this->db->rowCount();
+
+        return $count;
 
 
     }

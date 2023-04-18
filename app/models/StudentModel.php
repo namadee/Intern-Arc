@@ -8,13 +8,25 @@ class StudentModel
     {
         $this->db = new Database;
     }
+
+
+    // public function getStudentId($user_id)
+    // {
+    //     $this->db->query('SELECT student_tbl.student_id
+    //     FROM student_tbl
+    //     INNER JOIN user_tbl ON user_tbl.user_id = student_tbl.user_id_fk WHERE user_tbl.user_id=:user_id;');
+
+    //     // Bind Values
+    //     $this->db->bind(':user_id', $user_id);
+    //     return $this->db->single();
+    // }
     
      //Update student profile - student
   public function EditStudentProfileDetails($data)
   {
     
       $this->db->query('UPDATE student_tbl SET experience = :experience,
-      interests = :interests, qualifications = :qualifications, extracurricular= :extracurricular, contact= :contact, stream= :stream, profile_description= :profile_description, profile_name= :profile_name, personal_email= :personal_email, school= :school 
+      interests = :interests, github_link = :github_link, linkedin_link = :linkedin_link, qualifications = :qualifications, extracurricular= :extracurricular, contact= :contact, stream= :stream, profile_description= :profile_description, profile_name= :profile_name, personal_email= :personal_email, school= :school 
       WHERE student_id = :student_id');
       
       
@@ -29,6 +41,8 @@ class StudentModel
       $this->db->bind(':profile_description', $data['profile_description']);
       $this->db->bind(':profile_name', $data['profile_name']);
       $this->db->bind(':personal_email', $data['personal_email']);
+      $this->db->bind(':github_link', $data['github_link']);
+      $this->db->bind(':linkedin_link', $data['linkedin_link']);
       $this->db->bind(':student_id', $data['student_id']);
 
         //Execute

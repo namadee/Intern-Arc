@@ -25,6 +25,12 @@
                 <label for="personal_email">Personal Email:</label>
                 <input type="text" id="personal_email" name="personal_email" value="<?php echo $data['personal_email'] ?>" required>
 
+                <label for="github_link">Github Profile Link:</label>
+                <input type="text" id="github_link" name="github_link" value="<?php echo $data['github_link'] ?>" required>
+
+                <label for="linkedin_link">Linkedin Profile Link:</label>
+                <input type="text" id="linkedin_link" name="linkedin_link" value="<?php echo $data['linkedin_link'] ?>" required>
+
                 <label for="school">School:</label>
                 <input type="text" id="school" name="school" value="<?php echo $data['school'] ?>" required>
                 

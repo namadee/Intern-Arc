@@ -22,17 +22,19 @@
 		<div class="view-companies-search">
 			<form class="view-companies-search-container">
 				<button class="view-companies-search-btn" type="submit"><i class="fa fa-search"></i></button>
-				<input type="text" placeholder="Search Company" name="search">
+				<input type="text" placeholder="Search Company" name="search" id="search">
 			</form>
 		</div>
 	</div>
-
-	<table class="view-companies-table" >
+<div class="view-companies" id="view-companies-table-container">
+	<table class="view-companies-table" id="view-companies-table">
+		<thead>
 		<tr>
 		  <th class="view-companies-table-header">Company Name</th>
 		  <th class="view-companies-table-header"></th>
 		</tr>
-
+</thead>
+<tbody>
 		
 		<?php foreach ($data['listCompanies'] as $listCompanies) : ?>
 			<tr>
@@ -44,15 +46,15 @@
 
 			<?php endforeach; ?>
 		
-			
-
-		
-
-	  </table>
+</tbody>
+</table>
+</div>
 	       
 </div>
 </div>
 
 </section>
+
+<script src='<?php echo URLROOT; ?>js/searchCompanies.js'></script>
 
 <?php require APPROOT . '/views/includes/footer.php'; ?>

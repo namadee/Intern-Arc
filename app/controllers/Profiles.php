@@ -372,6 +372,8 @@ class Profiles extends BaseController
                 'profile_description' => trim($_POST['profile_description']),
                 'extracurricular' => trim($_POST['extracurricular']),
                 'profile_name'=>trim($_POST['profile_name']),
+                'github_link' =>trim($_POST['github_link']),
+                'linkedin_link' =>trim($_POST['linkedin_link']),
                 'personal_email'=>trim($_POST['personal_email']),
             ];
 
@@ -398,6 +400,8 @@ class Profiles extends BaseController
                 'profile_description' => $studentProfile->profile_description,
                 'extracurricular' => $studentProfile->extracurricular,
                 'profile_name' => $studentProfile->profile_name,
+                'github_link' => $studentProfile->github_link,
+                'linkedin_link'=> $studentProfile->linkedin_link,
                 'personal_email' => $studentProfile->personal_email,
             ];
 
@@ -496,8 +500,8 @@ class Profiles extends BaseController
             // Strip Tags
             stripTags();
 
-            //$studentId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
-            $studentId = 99;
+            $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
+            //$studentId = 99;
             //$text = explode("\r<\br>", trim($_POST['interests-list']));
             //$length = count($text);
 
@@ -522,6 +526,8 @@ class Profiles extends BaseController
                 'profile_description' => trim($_POST['profile_description']),
                 'profile_name' => trim($_POST['profile_name']),
                 'personal_email' => trim($_POST['personal_email']),
+                'github_link' =>trim($_POST['github_link']),
+                'linkedin_link' =>trim($_POST['linkedin_link']),
                 'extracurricular-list' => trim($_POST['extracurricular-list']),
             ];
 
@@ -550,6 +556,8 @@ class Profiles extends BaseController
                 'extracurricular' => $studentProfile->extracurricular,
                 'profile_name' => $studentProfile->profile_name,
                 'personal_email' => $studentProfile->personal_email,
+                'github_link' => $studentProfile->github_link,
+                'linkedin_link'=> $studentProfile->linkedin_link,
             ];
 
             $this->view('student/editprofile', $data);

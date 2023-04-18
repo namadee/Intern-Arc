@@ -14,9 +14,7 @@
 	<h3>My Dashboard</h3>
 <div class="dashboard-flex-container">
 	<div class="dashboard-textarea">
-		Status : <button class="dashboard-statusbtn">Pending</button>
-		<br/><br/>
-		Registration Number : 2020/IS/003
+		Registration Number : 2020/IS/113
 		<br/><br/>
 		Email : Ruchirabogahawatta@gmail.com
 		<br/><br/>
@@ -31,7 +29,7 @@
 <div class="dashboard-bottom-strip">
 	<div class="bottom-strip-blue-line"><p>1</p></div>
 	<div class="bottom-strip-description"><p>Applied Companies</p></div>
-	<div class="bottom-strip-number"><p>5</p></div>
+	<div class="bottom-strip-number"><p><?php echo $data['reqCount']?> </p></div>
 	<div class="bottom-strip-button"><a href="<?php echo URLROOT.'companies/view-applied-company-list';?>"> View </a> </div>
 </div>
 <br/>

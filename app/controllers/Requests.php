@@ -33,6 +33,7 @@ class Requests extends BaseController
     public function addStudentRequest($advertisementId){
         // $advertisementId = $_GET['adId'];
         $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
+        $reqCount  = $this->requestModel->getRequestCountPerStudent($studentId);
         $data = [
             'advertisement_id' => $advertisementId,
             'student_id' => $studentId
@@ -44,10 +45,16 @@ class Requests extends BaseController
             flashMessage('student_request_msg' , 'You have already applied to this advertisement!', 'danger-alert');
             redirect('advertisements/viewAdvertisement/'. $advertisementId);
             
-        }else if($this->requestModel->addStudentRequest($data)) {
+        }
+        else if($reqCount>=5) {
+            flashMessage('max_application' , 'Maximum application limit reached', 'danger-alert');
+            redirect('advertisements/viewAdvertisement/'. $advertisementId);
+        }
+        else if($this->requestModel->addStudentRequest($data)) {
             flashMessage('student_request_msg' , 'Applied successfully');
             redirect('advertisements/viewAdvertisement/'. $advertisementId);
-        } else {
+        }
+        else {
             die('Something went wrong');
         }
     }

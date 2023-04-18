@@ -13,6 +13,7 @@
                     <h3>Hello! Im <span><?php echo $data['profile_name'] ?></span></h3>
                     <!-- <p>Award-winning web developer and instructor with 10+ years of well-rounded experience in LAMP development, object-oriented and user-centered design, seeks a position with a top technology firm.</p> -->
                     <?php echo $data['profile_description'] ?>
+                  
                 </div>
             </div>
         </div>
@@ -146,8 +147,33 @@
 
         <div class="std-profile-container-bottom display-flex-row">
             <div class="bottom-left display-flex-row">
+
+            <?php
+            $gitlink = $data['github_link'];
+
+            // Check if the link starts with "http://" or "https://"
+            if (!preg_match("~^(?:f|ht)tps?://~i", $gitlink)) {
+                // If it doesn't, add "https://" to the beginning of the link
+                $gitlink = "https://" . $gitlink;
+            }
+            ?>
+                <a href="<?php echo $gitlink ; ?>" target=blank>
                 <img src="<?php echo URLROOT . 'img/github-logo.png'; ?>" alt="Github-icon">
+                </a>
+
+            <?php
+            $inlink = $data['linkedin_link'];
+
+            // Check if the link starts with "http://" or "https://"
+            if (!preg_match("~^(?:f|ht)tps?://~i", $inlink)) {
+                // If it doesn't, add "https://" to the beginning of the link
+                $inlink = "https://" . $inlink;
+            }
+            ?>
+                <a href="<?php echo $inlink ; ?>" target=blank>
                 <img src="<?php echo URLROOT . 'img/linkedin-logo.png'; ?>" alt="Linkedin-icon">
+                </a>
+                
                 <div class="display-flex-row">
                     <span class="material-symbols-outlined">
                         mail

@@ -6,6 +6,7 @@ class Students extends BaseController
     public $userModel;
     public $studentData;
     public $reqCount;
+    public $studentDetails;
 
     public function __construct()
     {
@@ -18,13 +19,36 @@ class Students extends BaseController
     //Student User Dashboard
     public function index()
     {
-        // $reqCount  = $this->requestModel->getRequestCountPerStudent ($student_Id);
+        $student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
+        $reqCount  = $this->requestModel->getRequestCountPerStudent($student_id);
+        //$studentDetails = $this->studentModel->getMainStudentDetails($student_id); 
+
+        
+
+        $data['reqCount']=$reqCount;
 
         // $data = [
         //  'reqCount' => $this->$reqCount
         //  ];
-         $this->view('student/dashboard');
+         $this->view('student/dashboard', $data);
+         
 
+    }
+
+    public function dashboardDetails()
+    {
+        //$student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
+        $studentDetails = $this->studentModel->getMainStudentDetails();
+
+        $data = [
+            'studentDetails' => $studentDetails
+        ];
+
+        // $data = [
+        //     'registration_number' => $studentDetails->registration_number,
+        //     'email' => $studentDetails->email,
+        // ];
+        $this->view('student/dashboard', $data);
     }
 
     //Manage Students - PDC - RuchiraS
@@ -151,6 +175,8 @@ class Students extends BaseController
             'profile_description' => $studentProfile->profile_description,
             'profile_name' => $studentProfile->profile_name,
             'personal_email'=> $studentProfile->personal_email,
+            'github_link' => $studentProfile->github_link,
+            'linkedin_link' => $studentProfile->linkedin_link,
             'extracurricular' => $studentProfile->extracurricular,
         ];
 
