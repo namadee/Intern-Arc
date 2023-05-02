@@ -81,6 +81,9 @@ $("#myFile").bind("change", function () {
 // var current_year=new Date().getFullYear();
 // if((year < 1920) || (year > current_year))
 
+
+
+
 const stdBatchYrForm = document.getElementById("add-student-batch");
 const batchYear = document.getElementById("batch-year-input");
 const batchYrError = document.getElementById('validate-error');
@@ -120,4 +123,52 @@ function toggleProfileUpdate() {
   } else {
     updateBtn.style.display = "none";
   }
+}
+
+
+// View Rename Batch Year Button
+
+const renameBatchYearBtn = document.getElementById("renameBatchyearBtn");
+if (renameBatchYearBtn) {
+  renameBatchYearBtn.addEventListener("click", toggleBatchYearForm);
+}
+
+function toggleBatchYearForm(){
+  const batchRenameForm = document.getElementById("rename-student-batch");
+
+  if (batchRenameForm.classList.contains("hide-element")) {
+    batchRenameForm.classList.remove("hide-element");
+  } else {
+    batchRenameForm.classList.add("hide-element");
+  }
+}
+
+
+const stdBatchYrRenameForm = document.getElementById("rename-student-batch");
+const batchYearRename = document.getElementById("rename-batch-year-input");
+const batchYrRenameError = document.getElementById('validate-error-rename');
+
+if (stdBatchYrRenameForm) {
+  stdBatchYrRenameForm.addEventListener("submit", batchYearValidateRename);
+}
+
+function batchYearValidateRename(event) {
+
+  let currentYear = new Date().getFullYear();
+  upperLimit = currentYear - 4; //2019
+  lowerLimit = currentYear - 8; //2019 - 4
+
+  if (batchYearRename.value.length != 4) {
+    batchYrRenameError.textContent = "*Please enter a valid Year!";
+    event.preventDefault();
+    return false;
+  }
+
+
+  if (batchYearRename.value < lowerLimit || batchYearRename.value > upperLimit) {
+    batchYrRenameError.textContent = "*Please enter a Year Beween " + lowerLimit + " and " + upperLimit;
+    event.preventDefault();
+    return false;
+    }
+
 }

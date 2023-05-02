@@ -33,14 +33,29 @@ class Companies extends BaseController
     public function manageCompany($pg = NULL)
     {
         $companyList = $this->companyModel->getCompanyList();
+        $all_access = $this->companyModel->checkSystemAccessCompanies();
 
         if ($pg == 'blacklisted') {
 
             $blacklistedCompanyList = $this->companyModel->getBlacklistedCompanyList();
             $data = [
                 'blacklisted_modal_class' => '',
+                'change_access_modal' => 'hide-element',
                 'company_list' => $companyList,
-                'blacklisted_list' => $blacklistedCompanyList
+                'blacklisted_list' => $blacklistedCompanyList,
+                'company_access'=> $all_access->all_access
+            ];
+
+            $this->view('pdc/manageCompany', $data);
+
+        } elseif($pg == 'change-access' ) {
+
+            $data = [
+                'blacklisted_modal_class' => 'hide-element',
+                'company_list' => $companyList,
+                'blacklisted_list' => NULL,
+                'change_access_modal' => '',
+                'company_access'=> $all_access->all_access
             ];
 
             $this->view('pdc/manageCompany', $data);
@@ -50,7 +65,9 @@ class Companies extends BaseController
             $data = [
                 'blacklisted_modal_class' => 'hide-element',
                 'company_list' => $companyList,
-                'blacklisted_list' => NULL
+                'blacklisted_list' => NULL,
+                'change_access_modal' => 'hide-element',
+                'company_access'=> $all_access->all_access
             ];
 
             $this->view('pdc/manageCompany', $data);

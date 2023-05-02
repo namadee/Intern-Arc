@@ -9,6 +9,20 @@
         <div class="company-details-container display-flex-col" id="student-details-view">
             <div class="container-top display-flex-row">
                 <h2>Student Details</h2>
+                <form action="<?php echo URLROOT; ?>pdc/updateUserAccountStatus/student/<?php echo $data['user_id'] ?>" method="POST">
+                    <div id="std-system-access" >
+                        <label for="account_status">Current Account Status</label>
+
+                        <select name="account_status" id="account_status" onchange="this.form.submit()" class="<?php echo ($data['account_status'] == 'active') ? "" : " danger"; ?>">
+                            <option value="active" <?php if ($data['account_status'] == "active") {
+                                                        echo "selected";
+                                                    } ?>>Active</option>
+                            <option value="deactivated" <?php if ($data['account_status'] == "deactivated") {
+                                                            echo "selected";
+                                                        } ?>>Deactivated</option>
+                        </select>
+                    </div>
+                </form>
             </div>
 
             <div class="container-body">
@@ -61,15 +75,6 @@
                         <li class="display-flex-row" id="toggleUpdateBtn">
                             <button type="submit" class="common-blue-btn" id="update_btn">Update</button>
                             <button type="reset" class="common-blue-btn" id="reset-btn">Reset</button>
-                            <div id="std-system-access">
-                                <label for="access">System Access</label>
-                                
-                                <select name="access" id="access">
-                                    <option value="active" <?php if ($data['access'] == "active") { echo "selected";} ?> >Active</option>
-                                    <option value="inactive" <?php if ($data['access'] == "inactive") { echo "selected";} ?> >Deactivate</option>
-                                </select>
-                            </div>
-
                         </li>
 
                     </ul>

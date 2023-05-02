@@ -107,10 +107,19 @@ input::-webkit-inner-spin-button {
   justify-content: space-between;
 }
 
+.manage-company-top-left {
+  padding-right: 1rem;
+  border-right: 2px solid rgb(197, 185, 185);
+}
+
 .manage-company-top-left,
 .manage-company-top-right,
 .manage-company-access {
   gap: 1rem;
+}
+
+.manage-company-top button a {
+  color: white;
 }
 
 .manage-company-top button,
@@ -243,11 +252,11 @@ input::-webkit-inner-spin-button {
 }
 
 /*Manage Company - View BlackListed Company Modal*/
-.blacklisted-main-modal{
+.blacklisted-main-modal {
   padding-top: 50px;
 }
 
-.blacklisted-main-div{
+.blacklisted-main-div {
   position: relative;
   width: 60%;
   height: 90%;
@@ -262,7 +271,7 @@ input::-webkit-inner-spin-button {
   overflow-y: auto;
 }
 
-.blacklisted-companies-modal .top-bar{
+.blacklisted-companies-modal .top-bar {
   position: sticky;
   background-color: white;
   padding: 0.5rem;
@@ -286,7 +295,7 @@ input::-webkit-inner-spin-button {
   word-wrap: break-word;
 }
 
-.blacklisted-companies-modal #no-blacklist-msg{
+.blacklisted-companies-modal #no-blacklist-msg {
   margin: auto;
   background-color: var(--BackgroungColor);
   padding: 0.3rem;
@@ -493,7 +502,8 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-#validate-error {
+#validate-error,
+#validate-error-rename {
   color: var(--DangerColor);
 }
 
@@ -561,12 +571,12 @@ input::-webkit-inner-spin-button {
 }
 
 #view-batch-modal .delete-btn {
-  width: 15rem;
+  width: fit-content;
   background-color: var(--DangerBackground);
   margin: auto;
   border: none;
   padding: 0.3rem 1rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   border-radius: 3px;
   color: var(--DangerColor);
   cursor: pointer;
@@ -574,6 +584,7 @@ input::-webkit-inner-spin-button {
 
 #view-batch-modal .delete-btn a {
   color: inherit;
+  font-size: 0.9rem;
 }
 
 #view-batch-modal .delete-btn:hover {
@@ -583,6 +594,50 @@ input::-webkit-inner-spin-button {
 
 .hide-element {
   display: none;
+}
+
+.batch_year_rename {
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.batch_year_rename form {
+  width: 80%;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+#rename-student-batch input[type="submit"] {
+  width: 30%;
+  color: white;
+  background-color: var(--primaryColor);
+  border: none;
+  padding: 0.3rem 0.4rem;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+
+#rename-student-batch input[type="submit"]:hover {
+  background-color: #ca6302;
+}
+
+#rename-student-batch input {
+  margin: auto;
+  width: 5rem;
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+}
+
+#renameBatchyearBtn {
+  background-color: var(--AlternateLightGrey);
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+#renameBatchyearBtn:hover {
+  background-color: #b4bbc4;
 }
 
 /*-----------------------  Manage Student - Add student Page ----------------------- */
@@ -692,13 +747,26 @@ table th {
 }
 
 /*----------------------- Dashboard -----------------------*/
+.main-dashboard-topbar {
+  width: 100%;
+  justify-content: space-around;
+}
+
 .dashboard-topbar {
-  background: linear-gradient(270deg, #eaa846 13.46%, #f17300 79.67%);
   padding: 0.2rem 2rem;
-  justify-content: space-between;
+  gap: 1rem;
   border-radius: 5px;
   color: white;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.dash-top-right,
+.dash-top-left {
+  background-color: #f17300;
+  align-items: center;
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  gap: 0.5rem;
 }
 
 .dash-top-right a {
@@ -823,12 +891,10 @@ table th {
   color: white;
 }
 
-.dashboard-advertisement-list .view-all-btn{
+.dashboard-advertisement-list .view-all-btn {
   margin: 0;
   padding: 0.2rem 1rem;
 }
-
-
 
 /*----------------------- Invitation Page -----------------------*/
 
@@ -866,9 +932,17 @@ table th {
 
 /*----------------------- Invitation - SET ROUND MODAL -----------------------*/
 
+#set-round-modal-box {
+  text-align: center;
+}
+
+#set-round-modal-box form {
+  width: 50%;
+}
+
 #set-round-modal-box form,
 #set-round-modal-box ul {
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 #set-round-modal-box li {
@@ -877,11 +951,29 @@ table th {
 
 #set-round-modal-box .date-period {
   gap: 0.5rem;
+  justify-content: center;
 }
 
 #set-round-modal-box button {
   width: 80%;
   margin: auto;
+  padding: 0.5rem;
+}
+
+#set-round-modal-box a {
+  position: absolute;
+}
+
+#set-round-modal-box-p {
+  width: 100%;
+}
+
+#set-round-modal-box #duration-note {
+  font-size: 0.8.5rem;
+  color: var(--DangerColor);
+  padding: 0.2rem 0.5rem;
+  background-color: var(--DangerBackground);
+  border-radius: 5px;
 }
 
 /*----------------------- Invitation Page -----------------------*/
@@ -903,9 +995,14 @@ table th {
 .company-details-container .container-top {
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 0.5rem;
   align-items: flex-start;
 }
+
+.company-details-container .container-body {
+  border-top: 1px solid var(--AlternateLightGrey);
+  padding-top: 1rem;
+}
+
 .company-details-container .container-body ul {
   gap: 1rem;
 }
@@ -1266,13 +1363,25 @@ table th {
   gap: 1rem;
 }
 
-#std-system-access {
-  margin-top: 1rem;
-}
-
 #std-system-access select {
   border-radius: 3px;
+  border: 1px solid var(--SuccessColor);
+  font-size: 0.9rem;
+  padding: 0.2rem;
+  background-color: var(--SuccessBackground);
+  color: var(--SuccessColor);
 }
+
+#std-system-access option {
+  color: var(--Black);
+}
+
+#std-system-access select.danger {
+  border: 1px solid var(--DangerColor);
+  background-color: var(--DangerBackground);
+  color: var(--DangerColor);
+}
+
 /*----------------------- Profile Update Page -----------------------*/
 
 .update-profile-container {
@@ -1384,6 +1493,109 @@ table th {
   height: auto;
 }
 
-.pdc-advertisementlist table td:nth-child(4){
+.pdc-advertisementlist table td:nth-child(4) {
   width: 120px;
+}
+
+/* TOOLTIP - Hover Effect*/
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-left: 0.3rem;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: fit-content;
+  background-color: rgb(73, 70, 70);
+  color: white;
+  text-align: center;
+  border-radius: 3px;
+  padding: 0.4rem;
+  font-size: 0.8rem;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: -3rem;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/*----------------------- PDC - StudentRequestsByStudent List -----------------------*/
+
+.student-requests-list-container {
+  width: 75%;
+  background-color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 5px;
+  gap: 1.5rem;
+  margin: auto;
+  margin-top: 0.5rem;
+}
+
+.student-requests-list-container .top-container {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.student-requests-list-container .top-container a {
+  width: fit-content;
+  margin: 0;
+  padding: 0.5rem 1rem;
+}
+
+.student-requests-list-container .middle-container {
+  width: 100%;
+}
+
+.student-requests-list-container .middle-container ul {
+  gap: 0.7rem;
+  width: 100%;
+}
+
+.student-requests-list-container .middle-container li {
+  gap: 1.5rem;
+  
+}
+
+.student-requests-list-container .middle-container li p {
+  width: 40%;
+}
+
+.student-requests-list-container .middle-container li p.detail-item {
+  width: 55%;
+  background-color: var(--AlternateLightGrey);
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+}
+
+.student-requests-list-container .bottom-container {
+  gap: 1rem;
+}
+
+.student-requests-list-container .bottom-container .top-box {
+  gap: 1.5rem;
+}
+
+.student-requests-list-container .bottom-container ul li {
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--AlternateLightGrey);
+  padding: 0.5rem 0.3rem;
+}
+
+.student-requests-list-container .bottom-container ul li a {
+  margin: 0;
+}
+
+.student-requests-list-container .bottom-container .request-row{
+  width: 70%;
+  justify-content: space-between;
 }

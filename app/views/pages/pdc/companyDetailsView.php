@@ -5,11 +5,26 @@
 
 <section class="main-content display-flex-col">
     <?php flashMessage('main_details_msg') ?>
+    <?php flashMessage('company_list_msg') ?>
     <div class="company-details-main-container display-flex-row">
 
         <div class="company-details-container display-flex-col">
             <div class="container-top display-flex-row">
                 <h2>Company Details</h2>
+                <form action="<?php echo URLROOT; ?>pdc/updateUserAccountStatus/company/<?php echo $data['user_id'] ?>" method="POST">
+                    <div id="std-system-access">
+                        <label for="account_status">Account Status</label>
+
+                        <select name="account_status" id="account_status" onchange="this.form.submit()" class="<?php echo ($data['account_status'] == 'active') ? "" : " danger"; ?>">
+                            <option value="active" <?php if ($data['account_status'] == "active") {
+                                                        echo "selected";
+                                                    } ?>>Active</option>
+                            <option value="deactivated" <?php if ($data['account_status'] == "deactivated") {
+                                                            echo "selected";
+                                                        } ?>>Deactivated</option>
+                        </select>
+                    </div>
+                </form>
             </div>
 
             <div class="container-body">
@@ -45,12 +60,6 @@
             </form>
             <div class="container-btns display-flex-row">
                 <button id="view-btn"><a href="<?php echo URLROOT . 'profiles/company-profile'; ?>" id="view-btn">View Profile</a></button>
-
-                <button id="delete-btn"><a href="<?php echo URLROOT . 'pdc/deleteCompany/'.$data['user_id'] ;?>" id="delete-btn" class="display-flex-row">
-                        <span class="material-symbols-outlined">
-                            delete
-                        </span>Delete</a>
-                </button>
             </div>
         </div>
         <div class="company-details-analysis display-flex-col">

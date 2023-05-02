@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 class UserModel extends Database
 {
@@ -247,18 +247,66 @@ class UserModel extends Database
     $this->db->bind(':student_id', $studentId);
     $row = $this->db->single();
     return $row;
-
   }
 
   //Delete a user - Students and Company user data from respective tables also will get deleted as a result of cascade delete
-  public function deleteUser($user_id)
+  // public function deactivateUser($user_id)
+  // {
+  //   $this->db->query('UPDATE user_tbl SET account_status = "deactivated" WHERE user_id = :user_id;');
+  //   // Bind Values
+  //   $this->db->bind(':user_id', $user_id);
+  //   return $this->db->execute();
+  // }
+
+
+  //Update user system_access by userID - Ruchira
+  public function updateUserSystemAccessById($user_id, $system_access)
   {
-      $this->db->query('DELETE FROM user_tbl WHERE user_id = :user_id;');
-      // Bind Values
-      $this->db->bind(':user_id', $user_id);
-      return $this->db->execute();
+    $this->db->query('UPDATE `user_tbl` SET system_access = :system_access WHERE user_id = :user_id;');
+    // Bind Values
+    $this->db->bind(':system_access', $system_access);
+    $this->db->bind(':user_id', $user_id);
+    return $this->db->execute();
+  }
+
+  
+  //Return user system access of one user - Ruchira
+  public function getUserSystemAccess($user_id)
+  {
+    $this->db->query('SELECT system_access FROM user_tbl WHERE user_id = :user_id;');
+    // Bind Values
+    $this->db->bind(':user_id', $user_id);
+    return $this->db->single();
+  }
+
+  //Update user system_access by user role - Ruchira
+  public function updateUserSystemAccessByRole($system_access, $user_role)
+  {
+    $this->db->query('UPDATE `user_tbl` SET system_access = :system_access WHERE user_role = :user_role;');
+    // Bind Values
+    $this->db->bind(':system_access', $system_access);
+    $this->db->bind(':user_role', $user_role);
+    return $this->db->execute();
+  }
+
+  //Update user account status by userID - Ruchira
+  public function updateUserAccountStatusById($user_id, $status)
+  {
+    $this->db->query('UPDATE `user_tbl` SET account_status = :account_status WHERE user_id = :user_id;');
+    // Bind Values
+    $this->db->bind(':account_status', $status);
+    $this->db->bind(':user_id', $user_id);
+    return $this->db->execute();
   }
 
 
+    //Return user account_status of one user - Ruchira
+    public function getUserAccountStatus($user_id)
+    {
+      $this->db->query('SELECT account_status FROM user_tbl WHERE user_id = :user_id;');
+      // Bind Values
+      $this->db->bind(':user_id', $user_id);
+      return $this->db->single();
+    }
 
 }
