@@ -1,9 +1,11 @@
 <?php
 
+use helpers\Session;
+
+
 class Pdc extends BaseController
 {
-
-    public $userModel, $registerModel, $companyModel, $studentModel, $advertisementModel;
+    public $userModel, $registerModel, $companyModel, $studentModel, $advertisementModel, $pdcModel;
 
     public function __construct()
     {
@@ -12,21 +14,26 @@ class Pdc extends BaseController
         $this->companyModel = $this->model('Company');
         $this->studentModel = $this->model('Student');
         $this->advertisementModel = $this->model('Advertisement');
+        $this->pdcModel = $this->model('Pdc');
     }
 
     public function index($duration = NULL) //Load PDC Dashboard
     {
+        $roundDetails = $this->pdcModel->getRoundPeriods();
         $companyCount = $this->companyModel->getCompanyCount();
         $studentCount = $this->studentModel->getStudentCount();
 
         $advertisementList = $this->advertisementModel->getAdvertisementsList();
+
+
 
         if ($duration != NULL) {
             $data = [
                 'companyCount' => $companyCount->totalRows,
                 'studentCount' => $studentCount->totalRows,
                 'advertisementList' => $advertisementList,
-                'duration-modal' => ''
+                'duration-modal' => '',
+                'roundDetails' => $roundDetails
             ];
             $this->view('pdc/dashboard', $data);
         }
@@ -37,7 +44,8 @@ class Pdc extends BaseController
             'companyCount' => $companyCount->totalRows,
             'studentCount' => $studentCount->totalRows,
             'advertisementList' => $advertisementList,
-            'duration-modal' => 'hide-element'
+            'duration-modal' => 'hide-element',
+            'roundDetails' => $roundDetails
 
         ];
 
@@ -285,10 +293,21 @@ class Pdc extends BaseController
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             stripTags();
-            $data = [
-                'advertisement_id' => $advertisement_id,
-                'status' => trim($_POST['status']),
-            ];
+            if (trim($_POST['status']) == 'rejected') {
+                $data = [
+                    'advertisement_id' => $advertisement_id,
+                    'status' => trim($_POST['status']),
+                    'round' => NULL
+                ];
+            } else {
+
+                $data = [
+                    'advertisement_id' => $advertisement_id,
+                    'status' => trim($_POST['status']),
+                    'round' => 1
+                ];
+            }
+
 
             $this->advertisementModel->changeAdvertisementStatus($data);
             flashMessage('advertisement_status', 'Status Changed!');
@@ -302,7 +321,7 @@ class Pdc extends BaseController
         }
     }
 
-    //Update Companies system access
+    //Update Companies system access - Ruchira
     public function updateCompaniesSystemAccess()
     {
 
@@ -327,27 +346,64 @@ class Pdc extends BaseController
         redirect('students/manage-student');
     }
 
-    //16 set Round period
+    //16 set Round period - Ruchira
     public function setRoundPeriod()
     {
+        //Get the current date
+        $currentDate = date('Y-m-d');
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
-            $access = trim($_POST['access']);
-            $access = trim($_POST['access']);
-            $access = trim($_POST['access']);
-            $access = trim($_POST['access']);
 
+            $round1StartDate = trim($_POST['first_round_start']);
+            $round1EndDate = trim($_POST['first_round_end']);
+            $round2StartDate = trim($_POST['second_round_start']);
+            $round2EndDate = trim($_POST['second_round_end']);
 
-        }else{
-            
+            $data = [
+                'round_no' => 1,
+                'start_date' => $round1StartDate,
+                'end_date' => $round1EndDate
+            ];
+
+            //Round 1
+            $this->pdcModel->setRoundPeriod($data);
+
+            $data = [
+                'round_no' => 2,
+                'start_date' => $round2StartDate,
+                'end_date' => $round2EndDate
+            ];
+
+            //Round 2
+            $this->pdcModel->setRoundPeriod($data);
+
+            $roundTableData = $this->pdcModel->getRoundPeriods();
+            //Get Round Periods Details
+            Session::setValues('roundTableData', $roundTableData);
         }
 
+
+        if (($round1StartDate <= $currentDate && $round1EndDate >= $currentDate) ||
+            ($round2StartDate <= $currentDate && $round2EndDate >= $currentDate)
+        ) {
+            //Update Company System Access to 1 automatically when the round starts
+            $this->companyModel->updateCompanyAccess(1);
+            //Update all Students System Access to 1 automatically when the round starts
+            $this->studentModel->updateStudentAccess(1);
+        } else {
+            //Nothing to execute
+        }
+        redirect('pdc/');
+    }
+
+    //17 Check Round period - Ruchira
+    public function checkRoundPeriod()
+    {
+    }
+
+
+    public function studentRequestsList()
+    {
         $this->view('pdc/allStudentRequest');
     }
-
-
-    public function studentRequestsList(){
-        $this->view('pdc/studentRequestsList');
-    }
-
 }

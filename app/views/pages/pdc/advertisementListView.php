@@ -24,7 +24,7 @@
                     <th>Company Name</th>
                     <th>Interns</th>
                     <th>Status</th>
-                    <th>Change</th>
+                    <th>Action</th>
                     <th id="action-th"></th>
 
                 </thead>
@@ -44,11 +44,24 @@
                                 </div>
 
                             </td>
+                            <?php
+                            //Special Case where advertisement status cannot be changed after round 1 starting date 
+                            // Therfore once round 1 start cannot change the status of advertisements
+                            $roundTableData =  $roundDataArray['roundTableData'];
+                            $currentDate = $roundDataArray['currentDate'];
+
+                            if ($roundTableData[0]->start_date <= $currentDate) {
+                                // Need Round Constraints
+                                $elementStatus = "disabled";
+                            } else {
+                                // No need of round constraints
+                                $elementStatus = "";
+                            }
+                            ?>
                             <td>
-                                <form action="<?php echo URLROOT . 'pdc/reviewAdvertisement/'.$advertisement->advertisement_id ?>" method="POST">
-                                    <select name="status" class="common-input" onchange="this.form.submit()">
+                                <form action="<?php echo URLROOT . 'pdc/reviewAdvertisement/' . $advertisement->advertisement_id ?>" method="POST">
+                                    <select <?php echo $elementStatus; ?> name="status" class="common-input" onchange="this.form.submit()">
                                         <option value="" selected disabled></option>
-                                        <option value="pending">Pending</option>
                                         <option value="approved">Approve</option>
                                         <option value="rejected">Reject</option>
                                     </select>

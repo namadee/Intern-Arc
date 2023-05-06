@@ -53,9 +53,20 @@
                                     <?php echo ($batch->access == "1") ? "Access enabled" : "Access disabled"; ?>
                                 </div>
                             </td>
+                            <?php
+                            if ($roundDataArray['roundNumber'] != NULL) {
+                                // Need Round Constraints
+                                $hrefStatus = $roundDataArray['hrefStatus'];
+                                $elementClass = $roundDataArray['disabledClass'];
+                            } else {
+                                // No need of round constraints
+                                $hrefStatus = URLROOT . 'students/manage-student/change-access/' .  $batch->batch_year;
+                                $elementClass = "";
+                            }
+                            ?>
                             <td> <a href="<?php echo URLROOT . 'students/manage-student/view-batch/' . $batch->batch_year ?>" class="student-batches-btn">View</a></button></td>
                             <td>
-                                <button> <a href="<?php echo URLROOT . 'students/manage-student/change-access/' .  $batch->batch_year ?>">Change Access</a></button>
+                                <button class="<?php echo $elementClass; ?>"> <a href="<?php echo $hrefStatus; ?>">Change Access</a></button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -110,7 +121,7 @@
                             <a class="common-blue-btn" href="<?php echo URLROOT . 'pdc/student-list/' . $data['batch_year'] . '/CS' ?>">View Student List</a>
                         </li>
                     </ul>
-                    <button class="delete-btn"><a href="<?php echo URLROOT . 'pdc/deleteStudentBatch/'. $data['batch_year']  ?>" class="display-flex-row"> <span class="material-symbols-outlined">
+                    <button class="delete-btn"><a href="<?php echo URLROOT . 'pdc/deleteStudentBatch/' . $data['batch_year']  ?>" class="display-flex-row"> <span class="material-symbols-outlined">
                                 delete
                             </span>Delete Batch</a> </button>
                     <!-- <div class="display-flex-col batch_year_rename">

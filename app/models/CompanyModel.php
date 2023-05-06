@@ -117,7 +117,7 @@ class CompanyModel
     //LIST ALL THE ADVERTISEMENTS BY COMPANY WITH SHORTLISTED STUDENTS COUNT FOR
     public function getAdvertisementByStatus($advertisementId)
     {
-        $status = 'Shortlist';
+        $status = 'shortlisted';
         $this->db->query('SELECT advertisement_tbl.position , advertisement_tbl.intern_count, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round  
     FROM advertisement_tbl 
     JOIN student_requests_tbl 
@@ -133,7 +133,7 @@ class CompanyModel
     //GET SHORTLISTED STUDENTS BY ADVERTISEMENT
     public function getShortlistedStudents($advertisementId)
     {
-        $status = 'Shortlist';
+        $status = 'shortlisted';
         $this->db->query('SELECT student_tbl.profile_name ,student_tbl.personal_email, student_requests_tbl.student_request_id , student_requests_tbl.student_id,student_requests_tbl.status, student_requests_tbl.recruit_status , student_requests_tbl.advertisement_id , student_requests_tbl.round  
         FROM student_tbl 
         JOIN student_requests_tbl 
@@ -178,7 +178,7 @@ class CompanyModel
         return $this->db->resultset();
     }
 
-    //Change companies system access
+    //Change companies system access - Ruchira
     public function updateCompanyAccess($access)
     {
         $this->db->query('UPDATE user_tbl SET system_access = :system_access WHERE user_role = "company" ');
@@ -192,7 +192,7 @@ class CompanyModel
         }
     }
 
-    //Check companies system access from users_tbl
+    //Check companies system access from users_tbl - Ruchira
     public function checkSystemAccessCompanies()
     {
         $this->db->query('SELECT

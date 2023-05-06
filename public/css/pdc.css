@@ -170,7 +170,7 @@ input::-webkit-inner-spin-button {
 .company-content-container table {
   width: 100%;
   text-align: center;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
 }
 
 .company-content-container table #action-th {
@@ -181,12 +181,12 @@ input::-webkit-inner-spin-button {
 .student-batches-table table th {
   border-top: none;
   position: sticky;
-  border-right: 2px solid white;
   top: 0;
   font-weight: 500;
-  padding: 0.5rem;
+  padding: 0.4rem;
   background-color: var(--AlternateLightGrey);
-  border-bottom: 10px solid white;
+  /* border: 4px solid white; */
+  border-radius: 0.4rem;
 }
 
 .company-content-container table td {
@@ -436,8 +436,8 @@ input::-webkit-inner-spin-button {
 .student-list-container {
   width: 90%;
   height: 96%;
-  margin: auto;
-  margin-top: 1rem;
+  margin: 0 auto;
+  /* margin-top: 1rem; */
   padding-bottom: 1rem;
 }
 
@@ -672,7 +672,7 @@ input::-webkit-inner-spin-button {
   height: 90%;
   gap: 1rem;
   border-radius: 5px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .student-batches-top {
@@ -687,7 +687,7 @@ input::-webkit-inner-spin-button {
 
 .student-batches-container table {
   width: 100%;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
 }
 
 .student-batches-container table th:nth-child(6) {
@@ -718,21 +718,27 @@ input::-webkit-inner-spin-button {
 .student-batches-table td button {
   padding: 0.2rem 1rem;
   border: none;
-  background-color: var(--primaryColor);
+  /* background-color: var(--primaryColor); */
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .student-batches-table td button a {
-  color: white;
+  color: var(--primaryColor);
+  font-weight: 500;
+}
+
+.student-batches-table td button:hover {
+  background-color: rgb(206, 206, 206);
 }
 
 .student-batches-table thead span {
   text-align: center;
 }
 
-table th {
+/* table th {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-}
+} */
 
 .student-batch-status div {
   align-items: center;
@@ -748,13 +754,14 @@ table th {
 
 /*----------------------- Dashboard -----------------------*/
 .main-dashboard-topbar {
-  width: 100%;
-  justify-content: space-around;
+  width: 90%;
+  margin: auto;
+  justify-content: space-between;
 }
 
 .dashboard-topbar {
   padding: 0.2rem 2rem;
-  gap: 1rem;
+  gap: 0.4rem;
   border-radius: 5px;
   color: white;
   font-size: 0.9rem;
@@ -762,11 +769,11 @@ table th {
 
 .dash-top-right,
 .dash-top-left {
-  background-color: #f17300;
   align-items: center;
   padding: 0.3rem 1rem;
   border-radius: 5px;
-  gap: 0.5rem;
+  gap: 0.2rem;
+  color: var(--Black);
 }
 
 .dash-top-right a {
@@ -794,10 +801,31 @@ table th {
   border: 1px solid var(--primaryColor);
 }
 
+.dashboard-topbar-btns .send-invitation:hover {
+  background-color: var(--primaryColor);
+  color: white;
+}
+
+#dashboard-round-date-data {
+  gap: 0.3rem;
+  font-weight: 500;
+  width: 7rem;
+  padding: 0 0.5rem;
+}
+
+#dashboard-round-date {
+  background-color: var(--primaryColor);
+  color: white;
+  text-align: center;
+  border-radius: 0.4rem;
+  padding: 0.3rem 0.6rem;
+  width: 14rem;
+}
+
 .dashboard-cards {
   justify-content: center;
   gap: 3rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .dashboard-cards div {
@@ -852,11 +880,18 @@ table th {
 
 .dashboard-advertisement-list .list-body {
   padding: 1rem;
+  padding-top: 0;
+  overflow-y: auto;
+}
+
+.dashboard-advertisement-list .list-body #thead-dashboard {
+  position: sticky;
+  top: 0;
 }
 
 .dashboard-advertisement-list table {
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   text-align: center;
 }
 
@@ -865,8 +900,10 @@ table th {
 }
 
 .dashboard-advertisement-list table th {
-  padding: 0.2rem;
+  padding: 0.4rem;
   background-color: var(--AlternateLightGrey);
+  border-radius: 0.4rem;
+  font-weight: 500;
 }
 
 .dashboard-advertisement-list table td:nth-child(4) {
@@ -976,6 +1013,16 @@ table th {
   border-radius: 5px;
 }
 
+#set-round-year-box {
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: var(--primaryColor);
+  color: white;
+  width: 50%;
+  margin: auto;
+  border-radius: 5px;
+  cursor: default;
+}
 /*----------------------- Invitation Page -----------------------*/
 
 .company-details-main-container {
@@ -1491,6 +1538,7 @@ table th {
 
 .pdc-advertisementlist {
   height: auto;
+  margin-top: 0;
 }
 
 .pdc-advertisementlist table td:nth-child(4) {
@@ -1562,7 +1610,6 @@ table th {
 
 .student-requests-list-container .middle-container li {
   gap: 1.5rem;
-  
 }
 
 .student-requests-list-container .middle-container li p {
@@ -1595,7 +1642,42 @@ table th {
   margin: 0;
 }
 
-.student-requests-list-container .bottom-container .request-row{
+.student-requests-list-container .bottom-container .request-row {
   width: 70%;
   justify-content: space-between;
+}
+
+/*
+Spin Animation
+
+#loading-material-icon{
+  animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} */
+
+/********************************* Disable Style *********************************/
+.disabled-button-style {
+  color: grey !important;
+  cursor: not-allowed !important;
+  background: #cccccc !important;
+  border: 1px solid #bdbdbd !important;
+  box-shadow: none !important;
+}
+
+.disabled-button-style a {
+  color: grey !important;
+  cursor: not-allowed !important;
+}
+
+.disabled-button-style span {
+  color: grey !important;
+}
+
+.disabled-button-style:hover {
+  background: #cccccc !important;
+  transform: scale(1) !important;
 }

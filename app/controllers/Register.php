@@ -74,7 +74,8 @@ class Register extends BaseController
                             'username' => trim($_POST['username']),
                             'email' => trim($_POST['email']),
                             'password' => $hashPassword,
-                            'user_role' => 'student'
+                            'user_role' => 'student',
+                            'system_access' => 0
                         ];
 
                         //Execute
@@ -154,7 +155,8 @@ class Register extends BaseController
                         'username' => trim($_POST['username']),
                         'email' => trim($_POST['email']),
                         'password' => $hashPassword,
-                        'user_role' => 'company'
+                        'user_role' => 'company',
+                        'system_access' => 1
                     ];
 
                     //Execute
@@ -223,7 +225,8 @@ class Register extends BaseController
                         'username' => $column[2],
                         'email' => $column[1],
                         'password' => $hashPassword,
-                        'user_role' => 'company'
+                        'user_role' => 'company',
+                        'system_access' => 1
                     ];
 
                     //Execute
@@ -284,7 +287,8 @@ class Register extends BaseController
                         'username' => $column[0],
                         'email' => $column[1],
                         'password' => $hashPassword,
-                        'user_role' => 'student'
+                        'user_role' => 'student',
+                        'system_access' => 0
                     ];
 
                     //Execute

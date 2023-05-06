@@ -59,7 +59,7 @@
                 <button type="submit" class="common-blue-btn" id="reset-btn">Send Login Credentials Again</button>
             </form>
             <div class="container-btns display-flex-row">
-                <button id="view-btn"><a href="<?php echo URLROOT . 'profiles/company-profile'; ?>" id="view-btn">View Profile</a></button>
+                <button id="view-btn"><a href="<?php echo URLROOT . 'profiles/company-profile/'. $data['user_id']; ?>" id="view-btn">View Profile</a></button>
             </div>
         </div>
         <div class="company-details-analysis display-flex-col">

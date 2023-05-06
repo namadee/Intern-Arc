@@ -11,7 +11,7 @@ class Jobroles extends BaseController
     }
 
     public function index()
-    {
+    {        
         $jobroles = $this->jobroleModel->getJobroles(); //Model function
 
         $data = [

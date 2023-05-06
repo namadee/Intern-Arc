@@ -1,3 +1,6 @@
+<?php
+?>
+
 </head>
 
 <body>
@@ -8,6 +11,9 @@
     if (!SESSION::isLoggedIn()) {
         redirect('login');
     }
+
+    //Call Round Check Function in general helper
+    $roundDataArray = roundCheckFunction();
 
     ?>
     <nav class="display-flex-col" id="nav" class="">

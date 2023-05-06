@@ -22,8 +22,19 @@
                     <?php echo ($data['company_access'] == 1) ? "Access enabled" : "Access disabled";  ?>
                 </div>
             </div>
-            <button class="common-blue-btn">
-                <a href="<?php echo URLROOT . 'companies/manage-company/change-access'; ?>">
+            <?php
+            if ($roundDataArray['roundNumber'] != NULL) {
+                // Need Round Constraints
+                $hrefStatus = $roundDataArray['hrefStatus'];
+                $elementClass = $roundDataArray['disabledClass'];
+            } else {
+                // No need of round constraints
+                $hrefStatus = URLROOT . 'companies/manage-company/change-access';
+                $elementClass = "";
+            }
+            ?>
+            <button disabled class="common-blue-btn <?php echo $elementClass; ?>">
+                <a href="<?php echo $hrefStatus; ?>">
                     Update
                 </a>
 

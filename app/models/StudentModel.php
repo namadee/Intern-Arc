@@ -243,4 +243,18 @@ class StudentModel
         $this->db->bind(':batch_year', $batch_year);
         return $this->db->execute();
     }
+
+    // 16 Change all the Student system access
+    public function updateStudentAccess($access)
+    {
+        $this->db->query('UPDATE user_tbl SET system_access = :system_access WHERE user_role = "student" ');
+        $this->db->bind(':system_access', $access);
+
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

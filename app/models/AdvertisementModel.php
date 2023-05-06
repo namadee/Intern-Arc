@@ -11,8 +11,13 @@ class AdvertisementModel
 
     public function getAdvertisements()
     {
-        $this->db->query('SELECT * FROM advertisement_tbl');
+        // Adjustment 1: Show only the advertisements of the current batch
+        //Filter by the current Batch
+        $currentYear = date('Y');
+        $batchYear = $currentYear - 3; //2023 - 3 = 2020
 
+        $this->db->query('SELECT * FROM advertisement_tbl WHERE batch_year = :batch_year');
+        $this->db->bind(':batch_year', $batchYear);
         return $this->db->resultset();
     }
 
@@ -26,9 +31,8 @@ class AdvertisementModel
 
     public function addAdvertisement($data)
     {
-        $this->db->query('INSERT INTO advertisement_tbl (position,job_description,requirements,start_date,end_date,working_mode,applicable_year,intern_count, company_id_fk )
-         VALUES (:position,:job_description,:requirements,:internship_start,:internship_end,:working_mode,:required_year,:no_of_interns,:company_id_fk)');
-
+        $this->db->query('INSERT INTO advertisement_tbl (position,job_description,requirements,start_date,end_date,working_mode,applicable_year,intern_count, company_id_fk, batch_year)
+         VALUES (:position,:job_description,:requirements,:internship_start,:internship_end,:working_mode,:required_year,:no_of_interns,:company_id_fk, :batch_year)');
 
         // Bind Values
         $this->db->bind(':position', $data['position']);
@@ -40,6 +44,13 @@ class AdvertisementModel
         $this->db->bind(':working_mode', $data['working_mode']);
         $this->db->bind(':required_year', $data['required_year']);
         $this->db->bind(':company_id_fk', $data['company_id']);
+
+        //Adjustment 2 - Add the batch year of the advertisement
+        //Get the current Batch
+        $currentYear = date('Y');
+        $batchYear = $currentYear - 3; //2023 - 3 = 2020
+        $this->db->bind(':batch_year', $batchYear);
+
 
         //Execute
         if ($this->db->execute()) {
@@ -123,8 +134,9 @@ class AdvertisementModel
     //Change Advertisment Status - PDC
     public function changeAdvertisementStatus($data)
     {
-        $this->db->query('UPDATE advertisement_tbl SET status = :status WHERE advertisement_id = :advertisement_id');
+        $this->db->query('UPDATE advertisement_tbl SET status = :status, round = :round WHERE advertisement_id = :advertisement_id');
         $this->db->bind(':status', $data['status']);
+        $this->db->bind(':round', $data['round']);
         $this->db->bind(':advertisement_id', $data['advertisement_id']);
 
         return $this->db->single();

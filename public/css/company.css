@@ -2,7 +2,7 @@
 /* COMPANY - ADVERTISEMENTS*/
 
 .common_list {
-  width: 80%;
+  width: 90%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -338,6 +338,7 @@
     rgba(234, 168, 70, 1) 100%
   );
   color: #fff;
+  border-radius: 0.3rem;
 }
 
 .company-dashboard-top {
@@ -357,7 +358,7 @@
   color: var(--DarkBlue);
   background: #fff;
   font-weight: 800;
-
+  border-radius: 0.3rem;
   display: flex;
   justify-content: space-between;
 }
@@ -367,12 +368,13 @@
 }
 .company-dashboard-box p {
   align-self: center;
-  font-weight: bold;
+  font-weight: 600;
 }
 .blue-line {
   width: 0.5rem;
   height: 100%;
   background: var(--DarkBlue);
+  border-radius: 0.3rem 0 0 0.3rem;
 }
 
 .common-table {
@@ -813,9 +815,9 @@ font-weight: 500;
 }
 
 #company-dashboard table td:nth-child(5){
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 1rem;
 }
 
 #request-list table td:nth-child(4){
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 1rem;
 }

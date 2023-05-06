@@ -59,7 +59,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
 /********************************* Common 2 - Input Box *********************************/
 .common-input {
   padding: 0.3rem 0.5rem;
-  border-radius: 5px;
+  border-radius: 0.4rem;
   border: 1px solid var(--AlternateLightGrey);
   color: var(--Black);
   font-size: 0.9rem;
@@ -71,11 +71,11 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   color: rgb(255, 255, 255);
   cursor: pointer;
   border-style: none;
-  border-radius: 3px;
+  border-radius: 0.4rem;
   font-size: 0.9rem;
   box-shadow: var(--BoxShadow1);
   background-color: var(--DarkBlue);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .common-blue-btn span {
@@ -108,7 +108,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
 .common-modal-box {
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
+  padding-top: 5%;
   left: 0;
   top: 0;
   width: 100%;
@@ -189,15 +189,15 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
 .common-status {
   border: 1px solid var(--SuccessColor);
   padding: 0.2rem 0.5rem;
-  gap: 0.5rem;
+  gap: 0.3rem;
   border-radius: 15px;
   color: var(--SuccessColor);
   font-size: 0.85rem;
 }
 
 .common-status-span {
-  height: 0.8rem;
-  width: 0.8rem;
+  height: 0.6rem;
+  width: 0.6rem;
   background-color: var(--SuccessColor);
   border-radius: 50%;
 }
@@ -583,7 +583,7 @@ main {
 .loginContainer {
   margin: auto;
   margin-top: 5%;
-  width: 45%;
+  width: 55%;
   display: flex;
   border-radius: 5px;
   overflow: hidden;
@@ -593,7 +593,7 @@ main {
 
 .loginContainer form {
   gap: 1rem;
-  width: 70%;
+  width: 85%;
 }
 
 .leftBox {
@@ -661,12 +661,12 @@ main {
 #loginForm input[type="submit"] {
   color: var(--primaryColor);
   padding: 0.5rem 1rem;
-  width: 80%;
+  width: 60%;
   background: #fff;
   margin: auto;
   margin-top: 1rem;
   background-color: var(--Black);
-  border-radius: 20px;
+  border-radius: 0.6rem;
   cursor: pointer;
   display: block;
   font-size: 1rem;

@@ -10,10 +10,18 @@
             <div class="container-top display-flex-row">
                 <h2>Student Details</h2>
                 <form action="<?php echo URLROOT; ?>pdc/updateUserAccountStatus/student/<?php echo $data['user_id'] ?>" method="POST">
-                    <div id="std-system-access" >
+                    <div id="std-system-access">
                         <label for="account_status">Current Account Status</label>
-
-                        <select name="account_status" id="account_status" onchange="this.form.submit()" class="<?php echo ($data['account_status'] == 'active') ? "" : " danger"; ?>">
+                        <?php
+                        if ($roundDataArray['roundNumber'] != NULL) {
+                            // Need Round Constraints
+                            $elementStatus = "disabled";
+                        } else {
+                            // No need of round constraints
+                            $elementStatus = "";
+                        }
+                        ?>
+                        <select <?php echo $elementStatus; ?> name="account_status" id="account_status" onchange="this.form.submit()" class="<?php echo ($data['account_status'] == 'active') ? "" : " danger"; ?>">
                             <option value="active" <?php if ($data['account_status'] == "active") {
                                                         echo "selected";
                                                     } ?>>Active</option>
@@ -50,7 +58,7 @@
                         <li class="display-flex-row" id="student-batch-stream">
                             <div class="display-flex-row">
                                 <label for="batch_year">Batch</label>
-                                <select name="batch_year" id="batch_year" required class="common-input">
+                                <select <?php echo $elementStatus; ?> name="batch_year" id="batch_year" required class="common-input">
                                     <?php foreach ($data['batch_list'] as $batch) : ?>
                                         <?php $std_batch = $data['std_batch'];    ?>
                                         <option value="<?php echo $batch->batch_year; ?>" <?php if ($batch->batch_year == $std_batch) {

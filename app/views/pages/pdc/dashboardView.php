@@ -12,13 +12,34 @@
                 <span class="material-symbols-outlined">
                     campaign
                 </span>
-                <p>1st Round : 01/11/2023 to 10/04/2023</p>
+                <?php
+                $roundPeriod = $data['roundDetails'];
+
+                if ($roundPeriod[0]->start_date == NULL || $roundPeriod[0]->end_date == NULL || $roundPeriod[1]->start_date == NULL || $roundPeriod[1]->end_date == NULL) {
+                    $roundPeriodOneData = 'Not set yet';
+                    $roundPeriodTwoData = 'Not set yet';
+                } else {
+                    foreach ($roundPeriod as $period) {
+                        if ($period->round_no == 1) {
+                            $roundPeriodOneData = $period->start_date . ' to ' . $period->end_date;
+                        } else {
+                            $roundPeriodTwoData = $period->start_date . ' to ' . $period->end_date;
+                        }
+                    }
+                }
+
+                ?>
+                <p id="dashboard-round-date-data">
+                    1st Round :
+                </p>
+                <span id="dashboard-round-date"><?php echo $roundPeriodOneData ?></span>
             </div>
             <div class="dash-top-right display-flex-row ">
                 <span class="material-symbols-outlined">
                     campaign
                 </span>
-                <p>2nd Round : 01/11/2023 to 10/04/2023</p>
+                <p id="dashboard-round-date-data">2nd Round :</p>
+                <span id="dashboard-round-date"><?php echo $roundPeriodTwoData ?></span>
             </div>
 
         </div>
@@ -29,16 +50,26 @@
                 </span>
                 Send Invitation
             </a>
-
-            <a href="<?php echo URLROOT . 'pdc/index/set-duration'; ?>" class="round-period display-flex-row common-blue-btn">
+            <?php
+            if ($roundDataArray['roundNumber'] != NULL) {
+                // Need Round Constraints
+                $hrefStatus = $roundDataArray['hrefStatus'];
+                $elementClass = $roundDataArray['disabledClass'];
+            } else {
+                // No need of round constraints
+                $hrefStatus = URLROOT . 'pdc/index/set-duration';
+                $elementClass = "";
+            }
+            ?>
+            <a href="<?php echo $hrefStatus; ?>" class="round-period display-flex-row common-blue-btn <?php echo $elementClass; ?>">
                 <span class="material-symbols-outlined">
                     published_with_changes
                 </span>
                 Set Round Periods
             </a>
         </div>
-    </div>
 
+    </div>
     <div class="dashboard-cards display-flex-row">
         <div class="display-flex-row">
             <span></span>
@@ -60,7 +91,7 @@
         </div>
         <div class="list-body">
             <table>
-                <thead>
+                <thead id="thead-dashboard">
                     <th>Advertisement Name</th>
                     <th>Company Name</th>
                     <th>Interns</th>
@@ -93,28 +124,30 @@
     </div>
 
     <div class="common-modal-box <?php echo $data['duration-modal']; ?>" id="set-round-modal-box">
-        <form method="POST" action="" class="display-flex-col common-modal-box-form" onSubmit="if(!confirm('Please double check before submitting dates! Do you want to proceed?')){return false;}">
+        <form method="POST" action="<?php echo URLROOT . 'pdc/setRoundPeriod'; ?>" class="display-flex-col common-modal-box-form" onSubmit="if(!confirm('Please double check before submitting dates! Do you want to proceed?')){return false;}">
             <a href="<?php echo URLROOT . "pdc" ?> ">
                 <span class="material-symbols-outlined" class="common-modal-close">
                     close
                 </span></a>
             <h3>Set Round Durations</h3>
+            <p id="set-round-year-box">Current Batch Year : <span>2020</span></p>
             <ul class="display-flex-col">
                 <li class="display-flex-col">
                     <p>First Round Period</p>
                     <div class="display-flex-row date-period">
-                        <input type="date" name="first-round-start" id="first-round-start" class="common-input" value="" placeholder="Start Date">
+                        <input type="date" name="first_round_start" id="first_round_start" class="common-input" placeholder="Start Date" required>
                         <span> - </span>
-                        <input type="date" name="first-round-end" id="first-round-end" class="common-input" value="" placeholder="End Date">
+                        <input type="date" name="first_round_end" id="first_round_end" class="common-input" placeholder="End Date" required>
                     </div>
                 </li>
+                <hr>
                 <li class="display-flex-col">
                     <p>Second Round Period</p>
                     <div class="display-flex-row date-period">
-                        
-                        <input type="date" name="second-round-start" id="second-round-start" class="common-input" value="">
+
+                        <input type="date" name="second_round_start" id="second_round_start" class="common-input" required>
                         <span> - </span>
-                        <input type="date" name="second-round-end" id="second-round-end" class="common-input" value="">
+                        <input type="date" name="second_round_end" id="second_round_end" class="common-input" required>
                     </div>
                 </li>
             </ul>
@@ -124,6 +157,7 @@
 
         </form>
     </div>
+
 </section>
 
 

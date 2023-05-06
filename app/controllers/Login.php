@@ -5,16 +5,20 @@ use helpers\Session;
 class Login extends BaseController
 {
     public $userModel;
-    public $registerModel;
+    public $registerModel, $pdcModel, $companyModel, $studentModel;
 
     public function __construct()
     {
         $this->userModel = $this->model('User');
         $this->registerModel = $this->model('Register');
+        $this->pdcModel = $this->model('Pdc');
+        $this->companyModel = $this->model('Company');
+        $this->studentModel = $this->model('Student');
     }
 
     public function index()
     {
+
 
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -40,7 +44,8 @@ class Login extends BaseController
                     $this->createSession($userDetails);
                     //Get User Role to direct them to the Dashboard
                     $userRole = Session::getUserRole();
-
+                    //Get Round Period Information each time a user logs in
+                    $this->getRoundPeriodDetails();
                     switch ($userRole) {
                         case "pdc":
                             flashMessage('login_success', 'Login Successfully!');
@@ -103,6 +108,8 @@ class Login extends BaseController
         Session::unset('user_email');
         Session::unset('user_role');
         Session::unset('profile_pic');
+        Session::unset('roundTableData');
+        Session::destroy();
         redirect('login');
     }
 
@@ -252,12 +259,13 @@ class Login extends BaseController
         }
     }
 
-    public function test()
+    //Check Round Period - Ruchira
+    public function getRoundPeriodDetails()
     {
-        $data = [
-            'email' => 'abc@gmail.com',
-            'verification_code' => '1234'
-        ];
-        $this->view('pwdVerification',$data);
+        $currentDate = date("Y-m-d");
+
+        $roundTableData = $this->pdcModel->getRoundPeriods();
+        //Get Round Periods Details
+        Session::setValues('roundTableData', $roundTableData);
     }
 }
