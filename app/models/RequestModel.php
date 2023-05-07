@@ -21,11 +21,12 @@ class RequestModel
 
     public function addStudentRequest($data)
     {
-        $this->db->query('INSERT INTO student_requests_tbl (student_id,advertisement_id)
-        VALUES (:student_id, :advertisement_id)');
+        $this->db->query('INSERT INTO student_requests_tbl (student_id,advertisement_id, batch_year)
+        VALUES (:student_id, :advertisement_id, :batch_year)');
 
         $this->db->bind('student_id', $data['student_id']);
         $this->db->bind('advertisement_id', $data['advertisement_id']);
+        $this->db->bind('batch_year', $data['batch_year']);
 
         //Execute
         if ($this->db->execute()) {

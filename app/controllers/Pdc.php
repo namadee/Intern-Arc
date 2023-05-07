@@ -349,8 +349,6 @@ class Pdc extends BaseController
     //16 set Round period - Ruchira
     public function setRoundPeriod()
     {
-        //Get the current date
-        $currentDate = date('Y-m-d');
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -358,6 +356,7 @@ class Pdc extends BaseController
             $round1EndDate = trim($_POST['first_round_end']);
             $round2StartDate = trim($_POST['second_round_start']);
             $round2EndDate = trim($_POST['second_round_end']);
+
 
             $data = [
                 'round_no' => 1,
@@ -376,24 +375,46 @@ class Pdc extends BaseController
 
             //Round 2
             $this->pdcModel->setRoundPeriod($data);
+            date_default_timezone_set('Asia/Colombo');
+            $currentDate = date("Y-m-d");
 
             $roundTableData = $this->pdcModel->getRoundPeriods();
-            //Get Round Periods Details
+            //Update Round Periods Details and set to session
+            //Instance 2 - Round Session
             Session::setValues('roundTableData', $roundTableData);
-        }
+            //Update system access of all companies and students when the round starts
 
 
-        if (($round1StartDate <= $currentDate && $round1EndDate >= $currentDate) ||
-            ($round2StartDate <= $currentDate && $round2EndDate >= $currentDate)
-        ) {
-            //Update Company System Access to 1 automatically when the round starts
-            $this->companyModel->updateCompanyAccess(1);
-            //Update all Students System Access to 1 automatically when the round starts
-            $this->studentModel->updateStudentAccess(1);
-        } else {
-            //Nothing to execute
+
+            //Update system access of all companies and students when the round starts
+
+            $isRoundOneSet = isCurrentDateWithinRound($roundTableData[0]->start_date, $roundTableData[0]->end_date);
+            $isRoundTwoSet = isCurrentDateWithinRound($roundTableData[1]->start_date, $roundTableData[1]->end_date);
+
+            if ($isRoundOneSet) {
+                $roundNumber = 1;
+                Session::setValues('systemAccess', 1);
+                //Update Company System Access to 1 automatically when the round starts
+                $this->companyModel->updateCompanyAccess(1);
+                //Update all Students System Access to 1 automatically when the round starts
+                $this->studentModel->updateStudentAccess(1);
+            } else if ($isRoundTwoSet) {
+                $roundNumber = 2;
+                Session::setValues('systemAccess', 1);
+                //Update Company System Access to 1 automatically when the round starts
+                $this->companyModel->updateCompanyAccess(1);
+                //Update all Students System Access to 1 automatically when the round starts
+                $this->studentModel->updateStudentAccess(1);
+            } else {
+                //Either round dates are not set or currentDate in not during the round period
+                $roundNumber = NULL; //No need of constraints
+                Session::setValues('systemAccess', 0);
+            }
+
+
+            redirect('pdc');
         }
-        redirect('pdc/');
+        redirect('pdc');
     }
 
     //17 Check Round period - Ruchira
@@ -401,9 +422,15 @@ class Pdc extends BaseController
     {
     }
 
-
-    public function studentRequestsList()
+    //Student requests list - Ruchira
+    public function studentRequestsList($round = NULL)
     {
-        $this->view('pdc/allStudentRequest');
+        if ($round == 1 || $round == 2) {
+            //Initially get the Round 1 student requests
+            // $studentRequests = $this->studentModel->getStudentRequests();
+            $this->view('pdc/allStudentRequest');
+        } else {
+            redirect('pdc/');
+        }
     }
 }

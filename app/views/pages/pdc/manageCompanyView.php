@@ -12,7 +12,7 @@
                 <div class="display-flex-row">
                     System Access
                     <span class="material-symbols-outlined tooltip">
-                        help
+                        error
                         <p class="tooltiptext">Determine whether all the companies can logged <br> in to the system or not</p>
                     </span>
                 </div>

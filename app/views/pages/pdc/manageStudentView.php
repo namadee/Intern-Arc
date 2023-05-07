@@ -7,7 +7,17 @@
     <?php flashMessage('student_batch_msg'); ?>
     <div class="student-batches-container display-flex-col">
         <div class="student-batches-top display-flex-row">
-            <h2>Student Batches</h2>
+            <div class="display-flex-row">
+                <h2>Student Batches</h2>
+                <p class="display-flex-row" id="student-batch-current-year">
+                    <span id="student-batch-year-span" class="material-symbols-outlined">
+                        where_to_vote
+                    </span>
+                    Current Batch Year is 2020
+
+                </p>
+            </div>
+
             <a href='<?php echo URLROOT . 'students/manage-student/student-batch' ?>' class="common-blue-btn display-flex-row">
                 <span class="material-symbols-outlined">
                     library_add
@@ -28,7 +38,7 @@
                             <div class="display-flex-row">
                                 System Access
                                 <span class="material-symbols-outlined tooltip">
-                                    help
+                                    error
                                     <p class="tooltiptext">Determine whether the students can logged <br> in to the system or not</p>
                                 </span>
                             </div>
@@ -66,7 +76,7 @@
                             ?>
                             <td> <a href="<?php echo URLROOT . 'students/manage-student/view-batch/' . $batch->batch_year ?>" class="student-batches-btn">View</a></button></td>
                             <td>
-                                <button class="<?php echo $elementClass; ?>"> <a href="<?php echo $hrefStatus; ?>">Change Access</a></button>
+                                <button class="student-batches-access-btn <?php echo $elementClass; ?>"> <a href="<?php echo $hrefStatus; ?>">Change Access</a></button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

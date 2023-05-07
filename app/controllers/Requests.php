@@ -34,9 +34,16 @@ class Requests extends BaseController
     {
         // $advertisementId = $_GET['adId'];
         $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
+
+        //Adjustment 3 - Getting the batch year of the respective advertisement
+        $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId);
+        $batchYear = $advertisement->batch_year;
+
+
         $data = [
             'advertisement_id' => $advertisementId,
-            'student_id' => $studentId
+            'student_id' => $studentId,
+            'batch_year' => $batchYear,
         ];
 
         //Execute

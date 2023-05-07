@@ -4,6 +4,8 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section id="pdc_jobroles_page" class="main-content">
+    <?php flashMessage('jobroleView') ?>
+
     <div class="jobroles-quickAdd display-flex-col">
         <h3>
             Add a new Job Role

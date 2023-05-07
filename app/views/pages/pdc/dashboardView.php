@@ -18,7 +18,24 @@
                 if ($roundPeriod[0]->start_date == NULL || $roundPeriod[0]->end_date == NULL || $roundPeriod[1]->start_date == NULL || $roundPeriod[1]->end_date == NULL) {
                     $roundPeriodOneData = 'Not set yet';
                     $roundPeriodTwoData = 'Not set yet';
+                    $roundOneLoadingIcon = '';
+                    $roundTwoLoadingIcon = '';
                 } else {
+
+                    //For loading icon
+                    if ($roundDataArray['roundNumber'] == 1) {
+                        $roundOneLoadingIcon = '<span class="material-symbols-outlined" id="loading-material-icon"> autorenew </span>';
+                        $roundTwoLoadingIcon = '';
+                    } else if ($roundDataArray['roundNumber'] == 2) {
+                        $roundOneLoadingIcon = '';
+                        $roundTwoLoadingIcon = '<span class="material-symbols-outlined" id="loading-material-icon"> autorenew </span>';
+                    } else {
+                        $roundOneLoadingIcon = '';
+                        $roundTwoLoadingIcon = '';
+                    }
+                    $roundOneLoadingIcon = '';
+                    $roundTwoLoadingIcon = '';
+
                     foreach ($roundPeriod as $period) {
                         if ($period->round_no == 1) {
                             $roundPeriodOneData = $period->start_date . ' to ' . $period->end_date;
@@ -32,14 +49,19 @@
                 <p id="dashboard-round-date-data">
                     1st Round :
                 </p>
-                <span id="dashboard-round-date"><?php echo $roundPeriodOneData ?></span>
+                <span id="dashboard-round-date" class="display-flex-row"><?php echo $roundPeriodOneData ?>
+                    <?php echo $roundOneLoadingIcon ?>
+                </span>
+
             </div>
-            <div class="dash-top-right display-flex-row ">
+            <div class="dash-top-right display-flex-row">
                 <span class="material-symbols-outlined">
                     campaign
                 </span>
                 <p id="dashboard-round-date-data">2nd Round :</p>
-                <span id="dashboard-round-date"><?php echo $roundPeriodTwoData ?></span>
+                <span id="dashboard-round-date" class="display-flex-row"><?php echo $roundPeriodTwoData ?>
+                    <?php echo $roundTwoLoadingIcon ?>
+                </span>
             </div>
 
         </div>
@@ -133,27 +155,42 @@
             <p id="set-round-year-box">Current Batch Year : <span>2020</span></p>
             <ul class="display-flex-col">
                 <li class="display-flex-col">
-                    <p>First Round Period</p>
+                    <p class="period-header">First Round Period</p>
                     <div class="display-flex-row date-period">
-                        <input type="date" name="first_round_start" id="first_round_start" class="common-input" placeholder="Start Date" required>
+                        <div class="display-flex-col">
+                            <label for="first_round_start">Start Date</label>
+                            <input type="date" name="first_round_start" id="first_round_start" class="common-input" placeholder="Start Date" required>
+
+                        </div>
                         <span> - </span>
-                        <input type="date" name="first_round_end" id="first_round_end" class="common-input" placeholder="End Date" required>
+                        <div class="display-flex-col">
+                            <label for="first_round_end">End Date</label>
+                            <input type="date" name="first_round_end" id="first_round_end" class="common-input" placeholder="End Date" required>
+
+                        </div>
                     </div>
                 </li>
                 <hr>
-                <li class="display-flex-col">
-                    <p>Second Round Period</p>
+                <li class="display-flex-col ">
+                    <p class="period-header">Second Round Period</p>
                     <div class="display-flex-row date-period">
+                        <div class="display-flex-col">
+                            <label for="second_round_start">Start Date</label>
+                            <input type="date" name="second_round_start" id="second_round_start" class="common-input" required>
 
-                        <input type="date" name="second_round_start" id="second_round_start" class="common-input" required>
+                        </div>
                         <span> - </span>
-                        <input type="date" name="second_round_end" id="second_round_end" class="common-input" required>
+                        <div class="display-flex-col">
+                            <label for="second_round_end">End Date</label>
+                            <input type="date" name="second_round_end" id="second_round_end" class="common-input" required>
+
+                        </div>
                     </div>
                 </li>
             </ul>
 
             <button type="submit" class="common-blue-btn" id="set-duration-btn">Set Date</button>
-            <p id="duration-note">Please note that you can not change the dates after you submit the form! Please double check before submitting dates</p>
+            <p id="duration-note">Please note that you can not change the dates after the round 1 starts! Please double check before submitting dates</p>
 
         </form>
     </div>

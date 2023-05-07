@@ -40,15 +40,18 @@ body {
 }
 
 /*To remove the border outline of all the inputs*/
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   outline: none;
 }
 
-input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, textarea:focus{
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
   background-color: rgb(243, 243, 243);
   box-shadow: var(--BoxShadow1);
 }
-
 
 /********************************* Common 1 - Display Flex Column *********************************/
 .display-flex-col {
@@ -71,7 +74,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   color: rgb(255, 255, 255);
   cursor: pointer;
   border-style: none;
-  border-radius: 0.4rem;
+  border-radius: 0.3rem;
   font-size: 0.9rem;
   box-shadow: var(--BoxShadow1);
   background-color: var(--DarkBlue);
@@ -82,10 +85,9 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   font-size: 1.2rem;
 }
 
-.common-blue-btn:hover{
+.common-blue-btn:hover {
   background-color: #033f7a;
   transform: scale(1.02);
-  
 }
 
 /********************************* Common 4 -  Common Edit Button *********************************/
@@ -97,18 +99,27 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   width: fit-content;
   justify-content: center;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .common-edit-btn span {
   font-size: 1rem;
-  color: var(--DarkBlue);
+  color: rgb(170, 169, 169);
+}
+
+.common-edit-btn:hover {
+  transform: scale(1.03);
+}
+
+.common-edit-btn span:hover {
+  color: var(--Black);
 }
 
 /********************************* Common 5 -  Main Modal Box [ ID ] *********************************/
 .common-modal-box {
   position: fixed;
   z-index: 1;
-  padding-top: 5%;
+  padding-top: 3.5%;
   left: 0;
   top: 0;
   width: 100%;
@@ -215,7 +226,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   background-color: #cf930c;
 }
 
-.yellow-status-font{
+.yellow-status-font {
   color: #cf930c;
   border: 1px solid #cf930c;
 }
@@ -277,7 +288,7 @@ nav {
 }
 
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 200, "opsz" 48;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 200, "opsz" 48;
 }
 
 nav .navbar-main-logo {
@@ -803,11 +814,11 @@ main {
   display: none;
 }
 
-.no-data-page{
+.no-data-page {
   padding: 2rem;
 }
 
-.no-data-page img{
+.no-data-page img {
   width: 30%;
   margin: auto;
 }

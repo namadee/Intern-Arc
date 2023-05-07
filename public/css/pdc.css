@@ -186,7 +186,7 @@ input::-webkit-inner-spin-button {
   padding: 0.4rem;
   background-color: var(--AlternateLightGrey);
   /* border: 4px solid white; */
-  border-radius: 0.4rem;
+  border-radius: 0.3rem;
 }
 
 .company-content-container table td {
@@ -203,7 +203,7 @@ input::-webkit-inner-spin-button {
 .student-batches-btn {
   border: 1px solid var(--primaryColor);
   padding: 0.1rem 1rem;
-  border-radius: 5px;
+  border-radius: 0.3rem;
   color: var(--primaryColor);
   transition: ease-in-out 50ms;
 }
@@ -718,20 +718,24 @@ input::-webkit-inner-spin-button {
 .student-batches-table td button {
   padding: 0.2rem 1rem;
   border: none;
-  /* background-color: var(--primaryColor); */
+  background-color: rgb(234, 234, 234);
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .student-batches-table td button a {
-  color: var(--primaryColor);
-  font-weight: 500;
+  color: rgb(170, 169, 169);
+  font-weight: 400;
+}
+
+.student-batches-table td button a:hover {
+  color: var(--Black);
 }
 
 .student-batches-table td button:hover {
-  background-color: rgb(206, 206, 206);
+  transform: scale(1.02);
 }
-
 .student-batches-table thead span {
   text-align: center;
 }
@@ -752,6 +756,18 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
 }
 
+#student-batch-current-year {
+  padding: 0.2rem 0.6rem;
+  color: rgb(170, 169, 169);
+  margin-left: 1rem;
+  border-radius: 0.3rem;
+  gap: 0.2rem;
+  font-weight: 500;
+}
+
+#student-batch-current-year span {
+  color: var(--primaryColor);
+}
 /*----------------------- Dashboard -----------------------*/
 .main-dashboard-topbar {
   width: 90%;
@@ -814,12 +830,26 @@ input::-webkit-inner-spin-button {
 }
 
 #dashboard-round-date {
+  flex-grow: 1;
+  flex-shrink: 0;
   background-color: var(--primaryColor);
   color: white;
   text-align: center;
-  border-radius: 0.4rem;
+  border-radius: 0.3rem;
   padding: 0.3rem 0.6rem;
-  width: 14rem;
+  /* justify-content: center; */
+  gap: 0.3rem;
+}
+
+#dashboard-round-date-two {
+  background-color: var(--primaryColor);
+  color: white;
+  text-align: center;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  /* justify-content: center; */
+  gap: 0.3rem;
+  flex: 1;
 }
 
 .dashboard-cards {
@@ -902,7 +932,7 @@ input::-webkit-inner-spin-button {
 .dashboard-advertisement-list table th {
   padding: 0.4rem;
   background-color: var(--AlternateLightGrey);
-  border-radius: 0.4rem;
+  border-radius: 0.3rem;
   font-weight: 500;
 }
 
@@ -948,7 +978,7 @@ input::-webkit-inner-spin-button {
 }
 
 .company-invitation-container .invitation-body ul {
-  gap: 1.5rem;
+  gap: 1.1rem;
 }
 
 .company-invitation-container .invitation-body li label {
@@ -991,6 +1021,14 @@ input::-webkit-inner-spin-button {
   justify-content: center;
 }
 
+#set-round-modal-box .date-period span {
+  padding-top: 1.1rem;
+}
+
+#set-round-modal-box .date-period label {
+  color: var(--primaryColor);
+}
+
 #set-round-modal-box button {
   width: 80%;
   margin: auto;
@@ -1011,10 +1049,11 @@ input::-webkit-inner-spin-button {
   padding: 0.2rem 0.5rem;
   background-color: var(--DangerBackground);
   border-radius: 5px;
+  font-weight: 400;
 }
 
 #set-round-year-box {
-  padding: 0.5rem;
+  padding: 0.3rem 0.6rem;
   font-size: 1rem;
   background-color: var(--primaryColor);
   color: white;
@@ -1022,6 +1061,10 @@ input::-webkit-inner-spin-button {
   margin: auto;
   border-radius: 5px;
   cursor: default;
+}
+
+#set-round-modal-box .period-header {
+  font-weight: 600;
 }
 /*----------------------- Invitation Page -----------------------*/
 
@@ -1097,12 +1140,11 @@ input::-webkit-inner-spin-button {
 }
 
 .company-details-container .container-btns button {
-  padding: 0.2rem 1rem;
-  height: 2rem;
+  padding: 0.3rem 1rem;
   border: none;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  border-radius: 5px;
+  border-radius: 0.3rem;
 }
 
 .company-details-container .container-btns #view-btn {
@@ -1121,7 +1163,7 @@ input::-webkit-inner-spin-button {
   border: none;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  border-radius: 5px;
+  border-radius: 0.3rem;
 }
 
 .company-details-container .container-body #delete-btn a {
@@ -1158,6 +1200,20 @@ input::-webkit-inner-spin-button {
   width: 70%;
 }
 
+#secondary-grey-btn {
+  box-shadow: none;
+  background-color: transparent;
+  color: rgb(170, 169, 169);
+  cursor: pointer;
+  transition: ease-in-out 300ms;
+  padding: 0.3rem 0.5rem;
+  border: none;
+}
+
+#secondary-grey-btn:hover {
+  color: var(--Black);
+  transform: scale(1.05);
+}
 /*----------------------- Student Request Page -----------------------*/
 
 .student-request-container {
@@ -1398,8 +1454,8 @@ input::-webkit-inner-spin-button {
 }
 
 #student-details-view .container-btns {
-  justify-content: flex-start;
-  gap: 2rem;
+  justify-content: space-between;
+  gap: 1.5rem;
 }
 
 #student-details-view .container-body #student-batch-stream {
@@ -1575,6 +1631,10 @@ input::-webkit-inner-spin-button {
   visibility: visible;
 }
 
+.tooltip:hover {
+  color: var(--primaryColor);
+}
+
 /*----------------------- PDC - StudentRequestsByStudent List -----------------------*/
 
 .student-requests-list-container {
@@ -1647,21 +1707,9 @@ input::-webkit-inner-spin-button {
   justify-content: space-between;
 }
 
-/*
-Spin Animation
-
-#loading-material-icon{
-  animation: spin 10s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-} */
-
 /********************************* Disable Style *********************************/
 .disabled-button-style {
-  color: grey !important;
+  color: #8d8d8d !important;
   cursor: not-allowed !important;
   background: #cccccc !important;
   border: 1px solid #bdbdbd !important;
@@ -1669,15 +1717,64 @@ Spin Animation
 }
 
 .disabled-button-style a {
-  color: grey !important;
+  color: #8d8d8d !important;
   cursor: not-allowed !important;
 }
 
 .disabled-button-style span {
-  color: grey !important;
+  color: #8d8d8d !important;
 }
 
 .disabled-button-style:hover {
-  background: #cccccc !important;
+  background: #ccc !important;
   transform: scale(1) !important;
 }
+
+select:disabled {
+  opacity: 0.5;
+  background-color: #ccc;
+  color: #8d8d8d;
+  cursor: not-allowed;
+}
+
+/********************************* SPIN ANIMATION Style *********************************/
+
+#loading-material-icon {
+  animation: spin 10s linear infinite;
+}
+/* 
+#student-batch-year-span {
+  animation: move 5s linear infinite;
+} */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* 
+@keyframes move {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  25% {
+    transform: translateX(-6px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(10px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+} */

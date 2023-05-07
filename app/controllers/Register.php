@@ -24,6 +24,10 @@ class Register extends BaseController
             redirect('students/manage-student');
         }
 
+
+
+
+
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -75,7 +79,7 @@ class Register extends BaseController
                             'email' => trim($_POST['email']),
                             'password' => $hashPassword,
                             'user_role' => 'student',
-                            'system_access' => 0
+                            'system_access' => $_SESSION['systemAccess']
                         ];
 
                         //Execute
@@ -156,7 +160,8 @@ class Register extends BaseController
                         'email' => trim($_POST['email']),
                         'password' => $hashPassword,
                         'user_role' => 'company',
-                        'system_access' => 1
+                        'system_access' => $_SESSION['systemAccess']
+
                     ];
 
                     //Execute
@@ -226,7 +231,7 @@ class Register extends BaseController
                         'email' => $column[1],
                         'password' => $hashPassword,
                         'user_role' => 'company',
-                        'system_access' => 1
+                        'system_access' => $_SESSION['systemAccess']
                     ];
 
                     //Execute
@@ -288,7 +293,7 @@ class Register extends BaseController
                         'email' => $column[1],
                         'password' => $hashPassword,
                         'user_role' => 'student',
-                        'system_access' => 0
+                        'system_access' => $_SESSION['systemAccess']
                     ];
 
                     //Execute

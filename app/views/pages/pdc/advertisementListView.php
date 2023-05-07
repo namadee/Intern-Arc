@@ -50,7 +50,10 @@
                             $roundTableData =  $roundDataArray['roundTableData'];
                             $currentDate = $roundDataArray['currentDate'];
 
-                            if ($roundTableData[0]->start_date <= $currentDate) {
+
+                            if ($roundTableData[0]->start_date == NULL) {
+                                $elementStatus = "";
+                            } else if ($roundTableData[0]->start_date <= $currentDate) {
                                 // Need Round Constraints
                                 $elementStatus = "disabled";
                             } else {
@@ -67,7 +70,7 @@
                                     </select>
                                 </form>
                             </td>
-                            <td><a href="">View</a></td>
+                            <td><a href="<?php echo URLROOT . 'advertisements/viewAdvertisement/' . $advertisement->advertisement_id ?>">View</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

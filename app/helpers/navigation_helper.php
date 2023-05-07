@@ -14,7 +14,7 @@ function getNavigationByUser($userType)
         array(URLROOT.'students/manage-student', 'school', 'Students'),
         array(URLROOT.'jobroles', 'category', 'Job Roles'),
         array(URLROOT.'pdc/review-advertisement', 'text_to_speech', 'Advertisements'),
-        array(URLROOT.'pdc/student-requests-list', 'compare_arrows', 'Requests'),
+        array(URLROOT.'pdc/student-requests-list/1', 'compare_arrows', 'Requests'),
         array(URLROOT.'profiles/view-profile-details', 'manage_accounts', 'Profile')
       );
       return $navigation;

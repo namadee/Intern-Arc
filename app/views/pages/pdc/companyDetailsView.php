@@ -56,7 +56,7 @@
                 </form>
             </div>
             <form id="resend-credential-form-company" action="<?php echo URLROOT . 'register/resendCompanyCredentials/' . $data['user_id']; ?>" onSubmit="if(!confirm('Before new login credentials are sent, Please ensure that the email address is updated correctly! Do you want to proceed?')){return false;}" method="POST">
-                <button type="submit" class="common-blue-btn" id="reset-btn">Send Login Credentials Again</button>
+                <button type="submit" id="secondary-grey-btn">Send Login Credentials Again? Press here</button>
             </form>
             <div class="container-btns display-flex-row">
                 <button id="view-btn"><a href="<?php echo URLROOT . 'profiles/company-profile/'. $data['user_id']; ?>" id="view-btn">View Profile</a></button>
