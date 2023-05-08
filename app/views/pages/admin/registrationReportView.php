@@ -57,15 +57,15 @@
                         <td class="re-table-data"><button>view</button></td>
                     </tr>
             
-                    <tr>
+                    <!-- <tr>
                         <td class="re-table-data">Tech Venturas</td>
                         <td class="re-table-data">Namadee Shakya </td>
                         <td class="re-table-data">namadee@techventuras</td>
                         <td class="re-table-data">0712412545</td>
                         <td class="re-table-data"><button>view</button></td>
-                    </tr>
+                    </tr> -->
             
-                    <tr>
+                    <!-- <tr>
                         <td class="re-table-data">Commercial Technologies Plus</td>
                         <td class="re-table-data">Ruchira Bogahawatta </td>
                         <td class="re-table-data">ruchirab@ctp</td>
@@ -88,7 +88,7 @@
                         <td class="re-table-data">0712412545</td>
                         <td class="re-table-data"><button>view</button></td>
                     </tr>
-                    
+                     -->
                   </table>
 
                   <input class="registration-report-download-button" type="submit" value="Download PDF">
