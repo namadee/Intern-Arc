@@ -272,7 +272,6 @@ class Login extends BaseController
         Session::setValues('roundTableData', $roundTableData);
         date_default_timezone_set('Asia/Colombo');
         $currentDate = date("Y-m-d");
-
         //Update system access of all companies and students when the round starts
 
         $isRoundOneSet = isCurrentDateWithinRound($roundTableData[0]->start_date, $roundTableData[0]->end_date);

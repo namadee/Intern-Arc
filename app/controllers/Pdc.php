@@ -5,7 +5,7 @@ use helpers\Session;
 
 class Pdc extends BaseController
 {
-    public $userModel, $registerModel, $companyModel, $studentModel, $advertisementModel, $pdcModel;
+    public $userModel, $registerModel, $companyModel, $studentModel, $advertisementModel, $pdcModel, $requestModel;
 
     public function __construct()
     {
@@ -15,6 +15,7 @@ class Pdc extends BaseController
         $this->studentModel = $this->model('Student');
         $this->advertisementModel = $this->model('Advertisement');
         $this->pdcModel = $this->model('Pdc');
+        $this->requestModel = $this->model('Request');
     }
 
     public function index($duration = NULL) //Load PDC Dashboard
@@ -174,28 +175,6 @@ class Pdc extends BaseController
             redirect('students/manage-student');
         }
     }
-
-
-    //Delete a Student -PDC - Ruchira
-    //Deactivate A STUDENT   
-    // public function deactivateStudent($year = NULL, $stream = NULL, $user_id = NULL)
-    // {
-    //     if ($user_id != NULL && $year != NULL && $stream != NULL) {
-
-    //         if ($this->userModel->checkForUserById($user_id)) {
-    //             //user exists and can be deactivated
-    //             $this->userModel->deactivateUser($user_id);
-    //             flashMessage('student_list_msg', 'Student Account Deactivated Successfully!');
-    //             redirect('pdc/student-list/' . $year . '/' . $stream);
-    //         } else {
-    //             //user does not exist
-    //             flashMessage('student_list_msg', 'Student does not exist, Please check again!', 'danger-alert');
-    //             redirect('pdc/student-list/' . $year . '/' . $stream);
-    //         }
-    //     } else {
-    //         redirect('students/maanage-student');
-    //     }
-    // }
 
 
     //Update and View Main Company Details Update
@@ -417,20 +396,49 @@ class Pdc extends BaseController
         redirect('pdc');
     }
 
-    //17 Check Round period - Ruchira
-    public function checkRoundPeriod()
-    {
-    }
-
-    //Student requests list - Ruchira
+    //17 Student requests list - Ruchira
     public function studentRequestsList($round = NULL)
     {
+        $currentYear = date("Y");
+        $batchYear = $currentYear - 3;
+
+
         if ($round == 1 || $round == 2) {
-            //Initially get the Round 1 student requests
-            // $studentRequests = $this->studentModel->getStudentRequests();
-            $this->view('pdc/allStudentRequest');
+            $data = [
+                'batchYear' => $batchYear,
+                'round' => $round,
+                'stream' => 'IS'
+            ];
+
+            $studentRequestsIS = $this->requestModel->getStudentRequestsByRound($data);
+            
+            $data = [
+                'batchYear' => $batchYear,
+                'round' => $round,
+                'stream' => 'CS'
+            ];
+
+            $studentRequestsCS = $this->requestModel->getStudentRequestsByRound($data);
+
+            $data = [
+                'round' => $round,  
+                'studentRequestsIS' => $studentRequestsIS,
+                'studentRequestsCS' => $studentRequestsCS,
+                'selectOptionStatus' => 'selected' //For Round 1 and Round 2
+            ];
+
+            $this->view('pdc/allStudentRequest', $data);
+
+            // $this->view('pdc/studentRequestsList', $data);
+
         } else {
             redirect('pdc/');
         }
     }
+
+
+        //17 Student requests list - Ruchira
+        public function viewRequestListByStudent($id = NULL){
+
+        }
 }

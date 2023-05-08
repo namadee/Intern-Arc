@@ -33,9 +33,6 @@
                         $roundOneLoadingIcon = '';
                         $roundTwoLoadingIcon = '';
                     }
-                    $roundOneLoadingIcon = '';
-                    $roundTwoLoadingIcon = '';
-
                     foreach ($roundPeriod as $period) {
                         if ($period->round_no == 1) {
                             $roundPeriodOneData = $period->start_date . ' to ' . $period->end_date;
