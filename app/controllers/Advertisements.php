@@ -8,6 +8,7 @@ class Advertisements extends BaseController
     public $userModel;
     public $companyData;
 
+
     public function __construct()
     {
         $this->advertisementModel = $this->model('Advertisement');
@@ -245,6 +246,8 @@ class Advertisements extends BaseController
         $this->view('test');
 
     }
-     
+
+    
+
 }
 

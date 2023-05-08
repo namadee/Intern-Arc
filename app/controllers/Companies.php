@@ -5,12 +5,14 @@ class Companies extends BaseController
     public $companyModel;
     public $userModel;
     public $advertisementModel;
+    public $requestModel;
 
     public function __construct()
     {
         $this->companyModel = $this->model('Company');
         $this->userModel = $this->model('User');
         $this->advertisementModel = $this->model('Advertisement');
+        $this->requestModel = $this->model('Request');
     }
 
     //COMPANY USER DASHBOARD 
@@ -18,6 +20,9 @@ class Companies extends BaseController
     {
         $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
         $dashboardData = $this->companyModel->getRequestsbyCompany($companyId);
+        $requestArray = $this->requestModel->getStudentRequests;
+
+        
 
         $data = [
             'companyId' => $companyId,
@@ -197,6 +202,10 @@ class Companies extends BaseController
         redirect('companies/get-shortlisted-students/'.$id);
     }
 
+   }
+
+   public function calander(){
+    $this->view('company/calander');
    }
 
 }
