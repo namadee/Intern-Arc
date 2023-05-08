@@ -99,7 +99,7 @@ class AdvertisementModel
         return $this->db->resultset();
     }
 
-    //SELECT ADVERTISEMENTS BASED ON COMPANY 
+    //SELECT ADVERTISEMENTS BASED ON COMPANY - Namadee
     public function getAdvertisementsByCompany($companyId)
     {
         $this->db->query('SELECT * FROM advertisement_tbl WHERE company_id_fk = :company_id');

@@ -819,3 +819,47 @@ font-weight: 500;
 #request-list table td:nth-child(4){
   padding: 0.5rem 3rem;
 }
+
+/* Scheduling UI */
+
+#form-content{
+  padding: 2rem;
+}
+
+.create-interview-form{
+  background-color:#fff
+}
+
+.create-interview-form div{
+  margin: 0 2rem; 
+}
+
+.create-interview-form button{
+  margin-top: 1rem;
+}
+
+/* scheduling */
+
+.create-interview-form{
+  display: none;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  padding: 1rem 0.5rem;
+  z-index: 10;
+  border-radius: 8px;
+
+}
+
+.create-interview-form div{
+  margin: 1rem 0.5rem;
+}
+
+.create-interview-form .common-blue-btn{
+  padding: 0.5rem;
+  margin: 0 40%;
+}
+
+/* .hidden{
+  display: none;
+} */

@@ -21,13 +21,27 @@ class Advertisements extends BaseController
     public function index()
     {
         $advertisements = $this->advertisementModel->getAdvertisements();
-        //view pass data values $data
 
         $data = [
 
             'advertisements' => $advertisements,
             'formAction' => 'Advertisements/add-advertisement'
 
+        ];
+
+        $this->view('company/interviewScheduleList', $data);
+    }
+
+    //Get advertisements by company - company - Namadee
+
+    public function getAdvertisementsByCompany() {
+        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+        $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+
+        $data = [
+            'advertisements' => $ads,
+            'companyID' => $companyId,
+            'formAction' => 'Advertisements/add-advertisement'
         ];
 
         $this->view('company/advertisementList', $data);
