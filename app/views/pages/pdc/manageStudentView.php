@@ -7,7 +7,17 @@
     <?php flashMessage('student_batch_msg'); ?>
     <div class="student-batches-container display-flex-col">
         <div class="student-batches-top display-flex-row">
-            <h2>Student Batches</h2>
+            <div class="display-flex-row">
+                <h2>Student Batches</h2>
+                <p class="display-flex-row" id="student-batch-current-year">
+                    <span id="student-batch-year-span" class="material-symbols-outlined">
+                        where_to_vote
+                    </span>
+                    Current Batch Year is 2020
+
+                </p>
+            </div>
+
             <a href='<?php echo URLROOT . 'students/manage-student/student-batch' ?>' class="common-blue-btn display-flex-row">
                 <span class="material-symbols-outlined">
                     library_add
@@ -26,13 +36,14 @@
 
                         <th class="student-batch-status">
                             <div class="display-flex-row">
-                               System Access <span class="material-symbols-outlined">
-                                    help
+                                System Access
+                                <span class="material-symbols-outlined tooltip">
+                                    error
+                                    <p class="tooltiptext">Determine whether the students can logged <br> in to the system or not</p>
                                 </span>
                             </div>
                         </th>
-                        <th></th>
-                        <th></th>
+
 
                     </tr>
                 </thead>
@@ -41,20 +52,31 @@
                     <?php foreach ($data['batch_list'] as $batch) : ?>
                         <tr>
                             <td><?php echo $batch->batch_year  ?> Batch</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td><?php echo $batch->cs_count  ?> students</td>
+                            <td><?php echo $batch->is_count  ?> students</td>
 
                             <td>
-                                <div class="common-status display-flex-row <?php echo $batch->access === 'active' ? '' : 'red-status-font'; ?>">
+                                <div class="common-status display-flex-row <?php echo $batch->access === '1' ? '' : 'red-status-font'; ?>">
 
-                                    <span class="common-status-span <?php echo $batch->access === 'active' ? '' : 'red-status'; ?>">
+                                    <span class="common-status-span <?php echo $batch->access === '1' ? '' : 'red-status'; ?>">
                                     </span>
-                                    <?php echo ucfirst($batch->access); ?>
+                                    <?php echo ($batch->access == "1") ? "Access enabled" : "Access disabled"; ?>
                                 </div>
                             </td>
+                            <?php
+                            if ($roundDataArray['roundNumber'] != NULL) {
+                                // Need Round Constraints
+                                $hrefStatus = $roundDataArray['hrefStatus'];
+                                $elementClass = $roundDataArray['disabledClass'];
+                            } else {
+                                // No need of round constraints
+                                $hrefStatus = URLROOT . 'students/manage-student/change-access/' .  $batch->batch_year;
+                                $elementClass = "";
+                            }
+                            ?>
                             <td> <a href="<?php echo URLROOT . 'students/manage-student/view-batch/' . $batch->batch_year ?>" class="student-batches-btn">View</a></button></td>
                             <td>
-                                <button> <a href="<?php echo URLROOT . 'students/manage-student/change-access/' .  $batch->batch_year ?>">Change Access</a></button>
+                                <button class="student-batches-access-btn <?php echo $elementClass; ?>"> <a href="<?php echo $hrefStatus; ?>">Change Access</a></button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -99,7 +121,7 @@
                         <li class="display-flex-row">
                             <p>Information System Students</p>
                             <a class="common-blue-btn" href="<?php echo URLROOT . 'register/register-student/' . $data['batch_year'] . '/IS' ?>">Add Students</a>
-                            <a class="common-blue-btn" href="<?php echo URLROOT . 'pdc/student-list/' . $data['batch_year'] . '/IS' ?>" >View Student List</a>
+                            <a class="common-blue-btn" href="<?php echo URLROOT . 'pdc/student-list/' . $data['batch_year'] . '/IS' ?>">View Student List</a>
 
                         </li>
                         <hr>
@@ -109,6 +131,19 @@
                             <a class="common-blue-btn" href="<?php echo URLROOT . 'pdc/student-list/' . $data['batch_year'] . '/CS' ?>">View Student List</a>
                         </li>
                     </ul>
+                    <button class="delete-btn"><a href="<?php echo URLROOT . 'pdc/deleteStudentBatch/' . $data['batch_year']  ?>" class="display-flex-row"> <span class="material-symbols-outlined">
+                                delete
+                            </span>Delete Batch</a> </button>
+                    <!-- <div class="display-flex-col batch_year_rename">
+                        <span id="renameBatchyearBtn">Press here to change the Batch Year</span>
+                        <form action="" method="POST" class="display-flex-col hide-element" id="rename-student-batch">
+
+                            <input type="number" name="batch_year" id="rename-batch-year-input" required>
+                            <input type="submit" name="rename_batch_year" value="Submit">
+                            <span id="validate-error-rename"></span>
+                        </form>
+
+                    </div> -->
                 </div>
             </div>
 
@@ -129,8 +164,8 @@
                         <label for="status">STATUS</label>
                         <select name="access" id="status-dropdown" class="common-input" onchange="this.form.submit()">
                             <option value="" selected disabled></option>
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
+                            <option value="1">Enable access </option>
+                            <option value="0">Disable access</option>
                         </select>
                         <input type="hidden" name="batch_year" value="<?php echo $data['batch_year']; ?>">
                     </div>

@@ -17,10 +17,10 @@ class Students extends BaseController
         $this->view('student/dashboard');
     }
 
-    //Manage Students - PDC - RuchiraS
+    //Manage Students - PDC - Ruchira
     public function manageStudent($pg = NULL, $year = NULL)
     {
-        //Get Batch List 
+        //Get Batch List and respective student count of each IS and CS
         $batchList = $this->studentModel->getStudentBatches();
 
         if ($pg != NULL || $year != NULL) {
@@ -78,12 +78,13 @@ class Students extends BaseController
 
 
 
-    //Add, Change Stats and Delete Batch Functions
+    //Add, Change Stats and Delete Batch Functions - Ruchira
     public function manageStudentBatch()
     {
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+            //Check button name
             if (isset($_POST["add_form_submit"])) {
                 // Handle Add Student Batch
                 $batch_year = trim($_POST['batch_year']);
@@ -96,6 +97,7 @@ class Students extends BaseController
                 }
 
                 $this->studentModel->addStudentBatch($batch_year);
+                
                 flashMessage('student_batch_msg', 'Student Batch ' . $batch_year . ' added');
                 redirect('students/manage-student');
             } else {
@@ -105,7 +107,11 @@ class Students extends BaseController
                     'access' => trim($_POST['access'])
                 ];
 
+                //Chnage access of the batch
                 $this->studentModel->changeBatchAccess($data);
+                //Change access of each student in that batch
+                $this->studentModel->changeSystemAccessByBatchYear($data);
+
                 flashMessage('student_batch_msg', 'Status changed!');
                 redirect('students/manage-student');
             }
@@ -113,17 +119,6 @@ class Students extends BaseController
             redirect('students/manage-student');
         }
     }
-
-
-
-    //Manage Students - PDC
-    public function studentDetails()
-    {
-
-        $this->view('pdc/studentDetails');
-    }
-
-
 
 
     public function studentProfile()

@@ -210,9 +210,15 @@ class Advertisements extends BaseController
             //BUTTON NAME : if user role is student apply btn else view requests btn
             //BUTTON LINK : if user role is student apply link else view requests link
             if($_SESSION['user_role'] == 'student'){ 
-                $btnName = 'Apply'; 
-            }else{
+                $btnName = 'Apply';
+                $btnStatusClass = 'apply-btn'; 
+            }else if ($_SESSION['user_role'] == 'company'){
                 $btnName = 'View Requests';
+                $btnStatusClass = 'apply-btn';
+            }else{
+                //PDC or Admin
+                $btnName = '';
+                $btnStatusClass = 'hide-element';
             }
         $data = [
             'className' => 'selectedTab',
@@ -227,6 +233,7 @@ class Advertisements extends BaseController
             'required_year' => $advertisement->applicable_year,
             'internship_start' => $advertisement->start_date,
             'internship_end' => $advertisement->end_date,
+            'button_status_class' => $btnStatusClass
         ];
         
         $this->view('company/advertisement', $data);

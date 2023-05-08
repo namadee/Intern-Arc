@@ -115,25 +115,25 @@ class CompanyModel
     }
 
     //LIST ALL THE ADVERTISEMENTS BY COMPANY WITH SHORTLISTED STUDENTS COUNT FOR
-   public function getAdvertisementByStatus($advertisementId){
-    $status = 'Shortlist';
-    $this->db->query('SELECT advertisement_tbl.position , advertisement_tbl.intern_count, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round  
+    public function getAdvertisementByStatus($advertisementId)
+    {
+        $status = 'shortlisted';
+        $this->db->query('SELECT advertisement_tbl.position , advertisement_tbl.intern_count, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round  
     FROM advertisement_tbl 
     JOIN student_requests_tbl 
     ON advertisement_tbl.advertisement_id = student_requests_tbl.advertisement_id
     WHERE student_requests_tbl.advertisement_id = :advertisement_id 
     AND student_requests_tbl.status = :status');
-    $this->db->bind(':advertisement_id', $advertisementId);
-    $this->db->bind(':status', $status);
+        $this->db->bind(':advertisement_id', $advertisementId);
+        $this->db->bind(':status', $status);
 
-    return $this->db->resultset();
-
-}
+        return $this->db->resultset();
+    }
 
     //GET SHORTLISTED STUDENTS BY ADVERTISEMENT
     public function getShortlistedStudents($advertisementId)
     {
-        $status = 'Shortlist';
+        $status = 'shortlisted';
         $this->db->query('SELECT student_tbl.profile_name ,student_tbl.personal_email, student_requests_tbl.student_request_id , student_requests_tbl.student_id,student_requests_tbl.status, student_requests_tbl.recruit_status , student_requests_tbl.advertisement_id , student_requests_tbl.round  
         FROM student_tbl 
         JOIN student_requests_tbl 
@@ -144,7 +144,6 @@ class CompanyModel
         $this->db->bind(':status', $status);
 
         return $this->db->resultset();
-
     }
 
     //RECRUIT STUDENTS
@@ -163,10 +162,11 @@ class CompanyModel
             return false;
         }
     }
-    
-    
+
+
     //DASHBOARD FUNCTION - CONNECT STUDENT AND STUDENT AND REQUEST TABLES AND SELECT ALL REQUESTS
-    public function getRequestsbyCompany($companyId){
+    public function getRequestsbyCompany($companyId)
+    {
         $this->db->query('SELECT student_tbl.* , 
         student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , 
         student_requests_tbl.advertisement_id , student_requests_tbl.round , advertisement_tbl.advertisement_id , advertisement_tbl.position , advertisement_tbl.company_id_fk
@@ -176,10 +176,33 @@ class CompanyModel
         WHERE advertisement_tbl.company_id_fk = :company_id');
         $this->db->bind(':company_id', $companyId);
         return $this->db->resultset();
-    
     }
 
-  
+    //Change companies system access - Ruchira
+    public function updateCompanyAccess($access)
+    {
+        $this->db->query('UPDATE user_tbl SET system_access = :system_access WHERE user_role = "company" ');
+        $this->db->bind(':system_access', $access);
 
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    //Check companies system access from users_tbl - Ruchira
+    public function checkSystemAccessCompanies()
+    {
+        $this->db->query('SELECT
+        CASE WHEN COUNT(*) = SUM(CASE WHEN user_tbl.system_access = 1 THEN 1 ELSE 0 END) THEN 1
+             WHEN COUNT(*) = SUM(CASE WHEN user_tbl.system_access = 0 THEN 1 ELSE 0 END) THEN 0
+             ELSE -1 END AS all_access
+      FROM user_tbl
+      JOIN company_tbl ON user_tbl.user_id = company_tbl.user_id_fk;');
+
+        $all_access =  $this->db->single();
+        return $all_access;
+    }
 }

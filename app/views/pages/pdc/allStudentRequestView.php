@@ -15,8 +15,15 @@
                             filter_alt
                         </span>
                         <select name="filter-list" id="filterlist">
-                            <option value="name">Round 1</option>
-                            <option value="name">Round 2</option>
+                            <?php if ($data['round'] == 1) {
+                                $roundOne = "selected";
+                                $roundTwo = "";
+                            } else {
+                                $roundOne = "";
+                                $roundTwo = "selected";
+                            } ?>
+                            <option value="1" <?php echo $roundOne ?> >Round 1</option>
+                            <option value="2" <?php echo $roundTwo ?>>Round 2</option>
                         </select>
                     </form>
                 </div>
@@ -48,48 +55,35 @@
                     </form>
                 </div>
                 <table class="student-list">
-                    <tr>
-                        <td>2020/IS/109</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Recruited
-                            </div>
-                        </td>
-                        <td>
-                            <a href="">View</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2020/IS/109</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Recruited
-                            </div>
-                        </td>
-                        <td>
-                            <a href="">View</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2020/IS/109</td>
-                        <td>
-                            <div class="common-status red-status-font display-flex-row">
-                                <span class="common-status-span red-status">
-                                </span>
-                                Rejected
-                            </div>
-                        </td>
-                        <td>
-                            <a href="">View</a>
-                        </td>
-                    </tr>
+                    <?php foreach ($data['studentRequestsCS'] as $studentRequest) : ?>
+                        <tr>
+                            <td><?php echo $studentRequest->registration_number; ?></td>
+
+                            <td>
+                                <?php if ($studentRequest->student_status == 0) {
+                                    $finalStatus = "Rejected";
+                                    $divClass = "red-status-font";
+                                    $spanClass = "red-status";
+                                } else {
+                                    $finalStatus = "Recruited";
+                                    $divClass = "";
+                                    $spanClass = "";
+                                }
+                                ?>
+                                <div class="common-status display-flex-row <?php echo $divClass; ?>">
+                                    <span class="common-status-span <?php echo $spanClass; ?>">
+                                    </span>
+                                    <?php echo $finalStatus; ?>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="<?php echo URLROOT . 'pdc/view-request-list-by-student/' . $studentRequest->student_id; ?>" class="orange-view-btn">View</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </table>
             </div>
-
+            <!-- IS Student Requests List -->
             <div class="student-requests-box display-flex-col">
                 <div class="display-flex-row container-top">
                     <h3>IS Students</h3>
@@ -114,45 +108,32 @@
                     </form>
                 </div>
                 <table class="student-list">
-                    <tr>
-                        <td>2020/IS/109</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Recruited
-                            </div>
-                        </td>
-                        <td>
-                            <a href="">View</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2020/IS/109</td>
-                        <td>
-                            <div class="common-status display-flex-row">
-                                <span class="common-status-span">
-                                </span>
-                                Recruited
-                            </div>
-                        </td>
-                        <td>
-                            <a href="">View</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2020/IS/109</td>
-                        <td>
-                            <div class="common-status red-status-font display-flex-row">
-                                <span class="common-status-span red-status">
-                                </span>
-                                Rejected
-                            </div>
-                        </td>
-                        <td>
-                            <a href="">View</a>
-                        </td>
-                    </tr>
+                    <?php foreach ($data['studentRequestsIS'] as $studentRequest) : ?>
+                        <tr>
+                            <td><?php echo $studentRequest->registration_number; ?></td>
+
+                            <td>
+                                <?php if ($studentRequest->student_status == 0) {
+                                    $finalStatus = "Rejected";
+                                    $divClass = "red-status-font";
+                                    $spanClass = "red-status";
+                                } else {
+                                    $finalStatus = "Recruited";
+                                    $divClass = "";
+                                    $spanClass = "";
+                                }
+                                ?>
+                                <div class="common-status display-flex-row <?php echo $divClass; ?>">
+                                    <span class="common-status-span <?php echo $spanClass; ?>">
+                                    </span>
+                                    <?php echo $finalStatus; ?>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="<?php echo URLROOT . 'pdc/view-request-list-by-student/' . $studentRequest->student_id; ?>" class="orange-view-btn">View</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </table>
             </div>
         </div>

@@ -28,7 +28,7 @@
                 </div>
 
                 <div>
-                    <a class="common-blue-btn" id="company-edit-btn" href="<?php echo URLROOT; ?>profiles/update-company-profile"><span class="material-symbols-outlined ">edit_square</span> Edit Profile</a>
+                    <a style ="display: <?php echo $data['edit_button_class']; ?>;" class="common-blue-btn" id="company-edit-btn" href="<?php echo URLROOT; ?>profiles/update-company-profile"><span class="material-symbols-outlined ">edit_square</span> Edit Profile</a>
                 </div>
             </div>
 

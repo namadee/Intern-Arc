@@ -5,16 +5,22 @@ use helpers\Session;
 class Login extends BaseController
 {
     public $userModel;
-    public $registerModel;
+    public $registerModel, $pdcModel, $companyModel, $studentModel;
 
     public function __construct()
     {
         $this->userModel = $this->model('User');
         $this->registerModel = $this->model('Register');
+        $this->pdcModel = $this->model('Pdc');
+        $this->companyModel = $this->model('Company');
+        $this->studentModel = $this->model('Student');
     }
 
     public function index()
     {
+        //Get Round Period Information each time a user logs in
+        // This will trigger the function everytime someone visit the login page
+        $this->getRoundPeriodDetails();
 
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -103,6 +109,9 @@ class Login extends BaseController
         Session::unset('user_email');
         Session::unset('user_role');
         Session::unset('profile_pic');
+        Session::unset('roundTableData');
+        Session::unset('systemAccess');
+        Session::destroy();
         redirect('login');
     }
 
@@ -252,12 +261,41 @@ class Login extends BaseController
         }
     }
 
-    public function test()
+    //Check Round Period - Ruchira
+    public function getRoundPeriodDetails()
     {
-        $data = [
-            'email' => 'abc@gmail.com',
-            'verification_code' => '1234'
-        ];
-        $this->view('pwdVerification',$data);
+
+
+        $roundTableData = $this->pdcModel->getRoundPeriods();
+        //Get Round Periods Details
+        //Instance 1 - Round Session
+        Session::setValues('roundTableData', $roundTableData);
+        date_default_timezone_set('Asia/Colombo');
+        $currentDate = date("Y-m-d");
+        //Update system access of all companies and students when the round starts
+
+        $isRoundOneSet = isCurrentDateWithinRound($roundTableData[0]->start_date, $roundTableData[0]->end_date);
+        $isRoundTwoSet = isCurrentDateWithinRound($roundTableData[1]->start_date, $roundTableData[1]->end_date);
+
+        if ($isRoundOneSet) {
+            $roundNumber = 1;
+            Session::setValues('systemAccess', 1);
+            //Update Company System Access to 1 automatically when the round starts
+            $this->companyModel->updateCompanyAccess(1);
+
+            //Update all Students System Access to 1 automatically when the round starts
+            $this->studentModel->updateStudentAccess(1);
+        } else if ($isRoundTwoSet) {
+            $roundNumber = 2;
+            Session::setValues('systemAccess', 1);
+            //Update Company System Access to 1 automatically when the round starts
+            $this->companyModel->updateCompanyAccess(1);
+            //Update all Students System Access to 1 automatically when the round starts
+            $this->studentModel->updateStudentAccess(1);
+        } else {
+            //Either round dates are not set or currentDate in not during the round period
+            $roundNumber = NULL; //No need of constraints
+            Session::setValues('systemAccess', 0);
+        }
     }
 }

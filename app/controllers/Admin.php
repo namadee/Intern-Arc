@@ -13,6 +13,9 @@ class Admin extends BaseController
 
     public function index() //default method and view
     {
+
+
+
         $this->view('admin/dashboard');
     }
 
