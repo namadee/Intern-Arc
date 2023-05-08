@@ -77,8 +77,9 @@
             }else if($_SESSION['user_role'] == 'student'){
                 echo URLROOT . 'requests/addStudentRequest/' . $data['advertisement_id'];
 
-
-            } ?>" class="common-blue-btn apply-btn"><?php echo $data['button_name'] ?></a>
+            }else{
+                echo '';
+            } ?>" class="common-blue-btn <?php echo $data['button_status_class']; ?>"><?php echo $data['button_name'] ?></a>
     </div> 
 
 </section>

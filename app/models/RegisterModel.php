@@ -13,14 +13,15 @@ class RegisterModel extends Database
   public function registerUser($data)
   {
     // Prepare Query
-    $this->db->query('INSERT INTO user_tbl(username, email, password, user_role) 
-        VALUES (:username, :email, :password,:user_role )');
+    $this->db->query('INSERT INTO user_tbl(username, email, password, user_role, system_access) 
+        VALUES (:username, :email, :password,:user_role,:system_access )');
 
     // Bind Values
     $this->db->bind(':username', $data['username']);
     $this->db->bind(':email', $data['email']);
     $this->db->bind(':password', $data['password']);
     $this->db->bind(':user_role', $data['user_role']);
+    $this->db->bind(':system_access', $data['system_access']);
 
     //Execute
     if ($this->db->execute()) {

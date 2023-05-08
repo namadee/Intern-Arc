@@ -4,7 +4,7 @@
 require_once 'config/config.php';
 
 //Load Helpers
-require_once 'helpers/url_helper.php';
+require_once 'helpers/general_helper.php';
 require_once 'helpers/Email.php';
 require_once 'helpers/generator_helper.php';
 require_once 'helpers/Session.php';

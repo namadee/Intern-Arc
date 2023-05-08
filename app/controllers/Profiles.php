@@ -24,7 +24,7 @@ class Profiles extends BaseController
     }
 
 
-    //View - Main User Details [User Table]
+    //View - Main User Details [User Table] - Ruchira
     public function viewProfileDetails()
     {
         $data = [
@@ -48,24 +48,47 @@ class Profiles extends BaseController
     }
 
 
-    public function companyProfile()
+    public function companyProfile($userID = NULL)
     {
-        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
-        $company_details = $this->userModel->getCompanyDetails($companyId);
-        $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id']));
+        if ($userID != NULL) {
 
-        $data = [
-            'company_id' => $companyId,
-            'company_name' => $company_details->company_name,
-            'company_address' => $company_details->company_address,
-            'company_slogan' => $company_details->company_slogan,
-            'company_email' => $company_details->company_email,
-            'company_description' => $company_details->company_description,
-            'image' => $profile_image_name->profile_pic,
-            'formAction' => 'Profiles/update-company-profile/' . $company_details->company_id
-        ];
+            $companyId = $this->userModel->getCompanyUserId($userID);
+            $company_details = $this->userModel->getCompanyDetails($companyId);
+            $profile_image_name = $this->userModel->getProfileImageName($userID);
 
-        $this->view('company/profile', $data);
+            $data = [
+                'company_id' => $companyId,
+                'company_name' => $company_details->company_name,
+                'company_address' => $company_details->company_address,
+                'company_slogan' => $company_details->company_slogan,
+                'company_email' => $company_details->company_email,
+                'company_description' => $company_details->company_description,
+                'image' => $profile_image_name->profile_pic,
+                'formAction' => 'Profiles/update-company-profile/' . $company_details->company_id,
+                'edit_button_class' => 'none'
+            ];
+
+            $this->view('company/profile', $data);
+
+        } else {
+            $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+            $company_details = $this->userModel->getCompanyDetails($companyId);
+            $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id']));
+
+            $data = [
+                'company_id' => $companyId,
+                'company_name' => $company_details->company_name,
+                'company_address' => $company_details->company_address,
+                'company_slogan' => $company_details->company_slogan,
+                'company_email' => $company_details->company_email,
+                'company_description' => $company_details->company_description,
+                'image' => $profile_image_name->profile_pic,
+                'formAction' => 'Profiles/update-company-profile/' . $company_details->company_id,
+                'edit_button_class' => ''
+            ];
+
+            $this->view('company/profile', $data);
+        }
     }
 
     // public function showCompanyProfile()
@@ -89,6 +112,7 @@ class Profiles extends BaseController
     //     $this->view('company/editProfile', $data);
     // }
 
+    // Company Profile Update - Namadee
     public function updateCompanyProfile()
     {
 
@@ -219,6 +243,7 @@ class Profiles extends BaseController
         }
     }
 
+    // Main profile details Update (user table) - Ruchira
     public function updateProfileDetails()
     {
         $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id']));
@@ -331,26 +356,8 @@ class Profiles extends BaseController
         }
     }
 
-
-    public function test()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            $status = 'Not uploaded';
-            $name = $_FILES["upload_img"]["tmp_name"];
-            $size = filesize($name);
-
-            // $filename = $_FILES['upload_img']['tmp_name'];
-            // $size = getimagesize($filename);
-            // 1MB = 1000000 BYTES
-
-            $data = [
-                'data' => $status,
-                'name' => $size
-            ];
-        }
-    }
-    public function studentProfile()                
+    // View Profile Details
+    public function studentProfile()                //($_SESSION['user_id'])
     {
         $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
         $student_details = $this->userModel->getStudentDetails($studentId); //commented
@@ -409,6 +416,7 @@ class Profiles extends BaseController
 
             $this->view('student/studentprofile', $data);
         }
+    
     }
 
     public function studentCompanyProfile()
@@ -487,11 +495,10 @@ class Profiles extends BaseController
     // }
 
     public function EditStudentProfileDetails()
-
     {
 
         $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
- 
+
         //$student_details = $this->userModel->getStudentDetails($studentId);
 
         // Check if POST

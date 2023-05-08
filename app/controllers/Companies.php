@@ -5,14 +5,14 @@ class Companies extends BaseController
     public $companyModel;
     public $userModel;
     public $advertisementModel;
-    public $listCompanies;
+    public $requestModel;
 
     public function __construct()
     {
         $this->companyModel = $this->model('Company');
         $this->userModel = $this->model('User');
         $this->advertisementModel = $this->model('Advertisement');
-        
+        $this->requestModel = $this->model('Request');
     }
 
     //COMPANY USER DASHBOARD 
@@ -20,6 +20,9 @@ class Companies extends BaseController
     {
         $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
         $dashboardData = $this->companyModel->getRequestsbyCompany($companyId);
+        $requestArray = $this->requestModel->getStudentRequests;
+
+        
 
         $data = [
             'companyId' => $companyId,
@@ -35,14 +38,29 @@ class Companies extends BaseController
     public function manageCompany($pg = NULL)
     {
         $companyList = $this->companyModel->getCompanyList();
+        $all_access = $this->companyModel->checkSystemAccessCompanies();
 
         if ($pg == 'blacklisted') {
 
             $blacklistedCompanyList = $this->companyModel->getBlacklistedCompanyList();
             $data = [
                 'blacklisted_modal_class' => '',
+                'change_access_modal' => 'hide-element',
                 'company_list' => $companyList,
-                'blacklisted_list' => $blacklistedCompanyList
+                'blacklisted_list' => $blacklistedCompanyList,
+                'company_access'=> $all_access->all_access
+            ];
+
+            $this->view('pdc/manageCompany', $data);
+
+        } elseif($pg == 'change-access' ) {
+
+            $data = [
+                'blacklisted_modal_class' => 'hide-element',
+                'company_list' => $companyList,
+                'blacklisted_list' => NULL,
+                'change_access_modal' => '',
+                'company_access'=> $all_access->all_access
             ];
 
             $this->view('pdc/manageCompany', $data);
@@ -52,7 +70,9 @@ class Companies extends BaseController
             $data = [
                 'blacklisted_modal_class' => 'hide-element',
                 'company_list' => $companyList,
-                'blacklisted_list' => NULL
+                'blacklisted_list' => NULL,
+                'change_access_modal' => 'hide-element',
+                'company_access'=> $all_access->all_access
             ];
 
             $this->view('pdc/manageCompany', $data);
@@ -226,6 +246,10 @@ class Companies extends BaseController
         redirect('companies/get-shortlisted-students/'.$id);
     }
 
+   }
+
+   public function calander(){
+    $this->view('company/calander');
    }
 
 }

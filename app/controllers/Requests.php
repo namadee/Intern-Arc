@@ -7,7 +7,7 @@ class Requests extends BaseController
     public $requestList;
     public $userModel;
     public $advertisementModel;
-    
+
     public function __construct()
     {
         $this->requestModel = $this->model('Request');
@@ -30,13 +30,21 @@ class Requests extends BaseController
     }
 
     //Applying to advertisement
-    public function addStudentRequest($advertisementId){
+    public function addStudentRequest($advertisementId)
+    {
         // $advertisementId = $_GET['adId'];
         $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
         $reqCount  = $this->requestModel->getRequestCountPerStudent($studentId);
+
+        //Adjustment 3 - Getting the batch year of the respective advertisement
+        $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId);
+        $batchYear = $advertisement->batch_year;
+
+
         $data = [
             'advertisement_id' => $advertisementId,
-            'student_id' => $studentId
+            'student_id' => $studentId,
+            'batch_year' => $batchYear,
         ];
 
         //Execute
@@ -59,21 +67,14 @@ class Requests extends BaseController
         }
     }
 
-    public function allRequests() 
-    {
-        // $requests = $this->requestModel->getRequests();
-        // $data = [
-        //     'requests' => $requests,
-        // ];
-        $this->view('pdc/studentRequest');
-    }
 
-    public function shortlistedList() 
+    public function shortlistedList()
     {
         $this->view('company/shortlist');
     }
 
-    public function showRequestsByAd($advertisementId){
+    public function showRequestsByAd($advertisementId)
+    {
         // $advertisementId = $_GET['adId']; 
         $students = $this->requestModel->getStudentByRequest($advertisementId);
 
@@ -81,44 +82,42 @@ class Requests extends BaseController
             'advertisement_id' => $advertisementId,
             'student_name' => $students,
         ];
-        
+
         if ($this->requestModel->getStudentByRequest($advertisementId)) {
 
             $this->view('company/AdvertisementListReqests', $data);
         } else {
             die('Something went wrong');
         }
-
     }
 
     //DISPLAY ADVERTISEMENT LIST WITH RELEVENT REQUEST COUNT
-    public function AdvertisementListRequests(){
+    public function AdvertisementListRequests()
+    {
         $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
         $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
-        
+
         $requestCounts = array();
-        $x=0;
-        foreach($advertisements as $advertisement)
-        {
+        $x = 0;
+        foreach ($advertisements as $advertisement) {
             $requests = $this->requestModel->getAdvertisementByRequest($advertisement->advertisement_id);
             $requestCounts[$x] = count($requests);
             $positions[$x] = $advertisement->position;
             $intern_counts[$x] = $advertisement->intern_count;
             $x++;
         }
-        
-        
+
+
         $data = [
             'count' => $requestCounts,
             'length' => count($requestCounts),
             'positions' => $positions,
             'intern_counts' => $intern_counts,
-            'advertisements' =>$advertisements,
-            
+            'advertisements' => $advertisements,
+
         ];
 
         $this->view('company/studentRequestList', $data);
-
     }
 
     // public function showNumberRequested(){
@@ -128,4 +127,3 @@ class Requests extends BaseController
     
 
 }
-?>
