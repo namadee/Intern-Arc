@@ -61,12 +61,12 @@
                         <td class="co-table-data"><button> <a href="<?php echo URLROOT.'admin/viewCompany'; ?>">view</a>  </button></td>
                     </tr>
             
-                    <tr>
+                    <!-- <tr>
                         <td class="co-table-data">Tech Venturas</td>
                         <td class="co-table-data">Namadee Shakya </td>
                         <td class="co-table-data">namadee@techventuras</td>
                         <td class="co-table-data">0712412545</td>
-                        <td class="co-table-data"><button>view</button></td>
+                        <td class="co-table-data"><button><a href="<?php echo URLROOT.'admin/viewCompany'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
@@ -74,24 +74,8 @@
                         <td class="co-table-data">Ruchira Bogahawatta </td>
                         <td class="co-table-data">ruchirab@ctp</td>
                         <td class="co-table-data">0712412545</td>
-                        <td class="co-table-data"><button>view</button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="co-table-data">99x Technology</td>
-                        <td class="co-table-data">Ravindu Viranga</td>
-                        <td class="co-table-data">ravindu@99x</td>
-                        <td class="co-table-data">0712412545</td>
-                        <td class="co-table-data"><button>view</button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="co-table-data">Virtusa</td>
-                        <td class="co-table-data">Geeth Weerasinghe </td>
-                        <td class="co-table-data">geeth@virtusa</td>
-                        <td class="co-table-data">0712412545</td>
-                        <td class="co-table-data"><button>view</button></td>
-                    </tr>
+                        <td class="co-table-data"><button><a href="<?php echo URLROOT.'admin/viewCompany'; ?>">view</a></button></td>
+                    </tr> -->
                     
                   </table>
 

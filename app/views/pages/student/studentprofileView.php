@@ -10,7 +10,7 @@
             <h3>Student Profile</h3> <br/>
             <div class="student-profile-bio display-flex-row">
                 <div class="display-flex-col">
-                    <h3>Hello! Im <span>Geeth Weerasinghe</span></h3>
+                    <h3>Hello! Im <span><?php echo $data['profile_name'] ?></span></h3>
                     <!-- <p>Award-winning web developer and instructor with 10+ years of well-rounded experience in LAMP development, object-oriented and user-centered design, seeks a position with a top technology firm.</p> -->
                     <?php echo $data['profile_description'] ?>
                 </div>
@@ -34,22 +34,49 @@
                     <li class="display-flex-col interested-areas" id="interests">
                         <h3>Interested Areas</h3>
                         <div class="display-flex-row interested-area-items">
-                            <span><?php echo $data['interests'] ?></span>
-                        </div>
-                        <!-- <div class="display-flex-row interested-area-items">
-                        </div> -->
+                        <?php
+                        $text = explode("\n",$data['interests']);
+                        $length = count($text);
+                        //echo $length;
+
+                        $emptyArray = array();
+                        // for ($x = 0; $x < $length; $x++) {
+                         
+                        //}
+
+                        for($x=0;$x<$length;$x++)
+                        {
+                            $emptyArray[$x] = trim($text[$x]);
+                            ?>
+                            <span><?php echo $text[$x] ?></span>
+                            <?php
+                        }
+                        ?>
+                            
                     </li>
                     <li class="display-flex-col extra-curricular">
                         <h3>Extra Curricular</h3>
-                        <div>
-                            <!-- First XV - Rugby <br>
-                            St Joseph's College- Colombo -->
-                            <?php echo $data['extracurricular'] ?>
-                        </div>
-                        <!-- <div>
-                            Content Writer <br>
-                            Colombo Beacone
-                        </div> -->
+
+                        <?php
+                        $text = explode("\n",$data['extracurricular']);
+                        $length = count($text);
+                        //echo $length;
+
+                        $emptyArray = array();
+                        // for ($x = 0; $x < $length; $x++) {
+                         
+                        //}
+
+                        for($x=0;$x<$length;$x++)
+                        {
+                            $emptyArray[$x] = trim($text[$x]);
+                            ?>
+                            <div class="display-flex-col experience-items">
+                                <?php echo $text[$x] ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
 
                     </li>
                 </ul> 
@@ -59,32 +86,53 @@
             <div class="body-right display-flex-col">
                 <div class="display-flex-col student-experience">
                     <h3>Experience</h3>
-                    <div class="display-flex-col experience-items">
-                        <!-- <p>SEO Intern</p>
-                        <p>Commercial Technologies Plus</p>
-                        <p>6 Months</p> -->
-                        <?php echo $data['experience'] ?>
-                    </div>
-                    <!-- <div class="display-flex-col experience-items">
-                        <p>SEO Intern</p>
-                        <p>Commercial Technologies Plus</p>
-                        <p>6 Months</p>
-                    </div> -->
+
+                    <?php
+                        $text = explode("\n",$data['experience']);
+                        $length = count($text);
+                        //echo $length;
+
+                        $emptyArray = array();
+                        // for ($x = 0; $x < $length; $x++) {
+                         
+                        //}
+
+                        for($x=0;$x<$length;$x++)
+                        {
+                            $emptyArray[$x] = trim($text[$x]);
+                            ?>
+                            <div class="display-flex-col experience-items">
+                                <?php echo $text[$x] ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
 
                 </div>
                 <div class="display-flex-col student-experience">
                     <h3>Qualifications</h3>
-                    <div class="display-flex-col experience-items">
-                        <!-- <p>The Chartered Institute of Marketing</p>
-                        <p>Diploma in Porfessional Marketing</p> -->
-                        <?php echo $data['qualifications'] ?>
-                    </div>
 
-                    <!-- <div class="display-flex-col experience-items">
-                         <p>The Chartered Institute of Marketing</p>
-                        <p>Diploma in Porfessional Marketing</p> 
+                    <?php
+                        $text = explode("\n",$data['qualifications']);
+                        $length = count($text);
+                        //echo $length;
+
+                        $emptyArray = array();
+                        // for ($x = 0; $x < $length; $x++) {
+                         
+                        //}
+
+                        for($x=0;$x<$length;$x++)
+                        {
+                            $emptyArray[$x] = trim($text[$x]);
+                            ?>
+                            <div class="display-flex-col experience-items">
+                                <?php echo $text[$x] ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
                         
-                    </div> -->
                 </div>
             </div>
             <section class="std-profile-image">
@@ -100,12 +148,12 @@
                     <span class="material-symbols-outlined">
                         mail
                     </span>
-                    geeth@gmail.com
+                    <?php echo $data['personal_email']?>
                 </div>
             </div>
 
             <div class="bottom-right">
-                <a href="" class="display-flex-row">
+                <a href="<?php echo URLROOT.'students/cvstatus';?>" class="display-flex-row">
                     <span class="material-symbols-outlined">
                         upload
                     </span>

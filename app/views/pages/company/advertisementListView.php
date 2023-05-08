@@ -6,10 +6,10 @@
   <div class="common_list">
     <div class="common-list-topbar">
       <form action="" class="common-search-bar display-flex-row">
-                <span class="material-symbols-rounded">
-                    search
-                </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
+        <span class="material-symbols-rounded">
+          search
+        </span>
+        <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
       </form>
       <div class="common-filter">
         <span class="material-symbols-rounded">
@@ -25,13 +25,13 @@
     </div>
 
     <div class="common_list_content">
-      
+
       <div class="addBtn">
-      <h3>Advertisement List</h3>
-<a href="<?php echo URLROOT; ?>Advertisements/add-advertisement" class="common-blue-btn"><span id="addIcon" class="material-symbols-outlined">
-    library_add
-  </span>Add</a>
-</div>
+        <h3>Advertisement List</h3>
+        <a href="<?php echo URLROOT; ?>Advertisements/add-advertisement" class="common-blue-btn"><span id="addIcon" class="material-symbols-outlined">
+            library_add
+          </span>Add</a>
+      </div>
       <table class="common-table">
         <tr>
           <th>Advertisement Name</th>
@@ -40,18 +40,25 @@
           <th>View</th>
           <th></th>
           <th></th>
-         
+
         </tr>
         <?php foreach ($data['advertisements'] as $advertisement) : ?>
 
           <tr>
             <td><?php echo $advertisement->position ?></td>
             <td><?php echo $advertisement->intern_count ?></td>
-            <td><?php echo $advertisement->status ?></td>
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $advertisement->advertisement_id; ?>" >View</a>
+              <div class="common-status display-flex-row <?php echo $advertisement->status == 'pending' ? 'yellow-status-font' : ($advertisement->status == 'rejected' ? 'red-status-font' : ''); ?> ">
+
+                <span class="common-status-span <?php echo $advertisement->status == 'pending' ? 'yellow-status' : ($advertisement->status == 'rejected' ? 'red-status' : ''); ?>">
+                </span>
+                <?php echo ucfirst($advertisement->status); ?>
+              </div>
             </td>
-           
+            <td>
+              <a class="common-view-btn" href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $advertisement->advertisement_id; ?>">View</a>
+            </td>
+
             <td>
               <a class="common-edit-btn" href="<?php echo URLROOT; ?>advertisements/show-advertisement-by-id/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
               edit_square
@@ -59,9 +66,9 @@
               </a>
             </td>
             <td>
-            <a class="common-edit-btn" id="common-delete-btn" href="<?php echo URLROOT; ?>advertisements/delete-advertisement/<?php echo $advertisement->advertisement_id; ?>"  id="delete"><span class="material-symbols-outlined">
-                                delete
-                            </span></a>
+              <a class="common-edit-btn" id="common-delete-btn" href="<?php echo URLROOT; ?>advertisements/delete-advertisement/<?php echo $advertisement->advertisement_id; ?>" id="delete"><span class="material-symbols-outlined">
+                  delete
+                </span></a>
             </td>
           </tr>
         <?php endforeach; ?>

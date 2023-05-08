@@ -17,39 +17,20 @@
             
                 <table >
                     <tr>
-                      <th>Company Name</th>
+                      <th>Reports</th>
                       <th></th>
                     </tr>
             
                     <tr>
-                      <td>Virtusa</td>
-                      <td><button>view</button></td>
+                      <td>Registration Reports</td>
+                      <td><button><a href="<?php echo URLROOT.'admin/registrationReport'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
-                        <td>WSO2</td>
-                        <td><button>view</button></td>
+                        <td>Advertisement  Reports</td>
+                        <td><button><a href="<?php echo URLROOT.'admin/advertisementReport'; ?>">view</button></td>
                     </tr>
             
-                    <tr>
-                        <td>Codegen International</td>
-                        <td><button>view</button></td>
-                    </tr>
-            
-                    <tr>
-                        <td>Sysco Labs</td>
-                        <td><button>view</button></td>
-                    </tr>
-            
-                    <tr>
-                        <td>Tech Venturas</td>			
-                        <td><button>view</button></td>
-                    </tr>
-            
-                    <tr>
-                        <td>99x Technology</td>			
-                        <td><button>view</button></td>
-                    </tr>
                   </table>
                        
             </div>

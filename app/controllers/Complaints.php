@@ -124,4 +124,15 @@ class Complaints extends BaseController
     {
         $this->complaintModel->deleteComplaint($id);
     }
+
+    public function Complaint(){
+        // Get Details
+        $complaint = $this->complaintModel->getComplaint();
+
+        $data = [
+            'complaint' => $complaint,
+        ];
+
+        $this->view('admin/adminComlaintView', $data);
+    }
 }

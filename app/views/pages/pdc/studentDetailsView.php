@@ -9,6 +9,28 @@
         <div class="company-details-container display-flex-col" id="student-details-view">
             <div class="container-top display-flex-row">
                 <h2>Student Details</h2>
+                <form action="<?php echo URLROOT; ?>pdc/updateUserAccountStatus/student/<?php echo $data['user_id'] ?>" method="POST">
+                    <div id="std-system-access">
+                        <label for="account_status">Current Account Status</label>
+                        <?php
+                        if ($roundDataArray['roundNumber'] != NULL) {
+                            // Need Round Constraints
+                            $elementStatus = "disabled";
+                        } else {
+                            // No need of round constraints
+                            $elementStatus = "";
+                        }
+                        ?>
+                        <select <?php echo $elementStatus; ?> name="account_status" id="account_status" onchange="this.form.submit()" class="<?php echo ($data['account_status'] == 'active') ? "" : " danger"; ?>">
+                            <option value="active" <?php if ($data['account_status'] == "active") {
+                                                        echo "selected";
+                                                    } ?>>Active</option>
+                            <option value="deactivated" <?php if ($data['account_status'] == "deactivated") {
+                                                            echo "selected";
+                                                        } ?>>Deactivated</option>
+                        </select>
+                    </div>
+                </form>
             </div>
 
             <div class="container-body">
@@ -36,7 +58,7 @@
                         <li class="display-flex-row" id="student-batch-stream">
                             <div class="display-flex-row">
                                 <label for="batch_year">Batch</label>
-                                <select name="batch_year" id="batch_year" required class="common-input">
+                                <select <?php echo $elementStatus; ?> name="batch_year" id="batch_year" required class="common-input">
                                     <?php foreach ($data['batch_list'] as $batch) : ?>
                                         <?php $std_batch = $data['std_batch'];    ?>
                                         <option value="<?php echo $batch->batch_year; ?>" <?php if ($batch->batch_year == $std_batch) {
@@ -61,15 +83,6 @@
                         <li class="display-flex-row" id="toggleUpdateBtn">
                             <button type="submit" class="common-blue-btn" id="update_btn">Update</button>
                             <button type="reset" class="common-blue-btn" id="reset-btn">Reset</button>
-                            <div id="std-system-access">
-                                <label for="access">System Access</label>
-                                
-                                <select name="access" id="access">
-                                    <option value="active" <?php if ($data['access'] == "active") { echo "selected";} ?> >Active</option>
-                                    <option value="inactive" <?php if ($data['access'] == "inactive") { echo "selected";} ?> >Deactivate</option>
-                                </select>
-                            </div>
-
                         </li>
 
                     </ul>
@@ -80,7 +93,7 @@
                 <button id="view-btn" class="common-blue-btn"><a href="" id="view-btn">View Profile</a></button>
 
                 <form id="resend-login-credential-form" action="<?php echo URLROOT . 'register/resendStudentCredentials/' . $std_batch . '/' . $data['stream'] . '/' . $data['user_id']; ?>" onSubmit="if(!confirm('Before new login credentials are sent, Please ensure that the email address is updated correctly! Do you want to proceed?')){return false;}" method="POST">
-                    <button type="submit" class="common-blue-btn" id="reset-btn">Send Login Credentials Again</button>
+                    <button type="submit" id="secondary-grey-btn" >Send Login Credentials Again? Press here</button>
                 </form>
             </div>
         </div>

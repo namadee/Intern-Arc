@@ -30,37 +30,19 @@
                     </tr>
             
                     <tr>
-                        <td class="re-table-data">WSO2</td>
+                        <td class="re-table-data">Virtusa</td>
                         <td class="re-table-data">Software Engineer</td>
                         <td class="re-table-data">1</td>
                     </tr>
             
                     <tr>
-                        <td class="re-table-data">Codegen International</td>
+                        <td class="re-table-data">Virtusa</td>
                         <td class="re-table-data">Software Engineer</td>
                         <td class="re-table-data">1</td>
                     </tr>
             
                     <tr>
-                        <td class="re-table-data">Sysco Labs</td>
-                        <td class="re-table-data">Software Engineer</td>
-                        <td class="re-table-data">1</td>
-                    </tr>
-            
-                    <tr>
-                        <td class="re-table-data">Tech Venturas</td>
-                        <td class="re-table-data">Software Engineer </td>
-                        <td class="re-table-data">1</td>
-                    </tr>
-            
-                    <tr>
-                        <td class="re-table-data">Commercial Technologies Plus</td>
-                        <td class="re-table-data">Software Engineer </td>
-                        <td class="re-table-data">1</td>
-                    </tr>
-            
-                    <tr>
-                        <td class="re-table-data">99x Technology</td>
+                        <td class="re-table-data">Virtusa</td>
                         <td class="re-table-data">Software Engineer</td>
                         <td class="re-table-data">1</td>
                     </tr>

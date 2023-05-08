@@ -5,18 +5,39 @@
 
 <section class="main-content display-flex-col">
     <?php flashMessage('company_list_msg') ?>
+    <?php flashMessage('status_msg') ?>
     <div class="manage-company-top display-flex-row">
         <div class="manage-company-top-left display-flex-row">
             <div class="manage-company-access display-flex-row">
-                System Access :
-                <div class="common-status display-flex-row">
-                    <span class="common-status-span">
+                <div class="display-flex-row">
+                    System Access
+                    <span class="material-symbols-outlined tooltip">
+                        error
+                        <p class="tooltiptext">Determine whether all the companies can logged <br> in to the system or not</p>
                     </span>
-                    Active
+                </div>
+                <div class="common-status display-flex-row <?php echo ($data['company_access'] == 1) ? "" : "red-status-font";  ?>">
+                    <span class="common-status-span <?php echo ($data['company_access'] == 1) ? "" : "red-status";  ?>">
+                    </span>
+                    <?php echo ($data['company_access'] == 1) ? "Access enabled" : "Access disabled";  ?>
                 </div>
             </div>
-            <button class="common-blue-btn">
-                Update
+            <?php
+            if ($roundDataArray['roundNumber'] != NULL) {
+                // Need Round Constraints
+                $hrefStatus = $roundDataArray['hrefStatus'];
+                $elementClass = $roundDataArray['disabledClass'];
+            } else {
+                // No need of round constraints
+                $hrefStatus = URLROOT . 'companies/manage-company/change-access';
+                $elementClass = "";
+            }
+            ?>
+            <button disabled class="common-blue-btn <?php echo $elementClass; ?>">
+                <a href="<?php echo $hrefStatus; ?>">
+                    Update
+                </a>
+
             </button>
         </div>
         <div class="manage-company-top-right display-flex-row">
@@ -113,5 +134,30 @@
         </div>
     </div>
 
+</div>
 
-    <?php require APPROOT . '/views/includes/footer.php'; ?>
+<!-- VIEW  UPDATE ACCESS MODAL -->
+<div class="common-modal-box <?php echo $data['change_access_modal']; ?>">
+    <div class="std-batches-add display-flex-col" id="change-access-modal">
+        <a href="<?php echo URLROOT . 'companies/manage-company'; ?>" id="modal-box-close">
+            <span class="material-symbols-outlined" class="common-modal-close">
+                close
+            </span></a>
+
+        <form action="<?php echo URLROOT . 'pdc/update-companies-system-access' ?>" id="add-student-batch" class="display-flex-col common-modal-box-form" method="POST">
+            <h3>Change Companies System Access </h3>
+            <div class="display-flex-row">
+                <label for="company_access">STATUS</label>
+                <select name="access" id="status-dropdown" class="common-input" onchange="this.form.submit()">
+                    <option value="" selected disabled></option>
+                    <option value="1">Enable Access</option>
+                    <option value="0">Disable Access</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+<?php require APPROOT . '/views/includes/footer.php'; ?>

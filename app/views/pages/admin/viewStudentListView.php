@@ -25,7 +25,7 @@
                       <th class="st-table-header">Student Name</th>
                       <th class="st-table-header">Register Number</th>
                       <th class="st-table-header">Email</th>
-                      <th class="st-table-header">Index Number</th>
+                      <th class="st-table-header">Contact Number</th>
                       <th class="st-table-header"></th>
                     </tr>
             
@@ -34,7 +34,7 @@
                       <td class="st-table-data">2020/IS/109</td>
                       <td class="st-table-data">ruchira.b@gmail.com</td>
                       <td class="st-table-data">0712412545</td>
-                      <td class="st-table-data"><button>view</button></td>
+                      <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
@@ -42,7 +42,7 @@
                         <td class="st-table-data">2020/IS/111</td>
                         <td class="st-table-data">geeth@gmail.com</td>
                         <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button>view</button></td>
+                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
@@ -50,7 +50,7 @@
                         <td class="st-table-data">2020/IS/110</td>
                         <td class="st-table-data">namadee@gmail.com</td>
                         <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button>view</button></td>
+                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
@@ -58,7 +58,7 @@
                         <td class="st-table-data">2020/IS/112</td>
                         <td class="st-table-data">ravinduviranga@gmail.com</td>
                         <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button>view</button></td>
+                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
@@ -66,7 +66,7 @@
                         <td class="st-table-data">2020/IS/110 </td>
                         <td class="st-table-data">namadee@gmail.com</td>
                         <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button>view</button></td>
+                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
@@ -74,7 +74,7 @@
                         <td class="st-table-data">2020/IS/109 </td>
                         <td class="st-table-data">ruchira.b@gmail.com</td>
                         <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button>view</button></td>
+                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
                     </tr>
             
                     <tr>
@@ -82,16 +82,9 @@
                         <td class="st-table-data">2020/IS/112</td>
                         <td class="st-table-data">ravindu@gmail.com</td>
                         <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button>view</button></td>
+                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
                     </tr>
             
-                    <tr>
-                        <td class="st-table-data">Geeth Weerasinghe</td>
-                        <td class="st-table-data">2020/IS/111 </td>
-                        <td class="st-table-data">geeth@gmail.com</td>
-                        <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button>view</button></td>
-                    </tr>
                     
                   </table>
                        

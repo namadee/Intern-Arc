@@ -21,7 +21,7 @@
     <h2>
         THIS IS TEST VIEW
     </h2>
-    <h2><?php echo $data['url']; ?></h2>
+    <h2><?php echo $data['count']; ?></h2>
 
     <form action="<?php echo URLROOT . "profiles/test" ?> ">
         <input type="file" id="myFile" name="my_file">
