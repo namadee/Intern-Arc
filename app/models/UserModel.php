@@ -139,7 +139,7 @@ class UserModel extends Database
   }
 
   //get student user details function
-  public function getStudentDetails()
+  public function getStudentDetails($student_id)
   {
     $this->db->query("SELECT * FROM student_tbl WHERE student_id = :student_id");
     $this->db->bind(':student_id', $student_id);

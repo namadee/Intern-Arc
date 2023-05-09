@@ -164,9 +164,9 @@ textarea:focus {
   color: var(--primaryColor);
   cursor: pointer;
   border: solid 1px var(--primaryColor);
-  border-radius: 3px;
+  border-radius: 0.3rem;
   font-size: 0.9rem;
-  padding: 0.2rem 1.2rem;
+  padding: 0.2rem 1rem;
   background: #fff;
   transition: all 0.3s ease-in-out;
 }
@@ -189,6 +189,7 @@ textarea:focus {
   padding: 0 0.5rem;
   border-radius: 5px;
   color: var(--primaryColor);
+  position: relative;
 }
 
 .common-search-bar input {
@@ -196,6 +197,32 @@ textarea:focus {
   border: none;
 }
 
+.common-search-bar input[type="text"]:focus {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.common-search-result {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border-radius: 0 0 0.3rem 0.3rem;
+  box-shadow: var(--BoxShadow1);
+  z-index: 1;
+  left: 0;
+  top: 2rem;
+  overflow-y: auto;
+  flex-grow: 1;
+  /* display: none; */
+}
+
+.common-search-result a {
+  padding: 0.2rem 0.5rem;
+  color: var(--Black);
+}
+.common-search-result a:hover {
+  background-color: var(--AlternateLightGrey);
+}
 /********************************* Common 7 - Status Div *********************************/
 .common-status {
   border: 1px solid var(--SuccessColor);

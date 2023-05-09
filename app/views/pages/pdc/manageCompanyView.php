@@ -57,11 +57,17 @@
         <div class="company-content-top display-flex-row">
             <h2>Company List</h2>
             <!-- Common Search Bar Style-->
-            <form action="" class="common-search-bar display-flex-row">
-                <span class="material-symbols-rounded">
-                    search
-                </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Company">
+            <form action="javascript:void(0)" class="common-search-bar display-flex-col">
+                <div class="display-flex-row">
+                    <span class="material-symbols-rounded">
+                        search
+                    </span>
+                    <input class="common-input" type="text" name="search-item" id="pdc_search_company" placeholder="Search Company">
+                </div>
+
+                <div class="common-search-result display-flex-col" id="pdc_company_result">
+
+                </div>
             </form>
 
         </div>

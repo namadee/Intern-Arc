@@ -411,7 +411,7 @@ class Pdc extends BaseController
             ];
 
             $studentRequestsIS = $this->requestModel->getStudentRequestsByRound($data);
-            
+
             $data = [
                 'batchYear' => $batchYear,
                 'round' => $round,
@@ -421,7 +421,7 @@ class Pdc extends BaseController
             $studentRequestsCS = $this->requestModel->getStudentRequestsByRound($data);
 
             $data = [
-                'round' => $round,  
+                'round' => $round,
                 'studentRequestsIS' => $studentRequestsIS,
                 'studentRequestsCS' => $studentRequestsCS,
                 'selectOptionStatus' => 'selected' //For Round 1 and Round 2
@@ -429,16 +429,30 @@ class Pdc extends BaseController
 
             $this->view('pdc/allStudentRequest', $data);
 
-            // $this->view('pdc/studentRequestsList', $data);
-
+            $this->view('pdc/studentRequestsList', $data);
         } else {
             redirect('pdc/');
         }
     }
 
 
-        //17 Student requests list - Ruchira
-        public function viewRequestListByStudent($id = NULL){
+    //17 Student requests list - Ruchira
+    // All the requests of a student
+    public function requestListByStudent($round = NULL, $studentID = NULL)
+    {
 
+
+        if ($studentID != NULL && $round != NULL) {
+            $requestsList = $this->requestModel->retrieveStudentRequestsByStudentID($round, $studentID);
+
+            $data = [
+                'round' => $round,
+                'requestsList' => $requestsList
+            ];
+
+            $this->view('pdc/studentRequestsList', $data);
+        } else {
+            redirect('pdc/');
         }
+    }
 }

@@ -9,13 +9,16 @@
 
     <div class="student-list-container company-content-container display-flex-col">
         <div class="company-content-top display-flex-row">
-            <h2><?php echo $data['stream'] === 'IS' ? 'Information Systems' : 'Computer Systems'; ?> Student List - <?php echo $data['batch_year']; ?> Batch</h2>
+            <h2><span id="pdc-student-list-stream"><?php echo $data['stream'] === 'IS' ? 'Information Systems' : 'Computer Systems'; ?></span>  Student List - <span id="pdc-student-list-batch-year"> <?php echo $data['batch_year']; ?> </span> Batch</h2>
             <!-- Common Search Bar Style-->
-            <form action="" class="common-search-bar display-flex-row">
-                <span class="material-symbols-rounded">
-                    search
-                </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Student">
+            <form action="javascript:void(0)" class="common-search-bar display-flex-col">
+                <div class="display-flex-row">
+                    <span class="material-symbols-rounded">
+                        search
+                    </span>
+                    <input class="common-input" type="text" name="search-item" id="pdc_search_student" placeholder="Search Index Number">
+                </div>
+                <div class="common-search-result display-flex-col" id="pdc_student_result"> </div>
             </form>
         </div>
         <div class="manage-company-table">

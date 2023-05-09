@@ -9,6 +9,19 @@ input::-webkit-inner-spin-button {
 
 /*-----------------------  Job Roles List Page PDC ----------------------- */
 
+.pdc-search-form{
+  width: fit-content;
+  background-color: var(--AlternateLightGrey);
+  margin: auto;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+#pdc_search_jobrole{
+  background-color: var(--AlternateLightGrey);
+}
+
 #pdc_jobroles_page {
   display: flex;
   gap: 3rem;
@@ -22,6 +35,7 @@ input::-webkit-inner-spin-button {
   border-radius: 5px;
   box-shadow: var(--Boxshadow1);
   padding: 3rem 2rem;
+  position: relative;
 }
 
 #pdc_jobroles_page .jobroles-quickAdd form {
@@ -469,6 +483,9 @@ input::-webkit-inner-spin-button {
   color: white;
 }
 
+#pdc-student-list-batch-year, #pdc-student-list-stream {
+font-weight: 500;
+} 
 /*-----------------------  Manage Student - Adding Batches Modal ----------------------- */
 
 .std-batches-add {
@@ -1263,7 +1280,7 @@ input::-webkit-inner-spin-button {
   color: var(--primaryColor);
   border: 1px solid var(--primaryColor);
   padding: 0.1rem 1rem;
-  border-radius: 5px;
+  border-radius: 0.3rem;
 }
 
 .student-request-body .student-list .common-status {
@@ -1644,7 +1661,7 @@ input::-webkit-inner-spin-button {
   border-radius: 5px;
   gap: 1.5rem;
   margin: auto;
-  margin-top: 0.5rem;
+  flex-grow: 1;
 }
 
 .student-requests-list-container .top-container {

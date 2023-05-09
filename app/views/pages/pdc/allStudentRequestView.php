@@ -22,7 +22,7 @@
                                 $roundOne = "";
                                 $roundTwo = "selected";
                             } ?>
-                            <option value="1" <?php echo $roundOne ?> >Round 1</option>
+                            <option value="1" <?php echo $roundOne ?>>Round 1</option>
                             <option value="2" <?php echo $roundTwo ?>>Round 2</option>
                         </select>
                     </form>
@@ -61,9 +61,9 @@
 
                             <td>
                                 <?php if ($studentRequest->student_status == 0) {
-                                    $finalStatus = "Rejected";
-                                    $divClass = "red-status-font";
-                                    $spanClass = "red-status";
+                                    $finalStatus = "Pending";
+                                    $divClass = "yellow-status-font";
+                                    $spanClass = "yellow-status";
                                 } else {
                                     $finalStatus = "Recruited";
                                     $divClass = "";
@@ -77,7 +77,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="<?php echo URLROOT . 'pdc/view-request-list-by-student/' . $studentRequest->student_id; ?>" class="orange-view-btn">View</a>
+                                <a href="<?php echo URLROOT . 'pdc/request-list-by-student/' . $data['round'] . '/' . $studentRequest->student_id; ?>" class="orange-view-btn">View</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -114,9 +114,9 @@
 
                             <td>
                                 <?php if ($studentRequest->student_status == 0) {
-                                    $finalStatus = "Rejected";
-                                    $divClass = "red-status-font";
-                                    $spanClass = "red-status";
+                                    $finalStatus = "Pending";
+                                    $divClass = "yellow-status-font";
+                                    $spanClass = "yellow-status";
                                 } else {
                                     $finalStatus = "Recruited";
                                     $divClass = "";
@@ -130,7 +130,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="<?php echo URLROOT . 'pdc/view-request-list-by-student/' . $studentRequest->student_id; ?>" class="orange-view-btn">View</a>
+                                <a href="<?php echo URLROOT . 'pdc/request-list-by-student/' . $data['round'] . '/' . $studentRequest->student_id; ?>" class="orange-view-btn">View</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

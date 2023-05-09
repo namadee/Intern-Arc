@@ -166,43 +166,121 @@ now.setHours(now.getHours() + timeZoneOffset / 60); // set hours based on offset
 now.setMinutes(now.getMinutes() + (timeZoneOffset % 60)); // set minutes based on offset
 const today = now.toISOString().split("T")[0]; // get today's date in ISO format with Sri Lanka's timezone
 
-//ROUND 1
-// Set minimum default value for round1StartDate
-round1StartDate.setAttribute("min", today);
-// round1StartDate.setAttribute("value", today);
+if (round1StartDate) {
+  //ROUND 1
+  // Set minimum default value for round1StartDate
+  round1StartDate.setAttribute("min", today);
+  // round1StartDate.setAttribute("value", today);
 
-round2StartDate.setAttribute("min", today);
-round2EndDate.setAttribute("min", today);
+  round2StartDate.setAttribute("min", today);
+  round2EndDate.setAttribute("min", today);
 
-// Set minimum and default values for round1EndDate
-const round1EndMin = new Date(round1StartDate.min);
-round1EndMin.setDate(round1EndMin.getDate() + 1);
-round1EndDate.setAttribute("min", round1EndMin.toISOString().split("T")[0]);
-// round1EndDate.setAttribute("value", round1EndMin.toISOString().split("T")[0]);
-
-// Update minimum and default values for round1EndDate when round1StartDate changes
-round1StartDate.addEventListener("change", function () {
-  const round1EndMin = new Date(round1StartDate.value);
+  // Set minimum and default values for round1EndDate
+  const round1EndMin = new Date(round1StartDate.min);
   round1EndMin.setDate(round1EndMin.getDate() + 1);
   round1EndDate.setAttribute("min", round1EndMin.toISOString().split("T")[0]);
   // round1EndDate.setAttribute("value", round1EndMin.toISOString().split("T")[0]);
-});
+
+  // Update minimum and default values for round1EndDate when round1StartDate changes
+  round1StartDate.addEventListener("change", function () {
+    const round1EndMin = new Date(round1StartDate.value);
+    round1EndMin.setDate(round1EndMin.getDate() + 1);
+    round1EndDate.setAttribute("min", round1EndMin.toISOString().split("T")[0]);
+    // round1EndDate.setAttribute("value", round1EndMin.toISOString().split("T")[0]);
+  });
+}
 
 //ROUND 2
 
-//Event listner for round1EndDate
-round1EndDate.addEventListener("change", function () {
-  const round1EndMin = new Date(round1EndDate.value);
-  round1EndMin.setDate(round1EndMin.getDate() + 1);
-  round2StartDate.setAttribute("min", round1EndMin.toISOString().split("T")[0]);
-  // round1EndDate.setAttribute("value", round1EndMin.toISOString().split("T")[0]);
-});
+if (round1EndDate) {
+  //Event listner for round1EndDate
+  round1EndDate.addEventListener("change", function () {
+    const round1EndMin = new Date(round1EndDate.value);
+    round1EndMin.setDate(round1EndMin.getDate() + 1);
+    round2StartDate.setAttribute(
+      "min",
+      round1EndMin.toISOString().split("T")[0]
+    );
+    // round1EndDate.setAttribute("value", round1EndMin.toISOString().split("T")[0]);
+  });
+}
 
-//Event listner for round2StartDate
-round2StartDate.addEventListener("change", function () {
-  const round2EndMin = new Date(round2StartDate.value);
-  round2EndMin.setDate(round2EndMin.getDate() + 1);
-  round2EndDate.setAttribute("min", round2EndMin.toISOString().split("T")[0]);
-  // round1EndDate.setAttribute("value", round1EndMin.toISOString().split("T")[0]);
-});
+if (round2StartDate) {
+  //Event listner for round2StartDate
+  round2StartDate.addEventListener("change", function () {
+    const round2EndMin = new Date(round2StartDate.value);
+    round2EndMin.setDate(round2EndMin.getDate() + 1);
+    round2EndDate.setAttribute("min", round2EndMin.toISOString().split("T")[0]);
+    // round1EndDate.setAttribute("value", round1EndMin.toISOString().split("T")[0]);
+  });
+}
 
+// 8. Live Search
+
+//Company Search PDC
+let pdcSearchCompany = document.getElementById("pdc_search_company");
+let pdcResultCompany = document.getElementById("pdc_company_result");
+
+if (pdcSearchCompany) {
+  pdcSearchCompany.addEventListener("keyup", searchCompanyPdc);
+}
+
+function searchCompanyPdc() {
+  let searchText = $(this).val();
+  if (searchText != "") {
+    pdcResultCompany.style.display = "flex";
+    $.ajax({
+      url: "http://localhost/internarc/ajax",
+      method: "POST",
+      data: { query: searchText },
+      success: function (response) {
+        pdcResultCompany.innerHTML = response;
+      },
+    });
+  } else {
+    pdcResultCompany.style.display = "none";
+  }
+}
+
+//Student Index Search PDC
+let pdcSearchStudent = document.getElementById("pdc_search_student");
+let studentYear = document.getElementById("pdc-student-list-batch-year");
+let studentStream = document.getElementById("pdc-student-list-stream");
+let pdcResultStudent = document.getElementById("pdc_student_result");
+
+if (pdcSearchStudent) {
+  pdcSearchStudent.addEventListener("keyup", searchStudentPdc);
+  abbrevatedStream = convertToAbbreviation(studentStream.textContent);
+}
+
+function convertToAbbreviation(str) {
+  switch (str) {
+    case "Computer Systems":
+      return "CS";
+    case "Information Systems":
+      return "IS";
+    default:
+      return str;
+  }
+}
+
+function searchStudentPdc() {
+  let searchText = $(this).val();
+  if (searchText != "") {
+    pdcResultStudent.style.display = "flex";
+    $.ajax({
+      url: "http://localhost/internarc/ajax/searchStudentByIndex",
+      method: "POST",
+      data: {
+        query: searchText,
+        batchYear: studentYear.textContent.trim(),
+        stream: abbrevatedStream,
+      },
+      success: function (response) {
+        pdcResultStudent.innerHTML = response;
+      },
+    });
+  } else {
+    pdcResultStudent.style.display = "none";
+  }
+}
