@@ -15,7 +15,8 @@
 <div class="dashboard-flex-container">
 	<div class="dashboard-textarea">
 	<?php foreach ($data['studentDetails'] as $studentDetails) : ?>
-	
+		Status : <button class="dashboard-statusbtn"><?php echo $studentDetails->recruit_status ?></button>
+		<br/><br/>
 		Registration Number : <?php echo $studentDetails->registration_number ?>
 		<br/><br/>
 		Email : <?php echo $studentDetails->email ?>
