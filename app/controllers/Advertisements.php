@@ -48,20 +48,6 @@ class Advertisements extends BaseController
     }
 
 
-
-    public function getAdvertisementsByCompany() {
-        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
-        $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
-
-        $data = [
-            'advertisements' => $ads,
-            'companyID' => $companyId,
-            'formAction' => 'Advertisements/add-advertisement'
-        ];
-
-        $this->view('company/advertisementList', $data);
-    }
-
     public function addAdvertisement()
     {
 
