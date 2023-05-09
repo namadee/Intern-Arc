@@ -11,45 +11,27 @@
 
 <br/><br/>
 <div class="applied-companies-top">
-	<h3>Applied Companies</h3>
+	<h3>Applied Advertisements </h3>
 <div class="applied-companies-flex-container">
 	
 	<table class="applied-companies-table">
+
+	
+	
 		<tr>
 		  <th>Company Name</th>
 		  <th>Position</th>
 		  <th>Status</th>
 		</tr>
 
+		<?php foreach ($data['appliedAdvertisements'] as $appliedAdvertisements) : ?>
 		<tr>
-		  <td>Vitusa</td>
-		  <td>Software Engineer</td>
-		  <td><button class="applied-companies-statusbtn">Shortlisted</button></td>
+		<td><?php echo $appliedAdvertisements->company_name ?></td>
+        <td><?php echo $appliedAdvertisements->position ?></td>
+		<td><button class="applied-companies-statusbtn"><?php echo $appliedAdvertisements->status ?></button></td>
+        <td></td>
 		</tr>
-
-		<tr>
-			<td>WSO2</td>
-			<td>Quality Assurance</td>
-			<td><button class="applied-companies-statusbtn">Pending</button></td>
-		</tr>
-
-		<tr>
-			<td>Codegen International</td>
-			<td>Business Analyst</td>
-			<td><button class="applied-companies-statusbtn">Rejected</button></td>
-		</tr>
-
-		<tr>
-			<td>Sysco Labs</td>
-			<td>UI/UX Engineer</td>
-			<td><button class="applied-companies-statusbtn">Pending</button></td>
-		</tr>
-
-		<tr>
-			<td>Tech Venturas</td>
-			<td>DevOps Engineer</td>
-			<td><button class="applied-companies-statusbtn">Recruited</button></td>
-		</tr>
+	<?php endforeach; ?>
 		
 	  </table>
 

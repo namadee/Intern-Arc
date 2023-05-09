@@ -79,6 +79,19 @@ class RequestModel
 
     }
 
+    public function getAppliedAdvertisements ($std_id){
+        $this->db->query('SELECT company_tbl.company_name, advertisement_tbl.position, student_requests_tbl.status
+        FROM student_requests_tbl
+        JOIN advertisement_tbl ON student_requests_tbl.advertisement_id = advertisement_tbl.advertisement_id
+        JOIN company_tbl ON advertisement_tbl.company_id_fk = company_tbl.company_id
+        WHERE student_requests_tbl.student_id = :student_id;');
+
+        //bind values
+        $this->db->bind(':student_id', $std_id);
+
+        return $this->db->resultset();
+    }
+
 
     public function getStudentByRequest($advertisementId)
     {

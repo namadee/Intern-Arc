@@ -51,6 +51,19 @@ class Students extends BaseController
         $this->view('student/dashboard', $data);
     }
 
+    public function viewAppliedCompanyList()
+    {
+        $student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
+        $appliedAdvertisements = $this->requestModel->getAppliedAdvertisements($student_id); 
+
+        $data = [
+            'appliedAdvertisements' => $appliedAdvertisements
+        ];
+
+
+        $this->view('student/appliedcompanies', $data);
+    }
+
     //Manage Students - PDC - Ruchira
     public function manageStudent($pg = NULL, $year = NULL)
     {

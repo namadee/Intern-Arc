@@ -30,7 +30,7 @@
 	<div class="bottom-strip-blue-line"><p>1</p></div>
 	<div class="bottom-strip-description"><p>Applied Companies</p></div>
 	<div class="bottom-strip-number"><p><?php echo $data['reqCount']?> </p></div>
-	<div class="bottom-strip-button"><a href="<?php echo URLROOT.'companies/view-applied-company-list';?>"> View </a> </div>
+	<div class="bottom-strip-button"><a href="<?php echo URLROOT.'students/view-applied-company-list';?>"> View </a> </div>
 </div>
 <br/>
 <div class="dashboard-bottom-strip">
