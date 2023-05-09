@@ -9,7 +9,7 @@
                 <span class="material-symbols-rounded">
                     search
                 </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
+              <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
       </form>
       <div class="common-filter">
         <span class="material-symbols-rounded">

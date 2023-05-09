@@ -2,6 +2,8 @@
 
 class Complaints extends BaseController
 {
+    public $complaintModel;
+    public $userModel;
 
 
     public function __construct()

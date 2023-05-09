@@ -28,8 +28,8 @@ class AdvertisementModel
     {
         $this->db->query('INSERT INTO advertisement_tbl (position,job_description,requirements,start_date,end_date,working_mode,applicable_year,intern_count, company_id_fk )
          VALUES (:position,:job_description,:requirements,:internship_start,:internship_end,:working_mode,:required_year,:no_of_interns,:company_id_fk)');
-        
-        
+
+
         // Bind Values
         $this->db->bind(':position', $data['position']);
         $this->db->bind(':job_description', $data['job_description']);
@@ -86,5 +86,47 @@ class AdvertisementModel
         } else {
             return false;
         }
+    }
+
+    //GET COMPANY DETAILS RELEVENT TO ADVERTISEMENT 
+    public function getCompanyByAd()
+    {
+        $this->db->query('SELECT advertisement_tbl.position, advertisement_tbl.advertisement_id, company_tbl.company_name 
+        FROM company_tbl 
+        JOIN advertisement_tbl 
+        ON company_tbl.company_id = advertisement_tbl.company_id_fk');
+
+        return $this->db->resultset();
+    }
+
+    //SELECT ADVERTISEMENTS BASED ON COMPANY - Namadee
+    public function getAdvertisementsByCompany($companyId)
+    {
+        $this->db->query('SELECT * FROM advertisement_tbl WHERE company_id_fk = :company_id');
+        $this->db->bind(':company_id', $companyId);
+
+        return $this->db->resultset();
+    }
+
+
+    //Get Advertisements and their company name - Ruchira
+    public function getAdvertisementsList()
+    {
+        $this->db->query('SELECT  advertisement_tbl.intern_count,advertisement_tbl.position, advertisement_tbl.advertisement_id, company_tbl.company_name, advertisement_tbl.status
+        FROM company_tbl 
+        JOIN advertisement_tbl 
+        ON company_tbl.company_id = advertisement_tbl.company_id_fk');
+
+        return $this->db->resultset();
+    }
+
+    //Change Advertisment Status - PDC
+    public function changeAdvertisementStatus($data)
+    {
+        $this->db->query('UPDATE advertisement_tbl SET status = :status WHERE advertisement_id = :advertisement_id');
+        $this->db->bind(':status', $data['status']);
+        $this->db->bind(':advertisement_id', $data['advertisement_id']);
+
+        return $this->db->single();
     }
 }

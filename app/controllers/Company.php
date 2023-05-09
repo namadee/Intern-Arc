@@ -3,6 +3,7 @@
 
 class Company extends BaseController
 {
+    public $companyModel;
     
     public function __construct()
     {
