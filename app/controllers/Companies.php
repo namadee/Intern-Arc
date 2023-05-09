@@ -20,7 +20,7 @@ class Companies extends BaseController
     {
         $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
         $dashboardData = $this->companyModel->getRequestsbyCompany($companyId);
-        $requestArray = $this->requestModel->getStudentRequests;
+        $requestArray = $this->requestModel->getStudentRequests(0);
 
         
 
@@ -111,12 +111,18 @@ class Companies extends BaseController
 
     public function InterviewScheduleList()
     {
-        $this->view('company/InterviewScheduleList');
+        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+        $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+        $data = [
+            'advertisements' => $advertisements
+        ];
+
+        $this->view('company/InterviewScheduleList', $data);
     }
 
     public function InterviewScheduleCreate()
     {
-        $this->view('company/InterviewScheduleCreate');
+        $this->view('company/calander');
     }
 
     public function InterviewSchedule()
@@ -203,9 +209,6 @@ class Companies extends BaseController
     }
 
    }
-
-   public function calander(){
-    $this->view('company/calander');
-   }
+   
 
 }
