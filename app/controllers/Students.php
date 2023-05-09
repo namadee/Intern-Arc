@@ -40,9 +40,9 @@ class Students extends BaseController
         //$student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
         $studentDetails = $this->studentModel->getMainStudentDetails();
 
-        $data = [
-            'studentDetails' => $studentDetails
-        ];
+        // $data = [
+        //     'studentDetails' => $studentDetails
+        // ];
 
         // $data = [
         //     'registration_number' => $studentDetails->registration_number,
