@@ -283,7 +283,7 @@ class Pdc extends BaseController
                 $data = [
                     'advertisement_id' => $advertisement_id,
                     'status' => trim($_POST['status']),
-                    'round' => 1
+                    'round' => NULL
                 ];
             }
 
