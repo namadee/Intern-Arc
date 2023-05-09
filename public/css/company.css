@@ -1,4 +1,3 @@
-
 /* COMPANY - ADVERTISEMENTS*/
 
 .common_list {
@@ -143,12 +142,9 @@
   align-items: center;
 }
 
-
-
 /*end of advertisement page*/
 
 /*start of add advertisement page*/
-
 
 .add_advertisement {
   margin: auto;
@@ -174,9 +170,9 @@
   border: 1px solid var(--AlternateLightGrey);
   width: 70%;
 }
-.add-req-btn{
+.add-req-btn {
   background: transparent;
-  display:none;
+  display: none;
 }
 .add_advertisement form input[type="checkbox"] {
   border: 1px solid var(--AlternateLightGrey);
@@ -268,11 +264,11 @@
   display: flex;
   margin-top: 5rem;
   padding: 0 1rem;
- flex-wrap:wrap;
- justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-#company-edit-btn{
+#company-edit-btn {
   padding: 0.5rem;
   margin-left: none;
 }
@@ -299,20 +295,19 @@
 
 /*edit profile page*/
 
-.edit-profile-main-container{
+.edit-profile-main-container {
   width: 65%;
   margin: auto;
   padding: 1rem 3rem;
 }
-.edit-company-Profile{
-  margin:0;
- width: 90%;
- padding: 1rem;
+.edit-company-Profile {
+  margin: 0;
+  width: 90%;
+  padding: 1rem;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
 }
 /*student request page */
 .student-req-action {
@@ -417,16 +412,14 @@
   width: 3rem;
 }
 
-
 /*Schedule Interview Page 1 */
 
-.scheduleBtn a{
+.scheduleBtn a {
   margin: 0;
   color: #fff;
   text-decoration: none;
   padding: 0.3rem 1.5rem;
   background-color: var(--DarkBlue);
-
 }
 
 /*----------------------- MAIN Profile Update Page -----------------------*/
@@ -495,7 +488,7 @@
 }
 
 .main-user-profile-icon #main-profile-edit {
-  background-color: var(--BackgroungColor );;
+  background-color: var(--BackgroungColor);
   color: var(--Black);
   padding: 0.2rem 0.5rem;
   margin-top: 0.5rem;
@@ -508,7 +501,7 @@
   transition: ease-in-out 200ms;
 }
 
-.main-user-profile-icon #main-profile-edit:hover{
+.main-user-profile-icon #main-profile-edit:hover {
   background-color: var(--DarkBlue);
   color: white;
 }
@@ -521,7 +514,7 @@
   padding: 0.5rem;
 }
 
-.update-profile-container input[type=file]{
+.update-profile-container input[type="file"] {
   display: none;
 }
 
@@ -532,10 +525,10 @@
 
 .update-profile-container #reset-btn {
   background-color: var(--primaryColor);
-} 
+}
 
-.update-profile-container #go-to-profile-btn{
-  color:var(--primaryColor);
+.update-profile-container #go-to-profile-btn {
+  color: var(--primaryColor);
   background-color: var(--BackgroungColor);
   padding: 0.2rem 0.5rem;
   border-radius: 3px;
@@ -546,19 +539,18 @@
   font-weight: 500;
 }
 
-.update-profile-container #go-to-profile-btn:hover{
+.update-profile-container #go-to-profile-btn:hover {
   background-color: #dadada;
 }
 
 /* Create Interview Schedule Page */
 
-
-.dowtable{
-  width:30%;
+.dowtable {
+  width: 30%;
   border-spacing: 0.5rem;
 }
 
-.dowtable td{
+.dowtable td {
   padding: 1rem;
   border-radius: 8px;
   border: 1px solid var(--DarkBlue);
@@ -570,94 +562,92 @@
   display: flex;
   padding: 1rem 3rem;
   padding-bottom: 5rem;
-  background: #FFF;
+  background: #fff;
 
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 2rem;
-
 }
 
-.create-sche-top{
+.create-sche-top {
   justify-content: space-between;
 }
 
-.create-sche-top h1{
+.create-sche-top h1 {
   font-size: 1.2em;
 }
 
-.duration-divs{
+.duration-divs {
   display: flex;
   justify-content: space-between;
-
 }
 
 .dowPickerOption {
   display: inline-block;
 }
 
-.dowPickerOption input[type=checkbox] {
+.dowPickerOption input[type="checkbox"] {
   display: none;
 }
 .dowPickerOption label {
-font-size: 1em;
-color: #A7A7A7;
-cursor: pointer;
+  font-size: 1em;
+  color: #a7a7a7;
+  cursor: pointer;
 }
-.dowPickerOption input[type=checkbox]:checked ~ label {
-color: #464646;
-font-weight: 500;
+.dowPickerOption input[type="checkbox"]:checked ~ label {
+  color: #464646;
+  font-weight: 500;
 }
-.time-slot-table{
+.time-slot-table {
   border-spacing: 0.5rem;
 }
-.time-slot-table .slot{
+.time-slot-table .slot {
   padding: 1rem;
   border-radius: 8px;
   border: 1px solid var(--DarkBlue);
   color: var(--DarkBlue);
 }
 
-.time-slot-table td div{
+.time-slot-table td div {
   display: inline-block;
 }
-.create-sche-bottom{
+.create-sche-bottom {
   display: flex;
   justify-content: space-between;
 }
 
-.time-period{
+.time-period {
   display: flex;
   gap: 1rem;
 }
 
-.add-slot-btn{
+.add-slot-btn {
   margin-bottom: 1rem;
   border-radius: 8px;
   padding: 0.5rem 0.2rem;
   color: var(--primaryColor);
   border: solid 1px;
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 50%;
 }
 
-.saveBtn{
+.saveBtn {
   position: absolute;
   bottom: 0.5rem;
   right: 1rem;
 }
 
-#Interviewee_count{
+#Interviewee_count {
   width: 2rem;
 }
 
-.sche-inputs{
+.sche-inputs {
   justify-content: space-between;
 }
 
-.sche-inputs input{
+.sche-inputs input {
   margin: 0 0.5rem;
   padding: 0.5rem;
   border: 1px solid var(--DarkBlue);
@@ -679,7 +669,8 @@ font-weight: 500;
   margin-bottom: -2rem;
 }
 
-.active, .collapsible:hover {
+.active,
+.collapsible:hover {
   background-color: var(--LightBlue);
 }
 
@@ -690,16 +681,16 @@ font-weight: 500;
   transition: max-height 0.2s ease-out;
 }
 
-.content table{
+.content table {
   border-spacing: 1rem;
 }
-.content table td a{
+.content table td a {
   padding: 0.5rem;
 }
 
 /* view advertisement page */
 
-.advertisement-main-container{
+.advertisement-main-container {
   width: 70%;
   background: #fff;
   margin: auto;
@@ -708,21 +699,20 @@ font-weight: 500;
   position: relative;
 }
 
-#addreq{
+#addreq {
   background: none;
   outline: none;
   border: none;
   width: fit-content;
 }
 
-.addreqs{
+.addreqs {
   justify-content: center;
   align-items: center;
   width: 100%;
-  
 }
 
-.addAdvertisement-items #requirements{
+.addAdvertisement-items #requirements {
   width: 100%;
 }
 
@@ -730,49 +720,48 @@ font-weight: 500;
   list-style-type: disc;
 } */
 
-#dot-icon{
-  font-variation-settings:
-  'FILL' 1
+#dot-icon {
+  font-variation-settings: "FILL" 1;
 }
 
-.ucsc-logo{
-  width: 5%;
-}
-
-.internarc-logo{
+.ucsc-logo {
   width: 10%;
 }
 
-.ad-header-top{
+/* .internarc-logo {
+  width: 10%;
+} */
+
+.ad-header-top {
   justify-content: center;
+  align-items: flex-start;
 }
 
-.ad-header-bottom{
+.ad-header-bottom {
   align-items: center;
 }
 
-.advertisement-container-body{
+.advertisement-container-body {
   background: linear-gradient(269.96deg, #3e7cb1 5.25%, #054a91 88.31%);
-    padding: 2rem;
-    position: relative;
-    border-radius: 5px;
+  padding: 2rem;
+  position: relative;
+  border-radius: 5px;
 }
 
-.advertisement-container-body .body-left{
+.advertisement-container-body .body-left {
   width: 50%;
 }
 
-.advertisement-container-body .body-left ul{
+.advertisement-container-body .body-left ul {
   width: 100%;
   gap: 1rem;
 }
 .advertisement-container-body .body-left ul li,
-.advertisement-container-body .body-right .job-description h3
-{
+.advertisement-container-body .body-right .job-description h3 {
   color: white;
   gap: 1rem;
 }
-.advertisement-container-body .body-left li p{
+.advertisement-container-body .body-left li p {
   color: white;
   width: 10rem;
 }
@@ -785,18 +774,21 @@ font-weight: 500;
   border-radius: 10px;
 }
 
-.advertisement-container-body .body-left li .period-items{
+.advertisement-container-body .body-left li .period-items {
   gap: 1rem;
-
 }
 
-.advertisement-container-body .body-right{
+.advertisement-container-body .body-right {
   width: 50%;
   gap: 2rem;
   margin-left: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 28rem;
 }
 
-.advertisement-container-body .body-right .job-description div{
+.advertisement-container-body .body-right .job-description div {
   background-color: #eeeeee5b;
   width: 80%;
   padding: 1rem;
@@ -805,45 +797,43 @@ font-weight: 500;
   padding: 1rem;
 }
 
-.apply-btn{
+.apply-btn {
   padding: 0.5rem 2rem;
   margin: 1rem;
   position: absolute;
   right: 1rem;
   background: var(--primaryColor);
-  
 }
 
-#company-dashboard table td:nth-child(5){
+#company-dashboard table td:nth-child(5) {
   padding: 0.5rem 1rem;
 }
 
-#request-list table td:nth-child(4){
-<<<<<<< HEAD
+#request-list table td:nth-child(4) {
   padding: 0.5rem 3rem;
 }
 
 /* Scheduling UI */
 
-#form-content{
+#form-content {
   padding: 2rem;
 }
 
-.create-interview-form{
-  background-color:#fff
+.create-interview-form {
+  background-color: #fff;
 }
 
-.create-interview-form div{
-  margin: 0 2rem; 
+.create-interview-form div {
+  margin: 0 2rem;
 }
 
-.create-interview-form button{
+.create-interview-form button {
   margin-top: 1rem;
 }
 
 /* scheduling */
 
-.create-interview-form{
+.create-interview-form {
   display: none;
   position: absolute;
   top: 30%;
@@ -851,14 +841,13 @@ font-weight: 500;
   padding: 1rem 0.5rem;
   z-index: 10;
   border-radius: 8px;
-
 }
 
-.create-interview-form div{
+.create-interview-form div {
   margin: 1rem 0.5rem;
 }
 
-.create-interview-form .common-blue-btn{
+.create-interview-form .common-blue-btn {
   padding: 0.5rem;
   margin: 0 40%;
 }
@@ -866,7 +855,3 @@ font-weight: 500;
 /* .hidden{
   display: none;
 } */
-=======
-  padding: 0.5rem 1rem;
-}
->>>>>>> 595378f3c75a864297d96b77aaf8c153de66146f
