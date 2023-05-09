@@ -2,9 +2,9 @@
 
 class Admin extends BaseController
 {
-
     public $adminModel;
     public $userModel;
+
     public function __construct()
     {
         $this->adminModel = $this->model('Admin');

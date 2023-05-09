@@ -47,6 +47,21 @@ class Advertisements extends BaseController
         $this->view('company/advertisementList', $data);
     }
 
+
+
+    public function getAdvertisementsByCompany() {
+        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+        $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+
+        $data = [
+            'advertisements' => $ads,
+            'companyID' => $companyId,
+            'formAction' => 'Advertisements/add-advertisement'
+        ];
+
+        $this->view('company/advertisementList', $data);
+    }
+
     public function addAdvertisement()
     {
 
@@ -64,10 +79,6 @@ class Advertisements extends BaseController
             for ($x = 0; $x < $length; $x++) {
                 $emptyArray[$x] = trim($text[$x]); 
             }
-            //$completeString = implode("", $emptyArray);
-            
-
-
 
             $data = [
                 'company_id' => $companyId,
@@ -76,11 +87,15 @@ class Advertisements extends BaseController
                 'requirements-list' => $emptyArray,
                 'requirements' => $emptyArray,
                 'textElement' => $text[0],
+                'requirements-list' => $emptyArray,
+                'requirements' => $emptyArray,
+                'textElement' => $text[0],
                 'internship_start' => date('y-m-d', strtotime($_POST['internship_start'])),
                 'internship_end' => date('y-m-d', strtotime($_POST['internship_end'])),
                 'no_of_interns' => trim($_POST['no_of_interns']),
                 'working_mode' => trim($_POST['working_mode']),
                 'required_year' => trim($_POST['required_year']),
+                'formAction' => 'advertisements/add-advertisement/',
                 'formAction' => 'advertisements/add-advertisement/',
             ];
 
@@ -148,7 +163,6 @@ class Advertisements extends BaseController
             for ($x = 0; $x < $length; $x++) {
                 $emptyArray[$x] = trim($text[$x]); 
             }
-            //$completeString = implode("", $emptyArray);
 
             $data = [
                 'position' => trim($_POST['position']),
@@ -190,6 +204,7 @@ class Advertisements extends BaseController
     }
 
     //SHOW All ADVERTISEMENTS FROM ALL COMPANIES - STUDENT
+    //SHOW All ADVERTISEMENTS FROM ALL COMPANIES - STUDENT
     public function showStudentAdvertisements(){
         $data = [
             'companyData' => $this->companyData
@@ -206,62 +221,47 @@ class Advertisements extends BaseController
         //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
         public function showAdvertisementsDetails(){
             $this->view('company/advertisement');
+            $this->view('company/advertisement');
         }
     
-    //load The advertisement UI of the relevant company 
-    public function viewAdvertisement($advertisementId){
-        // $advertisementId = $_GET['adId'];
-        $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
-       
-            $text = explode("\r\n", trim($advertisement->requirements));
-            $length = count($text);
-
-            $emptyArray = array();
-            for ($x = 0; $x < $length; $x++) {
-                $emptyArray[$x] = trim($text[$x]); 
-            }
-            $completeString = implode("", $emptyArray);
-            //BUTTON NAME : if user role is student apply btn else view requests btn
-            //BUTTON LINK : if user role is student apply link else view requests link
-            if($_SESSION['user_role'] == 'student'){ 
-                $btnName = 'Apply';
-                $btnStatusClass = 'apply-btn'; 
-            }else if ($_SESSION['user_role'] == 'company'){
-                $btnName = 'View Requests';
-                $btnStatusClass = 'apply-btn';
-            }else{
-                //PDC or Admin
-                $btnName = '';
-                $btnStatusClass = 'hide-element';
-            }
-        $data = [
-            'className' => 'selectedTab',
-            'title' => 'Advertisements',
-            'advertisement_id' => $advertisementId,
-            'button_name' => $btnName,
-            'position' => $advertisement->position,
-            'job_description' => $advertisement->job_description,
-            'requirements' => $completeString,
-            'no_of_interns' => $advertisement->intern_count,
-            'working_mode' => $advertisement->working_mode,
-            'required_year' => $advertisement->applicable_year,
-            'internship_start' => $advertisement->start_date,
-            'internship_end' => $advertisement->end_date,
-            'button_status_class' => $btnStatusClass
-        ];
+        //load The advertisement UI of the relevant company 
+        public function viewAdvertisement($advertisementId){
+            // $advertisementId = $_GET['adId'];
+            $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
+           
+                $text = explode("\r\n", trim($advertisement->requirements));
+                $length = count($text);
+    
+                $emptyArray = array();
+                for ($x = 0; $x < $length; $x++) {
+                    $emptyArray[$x] = trim($text[$x]); 
+                }
+                $completeString = implode("", $emptyArray);
+                //BUTTON NAME : if user role is student apply btn else view requests btn
+                //BUTTON LINK : if user role is student apply link else view requests link
+                if($_SESSION['user_role'] == 'student'){ 
+                    $btnName = 'Apply'; 
+                }else{
+                    $btnName = 'View Requests';
+                }
+            $data = [
+                'className' => 'selectedTab',
+                'title' => 'Advertisements',
+                'advertisement_id' => $advertisementId,
+                'button_name' => $btnName,
+                'position' => $advertisement->position,
+                'job_description' => $advertisement->job_description,
+                'requirements' => $completeString,
+                'no_of_interns' => $advertisement->intern_count,
+                'working_mode' => $advertisement->working_mode,
+                'required_year' => $advertisement->applicable_year,
+                'internship_start' => $advertisement->start_date,
+                'internship_end' => $advertisement->end_date,
+            ];
+            
+            $this->view('company/advertisement', $data);
+            
+        }
         
-        $this->view('company/advertisement', $data);
-        
-    }
-    
-    
-    public function test(){
-
-        $this->view('test');
-
-    }
-
-    
 
 }
-
