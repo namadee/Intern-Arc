@@ -22,11 +22,15 @@ class Students extends BaseController
         $student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
         $reqCount  = $this->requestModel->getRequestCountPerStudent($student_id);
         //$studentDetails = $this->studentModel->getMainStudentDetails($student_id); 
+        $studentDetails = $this->studentModel->getStudentData($student_id);
 
-        
+        $data2 = [
+            'studentDetails' => $studentDetails
+        ];
 
         $data['reqCount']=$reqCount;
 
+        $data = array_merge($data, $data2);
         // $data = [
         //  'reqCount' => $this->$reqCount
         //  ];
@@ -35,19 +39,33 @@ class Students extends BaseController
 
     }
 
+    // public function index()
+    // {
+    //     $student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
+    //     $reqCount  = $this->requestModel->getRequestCountPerStudent($student_id);
+    //     //$studentDetails = $this->studentModel->getMainStudentDetails($student_id); 
+
+        
+
+    //     $data['reqCount']=$reqCount;
+
+    //     // $data = [
+    //     //  'reqCount' => $this->$reqCount
+    //     //  ];
+    //      $this->view('student/dashboard', $data);
+         
+
+    // }
+
     public function dashboardDetails()
     {
-        //$student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
-        $studentDetails = $this->studentModel->getMainStudentDetails();
+        $student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
+        $studentDetails = $this->studentModel->getStudentData($student_id);
 
         $data = [
             'studentDetails' => $studentDetails
         ];
 
-        // $data = [
-        //     'registration_number' => $studentDetails->registration_number,
-        //     'email' => $studentDetails->email,
-        // ];
         $this->view('student/dashboard', $data);
     }
 
@@ -191,15 +209,15 @@ class Students extends BaseController
         $this->view('student/studentprofile', $data);
     }
 
-    public function showStudentData(){
-        $studentData = $this->studentModel->getStudentProfileData();
+    // public function showStudentData(){                                                              need to search about this 
+    //     $studentData = $this->studentModel->getStudentProfileData();
 
-        $data = [
-            'studentData' => $this->studentData
-        ];
-        $this->view('student/viewcompanies', $data);
+    //     $data = [
+    //         'studentData' => $this->studentData
+    //     ];
+    //     $this->view('student/viewcompanies', $data);
 
-    }
+    // }
 
     public function companyProfile()
     {

@@ -191,6 +191,18 @@ class StudentModel
         return $this->db->single();
     }
 
+    public function getStudentData($std_id)
+    {
+        $this->db->query('SELECT student_tbl.registration_number, user_tbl.email, student_tbl.round, student_requests_tbl.recruit_status
+        FROM student_tbl
+        JOIN user_tbl ON student_tbl.user_id_fk = user_tbl.user_id
+        JOIN student_requests_tbl ON student_tbl.student_id = student_requests_tbl.student_id WHERE student_tbl.student_id=:student_id LIMIT 1;');
+
+        $this->db->bind(':student_id', $std_id);
+        return $this->db->resultset();
+
+    }
+
     // 11 Update main student information (PDC) - Ruchira
     public function updateMainStudentDetails($data)
     {

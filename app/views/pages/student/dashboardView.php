@@ -14,12 +14,15 @@
 	<h3>My Dashboard</h3>
 <div class="dashboard-flex-container">
 	<div class="dashboard-textarea">
-		Registration Number : 2020/IS/113
+	<?php foreach ($data['studentDetails'] as $studentDetails) : ?>
+	
+		Registration Number : <?php echo $studentDetails->registration_number ?>
 		<br/><br/>
-		Email : Ruchirabogahawatta@gmail.com
+		Email : <?php echo $studentDetails->email ?>
 		<br/><br/>
-		Round : 1st round 
+		Round : <?php echo $studentDetails->round ?>
 	</div>
+	<?php endforeach; ?>
 	<div class="dashboard-btnarea">
 	<a href="<?php echo URLROOT.'students/student-profile';?>">	
 	<button class="dashboard-profile-view-btn">View my profile</button></a></div>
