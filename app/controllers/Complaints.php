@@ -5,9 +5,6 @@ class Complaints extends BaseController
     public $complaintModel;
     public $userModel;
 
-    public $userModel;
-    public $complaintModel;
-
     public function __construct()
     {
         $this->complaintModel = $this->model('Complaint');

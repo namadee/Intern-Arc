@@ -113,7 +113,6 @@ class Advertisements extends BaseController
     }
 
     public function showAdvertisementById($advertisementId)
-    public function showAdvertisementById($advertisementId)
     {
 
         $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
