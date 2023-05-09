@@ -8,6 +8,7 @@ class Advertisements extends BaseController
     public $userModel;
     public $companyData;
 
+
     public function __construct()
     {
         $this->advertisementModel = $this->model('Advertisement');
@@ -55,7 +56,7 @@ class Advertisements extends BaseController
 
             // Strip Tags
             stripTags();
-
+           
             $companyId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
             $text = explode("\r<\br>", trim($_POST['requirements-list']));
             $length = count($text);
@@ -72,11 +73,15 @@ class Advertisements extends BaseController
                 'requirements-list' => $emptyArray,
                 'requirements' => $emptyArray,
                 'textElement' => $text[0],
+                'requirements-list' => $emptyArray,
+                'requirements' => $emptyArray,
+                'textElement' => $text[0],
                 'internship_start' => date('y-m-d', strtotime($_POST['internship_start'])),
                 'internship_end' => date('y-m-d', strtotime($_POST['internship_end'])),
                 'no_of_interns' => trim($_POST['no_of_interns']),
                 'working_mode' => trim($_POST['working_mode']),
                 'required_year' => trim($_POST['required_year']),
+                'formAction' => 'advertisements/add-advertisement/',
                 'formAction' => 'advertisements/add-advertisement/',
             ];
 
@@ -94,7 +99,7 @@ class Advertisements extends BaseController
                 'position' => '',
                 'job_description' => '',
                 'requirements' => '',
-                'internship_start' => '',
+                'internship_start' => '2030-13-13',
                 'internship_end' => '',
                 'no_of_interns' => '',
                 'working_mode' => '',
@@ -103,11 +108,11 @@ class Advertisements extends BaseController
                 'jobroleList' => $this->jobroleList
             ];
 
-
             $this->view('company/addAdvertisement', $data);
         }
     }
 
+    public function showAdvertisementById($advertisementId)
     public function showAdvertisementById($advertisementId)
     {
 
@@ -149,13 +154,14 @@ class Advertisements extends BaseController
             $data = [
                 'position' => trim($_POST['position']),
                 'job_description' => trim($_POST['job_description']),
-                'requirements' => trim($_POST['requirements']),
+                'requirements' => $emptyArray[0],
                 'internship_start' => date('y-m-d', strtotime($_POST['internship_start'])),
                 'internship_end' => date('y-m-d', strtotime($_POST['internship_end'])),
                 'no_of_interns' => trim($_POST['no_of_interns']),
                 'working_mode' => trim($_POST['working_mode']),
                 'required_year' => trim($_POST['required_year']),
-                'advertisement_id' => $advertisementId
+                'advertisement_id' => $advertisementId,
+                'formAction' => 'advertisements/update-advertisement/',
             ];
 
             //Execute
@@ -185,6 +191,7 @@ class Advertisements extends BaseController
     }
 
     //SHOW All ADVERTISEMENTS FROM ALL COMPANIES - STUDENT
+    //SHOW All ADVERTISEMENTS FROM ALL COMPANIES - STUDENT
     public function showStudentAdvertisements(){
         $data = [
             'companyData' => $this->companyData
@@ -200,6 +207,7 @@ class Advertisements extends BaseController
 
         //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
         public function showAdvertisementsDetails(){
+            $this->view('company/advertisement');
             $this->view('company/advertisement');
         }
     

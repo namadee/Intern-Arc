@@ -1,77 +1,10 @@
-/*-----------------------  Sign in Page - PDC ----------------------- */
+/*-----------------------  Common Styles  ----------------------- */
 
-.signin-main-container {
-  margin: auto;
-  margin-top: 5%;
-  width: 30%;
-  gap: 1rem;
-  padding: 3% 3% 4% 3%;
-  border-radius: 10px;
-  background-color: white;
-  border: 1px solid var(--DarkBlue);
-  align-items: center;
-}
-
-.signin-main-container img {
-  width: 50%;
-  object-fit: cover;
-}
-
-.signin-main-container form {
-  gap: 1.5rem;
-  justify-content: space-around;
-  width: 100%;
-  padding: 0 8%;
-  text-align: left;
-  align-items: center;
-}
-
-.signin-main-container form h2 {
-  color: var(--DarkBlue);
-}
-
-.signin-form-content {
-  flex-direction: row;
-  gap: 0.2rem;
-  border: 1px solid var(--AlternateLightGrey);
-  width: 100%;
-  padding: 0.3rem;
-  border-radius: 5px;
-  align-items: center;
-}
-
-.signin-main-container form input {
-  width: 100%;
-  font-size: 1rem;
-  border: none;
-}
-
-.signin-main-container form button {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 0.8rem;
-  border-radius: 20px;
-  transition: ease-in-out 0.2s;
-  font-size: 1rem;
-}
-
-.signin-main-container form button:hover {
-  transform: scale(1.02);
-}
-
-.signin-error-hide {
-  display: none;
-}
-
-.signin-error-alert {
-  color: var(--DangerColor);
-  display: flex;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  align-items: center;
-  width: fit-content;
-  align-self: flex-start;
-  margin-top: -1rem;
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /*-----------------------  Job Roles List Page PDC ----------------------- */
@@ -174,10 +107,19 @@
   justify-content: space-between;
 }
 
+.manage-company-top-left {
+  padding-right: 1rem;
+  border-right: 2px solid rgb(197, 185, 185);
+}
+
 .manage-company-top-left,
 .manage-company-top-right,
 .manage-company-access {
   gap: 1rem;
+}
+
+.manage-company-top button a {
+  color: white;
 }
 
 .manage-company-top button,
@@ -204,7 +146,7 @@
   background-color: white;
   box-shadow: var(--Boxshadow1);
   padding: 1.5rem 2rem;
-  height: 82%;
+  height: 80%;
   overflow: hidden;
   overflow-y: auto;
   border-radius: 5px;
@@ -217,7 +159,7 @@
 
 .company-content-top form,
 .company-content-top form input {
-background-color: var(--BackgroungColor);
+  background-color: var(--BackgroungColor);
 }
 
 .manage-company-table {
@@ -228,7 +170,7 @@ background-color: var(--BackgroungColor);
 .company-content-container table {
   width: 100%;
   text-align: center;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
 }
 
 .company-content-container table #action-th {
@@ -239,12 +181,12 @@ background-color: var(--BackgroungColor);
 .student-batches-table table th {
   border-top: none;
   position: sticky;
-  border-right: 2px solid white;
   top: 0;
   font-weight: 500;
-  padding: 0.5rem;
+  padding: 0.4rem;
   background-color: var(--AlternateLightGrey);
-  border-bottom: 10px solid white;
+  /* border: 4px solid white; */
+  border-radius: 0.3rem;
 }
 
 .company-content-container table td {
@@ -261,7 +203,7 @@ background-color: var(--BackgroungColor);
 .student-batches-btn {
   border: 1px solid var(--primaryColor);
   padding: 0.1rem 1rem;
-  border-radius: 5px;
+  border-radius: 0.3rem;
   color: var(--primaryColor);
   transition: ease-in-out 50ms;
 }
@@ -272,6 +214,94 @@ background-color: var(--BackgroungColor);
   color: white;
 }
 
+#resend-credential-form-company {
+  margin: auto;
+}
+
+#resend-credential-form-company button {
+  padding: 0.2rem 0.5rem;
+}
+
+#blacklist-btn-company {
+  border: none;
+  background-color: var(--DangerColor);
+  border-radius: 3px;
+}
+
+#blacklist-btn-company span {
+  color: white;
+  padding: 0.2rem;
+}
+
+#blacklist-tooltip {
+  position: absolute;
+  visibility: hidden;
+  right: 2rem;
+  top: 0;
+  width: 8rem;
+  font-size: 0.8rem;
+  background-color: rgba(0, 0, 0, 0.719);
+  border-radius: 2px;
+  text-align: center;
+  color: white;
+  padding: 0.2rem;
+}
+
+.container-top-update:hover #blacklist-tooltip {
+  visibility: visible;
+}
+
+/*Manage Company - View BlackListed Company Modal*/
+.blacklisted-main-modal {
+  padding-top: 50px;
+}
+
+.blacklisted-main-div {
+  position: relative;
+  width: 60%;
+  height: 90%;
+  margin: auto;
+}
+
+.blacklisted-companies-modal {
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  overflow-y: auto;
+}
+
+.blacklisted-companies-modal .top-bar {
+  position: sticky;
+  background-color: white;
+  padding: 0.5rem;
+  top: -1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.blacklisted-companies-modal table {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.blacklisted-companies-modal table th {
+  background-color: var(--AlternateLightGrey);
+  padding: 0.4rem;
+}
+
+.blacklisted-companies-modal table td {
+  padding: 0.2rem;
+  word-wrap: break-word;
+}
+
+.blacklisted-companies-modal #no-blacklist-msg {
+  margin: auto;
+  background-color: var(--BackgroungColor);
+  padding: 0.3rem;
+  width: 100%;
+  text-align: center;
+}
 /*-----------------------  Manage Company - Add Company Page ----------------------- */
 
 .add-company-container {
@@ -284,9 +314,10 @@ background-color: var(--BackgroungColor);
 .csv-company {
   background-color: white;
   width: 40%;
-  height: 75vh;
-  padding: 2rem 3rem;
+  height: 100%;
+  padding: 1rem 3rem;
   border-radius: 5px;
+  justify-content: start;
 }
 
 .register-company h2,
@@ -295,25 +326,37 @@ background-color: var(--BackgroungColor);
   font-size: 1.1rem;
 }
 
-.register-company,
-.csv-company,
-.csv-company-middle,
-.register-company form,
+.register-company h2 {
+  margin-bottom: 1.5rem;
+}
+
+.register-company .register-company form,
 .register-company form ul {
   gap: 1.5rem;
 }
 
-.register-company form button {
-  padding: 0.4rem 2rem;
-  margin-top: 0.5rem;
-}
-
-.register-company-item {
+.csv-company {
   gap: 1rem;
 }
 
-.register-company-item label {
-  width: 40%;
+.csv-company p {
+  font-size: 0.85rem;
+}
+
+.csv-company p span {
+  font-weight: bold;
+}
+
+.register-company form button {
+  padding: 0.4rem 2rem;
+  margin-top: 1.5rem;
+}
+
+.input-validate-error {
+  color: red;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-top: 0.1rem;
 }
 
 .csv-instructions {
@@ -321,15 +364,17 @@ background-color: var(--BackgroungColor);
   gap: 0.5rem;
   color: var(--primaryColor);
   font-weight: 500;
+  margin-bottom: 1rem;
 }
 
 .csv-company-middle a {
   align-items: center;
+  margin: 0.5rem 0;
   gap: 0.5rem;
   width: 100%;
   border: 1px solid var(--primaryColor);
   border-radius: 5px;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   justify-content: center;
   color: var(--primaryColor);
   font-weight: 500;
@@ -352,22 +397,26 @@ background-color: var(--BackgroungColor);
 
 .csv-company-bottom form {
   text-align: center;
-  gap: 1.5rem;
+  gap: 0.5rem;
 }
 
 .csv-company-bottom form input {
   display: none;
 }
 
+.csv-company-bottom form #form-file-name {
+  font-size: 0.8rem;
+}
+
 .csv-company-bottom form label {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  width: fit-content;
+  max-width: 100%;
   margin: auto;
   background-color: #424242;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 5px;
 }
 
@@ -376,13 +425,19 @@ background-color: var(--BackgroungColor);
   padding: 0.4rem 2rem;
 }
 
+#upload-file-error {
+  color: var(--DangerColor);
+  padding: 0.2rem;
+  font-weight: 500;
+}
+
 /*-----------------------  Manage Student - Student List Page ----------------------- */
 
 .student-list-container {
   width: 90%;
   height: 96%;
-  margin: auto;
-  margin-top: 1rem;
+  margin: 0 auto;
+  /* margin-top: 1rem; */
   padding-bottom: 1rem;
 }
 
@@ -414,7 +469,178 @@ background-color: var(--BackgroungColor);
   color: white;
 }
 
-/*Manage Student - Add student Page*/
+/*-----------------------  Manage Student - Adding Batches Modal ----------------------- */
+
+.std-batches-add {
+  position: relative;
+  margin: auto;
+  width: 30%;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 5px;
+  text-align: center;
+  gap: 0.5rem;
+  padding-bottom: 3rem;
+}
+
+#add-student-batch {
+  width: 100%;
+  padding: 0;
+  gap: 1rem;
+}
+
+#add-student-batch div {
+  gap: 1rem;
+  justify-content: center;
+}
+
+#add-student-batch input {
+  width: 4rem;
+}
+
+#add-student-batch button {
+  margin: 0;
+}
+
+#validate-error,
+#validate-error-rename {
+  color: var(--DangerColor);
+}
+
+.std-batches-add #validate-error {
+  position: absolute;
+  bottom: 0.8rem;
+  width: fit-content;
+  margin: auto;
+}
+
+#status-dropdown {
+  width: 10rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#status-dropdown:focus {
+  border-color: #054a91;
+}
+
+/* CHANGE ACCESS MODAL BOX  */
+#change-access-modal {
+  padding-bottom: 2rem;
+}
+
+#change-access-modal form {
+  gap: 1rem;
+  margin-top: 1rem;
+}
+#change-access-modal label {
+  font-size: 1.1rem;
+}
+
+/* VIEW BATCH MODAL BOX  */
+
+#view-batch-modal {
+  width: 55%;
+  padding-bottom: 2rem;
+}
+
+#view-batch-modal .view-batch-div {
+  gap: 1rem;
+}
+
+#view-batch-modal ul {
+  gap: 1rem;
+}
+
+#view-batch-modal ul li {
+  justify-content: space-between;
+}
+
+#view-batch-modal ul li p {
+  width: 45%;
+  font-size: 1rem;
+}
+
+#view-batch-modal ul li a {
+  padding: 0.3rem 0.5rem;
+}
+
+#view-batch-modal ul li button {
+  padding: 0.3rem 0.5rem;
+}
+
+#view-batch-modal .delete-btn {
+  width: fit-content;
+  background-color: var(--DangerBackground);
+  margin: auto;
+  border: none;
+  padding: 0.3rem 1rem;
+  margin-top: 1rem;
+  border-radius: 3px;
+  color: var(--DangerColor);
+  cursor: pointer;
+}
+
+#view-batch-modal .delete-btn a {
+  color: inherit;
+  font-size: 0.9rem;
+}
+
+#view-batch-modal .delete-btn:hover {
+  background-color: var(--DangerColor);
+  color: white;
+}
+
+.hide-element {
+  display: none;
+}
+
+.batch_year_rename {
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.batch_year_rename form {
+  width: 80%;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+#rename-student-batch input[type="submit"] {
+  width: 30%;
+  color: white;
+  background-color: var(--primaryColor);
+  border: none;
+  padding: 0.3rem 0.4rem;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+
+#rename-student-batch input[type="submit"]:hover {
+  background-color: #ca6302;
+}
+
+#rename-student-batch input {
+  margin: auto;
+  width: 5rem;
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+}
+
+#renameBatchyearBtn {
+  background-color: var(--AlternateLightGrey);
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+#renameBatchyearBtn:hover {
+  background-color: #b4bbc4;
+}
+
+/*-----------------------  Manage Student - Add student Page ----------------------- */
 .register-student-top {
   justify-content: flex-start;
   margin-bottom: 1rem;
@@ -422,7 +648,7 @@ background-color: var(--BackgroungColor);
 }
 .register-student-top div {
   background-color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 1rem;
   border-radius: 5px;
   gap: 1rem;
   width: fit-content;
@@ -434,7 +660,7 @@ background-color: var(--BackgroungColor);
 
 .add-student-container .register-company,
 .add-student-container .csv-company {
-  height: 73vh;
+  height: 100%;
 }
 
 /*----------------------- Manage Student - Landing Page -----------------------*/
@@ -446,6 +672,7 @@ background-color: var(--BackgroungColor);
   height: 90%;
   gap: 1rem;
   border-radius: 5px;
+  margin: 0 auto;
 }
 
 .student-batches-top {
@@ -460,7 +687,7 @@ background-color: var(--BackgroungColor);
 
 .student-batches-container table {
   width: 100%;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
 }
 
 .student-batches-container table th:nth-child(6) {
@@ -491,21 +718,31 @@ background-color: var(--BackgroungColor);
 .student-batches-table td button {
   padding: 0.2rem 1rem;
   border: none;
-  background-color: var(--primaryColor);
+  background-color: rgb(234, 234, 234);
   border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .student-batches-table td button a {
-  color: white;
+  color: rgb(170, 169, 169);
+  font-weight: 400;
 }
 
+.student-batches-table td button a:hover {
+  color: var(--Black);
+}
+
+.student-batches-table td button:hover {
+  transform: scale(1.02);
+}
 .student-batches-table thead span {
   text-align: center;
 }
 
-table th {
+/* table th {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-}
+} */
 
 .student-batch-status div {
   align-items: center;
@@ -519,14 +756,40 @@ table th {
   cursor: pointer;
 }
 
+#student-batch-current-year {
+  padding: 0.2rem 0.6rem;
+  color: rgb(170, 169, 169);
+  margin-left: 1rem;
+  border-radius: 0.3rem;
+  gap: 0.2rem;
+  font-weight: 400;
+}
+
+#student-batch-current-year span {
+  color: var(--primaryColor);
+}
 /*----------------------- Dashboard -----------------------*/
-.dashboard-topbar {
-  background: linear-gradient(270deg, #eaa846 13.46%, #f17300 79.67%);
-  padding: 0.2rem 2rem;
+.main-dashboard-topbar {
+  width: 90%;
+  margin: auto;
   justify-content: space-between;
+}
+
+.dashboard-topbar {
+  padding: 0.2rem 2rem;
+  gap: 0.4rem;
   border-radius: 5px;
   color: white;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.dash-top-right,
+.dash-top-left {
+  align-items: center;
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  gap: 0.2rem;
+  color: var(--Black);
 }
 
 .dash-top-right a {
@@ -537,7 +800,7 @@ table th {
 .dashboard-topbar-btns {
   justify-content: flex-end;
   gap: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .dashboard-topbar-btns a {
@@ -554,10 +817,45 @@ table th {
   border: 1px solid var(--primaryColor);
 }
 
+.dashboard-topbar-btns .send-invitation:hover {
+  background-color: var(--primaryColor);
+  color: white;
+}
+
+#dashboard-round-date-data {
+  gap: 0.3rem;
+  font-weight: 500;
+  width: 7rem;
+  padding: 0 0.5rem;
+}
+
+#dashboard-round-date {
+  /* flex-grow: 1; */
+  flex-shrink: 0;
+  background-color: var(--primaryColor);
+  color: white;
+  text-align: center;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  /* justify-content: center; */
+  gap: 0.3rem;
+}
+
+#dashboard-round-date-two {
+  background-color: var(--primaryColor);
+  color: white;
+  text-align: center;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  /* justify-content: center; */
+  gap: 0.3rem;
+  flex: 1;
+}
+
 .dashboard-cards {
   justify-content: center;
   gap: 3rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .dashboard-cards div {
@@ -597,7 +895,7 @@ table th {
   margin-top: 1rem;
   border-radius: 5px;
   overflow-y: auto;
-  height: 66%;
+  height: 63%;
 }
 
 .dashboard-advertisement-list .list-top {
@@ -612,15 +910,30 @@ table th {
 
 .dashboard-advertisement-list .list-body {
   padding: 1rem;
+  padding-top: 0;
+  overflow-y: auto;
+}
+
+.dashboard-advertisement-list .list-body #thead-dashboard {
+  position: sticky;
+  top: 0;
 }
 
 .dashboard-advertisement-list table {
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
+  text-align: center;
 }
 
 .dashboard-advertisement-list table td {
   padding: 0.5rem;
+}
+
+.dashboard-advertisement-list table th {
+  padding: 0.4rem;
+  background-color: var(--AlternateLightGrey);
+  border-radius: 0.3rem;
+  font-weight: 500;
 }
 
 .dashboard-advertisement-list table td:nth-child(4) {
@@ -645,6 +958,11 @@ table th {
   color: white;
 }
 
+.dashboard-advertisement-list .view-all-btn {
+  margin: 0;
+  padding: 0.2rem 1rem;
+}
+
 /*----------------------- Invitation Page -----------------------*/
 
 .company-invitation-container {
@@ -653,13 +971,14 @@ table th {
   width: 60%;
   border-radius: 5px;
   gap: 3rem;
+  margin: auto;
   margin-top: 1rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .company-invitation-container .invitation-body ul {
-  gap: 1.5rem;
+  gap: 1.1rem;
 }
 
 .company-invitation-container .invitation-body li label {
@@ -680,9 +999,17 @@ table th {
 
 /*----------------------- Invitation - SET ROUND MODAL -----------------------*/
 
+#set-round-modal-box {
+  text-align: center;
+}
+
+#set-round-modal-box form {
+  width: 50%;
+}
+
 #set-round-modal-box form,
 #set-round-modal-box ul {
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 #set-round-modal-box li {
@@ -691,17 +1018,59 @@ table th {
 
 #set-round-modal-box .date-period {
   gap: 0.5rem;
+  justify-content: center;
+}
+
+#set-round-modal-box .date-period span {
+  padding-top: 1.1rem;
+}
+
+#set-round-modal-box .date-period label {
+  color: rgb(170, 169, 169);
 }
 
 #set-round-modal-box button {
   width: 80%;
   margin: auto;
+  padding: 0.5rem;
 }
 
+#set-round-modal-box a {
+  position: absolute;
+}
+
+#set-round-modal-box-p {
+  width: 100%;
+}
+
+#set-round-modal-box #duration-note {
+  font-size: 0.8.5rem;
+  color: var(--DangerColor);
+  padding: 0.2rem 0.5rem;
+  background-color: var(--DangerBackground);
+  border-radius: 5px;
+  font-weight: 400;
+}
+
+#set-round-year-box {
+  padding: 0.3rem 0.6rem;
+  font-size: 1rem;
+  background-color: var(--primaryColor);
+  color: white;
+  width: 50%;
+  margin: auto;
+  border-radius: 5px;
+  cursor: default;
+}
+
+#set-round-modal-box .period-header {
+  font-weight: 600;
+}
 /*----------------------- Invitation Page -----------------------*/
 
 .company-details-main-container {
-  height: 85%;
+  /* height: 85%; */
+  justify-content: center;
 }
 
 .company-details-container {
@@ -716,11 +1085,20 @@ table th {
 .company-details-container .container-top {
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 0.5rem;
   align-items: flex-start;
 }
+
+.company-details-container .container-body {
+  border-top: 1px solid var(--AlternateLightGrey);
+  padding-top: 1rem;
+}
+
 .company-details-container .container-body ul {
   gap: 1rem;
+}
+
+.container-top-update {
+  position: relative;
 }
 
 .container-top-update div {
@@ -732,36 +1110,63 @@ table th {
 }
 
 .company-details-container .container-body li input {
-  width: 80%;
+  width: 65%;
+  background-color: var(--BackgroungColor);
+}
+
+.company-details-container .container-body li select {
   background-color: var(--BackgroungColor);
 }
 
 .company-details-container .container-body button {
-  padding: 0.4rem 2rem;
+  padding: 0.2rem 2rem;
   margin-top: 1rem;
-  background-color: var(--primaryColor);
+}
+
+.company-details-container .container-body button#update_btn {
+  background-color: var(--DarkBlue);
+}
+
+.company-details-container .container-body button#reset-btn {
+  border: 1px solid var(--DarkBlue);
+  background-color: var(--BackgroungColor);
+  color: var(--DarkBlue);
 }
 
 .company-details-container .container-btns {
   justify-content: space-around;
-  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--AlternateLightGrey);
 }
 
 .company-details-container .container-btns button {
-  padding: 0.2rem 1rem;
-  height: 2rem;
+  padding: 0.3rem 1rem;
   border: none;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  border-radius: 5px;
+  border-radius: 0.3rem;
 }
 
 .company-details-container .container-btns #view-btn {
-  background-color: var(--DarkBlue);
+  background-color: var(--primaryColor);
   color: white;
+  margin: 0;
 }
 .company-details-container .container-btns #delete-btn {
   background-color: var(--DangerColor);
+  color: white;
+}
+
+.company-details-container .container-body #delete-btn {
+  background-color: var(--DangerColor);
+  color: white;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 0.3rem;
+}
+
+.company-details-container .container-body #delete-btn a {
   color: white;
 }
 
@@ -771,15 +1176,15 @@ table th {
 }
 
 .company-details-container #toggleUpdateBtn {
-  display: none;
   margin: auto;
   transition: ease-in-out 0.2s;
+  gap: 2rem;
 }
 
 .company-details-analysis {
   width: 40%;
   margin-left: 2rem;
-  gap: 2rem;
+  gap: 1rem;
   min-height: 20rem;
   background-color: white;
   padding: 2rem;
@@ -795,6 +1200,20 @@ table th {
   width: 70%;
 }
 
+#secondary-grey-btn {
+  box-shadow: none;
+  background-color: transparent;
+  color: rgb(170, 169, 169);
+  cursor: pointer;
+  transition: ease-in-out 300ms;
+  padding: 0.3rem 0.5rem;
+  border: none;
+}
+
+#secondary-grey-btn:hover {
+  color: var(--Black);
+  transform: scale(1.05);
+}
 /*----------------------- Student Request Page -----------------------*/
 
 .student-request-container {
@@ -887,7 +1306,7 @@ table th {
   text-align: justify;
 }
 
-.student-profile-bio h3{
+.student-profile-bio h3 {
   font-size: 1.5rem;
 }
 
@@ -1027,7 +1446,7 @@ table th {
 /*----------------------- Student Details Page -----------------------*/
 
 #student-details-view {
-  width: 55%;
+  width: 65%;
 }
 
 #student-details-view form li label {
@@ -1035,6 +1454,386 @@ table th {
 }
 
 #student-details-view .container-btns {
-  justify-content: flex-start;
-  gap: 2rem;
+  justify-content: space-between;
+  gap: 1.5rem;
 }
+
+#student-details-view .container-body #student-batch-stream {
+  justify-content: space-between;
+}
+
+#student-details-view .container-body #student-batch-stream div {
+  gap: 1rem;
+}
+
+#std-system-access select {
+  border-radius: 3px;
+  border: 1px solid var(--SuccessColor);
+  font-size: 0.9rem;
+  padding: 0.2rem;
+  background-color: var(--SuccessBackground);
+  color: var(--SuccessColor);
+}
+
+#std-system-access option {
+  color: var(--Black);
+}
+
+#std-system-access select.danger {
+  border: 1px solid var(--DangerColor);
+  background-color: var(--DangerBackground);
+  color: var(--DangerColor);
+}
+
+/*----------------------- Profile Update Page -----------------------*/
+
+.update-profile-container {
+  padding: 2rem;
+  width: 50%;
+  margin: auto;
+  gap: 1rem;
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.update-profile-container h3 {
+  text-align: left;
+}
+
+.update-profile-container img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.update-profile-container form input {
+  width: 90%;
+}
+
+.update-profile-container form ul {
+  width: 100%;
+  margin: auto;
+  font-size: 0.9rem;
+}
+.update-profile-container form li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 95%;
+  margin-top: 1rem;
+}
+
+.update-profile-container form li label {
+  width: 25%;
+}
+
+.update-profile-container-btn {
+  display: flex;
+  width: fit-content;
+  margin: auto;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.update-profile-container-btn button {
+  padding: 0.5rem;
+}
+
+.main-user-profile-icon div {
+  position: relative;
+  align-items: center;
+  display: flex;
+  width: 120px;
+  justify-content: center;
+  margin: auto;
+}
+
+.main-user-profile-icon #main-profile-edit {
+  background-color: var(--BackgroungColor);
+  color: var(--Black);
+  padding: 0.2rem 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  align-items: center;
+  gap: 0.3rem;
+  box-shadow: var(--Boxshadow1);
+  cursor: pointer;
+  transition: ease-in-out 200ms;
+}
+
+.main-user-profile-icon #main-profile-edit:hover {
+  background-color: var(--DarkBlue);
+  color: white;
+}
+
+.main-user-profile-icon #main-profile-edit span {
+  font-size: 1.1rem;
+}
+
+.update-profile-container form input {
+  padding: 0.5rem;
+}
+
+.update-profile-container input[type="file"] {
+  display: none;
+}
+
+.update-profile-container #form-file-name {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+}
+
+.update-profile-container #reset-btn {
+  background-color: var(--primaryColor);
+}
+
+/*----------------------- Advertisement List -----------------------*/
+
+.pdc-advertisementlist {
+  height: auto;
+  margin-top: 0;
+}
+
+.pdc-advertisementlist table td:nth-child(4) {
+  width: 120px;
+}
+
+/* TOOLTIP - Hover Effect*/
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-left: 0.3rem;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: fit-content;
+  background-color: rgb(73, 70, 70);
+  color: white;
+  text-align: center;
+  border-radius: 3px;
+  padding: 0.4rem;
+  font-size: 0.8rem;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: -3rem;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip:hover {
+  color: var(--primaryColor);
+}
+
+/*----------------------- PDC - StudentRequestsByStudent List -----------------------*/
+
+.student-requests-list-container {
+  width: 75%;
+  background-color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 5px;
+  gap: 1.5rem;
+  margin: auto;
+  margin-top: 0.5rem;
+}
+
+.student-requests-list-container .top-container {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.student-requests-list-container .top-container a {
+  width: fit-content;
+  margin: 0;
+  padding: 0.5rem 1rem;
+}
+
+.student-requests-list-container .middle-container {
+  width: 100%;
+}
+
+.student-requests-list-container .middle-container ul {
+  gap: 0.7rem;
+  width: 100%;
+}
+
+/* .student-requests-list-container .middle-container li {
+  gap: 1.5rem;
+} */
+
+.student-requests-list-container .middle-container li p {
+  width: 40%;
+}
+
+.student-requests-list-container .middle-container li p.detail-item {
+  width: 55%;
+  background-color: var(--AlternateLightGrey);
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+}
+
+.student-requests-list-container .bottom-container {
+  gap: 1rem;
+}
+
+.student-requests-list-container .bottom-container .top-box {
+  gap: 1.5rem;
+}
+
+.student-requests-list-container .bottom-container ul li {
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--AlternateLightGrey);
+  padding: 0.5rem 0.3rem;
+}
+
+.student-requests-list-container .bottom-container ul li a {
+  margin: 0;
+}
+
+.student-requests-list-container .bottom-container .request-row {
+  width: 70%;
+  justify-content: space-between;
+}
+
+.orange-view-btn {
+  transition: all ease-in-out 100ms;
+}
+.orange-view-btn:hover {
+  background-color: var(--primaryColor);
+  color: #ffffff !important ;
+}
+
+.requests-by-student-table {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.requests-by-student-table th {
+  padding: 0.2rem 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: var(--AlternateLightGrey);
+  border-radius: 0.3rem;
+}
+.requests-by-student-table .action-btn {
+  background-color: #ffffff;
+}
+
+.requests-by-student-table td {
+  padding: 0.5rem;
+}
+
+.requests-by-student-table .common-status {
+  width: fit-content;
+  margin: auto;
+}
+
+.student-requests-list-container .detail-container {
+  gap: 2rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+.student-requests-list-container .detail-container .container-one{
+  width: 50%;
+}
+
+.student-requests-list-container .detail-container #reg-number{
+  width: 60%;
+}
+
+.student-requests-list-container .middle-container .top-name{
+  width: 80%;
+}
+
+.student-requests-list-container .middle-container .top-name #name{
+  width: 31%;
+}
+
+/* .student-requests-list-container .detail-container p{
+  width: 30%;
+} */
+/********************************* Disable Style *********************************/
+.disabled-button-style {
+  color: #8d8d8d !important;
+  cursor: not-allowed !important;
+  background: #cccccc !important;
+  border: 1px solid #bdbdbd !important;
+  box-shadow: none !important;
+}
+
+.disabled-button-style a {
+  color: #8d8d8d !important;
+  cursor: not-allowed !important;
+}
+
+.disabled-button-style span {
+  color: #8d8d8d !important;
+}
+
+.disabled-button-style:hover {
+  background: #ccc !important;
+  transform: scale(1) !important;
+}
+
+select:disabled {
+  opacity: 0.5;
+  background-color: #ccc;
+  color: #8d8d8d;
+  cursor: not-allowed;
+}
+
+/********************************* SPIN ANIMATION Style *********************************/
+
+#loading-material-icon {
+  animation: spin 10s linear infinite;
+}
+/* 
+#student-batch-year-span {
+  animation: move 5s linear infinite;
+} */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* 
+@keyframes move {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  25% {
+    transform: translateX(-6px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(10px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+} */

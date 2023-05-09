@@ -5,6 +5,8 @@ class Complaints extends BaseController
     public $complaintModel;
     public $userModel;
 
+    public $userModel;
+    public $complaintModel;
 
     public function __construct()
     {
@@ -67,7 +69,7 @@ class Complaints extends BaseController
             $this->view('student/complaint', $data);
         }
     }
-    public function showComplaint($complaintId)
+        public function showComplaint($complaintId)
     {
         $complaints = $this->complaintModel->getComplaint();
         $complaint = $this->complaintModel->showComplaintById($complaintId); //To get the Advertisement Name
@@ -123,5 +125,16 @@ class Complaints extends BaseController
     public function deleteComplaint($id)
     {
         $this->complaintModel->deleteComplaint($id);
+    }
+
+    public function Complaint(){
+        // Get Details
+        $complaint = $this->complaintModel->getComplaint();
+
+        $data = [
+            'complaint' => $complaint,
+        ];
+
+        $this->view('admin/adminComlaintView', $data);
     }
 }

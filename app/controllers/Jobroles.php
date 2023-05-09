@@ -3,6 +3,8 @@
 class Jobroles extends BaseController
 {
 
+    public $jobroleModel;
+
     public function __construct()
     {
         $this->jobroleModel = $this->model('Jobrole');
@@ -28,18 +30,34 @@ class Jobroles extends BaseController
             // Strip Tags
             stripTags();
 
-            //Associative Array
-            $data = [
-                'jobrole' => trim($_POST['jobrole'])
-            ];
+            //Check whether the entered job role is already available in the database
+            $jobrolesList = $this->jobroleModel->getJobroles();
+            $jobroleExists = false;
 
-            //Execute
-            if ($this->jobroleModel->addJobrole($data)) {
+            foreach ($jobrolesList as $jobrole) {
+                if (strtolower($jobrole->name) == strtolower(trim($_POST['jobrole']))) {
+                    // Redirect
+                    $jobroleExists = true;
+                    break;
+                }
+            }
 
+            if ($jobroleExists) {
                 // Redirect
+                flashMessage('jobroleView', 'Job Role already exists, Please check again!', 'danger-alert');
                 redirect('jobroles');
             } else {
-                die('Something went wrong');
+                //Associative Array
+                $data = [
+                    'jobrole' => (trim($_POST['jobrole']))
+                ];
+                //Execute
+                if ($this->jobroleModel->addJobrole($data)) {
+                    // Redirect
+                    redirect('jobroles');
+                } else {
+                    redirect('jobroles');
+                }
             }
         } else {
 
@@ -81,16 +99,29 @@ class Jobroles extends BaseController
                 'id' => $id
             ];
 
-            //Execute
-            if ($this->jobroleModel->updateJobrole($data)) {
+            //Check whether the entered job role is already available in the database
+            $jobrolesList = $this->jobroleModel->getJobroles();
+            $jobroleExists = false;
 
+            foreach ($jobrolesList as $jobrole) {
+                if (strtolower($jobrole->name) == strtolower(trim($_POST['jobrole-update']))) {
+                    // Redirect
+                    $jobroleExists = true;
+                    break;
+                }
+            }
+
+            if ($jobroleExists) {
                 // Redirect
+                flashMessage('jobroleView', 'Job Role already exists, Please check again!', 'danger-alert');
                 redirect('jobroles');
             } else {
-                die('Something went wrong');
+                $this->jobroleModel->updateJobrole($data);
+                redirect('jobroles');
             }
         } else {
             //redirect to error page
+            redirect('jobroles');
         }
     }
 

@@ -11,3 +11,5 @@
   define('URLROOT', 'http://localhost/internarc/');
   // Site Name
   define('SITENAME', 'Intern Arc');
+  // Image Path
+  define('PROFILE_IMG_PATH', dirname(dirname(dirname(__FILE__))).'/public/');

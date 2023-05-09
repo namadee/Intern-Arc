@@ -13,8 +13,8 @@ function getNavigationByUser($userType)
         array(URLROOT.'companies/manage-company', 'cases', 'Companies'),
         array(URLROOT.'students/manage-student', 'school', 'Students'),
         array(URLROOT.'jobroles', 'category', 'Job Roles'),
-        array(URLROOT.'advertisements', 'text_to_speech', 'Advertisements'),
-        array(URLROOT.'requests/all-requests', 'compare_arrows', 'Requests'),
+        array(URLROOT.'pdc/review-advertisement', 'text_to_speech', 'Advertisements'),
+        array(URLROOT.'pdc/student-requests-list/1', 'compare_arrows', 'Requests'),
         array(URLROOT.'profiles/view-profile-details', 'manage_accounts', 'Profile')
       );
       return $navigation;
@@ -24,11 +24,11 @@ function getNavigationByUser($userType)
       $navigation = array(
         array(URLROOT.'companies', 'dashboard', 'Dashboard'),
         array(URLROOT.'advertisements', 'text_to_speech', 'Advertisements'),
-        array(URLROOT.'requests', 'school', 'Student Requests'),
-        array(URLROOT.'requests/shortlisted-list', 'list_alt', 'Shortlisted'),
-        array(URLROOT.'advertisements', 'calendar_month', 'Schedule'),
+        array(URLROOT.'requests/AdvertisementListRequests', 'school', 'Student Requests'),
+        array(URLROOT.'companies/getAdvertisementByStatus', 'list_alt', 'Shortlisted'),
+        array(URLROOT.'companies/InterviewScheduleList', 'calendar_month', 'Schedule'),
         array(URLROOT.'complaints', 'approval_delegation', 'Complaint'),
-        array(URLROOT.'profiles/company-profile', 'manage_accounts', 'Profile')
+        array(URLROOT.'profiles/view-profile-details', 'manage_accounts', 'Profile')
       );
 
       return $navigation;
@@ -55,7 +55,7 @@ function getNavigationByUser($userType)
         array(URLROOT.'admin/viewPdcStaff', 'groups', 'PDC'),
         array(URLROOT.'admin/complaint', 'approval_delegation', 'Complaints'),
         array(URLROOT.'admin/report', 'monitoring', 'Reports'),
-        array(URLROOT.'admin/viewprofile', 'manage_accounts', 'Profile')
+        array(URLROOT.'profiles/viewProfileDetails', 'manage_accounts', 'Profile')
       );
       return $navigation;
   }

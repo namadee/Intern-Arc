@@ -4,7 +4,7 @@
 
 
 <section id="update-admin-profile" class="main-content">
-
+    <?php flashMessage('profile_status'); ?>
     <div class="update-profile-container display-flex-col">
         <h3>View Profile</h3>
 
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <ul>
-               
+
 
                 <li>
                     <label for="username">Name</label>

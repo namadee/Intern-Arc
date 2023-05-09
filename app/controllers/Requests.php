@@ -3,39 +3,111 @@
 class Requests extends BaseController
 {
 
+    public $requestModel;
+    public $requestList;
+    public $userModel;
+    public $advertisementModel;
+
     public function __construct()
     {
-        $this->studentRequestModel = $this->model('StudentRequest');
+        $this->requestModel = $this->model('Request');
+        $this->userModel = $this->model('User');
+        $this->advertisementModel = $this->model('Advertisement');
     }
 
     public function index()
     {
+        $requests = $this->requestModel->getStudentRequests();
+        //view pass data values $data
 
-        $this->view('company/studentRequestList');
+        $data = [
+
+            'requests' => $requests,
+
+        ];
+
+        $this->view('company/studentRequestList', $data);
     }
 
-    public function viewStudentRequest()
+    //Applying to advertisement
+    public function addStudentRequest($advertisementId)
     {
-        $this->view('company/studentRequest');
+        // $advertisementId = $_GET['adId'];
+        $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
+
+        //Adjustment 3 - Getting the batch year of the respective advertisement
+        $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId);
+        $batchYear = $advertisement->batch_year;
+
+
+        $data = [
+            'advertisement_id' => $advertisementId,
+            'student_id' => $studentId,
+            'batch_year' => $batchYear,
+        ];
+
+        //Execute
+        if ($this->requestModel->checkStudentRequest($advertisementId, $studentId)) {
+            flashMessage('student_request_msg', 'You have already applied to this advertisement!', 'danger-alert');
+            redirect('advertisements/viewAdvertisement/' . $advertisementId);
+        } else if ($this->requestModel->addStudentRequest($data)) {
+            flashMessage('student_request_msg', 'Applied successfully');
+            redirect('advertisements/viewAdvertisement/' . $advertisementId);
+        } else {
+            die('Something went wrong');
+        }
     }
 
 
-    //All the Shortlisted Students of All the Advertisements
     public function shortlistedList()
     {
         $this->view('company/shortlist');
     }
 
-    //All the Shortlisted Students under 1 Advertisement
-    public function shortlistedStudents()
+    public function showRequestsByAd($advertisementId)
     {
-        $this->view('company/shortlistedStudents');
+        // $advertisementId = $_GET['adId']; 
+        $students = $this->requestModel->getStudentByRequest($advertisementId);
+
+        $data = [
+            'advertisement_id' => $advertisementId,
+            'student_name' => $students,
+        ];
+
+        if ($this->requestModel->getStudentByRequest($advertisementId)) {
+
+            $this->view('company/AdvertisementListReqests', $data);
+        } else {
+            die('Something went wrong');
+        }
     }
 
-    //Student Request List - PDC
-    public function allRequests()
+    //DISPLAY ADVERTISEMENT LIST WITH RELEVENT REQUEST COUNT
+    public function AdvertisementListRequests()
     {
-        $this->view('pdc/studentRequest');
-    }
+        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+        $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
 
+        $requestCounts = array();
+        $x = 0;
+        foreach ($advertisements as $advertisement) {
+            $requests = $this->requestModel->getAdvertisementByRequest($advertisement->advertisement_id);
+            $requestCounts[$x] = count($requests);
+            $positions[$x] = $advertisement->position;
+            $intern_counts[$x] = $advertisement->intern_count;
+            $x++;
+        }
+
+
+        $data = [
+            'count' => $requestCounts,
+            'length' => count($requestCounts),
+            'positions' => $positions,
+            'intern_counts' => $intern_counts,
+            'advertisements' => $advertisements,
+
+        ];
+
+        $this->view('company/studentRequestList', $data);
+    }
 }

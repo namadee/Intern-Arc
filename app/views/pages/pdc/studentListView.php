@@ -1,12 +1,15 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/pdc.css">
+<script src="<?php echo URLROOT; ?>js/pdc.js" defer></script>
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
+<?php flashMessage('student_list_msg') ?>
+
 
     <div class="student-list-container company-content-container display-flex-col">
         <div class="company-content-top display-flex-row">
-            <h2>Information System Student List - 2019 Batch</h2>
+            <h2><?php echo $data['stream'] === 'IS' ? 'Information Systems' : 'Computer Systems'; ?> Student List - <?php echo $data['batch_year']; ?> Batch</h2>
             <!-- Common Search Bar Style-->
             <form action="" class="common-search-bar display-flex-row">
                 <span class="material-symbols-rounded">
@@ -26,33 +29,20 @@
 
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.comasdasdasd</td>
-                        <td>2020/IS/109</td>
-                        <td>20021054</td>
-                        <td><a href="<?php echo URLROOT . 'students/student-details'; ?>">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="<?php echo URLROOT . 'students/student-details'; ?>">View</a></td>
-                    </tr>
-                    <tr>
-                        <td>P.M.B.R Vimukthi</td>
-                        <td>ruchira.ucsc@gmail.com</td>
-                        <td>IS/2020/109</td>
-                        <td>20021054</td>
-                        <td><a href="<?php echo URLROOT . 'students/student-details'; ?>">View</a></td>
-                    </tr>
-
+                    <?php foreach ($data['student_list'] as $student): ?>
+                        <tr>
+                            <td><?php echo $student->username  ?></td>
+                            <td><?php echo $student->email  ?></td>
+                            <td><?php echo $student->registration_number  ?></td>
+                            <td><?php echo $student->index_number  ?></td>
+                            <td><a href="<?php echo URLROOT . 'pdc/main-student-details/'. $student->user_id; ?>">View</a></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
         <div class="add-new-students display-flex-row">
-            <a class="common-blue-btn" href="<?php echo URLROOT . 'register/register-student'; ?>">Register New Students</a>
+            <a class="common-blue-btn" href="<?php echo URLROOT . 'register/register-student/'.$data['batch_year'] . '/'.$data['stream'] ; ?>">Register New Students</a>
         </div>
     </div>
 </section>

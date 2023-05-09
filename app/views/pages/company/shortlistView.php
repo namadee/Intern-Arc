@@ -27,47 +27,35 @@
     <div class="common_list_content">
       
       <div class="addBtn">
-      <h3>Advertisement List-Shortlisted</h3>
+      <h3>Advertisement List-Student Shortlist</h3>
 </div>
       <table class="common-table">
         <tr>
           <th>Advertisement Name</th>
           <th>No of Interns</th>
-          <th>Total Requests</th>
-          <th>Shortlisted</th>
+          <th>Shortlisted students</th>
+       
         </tr>
-        
-
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/shortlisted-students" >View</a>
-            </td>
+        <?php $x =0; ?>
+        <?php foreach ($data['advertisements'] as $advertisement) :?> 
           
-          </tr>
           <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>25</td>
+            <td><?php echo $data['positions'][$x] ?></td>
+            <td><?php echo $data['intern_counts'][$x] ?></td>
+            <td><?php echo $data['count'][$x] ?></td>
             <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/shortlisted-students" >View</a>
+             <a class="common-view-btn" href="<?php 
+                                    if($data['count'][$x] != 0){ echo URLROOT.'companies/get-shortlisted-students/'.$advertisement->advertisement_id; }
+                                    else{
+                                      echo URLROOT.'Errors/noData';
+                                    }
+                                    
+                                    ?>" >View</a>
             </td>
-          
+            
           </tr>
-          <tr>
-            <td>Software Engineer-Virtusa</td>
-            <td>10</td>
-            <td>25</td>
-            <td>25</td>
-            <td>
-             <a class="common-view-btn" href="<?php echo URLROOT; ?>requests/shortlisted-students" >View</a>
-            </td>
-          
-          </tr>
+        <?php $x++ ?>
+        <?php endforeach; ?>
        
       </table>
     </div>

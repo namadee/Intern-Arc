@@ -13,14 +13,15 @@ class RegisterModel extends Database
   public function registerUser($data)
   {
     // Prepare Query
-    $this->db->query('INSERT INTO user_tbl(username, email, password, user_role) 
-        VALUES (:username, :email, :password,:user_role )');
+    $this->db->query('INSERT INTO user_tbl(username, email, password, user_role, system_access) 
+        VALUES (:username, :email, :password,:user_role,:system_access )');
 
     // Bind Values
     $this->db->bind(':username', $data['username']);
     $this->db->bind(':email', $data['email']);
     $this->db->bind(':password', $data['password']);
     $this->db->bind(':user_role', $data['user_role']);
+    $this->db->bind(':system_access', $data['system_access']);
 
     //Execute
     if ($this->db->execute()) {
@@ -33,12 +34,14 @@ class RegisterModel extends Database
   // Register a single Student
   public function registerStudent($data)
   {
-    $this->db->query('INSERT INTO `student_tbl` ( `index_number`, `registration_number`, `user_id_fk`)
-    VALUES (:index_number, :registration_number, :user_id)');
+    $this->db->query('INSERT INTO `student_tbl` ( `index_number`, `registration_number`, `stream` , `batch_year` , `user_id_fk`)
+    VALUES (:index_number, :registration_number, :stream, :batch_year, :user_id)');
 
     // Bind Values
     $this->db->bind(':index_number', $data['index_number']);
     $this->db->bind(':registration_number', $data['registration_number']);
+    $this->db->bind(':stream', $data['stream']);
+    $this->db->bind(':batch_year', $data['batch_year']);
     $this->db->bind(':user_id', $data['user_id']);
 
     //Execute
@@ -68,5 +71,17 @@ class RegisterModel extends Database
     }
   }
 
+  public function updatePassword($data){
+    $this->db->query('UPDATE user_tbl  SET password = :password WHERE user_id = :user_id');
+    $this->db->bind(':user_id', $data['user_id']);
+    $this->db->bind(':password', $data['password']);
+
+    //Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }

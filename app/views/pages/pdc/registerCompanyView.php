@@ -1,32 +1,44 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/pdc.css">
+<script src="<?php echo URLROOT; ?>js/pdc.js" defer></script>
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col">
+    <?php flashMessage('upload_file_error'); ?>
+    <?php flashMessage('company_register_msg'); ?>
+
     <div class="add-company-container display-flex-row">
-        <div class="register-company display-flex-col">
+
+        <div class="register-company display-flex-col" id="register-company">
             <h2>Register a Company</h2>
             <form action="<?php echo URLROOT . "register/register-company"; ?>" method="POST" class="display-flex-col">
                 <ul class="display-flex-col">
                     <li class="display-flex-col">
                         <label for="company_name">Company Name</label>
-                        <input type="text" name="company_name" id="company_name" class="common-input" required>
+                        <input type="text" name="company_name" id="company_name" class="common-input" value="<?php echo $data['company_name']; ?>" required>
                     </li>
                     <li class="display-flex-col">
-                        <label for="email">Contact Email</label>
-                        <input type="text" name="email" id="email" class="common-input" required>
+                        <div class="display-flex-col">
+                            <label for="email">Contact Email</label>
+                            <input type="email" name="email" id="email" class="common-input" value="<?php echo $data['email']; ?>" required>
+                        </div>
+                        <span class="input-validate-error"><?php echo $data['email_error']; ?></span>
                     </li>
-                    <li class="display-flex-row register-company-item">
+                    <li class="display-flex-col ">
                         <label for="username">Contact Person</label>
-                        <input type="text" name="username" id="username" class="common-input" required>
+                        <input type="text" name="username" id="username" class="common-input" value="<?php echo $data['username']; ?>" required>
                     </li>
 
-                    <li class="display-flex-row register-company-item">
-                        <label for="contact">Contact Number</label>
-                        <input type="text" name="contact" id="contact" class="common-input" required>
+                    <li class="display-flex-col ">
+                        <div class="display-flex-col register-company-item">
+                            <label for="contact">Contact Number</label>
+                            <input type="number" name="contact" id="contact" maxlength="10" class="common-input contact" value="<?php echo $data['contact']; ?>" required>
+                        </div>
+                        <span class="input-validate-error" id="input-contact-error"></span>
+
                     </li>
                 </ul>
-                <button type="submit" class="common-blue-btn">Add Company</button>
+                <button type="submit" class="common-blue-btn" id="register-company-btn">Add Company</button>
             </form>
         </div>
         <div class="csv-company display-flex-col">
@@ -38,25 +50,34 @@
                     </span>
                     Instructions
                 </div>
-                <p>
+                <p><span>Step 1 : </span>
                     Download this CSV template and enter the details accordingly.
                 </p>
-                <a href="" class="display-flex-row">
+                <a href="<?php echo URLROOT . "templates/companyListTemplate.csv"; ?>" class="display-flex-row">
                     <span class="material-symbols-outlined">
                         downloading
                     </span>
                     Download CSV Template
                 </a>
             </div>
+            <div class="display-flex-col">
+
+                <p><span>Step 2 : </span> Enter comapny details without changing the layout of the csv.</p>
+            </div>
+            <div class="display-flex-col">
+
+                <p><span>Step 3 : </span> Upload and press register to complete the registration.</p>
+            </div>
             <div class="csv-company-bottom">
-                <form action="" method="POST" class="display-flex-col">
+                <form action="<?php echo URLROOT . "register/register-companies"; ?>" name="uploadCsv" enctype="multipart/form-data" method="POST" class="display-flex-col" id="csvFormRegistration">
                     <label for="company-csv" class="display-flex-row">
                         <span class="material-symbols-outlined">
                             drive_folder_upload
                         </span>
-                        Choose a File</label>
-                    <input type="file" name="company-csv" id="company-csv">
-                    <button type="submit" class="common-blue-btn">Upload CSV</button>
+                        <p id="form-file-name">No file Choosen</p>
+                    </label>
+                    <input type="file" name="company-csv" id="company-csv" accept=".csv">
+                    <button type="submit" class="common-blue-btn">Register</button>
                 </form>
             </div>
         </div>
