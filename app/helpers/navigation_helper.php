@@ -23,7 +23,7 @@ function getNavigationByUser($userType)
     case 'company': //Company User Menu
       $navigation = array(
         array(URLROOT.'companies', 'dashboard', 'Dashboard'),
-        array(URLROOT.'advertisements', 'text_to_speech', 'Advertisements'),
+        array(URLROOT.'advertisements/getAdvertisementsByCompany', 'text_to_speech', 'Advertisements'),
         array(URLROOT.'requests/AdvertisementListRequests', 'school', 'Student Requests'),
         array(URLROOT.'companies/getAdvertisementByStatus', 'list_alt', 'Shortlisted'),
         array(URLROOT.'companies/InterviewScheduleList', 'calendar_month', 'Schedule'),

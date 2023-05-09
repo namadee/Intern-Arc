@@ -6,10 +6,10 @@
   <div class="common_list">
     <div class="common-list-topbar">
       <form action="" class="common-search-bar display-flex-row">
-        <span class="material-symbols-rounded">
-          search
-        </span>
-        <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
+                <span class="material-symbols-rounded">
+                    search
+                </span>
+              <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
       </form>
       <div class="common-filter">
         <span class="material-symbols-rounded">
@@ -60,8 +60,8 @@
             </td>
 
             <td>
-              <a class="common-edit-btn" href="<?php echo URLROOT; ?>advertisements/showAdvertisementById/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
-                  edit_square
+              <a class="common-edit-btn" href="<?php echo URLROOT; ?>advertisements/show-advertisement-by-id/<?php echo $advertisement->advertisement_id; ?>"><span class="material-symbols-outlined">
+              edit_square
                 </span>
               </a>
             </td>
