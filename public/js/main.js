@@ -7,7 +7,7 @@ function toggleNav() {
   document.getElementById("top-nav-left").classList.toggle("top-nav-left");
 }
 
-//Toggle Password Visibility Function
+//Toggle Password Visibility Function - Forgot Password functionality
 const toggleIcon1 = document.getElementById("togglePasswordIcon1");
 const passwordField1 = document.getElementById("password");
 const passwordField2 = document.getElementById("confirm_password");
@@ -29,7 +29,7 @@ function togglePasswordVisibility() {
 }
 
 //Validate Passwords
-const updatePwdForm = document.querySelector(".update-pwd-container form");
+const updatePwdForm = document.getElementById("login_update_pwd_form");
 const validateError = document.getElementById("pwd-validate-error");
 if (updatePwdForm) {
   updatePwdForm.addEventListener("submit", checkConfirmPassword);
@@ -43,18 +43,17 @@ function checkConfirmPassword(event) {
   const confirmPasswordInput =
     document.getElementById("confirm_password").value;
 
-  if (!specialChar.test(passwordInput) && upperCase.test(passwordInput)) {
-    console.log("Special char Not found and Have Uppercase");
+  if (specialChar.test(passwordInput) && upperCase.test(passwordInput)) {
+    console.log("Special char found and Have Uppercase");
     if (passwordInput != confirmPasswordInput) {
       event.preventDefault();
       validateError.textContent = "Password Does Not Match";
       validateError.style.display = "block";
     }
   } else {
-    console.log("Special char found or No UpperCase");
     event.preventDefault();
     validateError.textContent =
-      "Password Must contain atleast 1 Uppercase Letter and No any Special Characters";
+      "Password Must contain atleast 1 Uppercase Letter and any Special Character";
     validateError.style.display = "block";
   }
 }
@@ -77,15 +76,13 @@ function checkConfirmPassword(event) {
 // }
 //*****Cant use this all Form function -> It clashes with form validations
 
-
-
 // document.getElementById("internship_start").min = new Date().toISOString().split("T")[0];
 
 // let start_date; // undefined
 // let end_date_input;
-// function add_months(dt, n) 
+// function add_months(dt, n)
 // {
-//     return new Date(dt.setMonth(dt.getMonth() + n));      
+//     return new Date(dt.setMonth(dt.getMonth() + n));
 // }
 
 // document.getElementById("internship_start").addEventListener("change", function() {
@@ -100,15 +97,33 @@ function checkConfirmPassword(event) {
 //             console.log("invalid");
 //         }
 //     });
-    
+
 // });
 
 //Upload image on edit profile
-function displayImageName(fileName){
-  var fileInfo = document.querySelector(".file-info").innerHTML = 'Selected file: <br>' + fileName;
+function displayImageName(fileName) {
+  var fileInfo = (document.querySelector(".file-info").innerHTML =
+    "Selected file: <br>" + fileName);
 }
 
 //let end_date = new Date(start_date.setMonth(start_date.getMonth()+6));
 
 
+//LOGIN PAGE PASSWORD VISIBILITY
+//Toggle Password Visibility Function - Login Password functionality
+const toggleIconLoginForm = document.getElementById("toggleIconLoginForm");
+const loginPasswordField = document.getElementById("login_password");
 
+if (toggleIconLoginForm) {
+  toggleIconLoginForm.addEventListener("click", togglePasswordVisibilityLoginPage);
+}
+
+function togglePasswordVisibilityLoginPage() {
+  if (loginPasswordField.type === "password") {
+    loginPasswordField.type = "text";
+    toggleIconLoginForm.textContent = "visibility_off";
+  } else {
+    loginPasswordField.type = "password";
+    toggleIconLoginForm.textContent = "visibility";
+  }
+}

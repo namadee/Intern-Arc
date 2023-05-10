@@ -128,7 +128,11 @@ class AdvertisementModel
         $this->db->query('SELECT  advertisement_tbl.intern_count,advertisement_tbl.position, advertisement_tbl.advertisement_id, company_tbl.company_name, advertisement_tbl.status
         FROM company_tbl 
         JOIN advertisement_tbl 
-        ON company_tbl.company_id = advertisement_tbl.company_id_fk');
+        ON company_tbl.company_id = advertisement_tbl.company_id_fk 
+        WHERE advertisement_tbl.batch_year = :batch_year');
+
+        $batch =  $_SESSION['batchYear'];
+        $this->db->bind(':batch_year', $batch);
 
         return $this->db->resultset();
     }

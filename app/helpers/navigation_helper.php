@@ -51,8 +51,8 @@ function getNavigationByUser($userType)
       $navigation = array(
         array(URLROOT.'admin', 'dashboard', 'Dashboard'),
         array(URLROOT.'admin/company', 'cases', 'Companies'),
-        array(URLROOT.'admin/viewStudentList', 'school', 'Student'),
-        array(URLROOT.'admin/viewPdcStaff', 'groups', 'PDC'),
+        array(URLROOT.'admin/student', 'school', 'Student'),
+        array(URLROOT.'admin/pdc-staff', 'groups', 'PDC'),
         array(URLROOT.'admin/complaint', 'approval_delegation', 'Complaints'),
         array(URLROOT.'admin/report', 'monitoring', 'Reports'),
         array(URLROOT.'profiles/viewProfileDetails', 'manage_accounts', 'Profile')

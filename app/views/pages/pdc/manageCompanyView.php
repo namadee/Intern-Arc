@@ -46,7 +46,7 @@
                     add_to_photos
                 </span>
                 Register Company</a>
-            <a href="<?php echo URLROOT . 'companies/manage-company/blacklisted'; ?>" class="common-blue-btn display-flex-row" id="blacklist-company-btn">
+            <a href="<?php echo URLROOT . 'companies/manage-company/deactivated'; ?>" class="common-blue-btn display-flex-row" id="blacklist-company-btn">
                 <span class="material-symbols-outlined">
                     flag
                 </span>
@@ -57,11 +57,17 @@
         <div class="company-content-top display-flex-row">
             <h2>Company List</h2>
             <!-- Common Search Bar Style-->
-            <form action="" class="common-search-bar display-flex-row">
-                <span class="material-symbols-rounded">
-                    search
-                </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Company">
+            <form action="javascript:void(0)" class="common-search-bar display-flex-col">
+                <div class="display-flex-row">
+                    <span class="material-symbols-rounded">
+                        search
+                    </span>
+                    <input class="common-input" type="text" name="search-item" id="pdc_search_company" placeholder="Search Company">
+                </div>
+
+                <div class="common-search-result display-flex-col" id="pdc_company_result">
+
+                </div>
             </form>
 
         </div>
@@ -92,13 +98,13 @@
     </div>
 </section>
 
-<!-- VIEW  BLACKLISTED COMPANIES MODAL -->
+<!-- VIEW  Deactivated COMPANIES MODAL -->
 <div class="common-modal-box blacklisted-main-modal <?php echo $data['blacklisted_modal_class']; ?>">
     <div class="display-flex-col blacklisted-main-div">
 
         <div class="display-flex-col blacklisted-companies-modal">
             <div class="top-bar display-flex-row">
-                <h3>Blacklisted Company List</h3>
+                <h3>Deactivated Company List</h3>
                 <a href="<?php echo URLROOT . 'companies/manage-company'; ?>">
                     <span class="material-symbols-outlined">
                         close
@@ -117,7 +123,7 @@
                     <?php
 
                     if ($data['blacklisted_list'] == NULL) {
-                        echo '<p id="no-blacklist-msg"> No Blacklisted companies to show yet </p>';
+                        echo '<p id="no-blacklist-msg"> No Deactivated companies to show yet </p>';
                     } else {
                         foreach ($data['blacklisted_list'] as $blacklisted) {
                             echo "<tr>";

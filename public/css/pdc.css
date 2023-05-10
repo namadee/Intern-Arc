@@ -9,6 +9,19 @@ input::-webkit-inner-spin-button {
 
 /*-----------------------  Job Roles List Page PDC ----------------------- */
 
+.pdc-search-form {
+  width: fit-content;
+  background-color: var(--AlternateLightGrey);
+  margin: auto;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+#pdc_search_jobrole {
+  background-color: var(--AlternateLightGrey);
+}
+
 #pdc_jobroles_page {
   display: flex;
   gap: 3rem;
@@ -22,6 +35,7 @@ input::-webkit-inner-spin-button {
   border-radius: 5px;
   box-shadow: var(--Boxshadow1);
   padding: 3rem 2rem;
+  position: relative;
 }
 
 #pdc_jobroles_page .jobroles-quickAdd form {
@@ -469,6 +483,10 @@ input::-webkit-inner-spin-button {
   color: white;
 }
 
+#pdc-student-list-batch-year,
+#pdc-student-list-stream {
+  font-weight: 500;
+}
 /*-----------------------  Manage Student - Adding Batches Modal ----------------------- */
 
 .std-batches-add {
@@ -718,10 +736,10 @@ input::-webkit-inner-spin-button {
 .student-batches-table td button {
   padding: 0.2rem 1rem;
   border: none;
-  background-color: rgb(234, 234, 234);
+  background-color: transparent;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .student-batches-table td button a {
@@ -729,12 +747,13 @@ input::-webkit-inner-spin-button {
   font-weight: 400;
 }
 
-.student-batches-table td button a:hover {
+.student-batches-table td button:hover a{
   color: var(--Black);
 }
 
 .student-batches-table td button:hover {
   transform: scale(1.02);
+  background-color: var(--BackgroungColor);
 }
 .student-batches-table thead span {
   text-align: center;
@@ -767,6 +786,10 @@ input::-webkit-inner-spin-button {
 
 #student-batch-current-year span {
   color: var(--primaryColor);
+}
+
+#current-batchyear-session-span{
+  color: rgb(170, 169, 169) !important;
 }
 /*----------------------- Dashboard -----------------------*/
 .main-dashboard-topbar {
@@ -1203,7 +1226,7 @@ input::-webkit-inner-spin-button {
 #secondary-grey-btn {
   box-shadow: none;
   background-color: transparent;
-  color: rgb(170, 169, 169);
+  color: rgb(138, 138, 138);
   cursor: pointer;
   transition: ease-in-out 300ms;
   padding: 0.3rem 0.5rem;
@@ -1240,7 +1263,7 @@ input::-webkit-inner-spin-button {
   gap: 1rem;
   width: 50%;
   background-color: var(--BackgroungColor);
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
   height: 95%;
   border-radius: 5px;
   overflow-y: auto;
@@ -1248,6 +1271,11 @@ input::-webkit-inner-spin-button {
 
 .student-requests-box .container-top {
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: var(--BackgroungColor);
+  padding: 0.5rem;
+  padding-top: 1rem;
 }
 
 .student-request-body .common-filter {
@@ -1256,20 +1284,27 @@ input::-webkit-inner-spin-button {
 }
 
 .student-request-body .student-list td {
-  padding: 0.2rem;
+  text-align: center;
+  padding: 0.4rem 0.3rem;
 }
 
 .student-request-body .student-list a {
   color: var(--primaryColor);
   border: 1px solid var(--primaryColor);
   padding: 0.1rem 1rem;
-  border-radius: 5px;
+  border-radius: 0.3rem;
 }
 
 .student-request-body .student-list .common-status {
-  width: 7rem;
+  width: fit-content;
+  margin: auto;
 }
 
+.student-request-body .student-list th{
+  background-color: var(--AlternateLightGrey);
+  border-radius: 0.3rem;
+  padding: 0.5rem;;
+}
 /*----------------------- Student Request Page -----------------------*/
 
 /* #student-main-profile{
@@ -1591,6 +1626,13 @@ input::-webkit-inner-spin-button {
 }
 
 /*----------------------- Advertisement List -----------------------*/
+#current_batchyear_advertisement_span {
+  color: rgb(170, 169, 169) !important;
+}
+
+#pdc_advertisement_search {
+  width: 22rem;
+}
 
 .pdc-advertisementlist {
   height: auto;
@@ -1644,7 +1686,7 @@ input::-webkit-inner-spin-button {
   border-radius: 5px;
   gap: 1.5rem;
   margin: auto;
-  margin-top: 0.5rem;
+  flex-grow: 1;
 }
 
 .student-requests-list-container .top-container {
@@ -1746,26 +1788,42 @@ input::-webkit-inner-spin-button {
   width: 100%;
 }
 
-
-.student-requests-list-container .detail-container .container-one{
+.student-requests-list-container .detail-container .container-one {
   width: 50%;
 }
 
-.student-requests-list-container .detail-container #reg-number{
+.student-requests-list-container .detail-container #reg-number {
   width: 60%;
 }
 
-.student-requests-list-container .middle-container .top-name{
+.student-requests-list-container .middle-container .top-name {
   width: 80%;
 }
 
-.student-requests-list-container .middle-container .top-name #name{
+.student-requests-list-container .middle-container .top-name #name {
   width: 31%;
 }
 
 /* .student-requests-list-container .detail-container p{
   width: 30%;
 } */
+
+/********************************* Change Password Page *********************************/
+
+.change-password-container{
+  width: 50%;
+}
+
+#changePwd_validate_error {
+  color: var(--DangerColor);
+  background-color: var(--DangerBackground);
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: none;
+}
+
+
 /********************************* Disable Style *********************************/
 .disabled-button-style {
   color: #8d8d8d !important;

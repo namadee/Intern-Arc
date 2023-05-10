@@ -40,9 +40,9 @@ class Companies extends BaseController
         $companyList = $this->companyModel->getCompanyList();
         $all_access = $this->companyModel->checkSystemAccessCompanies();
 
-        if ($pg == 'blacklisted') {
+        if ($pg == 'deactivated') {
 
-            $blacklistedCompanyList = $this->companyModel->getBlacklistedCompanyList();
+            $blacklistedCompanyList = $this->companyModel->getDeativatedCompanyList();
             $data = [
                 'blacklisted_modal_class' => '',
                 'change_access_modal' => 'hide-element',

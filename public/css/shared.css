@@ -101,7 +101,8 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
 
 .common-edit-btn span {
   font-size: 1rem;
-  color: var(--DarkBlue);
+  color: rgb(170, 169, 169);
+
 }
 
 /********************************* Common 5 -  Main Modal Box [ ID ] *********************************/
@@ -153,9 +154,9 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   color: var(--primaryColor);
   cursor: pointer;
   border: solid 1px var(--primaryColor);
-  border-radius: 3px;
+  border-radius: 0.3rem;
   font-size: 0.9rem;
-  padding: 0.2rem 1.2rem;
+  padding: 0.2rem 1rem;
   background: #fff;
   transition: all 0.3s ease-in-out;
 }
@@ -178,6 +179,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   padding: 0 0.5rem;
   border-radius: 5px;
   color: var(--primaryColor);
+  position: relative;
 }
 
 .common-search-bar input {
@@ -185,6 +187,32 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
   border: none;
 }
 
+.common-search-bar input[type="text"]:focus {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.common-search-result {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border-radius: 0 0 0.3rem 0.3rem;
+  box-shadow: var(--BoxShadow1);
+  z-index: 1;
+  left: 0;
+  top: 2rem;
+  overflow-y: auto;
+  flex-grow: 1;
+  /* display: none; */
+}
+
+.common-search-result a {
+  padding: 0.2rem 0.5rem;
+  color: var(--Black);
+}
+.common-search-result a:hover {
+  background-color: var(--AlternateLightGrey);
+}
 /********************************* Common 7 - Status Div *********************************/
 .common-status {
   border: 1px solid var(--SuccessColor);
@@ -578,12 +606,25 @@ main {
   margin: 0;
 }
 
+.password-verification-error-div{
+  background-color: var(--DangerBackground);
+  color: var(--DangerColor);
+  width: 80%;
+  border-radius: 0.3rem;
+  padding: 1rem;
+  display: none;
+}
+
+.password-verification-error-div.error-alert{
+  display: block;
+}
+
 /******************** Main Log-In page ******************************/
 
 .loginContainer {
   margin: auto;
   margin-top: 5%;
-  width: 45%;
+  width: 60%;
   display: flex;
   border-radius: 5px;
   overflow: hidden;
@@ -593,7 +634,7 @@ main {
 
 .loginContainer form {
   gap: 1rem;
-  width: 70%;
+  width: 95%;
 }
 
 .leftBox {
@@ -616,6 +657,10 @@ main {
   color: var(--primaryColor);
   text-align: center;
   font-size: 0.9rem;
+  transition: all ease-in-out 0.2s;
+}
+.leftBox form a:hover{
+  transform: scale(1.02);
 }
 
 .leftBox-innerContainer {
@@ -656,6 +701,7 @@ main {
 
 #loginForm input {
   padding: 0.7rem;
+  width: 85%;
 }
 
 #loginForm input[type="submit"] {
@@ -701,6 +747,21 @@ main {
   background-color: rgb(255, 233, 233);
   border-color: var(--DangerColor);
 }
+
+#toggleIconLoginForm{
+  cursor: pointer;
+  border-radius: 20%;
+  padding: 0.3rem;
+}
+
+#toggleIconLoginForm:hover{
+background-color: var(--AlternateLightGrey);
+}
+
+.leftBox-innerContainer .passwordBox {
+  gap: 0.5rem;
+}
+
 
 /********************************* FLASH MESSAGE *********************************/
 
@@ -788,6 +849,7 @@ main {
 
 .update-pwd-container form input {
   font-size: 0.9rem;
+  width: 60%;
 }
 
 .update-pwd-container form span:hover {
