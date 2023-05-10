@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
-<script src="<?php echo URLROOT; ?>js/addAdvertisement.js" defer></script>
+<script src="<?php echo URLROOT; ?>js/company.js" defer></script>
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
     
 
