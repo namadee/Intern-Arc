@@ -17,7 +17,7 @@ class AjaxModel
         $this->db->query('SELECT user_tbl.username, user_tbl.user_id, user_tbl.email, company_tbl.company_name, company_tbl.contact 
         FROM company_tbl 
         JOIN user_tbl ON user_tbl.user_id = company_tbl.user_id_fk
-        WHERE blacklisted = 0 AND (company_tbl.company_name LIKE CONCAT("%", :companyName, "%")) 
+        WHERE user_tbl.account_status = "active" AND (company_tbl.company_name LIKE CONCAT("%", :companyName, "%")) 
         LIMIT 10');
 
         // Bind Values

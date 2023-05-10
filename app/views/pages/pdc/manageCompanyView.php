@@ -46,7 +46,7 @@
                     add_to_photos
                 </span>
                 Register Company</a>
-            <a href="<?php echo URLROOT . 'companies/manage-company/blacklisted'; ?>" class="common-blue-btn display-flex-row" id="blacklist-company-btn">
+            <a href="<?php echo URLROOT . 'companies/manage-company/deactivated'; ?>" class="common-blue-btn display-flex-row" id="blacklist-company-btn">
                 <span class="material-symbols-outlined">
                     flag
                 </span>
@@ -98,13 +98,13 @@
     </div>
 </section>
 
-<!-- VIEW  BLACKLISTED COMPANIES MODAL -->
+<!-- VIEW  Deactivated COMPANIES MODAL -->
 <div class="common-modal-box blacklisted-main-modal <?php echo $data['blacklisted_modal_class']; ?>">
     <div class="display-flex-col blacklisted-main-div">
 
         <div class="display-flex-col blacklisted-companies-modal">
             <div class="top-bar display-flex-row">
-                <h3>Blacklisted Company List</h3>
+                <h3>Deactivated Company List</h3>
                 <a href="<?php echo URLROOT . 'companies/manage-company'; ?>">
                     <span class="material-symbols-outlined">
                         close
@@ -123,7 +123,7 @@
                     <?php
 
                     if ($data['blacklisted_list'] == NULL) {
-                        echo '<p id="no-blacklist-msg"> No Blacklisted companies to show yet </p>';
+                        echo '<p id="no-blacklist-msg"> No Deactivated companies to show yet </p>';
                     } else {
                         foreach ($data['blacklisted_list'] as $blacklisted) {
                             echo "<tr>";
