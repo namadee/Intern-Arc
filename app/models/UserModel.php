@@ -168,7 +168,7 @@ class UserModel extends Database
   //Retrieve Temp Verification Code - Ruchira
   public function retrieveVerificationCode($email)
   {
-    $userId = $this->getUserId('ruchirxv2@gmail.com');
+    $userId = $this->getUserId($email);
 
     $this->db->query('SELECT `verification_code` FROM `user_tbl` WHERE `user_id` = :user_id');
     $this->db->bind(':user_id', $userId);
@@ -308,5 +308,21 @@ class UserModel extends Database
       $this->db->bind(':user_id', $user_id);
       return $this->db->single();
     }
+
+
+      //Get User by UserID //Check for availability
+  public function getUserByUserID($user_id)
+  {
+    $this->db->query("SELECT * FROM user_tbl WHERE user_id = :user_id");
+    $this->db->bind(':user_id', $user_id);
+    $row = $this->db->single();
+
+    //Check Rows
+    if ($row) {
+      return $row;
+    } else {
+      return false;
+    }
+  }
 
 }

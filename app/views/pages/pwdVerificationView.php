@@ -1,7 +1,6 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 
 <section class="forgot-pword-container display-flex-row">
-    <?php flashMessage('verification_code_invalid'); ?>
     <div class="display-flex-col forgot-pword-rightbox verification-main-container">
         <form action="<?php echo URLROOT . "login/verify-password" ?>" class="display-flex-col forgot-pwd-form pwd-verification-form" method="POST">
             <ul class="display-flex-row">
@@ -26,6 +25,11 @@
 
 
         </form>
+        <div class="password-verification-error-div  <?php echo $data['error_class']; ?>">
+            <p>
+                <?php echo $data['error_msg']; ?>
+            </p>
+        </div>
     </div>
 
 

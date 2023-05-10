@@ -10,11 +10,11 @@
             <div class="display-flex-row">
                 <p>Select Round: </p>
                 <div class="common-filter">
-                    <form action="" class="display-flex-row">
+                    <form method="GET" class="display-flex-row">
                         <span class="material-symbols-rounded">
                             filter_alt
                         </span>
-                        <select name="filter-list" id="filterlist">
+                        <select name="filter-list" id="filterlist" onchange="location = this.value;">
                             <?php if ($data['round'] == 1) {
                                 $roundOne = "selected";
                                 $roundTwo = "";
@@ -22,8 +22,8 @@
                                 $roundOne = "";
                                 $roundTwo = "selected";
                             } ?>
-                            <option value="1" <?php echo $roundOne ?>>Round 1</option>
-                            <option value="2" <?php echo $roundTwo ?>>Round 2</option>
+                            <option value="http://localhost/internarc/pdc/student-requests-list/1" <?php echo $roundOne ?>> Round 1</option>
+                            <option value="http://localhost/internarc/pdc/student-requests-list/2" <?php echo $roundTwo ?>>Round 2</option>
                         </select>
                     </form>
                 </div>
@@ -35,29 +35,32 @@
                 <div class="display-flex-row container-top">
                     <h3>CS Students</h3>
                     <!-- Common Search Bar Style-->
-                    <form action="" class="common-search-bar display-flex-row">
-                        <span class="material-symbols-rounded">
-                            search
-                        </span>
-                        <input class="common-input" type="text" name="search-item" placeholder="Search Student">
-                    </form>
-                </div>
-                <div class="common-filter">
-                    <form action="" class="display-flex-row">
-                        <span class="material-symbols-rounded">
-                            filter_alt
-                        </span>
-                        <select name="filter-list" id="filterlist">
-                            <option value="all" selected>All</option>
-                            <option value="name">Recruited</option>
-                            <option value="name">Rejected</option>
-                        </select>
+                    <form action="javascript:void(0)" class="common-search-bar display-flex-col">
+                        <div class="display-flex-row">
+                            <span class="material-symbols-rounded">
+                                search
+                            </span>
+                            <input class="common-input" type="text" name="search-item" id="pdc_request_cs_search" placeholder="Search Index Number" data-cs-stream="CS" data-batch-year="<?php echo $_SESSION['batchYear']; ?>" data-round="<?php echo $data['round']; ?>">
+                        </div>
+
+                        <div class="common-search-result display-flex-col" id="pdc_request_cs_result">
+
+                        </div>
                     </form>
                 </div>
                 <table class="student-list">
+                    <tr class="top-header">
+                        <th>
+                            Index Number
+                        </th>
+                        <th>
+                            Student Status
+                        </th>
+                        <th>Action</th>
+                    </tr>
                     <?php foreach ($data['studentRequestsCS'] as $studentRequest) : ?>
                         <tr>
-                            <td><?php echo $studentRequest->registration_number; ?></td>
+                            <td><?php echo $studentRequest->index_number; ?></td>
 
                             <td>
                                 <?php if ($studentRequest->student_status == 0) {
@@ -88,29 +91,32 @@
                 <div class="display-flex-row container-top">
                     <h3>IS Students</h3>
                     <!-- Common Search Bar Style-->
-                    <form action="" class="common-search-bar display-flex-row">
-                        <span class="material-symbols-rounded">
-                            search
-                        </span>
-                        <input class="common-input" type="text" name="search-item" placeholder="Search Student">
-                    </form>
-                </div>
-                <div class="common-filter">
-                    <form action="" class="display-flex-row">
-                        <span class="material-symbols-rounded">
-                            filter_alt
-                        </span>
-                        <select name="filter-list" id="filterlist">
-                            <option value="all" selected>All</option>
-                            <option value="name">Recruited</option>
-                            <option value="name">Rejected</option>
-                        </select>
+                    <form action="javascript:void(0)" class="common-search-bar display-flex-col">
+                        <div class="display-flex-row">
+                            <span class="material-symbols-rounded">
+                                search
+                            </span>
+                            <input class="common-input" type="text" name="search-item" id="pdc_request_is_search" placeholder="Search Index Number">
+                        </div>
+
+                        <div class="common-search-result display-flex-col" id="pdc_request_is_result">
+
+                        </div>
                     </form>
                 </div>
                 <table class="student-list">
+                    <tr class="top-header">
+                        <th>
+                            Index Number
+                        </th>
+                        <th>
+                            Student Status
+                        </th>
+                        <th>Action</th>
+                    </tr>
                     <?php foreach ($data['studentRequestsIS'] as $studentRequest) : ?>
                         <tr>
-                            <td><?php echo $studentRequest->registration_number; ?></td>
+                            <td><?php echo $studentRequest->index_number; ?></td>
 
                             <td>
                                 <?php if ($studentRequest->student_status == 0) {

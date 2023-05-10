@@ -208,20 +208,23 @@ class Login extends BaseController
             $storedVerificationCode = $this->userModel->retrieveVerificationCode($email);
 
             //Check whether the verification code is valid
-            if ($data['verification_code'] != $storedVerificationCode) {
+            if ($data['verification_code'] != $storedVerificationCode || $data['verification_code'] == 0) {
                 //Not Valid
-                flashMessage('verification_code_invalid', 'Entered verification code is invalid! Please Try Again.', 'danger-alert');
                 $data = [
-                    'email' => $email
+                    'email' => $email,
+                    'error_msg' => 'Entered verification code is invalid! Please Try Again.',
+                    'error_class' => 'error-alert'
                 ];
 
                 $this->view('pwdVerification', $data);
             } else {
                 //Valid
                 $this->userModel->updateVerificationCode($email);
-                flashMessage('verification_code_success', 'Verification Successful', 'success-alert');
                 $data = [
-                    'email' => $email
+                    'email' => $email,
+                    'error_msg' => '',
+                    'error_class' => '',
+                    'success_msg' => 'Verification code is valid'
                 ];
 
                 $this->view('updatePwd', $data);
