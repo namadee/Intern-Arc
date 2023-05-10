@@ -424,75 +424,6 @@ class Profiles extends BaseController
         $this->view('student/companyprofile');
     }
 
-    //update student profile
-    // public function EditStudentProfileDetails()
-    // {
-    //     $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
-    //     //$student_details = $this->userModel->getStudentDetails($studentId);
-
-    //     // Check if POST
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    //         // Strip Tags
-    //         stripTags();
-
-    //         $data = [
-    //             'student_id' => $studentId,
-    //             'experience' => trim($_POST['experience']),
-    //             'interests' => trim($_POST['interests']),
-    //             'qualifications' => trim($_POST['qualifications']),
-    //             'school' => trim($_POST['school']),
-    //             'contact' => trim($_POST['contact']),
-    //             'stream' => trim($_POST['stream']),
-    //             'profile_description' => trim($_POST['profile_description']),
-    //             'profile_name' => trim($_POST['profile_name']),
-    //             'personal_email' => trim($_POST['personal_email']),
-    //             'extracurricular' => trim($_POST['extracurricular']),
-    //         ];
-
-    //         //Execute
-    //         if ($this->studentModel->EditStudentProfileDetails($data)) {
-
-    //             redirect('profiles/student-profile');
-    //         } else {
-    //             die('Something went wrong');
-    //         }
-    //     } else {
-
-    //         $studentProfile = $this->studentModel->getStudentProfileData();
-
-    
-    //         $data = [
-    //             'experience' => $studentProfile->experience,
-    //             'interests' => $studentProfile->interests,
-    //             'qualifications' => $studentProfile->qualifications,
-    //             'school' => $studentProfile->school,
-    //             'contact' => $studentProfile->contact,
-    //             'stream' => $studentProfile->stream,
-    //             'profile_description' => $studentProfile->profile_description,
-    //             'profile_name' => $studentProfile->profile_name,
-    //             'personal_email'=>$studentProfile->personal_email,
-    //             'extracurricular' => $studentProfile->extracurricular,
-    //         ];
-    
-    //         $this->view('student/editprofile',$data);
-
-    //         // $data = [
-    //         //     'student_id' => '',
-    //         //     'experience' => '',
-    //         //     'interests' => '',
-    //         //     'qualifications' => '',
-    //         //     'school' => '',
-    //         //     'contact' => '',
-    //         //     'stream' => '',
-    //         //     'profile_description' => '',
-    //         //     'extracurricular' => '',
-    //         // ];
-
-
-    //         // $this->view('student/editprofile', $data);
-    //     }
-    // }
 
     public function EditStudentProfileDetails()
     {
@@ -569,22 +500,7 @@ class Profiles extends BaseController
 
             $this->view('student/editprofile', $data);
 
-            // $data = [
-            //     'student_id' => '',
-            //     'experience' => '',
-            //     'interests' => '',
-            //     'qualifications' => '',
-            //     'school' => '',
-            //     'contact' => '',
-            //     'stream' => '',
-            //     'profile_description' => '',
-            //     'extracurricular' => '',
-            // ];
-
-
-            // $this->view('student/editprofile', $data);
-
-            $this->view('student/editprofile',$data);
+            
         }
     }
 }

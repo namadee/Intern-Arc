@@ -186,7 +186,7 @@ class Students extends BaseController
     }
 
 
-    public function studentProfile()
+    public function studentProfile() //optional
     {
         $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
         $studentProfile = $this->studentModel->getStudentProfileData($studentId); 
