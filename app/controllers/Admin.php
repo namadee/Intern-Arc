@@ -21,7 +21,11 @@ class Admin extends BaseController
 
     public function complaint() //default method and view
     {
-        $this->view('admin/adminComplaint');
+        $company = $this->adminModel->getcompanydetails();
+        $data = [
+            'company' => $company,
+        ];
+        $this->view('admin/adminComplaint',$data);
     }
 
     public function viewcomplaint() //default method and view
@@ -29,16 +33,35 @@ class Admin extends BaseController
         $this->view('admin/viewComplaint');
     }
 
+    public function complaintdetails($id) //default method and view
+    {
+        $complaint = $this->adminModel->getcomplaintdetails($id);
+        $data = [
+            'complaint' => $complaint,
+        ];
+        $this->view('admin/viewComplaintView', $data);
+    }
+
+
     public function company() //default method and view
     {
-        $this->view('admin/company');
+        $company = $this->adminModel->getcompanydetails();
+        $data = [
+            'company' => $company,
+        ];
+        $this->view('admin/company', $data);
     }
 
-    public function viewcompany() //default method and view
+    public function viewcompany($id) //default method and view
     {
-        $this->view('admin/viewCompany');
+        $company = $this->adminModel->getcompanydetail($id);
+        $data = [
+            'company' => $company,
+        ];
+        $this->view('admin/viewCompany', $data);
     }
 
+    
     public function viewbatches() //default method and view
     {
         $this->view('admin/viewBatches');
@@ -46,30 +69,38 @@ class Admin extends BaseController
 
     public function viewstudentlist() //default method and view
     {
-        $this->view('admin/viewStudentList');
+        $student = $this->adminModel->getstudentdetails();
+        $data = [
+            'student' => $student,
+        ];
+        $this->view('admin/viewStudentList', $data);
     }
 
-    public function viewstudent() //default method and view
+    public function viewstudent($id) //default method and view
     {
-        $this->view('admin/viewStudent');
+        $student = $this->adminModel->getstudentdetail($id);
+        $data = [
+            'student' => $student,
+        ];
+        $this->view('admin/viewStudent', $data);
     }
 
     public function viewpdcstaff() //default method and view
     {
-        $staff=$this->adminModel->getstaffdetails();
+        $staff = $this->adminModel->getstaffdetails();
         $data = [
-            'staff'=> $staff,
+            'staff' => $staff,
         ];
-        $this->view('admin/viewPdcStaff',$data);
+        $this->view('admin/viewPdcStaff', $data);
     }
 
     public function viewpdcuser($id) //default method and view
     {
-        $staff=$this->adminModel->getuserdetails($id);
+        $staff = $this->adminModel->getuserdetails($id);
         $data = [
-            'staff'=> $staff,
+            'staff' => $staff,
         ];
-        $this->view('admin/viewPdcUser',$data);
+        $this->view('admin/viewPdcUser', $data);
     }
 
     public function report() //default method and view
@@ -79,12 +110,20 @@ class Admin extends BaseController
 
     public function registrationreport() //default method and view
     {
-        $this->view('admin/registrationReport');
+        $company = $this->adminModel->getcompanydetails();
+        $data = [
+            'company' => $company,
+        ];
+        $this->view('admin/registrationReport',$data);
     }
 
     public function advertisementreport() //default method and view
     {
-        $this->view('admin/advertisementReport');
+        $advertisement = $this->adminModel->getadvertisementdetails();
+        $data = [
+            'advertisement' => $advertisement,
+        ];
+        $this->view('admin/advertisementReport',$data);
     }
 
     public function viewprofile() //default method and view
@@ -92,48 +131,48 @@ class Admin extends BaseController
         $this->view('admin/updateProfile');
     }
 
-    public function addpdcuser(){
-        
-    
-            // Check if POST
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
-                // Strip Tags
-                stripTags();
-    
-                
+    public function addpdcuser()
+    {
 
-                $data =[
-                    'username' => trim($_POST['name']),
-                    'email' => trim($_POST['email']),
-                    'password' => trim($_POST['name']),
-                    'hashed_password' => '',
-                    'username_err' => '',
-                    'email_error' => '',
-                ];
 
-                if(empty($data['username'])){
-                    $data['username_err'] = 'Please enter a username';
-                }
+        // Check if POST
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                if(empty($data['email'])){
-                    $data['email_err'] = 'Plase enter a email';
-                }
+            // Strip Tags
+            stripTags();
 
-                if(empty($data['username_err'] && $data['email_err'])){
-                    // Hash Password
-                    $data['hashed_password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-                    if($this->adminModel->addStaff($data)){
-                        redirect('admin/addPdcUser');
-                    }else{
-                        die('Something went wrong');
-                    }
+
+
+            $data = [
+                'username' => trim($_POST['name']),
+                'email' => trim($_POST['email']),
+                'password' => trim($_POST['name']),
+                'hashed_password' => '',
+                'username_err' => '',
+                'email_error' => '',
+            ];
+
+            if (empty($data['username'])) {
+                $data['username_err'] = 'Please enter a username';
+            }
+
+            if (empty($data['email'])) {
+                $data['email_err'] = 'Plase enter a email';
+            }
+
+            if (empty($data['username_err'] && $data['email_err'])) {
+                // Hash Password
+                $data['hashed_password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                if ($this->adminModel->addStaff($data)) {
+                    redirect('admin/viewPdcStaff');
+                } else {
+                    die('Something went wrong');
                 }
-                else{
-                    //load with errors
-                    $this->view('admin/addPdcUser', $data);
-                }
-    
+            } else {
+                //load with errors
+                $this->view('admin/addPdcUser', $data);
+            }
+
             //     if ($user_id) {
             //         //User available -  Cant register
             //         $data = [
@@ -160,12 +199,12 @@ class Admin extends BaseController
             //         } else {
             //             //Random Password
             //             $password = generatePassword();
-    
+
             //             // Hash Password
             //             $hashPassword = password_hash($password, PASSWORD_DEFAULT);
-    
+
             //             $email = new Email();
-    
+
             //             if ($email->sendLoginEmail(trim($_POST['email']), $password, $_POST['username'])) {
             //                 $data = [
             //                     'username' => trim($_POST['username']),
@@ -173,10 +212,10 @@ class Admin extends BaseController
             //                     'password' => $hashPassword,
             //                     'user_role' => 'student'
             //                 ];
-    
+
             //                 //Execute
             //                 $this->registerModel->registerUser($data);
-    
+
             //                 //Get that User_Id
             //                 $user_id = $this->userModel->getUserId($data['email']);
             //                 $data = [
@@ -196,26 +235,54 @@ class Admin extends BaseController
             //             }
             //         }
             //     }
-            } 
-            else {
-    
-                $data = [
-                    'username' => '',
-                    'email' => '',
-                    'password' => '',
-                    'hashed_password' => '',
-                    'username_err' => '',
-                    'email_error' => '',
-                ];
-    
-                // Load View
-                $this->view('admin/addPdcUser', $data);
-            }
+        } else {
+
+            $data = [
+                'username' => '',
+                'email' => '',
+                'password' => '',
+                'hashed_password' => '',
+                'username_err' => '',
+                'email_error' => '',
+            ];
+
+            // Load View
+            $this->view('admin/addPdcUser', $data);
         }
-            
-        
-    
+    }
 
-    
+    public function deletepdcuser($id)
+    {
+        $this->adminModel->deletepdcuser($id);
+    }
 
+    public function viewstudentprofile($id)
+    {
+        $studentProfile = $this->adminModel->getstudentdetail($id);
+
+        $data = [
+            'experience' => $studentProfile->experience,
+            'interests' => $studentProfile->interests,
+            'qualifications' => $studentProfile->qualifications,
+            'school' => $studentProfile->school,
+            'contact' => $studentProfile->contact,
+            'stream' => $studentProfile->stream,
+            'profile_description' => $studentProfile->profile_description,
+            'profile_name' => $studentProfile->profile_name,
+            'personal_email' => $studentProfile->personal_email,
+            'extracurricular' => $studentProfile->extracurricular,
+        ];
+
+        $this->view('admin/studentprofile', $data);
+    }
+
+    public function companyprofile($id){
+        $company = $this->adminModel->getcompanydetail($id); 
+
+        $data = [
+            'company' => $company,
+        ];
+
+        $this->view('admin/companyprofile', $data);
+    }
 }

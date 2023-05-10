@@ -11,12 +11,12 @@
             
                 <div class="vsflex-wrap2">
                     <div>
-                        <h3>Student List - 2019 Batch</h3>
+                        <h3>Student List </h3>
                     </div>
                     <div>
                         <form id="coform">
-                            <input type="text" placeholder="Search Company" name="search">
-                        </form>
+                            <input type="text" placeholder="Search Register Number" name="search">
+                        </form><br>
                     </div>
                 </div>
             
@@ -29,61 +29,16 @@
                       <th class="st-table-header"></th>
                     </tr>
             
-                    <tr>
-                      <td class="st-table-data">Ruchira Bogahawatta</td>
-                      <td class="st-table-data">2020/IS/109</td>
-                      <td class="st-table-data">ruchira.b@gmail.com</td>
-                      <td class="st-table-data">0712412545</td>
-                      <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="st-table-data">Geeth Weerasinghe</td>
-                        <td class="st-table-data">2020/IS/111</td>
-                        <td class="st-table-data">geeth@gmail.com</td>
-                        <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="st-table-data">Namadee Shakya</td>
-                        <td class="st-table-data">2020/IS/110</td>
-                        <td class="st-table-data">namadee@gmail.com</td>
-                        <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="st-table-data">Ravindu Viranga</td>
-                        <td class="st-table-data">2020/IS/112</td>
-                        <td class="st-table-data">ravinduviranga@gmail.com</td>
-                        <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="st-table-data">Namadee Shakya</td>
-                        <td class="st-table-data">2020/IS/110 </td>
-                        <td class="st-table-data">namadee@gmail.com</td>
-                        <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="st-table-data">Ruchira Bogahawatta</td>
-                        <td class="st-table-data">2020/IS/109 </td>
-                        <td class="st-table-data">ruchira.b@gmail.com</td>
-                        <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="st-table-data">Ravindu Viranga</td>
-                        <td class="st-table-data">2020/IS/112</td>
-                        <td class="st-table-data">ravindu@gmail.com</td>
-                        <td class="st-table-data">0712412545</td>
-                        <td class="st-table-data"><button><a href="<?php echo URLROOT.'admin/viewStudent'; ?>">view</a></button></td>
-                    </tr>
+                    <?php foreach ($data['student'] as $student) : ?>
+                        <tr>
+                            <td class="st-table-data"> <?php echo $student->profile_name; ?></td>
+                            <td class="st-table-data"> <?php echo $student->registration_number; ?></td>
+                            <td class="st-table-data"> <?php echo $student->personal_email; ?></td>
+                            <td class="st-table-data"> <?php echo $student->contact; ?></td>
+                            <td class="st-table-data"> <button><a href="<?php echo URLROOT; ?>/admin/viewStudent/<?php echo $student->student_id; ?>" >View</a></button></td>
+                        </tr>
+                    <?php endforeach; ?>
+                   
             
                     
                   </table>

@@ -30,37 +30,17 @@
                                         <th class="com-table-header"></th>
                                     </tr>
 
-                                    <!-- <tr>
+                                    <tr>
                                         <td class="com-table-data">Virtusa</td>
                                         <td class="com-table-data"><button><a href="<?php echo URLROOT . 'admin/viewComplaint'; ?>">view</a></button></td>
                                     </tr>
 
-                                    <tr>
-                                        <td class="com-table-data">WSO2</td>
-                                        <td class="com-table-data"><button><a href="<?php echo URLROOT . 'admin/viewComplaint'; ?>">view</a></button></td>
-                                    </tr> -->
-                                    <?php foreach ($data['complaint'] as $complaint) : ?>
+                                    <?php foreach ($data['company'] as $company) : ?>
                                         <tr>
-                                            <td> <?php echo $complaint->id; ?></td>
-                                            <td> <?php echo $complaint->name; ?></td>
-                                            <td id="center"> <a href="<?php echo URLROOT . 'admin/viewComplaint'; ?><?php echo $complaint->id; ?>" class="btn3">More</a></td>
+                                            <td class="com-table-data"> <?php echo $company->company_name; ?></td>
+                                            <td class="com-table-data"> <button><a href="<?php echo URLROOT; ?>/admin/viewComplaint/<?php echo $company->company_id; ?>">View</a></button></td>
                                         </tr>
                                     <?php endforeach; ?>
-
-                                    <!-- <tr>
-                                            <td class="com-table-data">Codegen International</td>
-                                            <td class="com-table-data"><button><a href="<?php echo URLROOT . 'admin/viewComplaint'; ?>">view</a></button></td>
-                                        </tr>
-                                
-                                        <tr>
-                                            <td class="com-table-data">Sysco Labs</td>
-                                            <td class="com-table-data"><button><a href="<?php echo URLROOT . 'admin/viewComplaint'; ?>">view</a></button></td>
-                                        </tr>
-                                
-                                        <tr>
-                                            <td class="com-table-data">Tech Venturas</td>
-                                            <td class="com-table-data"><button><a href="<?php echo URLROOT . 'admin/viewComplaint'; ?>">view</a></button></td>
-                                        </tr> -->
 
                                 </table>
 
@@ -90,7 +70,7 @@
                                         <td class="com-table-data"><button>view</button></td>
                                     </tr>
 
-                                    <tr>
+                                    <!-- <tr>
                                         <td class="com-table-data">2020/CS/111</td>
                                         <td class="com-table-data">20020590</td>
                                         <td class="com-table-data"><button>view</button></td>
@@ -112,7 +92,7 @@
                                         <td class="com-table-data">2020/CS/100</td>
                                         <td class="com-table-data">20020234</td>
                                         <td class="com-table-data"><button>view</button></td>
-                                    </tr>
+                                    </tr> -->
 
                                 </table>
 

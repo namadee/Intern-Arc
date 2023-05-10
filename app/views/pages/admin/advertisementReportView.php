@@ -13,8 +13,9 @@
                     <div>
                         <h3>Advertisement Reports</h3>
                     </div>
-                    <input class="registration-report-filter-button" type="submit" value="Filter">
+                    <!-- <input class="registration-report-filter-button" type="submit" value="Filter"> -->
                 </div>
+                <br>
             
                 <table class="re-table" >
                     <tr>
@@ -22,43 +23,23 @@
                       <th class="re-table-header">Job Position</th>
                       <th class="re-table-header">Interns</th>
                     </tr>
+
+                    <?php foreach ($data['advertisement'] as $advertisement) : ?>
+                        <tr>
+                            <td class="re-table-data"> <?php echo $advertisement->company_name; ?></td>
+                            <td class="re-table-data"> <?php echo $advertisement->position; ?></td>
+                            <td class="re-table-data"> <?php echo $advertisement->intern_count; ?></td>
+
+                        </tr>
+                    <?php endforeach; ?>
             
-                    <tr>
-                      <td class="re-table-data">Virtusa</td>
-                      <td class="re-table-data">Software Engineer</td>
-                      <td class="re-table-data">1</td>
-                    </tr>
-            
-                    <tr>
-                        <td class="re-table-data">Virtusa</td>
-                        <td class="re-table-data">Software Engineer</td>
-                        <td class="re-table-data">1</td>
-                    </tr>
-            
-                    <tr>
-                        <td class="re-table-data">Virtusa</td>
-                        <td class="re-table-data">Software Engineer</td>
-                        <td class="re-table-data">1</td>
-                    </tr>
-            
-                    <tr>
-                        <td class="re-table-data">Virtusa</td>
-                        <td class="re-table-data">Software Engineer</td>
-                        <td class="re-table-data">1</td>
-                    </tr>
-            
-                    <tr>
-                        <td class="re-table-data">Virtusa</td>
-                        <td class="re-table-data">Software Engineer </td>
-                        <td class="re-table-data">1</td>
-                    </tr>
                     
                   </table>
-                  <br><br><br>
-                            <ul>
+                  <br>
+                            <!-- <ul>
                                 <li>Total Advertisements &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp:20</li>
                                 <li>Total Interns Recruited   &nbsp&nbsp&nbsp : 20</li>
-                            </ul>
+                            </ul> -->
 
                   <input class="registration-report-download-button" type="submit" value="Download PDF">
                        

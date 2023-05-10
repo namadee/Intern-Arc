@@ -18,7 +18,7 @@
                 <table class="combasic-details">
                     <tr>
                         <td>Company Name</td>
-                        <td class="comp-data">CodeGen International</td>
+                        <td class="comp-data"><?php echo $data['complaint']->complaint?></td>
                     </tr>
                     <tr>
                         <td>Complaint</td>

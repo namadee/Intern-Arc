@@ -19,27 +19,28 @@
                 <table class="vst-basic-details">
                     <tr>
                         <td>Student Name</td>
-                        <td class="st-data">Ruchira Bogahawatta</td>
+                        <td class="st-data"><?php echo $data['student']->profile_name; ?></td>
                     </tr>
                     <tr>
                         <td>Registration Number</td>
-                        <td class="st-data">2020/IS/109</td>
+                        <td class="st-data"><?php echo $data['student']->registration_number; ?></td>
                     </tr>
                     <tr>
                         <td>Index Number</td>
-                        <td class="st-data">20021097</td>
+                        <td class="st-data"><?php echo $data['student']->index_number; ?></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td class="st-data">ruchira@ucsc.ac.cmb.lk</td>
+                        <td class="st-data"><?php echo $data['student']->personal_email; ?></td>
                     </tr>
                 </table>
             
             </div>
             <form class="profile-co">
-            <input type="submit" class="view-st-profile-button" value="View Profile">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <input type="submit" class="view-st-delete-button" value="Delete">
+            <!-- <input type="submit" class="view-st-profile-button" value="View Profile">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp -->
+            <!-- <input type="submit" class="view-st-delete-button" value="Delete"> -->
             </form>
+            <a href="<?php echo URLROOT; ?>/admin/viewstudentprofile/<?php echo $data['student']->student_id; ?>" class="view-st-profile-button">View Profile</a>
 
 </section>
 <?php require APPROOT . '/views/includes/footer.php'; ?>

@@ -17,25 +17,22 @@
                 <table class="vbasic-details">
                     <tr>
                         <td>Company Name</td>
-                        <td class="co-data">Virtusa</td>
+                        <td class="co-data"><?php echo $data['company']->company_name; ?></td>
                     </tr>
-                    <tr>
-                        <td>Contact Person</td>
-                        <td class="co-data">Ruchira Bogahawatta</td>
-                    </tr>
+                    
                     <tr>
                         <td>Email</td>
-                        <td class="co-data">ruchira@virtusa</td>
+                        <td class="co-data"><?php echo $data['company']->company_email; ?></td>
                     </tr>
                     <tr>
                         <td>Contact Number</td>
-                        <td class="co-data">0712454565</td>
+                        <td class="co-data"><?php echo $data['company']->contact; ?></td>
                     </tr>
                 </table>
             
             </div>
             
-            <div class="view-co-descriptions">
+            <!-- <div class="view-co-descriptions">
                 <div class="view-co-section">
                     <h3>Summarized Analysis</h3>
                     <br>
@@ -47,12 +44,14 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <form class="profile-co">
-            <input type="submit" class="view-co-profile-button" value="View Profile">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <a href="<?php echo URLROOT; ?>/admin/companyprofile/<?php echo $data['company']->company_id; ?>" class="view-st-profile-button">View Profile</a>
+            <!-- <input type="submit" class="view-co-profile-button" value="View Profile">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp -->
             <input type="submit" class="view-co-blacklist-button" value="Blacklist">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <input type="submit" class="view-co-delete-button" value="Delete">
+            <!-- <input type="submit" class="view-co-delete-button" value="Delete"> -->
             </form>
+            
 
 </section>
 <?php require APPROOT . '/views/includes/footer.php'; ?>

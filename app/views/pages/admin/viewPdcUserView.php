@@ -18,9 +18,9 @@
 				Email
 				<div class="view"><?php echo $data['staff']->email;?> </div>
 				<br />
-                <!-- <div class="btn">
+                <div class="btn" href="<?php echo URLROOT; ?>admin/deletepdcuser/<?php echo $staff->user_id; ?>">
                   <button>Delete</button>
-                </div> -->
+                </div>
 				
 			</div>
 		</div>
