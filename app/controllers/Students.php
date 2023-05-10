@@ -121,21 +121,10 @@ class Students extends BaseController
     }
 
 
-    public function studentProfile()
+    public function studentProfile($studentId = NULL)
     {
-        $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
+       if($studentId != NULL){
         $studentProfile = $this->studentModel->getStudentProfileData($studentId);
-        // $data = [
-        //     'student_id' => $studentId,
-        //     'experience' => $experience,
-        //     'interests' => $interests,
-        //     'qualifications' => $qualifications,
-        //     'school' => $school,
-        //     'contact' => $contact,
-        //     'stream' => $stream,
-        //     'profile_description' => $profile_description,
-        //     'extracurricular' => $extracurricular,
-        // ];
 
         $data = [
             'experience' => $studentProfile->experience,
@@ -148,9 +137,28 @@ class Students extends BaseController
             'profile_name' => $studentProfile->profile_name,
             'personal_email'=> $studentProfile->personal_email,
             'extracurricular' => $studentProfile->extracurricular,
-            'profile_name' => $studentProfile->profile_name,
-            'personal_email' => $studentProfile->personal_email,
+           
         ];
+
+
+       }else{
+        $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
+        $studentProfile = $this->studentModel->getStudentProfileData($studentId);
+
+        $data = [
+            'experience' => $studentProfile->experience,
+            'interests' => $studentProfile->interests,
+            'qualifications' => $studentProfile->qualifications,
+            'school' => $studentProfile->school,
+            'contact' => $studentProfile->contact,
+            'stream' => $studentProfile->stream,
+            'profile_description' => $studentProfile->profile_description,
+            'profile_name' => $studentProfile->profile_name,
+            'personal_email'=> $studentProfile->personal_email,
+            'extracurricular' => $studentProfile->extracurricular,
+        
+        ];
+       }
 
         $this->view('student/studentprofile', $data);
     }

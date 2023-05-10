@@ -5,50 +5,58 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 <section class="main-content">
   <div id='calendar'></div>
-  <h3>Create Interviews</h3>
+  
   <br>
-  <form id="date-click-form" class="create-interview-form" action="">
-    <h3>Create Interview</h3>
-    <div>
-      <label for="Interviewee_count">Interviewee_count:</label>
-      <input type="number" id="Interviewee_count">
-    </div>
+  <form id="date-click-form" class="create-interview-form" action="<?php echo URLROOT . $data['formAction']; ?>" method="POST">
+   <div class="topic-head">Software Engineer - Virtusa</div>
+    
+    <div><h3>Create Interview</h3></div>
+
     <div>
       <label for="sche-period">Start Date</label>
-      <input type="date" name="sche-start" id="start-date-input">
+      <input type="date" name="start_date" id="start-date-input">
     </div>
+
     <div>
-      <label for="duration">Interview Duration</label>&nbsp;
-      <select name="durations" id="durations">
+      <label for="sche-period">End Date</label>&nbsp;
+      <input type="date" name="end_date" id="end-date-input">
+    </div>
+
+    <div>
+      <label for="recurrence">Repeat</label>&nbsp;
+      <select name="recurrence" id="recurrence">
+        <option value="no_repeat">No Repeat</option>
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option value="till-end-date">Till End Date</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="interviewee_count">No. of interviewees you can interview within Same time slot</label>
+      <input type="number" name="interviewee_count" id="interviewee_count">
+    </div>
+
+    <div>
+      <label for="duration">Time slot Duration</label>&nbsp;
+      <select name="duration" id="duration">
         <option value="15">15 minutes</option>
         <option value="30">30 minutes</option>
-        <option value="1">1 Hour</option>
+        <option value="60">1 Hour</option>
       </select>
     </div>
+
     <div>
-      <label for="duration">Repeat</label>&nbsp;
-      <select name="durations" id="repeat" >
-        <option value="15">Daily</option>
-        <option value="30">Weekly</option>
-        <option id="select1" value="till-end-date">Till End Date</option>
-      </select>
+      <button class="add-period" id="add-period">Add Time Period<span id="addIcon" class="material-symbols-outlined">library_add</span></button>
+      <div id="time-slots" class="display-flex-col"></div>
     </div>
-    <div id="show-date" style="display: none;">
-      <label for="sche-period" >End Date</label>&nbsp;
-      <input type="date" name="sche-end" id="end-date-input">
-    </div>
-    <div>
-      <label for="start-time-input">Start Time</label>
-      <input type="time" id="start-time-input" name="start-time-input" min="09:00" max="18:00" required>
-    </div>
-    <div>
-      <label for="start-time-input">End Time</label>
-      <input type="time" id="end-time-input" name="end-time-input" min="09:00" max="18:00" required>
-    </div>
-    <div>
+
+    <input type="hidden" name="advertisement_id" value="<?php echo $data['advertisment_id'] ?>">
+
+    <!-- <div>
       <label for="description">Description:</label>
       <textarea name="description" id="description"></textarea>
-    </div>
+    </div> -->
     <button class="common-blue-btn" type="submit">Submit</button>
   </form>
   </div>
@@ -58,23 +66,36 @@
 <?php require APPROOT . '/views/includes/footer.php'; ?>
 
 <script>
-   
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
-    const eventSources = [
-      // your event source
-      {
-        ad_id: 'advertisement name',
-        events: [], // initialize the events array as empty
-        color: 'black', // an option!
-        textColor: 'yellow' // an option!
-      }
-    ]
+    // const eventSources = [
+    //   // your event source
+    //   {
+    //     ad_id: 'advertisement name',
+    //     events: [], // initialize the events array as empty
+    //     color: 'black', // an option!
+    //     textColor: 'yellow' // an option!
+    //   }
+    // ]
+
+
+
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        
+
+      },
+      
       dateClick: popupForm,
+      contentHeight: 600,
+     
     });
+
 
     calendar.render();
 
@@ -83,73 +104,50 @@
     function popupForm(info) {
       var date = info.dateStr;
       if (form.style.display === 'none') {
-        
+
         form.style.display = 'block';
       } else {
-        
+
         form.style.display = 'none';
       }
-        // get the form input values
-      var startDate = document.getElementById('start-date-input').value;
-      var endDate = document.getElementById('end-date-input').value;
-      var startTime = document.getElementById('start-time-input').value;
-      var endTime = document.getElementById('end-time-input').value;
-      var interviewCount = document.getElementById('Interviewee_count').value;
-      var duration = document.getElementById('durations').value;
-      var description = document.getElementById('description').value;
+//       function setMinutesToClosest(input) {
+//   let d = new Date();
+//   d.setHours(input.value.split(':')[0], input.value.split(':')[1]);
+//   let m = d.getMinutes();
+//   if (m > 0 && m < 30) {
+//     d.setMinutes(30);
+//   } else if (m > 30 && m < 60) {
+//     d.setMinutes(0);
+//     d.setHours(d.getHours()+1);
+//   }
+//   input.value = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+// }
 
-      // create the event object
-      var event = {
-        title: interviewCount + ' Interview(s)',
-        start: startDate + 'T' + startTime,
-        end: endDate + 'T' + endTime,
-        category: 'category1',
-        description: description
-      };
-      console.log(event);
 
-      // add the event to the events array
-      eventSources[0].events.push(event);
 
-      // add the event source to the calendar
-      calendar.addEventSource(eventSources);
-      console.log(date);
-      inputtag =document.getElementById("show-date");
-  dropdown =document.getElementById("repeat");
-  
-  
-  dropdown.addEventListener("change", function() {
-    console.log(dropdown);
-  console.log(inputtag);
-  console.log("hello");
-    
-    
-    if (dropdown.value == "till-end-date") {
-      inputtag.style.display = "block";
-    console.log("selected");
-    console.log(dropdown.value)
-
-    } else {
-      inputtag.style.display = "none";
     }
 
+    const addPeriodBtn = document.getElementById('add-period');
+    const timeSlots = document.getElementById('time-slots');
+
+
+
+    //insert each start time and end time from each input generated into a data structure
+    addPeriodBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const div = document.createElement('div');
+      div.classList.add('display-flex-row', 'periods-box');
+      
+
+      const index = timeSlots.children.length;
+      div.innerHTML = `
+    <input type="time" step="900" min="09:00" max="18:00" class="period" name="start_time[${index}]" id="start_time_${index}">
+    <input type="time" step="900" min="09:00" max="18:00" class="period" name="end_time[${index}]" id="end_time_${index}">
+  `;
+      timeSlots.appendChild(div);
     });
-    }
-    },
-    
-   
-  );
-  
+  });
 
-  // function showinp(){
-  //   console.log("selected");
-    
-  //   if (dropdown.value === "till-end-date") {
-  //   element.style.display = "block";
-  //   } else {
-  //   element.style.display = "none";
-  //   }
 
-    
   // }
 </script>

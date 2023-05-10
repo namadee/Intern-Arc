@@ -2,24 +2,43 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
-<section class="main-content" id="company-dashboard">
+<section class="main-content display-flex-col" id="company-dashboard">
+  <?php
+  $roundTableData = $_SESSION['roundTableData'];
+  $value;
+
+  if (($roundDataArray['roundNumber']) == 1) {
+    $value = $roundTableData[0]->start_date;
+  } else if (($roundDataArray) == 2) {
+    $value = $roundTableData[1]->end_date;
+  }
+  ?>
   <div class="company-top-notif">
-    <p>Ending date of current round period: </p>
+    <p>Ending date of current round period: <?php echo $value ?> </p>
   </div>
   <div class="company-dashboard-top">
     <div class="company-dashboard-box">
+      <?php
+      $applycount = 0;
+      $shortlistcount = 0;
+      foreach ($data['dashboard'] as $dashboard) :
+        $applycount = $applycount + 1;
+        if ($dashboard->status == 'shortlisted') {
+          $shortlistcount = $shortlistcount + 1;
+        }
+      endforeach; ?>
       <div>
         <div class="blue-line"> </div>
         <p>Total Students Applied</p>
       </div>
-      <p>180</p>
+      <p><?php echo $applycount ?></p>
     </div>
     <div class="company-dashboard-box">
       <div>
         <span class="blue-line"></span>
         <p>Total students Shortlisted</p>
       </div>
-      <p>40</p>
+      <p><?php echo $shortlistcount ?></p>
     </div>
     <div class="company-dashboard-box">
       <div>
@@ -58,7 +77,7 @@
 
       </tr>
 
-      <?php foreach ($data['dashboard'] as $dashboard) : ?>
+      <?php foreach ($data['dashboard'] as $dashboard) :?>
         <tr>
           <td><?php echo $dashboard->profile_name ?></p>
           </td>
@@ -75,7 +94,7 @@
           </td>
 
           <td>
-            <a class="common-view-btn" href="">View</a>
+            <a class="common-view-btn" href="<?php echo URLROOT. 'students/student-profile/'. $dashboard->student_id ?>">View</a>
           </td>
 
 
@@ -84,7 +103,7 @@
       <?php endforeach; ?>
 
     </table>
-    <a href="<?php echo URLROOT; ?>Advertisements/add-advertisement" class="common-blue-btn">View All</a>
+    <a href="<?php echo URLROOT; ?>requests/advertisement-list-requests" class="common-blue-btn">View All</a>
   </div>
 
 

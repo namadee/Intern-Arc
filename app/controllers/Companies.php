@@ -120,9 +120,13 @@ class Companies extends BaseController
         $this->view('company/InterviewScheduleList', $data);
     }
 
-    public function InterviewScheduleCreate()
+    public function InterviewScheduleCreate($advertisementId)
     {
-        $this->view('company/calander');
+        $data =[
+            'advertisment_id' => $advertisementId,
+            'formAction' => 'advertisements/createInterviewSlots/'.$advertisementId,
+        ];
+        $this->view('company/calander', $data);
     }
 
     public function InterviewSchedule()
