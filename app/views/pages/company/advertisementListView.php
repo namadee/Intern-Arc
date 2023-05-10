@@ -71,7 +71,7 @@
               <a class="common-view-btn" href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $advertisement->advertisement_id; ?>">View</a>
             </td>
             <?php
-            
+            $roundDataArray['roundNumber'] = NULL ;
             if ($roundDataArray['roundNumber'] != NULL) {
               // Need Round Constraints
               $hrefStatus1 = $roundDataArray['hrefStatus'];

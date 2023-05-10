@@ -42,7 +42,7 @@
       <select name="duration" id="duration">
         <option value="15">15 minutes</option>
         <option value="30">30 minutes</option>
-        <option value="1">1 Hour</option>
+        <option value="60">1 Hour</option>
       </select>
     </div>
 
@@ -110,6 +110,19 @@
 
         form.style.display = 'none';
       }
+//       function setMinutesToClosest(input) {
+//   let d = new Date();
+//   d.setHours(input.value.split(':')[0], input.value.split(':')[1]);
+//   let m = d.getMinutes();
+//   if (m > 0 && m < 30) {
+//     d.setMinutes(30);
+//   } else if (m > 30 && m < 60) {
+//     d.setMinutes(0);
+//     d.setHours(d.getHours()+1);
+//   }
+//   input.value = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+// }
+
 
 
     }
@@ -128,8 +141,8 @@
 
       const index = timeSlots.children.length;
       div.innerHTML = `
-    <input type="time" min="09:00" max="18:00" class="period" name="start_time[${index}]" id="start_time_${index}">
-    <input type="time" min="09:00" max="18:00" class="period" name="end_time[${index}]" id="end_time_${index}">
+    <input type="time" step="900" min="09:00" max="18:00" class="period" name="start_time[${index}]" id="start_time_${index}">
+    <input type="time" step="900" min="09:00" max="18:00" class="period" name="end_time[${index}]" id="end_time_${index}">
   `;
       timeSlots.appendChild(div);
     });

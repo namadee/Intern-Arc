@@ -113,8 +113,10 @@ class AdvertisementModel
     //SELECT ADVERTISEMENTS BASED ON COMPANY - Namadee
     public function getAdvertisementsByCompany($companyId)
     {
+        // $round = $roundDataArray['roundNumber'];
         $this->db->query('SELECT * FROM advertisement_tbl WHERE company_id_fk = :company_id');
         $this->db->bind(':company_id', $companyId);
+        // $this->db->bind(':round', $round);
 
         return $this->db->resultset();
     }
@@ -143,7 +145,8 @@ class AdvertisementModel
     }
 
     //Create Interview slots- Company  - Namadee
-    public function createInterviewSlots($data){
+    public function createInterviewSlots($data)
+    {
         $this->db->query('INSERT INTO schedule_tbl (start_date, end_date, advertisement_id) VALUES (:start_date, :end_date, :advertisement_id)');
         $this->db->bind(':advertisement_id', $data['advertisement_id']);
         //bind values
@@ -151,10 +154,10 @@ class AdvertisementModel
         $this->db->bind(':end_date', $data['end_date']);
         //execute
         $this->db->execute();
-    
+
         //select last insert id as schedule id
         $scheduleId = $this->db->lastInsertId();
-    
+
         $this->db->query('INSERT INTO event_tbl (recurrence, Interviewee_count, duration, schedule_fk) VALUES (:recurrence, :interviewee_count, :duration, :schedule_fk)');
         $this->db->bind(':recurrence', $data['recurrence']);
         $this->db->bind(':interviewee_count', $data['interviewee_count']);
@@ -162,36 +165,63 @@ class AdvertisementModel
         $this->db->bind(':schedule_fk', $scheduleId);
         //execute
         $this->db->execute();
-    
+
         //select last insert id as event id
         $eventId = $this->db->lastInsertId();
-    
-           // loop through the array of time periods and insert each one into the time_periods table
-    foreach ($data['time_periods'] as $timePeriod) {
-        $this->db->query('INSERT INTO timeperiod_tbl (start_time, end_time, event_fk) VALUES (:start_time, :end_time, :event_fk)');
-        $this->db->bind(':start_time', $timePeriod['start_time']);
-        $this->db->bind(':end_time', $timePeriod['end_time']);
-        $this->db->bind(':event_fk', $eventId);
-        $this->db->execute();
-    }
+
+        // loop through the array of time periods and insert each one into the time_periods table
+        foreach ($data['time_periods'] as $timePeriod) {
+            $this->db->query('INSERT INTO timeperiod_tbl (start_time, end_time, event_fk) VALUES (:start_time, :end_time, :event_fk)');
+            $this->db->bind(':start_time', $timePeriod['start_time']);
+            $this->db->bind(':end_time', $timePeriod['end_time']);
+            $this->db->bind(':event_fk', $eventId);
+            $this->db->execute();
+        }
+
+        //last isert id as timeperiod id
+        $timeperiodId = $this->db->lastInsertId();
+
+        //loop through array of time slots and insert each one into the time_slots table
+        foreach ($data['time_slots'] as $timeslot) {
+            $this->db->query('INSERT INTO timeslot_tbl (start_time, end_time, slot_date, timeperiod_fk) VALUES (:start_time, :end_time, :slot_date, :timeperiod_fk)');
+            $this->db->bind(':start_time', $timeslot['start_time']);
+            $this->db->bind(':end_time', $timeslot['end_time']);
+            $this->db->bind(':slot_date', $timeslot['date']);
+            $this->db->bind(':timeperiod_fk', $timeperiodId);
+            $this->db->execute();
+        }
 
         //execute
-            return true;
-       
+        return true;
     }
 
     //get schedule data and event data to fullcalndr event object - namadee
-    public function getCalanderEvents($advertisementId){
+    public function getCalanderEvents($advertisementId)
+    {
         $this->db->query('SELECT a.position, s.advertisement_id, s.start_date, s.end_date, e.event
         FROM schedule_tbl s
         JOIN event_tbl e ON s.schedule_id = e.schedule_fk
         JOIN advertisement_tbl a ON s.advertisement_id = a.advertisement_id
         WHERE s.advertisement_id = :advertisement_id
         ');
-    
+
         $this->db->bind(':advertisement_id', $advertisementId);
         return $this->db->resultset();
     }
-    
+
+    //Get time slots and connect schedule, event, time period tables - company calendar - Namadee
+    public function getInterviewSlots($advertisement_id)
+    {
+        $this->db->query('SELECT s.*, e.*,tp.*, ts.*,
+        FROM timeslot_tbl ts
+        JOIN timeperiod_tbl tp ON ts.timeperiod_fk = tp.timeperiod_id
+        JOIN event_tbl e ON tp.event_fk = e.event_id
+        JOIN schedule s ON e.schedule_fk = s.schedule_id
+        JOIN advertisement a ON s.advertisement_id = a.advertisement_id
+        
+        ');
+
+        $this->db->bind(':advertisement_id', $advertisement_id);
+        return $this->db->resultset();
+    }
 }
-    
