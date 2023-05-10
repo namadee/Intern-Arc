@@ -16,9 +16,16 @@
                     <div>
                         <form id="coform">
                             <input type="text" placeholder="Search Company" name="search">
+                            <!-- <?php foreach ($results as $result): ?>
+                                <div>
+                                <h2><?php echo $result['title']; ?></h2>
+                                <p><?php echo $result['description']; ?></p>
+                                </div>
+                            <?php endforeach; ?>             -->
                         </form><br>
                     </div>
                 </div>
+
             
                 <table class="co-table" >
                     <tr>

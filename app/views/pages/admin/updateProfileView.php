@@ -8,6 +8,20 @@
     <div class="update-profile-container display-flex-col">
         <h3>View Profile</h3>
 
+        <!-- <form class="display-flex-col" method="POST" action="<?php echo URLROOT . "profiles/update-profile-details" ?> " enctype="multipart/form-data">
+            <div class="admin-user-profile-icon display-flex-col">
+                <div class="display-flex-col">
+                    <img src="<?php echo URLROOT . $_SESSION['profile_pic']; ?>">
+                    <label for="upload-img" id="admin-profile-edit" class="display-flex-row">
+                        <span class="material-symbols-outlined">
+                            edit_square
+                        </span>
+                        Change</label>
+                    <input type="file" name="upload_img" id="upload-img">
+                </div>
+                <p id="form-file-name"></p>
+            </div> -->
+
         <form class="display-flex-col" method="POST" action="<?php echo URLROOT . "profiles/update-profile-details/" . $data['user_id']; ?>">
             <div class="admin-user-profile-icon">
                 <div>
