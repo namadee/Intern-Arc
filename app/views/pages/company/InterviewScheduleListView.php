@@ -23,6 +23,7 @@
                 <td><?php echo $advertisement->schedule_status == 0 ? 'Not Scheduled' : 'Scheduled'; ?></td>
                 <td><div class="scheduleBtn"><a href="<?php echo URLROOT; ?>companies/interview-schedule-create/<?php echo $advertisement->advertisement_id; ?>" class="common-blue-btn">Schedule</a></div></td>
             </tr>
+            
         <?php endforeach; ?>
       </table>
     </div>

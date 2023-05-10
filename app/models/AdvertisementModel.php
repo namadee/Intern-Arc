@@ -141,4 +141,57 @@ class AdvertisementModel
 
         return $this->db->single();
     }
+
+    //Create Interview slots- Company  - Namadee
+    public function createInterviewSlots($data){
+        $this->db->query('INSERT INTO schedule_tbl (start_date, end_date, advertisement_id) VALUES (:start_date, :end_date, :advertisement_id)');
+        $this->db->bind(':advertisement_id', $data['advertisement_id']);
+        //bind values
+        $this->db->bind(':start_date', $data['start_date']);
+        $this->db->bind(':end_date', $data['end_date']);
+        //execute
+        $this->db->execute();
+    
+        //select last insert id as schedule id
+        $scheduleId = $this->db->lastInsertId();
+    
+        $this->db->query('INSERT INTO event_tbl (recurrence, Interviewee_count, duration, schedule_fk) VALUES (:recurrence, :interviewee_count, :duration, :schedule_fk)');
+        $this->db->bind(':recurrence', $data['recurrence']);
+        $this->db->bind(':interviewee_count', $data['interviewee_count']);
+        $this->db->bind(':duration', $data['duration']);
+        $this->db->bind(':schedule_fk', $scheduleId);
+        //execute
+        $this->db->execute();
+    
+        //select last insert id as event id
+        $eventId = $this->db->lastInsertId();
+    
+           // loop through the array of time periods and insert each one into the time_periods table
+    foreach ($data['time_periods'] as $timePeriod) {
+        $this->db->query('INSERT INTO timeperiod_tbl (start_time, end_time, event_fk) VALUES (:start_time, :end_time, :event_fk)');
+        $this->db->bind(':start_time', $timePeriod['start_time']);
+        $this->db->bind(':end_time', $timePeriod['end_time']);
+        $this->db->bind(':event_fk', $eventId);
+        $this->db->execute();
+    }
+
+        //execute
+            return true;
+       
+    }
+
+    //get schedule data and event data to fullcalndr event object - namadee
+    public function getCalanderEvents($advertisementId){
+        $this->db->query('SELECT a.position, s.advertisement_id, s.start_date, s.end_date, e.event
+        FROM schedule_tbl s
+        JOIN event_tbl e ON s.schedule_id = e.schedule_fk
+        JOIN advertisement_tbl a ON s.advertisement_id = a.advertisement_id
+        WHERE s.advertisement_id = :advertisement_id
+        ');
+    
+        $this->db->bind(':advertisement_id', $advertisementId);
+        return $this->db->resultset();
+    }
+    
 }
+    
