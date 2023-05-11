@@ -277,98 +277,96 @@ class Advertisements extends BaseController
                     'end_time' => $endTime
                 ];
             }
+            //break down time periods into time slots
+            $duration = $data['duration'];
+            $recurrence = $data['recurrence'];
+            $timePeriods = $data['time_periods'];
+
+            if ($recurrence == 'daily') {
+                //schedule start date 
+                $startDate = $data['start_date'];
+                //schedule end date
+                $endDate = $data['end_date'];
+                //while end date > start date
+                while ($endDate > $startDate) {
+                    //foreach timeperiods
+                    foreach ($timePeriods as $period) {
+                        // $startTime = $period['start_time'];
+                        // $endTime = $period['end_time'];
+
+                        $startTime = strtotime($period['start_time']);
+                        $endTime = strtotime($period['end_time']);
+                        $convertedDuration = $duration * 60;
+
+                        // Loop through each slot within the period
+                        while ($startTime < $endTime) {
+                            // Get the slot start time and end time
+                            $slotStart = date('h:i A', $startTime);
+                            $slotEnd = date('h:i A', $startTime + $convertedDuration);
+
+                            for ($i = 0; $i < $data['interviewee_count']; $i++) {
+                                $data['time_slots'][] = [
+                                    'start_time' => $slotStart,
+                                    'end_time' => $slotEnd,
+                                    'date' => $startDate
+                                ];
+                            }
+
+                            $startTime = $startTime + $convertedDuration;
+                        }
+                    }
+                    //increment start date by one day
+                    $startDate = date('Y-m-d', strtotime($startDate . ' +1 day'));
+                }
+            } else {
+                $startDate = $data['start_date'];
+                //schedule end date
+                $endDate = $data['end_date'];
+                //while end date > start date
+                while ($endDate > $startDate) {
+                    //foreach timeperiods
+                    foreach ($timePeriods as $period) {
+                        // $startTime = $period['start_time'];
+                        // $endTime = $period['end_time'];
+
+                        $startTime = strtotime($period['start_time']);
+                        $endTime = strtotime($period['end_time']);
+                        $convertedDuration = $duration * 60;
+
+                        // Loop through each slot within the period
+                        while ($startTime < $endTime) {
+                            // Get the slot start time and end time
+                            $slotStart = date('h:i A', $startTime);
+                            $slotEnd = date('h:i A', $startTime + $convertedDuration);
+
+                            //add time slots to timeslots[] array
+                            //multiply time slots by interviewee count
+                            for ($i = 0; $i < $data['interviewee_count']; $i++) {
+                                $data['time_slots'][] = [
+                                    'start_time' => $slotStart,
+                                    'end_time' => $slotEnd,
+                                    'date' => $startDate
+                                ];
+                            }
+
+
+                            $startTime = $startTime + $convertedDuration;
+                        }
+                    }
+                    //increment start date by one day
+                    $startDate = date('Y-m-d', strtotime($startDate . ' +7 day'));
+                }
+            }
+
 
             //flashMessage('schedule_interview_msg', 'Interviews scheduled successfully');
-        }
 
-
-        //break down time periods into time slots
-        $duration = $data['duration'];
-        $recurrence = $data['recurrence'];
-        $timePeriods = $data['time_periods'];
-
-        if ($recurrence == 'daily') {
-            //schedule start date 
-            $startDate = $data['start_date'];
-            //schedule end date
-            $endDate = $data['end_date'];
-            //while end date > start date
-            while ($endDate > $startDate) {
-                //foreach timeperiods
-                foreach ($timePeriods as $period) {
-                    // $startTime = $period['start_time'];
-                    // $endTime = $period['end_time'];
-
-                    $startTime = strtotime($period['start_time']);
-                    $endTime = strtotime($period['end_time']);
-                    $convertedDuration = $duration * 60;
-
-                    // Loop through each slot within the period
-                    while ($startTime < $endTime) {
-                        // Get the slot start time and end time
-                        $slotStart = date('h:i A', $startTime);
-                        $slotEnd = date('h:i A', $startTime + $convertedDuration);
-
-                        for ($i = 0; $i < $data['interviewee_count']; $i++) {
-                            $data['time_slots'][] = [
-                                'start_time' => $slotStart,
-                                'end_time' => $slotEnd,
-                                'date' => $startDate
-                            ];
-                        }
-
-                        $startTime = $startTime + $convertedDuration;
-                    }
-                }
-                //increment start date by one day
-                $startDate = date('Y-m-d', strtotime($startDate . ' +1 day'));
+            //Execute
+            if ($this->advertisementModel->createInterviewSlots($data)) {
+                redirect('advertisements');
+            } else {
+                die('Something went wrong');
             }
-        } else {
-            $startDate = $data['start_date'];
-            //schedule end date
-            $endDate = $data['end_date'];
-            //while end date > start date
-            while ($endDate > $startDate) {
-                //foreach timeperiods
-                foreach ($timePeriods as $period) {
-                    // $startTime = $period['start_time'];
-                    // $endTime = $period['end_time'];
-
-                    $startTime = strtotime($period['start_time']);
-                    $endTime = strtotime($period['end_time']);
-                    $convertedDuration = $duration * 60;
-
-                    // Loop through each slot within the period
-                    while ($startTime < $endTime) {
-                        // Get the slot start time and end time
-                        $slotStart = date('h:i A', $startTime);
-                        $slotEnd = date('h:i A', $startTime + $convertedDuration);
-
-                        //add time slots to timeslots[] array
-                        //multiply time slots by interviewee count
-                        for ($i = 0; $i < $data['interviewee_count']; $i++) {
-                            $data['time_slots'][] = [
-                                'start_time' => $slotStart,
-                                'end_time' => $slotEnd,
-                                'date' => $startDate
-                            ];
-                        }
-                       
-
-                        $startTime = $startTime + $convertedDuration;
-                    }
-                }
-                //increment start date by one day
-                $startDate = date('Y-m-d', strtotime($startDate . ' +7 day'));
-            }
-        }
-
-
-        //Execute
-        if ($this->advertisementModel->createInterviewSlots($data)) {
-            redirect('advertisements');
-        } else {
-            die('Something went wrong');
         }
     }
 
@@ -389,6 +387,6 @@ class Advertisements extends BaseController
         $data = [
             'interviewSlots' => $interviewSlots
         ];
-        $this->view('company/interviewSlots', $data);
+        $this->view('company/calander', $data);
     }
 }

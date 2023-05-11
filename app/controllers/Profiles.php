@@ -69,7 +69,6 @@ class Profiles extends BaseController
             ];
 
             $this->view('company/profile', $data);
-
         } else {
             $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
             $company_details = $this->userModel->getCompanyDetails($companyId);
@@ -412,7 +411,6 @@ class Profiles extends BaseController
 
             $this->view('student/studentprofile', $data);
         }
-    
     }
 
     public function studentCompanyProfile()
@@ -457,7 +455,7 @@ class Profiles extends BaseController
 
     //         $studentProfile = $this->studentModel->getStudentProfileData();
 
-    
+
     //         $data = [
     //             'experience' => $studentProfile->experience,
     //             'interests' => $studentProfile->interests,
@@ -470,7 +468,7 @@ class Profiles extends BaseController
     //             'personal_email'=>$studentProfile->personal_email,
     //             'extracurricular' => $studentProfile->extracurricular,
     //         ];
-    
+
     //         $this->view('student/editprofile',$data);
 
     //         // $data = [
@@ -505,15 +503,15 @@ class Profiles extends BaseController
 
             //$studentId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
             $studentId = 69;
-            //$text = explode("\r<\br>", trim($_POST['interests-list']));
-            //$length = count($text);
+            $text = explode("\r<\br>", trim($_POST['interests-list']));
+            $length = count($text);
 
             $emptyArray = array();
             for ($x = 0; $x < $length; $x++) {
-                $emptyArray[$x] = trim($text[$x]); 
+                $emptyArray[$x] = trim($text[$x]);
             }
             //$completeString = implode("", $emptyArray);
-       
+
 
 
 
@@ -536,8 +534,8 @@ class Profiles extends BaseController
             if ($this->studentModel->EditStudentProfileDetails($data)) {
                 redirect('profiles/student-profile');
             } else {
-                 die('Something went wrong');
-             }
+                die('Something went wrong');
+            }
         } else {
 
             $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
@@ -553,7 +551,7 @@ class Profiles extends BaseController
                 'stream' => $studentProfile->stream,
                 'profile_description' => $studentProfile->profile_description,
                 'profile_name' => $studentProfile->profile_name,
-                'personal_email'=>$studentProfile->personal_email,
+                'personal_email' => $studentProfile->personal_email,
                 'extracurricular' => $studentProfile->extracurricular,
                 'profile_name' => $studentProfile->profile_name,
                 'personal_email' => $studentProfile->personal_email,
@@ -576,7 +574,7 @@ class Profiles extends BaseController
 
             // $this->view('student/editprofile', $data);
 
-            $this->view('student/editprofile',$data);
+            $this->view('student/editprofile', $data);
         }
     }
 }

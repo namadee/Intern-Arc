@@ -22,14 +22,14 @@ class Companies extends BaseController
         $dashboardData = $this->companyModel->getRequestsbyCompany($companyId);
         $requestArray = $this->requestModel->getStudentRequests(0);
 
-        
+
 
         $data = [
             'companyId' => $companyId,
             'dashboard' => $dashboardData,
         ];
 
-    
+
 
         $this->view('company/dashboard', $data);
     }
@@ -48,23 +48,21 @@ class Companies extends BaseController
                 'change_access_modal' => 'hide-element',
                 'company_list' => $companyList,
                 'blacklisted_list' => $blacklistedCompanyList,
-                'company_access'=> $all_access->all_access
+                'company_access' => $all_access->all_access
             ];
 
             $this->view('pdc/manageCompany', $data);
-
-        } elseif($pg == 'change-access' ) {
+        } elseif ($pg == 'change-access') {
 
             $data = [
                 'blacklisted_modal_class' => 'hide-element',
                 'company_list' => $companyList,
                 'blacklisted_list' => NULL,
                 'change_access_modal' => '',
-                'company_access'=> $all_access->all_access
+                'company_access' => $all_access->all_access
             ];
 
             $this->view('pdc/manageCompany', $data);
-
         } else {
 
             $data = [
@@ -72,7 +70,7 @@ class Companies extends BaseController
                 'company_list' => $companyList,
                 'blacklisted_list' => NULL,
                 'change_access_modal' => 'hide-element',
-                'company_access'=> $all_access->all_access
+                'company_access' => $all_access->all_access
             ];
 
             $this->view('pdc/manageCompany', $data);
@@ -122,9 +120,13 @@ class Companies extends BaseController
 
     public function InterviewScheduleCreate($advertisementId)
     {
-        $data =[
+
+        $timeslots = $this->advertisementModel->getInterviewSlots($advertisementId);
+
+        $data = [
             'advertisment_id' => $advertisementId,
-            'formAction' => 'advertisements/createInterviewSlots/'.$advertisementId,
+            'timeslots' => $timeslots,
+            'formAction' => 'advertisements/createInterviewSlots/' . $advertisementId,
         ];
         $this->view('company/calander', $data);
     }
@@ -134,85 +136,83 @@ class Companies extends BaseController
         $this->view('company/InterviewSchedule');
     }
 
-   //SHORTLIST STUDENTS
-   public function shortlistStudent($id){
-    if(isset($_POST["status"])){
-        //Handling changing status to shortist or reject
-        $data = [
-            'request_id' => trim($_POST['request_id']),
-            'status' => trim($_POST['status'])
-        ];
-
-        $this->companyModel->shortlistStudent($data);
-        flashMessage('shortlist_student_msg', 'Student Added to Shortlist');
-        redirect('requests/showRequestsByAd/'.$id);
-    }
-   }
-
-   //DISPLAY ADVERTISEMENT LIST WITH RELEVENT SHORTLISTED STUDENTS COUNT
-   public function getAdvertisementByStatus(){
-    $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
-    $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
-    
-    $shortlistedCounts = array();
-    $x=0;
-    foreach($advertisements as $advertisement)
+    //SHORTLIST STUDENTS
+    public function shortlistStudent($id)
     {
-        $shortlists = $this->companyModel->getAdvertisementByStatus($advertisement->advertisement_id);
-        $shortlistedCounts[$x] = count($shortlists);
-        $positions[$x] = $advertisement->position;
-        $intern_counts[$x] = $advertisement->intern_count;
-        $x++;
-    }
-    
-    
-    $data = [
-        'count' => $shortlistedCounts,
-        'length' => count($shortlistedCounts),
-        'positions' => $positions,
-        'intern_counts' => $intern_counts,
-        'advertisements' =>$advertisements,
-        
-    ];
+        if (isset($_POST["status"])) {
+            //Handling changing status to shortist or reject
+            $data = [
+                'request_id' => trim($_POST['request_id']),
+                'status' => trim($_POST['status'])
+            ];
 
-    $this->view('company/shortlist', $data);
-
-}
-
-
-   //GET SHORTLISTED STUDENTS FOR RELEVENT ADVERTISEMENT
-   public function getShortlistedStudents($advertisementId){
-    $students = $this->companyModel->getShortlistedStudents($advertisementId);
-
-    $data = [
-        'advertisement_id' => $advertisementId,
-        'student_name' => $students,
-    ];
-    
-    if ($this->companyModel->getShortlistedStudents($advertisementId)) {
-
-        $this->view('company/shortlistedStudents', $data);
-    } else {
-        die('Something went wrong');
+            $this->companyModel->shortlistStudent($data);
+            flashMessage('shortlist_student_msg', 'Student Added to Shortlist');
+            redirect('requests/showRequestsByAd/' . $id);
+        }
     }
 
-   }
+    //DISPLAY ADVERTISEMENT LIST WITH RELEVENT SHORTLISTED STUDENTS COUNT
+    public function getAdvertisementByStatus()
+    {
+        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+        $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
 
-   //RECRUIT OR REJECT STUDENT FROM DROP DOWN
-   public function recruitStudent($id){
-    if(isset($_POST["recruit_status"])){
-        //Handling changing status to shortist or reject
+        $shortlistedCounts = array();
+        $x = 0;
+        foreach ($advertisements as $advertisement) {
+            $shortlists = $this->companyModel->getAdvertisementByStatus($advertisement->advertisement_id);
+            $shortlistedCounts[$x] = count($shortlists);
+            $positions[$x] = $advertisement->position;
+            $intern_counts[$x] = $advertisement->intern_count;
+            $x++;
+        }
+
+
         $data = [
-            'request_id' => trim($_POST['request_id']),
-            'recruit_status' => trim($_POST['recruit_status'])
+            'count' => $shortlistedCounts,
+            'length' => count($shortlistedCounts),
+            'positions' => $positions,
+            'intern_counts' => $intern_counts,
+            'advertisements' => $advertisements,
+
         ];
 
-        $this->companyModel->recruitStudent($data);
-        flashMessage('recruit_student_msg', 'Student Recruited');
-        redirect('companies/get-shortlisted-students/'.$id);
+        $this->view('company/shortlist', $data);
     }
 
-   }
-   
 
+    //GET SHORTLISTED STUDENTS FOR RELEVENT ADVERTISEMENT
+    public function getShortlistedStudents($advertisementId)
+    {
+        $students = $this->companyModel->getShortlistedStudents($advertisementId);
+
+        $data = [
+            'advertisement_id' => $advertisementId,
+            'student_name' => $students,
+        ];
+
+        if ($this->companyModel->getShortlistedStudents($advertisementId)) {
+
+            $this->view('company/shortlistedStudents', $data);
+        } else {
+            die('Something went wrong');
+        }
+    }
+
+    //RECRUIT OR REJECT STUDENT FROM DROP DOWN
+    public function recruitStudent($id)
+    {
+        if (isset($_POST["recruit_status"])) {
+            //Handling changing status to shortist or reject
+            $data = [
+                'request_id' => trim($_POST['request_id']),
+                'recruit_status' => trim($_POST['recruit_status'])
+            ];
+
+            $this->companyModel->recruitStudent($data);
+            flashMessage('recruit_student_msg', 'Student Recruited');
+            redirect('companies/get-shortlisted-students/' . $id);
+        }
+    }
 }

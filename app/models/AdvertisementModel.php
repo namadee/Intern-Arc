@@ -216,12 +216,13 @@ class AdvertisementModel
     //Get time slots and connect schedule, event, time period tables - company calendar - Namadee
     public function getInterviewSlots($advertisement_id)
     {
-        $this->db->query('SELECT s.*, e.*,tp.*, ts.*,
+        $this->db->query('SELECT s.start_date as slotStartDate,s.end_date as slotEndDate , e.*,tp.*, ts.*, a.*
         FROM timeslot_tbl ts
         JOIN timeperiod_tbl tp ON ts.timeperiod_fk = tp.timeperiod_id
         JOIN event_tbl e ON tp.event_fk = e.event_id
-        JOIN schedule s ON e.schedule_fk = s.schedule_id
-        JOIN advertisement a ON s.advertisement_id = a.advertisement_id
+        JOIN schedule_tbl s ON e.schedule_fk = s.schedule_id
+        JOIN advertisement_tbl a ON s.advertisement_id = a.advertisement_id
+        WHERE s.advertisement_id = :advertisement_id
         
         ');
 

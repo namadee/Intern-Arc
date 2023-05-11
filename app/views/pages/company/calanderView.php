@@ -5,12 +5,70 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 <section class="main-content">
   <div id='calendar'></div>
-  
+  <?php
+
+  $events = array();
+
+  foreach ($data['timeslots'] as $interviewslots) : {
+
+      //add $inteviewsslots->start_time $interveiwslots->end_time $interviewslots->date to events array
+      $events[] = array(
+        'title' => $interviewslots->position,
+        'start' => $interviewslots->slotStartDate,
+        'end' => $interviewslots->slotEndDate,
+        'date' => $interviewslots->slot_date
+      );
+
+
+      // Do something with the start time, end time, and date
+      // For example, you can print them out like this:
+
+    }
+  ?><?php endforeach ?>
+
+  <?php
+  // Initialize an empty associative array to store events for each advertisement
+  $events_by_advertisement = array();
+
+  // Iterate over the interview slots and group them by advertisement id
+  foreach ($data['timeslots'] as $slot) : {
+      $advertisement_id = $slot->advertisement_id;
+
+      // If this is the first event for this advertisement, create a new array
+      if (!isset($events_by_advertisement[$advertisement_id])) {
+        $events_by_advertisement[$advertisement_id] = array();
+      }
+
+      // Add the event to the array for this advertisement
+      $events_by_advertisement[$advertisement_id][] = array(
+        'id' => $slot->advertisement_id,
+        'title' => $slot->position,
+        'start' => $slot->slotStartDate,
+        'end' => $slot->slotEndDate,
+        'date' => $slot->slot_date,
+        'color' => '#054a91'
+      );
+    }
+
+    // Now $events_by_advertisement is an associative array where the keys are advertisement ids
+    // and the values are arrays of events for each advertisement
+
+
+  ?><?php endforeach; ?>
+
+  <!-- I have no idea how this works -->
+  <?php foreach ($events_by_advertisement as $advertisement_id => $events) : ?>
+  <?php endforeach; ?>
+
+
+
   <br>
   <form id="date-click-form" class="create-interview-form" action="<?php echo URLROOT . $data['formAction']; ?>" method="POST">
-   <div class="topic-head">Software Engineer - Virtusa</div>
-    
-    <div><h3>Create Interview</h3></div>
+    <div class="topic-head">Software Engineer - Virtusa</div>
+
+    <div>
+      <h3>Create Interview</h3>
+    </div>
 
     <div>
       <label for="sche-period">Start Date</label>
@@ -67,19 +125,8 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+
     var calendarEl = document.getElementById('calendar');
-    // const eventSources = [
-    //   // your event source
-    //   {
-    //     ad_id: 'advertisement name',
-    //     events: [], // initialize the events array as empty
-    //     color: 'black', // an option!
-    //     textColor: 'yellow' // an option!
-    //   }
-    // ]
-
-
-
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
@@ -87,15 +134,35 @@
         left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        
+
 
       },
-      
-      dateClick: popupForm,
-      contentHeight: 600,
-     
-    });
+      //add $events_by_advertisement as event sources
+      eventSources: [{
+          events: [
+            <?php foreach ($events as $event) : ?> {
+                title: '<?php echo $event['title']; ?>',
+                start: '<?php echo $event['start']; ?>',
+                end: '<?php echo $event['end']; ?>',
 
+
+                color: '<?php echo $event['color']; ?>'
+              },
+            <?php endforeach; ?>
+          ],
+          color: 'black', // an option!
+          textColor: 'white' // an option!
+        },
+
+
+
+      ],
+
+
+      dateClick: popupForm,
+      contentHeight: 700,
+
+    });
 
     calendar.render();
 
@@ -110,20 +177,6 @@
 
         form.style.display = 'none';
       }
-//       function setMinutesToClosest(input) {
-//   let d = new Date();
-//   d.setHours(input.value.split(':')[0], input.value.split(':')[1]);
-//   let m = d.getMinutes();
-//   if (m > 0 && m < 30) {
-//     d.setMinutes(30);
-//   } else if (m > 30 && m < 60) {
-//     d.setMinutes(0);
-//     d.setHours(d.getHours()+1);
-//   }
-//   input.value = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-// }
-
-
 
     }
 
@@ -137,7 +190,7 @@
       e.preventDefault();
       const div = document.createElement('div');
       div.classList.add('display-flex-row', 'periods-box');
-      
+
 
       const index = timeSlots.children.length;
       div.innerHTML = `
