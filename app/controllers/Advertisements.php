@@ -369,24 +369,4 @@ class Advertisements extends BaseController
             }
         }
     }
-
-    //get schedule data and event data to fullcalndr event object - namadee
-    public function getCalanderEvents($advertisementId)
-    {
-        $events = $this->advertisementModel->getCalanderEvents($advertisementId);
-        $data = [
-            'events' => $events
-        ];
-        $this->view('company/calander', $data);
-    }
-
-    //Get time slots and connect schedule, event, time period tables - company calendar - Namadee
-    public function getInterviewSlots($advertisementId)
-    {
-        $interviewSlots = $this->advertisementModel->getInterviewSlots($advertisementId);
-        $data = [
-            'interviewSlots' => $interviewSlots
-        ];
-        $this->view('company/calander', $data);
-    }
 }

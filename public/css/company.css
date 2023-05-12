@@ -984,4 +984,25 @@ select:disabled {
   background-color: var(--AlternateLightGrey);
 }
 
+.time-slot-popup div .common-blue-btn{
+  margin: 0.5rem;
+  padding: 0.2rem 1rem;
+  border-radius: 2px;
+  border: none;
+  background-color: var(--DarkBlue);
+  color: #fff;
+}
 
+.confirm-box{
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  height: 4rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 2px solid red;
+  text-align: center;
+}

@@ -199,24 +199,12 @@ class AdvertisementModel
         return true;
     }
 
-    //get schedule data and event data to fullcalndr event object - namadee
-    public function getCalanderEvents($advertisementId)
-    {
-        $this->db->query('SELECT a.position, s.advertisement_id, s.start_date, s.end_date, e.event
-        FROM schedule_tbl s
-        JOIN event_tbl e ON s.schedule_id = e.schedule_fk
-        JOIN advertisement_tbl a ON s.advertisement_id = a.advertisement_id
-        WHERE s.advertisement_id = :advertisement_id
-        ');
-
-        $this->db->bind(':advertisement_id', $advertisementId);
-        return $this->db->resultset();
-    }
 
     //Get time slots and connect schedule, event, time period tables - company calendar - Namadee
-    public function getInterviewSlots($advertisement_id)
+    public function getInterviewSlots($advertisement_id = NULL)
     {
-        $this->db->query('SELECT s.start_date as slotStartDate,s.end_date as slotEndDate , e.*,tp.*, ts.*, a.*
+        if ($advertisement_id != NULL) {
+            $this->db->query('SELECT s.start_date as slotStartDate,s.end_date as slotEndDate , e.*,tp.*, ts.*, a.*
         FROM timeslot_tbl ts
         JOIN timeperiod_tbl tp ON ts.timeperiod_fk = tp.timeperiod_id
         JOIN event_tbl e ON tp.event_fk = e.event_id
@@ -226,7 +214,21 @@ class AdvertisementModel
         
         ');
 
-        $this->db->bind(':advertisement_id', $advertisement_id);
-        return $this->db->resultset();
+            $this->db->bind(':advertisement_id', $advertisement_id);
+            return $this->db->resultset();
+        } else {
+            $this->db->query('SELECT s.start_date as slotStartDate,s.end_date as slotEndDate , e.*,tp.*, ts.*, a.*
+        FROM timeslot_tbl ts
+        JOIN timeperiod_tbl tp ON ts.timeperiod_fk = tp.timeperiod_id
+        JOIN event_tbl e ON tp.event_fk = e.event_id
+        JOIN schedule_tbl s ON e.schedule_fk = s.schedule_id
+        JOIN advertisement_tbl a ON s.advertisement_id = a.advertisement_id
+        
+        ');
+
+            return $this->db->resultset();
+        }
     }
+
+    
 }

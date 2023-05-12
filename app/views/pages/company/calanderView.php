@@ -48,10 +48,7 @@
       );
     }
 
-    // Now $events_by_advertisement is an associative array where the keys are advertisement ids
-    // and the values are arrays of events for each advertisement
-
-
+   
   ?><?php endforeach; ?>
 
   <!-- I have no idea how this works -->
