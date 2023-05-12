@@ -104,4 +104,18 @@ class AjaxModel
         $this->db->bind(':stream', $stream);
         return $this->db->resultset();
     }
+
+
+    public function getCompanyByRegisteredYear($year)
+    {
+        $this->db->query('SELECT c.*, u.*
+        FROM company_tbl c
+        JOIN user_tbl u ON c.user_id_fk = u.user_id
+        WHERE YEAR(u.created_at) = :year');
+
+        $result = $this->db->resultset();
+        $count = $this->db->rowCount();
+
+        return array('result' => $result, 'count' => $count);
+    }
 }

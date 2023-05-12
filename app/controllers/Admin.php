@@ -1,5 +1,7 @@
 <?php
 
+use helpers\PdfHandler;
+
 class Admin extends BaseController
 {
     public $adminModel, $userModel, $companyModel, $studentModel, $registerModel, $advertisementModel;
@@ -11,7 +13,7 @@ class Admin extends BaseController
         $this->userModel = $this->model('User');
         $this->companyModel = $this->model('Company');
         $this->registerModel = $this->model('Register');
-        $this->advertisementModel = $this->model('Advertisement'); 
+        $this->advertisementModel = $this->model('Advertisement');
     }
 
     public function index() //default method and view
@@ -61,6 +63,18 @@ class Admin extends BaseController
 
             //Get the companyID
             $companyID = $this->userModel->getCompanyUserId($user_id);
+
+            $year = $_SESSION['batchYear'];
+            $recruitCount = $this->adminModel->getRecruitCountByYear($year, $companyID);
+            $internCount = $this->adminModel->getInternCountByYear($year, $companyID);
+            $adCount = $this->adminModel->getAdCountByYear($year, $companyID);
+
+            if ($internCount->total_intern_count == NULL) {
+                $internTotal = 0;
+            }else {
+                $internTotal = $internCount->total_intern_count;
+            }
+
             //Check whether a company have posted any advertisements
             $advertisementDetails = $this->adminModel->getAdvertisementCountByCompany($companyID);
 
@@ -74,9 +88,11 @@ class Admin extends BaseController
                 $elementMsg = "Cannot delete: Company has posted advertisements";
             }
 
+
             //view main comapny details
             $companyDetails = $this->companyModel->mainCompanyDetails($user_id);
             $account_status = $this->userModel->getUserAccountStatus($user_id);
+            
             if ($user_id != NULL && $blacklist == NULL) {
                 $data = [
                     'username' => $companyDetails->username,
@@ -87,7 +103,10 @@ class Admin extends BaseController
                     'account_status' => $account_status->account_status,
                     'modal_class' => 'hide-element',
                     'element_status' => $elementStatus,
-                    'element_msg' => $elementMsg
+                    'element_msg' => $elementMsg,
+                    'recruit_count' => $recruitCount,
+                    'intern_count' => $internTotal,
+                    'ad_count' => $adCount
                 ];
 
                 $this->view('admin/viewCompany', $data);
@@ -101,7 +120,10 @@ class Admin extends BaseController
                     'account_status' => $account_status->account_status,
                     'modal_class' => '',
                     'element_status' => $elementStatus,
-                    'element_msg' => $elementMsg
+                    'element_msg' => $elementMsg,
+                    'recruit_count' => $recruitCount,
+                    'intern_count' => $internTotal,
+                    'ad_count' => $adCount
                 ];
                 $this->view('admin/viewCompany', $data);
             } else {
@@ -440,14 +462,210 @@ class Admin extends BaseController
 
         $this->view('admin/advertisementList', $data);
     }
+
+    public function report()
+    {
+        $this->view('admin/report');
+    }
+
+    public function getCompanyRegistrations($year = NULL)
+    {
+
+
+        if ($year != NULL) {
+            // All the companies by Year
+            $result = $this->adminModel->getCompanyByRegisteredYear($year);
+            $count = $result['count'];
+            $allCompanies = $result['result'];
+            $data = [
+                'allCompanies' => $allCompanies,
+                'count' => $count . ' Companies',
+                'countLabel' => 'Total Companies Registered in the year ' . $year,
+                'downloadBtnHref' => URLROOT . 'admin/companyRegReport/' . $year
+            ];
+            $this->view('admin/companyRegistration', $data);
+        } else {
+            // All the companies
+            $result = $this->adminModel->getAllCompanies();
+            $count = $result['count'];
+            $allCompanies = $result['result'];
+
+            $data = [
+                'allCompanies' => $allCompanies,
+                'count' => $count . ' Companies',
+                'countLabel' => 'Total Companies Registerd up to date : ',
+                'downloadBtnHref' => URLROOT . 'admin/companyRegReport/'
+            ];
+            $this->view('admin/companyRegistration', $data);
+        }
+    }
+
+    public function companyRegReport($year = NULL) //Download company registration report
+    {
+        $templatePath = (dirname(APPROOT)) . '\public\templates\companyRegTemplate.php';
+        $currentDate = date('Y-m-d');
+        $currentDateTime = date('Y-m-d H:i:s');
+
+        if ($year != NULL) {
+            // All the companies by Year
+            $result = $this->adminModel->getCompanyByRegisteredYear($year);
+            $count = $result['count'];
+            $allCompanies = $result['result'];
+            $pdf = new PdfHandler();
+
+            $yearLabel = 'Total Companies Registerd in the year of - ' . $year;
+            $pdf->companyRegistrations($allCompanies, $count, $yearLabel, $templatePath, $currentDateTime);
+        } else {
+
+            // All the companies
+            $result = $this->adminModel->getAllCompanies();
+            $count = $result['count'];
+            $allCompanies = $result['result'];
+            $pdf = new PdfHandler();
+        }
+
+
+        $yearLabel = 'Total Companies Registerd up to date - ' . $currentDate;
+
+        $pdf->companyRegistrations($allCompanies, $count, $yearLabel, $templatePath, $currentDateTime);
+    }
+
+    public function getAdvertisementReports($year = NULL)
+    {
+
+        if ($year != NULL) {
+            #Year provided
+            //Filter by the current Batch
+
+            $results = $this->adminModel->getAdvertisements($year);
+            $advertisementList = $results['result'];
+            $count = $results['count'];
+
+            $studentBatches = $this->adminModel->getStudentBatches();
+
+            $data = [
+                'selectedBatchYear' => $year,
+                'studentBatches' => $studentBatches,
+                'advertisementList' => $advertisementList,
+                'count' => $count,
+                'downloadBtnHref' => URLROOT . 'admin/advertisementByBatchYearPdf/' . $year
+            ];
+            $this->view('admin/advertisementReports', $data);
+        } else {
+            //Filter by the current Batch
+            $year = $_SESSION['batchYear'];
+
+            $results = $this->adminModel->getAdvertisements($year);
+            $advertisementList = $results['result'];
+            $count = $results['count'];
+
+
+            $studentBatches = $this->adminModel->getStudentBatches();
+
+            $data = [
+                'selectedBatchYear' => $year,
+                'studentBatches' => $studentBatches,
+                'advertisementList' => $advertisementList,
+                'count' => $count,
+                'downloadBtnHref' => URLROOT . 'admin/advertisementByBatchYearPdf/' . $year
+            ];
+            $this->view('admin/advertisementReports', $data);
+        }
+    }
+
+
+    public function advertisementByBatchYearPdf($year = NULL) //Download advertisements list by year report
+    {
+        $templatePath = (dirname(APPROOT)) . '\public\templates\AdByBatchYearTemplate.php';
+        $currentDateTime = date('Y-m-d H:i:s');
+
+
+        if ($year != NULL) {
+            // All the advertisements by Year
+            $result = $this->adminModel->getAdvertisements($year);
+            $count = $result['count'];
+            $advertisementList = $result['result'];
+
+            $pdf = new PdfHandler();
+
+            $yearLabel = 'Total Advertisements listed in the year of ' . $year;
+            $pdf->adsByBatchYear($advertisementList, $count, $yearLabel, $templatePath, $currentDateTime);
+        } else {
+            redirect('admin/get-advertisement-reports');
+        }
+    }
+
+    public function getStudentRegistrations($year = NULL)
+    {
+        $studentBatches = $this->adminModel->getStudentBatches();
+
+        if ($year != NULL) {
+            // All the Students by batch Year
+            $result = $this->adminModel->getStudentByRegisteredYear($year);
+            $count = $result['count'];
+            $allStudents = $result['result'];
+            $data = [
+
+                'selectedBatchYear' => $year,
+                'studentBatches' => $studentBatches,
+                'studentList' => $allStudents,
+                'count' => $count,
+                'downloadBtnHref' => URLROOT . 'admin/studentRegReport/' . $year
+            ];
+            $this->view('admin/studentRegistration', $data);
+        } else {
+
+            $year = $_SESSION['batchYear'];
+            // All the students by current batch year
+            $result = $this->adminModel->getStudentByRegisteredYear($year);
+            $count = $result['count'];
+            $allStudents = $result['result'];
+
+            $data = [
+                'selectedBatchYear' => $year,
+                'studentBatches' => $studentBatches,
+                'studentList' => $allStudents,
+                'count' => $count,
+                'downloadBtnHref' => URLROOT . 'admin/studentRegReport/'
+            ];
+            $this->view('admin/studentRegistration', $data);
+        }
+    }
+
+    public function studentRegReport($year = NULL) //Download company registration report
+    {
+        $templatePath = (dirname(APPROOT)) . '\public\templates\studentRegTemplate.php';
+        $currentDateTime = date('Y-m-d H:i:s');
+
+        if ($year != NULL) {
+            // All the companies by Year
+            $result = $this->adminModel->getStudentByRegisteredYear($year);
+            $count = $result['count'];
+            $studentList = $result['result'];
+            $pdf = new PdfHandler();
+
+            $pdf->studentRegistrations($studentList, $count, $templatePath, $currentDateTime, $year);
+        } else {
+
+            $year = $_SESSION['batchYear'];
+            // All the companies
+            $result = $this->adminModel->getStudentByRegisteredYear($year);
+            $count = $result['count'];
+            $studentList = $result['result'];
+            $pdf = new PdfHandler();
+            $pdf->studentRegistrations($studentList, $count, $templatePath, $currentDateTime, $year);
+        }
+
+        
+    }
+
+
+
 }
 
 
 
-    // public function complaint() //default method and view
-    // {
-    //     $this->view('admin/adminComplaint');
-    // }
+
 
     // public function viewcomplaint() //default method and view
     // {

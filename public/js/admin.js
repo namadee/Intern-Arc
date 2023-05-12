@@ -1,4 +1,4 @@
-// 9  Chnage password 
+// 9  Chnage password
 
 //Toggle Password Visibility Function - Forgot Password functionality
 const toggleIconChangePwd = document.getElementById("toggleIconChangePwd");
@@ -25,8 +25,10 @@ function togglePasswordVisibilityUser() {
 }
 
 //Validate Password
-const changePwdForm =  document.getElementById("change_password_pdc");
-const ChangePasswordValidateError = document.getElementById("changePwd_validate_error");
+const changePwdForm = document.getElementById("change_password_pdc");
+const ChangePasswordValidateError = document.getElementById(
+  "changePwd_validate_error"
+);
 if (changePwdForm) {
   changePwdForm.addEventListener("submit", checkConfirmPasswordFunction);
 }
@@ -36,20 +38,60 @@ const upperCaseFormat = new RegExp("(?=.*[A-Z])");
 
 function checkConfirmPasswordFunction(event) {
   const passwordInput = document.getElementById("user_new_password").value;
-  const confirmPasswordInput =
-    document.getElementById("user_confirm_password").value;
+  const confirmPasswordInput = document.getElementById(
+    "user_confirm_password"
+  ).value;
 
-  if (specialCharFormat.test(passwordInput) && upperCaseFormat.test(passwordInput)) {
+  if (
+    specialCharFormat.test(passwordInput) &&
+    upperCaseFormat.test(passwordInput)
+  ) {
     console.log("Special char found and Have Uppercase");
     if (passwordInput != confirmPasswordInput) {
       event.preventDefault();
-      ChangePasswordValidateError.textContent = "The Confirm Password does not match";
+      ChangePasswordValidateError.textContent =
+        "The Confirm Password does not match";
       ChangePasswordValidateError.style.display = "block";
     }
   } else {
     event.preventDefault();
     ChangePasswordValidateError.textContent =
       "The New Password must contain atleast 1 Uppercase Letter and any Special Character";
-      ChangePasswordValidateError.style.display = "block";
+    ChangePasswordValidateError.style.display = "block";
+  }
+}
+
+// Report - Company List
+let companyRegisteredYear = document.getElementById(
+  "admin_company_register_year"
+);
+let companyRegisterYearSearchBtn = document.getElementById(
+  "admin_company_register_btn"
+);
+let companyRegisterYearSearchElement = document.getElementById(
+  "search-element-company-reg-year"
+);
+
+let invalidYearErrorMsg = document.getElementById("invalid-year-error-msg");  
+
+if (companyRegisterYearSearchBtn) {
+  companyRegisterYearSearchBtn.addEventListener("click", getTheSearchYear);
+}
+
+function getTheSearchYear(event) {
+  const year = companyRegisteredYear.value;
+
+  currentYear = new Date().getFullYear();
+
+  if (year !== "") {
+    if (year < 2005 || year > currentYear) {
+      event.preventDefault();
+      invalidYearErrorMsg.style.display = "block";
+    } else {
+      companyRegisterYearSearchElement.href =
+        "http://localhost/internarc/admin/get-company-registrations/" + year;
+    }
+  } else {
+    event.preventDefault();
   }
 }

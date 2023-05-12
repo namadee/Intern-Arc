@@ -1,40 +1,35 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/pdc.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/admin.css">
+
+<script src="<?php echo URLROOT; ?>js/admin.js" defer></script>
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
-<section class="report-content">
+<section id="pdc_jobroles_page" class="main-content">
+  <?php flashMessage('reportMsg') ?>
 
-<div class="rtop">
-	
-            <div class="rflex-container">
-            
-                <div class="rflex-wrap2">
-                    <div>
-                        <h3>Company Report</h3>
-                    </div>
-                </div>
-                <br>
-            
-                <table >
-                    <tr>
-                      <th>Reports</th>
-                      <th></th>
-                    </tr>
-            
-                    <tr>
-                      <td>Registration Reports</td>
-                      <td><button><a href="<?php echo URLROOT.'admin/registrationReport'; ?>">view</a></button></td>
-                    </tr>
-            
-                    <tr>
-                        <td>Advertisement  Reports</td>
-                        <td><button><a href="<?php echo URLROOT.'admin/advertisementReport'; ?>">view</button></td>
-                    </tr>
-            
-                  </table>
-                       
-            </div>
-            </div>
+  <div class="jobroles-quickAdd display-flex-col adminReportsListDiv">
+    <h3>
+      Reports
+    </h3>
+    <div class="report-item">
+      <a href="<?php echo URLROOT . 'admin/get-company-registrations'; ?>" class=" display-flex-row">Company Registration Reports <span class="material-symbols-outlined">
+          chevron_right
+        </span></a>
+    </div>
+    <div class="report-item">
+      <a href="<?php echo URLROOT . 'admin/get-student-registrations'; ?>" class="display-flex-row">Student Registration Reports<span class="material-symbols-outlined">
+          chevron_right
+        </span></a>
+    </div>
+    <div class="report-item">
+      <a href="<?php echo URLROOT . 'admin/get-advertisement-reports'; ?>" class="display-flex-row"> Advertisement Reports<span class="material-symbols-outlined">
+          chevron_right
+        </span></a>
+    </div>
 
+  </div>
 </section>
+
+
 <?php require APPROOT . '/views/includes/footer.php'; ?>

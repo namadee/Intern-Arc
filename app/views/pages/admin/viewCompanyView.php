@@ -30,7 +30,7 @@
                     </div>
                 </form>
             </div>
-            
+
             <div class="container-body">
                 <!-- Update Form -->
                 <form action="<?php echo URLROOT . 'admin/mainCompanyDetails/' . $data['user_id']; ?>" method="POST">
@@ -67,26 +67,20 @@
         <div class="company-details-analysis display-flex-col">
             <h2>Summarized Analysis</h2>
             <div class="display-flex-col analysis-items">
-                <form action="">
-                    <label for="year">Select a Year</label>
-                    <select name="year" id="" class="common-input">
-                        <option value="2023">2023</option>
-                        <option value="2023">2023</option>
-                        <option value="2023">2023</option>
-                        <option value="2023">2023</option>
-                    </select>
+                <form>
+                    <label for="year">During the Current Batch Year :<span class="bold-text"><?php echo '  '. $_SESSION['batchYear'] ?></span> </label> 
                 </form>
                 <div class="display-flex-row">
                     <p>Total Advertisements Listed</p>
-                    <span>10</span>
+                    <span class="color-orange-span"><?php echo $data['ad_count']; ?></span>
+                </div>
+                <div class="display-flex-row">
+                    <p>Total Interns Required</p>
+                    <span class="color-orange-span"><?php echo $data['intern_count']; ?></span>
                 </div>
                 <div class="display-flex-row">
                     <p>Total Students Recruited</p>
-                    <span>10</span>
-                </div>
-                <div class="display-flex-row">
-                    <p>Total Students Recruited</p>
-                    <span>10</span>
+                    <span class="color-orange-span"><?php echo $data['recruit_count']; ?></span>
                 </div>
             </div>
 
@@ -102,7 +96,7 @@
                 close
             </span></a>
 
-        <form action="<?php echo URLROOT . 'admin/deactivatedCompanies/'. $data['user_id']; ?>" id="add-student-batch" class="display-flex-col common-modal-box-form" method="POST">
+        <form action="<?php echo URLROOT . 'admin/deactivatedCompanies/' . $data['user_id']; ?>" id="add-student-batch" class="display-flex-col common-modal-box-form" method="POST">
             <h3>Delete Company</h3>
             <div class="display-flex-col">
                 <label>Are you sure you want to delete this company? This action cannot be undone. </label>

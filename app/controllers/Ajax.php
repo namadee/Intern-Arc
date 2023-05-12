@@ -98,4 +98,23 @@ class Ajax extends BaseController
             redirect('errors');
         }
     }
+
+    public function companyRegistration(){
+                //PDC Student Search 
+        // Consider Batch Year also
+        if (isset($_POST['                                                                                                              '])) {
+            $registeredYear = $_POST['query'];
+
+            if ($this->ajaxModel->getCompanyByRegisteredYear($registeredYear)) {
+                $resultList = $this->ajaxModel->searchStudentByIndex($registeredYear);
+                foreach ($resultList as $student) {
+                    echo '<a href="' . URLROOT . 'pdc/main-student-details/' . $student->user_id . '">' . $student->index_number . '</a>';
+                }
+            } else {
+                echo '<a href="#">No Students found</a>';
+            }
+        } else {
+            redirect('errors');
+        }
+    }
 }

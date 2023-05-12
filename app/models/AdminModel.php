@@ -110,7 +110,143 @@ class AdminModel
     }
   }
 
-  
+  public function getAllCompanies()
+  {
+    $this->db->query('SELECT c.*,u.* FROM company_tbl c
+    JOIN user_tbl u ON u.user_id = c.user_id_fk');
+    $result = $this->db->resultset();
+    $count = $this->db->rowCount();
+    return array('result' => $result, 'count' => $count);
+  }
 
 
+  // Get the companies by registered year
+  public function getCompanyByRegisteredYear($year)
+  {
+    $this->db->query('SELECT c.*, u.*
+      FROM company_tbl c
+      JOIN user_tbl u ON c.user_id_fk = u.user_id
+      WHERE YEAR(u.created_at) = :year');
+
+    $this->db->bind(':year', $year);
+
+    $result = $this->db->resultset();
+    $count = $this->db->rowCount();
+
+    return array('result' => $result, 'count' => $count);
+  }
+
+
+
+
+  // Get all the student batches
+  public function getStudentBatches()
+  {
+    $this->db->query('SELECT * FROM student_batch_tbl');
+    // Execute
+    $batches = $this->db->resultset();
+    return $batches;
+  }
+
+
+
+  public function getAdvertisements($batchYear)
+  {
+    // Adjustment 1: Show only the advertisements of the current batch
+
+
+
+    $this->db->query('SELECT a.*, c.*, COUNT(sr.student_request_id) as total_requests 
+    FROM advertisement_tbl a 
+    JOIN company_tbl c ON a.company_id_fk = c.company_id 
+    LEFT JOIN student_requests_tbl sr ON a.advertisement_id = sr.advertisement_id
+    WHERE a.batch_year = :batch_year 
+    GROUP BY a.advertisement_id');
+    $this->db->bind(':batch_year', $batchYear);
+
+    $result = $this->db->resultset();
+    $count = $this->db->rowCount();
+
+    return array('result' => $result, 'count' => $count);
+  }
+
+  public function getAllStudents()
+  {
+    $this->db->query('SELECT c.*,u.* FROM company_tbl c
+    JOIN user_tbl u ON u.user_id = c.user_id_fk');
+    $result = $this->db->resultset();
+    $count = $this->db->rowCount();
+    return array('result' => $result, 'count' => $count);
+  }
+
+
+  // Get the companies by registered year
+  public function getStudentByRegisteredYear($year)
+  {
+    $this->db->query('SELECT s.*, u.*
+      FROM student_tbl s
+      JOIN user_tbl u ON s.user_id_fk = u.user_id
+      WHERE s.batch_year = :year');
+
+    $this->db->bind(':year', $year);
+
+    $result = $this->db->resultset();
+    $count = $this->db->rowCount();
+
+    return array('result' => $result, 'count' => $count);
+  }
+
+
+  //Total Recruited by a company in the selected year
+  public function getRecruitCountByYear($year, $companyID)
+  {
+    $this->db->query('SELECT sr.*,a.position, c.company_name FROM
+    student_requests_tbl sr
+    JOIN advertisement_tbl a ON a.advertisement_id = sr.advertisement_id
+    JOIN company_tbl c ON c.company_id = a.company_id_fk
+    WHERE sr.recruit_status = "recruited" AND sr.batch_year = :batchYear AND c.company_id = :companyID');
+
+    $this->db->bind(':batchYear', $year);
+    $this->db->bind(':companyID', $companyID);
+
+    $result = $this->db->resultset();
+
+    $count = $this->db->rowCount();
+
+    return $count;
+  }
+
+  //Total ads posted by a company in the selected year
+  public function getAdCountByYear($year, $companyID)
+  {
+    $this->db->query('SELECT a.position, c.company_name, a.advertisement_id, a.batch_year
+    FROM advertisement_tbl a
+    JOIN company_tbl c ON a.company_id_fk = c.company_id
+    WHERE a.batch_year = :batchYear AND c.company_id = :companyID');
+
+    $this->db->bind(':batchYear', $year);
+    $this->db->bind(':companyID', $companyID);
+
+
+    $result = $this->db->resultset();
+    $count = $this->db->rowCount();
+
+    return $count;
+  }
+
+  //Total interns required by a company in the selected year
+  public function getInternCountByYear($year, $companyID)
+  {
+    $this->db->query('SELECT SUM(a.intern_count) as total_intern_count
+    FROM advertisement_tbl a
+    JOIN company_tbl c ON c.company_id = a.company_id_fk
+    WHERE a.batch_year = :batchYear AND c.company_id = :companyID');
+
+    $this->db->bind(':batchYear', $year);
+    $this->db->bind(':companyID', $companyID);
+
+
+    $result = $this->db->single();
+    return $result;
+  }
 }
