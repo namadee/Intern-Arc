@@ -13,8 +13,8 @@ class AdvertisementModel
     {
         // Adjustment 1: Show only the advertisements of the current batch
         //Filter by the current Batch
-        $currentYear = date('Y');
-        $batchYear = $currentYear - 3; //2023 - 3 = 2020
+        $batchYear = $_SESSION['batchYear'];
+
 
         $this->db->query('SELECT * FROM advertisement_tbl WHERE batch_year = :batch_year');
         $this->db->bind(':batch_year', $batchYear);
@@ -47,10 +47,7 @@ class AdvertisementModel
 
         //Adjustment 2 - Add the batch year of the advertisement
         //Get the current Batch
-        $currentYear = date('Y');
-        $batchYear = $currentYear - 3; //2023 - 3 = 2020
-        $this->db->bind(':batch_year', $batchYear);
-
+        $batchYear = $_SESSION['batchYear'];
 
         //Execute
         if ($this->db->execute()) {

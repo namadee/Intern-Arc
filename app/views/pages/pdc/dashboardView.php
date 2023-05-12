@@ -5,6 +5,8 @@
 
 <section class="main-content display-flex-col">
     <?php flashMessage('login_success'); ?>
+    <?php flashMessage('error_msg'); ?>
+
 
     <div class="display-flex-row main-dashboard-topbar">
         <div class="dashboard-topbar display-flex-col">
@@ -149,7 +151,7 @@
                     close
                 </span></a>
             <h3>Set Round Durations</h3>
-            <p id="set-round-year-box">Current Batch Year : <span>2020</span></p>
+            <p id="set-round-year-box">Current Batch Year : <span><?php echo $_SESSION['batchYear']; ?></span></p>
             <ul class="display-flex-col">
                 <li class="display-flex-col">
                     <p class="period-header">First Round Period</p>

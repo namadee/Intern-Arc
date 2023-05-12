@@ -505,8 +505,8 @@ class Profiles extends BaseController
 
             //$studentId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
             $studentId = 69;
-            //$text = explode("\r<\br>", trim($_POST['interests-list']));
-            //$length = count($text);
+            $text = explode("\r<\br>", trim($_POST['interests-list']));
+            $length = count($text);
 
             $emptyArray = array();
             for ($x = 0; $x < $length; $x++) {

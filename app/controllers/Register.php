@@ -16,16 +16,69 @@ class Register extends BaseController
 
     public function index()
     {
-    } //Register PDC users
+        //Register PDC users
+        // Check if POST
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // Strip Tags
+            stripTags();
+
+            //Check for User
+            $user_id = $this->userModel->getUserId(trim($_POST['email']));
+
+            if ($user_id) {
+                //User available -  Cant register
+                $data = [
+                    'username' => trim($_POST['username']),
+                    'email' => trim($_POST['email']),
+                    'registration_number' => trim($_POST['registration_number']),
+                    'index_number' => trim($_POST['index_number']),
+                    'email_error' => '*Email already exists! Please check again',
+                    'credential_error' => ''
+                ];
+                flashMessage('pdcStaffMsg', 'Entered email is already in use, please try a different email', 'danger-alert');
+                redirect('admin/pdc-staff');
+            } else {
+                //Random Password
+                $password = generatePassword();
+
+                // Hash Password
+                $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                $email = new Email();
+
+                if ($email->sendLoginEmail(trim($_POST['email']), $password, $_POST['username'])) {
+                    $data = [
+                        'username' => trim($_POST['username']),
+                        'email' => trim($_POST['email']),
+                        'password' => $hashPassword,
+                        'user_role' => 'pdc',
+                        'system_access' => 1
+                    ];
+
+                    //Execute
+                    $this->registerModel->registerUser($data);
+
+                    flashMessage('pdcStaffMsg', 'PDC Staff member registered successfully!');
+                    redirect('admin/pdc-staff');
+                }else {
+                    flashMessage('pdcStaffMsg', 'Email was not sent due to an error. Please try sending it again later', 'danger-alert');
+                    redirect('admin/pdc-staff');
+                }
+            }
+        } else{
+            redirect('admin/pdc-staff');
+        }
+    } 
+
+
+
 
     public function registerStudent($year = NULL, $stream = NULL) //Single Student User Registration - Ruchira
     {
         if ($year == NULL || $stream == NULL) {
             redirect('students/manage-student');
         }
-
-
-
 
 
         // Check if POST
@@ -178,7 +231,6 @@ class Register extends BaseController
                     $this->registerModel->registerCompany($data);
                     flashMessage('company_register_msg', 'Company Registered Successfully!');
                     redirect('register/register-company');
-
                 } else {
                     flashMessage('company_register_msg', 'Error Occured!, Email is not sent', 'danger-alert');
                     redirect('register/register-company/');

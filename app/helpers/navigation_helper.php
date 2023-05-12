@@ -52,6 +52,7 @@ function getNavigationByUser($userType)
         array(URLROOT.'admin', 'dashboard', 'Dashboard'),
         array(URLROOT.'admin/company', 'cases', 'Companies'),
         array(URLROOT.'admin/student', 'school', 'Student'),
+        array(URLROOT.'admin/advertisements', 'text_to_speech', 'Advertisements'),
         array(URLROOT.'admin/pdc-staff', 'groups', 'PDC'),
         array(URLROOT.'admin/complaint', 'approval_delegation', 'Complaints'),
         array(URLROOT.'admin/report', 'monitoring', 'Reports'),

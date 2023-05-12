@@ -2,7 +2,7 @@
 
 class Admin extends BaseController
 {
-    public $adminModel, $userModel, $companyModel, $studentModel;
+    public $adminModel, $userModel, $companyModel, $studentModel, $registerModel, $advertisementModel;
 
     public function __construct()
     {
@@ -10,6 +10,8 @@ class Admin extends BaseController
         $this->studentModel = $this->model('Student');
         $this->userModel = $this->model('User');
         $this->companyModel = $this->model('Company');
+        $this->registerModel = $this->model('Register');
+        $this->advertisementModel = $this->model('Advertisement'); 
     }
 
     public function index() //default method and view
@@ -267,28 +269,180 @@ class Admin extends BaseController
         }
     }
 
-    public function pdcStaff()
+    public function pdcStaff($pg = NULL, $userID = NULL)
     {
         $staff = $this->adminModel->getPdcStaff();
-        $data = [
-            'staff' => $staff
-        ];
+        if ($pg == 'view' && $userID != NULL) {
+
+            $userDetails = $this->adminModel->getUserDetails($userID);
+
+            $data = [
+                'staff' => $staff,
+                'updateModelBox' => '',
+                'username' => $userDetails->username,
+                'useremail' => $userDetails->email,
+                'userID' => $userDetails->user_id
+
+            ];
+        } elseif ($pg == 'update' && $userID != NULL) {
+            # POST REQUEST TO UPDATE PDC USER
+            $data = [
+                'userID' => $userID,
+                'username' => trim($_POST['username']),
+                'email' => trim($_POST['email'])
+            ];
+
+            $this->adminModel->updateStaff($data);
+            flashMessage('pdcStaffMsg', 'Member details updated successfully!');
+            redirect('admin/pdc-staff');
+        } elseif ($pg == 'delete' && $userID != NULL) {
+            # DELETE PDC STAFF MEMBERS
+            $this->adminModel->deleteStaff($userID);
+            redirect('admin/pdc-staff');
+        } else {
+
+            $data = [
+                'staff' => $staff,
+                'updateModelBox' => 'hide-element',
+                'username' => '',
+                'useremail' => '',
+                'userID' => '',
+            ];
+        }
+        $this->view('admin/pdcStaff', $data);
+    }
+
+    public function complaint($complaintID = NULL, $userID = NULL)
+    {
+        if ($complaintID != NULL && $userID != NULL) {
+            //View Specific complaint
+            //Get complaint user details
+            $userDetails =  $this->userModel->getUserByUserID($userID);
+            $complaintDetails = $this->adminModel->getComplaintDetails($complaintID);
+
+            if ($userDetails->user_role == 'student') {
+                //Student Complaint
+                //Get student details
+                $studentID = $this->userModel->getStudentUserId($userID);
+                $studentDetails = $this->userModel->getStudentDetails($studentID);
+                $data = [
+                    'reference_number' => $complaintDetails->reference_number,
+                    'complaintID' => $complaintDetails->complaint_id,
+                    'description' => $complaintDetails->description,
+                    'date' => $complaintDetails->created_at,
+                    'subject' => $complaintDetails->subject,
+                    'status' => $complaintDetails->status,
+                    'username' => $userDetails->username,
+                    'additionalInputLabel' => 'Index Number',
+                    'additionalInputValue' => $studentDetails->index_number,
+                    'email' => $userDetails->email,
+                ];
+            } else {
+                //Company Complaint
+                //Get Company details
+                $companyID = $this->userModel->getCompanyUserId($userID);
+                $companyDetails = $this->userModel->getCompanyDetails($companyID);
+
+                $data = [
+                    'reference_number' => $complaintDetails->reference_number,
+                    'complaintID' => $complaintDetails->complaint_id,
+                    'description' => $complaintDetails->description,
+                    'date' => $complaintDetails->created_at,
+                    'subject' => $complaintDetails->subject,
+                    'status' => $complaintDetails->status,
+                    'username' => $userDetails->username,
+                    'additionalInputLabel' => 'Company Name',
+                    'additionalInputValue' => $companyDetails->company_name,
+                    'email' => $userDetails->email,
+                ];
+            }
+
+            $this->view('admin/viewComplaint', $data);
+        } else {
+            //View Complaints List
+            $complaintList = $this->adminModel->getComplaintList();
+            $data = [
+                'complaintList' => $complaintList
+            ];
+
+            $this->view('admin/complaintList', $data);
+        }
+    }
+
+    public function updateComplaintStatus($complaintID = NULL)
+    {
+        if ($complaintID == NULL) {
+            redirect('admin/complaint');
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        }else{
-            $this->view('admin/pdcStaff',$data);
+            $data = [
+                'complaintID' => $complaintID,
+                'status' => trim($_POST['status'])
+            ];
+
+            $this->adminModel->updateComplaintStatus($data);
+            flashMessage('complaintMsg', 'Complaint status updated successfully!');
+            redirect('admin/complaint');
+        } else {
+            redirect('admin/complaint');
         }
-        
-        
     }
 
-    public function test(){
+    public function changePassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Strip Tags in URL
+            stripTags();
 
-        
-        $this->view('admin/viewPdcUser');
+            $data = [
+                'oldPassword' => trim($_POST['user_old_password']),
+                'newPassword' =>  trim($_POST['user_new_password']),
+                'confirmPassword' =>  trim($_POST['user_confirm_password']),
+                'userID' =>  trim($_POST['user_id']),
+                'input_class' => ''
+            ];
 
+            //Check Whether the stored password is same as old password input value
+            $userDetails = $this->userModel->getUserByUserID($data['userID']);
+            $storedPassword = $userDetails->password;
+
+            if (password_verify($data['oldPassword'], $storedPassword)) {
+                #Password Match
+                // Hash Password
+                $hashPassword = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+                //Update Password
+                $data = [
+                    'password' => $hashPassword,
+                    'user_id' => $data['userID']
+                ];
+                $this->registerModel->updatePassword($data);
+                flashMessage('password_changed', 'Password changed successfully!', 'success-alert');
+                redirect('profiles/view-profile-details');
+            } else {
+                #Password Does not match
+                flashMessage('password_changed_error', 'The password you entered is incorrect. Please try again', 'danger-alert');
+                redirect('admin/change-password');
+            }
+        } else {
+            $this->view('admin/changePassword');
+        }
+    }
+
+
+    public function advertisements()
+    {
+        $advertisementList = $this->advertisementModel->getAdvertisementsList();
+
+        $data = [
+            'advertisementList' => $advertisementList
+        ];
+
+        $this->view('admin/advertisementList', $data);
     }
 }
+
+
 
     // public function complaint() //default method and view
     // {

@@ -13,7 +13,7 @@
                     <span id="student-batch-year-span" class="material-symbols-outlined">
                         where_to_vote
                     </span>
-                    Current Batch Year is <span id="current-batchyear-session-span"><?php echo $_SESSION['batchYear'] ?></span> 
+                    Current Batch Year is <span id="current-batchyear-session-span"><?php echo $_SESSION['batchYear'] ?></span>
 
                 </p>
             </div>
@@ -98,6 +98,10 @@
                         <label for="batch-year">Enter Batch Year</label>
                         <input type="number" name="batch_year" class="common-input" id="batch-year-input" required>
                     </div>
+                    <div class="display-flex-row">
+                        <label for="selectBatchYear">Select as Current Batch Year?</label>
+                        <input value="1" type="checkbox" id="selectBatchYear" name="selectBatchYear">
+                    </div>
                     <button type="submit" name="add_form_submit" class="common-blue-btn" id="modal-submit-btn">Add</button>
                 </form>
                 <span id="validate-error"></span>
@@ -134,16 +138,19 @@
                     <button class="delete-btn"><a href="<?php echo URLROOT . 'pdc/deleteStudentBatch/' . $data['batch_year']  ?>" class="display-flex-row"> <span class="material-symbols-outlined">
                                 delete
                             </span>Delete Batch</a> </button>
-                    <!-- <div class="display-flex-col batch_year_rename">
-                        <span id="renameBatchyearBtn">Press here to change the Batch Year</span>
-                        <form action="" method="POST" class="display-flex-col hide-element" id="rename-student-batch">
-
-                            <input type="number" name="batch_year" id="rename-batch-year-input" required>
-                            <input type="submit" name="rename_batch_year" value="Submit">
+                    <div class="display-flex-col batch_year_rename">
+                        <span id="renameBatchyearBtn">Press here to make it as the current Batch Year</span>
+                        <form action="<?php echo URLROOT.'pdc/setYearAsCurrentBatchYear' ?>" method="POST" class="display-flex-col hide-element" id="rename-student-batch">
+                            <div class="display-flex-row" id="change_batch_year">
+                                <label for="selectBatchYear">Select as Current Batch Year?</label>
+                                <input value="1" type="checkbox" id="selectBatchYear" name="selectBatchYear" required>
+                                <input type="hidden" name="batch_year" value="<?php echo $data['batch_year'];?>">
+                            </div>
+                            <input type="submit" name="rename_batch_year" value="Submit" onclick="return confirm('Are you sure you want to select this year as the Current Batch Year?')">
                             <span id="validate-error-rename"></span>
                         </form>
 
-                    </div> -->
+                    </div>
                 </div>
             </div>
 

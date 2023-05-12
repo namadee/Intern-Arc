@@ -21,7 +21,6 @@ class AdminModel
     $this->db->bind(':company_id', $companyID);
     $results = $this->db->single();
     return $results;
-    
   }
 
   public function getPdcStaff()
@@ -31,28 +30,77 @@ class AdminModel
     return $results;
   }
 
-  public function getuserdetails($id)
+  public function getUserDetails($userID)
   {
-    $this->db->query('SELECT * FROM user_tbl WHERE user_id=:id');
+    $this->db->query('SELECT * FROM user_tbl WHERE user_id=:userID');
 
 
-    $this->db->bind(':id', $id);
+    $this->db->bind(':userID', $userID);
 
     $results = $this->db->single();
 
     return $results;
   }
 
-  public function addStaff($data)
+  // Update PDC member details
+  public function updateStaff($data)
   {
-    $this->db->query('INSERT INTO user_tbl(username,email, password , user_role)
-      VALUES(:name, :email, :password, :user_role)');
+    $this->db->query('UPDATE user_tbl SET username = :username, email = :email  WHERE user_id = :userID');
 
     // Bind values
-    $this->db->bind(':name', $data['username']);
+    $this->db->bind(':username', $data['username']);
     $this->db->bind(':email', $data['email']);
-    $this->db->bind(':password', $data['hashed_password']);
-    $this->db->bind(':user_role', 'pdc');
+    $this->db->bind(':userID', $data['userID']);
+    // Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // Delete PDC member 
+  public function deleteStaff($userID)
+  {
+    $this->db->query('DELETE FROM user_tbl WHERE user_id = :userID');
+
+    // Bind values
+    $this->db->bind(':userID', $userID);
+    // Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function getComplaintList()
+  {
+    $this->db->query('SELECT complaint_tbl.*, user_tbl.* FROM complaint_tbl JOIN user_tbl ON complaint_tbl.user_id_fk = user_tbl.user_id');
+
+    $results = $this->db->resultSet();
+    return $results;
+  }
+
+  public function getComplaintDetails($complaintID)
+  {
+    $this->db->query('SELECT * FROM complaint_tbl WHERE complaint_id=:complaintID');
+
+    // Bind values
+    $this->db->bind(':complaintID', $complaintID);
+    $results = $this->db->single();
+
+    return $results;
+  }
+
+  public function updateComplaintStatus($data)
+  {
+
+    $this->db->query('UPDATE complaint_tbl SET status = :status WHERE complaint_id = :complaintID');
+
+    // Bind values
+    $this->db->bind(':status', $data['status']);
+    $this->db->bind(':complaintID', $data['complaintID']);
 
     // Execute
     if ($this->db->execute()) {
@@ -61,4 +109,8 @@ class AdminModel
       return false;
     }
   }
+
+  
+
+
 }

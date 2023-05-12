@@ -32,7 +32,8 @@ class Students extends BaseController
                         'add_modal_class' => '',
                         'change_access_modal_class' => 'hide-element',
                         'view-modal-class' => 'hide-element',
-                        'batch_list' => $batchList
+                        'batch_list' => $batchList,
+                        'batch_year' => ''
                     ];
 
                     $this->view('pdc/manageStudent', $data);
@@ -69,7 +70,8 @@ class Students extends BaseController
                 'add_modal_class' => 'hide-element',
                 'change_access_modal_class' => 'hide-element',
                 'view-modal-class' => 'hide-element',
-                'batch_list' => $batchList
+                'batch_list' => $batchList,
+                'batch_year' => ''
             ];
 
             $this->view('pdc/manageStudent', $data);
@@ -96,10 +98,22 @@ class Students extends BaseController
                     redirect('students/manage-student');
                 }
 
-                $this->studentModel->addStudentBatch($batch_year);
-                
-                flashMessage('student_batch_msg', 'Student Batch ' . $batch_year . ' added');
-                redirect('students/manage-student');
+
+
+                if (isset($_POST['selectBatchYear']) && $_POST['selectBatchYear'] == '1') {
+                    // Checkbox was checked
+                    $this->studentModel->addStudentBatch($batch_year);
+                    $this->studentModel->deselectAllBatchYears();
+                    $this->studentModel->updateCurrentBatchYear($batch_year);
+
+                    flashMessage('student_batch_msg', 'Student Batch ' . $batch_year . ' added');
+                    redirect('students/manage-student');
+                    $_SESSION['batchYear'] = $batch_year;
+                } else {
+                    $this->studentModel->addStudentBatch($batch_year);
+                    flashMessage('student_batch_msg', 'Student Batch ' . $batch_year . ' added');
+                    redirect('students/manage-student');
+                }
             } else {
                 // Handle Changing Student Batch Status
                 $data = [
@@ -123,42 +137,40 @@ class Students extends BaseController
 
     public function studentProfile($studentId = NULL)
     {
-       if($studentId != NULL){
-        $studentProfile = $this->studentModel->getStudentProfileData($studentId);
+        if ($studentId != NULL) {
+            $studentProfile = $this->studentModel->getStudentProfileData($studentId);
 
-        $data = [
-            'experience' => $studentProfile->experience,
-            'interests' => $studentProfile->interests,
-            'qualifications' => $studentProfile->qualifications,
-            'school' => $studentProfile->school,
-            'contact' => $studentProfile->contact,
-            'stream' => $studentProfile->stream,
-            'profile_description' => $studentProfile->profile_description,
-            'profile_name' => $studentProfile->profile_name,
-            'personal_email'=> $studentProfile->personal_email,
-            'extracurricular' => $studentProfile->extracurricular,
-           
-        ];
+            $data = [
+                'experience' => $studentProfile->experience,
+                'interests' => $studentProfile->interests,
+                'qualifications' => $studentProfile->qualifications,
+                'school' => $studentProfile->school,
+                'contact' => $studentProfile->contact,
+                'stream' => $studentProfile->stream,
+                'profile_description' => $studentProfile->profile_description,
+                'profile_name' => $studentProfile->profile_name,
+                'personal_email' => $studentProfile->personal_email,
+                'extracurricular' => $studentProfile->extracurricular,
 
+            ];
+        } else {
+            $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
+            $studentProfile = $this->studentModel->getStudentProfileData($studentId);
 
-       }else{
-        $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
-        $studentProfile = $this->studentModel->getStudentProfileData($studentId);
+            $data = [
+                'experience' => $studentProfile->experience,
+                'interests' => $studentProfile->interests,
+                'qualifications' => $studentProfile->qualifications,
+                'school' => $studentProfile->school,
+                'contact' => $studentProfile->contact,
+                'stream' => $studentProfile->stream,
+                'profile_description' => $studentProfile->profile_description,
+                'profile_name' => $studentProfile->profile_name,
+                'personal_email' => $studentProfile->personal_email,
+                'extracurricular' => $studentProfile->extracurricular,
 
-        $data = [
-            'experience' => $studentProfile->experience,
-            'interests' => $studentProfile->interests,
-            'qualifications' => $studentProfile->qualifications,
-            'school' => $studentProfile->school,
-            'contact' => $studentProfile->contact,
-            'stream' => $studentProfile->stream,
-            'profile_description' => $studentProfile->profile_description,
-            'profile_name' => $studentProfile->profile_name,
-            'personal_email'=> $studentProfile->personal_email,
-            'extracurricular' => $studentProfile->extracurricular,
-        
-        ];
-       }
+            ];
+        }
 
         $this->view('student/studentprofile', $data);
     }
@@ -186,6 +198,4 @@ class Students extends BaseController
 
         $this->view('student/cvstatus');
     }
-
-
 }

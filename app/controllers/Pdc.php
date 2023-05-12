@@ -26,31 +26,34 @@ class Pdc extends BaseController
 
         $advertisementList = $this->advertisementModel->getAdvertisementsList();
 
-
-
         if ($duration != NULL) {
+
+            $isBatchSelected = $this->studentModel->getCurrentBatchYear();
+            if (!$isBatchSelected) {
+                flashMessage('error_msg', 'Please select the CURRENT BATCH YEAR first!', 'danger-alert');
+                redirect('pdc');
+            } else {
+                $data = [
+                    'companyCount' => $companyCount->totalRows,
+                    'studentCount' => $studentCount->totalRows,
+                    'advertisementList' => $advertisementList,
+                    'duration-modal' => '',
+                    'roundDetails' => $roundDetails
+                ];
+                $this->view('pdc/dashboard', $data);
+            }
+        } else {
             $data = [
                 'companyCount' => $companyCount->totalRows,
                 'studentCount' => $studentCount->totalRows,
                 'advertisementList' => $advertisementList,
-                'duration-modal' => '',
+                'duration-modal' => 'hide-element',
                 'roundDetails' => $roundDetails
+
             ];
+
             $this->view('pdc/dashboard', $data);
         }
-
-
-
-        $data = [
-            'companyCount' => $companyCount->totalRows,
-            'studentCount' => $studentCount->totalRows,
-            'advertisementList' => $advertisementList,
-            'duration-modal' => 'hide-element',
-            'roundDetails' => $roundDetails
-
-        ];
-
-        $this->view('pdc/dashboard', $data);
     }
 
     //Send initial company invititation
@@ -399,9 +402,7 @@ class Pdc extends BaseController
     //17 Student requests list - Ruchira
     public function studentRequestsList($round = NULL)
     {
-        $currentYear = date("Y");
-        $batchYear = $currentYear - 3;
-
+        $batchYear = $_SESSION['batchYear'];
 
         if ($round == 1 || $round == 2) {
             $data = [
@@ -491,6 +492,28 @@ class Pdc extends BaseController
             }
         } else {
             $this->view('pdc/changePassword');
+        }
+    }
+
+    // Make the selected year as the current batch year
+    public function  setYearAsCurrentBatchYear()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $batch_year = $_POST['batch_year'];
+
+            if (isset($_POST['selectBatchYear']) && $_POST['selectBatchYear'] == '1') {
+                // Checkbox was checked
+                $this->studentModel->deselectAllBatchYears();
+                $this->studentModel->updateCurrentBatchYear($batch_year);
+
+                flashMessage('student_batch_msg', 'Student Batch ' . $batch_year . ' is selected as Current Batch Year');
+                redirect('students/manage-student');
+                $_SESSION['batchYear'] = $batch_year;
+            } else {
+                redirect('students/manage-student');
+            }
+        } else {
+            redirect('students/manage-student');
         }
     }
 }

@@ -11,8 +11,7 @@ class RequestModel
 
     public function getStudentRequests()
     {
-        $currentYear = date("Y");
-        $batchYear = $currentYear - 3;
+        $batchYear = $_SESSION['batchYear'];
         $this->db->query('SELECT * FROM student_requests_tbl WHERE batch_year = :batch_year');
         $this->db->bind('batch_year', $batchYear);
         return $this->db->resultset();

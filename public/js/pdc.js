@@ -88,8 +88,8 @@ if (stdBatchYrForm) {
 
 function batchYearValidate(event) {
   let currentYear = new Date().getFullYear();
-  upperLimit = currentYear - 4; //2019
-  lowerLimit = currentYear - 8; //2019 - 4
+  upperLimit = currentYear; //2023
+  lowerLimit = currentYear - 4; //2019 - 4
 
   if (batchYear.value.length != 4) {
     batchYrError.textContent = "*Please enter a valid Year!";
@@ -122,35 +122,35 @@ function toggleBatchYearForm() {
   }
 }
 
-const stdBatchYrRenameForm = document.getElementById("rename-student-batch");
-const batchYearRename = document.getElementById("rename-batch-year-input");
-const batchYrRenameError = document.getElementById("validate-error-rename");
+// const stdBatchYrRenameForm = document.getElementById("rename-student-batch");
+// const batchYearRename = document.getElementById("rename-batch-year-input");
+// const batchYrRenameError = document.getElementById("validate-error-rename");
 
-if (stdBatchYrRenameForm) {
-  stdBatchYrRenameForm.addEventListener("submit", batchYearValidateRename);
-}
+// if (stdBatchYrRenameForm) {
+//   stdBatchYrRenameForm.addEventListener("submit", batchYearValidateRename);
+// }
 
-function batchYearValidateRename(event) {
-  let currentYear = new Date().getFullYear();
-  upperLimit = currentYear; //2023
-  lowerLimit = currentYear - 4; //2023 - 4
+// function batchYearValidateRename(event) {
+//   let currentYear = new Date().getFullYear();
+//   upperLimit = currentYear; //2023
+//   lowerLimit = currentYear - 4; //2023 - 4
 
-  if (batchYearRename.value.length != 4) {
-    batchYrRenameError.textContent = "*Please enter a valid Year!";
-    event.preventDefault();
-    return false;
-  }
+//   if (batchYearRename.value.length != 4) {
+//     batchYrRenameError.textContent = "*Please enter a valid Year!";
+//     event.preventDefault();
+//     return false;
+//   }
 
-  if (
-    batchYearRename.value < lowerLimit ||
-    batchYearRename.value > upperLimit
-  ) {
-    batchYrRenameError.textContent =
-      "*Please enter a Year Beween " + lowerLimit + " and " + upperLimit;
-    event.preventDefault();
-    return false;
-  }
-}
+//   if (
+//     batchYearRename.value < lowerLimit ||
+//     batchYearRename.value > upperLimit
+//   ) {
+//     batchYrRenameError.textContent =
+//       "*Please enter a Year Beween " + lowerLimit + " and " + upperLimit;
+//     event.preventDefault();
+//     return false;
+//   }
+// }
 
 // 7. Validate Round period duration
 

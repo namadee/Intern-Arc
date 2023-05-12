@@ -8,28 +8,28 @@ class StudentModel
     {
         $this->db = new Database;
     }
-    
-     //Update student profile - student
-  public function EditStudentProfileDetails($data)
-  {
-    
-      $this->db->query('UPDATE student_tbl SET experience = :experience,
+
+    //Update student profile - student
+    public function EditStudentProfileDetails($data)
+    {
+
+        $this->db->query('UPDATE student_tbl SET experience = :experience,
       interests = :interests, qualifications = :qualifications, extracurricular= :extracurricular, contact= :contact, stream= :stream, profile_description= :profile_description, profile_name= :profile_name, personal_email= :personal_email, school= :school 
       WHERE student_id = :student_id');
-      
-      
-      // Bind Values
-      $this->db->bind(':experience', $data['experience-list']);
-      $this->db->bind(':interests', $data['interests-list']);
-      $this->db->bind(':qualifications', $data['qualifications-list']);
-      $this->db->bind(':extracurricular', $data['extracurricular-list']);
-      $this->db->bind(':school', $data['school']);
-      $this->db->bind(':contact', $data['contact']);
-      $this->db->bind(':stream', $data['stream']);
-      $this->db->bind(':profile_description', $data['profile_description']);
-      $this->db->bind(':profile_name', $data['profile_name']);
-      $this->db->bind(':personal_email', $data['personal_email']);
-      $this->db->bind(':student_id', $data['student_id']);
+
+
+        // Bind Values
+        $this->db->bind(':experience', $data['experience-list']);
+        $this->db->bind(':interests', $data['interests-list']);
+        $this->db->bind(':qualifications', $data['qualifications-list']);
+        $this->db->bind(':extracurricular', $data['extracurricular-list']);
+        $this->db->bind(':school', $data['school']);
+        $this->db->bind(':contact', $data['contact']);
+        $this->db->bind(':stream', $data['stream']);
+        $this->db->bind(':profile_description', $data['profile_description']);
+        $this->db->bind(':profile_name', $data['profile_name']);
+        $this->db->bind(':personal_email', $data['personal_email']);
+        $this->db->bind(':student_id', $data['student_id']);
 
         //Execute
         if ($this->db->execute()) {
@@ -39,11 +39,11 @@ class StudentModel
         }
     }
 
-  public function getStudentProfileData()
-  {
+    public function getStudentProfileData()
+    {
 
-    
-    //bIND STUDENT id
+
+        //bIND STUDENT id
         $this->db->query('SELECT * FROM student_tbl WHERE student_id= 69');
         //$this->db->bind(':student_id', $data['student_id']);
 
@@ -210,7 +210,7 @@ class StudentModel
     // }
 
 
-    // 14 Change system access of each students in a particular batch
+    // 14 Change system access of each students in a particular batch - Ruchira
     public function changeSystemAccessByBatchYear($data)
     {
         $this->db->query("UPDATE user_tbl
@@ -224,7 +224,7 @@ class StudentModel
         return $this->db->execute();
     }
 
-    //15 Get Student Count of a particular batch
+    //15 Get Student Count of a particular batch - Ruchira
     public function studentCountOfABatch($batch_year)
     {
         $this->db->query('SELECT COUNT(*) AS count
@@ -236,7 +236,7 @@ class StudentModel
     }
 
 
-    // 15 Delete Student Batch
+    // 15 Delete Student Batch - Ruchira
     public function deleteStudentBatch($batch_year)
     {
         $this->db->query('DELETE from student_batch_tbl WHERE batch_year = :batch_year');
@@ -244,7 +244,7 @@ class StudentModel
         return $this->db->execute();
     }
 
-    // 16 Change all the Student system access
+    // 16 Change all the Student system access - RUchira
     public function updateStudentAccess($access)
     {
         $this->db->query('UPDATE user_tbl SET system_access = :system_access WHERE user_role = "student" ');
@@ -256,5 +256,49 @@ class StudentModel
         } else {
             return false;
         }
+    }
+
+    // 17 Deselect all batch years - Ruchira
+    public function deselectAllBatchYears()
+    {
+        // Deselect all the batch years available
+        $this->db->query('UPDATE student_batch_tbl SET is_selected = 0 ');
+
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // 18. Update is_selected status of the batch year - Ruchira
+    public function updateCurrentBatchYear($batchYear)
+    {
+        $this->db->query('UPDATE student_batch_tbl SET is_selected = 1 WHERE batch_year = :batch_year');
+
+        $this->db->bind(':batch_year', $batchYear);
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // 19 get the current batch year selected - Ruchira
+    public function getCurrentBatchYear()
+    {
+        $this->db->query('SELECT * FROM student_batch_tbl WHERE is_selected = 1');
+
+        // Execute
+        $year = $this->db->single();
+
+        // Check if $year is null (i.e. no rows were returned)
+        if ($year == null) {
+            return false;
+        }
+
+        return $year->batch_year;
     }
 }

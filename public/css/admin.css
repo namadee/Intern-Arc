@@ -47,11 +47,11 @@
 }
 
 .jobroles-rolesList table td:nth-child(3), .jobroles-rolesList table td:nth-child(4){
-  width: 10%;
+  width: 8%;
 }
 
 .jobroles-rolesList table td:nth-child(2){
-  width: 45%;
+  width: 47%;
 }
 
 #jobroles-modal-box label{
@@ -60,6 +60,29 @@
 
 #jobroles-modal-box h3{
   margin-bottom: 1rem;
+}
+
+#complaint_description_textarea{
+  resize: none;
+  width: 100%;
+  border-radius: 0.3rem;
+  background-color: var(--BackgroungColor);
+  border: 1px solid var(--AlternateLightGrey);
+  color: var(--Black);
+  padding: 0.7rem;
+}
+
+#complaint_reference{
+  color: var(--primaryColor);
+}
+
+#complaintStatusForm{
+  margin: auto;
+}
+
+#complaint_list_div .common-status { 
+width: fit-content;
+margin: auto;
 }
 
 /* Admin Sign in Page
