@@ -958,5 +958,30 @@ select:disabled {
   font-size: 1rem;
 }
 
+.time-slot-popup{
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 1rem;
+  z-index: 10;
+  border-radius: 8px;
+  background-color: #fff;
+  border: solid 1px var(--DarkBlue);
+  box-shadow: 0px 0px 10px 0px #0000001a;
+}
+
+.time-slot-popup div{
+  gap: 0.5rem;
+
+}
+
+.slot-popup-position-tag{
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  font-style: bold;
+  background-color: var(--AlternateLightGrey);
+}
 
 

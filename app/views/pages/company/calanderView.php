@@ -14,9 +14,9 @@
       //add $inteviewsslots->start_time $interveiwslots->end_time $interviewslots->date to events array
       $events[] = array(
         'title' => $interviewslots->position,
-        'start' => $interviewslots->slotStartDate,
-        'end' => $interviewslots->slotEndDate,
-        'date' => $interviewslots->slot_date
+        'date' => $interviewslots->slot_date,
+        'startTime' => $interviewslots->start_time,
+        'endTime' => $interviewslots->end_time,
       );
 
 
@@ -43,8 +43,6 @@
       $events_by_advertisement[$advertisement_id][] = array(
         'id' => $slot->advertisement_id,
         'title' => $slot->position,
-        'start' => $slot->slotStartDate,
-        'end' => $slot->slotEndDate,
         'date' => $slot->slot_date,
         'color' => '#054a91'
       );
@@ -111,12 +109,42 @@
 
     <input type="hidden" name="advertisement_id" value="<?php echo $data['advertisment_id'] ?>">
 
-    <!-- <div>
-      <label for="description">Description:</label>
-      <textarea name="description" id="description"></textarea>
-    </div> -->
+
     <button class="common-blue-btn" type="submit">Submit</button>
   </form>
+
+  <div id="time-slot-popup" class="time-slot-popup display-flex-col">
+    <div class="display-flex-row">
+      <h3><span class="material-symbols-outlined">
+          date_range
+        </span></h3>
+      <h3>Monday, 8 May</h3>
+    </div>
+
+    <div class="display-flex-row">
+      <h3><span class="material-symbols-outlined">
+          person
+        </span></h3>
+      <h3>Interviewee: </h3>
+      <a href="#">Ruchira Bogahawatta</a>
+    </div>
+    <div class="display-flex-row">
+      <h3><span class="material-symbols-outlined">
+          work
+        </span></h3>
+      <h3>Position: </h3>
+      <span class="slot-popup-position-tag">
+        <p>Web Developer</p>
+      </span>
+    </div>
+    <div class="display-flex-row">
+      <h3><span class="material-symbols-outlined">
+          schedule
+        </span></h3>
+      <h3>Time: </h3>
+      <p>10:00AM - 10.30AM</p>
+    </div>
+
   </div>
 
 </section>
@@ -126,24 +154,22 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
 
-    var calendarEl = document.getElementById('calendar');
+      let calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-
-
-      },
-      //add $events_by_advertisement as event sources
-      eventSources: [{
+      let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        //add $events_by_advertisement as event sources
+        eventSources: [{
           events: [
             <?php foreach ($events as $event) : ?> {
                 title: '<?php echo $event['title']; ?>',
-                start: '<?php echo $event['start']; ?>',
-                end: '<?php echo $event['end']; ?>',
+                date: '<?php echo $event['date']; ?>',
+
 
 
                 color: '<?php echo $event['color']; ?>'
@@ -152,54 +178,69 @@
           ],
           color: 'black', // an option!
           textColor: 'white' // an option!
+        }, ],
+        eventClick: function(info) {
+          popupTimeSlot(info);
+
+          // change the border color just for fun
+          info.el.style.borderColor = 'red';
         },
+        dateClick: popupForm,
+        contentHeight: 700,
 
+      });
 
+      calendar.render();
 
-      ],
+      form = document.getElementById('date-click-form');
 
+      function popupForm(info) {
+        let date = info.dateStr;
+        if (form.style.display === 'none') {
 
-      dateClick: popupForm,
-      contentHeight: 700,
+          form.style.display = 'block';
+        } else {
 
-    });
+          form.style.display = 'none';
+        }
 
-    calendar.render();
-
-    form = document.getElementById('date-click-form');
-
-    function popupForm(info) {
-      var date = info.dateStr;
-      if (form.style.display === 'none') {
-
-        form.style.display = 'block';
-      } else {
-
-        form.style.display = 'none';
       }
 
-    }
+      let timeSlot = document.getElementById('time-slot-popup');
 
-    const addPeriodBtn = document.getElementById('add-period');
-    const timeSlots = document.getElementById('time-slots');
-
-
-
-    //insert each start time and end time from each input generated into a data structure
-    addPeriodBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const div = document.createElement('div');
-      div.classList.add('display-flex-row', 'periods-box');
+      //function to popup when dat eis clicked
+      function popupTimeSlot(info) {
+        if (timeSlot.style.display === 'none') {
+          timeSlot.style.display = 'block';
+        } else {
+          timeSlot.style.display = 'none';
+        }
+      }
 
 
-      const index = timeSlots.children.length;
-      div.innerHTML = `
+      const addPeriodBtn = document.getElementById('add-period');
+      const timeSlots = document.getElementById('time-slots');
+
+
+
+      //insert each start time and end time from each input generated into a data structure
+      addPeriodBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const div = document.createElement('div');
+        div.classList.add('display-flex-row', 'periods-box');
+
+
+        const index = timeSlots.children.length;
+        div.innerHTML = `
     <input type="time" step="900" min="09:00" max="18:00" class="period" name="start_time[${index}]" id="start_time_${index}">
     <input type="time" step="900" min="09:00" max="18:00" class="period" name="end_time[${index}]" id="end_time_${index}">
   `;
-      timeSlots.appendChild(div);
-    });
-  });
+        timeSlots.appendChild(div);
+      });
+
+    }
+
+  );
 
 
   // }
