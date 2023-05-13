@@ -265,6 +265,7 @@ class Advertisements extends BaseController
                 'recurrence' => trim($_POST['recurrence']),
                 'interviewee_count' => trim($_POST['interviewee_count']),
                 'duration' => trim($_POST['duration']),
+                'schedule_status' => trim($_POST['schedule_status']),
                 'time_periods' => [],
                 'time_slots' => []
             ];
@@ -363,7 +364,7 @@ class Advertisements extends BaseController
 
             //Execute
             if ($this->advertisementModel->createInterviewSlots($data)) {
-                redirect('advertisements');
+                redirect('companies/interview-schedule-create/' . $advertisementId);
             } else {
                 die('Something went wrong');
             }

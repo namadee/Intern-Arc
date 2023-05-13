@@ -17,6 +17,9 @@
         'date' => $interviewslots->slot_date,
         'startTime' => $interviewslots->start_time,
         'endTime' => $interviewslots->end_time,
+        'intervieweeName' => $interviewslots->profile_name,
+        'stdId' => $interviewslots->student_id,
+        'reserved' => $interviewslots->reserved,
       );
 
 
@@ -44,11 +47,16 @@
         'id' => $slot->advertisement_id,
         'title' => $slot->position,
         'date' => $slot->slot_date,
+        'slotStart' => $slot->start_time,
+        'slotEnd' => $slot->end_time,
+        'intervieweeName' => $slot->profile_name,
+        'stdId' => $slot->student_id,
+        'reserved' => $interviewslots->reserved,
         'color' => '#054a91'
       );
     }
 
-   
+
   ?><?php endforeach; ?>
 
   <!-- I have no idea how this works -->
@@ -105,6 +113,7 @@
     </div>
 
     <input type="hidden" name="advertisement_id" value="<?php echo $data['advertisment_id'] ?>">
+    <input type="hidden" name="schedule_status" value="<?php echo 1 ?>">
 
 
     <button class="common-blue-btn" type="submit">Submit</button>
@@ -115,7 +124,7 @@
       <h3><span class="material-symbols-outlined">
           date_range
         </span></h3>
-      <h3>Monday, 8 May</h3>
+      <h3 id="day"></h3>
     </div>
 
     <div class="display-flex-row">
@@ -123,7 +132,7 @@
           person
         </span></h3>
       <h3>Interviewee: </h3>
-      <a href="#">Ruchira Bogahawatta</a>
+      <a id="std-name" href="#"></a>
     </div>
     <div class="display-flex-row">
       <h3><span class="material-symbols-outlined">
@@ -131,7 +140,7 @@
         </span></h3>
       <h3>Position: </h3>
       <span class="slot-popup-position-tag">
-        <p>Web Developer</p>
+        <p id="position"></p>
       </span>
     </div>
     <div class="display-flex-row">
@@ -139,7 +148,7 @@
           schedule
         </span></h3>
       <h3>Time: </h3>
-      <p>10:00AM - 10.30AM</p>
+      <p id="my-start-time"> </p>-<p id="my-end-time"></p>
     </div>
 
   </div>
@@ -158,7 +167,7 @@
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          right: 'dayGridMonth'
         },
         //add $events_by_advertisement as event sources
         eventSources: [{
@@ -166,21 +175,22 @@
             <?php foreach ($events as $event) : ?> {
                 title: '<?php echo $event['title']; ?>',
                 date: '<?php echo $event['date']; ?>',
+                color: '<?php echo $event['color']; ?>',
+                myStartTime: '<?php echo $event['slotStart'] ?>',
+                myEndTime: '<?php echo $event['slotEnd'] ?>',
+                intervieweeName: '<?php echo $event['intervieweeName'] ?>',
+                stdId: '<?php echo $event['stdId'] ?>',
+                reserved: '<?php echo $event['reserved'] ?>',
 
-
-
-                color: '<?php echo $event['color']; ?>'
               },
             <?php endforeach; ?>
           ],
-          color: 'black', // an option!
-          textColor: 'white' // an option!
+
+
         }, ],
         eventClick: function(info) {
           popupTimeSlot(info);
 
-          // change the border color just for fun
-          info.el.style.borderColor = 'red';
         },
         dateClick: popupForm,
         contentHeight: 700,
@@ -207,6 +217,42 @@
 
       //function to popup when dat eis clicked
       function popupTimeSlot(info) {
+        console.log(info.event);
+        document.getElementById("position").innerHTML = info.event.title;
+
+        document.getElementById("day").innerHTML = info.event.start.toLocaleDateString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric"
+        });
+
+        document.getElementById("std-name").innerHTML = info.event.extendedProps.intervieweeName;
+
+        document.getElementById("std-name").href = "<?php echo URLROOT; ?>students/student-profile/" + info.event.extendedProps.stdId;
+
+        const formattedStartTime = new Date("2000-01-01T" + info.event.extendedProps.myStartTime + "Z").toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+          timeZone: "UTC" // Set the timezone to UTC
+        });
+        document.getElementById("my-start-time").innerHTML = formattedStartTime;
+
+        const formattedEndTime = new Date("2000-01-01T" + info.event.extendedProps.myEndTime + "Z").toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+          timeZone: "UTC" // Set the timezone to UTC
+        });
+        document.getElementById("my-end-time").innerHTML = formattedEndTime;
+
+
+        //console log all properties of the event
+        console.log(info.event.extendedProps);
+
+
+
+
         if (timeSlot.style.display === 'none') {
           timeSlot.style.display = 'block';
         } else {

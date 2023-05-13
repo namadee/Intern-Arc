@@ -9,8 +9,10 @@
 	<?php
 
 	$events = array();
+	$color = '';
 
 	foreach ($data['interviewSlots'] as $interviewslots) : {
+			$color =  ($interviewslots->reserved == 1) ? '#dddddd' : '#054a91';
 
 			//add $inteviewsslots->start_time $interveiwslots->end_time $interviewslots->date to events array
 			$events[] = array(
@@ -19,6 +21,9 @@
 				'mystarttime' => $interviewslots->start_time,
 				'myendtime' => $interviewslots->end_time,
 				'slotId' => $interviewslots->slot_id,
+				'color' => $color,
+				'companyName' => $interviewslots->company_name,
+				'adId' => $interviewslots->advertisement_id
 				// 'companyName' => $interviewslots->company_name,
 
 			);
@@ -36,12 +41,13 @@
 			<h3 id="day"></h3>
 		</div>
 
+
 		<div class="display-flex-row">
 			<h3><span class="material-symbols-outlined">
 					person
 				</span></h3>
 			<h3>Company: </h3>
-			<a href="#">Virtusa</a>
+			<a id="company-name"></a>
 		</div>
 		<div class="display-flex-row">
 			<h3><span class="material-symbols-outlined">
@@ -49,7 +55,7 @@
 				</span></h3>
 			<h3>Position: </h3>
 			<span class="slot-popup-position-tag">
-				<p id="position"></p>
+				<a id="position" href="#"></a>
 			</span>
 		</div>
 		<div class="display-flex-row">
@@ -58,13 +64,13 @@
 				</span></h3>
 			<h3>Time: </h3>
 			<div class="display-flex-row">
-				<p id="my-start-time">10:00AM </p>-<p id="my-end-time"> 10.30AM</p>
+				<p id="my-start-time"> </p>-<p id="my-end-time"></p>
 			</div>
 		</div>
 		<div class="display-flex-row">
 
-			<a id="book-btn" class="common-blue-btn" href="">Book</a>
-			<a class="common-blue-btn">Cancel</a>
+			<a id="book-btn" aria-disabled="true" class="common-blue-btn" href="">Reserve Slot</a>
+			<a id="closePopup" class="common-blue-btn">Cancel</a>
 		</div>
 
 
@@ -88,7 +94,7 @@
 				headerToolbar: {
 					left: 'prev,next today',
 					center: 'title',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay'
+					right: 'dayGridMonth'
 				},
 				//add $events_by_advertisement as event sources
 				//set events array as jspn
@@ -96,7 +102,8 @@
 
 
 				eventClick: function(info) {
-					popupTimeSlot(info);
+
+					(info.event.backgroundColor == '#dddddd' ? '' : popupTimeSlot(info));
 				},
 
 				contentHeight: 700,
@@ -110,12 +117,20 @@
 
 			//function to popup when dat eis clicked
 			function popupTimeSlot(info) {
+				//access color value of event 
+				console.log(info.event.color);
+
 				//console log info.event.title
-				console.log(info.event.title);
+
 				document.getElementById("position").innerHTML = info.event.title;
 
+				//add advertisement link  URLROOT .advertisements/view-advertisement/ . advertisement_id to position a tag 
+				document.getElementById("position").href = "<?php echo URLROOT; ?>advertisements/view-advertisement/" + info.event.extendedProps.adId;
 
-				//console log info.event.extendedProps.companyName
+				console.log(info.event.extendedProps.companyName);
+				document.getElementById("company-name").innerHTML = info.event.extendedProps.companyName;
+
+
 				console.log(info.event.extendedProps.myendtime);
 
 				//console log date from info 
@@ -132,7 +147,8 @@
 				const formattedStratTime = new Date("2000-01-01T" + info.event.extendedProps.mystarttime + "Z").toLocaleTimeString("en-US", {
 					hour: "numeric",
 					minute: "numeric",
-					hour12: true
+					hour12: true,
+					timeZone: "UTC" // Set the timezone to UTC
 				});
 				document.getElementById("my-start-time").innerHTML = formattedStratTime;
 
@@ -141,11 +157,19 @@
 				const formattedEndTime = new Date("2000-01-01T" + info.event.extendedProps.myendtime + "Z").toLocaleTimeString("en-US", {
 					hour: "numeric",
 					minute: "numeric",
-					hour12: true
+					hour12: true,
+					timeZone: "UTC" // Set the timezone to UTC
 				});
 				document.getElementById("my-end-time").innerHTML = formattedEndTime;
 
 				console.log(info.event.extendedProps.slotId);
+
+				//close popup on clicking cancel button
+				const closePopup = document.getElementById('closePopup');
+				closePopup.addEventListener('click', function() {
+					timeSlot.style.display = 'none';
+				});
+
 
 				if (timeSlot.style.display === 'none') {
 					timeSlot.style.display = 'block';
@@ -162,7 +186,7 @@
 				function confirmBooking(event) {
 
 
-					const confirmed = window.confirm('Are you sure you want to book?');
+					const confirmed = window.confirm('Are you sure you want to Reserve this slot?');
 					console.log(confirmed);
 					bookBtn.removeEventListener('click', confirmBooking);
 

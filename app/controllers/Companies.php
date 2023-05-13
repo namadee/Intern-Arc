@@ -215,4 +215,6 @@ class Companies extends BaseController
             redirect('companies/get-shortlisted-students/' . $id);
         }
     }
+
+    
 }

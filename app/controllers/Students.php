@@ -176,12 +176,12 @@ class Students extends BaseController
         ];
 
         //Execute
-        if ($this->studentModel->checkInterviewBooked($slotId, $studentId)) {
-            flashMessage('Interview_msg', 'You have already booked this slot!', 'danger-alert');
+        if ($this->studentModel->checkInterviewBooked($slotId)) {
+            flashMessage('Interview_msg', 'This time slot is already reserved!', 'danger-alert');
             redirect('schedule/');
         } else if ($this->studentModel->bookInterviewSlot($data)) {
 
-            flashMessage('Interview_msg', 'Booked the Interview Slot Successfully!');
+            flashMessage('Interview_msg', 'Reserved the Interview Slot Successfully!');
             redirect('schedule/');
         } else {
 
