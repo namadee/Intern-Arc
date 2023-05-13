@@ -213,6 +213,8 @@ class Advertisements extends BaseController
     //load The advertisement UI of the relevant company 
     public function viewAdvertisement($advertisementId)
     {
+        //Admin use this also
+        
         // $advertisementId = $_GET['adId'];
         $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
 

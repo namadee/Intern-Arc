@@ -16,6 +16,10 @@ class Admin extends BaseController
         $this->advertisementModel = $this->model('Advertisement');
         $this->requestModel = $this->model('Request');
         $this->pdcModel = $this->model('Pdc');
+
+        if ($_SESSION['user_role'] != 'admin') {
+            redirect('errors');
+        }
     }
 
     public function index($batchYear = NULL) //default method and view
@@ -799,7 +803,6 @@ class Admin extends BaseController
             $this->view('admin/reportRound', $data);
         };
     }
-
 
     // Download round reports
     public function downloadRoundReport($batchYear = NULL, $round = NULL, $stream = NULL)

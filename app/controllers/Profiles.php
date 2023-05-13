@@ -50,6 +50,7 @@ class Profiles extends BaseController
 
     public function companyProfile($userID = NULL)
     {
+        //Admin use this also
         if ($userID != NULL) {
 
             $companyId = $this->userModel->getCompanyUserId($userID);

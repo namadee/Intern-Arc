@@ -8,6 +8,9 @@ class Jobroles extends BaseController
     public function __construct()
     {
         $this->jobroleModel = $this->model('Jobrole');
+        if ($_SESSION['user_role'] != 'pdc') {
+            redirect('errors');
+        }
     }
 
     public function index()

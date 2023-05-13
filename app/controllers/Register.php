@@ -10,7 +10,6 @@ class Register extends BaseController
         $this->registerModel = $this->model('Register');
         $this->userModel = $this->model('User');
         $this->studentModel = $this->model('Student');
-        $this->testModel = $this->model('Test');
         $this->companyModel = $this->model('Company');
     }
 

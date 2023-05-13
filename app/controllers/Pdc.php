@@ -16,6 +16,10 @@ class Pdc extends BaseController
         $this->advertisementModel = $this->model('Advertisement');
         $this->pdcModel = $this->model('Pdc');
         $this->requestModel = $this->model('Request');
+
+        if ($_SESSION['user_role'] != 'pdc') {
+            redirect('errors');
+        }
     }
 
     public function index($duration = NULL) //Load PDC Dashboard
