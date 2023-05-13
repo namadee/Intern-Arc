@@ -11,6 +11,7 @@ class Advertisements extends BaseController
 
     public function __construct()
     {
+        $this->companyModel = $this->model('Company');
         $this->advertisementModel = $this->model('Advertisement');
         $this->jobroleModel = $this->model('Jobrole');
         $this->jobroleList = $this->jobroleModel->getJobroles();
@@ -188,14 +189,27 @@ class Advertisements extends BaseController
     }
 
     //SHOW All ADVERTISEMENTS FROM ALL COMPANIES - STUDENT
-    //SHOW All ADVERTISEMENTS FROM ALL COMPANIES - STUDENT
-    public function showStudentAdvertisements()
-    {
+    public function showStudentAdvertisements(){
+        $listCompanies = $this->companyModel->getCompanyList();
+        $jobroleList = $this->jobroleModel->getJobroles();
+        $data2 = [
+            'listCompanies' => $listCompanies
+        ];
+
+        $data3 = [
+            'jobroleList' => $jobroleList
+        ];
+            
         $data = [
             'companyData' => $this->companyData
         ];
+
+        $data = array_merge($data, $data2, $data3);
         $this->view('student/advertisements', $data);
     }
+
+
+    
 
     //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
     public function showAdvertisementsByCompany()

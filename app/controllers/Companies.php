@@ -86,15 +86,59 @@ class Companies extends BaseController
     //View Company List - STUDENT
     public function viewCompanyList()
     {
+        $listCompanies = $this->companyModel->getCompanyList();
+        
+        $data = [
+            'listCompanies' => $listCompanies
+        ];
 
-        $this->view('student/viewcompanies');
+        $this->view('student/viewcompanies', $data);
+    }
+
+    public function SearchCompanies()
+    {
+        $search_res = null;
+        $output = null;
+        if(isset($_POST['query'])){
+            $search = $_POST['query'];
+            $search_res = $this->companyModel->searchCompanyList($search);
+        }
+        else{
+            $search_res = $this->companyModel->getCompanyList();
+        }
+
+        if($search_res){
+            $output = '<table class="view-companies-table" id="view-companies-table">
+                <thead>
+                <tr>
+                    <th class="view-companies-table-header">Company Name</th>
+                    <th class="view-companies-table-header"></th>
+                </tr>
+                </thead>
+                <tbody>';
+
+            foreach ($search_res as $res) {
+            
+                $output .= '<tr>
+                        <td class="view-companies-table-data">' . $res->company_name .'</td>
+                        <td class="view-companies-table-data"> <a href='. URLROOT.'students/company-profile'.'><button button class="common-view-btn">view</button></a></td>
+                        </tr>';
+            };
+            $output .= '</tbody> </table>';
+            
+        }
+        else{
+            $output = '<h3>No search results<h3>';
+        }
+        echo $output;
+        
     }
 
     //View Applied Company List - STUDENT
-    public function viewAppliedCompanyList()
-    {
-        $this->view('student/appliedcompanies');
-    }
+    // public function viewAppliedCompanyList()
+    // {
+    //     $this->view('student/appliedcompanies');
+    // }
 
     //View Applied Company List - STUDENT
     public function viewCompanyDetails()

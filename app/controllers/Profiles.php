@@ -359,7 +359,8 @@ class Profiles extends BaseController
     public function studentProfile()                //($_SESSION['user_id'])
     {
         $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
-        //$student_details = $this->userModel->getStudentDetails($studentId);
+        $student_details = $this->userModel->getStudentDetails($studentId); //commented
+        $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id'])); // extra 1
 
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -377,8 +378,10 @@ class Profiles extends BaseController
                 'stream' => trim($_POST['stream']),
                 'profile_description' => trim($_POST['profile_description']),
                 'extracurricular' => trim($_POST['extracurricular']),
-                'profile_name' => trim($_POST['profile_name']),
-                'personal_email' => trim($_POST['personal_email']),
+                'profile_name'=>trim($_POST['profile_name']),
+                'github_link' =>trim($_POST['github_link']),
+                'linkedin_link' =>trim($_POST['linkedin_link']),
+                'personal_email'=>trim($_POST['personal_email']),
             ];
 
             //Execute
@@ -390,7 +393,7 @@ class Profiles extends BaseController
             }
         } else {
 
-            $studentProfile = $this->studentModel->getStudentProfileData();
+            $studentProfile = $this->studentModel->getStudentProfileData($studentId);
 
 
             $data = [
@@ -404,12 +407,16 @@ class Profiles extends BaseController
                 'profile_description' => $studentProfile->profile_description,
                 'extracurricular' => $studentProfile->extracurricular,
                 'profile_name' => $studentProfile->profile_name,
+                'github_link' => $studentProfile->github_link,
+                'linkedin_link'=> $studentProfile->linkedin_link,
                 'personal_email' => $studentProfile->personal_email,
+                'image' => $profile_image_name->profile_pic,    //extra 2
             ];
 
             // $this->view('student/editprofile',$data);
 
             $this->view('student/studentprofile', $data);
+           
         }
     }
 
@@ -418,129 +425,172 @@ class Profiles extends BaseController
         $this->view('student/companyprofile');
     }
 
-    //update student profile
-    // public function EditStudentProfileDetails()
-    // {
-    //     $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
-    //     //$student_details = $this->userModel->getStudentDetails($studentId);
 
-    //     // Check if POST
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    //         // Strip Tags
-    //         stripTags();
-
-    //         $data = [
-    //             'student_id' => $studentId,
-    //             'experience' => trim($_POST['experience']),
-    //             'interests' => trim($_POST['interests']),
-    //             'qualifications' => trim($_POST['qualifications']),
-    //             'school' => trim($_POST['school']),
-    //             'contact' => trim($_POST['contact']),
-    //             'stream' => trim($_POST['stream']),
-    //             'profile_description' => trim($_POST['profile_description']),
-    //             'profile_name' => trim($_POST['profile_name']),
-    //             'personal_email' => trim($_POST['personal_email']),
-    //             'extracurricular' => trim($_POST['extracurricular']),
-    //         ];
-
-    //         //Execute
-    //         if ($this->studentModel->EditStudentProfileDetails($data)) {
-
-    //             redirect('profiles/student-profile');
-    //         } else {
-    //             die('Something went wrong');
-    //         }
-    //     } else {
-
-    //         $studentProfile = $this->studentModel->getStudentProfileData();
-
-
-    //         $data = [
-    //             'experience' => $studentProfile->experience,
-    //             'interests' => $studentProfile->interests,
-    //             'qualifications' => $studentProfile->qualifications,
-    //             'school' => $studentProfile->school,
-    //             'contact' => $studentProfile->contact,
-    //             'stream' => $studentProfile->stream,
-    //             'profile_description' => $studentProfile->profile_description,
-    //             'profile_name' => $studentProfile->profile_name,
-    //             'personal_email'=>$studentProfile->personal_email,
-    //             'extracurricular' => $studentProfile->extracurricular,
-    //         ];
-
-    //         $this->view('student/editprofile',$data);
-
-    //         // $data = [
-    //         //     'student_id' => '',
-    //         //     'experience' => '',
-    //         //     'interests' => '',
-    //         //     'qualifications' => '',
-    //         //     'school' => '',
-    //         //     'contact' => '',
-    //         //     'stream' => '',
-    //         //     'profile_description' => '',
-    //         //     'extracurricular' => '',
-    //         // ];
-
-
-    //         // $this->view('student/editprofile', $data);
-    //     }
-    // }
-
-    public function EditStudentProfileDetails()
+    public function EditStudentProfileDetails() 
     {
 
-        $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
+        //$studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
 
         //$student_details = $this->userModel->getStudentDetails($studentId);
 
+        $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
+        $studentProfile = $this->studentModel->getStudentProfileData($studentId);
+        $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id']));
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Strip Tags
-            stripTags();
+            //stripTags();
 
-            //$studentId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
-            $studentId = 69;
-            $text = explode("\r<\br>", trim($_POST['interests-list']));
-            $length = count($text);
+            //$studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
+            //extra 3
+            // $text = explode("\r<\br>", trim($_POST['interests-list']));
+            // $length = count($text);
 
-            $emptyArray = array();
-            for ($x = 0; $x < $length; $x++) {
-                $emptyArray[$x] = trim($text[$x]);
-            }
+            // $emptyArray = array();
+            // for ($x = 0; $x < $length; $x++) {
+            //     $emptyArray[$x] = trim($text[$x]); 
+            // }
             //$completeString = implode("", $emptyArray);
 
 
+             //File upload path
+            $targetDir = "img/profile-img/";
+            //Change image file name - Unique Name for each user with the help of userId
+            $fileName = 'user' . $_SESSION['user_id'] . '_profileimg' . rand(0, 100000);
+            //Get the extension
+            $extension = pathinfo($_FILES["profile_image"]["name"], PATHINFO_EXTENSION);
+            //Full image name
+            $basename   = $fileName . "." . $extension; //user56_profile_img.jpg
+            //TargetPath
+            $targetFilePath = $targetDir . $basename;
 
+            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-            $data = [
+            if (!empty($_FILES["profile_image"]["name"])) {
+                //Image Size in Bytes
+                $imageSize =  $_FILES["profile_image"]["size"];
 
-                'student_id' => $studentId,
-                'experience-list' => trim($_POST['experience-list']),
-                'interests-list' => trim($_POST['interests-list']),
-                'qualifications-list' => trim($_POST['qualifications-list']),
-                'school' => trim($_POST['school']),
-                'contact' => trim($_POST['contact']),
-                'stream' => trim($_POST['stream']),
-                'profile_description' => trim($_POST['profile_description']),
-                'profile_name' => trim($_POST['profile_name']),
-                'personal_email' => trim($_POST['personal_email']),
-                'extracurricular-list' => trim($_POST['extracurricular-list']),
-            ];
+                //Check whether the uploaded image is below 500kb
+                if ($imageSize >= 500000) {
+                    // Redirect
+                    $statusMsg = 'Sorry, Please upload an image below 500KB';
+                    flashMessage('profile_update_status', $statusMsg, 'danger-alert');
+                    redirect('profiles/student-profile');
+                    exit;
+                }
+
+                // Allow certain file formats
+                $allowTypes = array('jpg', 'png', 'jpeg');
+
+                if (in_array($fileType, $allowTypes)) {
+                    //Removing old image from storage
+                    //Must check if its the default img before removing
+                    //If its the default img then we skip unlink part
+                    if ($profile_image_name->profile_pic != 'img/profile-img/profile-icon.svg') {
+                        unlink(PROFILE_IMG_PATH . $profile_image_name->profile_pic);
+                    }
+                    // Upload file to server
+                    if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetFilePath)) {
+
+                        // Insert image file name into database
+                        $data = [
+                            'user_id' => $_SESSION['user_id'],
+                            'profile_pic' => $targetFilePath
+                        ];
+
+                        //Execute - Adding new Img name and Path to user_tbl
+                        $this->userModel->updateProfileImage($data);
+
+                        //To add the new photo session - top navbar profile photo
+                        //Update Image Session Value
+                        $_SESSION['profile_pic'] = $targetFilePath;
+                        $data = [
+
+                            'student_id' => $studentId,
+                            'experience-list' => ($_POST['experiences']),
+                            'interests-list' => $_POST['interests'],
+                            'qualifications-list' => trim($_POST['qualifications-list']),
+                            'school' => trim($_POST['school']),
+                            'contact' => trim($_POST['contact']),
+                            'stream' => trim($_POST['stream']),
+                            'profile_description' => trim($_POST['profile_description']),
+                            'profile_name' => trim($_POST['profile_name']),
+                            'personal_email' => trim($_POST['personal_email']),
+                            'github_link' =>trim($_POST['github_link']),
+                            'linkedin_link' =>trim($_POST['linkedin_link']),
+                            'extracurricular-list' => trim($_POST['extracurricular-list']),
+                        ];
+
+                        $data['interests-list'] = implode(", ", $data['interests-list']);
+                        echo $data['interests-list'];
+
+                        $data['experience-list'] = implode(", ", $data['experience-list']);
+                        echo $data['experience-list'];
+
+                
+                        //Execute - Adding other details to company_tbl
+                        $this->studentModel->EditStudentProfileDetails($data);
+
+                        // Redirect - Profile Updared successfully
+                        $statusMsg = 'Profile Picture Uploaded Successfully';
+                        flashMessage('profile_update_status', $statusMsg);
+                        redirect('profiles/student-profile');
+                    } else {
+                        $statusMsg = "Sorry, there was an error uploading your file.";
+                        flashMessage('profile_update_status', $statusMsg, 'danger-alert');
+                        redirect('profiles/edit-student-profile-Details');
+                    }
+                } else {
+                    // Redirect
+                    $statusMsg = 'Sorry, only JPG, JPEG & PNG files are allowed to upload.';
+                    flashMessage('profile_update_status', $statusMsg, 'danger-alert');
+                    redirect('profiles/edit-student-profile-Details');
+                } 
+
+            } else {
+
+                //no pro pic uploaded
+                $data = [
+
+                    'student_id' => $studentId,
+                    'experience-list' => ($_POST['experiences']),
+                    'interests-list' => $_POST['interests'],
+                    'qualifications-list' => trim($_POST['qualifications-list']),
+                    'school' => trim($_POST['school']),
+                    'contact' => trim($_POST['contact']),
+                    'stream' => trim($_POST['stream']),
+                    'profile_description' => trim($_POST['profile_description']),
+                    'profile_name' => trim($_POST['profile_name']),
+                    'personal_email' => trim($_POST['personal_email']),
+                    'github_link' =>trim($_POST['github_link']),
+                    'linkedin_link' =>trim($_POST['linkedin_link']),
+                    'extracurricular-list' => trim($_POST['extracurricular-list']),
+                ];
+
+                $data['interests-list'] = implode(", ", $data['interests-list']);
+                echo $data['interests-list'];
+
+                $data['experience-list'] = implode(", ", $data['experience-list']);
+                echo $data['experience-list'];
+
+                //Execute - Adding other details to company_tbl
+                $this->studentModel->EditStudentProfileDetails($data);
+
+                // Redirect - Profile Updated successfully
+                $statusMsg = 'Profile Uploaded Successfully';
+                flashMessage('profile_update_status', $statusMsg);
+                redirect('profiles/student-profile');
+
+            }
 
             //Execute
-            if ($this->studentModel->EditStudentProfileDetails($data)) {
-                redirect('profiles/student-profile');
-            } else {
-                die('Something went wrong');
-            }
+            // if ($this->studentModel->EditStudentProfileDetails($data)) {
+            //     redirect('profiles/student-profile');
+            // } else {
+            //      die('Something went wrong');
+            //  }
         } else {
-
-            $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
-            $studentProfile = $this->studentModel->getStudentProfileData($studentId);
-
 
             $data = [
                 'experience' => $studentProfile->experience,
@@ -555,26 +605,176 @@ class Profiles extends BaseController
                 'extracurricular' => $studentProfile->extracurricular,
                 'profile_name' => $studentProfile->profile_name,
                 'personal_email' => $studentProfile->personal_email,
+                'github_link' => $studentProfile->github_link,
+                'linkedin_link'=> $studentProfile->linkedin_link,
+                
             ];
 
             $this->view('student/editprofile', $data);
 
-            // $data = [
-            //     'student_id' => '',
-            //     'experience' => '',
-            //     'interests' => '',
-            //     'qualifications' => '',
-            //     'school' => '',
-            //     'contact' => '',
-            //     'stream' => '',
-            //     'profile_description' => '',
-            //     'extracurricular' => '',
-            // ];
-
-
-            // $this->view('student/editprofile', $data);
-
-            $this->view('student/editprofile', $data);
+            
         }
     }
+
+
+    // public function EditffffStudentProfileDetails()
+    // {
+
+    //     $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
+    //     $student_details = $this->userModel->getStudentDetails($studentId);
+    //     $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id']));
+    //     $studentProfile = $this->studentModel->getStudentProfileData($studentId);
+
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    //         $text = explode("\r<\br>", trim($_POST['interests-list']));
+    //         $length = count($text);
+    //         $emptyArray = array();
+    //         for ($x = 0; $x < $length; $x++) {
+    //             $emptyArray[$x] = trim($text[$x]); 
+    //         }
+
+    //         $statusMsg = '';
+
+    //         // File upload path
+    //         $targetDir = "img/profile-img/";
+    //         //Change image file name - Unique Name for each user with the help of userId
+    //         $fileName = 'user' . $_SESSION['user_id'] . '_profileimg' . rand(0, 100000);
+    //         //Get the extension
+    //         $extension = pathinfo($_FILES["profile_image"]["name"], PATHINFO_EXTENSION);
+    //         //Full image name
+    //         $basename   = $fileName . "." . $extension; //user56_profile_img.jpg
+    //         //TargetPath
+    //         $targetFilePath = $targetDir . $basename;
+
+    //         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+    //         if (!empty($_FILES["profile_image"]["name"])) {
+
+    //             //Image Size in Bytes
+    //             $imageSize =  $_FILES["profile_image"]["size"];
+
+    //             //Check whether the uploaded image is below 500kb
+    //             if ($imageSize >= 500000) {
+    //                 // Redirect
+    //                 $statusMsg = 'Sorry, Please upload an image below 500KB';
+    //                 flashMessage('profile_update_status', $statusMsg, 'danger-alert');
+    //                 redirect('profiles/student-profile');
+    //                 exit;
+    //             }
+
+    //             // Allow certain file formats
+    //             $allowTypes = array('jpg', 'png', 'jpeg');
+
+    //             if (in_array($fileType, $allowTypes)) {
+
+
+    //                 //Removing old image from storage
+    //                 //Must check if its the default img before removing
+    //                 //If its the default img then we skip unlink part
+    //                 if ($profile_image_name->profile_pic != 'img/profile-img/profile-icon.svg') {
+    //                     unlink(PROFILE_IMG_PATH . $profile_image_name->profile_pic);
+    //                 }
+
+    //                 // Upload file to server
+    //                 if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetFilePath)) {
+
+    //                     // Insert image file name into database
+    //                     $data = [
+    //                         'user_id' => $_SESSION['user_id'],
+    //                         'profile_pic' => $targetFilePath
+    //                     ];
+
+    //                     //Execute - Adding new Img name and Path to user_tbl
+    //                     $this->userModel->updateProfileImage($data);
+
+    //                     //To add the new photo session - top navbar profile photo
+    //                     //Update Image Session Value
+    //                     $_SESSION['profile_pic'] = $targetFilePath;
+
+
+    //                     $data = [
+    //                         'student_id' => $studentId,
+    //                         'experience' => trim($_POST['experience']),
+    //                         'interests-list' => trim($_POST['interests-list']),
+    //                         'qualifications' => trim($_POST['qualifications']),
+    //                         'school' => trim($_POST['school']),
+    //                         'contact' => trim($_POST['contact']),
+    //                         'stream' => trim($_POST['stream']),
+    //                         'profile_description' => trim($_POST['profile_description']),
+    //                         'extracurricular' => trim($_POST['extracurricular']),
+    //                         'profile_name'=>trim($_POST['profile_name']),
+    //                         'github_link' =>trim($_POST['github_link']),
+    //                         'linkedin_link' =>trim($_POST['linkedin_link']),
+    //                         'personal_email'=>trim($_POST['personal_email']),
+    //                     ];
+
+    //                     //Execute - Adding other details to company_tbl
+    //                     $this->studentModel->EditStudentProfileDetails($data);
+
+    //                     // Redirect - Profile Updared successfully
+    //                     $statusMsg = 'Profile Uploaded Successfully';
+    //                     flashMessage('profile_update_status', $statusMsg);
+    //                     redirect('student/editprofile');
+    //                 } else {
+    //                     $statusMsg = "Sorry, there was an error uploading your file.";
+    //                     flashMessage('profile_update_status', $statusMsg, 'danger-alert');
+    //                     redirect('student/editprofile');
+    //                 }
+    //             } else {
+    //                 // Redirect
+    //                 $statusMsg = 'Sorry, only JPG, JPEG & PNG files are allowed to upload.';
+    //                 flashMessage('profile_update_status', $statusMsg, 'danger-alert');
+    //                 redirect('student/editprofile');
+    //             }
+    //         } else {
+
+    //             //No profile pic uploaded
+    //             $data = [
+    //                 'student_id' => $studentId,
+    //                 'experience' => trim($_POST['experience']),
+    //                 'interests' => trim($_POST['interests']),
+    //                 'qualifications' => trim($_POST['qualifications']),
+    //                 'school' => trim($_POST['school']),
+    //                 'contact' => trim($_POST['contact']),
+    //                 'stream' => trim($_POST['stream']),
+    //                 'profile_description' => trim($_POST['profile_description']),
+    //                 'extracurricular' => trim($_POST['extracurricular']),
+    //                 'profile_name'=>trim($_POST['profile_name']),
+    //                 'github_link' =>trim($_POST['github_link']),
+    //                 'linkedin_link' =>trim($_POST['linkedin_link']),
+    //                 'personal_email'=>trim($_POST['personal_email']),
+    //             ];
+
+    //             //Execute - Adding other details to company_tbl
+    //             $this->studentModel->EditStudentProfileDetails($data);
+
+    //             // Redirect - Profile Updated successfully
+    //             $statusMsg = 'Profile Uploaded Successfully';
+    //             flashMessage('profile_update_status', $statusMsg);
+    //             redirect('profiles/student-profile');
+    //         }
+    //     } else {
+    //         $data = [
+    //             'student_id' => $studentId,
+    //             'experience' => $studentProfile->experience,
+    //             'interests' => $studentProfile->interests,
+    //             'qualifications' => $studentProfile->qualifications,
+    //             'school' => $studentProfile->school,
+    //             'contact' => $studentProfile->contact,
+    //             'stream' => $studentProfile->stream,
+    //             'profile_description' => $studentProfile->profile_description,
+    //             'extracurricular' => $studentProfile->extracurricular,
+    //             'profile_name' => $studentProfile->profile_name,
+    //             'github_link' => $studentProfile->github_link,
+    //             'linkedin_link'=> $studentProfile->linkedin_link,
+    //             'personal_email' => $studentProfile->personal_email,
+    //             'image' => $profile_image_name->profile_pic,
+    //         ];
+
+    //         $this->view('student/editprofile', $data);
+    //     }
+    // }
+
+
 }

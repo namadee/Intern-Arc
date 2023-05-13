@@ -34,6 +34,7 @@ class Requests extends BaseController
     {
         // $advertisementId = $_GET['adId'];
         $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
+        $reqCount  = $this->requestModel->getRequestCountPerStudent($studentId);
 
         //Adjustment 3 - Getting the batch year of the respective advertisement
         $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId);
@@ -47,13 +48,21 @@ class Requests extends BaseController
         ];
 
         //Execute
-        if ($this->requestModel->checkStudentRequest($advertisementId, $studentId)) {
-            flashMessage('student_request_msg', 'You have already applied to this advertisement!', 'danger-alert');
-            redirect('advertisements/viewAdvertisement/' . $advertisementId);
-        } else if ($this->requestModel->addStudentRequest($data)) {
-            flashMessage('student_request_msg', 'Applied successfully');
-            redirect('advertisements/viewAdvertisement/' . $advertisementId);
-        } else {
+        if($this->requestModel->checkStudentRequest($advertisementId, $studentId))
+        {
+            flashMessage('student_request_msg' , 'You have already applied to this advertisement!', 'danger-alert');
+            redirect('advertisements/viewAdvertisement/'. $advertisementId);
+            
+        }
+        else if($reqCount>=5) {
+            flashMessage('max_application' , 'Maximum application limit reached', 'danger-alert');
+            redirect('advertisements/viewAdvertisement/'. $advertisementId);
+        }
+        else if($this->requestModel->addStudentRequest($data)) {
+            flashMessage('student_request_msg' , 'Applied successfully');
+            redirect('advertisements/viewAdvertisement/'. $advertisementId);
+        }
+        else {
             die('Something went wrong');
         }
     }
@@ -122,4 +131,11 @@ class Requests extends BaseController
 
         $this->view('company/studentRequestList', $data);
     }
+
+    // public function showNumberRequested(){
+    //     $reqCount  = $this->RequestModel->getRequestCountPerStudent ($std_id);
+    // }
+
+    
+
 }

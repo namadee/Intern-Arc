@@ -14,16 +14,18 @@
 	<h3>My Dashboard</h3>
 <div class="dashboard-flex-container">
 	<div class="dashboard-textarea">
-		Status : <button class="dashboard-statusbtn">Pending</button>
+	<?php foreach ($data['studentDetails'] as $studentDetails) : ?>
+		Status : <button class="dashboard-statusbtn"><?php echo $studentDetails->recruit_status ?></button>
 		<br/><br/>
-		Registration Number : 2020/IS/003
+		Registration Number : <?php echo $studentDetails->registration_number ?>
 		<br/><br/>
-		Email : Ruchirabogahawatta@gmail.com
+		Email : <?php echo $studentDetails->email ?>
 		<br/><br/>
-		Round : 1st round 
+		Round : <?php echo $studentDetails->round ?>
 	</div>
+	<?php endforeach; ?>
 	<div class="dashboard-btnarea">
-	<a href="<?php echo URLROOT.'students/student-profile';?>">	
+	<a href="<?php echo URLROOT.'profiles/student-profile';?>">	
 	<button class="dashboard-profile-view-btn">View my profile</button></a></div>
 </div>
 </div>
@@ -31,8 +33,8 @@
 <div class="dashboard-bottom-strip">
 	<div class="bottom-strip-blue-line"><p>1</p></div>
 	<div class="bottom-strip-description"><p>Applied Companies</p></div>
-	<div class="bottom-strip-number"><p>5</p></div>
-	<div class="bottom-strip-button"><a href="<?php echo URLROOT.'companies/view-applied-company-list';?>"> View </a> </div>
+	<div class="bottom-strip-number"><p><?php echo $data['reqCount']?> </p></div>
+	<div class="bottom-strip-button"><a href="<?php echo URLROOT.'students/view-applied-company-list';?>"> View </a> </div>
 </div>
 <br/>
 <div class="dashboard-bottom-strip">
