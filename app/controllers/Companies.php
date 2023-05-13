@@ -90,29 +90,29 @@ class Companies extends BaseController
 
     //I AM COMMENTING THESE BECAUSE I THINK THEY ARE NOT USED ANYWHERE - NAMADEE
 
-    // //View Company List - STUDENT
-    // public function viewCompanyList()
-    // {
+    //View Company List - STUDENT
+    public function viewCompanyList()
+    {
 
-    //     $this->view('student/viewcompanies');
-    // }
+        $this->view('student/viewcompanies');
+    }
 
-    // //View Applied Company List - STUDENT
-    // public function viewAppliedCompanyList()
-    // {
-    //     $this->view('student/appliedcompanies');
-    // }
+    //View Applied Company List - STUDENT
+    public function viewAppliedCompanyList()
+    {
+        $this->view('student/appliedcompanies');
+    }
 
-    // //View Applied Company List - STUDENT
-    // public function viewCompanyDetails()
-    // {
-    //     $this->view('student/appliedcompanies');
-    // }
+    //View Applied Company List - STUDENT
+    public function viewCompanyDetails()
+    {
+        $this->view('student/appliedcompanies');
+    }
 
-    // public function shortlistedStudents()
-    // {
-    //     $this->view('company/shortlistedStudents');
-    // }
+    public function shortlistedStudents()
+    {
+        $this->view('company/shortlistedStudents');
+    }
 
     public function InterviewScheduleList()
     {

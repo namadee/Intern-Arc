@@ -27,6 +27,7 @@
     <div class="common_list_content">
 
       <?php
+
       if ($roundDataArray['roundNumber'] != NULL) {
         // Need Round Constraints
         $hrefStatus = $roundDataArray['hrefStatus'];
@@ -40,7 +41,7 @@
 
       <div class="addBtn">
         <h3>Advertisement List</h3>
-        <a href="<?php echo $hrefStatus ?>" class="<?php echo $elementClass ?> common-blue-btn"><span id="addIcon" class="material-symbols-outlined">
+        <a href="<?php echo $hrefStatus ?>" class="common-blue-btn <?php echo $elementClass ?>"><span id="addIcon" class="material-symbols-outlined">
             library_add
           </span>Add</a>
       </div>

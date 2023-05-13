@@ -41,12 +41,6 @@ class Errors extends BaseController
         }
     }
 
-    public function noAccess()
-    {
-
-        $this->view('noAccess');
-    }
-
     public function noData()
     {
 
@@ -56,6 +50,6 @@ class Errors extends BaseController
     public function error403()
     {
 
-        $this->view('error403');
+        $this->view('noAccess');
     }
 }
