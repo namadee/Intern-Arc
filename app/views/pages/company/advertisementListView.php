@@ -61,7 +61,7 @@
             <td><?php echo $advertisement->position ?></td>
             <td><?php echo $advertisement->intern_count ?></td>
             <td>
-              <div class="common-status display-flex-row <?php echo $advertisement->status == 'pending' ? 'yellow-status-font' : ($advertisement->status == 'rejected' ? 'red-status-font' : ''); ?> ">
+              <div class="common-status display-flex-row advertisement-status <?php echo $advertisement->status == 'pending' ? 'yellow-status-font' : ($advertisement->status == 'rejected' ? 'red-status-font' : ''); ?> ">
 
                 <span class="common-status-span <?php echo $advertisement->status == 'pending' ? 'yellow-status' : ($advertisement->status == 'rejected' ? 'red-status' : ''); ?>">
                 </span>

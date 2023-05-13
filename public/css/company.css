@@ -178,6 +178,12 @@ select:disabled {
   align-items: center;
 }
 
+.advertisement-status{
+  width: 8rem;
+    margin: auto;
+
+}
+
 /*end of advertisement page*/
 
 /*start of add advertisement page*/

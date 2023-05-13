@@ -77,7 +77,7 @@
 
       </tr>
 
-      <?php foreach ($data['dashboard'] as $dashboard) :?>
+      <?php foreach ($data['dashboard'] as $dashboard) : ?>
         <tr>
           <td><?php echo $dashboard->profile_name ?></p>
           </td>
@@ -85,7 +85,7 @@
           <td><?php echo $dashboard->stream ?></td>
           <td><?php echo $dashboard->position ?></td>
           <td>
-            <div class="common-status display-flex-row <?php echo $dashboard->status == 'pending' ? 'yellow-status-font' : ($dashboard->status == 'rejected' ? 'red-status-font' : ''); ?> ">
+            <div class="common-status display-flex-row advertisement-status <?php echo $dashboard->status == 'pending' ? 'yellow-status-font' : ($dashboard->status == 'rejected' ? 'red-status-font' : ''); ?> ">
 
               <span class="common-status-span <?php echo $dashboard->status == 'pending' ? 'yellow-status' : ($dashboard->status == 'rejected' ? 'red-status' : ''); ?>">
               </span>
@@ -94,7 +94,7 @@
           </td>
 
           <td>
-            <a class="common-view-btn" href="<?php echo URLROOT. 'students/student-profile/'. $dashboard->student_id ?>">View</a>
+            <a class="common-view-btn" href="<?php echo URLROOT . 'students/student-profile/' . $dashboard->student_id ?>">View</a>
           </td>
 
 
