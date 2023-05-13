@@ -233,9 +233,60 @@ margin: auto;
 
 /* published Advertiement list styles */
 
+/* .......................... */
+
+.dropdown-items{
+  flex-direction: column;
+    width: 60%;
+    
+    
+  }
+  .dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  
+  
+  /* ----------------------------------------------------------------------- */
+
+/* ............................ */
+
+
+
 body {
 background-color: #f1f1f1;
 font-family: "Poppinns", sans-serif;
+
 }
 
 .advertisements-view-container {
@@ -283,12 +334,14 @@ font-family: "Poppinns", sans-serif;
   box-sizing: border-box;
   width: 50%; 
   background: #f1f1f1;
+  
 }
 
 .published-ad-list-flex-wrap2 { 
   display: flex; 
   flex-direction: row;
   width: 100%;
+  padding-bottom: 1rem;
 }
 
 .published-ad-list-heading {
@@ -303,7 +356,7 @@ font-family: "Poppinns", sans-serif;
 
 .published-ad-list-container {
   display:flex;
-  width: 50%;
+  width: 30%;
 }
 
 .published-ad-list-container input[type=text], select, textarea {
@@ -441,10 +494,11 @@ margin-left: 10%;
 }
 
 .view-companies-flex-container {
-display: flex;
-background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+/* display: flex;
+
 align-items: center;
-flex-direction: column;
+flex-direction: column; */
 height: 100%;
 }
 

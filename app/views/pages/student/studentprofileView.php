@@ -3,6 +3,7 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col" id="student-main-profile">
+<?php flashMessage('profile_update_status'); ?>
 <?php echo $_SESSION['user_id'] ?>    
 <div class="student-profile-view display-flex-col">
         <div class="std-profile-container-top display-flex-col">
@@ -13,6 +14,7 @@
                     <h3>Hello! Im <span><?php echo $data['profile_name'] ?></span></h3>
                     <!-- <p>Award-winning web developer and instructor with 10+ years of well-rounded experience in LAMP development, object-oriented and user-centered design, seeks a position with a top technology firm.</p> -->
                     <?php echo $data['profile_description'] ?>
+                  
                 </div>
             </div>
         </div>
@@ -35,7 +37,7 @@
                         <h3>Interested Areas</h3>
                         <div class="display-flex-row interested-area-items">
                         <?php
-                        $text = explode("\n",$data['interests']);
+                        $text = explode(", ",$data['interests']);
                         $length = count($text);
                         //echo $length;
 
@@ -43,6 +45,7 @@
                         // for ($x = 0; $x < $length; $x++) {
                          
                         //}
+                            
 
                         for($x=0;$x<$length;$x++)
                         {
@@ -85,10 +88,11 @@
 
             <div class="body-right display-flex-col">
                 <div class="display-flex-col student-experience">
-                    <h3>Experience</h3>
 
-                    <?php
-                        $text = explode("\n",$data['experience']);
+                <?php if (!empty($data['experience'])): ?>
+                <h3>Experience</h3>
+                <?php
+                        $text = explode(", ",$data['experience']);
                         $length = count($text);
                         //echo $length;
 
@@ -107,6 +111,9 @@
                             <?php
                         }
                         ?>
+                <?php endif; ?>
+
+                    
 
                 </div>
                 <div class="display-flex-col student-experience">
@@ -136,14 +143,39 @@
                 </div>
             </div>
             <section class="std-profile-image">
-                        <img src="<?php echo URLROOT . 'img/profile-image.jpg'; ?>" alt="">
+                        <img src="<?php echo URLROOT . $data['image']; ?>" alt="">
 </section>
         </div>
 
         <div class="std-profile-container-bottom display-flex-row">
             <div class="bottom-left display-flex-row">
+
+            <?php
+            $gitlink = $data['github_link'];
+
+            // Check if the link starts with "http://" or "https://"
+            if (!preg_match("~^(?:f|ht)tps?://~i", $gitlink)) {
+                // If it doesn't, add "https://" to the beginning of the link
+                $gitlink = "https://" . $gitlink;
+            }
+            ?>
+                <a href="<?php echo $gitlink ; ?>" target=blank>
                 <img src="<?php echo URLROOT . 'img/github-logo.png'; ?>" alt="Github-icon">
+                </a>
+
+            <?php
+            $inlink = $data['linkedin_link'];
+
+            // Check if the link starts with "http://" or "https://"
+            if (!preg_match("~^(?:f|ht)tps?://~i", $inlink)) {
+                // If it doesn't, add "https://" to the beginning of the link
+                $inlink = "https://" . $inlink;
+            }
+            ?>
+                <a href="<?php echo $inlink ; ?>" target=blank>
                 <img src="<?php echo URLROOT . 'img/linkedin-logo.png'; ?>" alt="Linkedin-icon">
+                </a>
+                
                 <div class="display-flex-row">
                     <span class="material-symbols-outlined">
                         mail
@@ -153,7 +185,7 @@
             </div>
 
             <div class="bottom-right">
-                <a href="<?php echo URLROOT.'students/cvstatus';?>" class="display-flex-row">
+                <a href="<?php echo URLROOT.'students/uploadCV';?>" class="display-flex-row">
                     <span class="material-symbols-outlined">
                         upload
                     </span>
