@@ -62,7 +62,7 @@
                 <button id="view-btn"><a href="<?php echo URLROOT . 'profiles/company-profile/'. $data['user_id']; ?>" id="view-btn">View Profile</a></button>
             </div>
         </div>
-        <div class="company-details-analysis display-flex-col">
+        <!-- <div class="company-details-analysis display-flex-col">
             <h2>Summarized Analysis</h2>
             <div class="display-flex-col analysis-items">
                 <form action="">
@@ -88,7 +88,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> -->
     </div>
 
 </section>

@@ -11,8 +11,7 @@ class RequestModel
 
     public function getStudentRequests()
     {
-        $currentYear = date("Y");
-        $batchYear = $currentYear - 3;
+        $batchYear = $_SESSION['batchYear'];
         $this->db->query('SELECT * FROM student_requests_tbl WHERE batch_year = :batch_year');
         $this->db->bind('batch_year', $batchYear);
         return $this->db->resultset();
@@ -138,11 +137,12 @@ class RequestModel
     public function getStudentRequestsByRound($data)
     {
 
-        $this->db->query('SELECT sr.*, st.*, a.*, c.*, st.status as student_status
+        $this->db->query('SELECT sr.*, st.*, a.*, c.*, u.*, st.status as student_status
         FROM student_requests_tbl sr
         JOIN student_tbl st ON sr.student_id = st.student_id
         JOIN advertisement_tbl a ON sr.advertisement_id = a.advertisement_id
         JOIN company_tbl c ON a.company_id_fk = c.company_id
+        JOIN user_tbl u ON u.user_id = st.user_id_fk
         WHERE sr.batch_year = :batch_year AND sr.round = :round AND st.stream = :stream
         GROUP BY sr.student_id;');
         $this->db->bind(':batch_year', $data['batchYear']);

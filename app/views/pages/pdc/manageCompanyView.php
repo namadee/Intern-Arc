@@ -50,7 +50,7 @@
                 <span class="material-symbols-outlined">
                     flag
                 </span>
-                Blacklisted</a>
+                Deactivated Companies</a>
         </div>
     </div>
     <div class="company-content-container display-flex-col">

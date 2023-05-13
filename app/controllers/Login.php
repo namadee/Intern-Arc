@@ -95,17 +95,12 @@ class Login extends BaseController
 
     public function createSession($user)
     {
-        date_default_timezone_set('Asia/Colombo');
-        $currentYear = date("Y");
-        $currentBatchYear = $currentYear - 3;
-
+        $this->getCurrentBatchYear();
         Session::setValues('user_id', $user->user_id);
         Session::setValues('username', $user->username);
         Session::setValues('user_email', $user->email);
         Session::setValues('user_role', $user->user_role);
         Session::setValues('profile_pic', $user->profile_pic);
-        Session::setValues('batchYear', $currentBatchYear);
-
     }
 
     public function logout()
@@ -306,6 +301,17 @@ class Login extends BaseController
             //Either round dates are not set or currentDate in not during the round period
             $roundNumber = NULL; //No need of constraints
             Session::setValues('systemAccess', 0);
+        }
+    }
+
+    // Get Current Batch Year 
+    public function getCurrentBatchYear()
+    {
+        $currentBatchYear = $this->studentModel->getCurrentBatchYear();
+        if ($currentBatchYear) {
+            Session::setValues('batchYear', $currentBatchYear);
+        } else {
+            Session::setValues('batchYear', 'NOT SELECTED YET');
         }
     }
 }

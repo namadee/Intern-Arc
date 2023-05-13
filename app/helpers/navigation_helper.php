@@ -55,13 +55,14 @@ function getNavigationByUser($userType)
     default:
       // 4 == Admin
       $navigation = array(
-        array(URLROOT . 'admin', 'dashboard', 'Dashboard'),
-        array(URLROOT . 'admin/company', 'cases', 'Companies'),
-        array(URLROOT . 'admin/student', 'school', 'Student'),
-        array(URLROOT . 'admin/pdc-staff', 'groups', 'PDC'),
-        array(URLROOT . 'admin/complaint', 'approval_delegation', 'Complaints'),
-        array(URLROOT . 'admin/report', 'monitoring', 'Reports'),
-        array(URLROOT . 'profiles/viewProfileDetails', 'manage_accounts', 'Profile')
+        array(URLROOT.'admin', 'dashboard', 'Dashboard'),
+        array(URLROOT.'admin/company', 'cases', 'Companies'),
+        array(URLROOT.'admin/student', 'school', 'Student'),
+        array(URLROOT.'admin/advertisements', 'text_to_speech', 'Advertisements'),
+        array(URLROOT.'admin/pdc-staff', 'groups', 'PDC'),
+        array(URLROOT.'admin/complaint', 'approval_delegation', 'Complaints'),
+        array(URLROOT.'admin/report', 'monitoring', 'Reports'),
+        array(URLROOT.'profiles/viewProfileDetails', 'manage_accounts', 'Profile')
       );
       return $navigation;
   }

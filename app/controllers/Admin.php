@@ -1,8 +1,10 @@
 <?php
 
+use helpers\PdfHandler;
+
 class Admin extends BaseController
 {
-    public $adminModel, $userModel, $companyModel, $studentModel;
+    public $adminModel, $userModel, $companyModel, $studentModel, $registerModel, $advertisementModel, $requestModel, $pdcModel;
 
     public function __construct()
     {
@@ -10,14 +12,41 @@ class Admin extends BaseController
         $this->studentModel = $this->model('Student');
         $this->userModel = $this->model('User');
         $this->companyModel = $this->model('Company');
+        $this->registerModel = $this->model('Register');
+        $this->advertisementModel = $this->model('Advertisement');
+        $this->requestModel = $this->model('Request');
+        $this->pdcModel = $this->model('Pdc');
+
+        if ($_SESSION['user_role'] != 'admin') {
+            redirect('errors');
+        }
     }
 
-    public function index() //default method and view
+    public function index($batchYear = NULL) //default method and view
     {
+        if ($batchYear == NULL) {
+            $batchYear = $_SESSION['batchYear'];
+        }
 
-        $this->view('admin/dashboard');
+        $companyData = $this->adminModel->getTopCompanies($batchYear);
+        $studentBatches = $this->adminModel->getStudentBatches();
+        $jobPositionData = $this->adminModel->getTopJobPositions($batchYear);
+        $roundDetails = $this->pdcModel->getRoundPeriods();
+        $companyCount = $this->companyModel->getCompanyCount();
+        $studentCount = $this->studentModel->getStudentCount();
+        $data = [
+            'companyCount' => $companyCount->totalRows,
+            'studentCount' => $studentCount->totalRows,
+            'roundDetails' => $roundDetails,
+            'jobPositionData' => $jobPositionData,
+            'jobPositions' => array_column($jobPositionData, 'position'),
+            'studentBatches' => $studentBatches,
+            'batchYear' => $batchYear,
+            'companyData' => $companyData 
+        ];
+
+        $this->view('admin/dashboard', $data);
     }
-
 
     public function company() //View main company list - Ruchira
     {
@@ -59,6 +88,18 @@ class Admin extends BaseController
 
             //Get the companyID
             $companyID = $this->userModel->getCompanyUserId($user_id);
+
+            $year = $_SESSION['batchYear'];
+            $recruitCount = $this->adminModel->getRecruitCountByYear($year, $companyID);
+            $internCount = $this->adminModel->getInternCountByYear($year, $companyID);
+            $adCount = $this->adminModel->getAdCountByYear($year, $companyID);
+
+            if ($internCount->total_intern_count == NULL) {
+                $internTotal = 0;
+            } else {
+                $internTotal = $internCount->total_intern_count;
+            }
+
             //Check whether a company have posted any advertisements
             $advertisementDetails = $this->adminModel->getAdvertisementCountByCompany($companyID);
 
@@ -72,9 +113,11 @@ class Admin extends BaseController
                 $elementMsg = "Cannot delete: Company has posted advertisements";
             }
 
+
             //view main comapny details
             $companyDetails = $this->companyModel->mainCompanyDetails($user_id);
             $account_status = $this->userModel->getUserAccountStatus($user_id);
+
             if ($user_id != NULL && $blacklist == NULL) {
                 $data = [
                     'username' => $companyDetails->username,
@@ -85,7 +128,10 @@ class Admin extends BaseController
                     'account_status' => $account_status->account_status,
                     'modal_class' => 'hide-element',
                     'element_status' => $elementStatus,
-                    'element_msg' => $elementMsg
+                    'element_msg' => $elementMsg,
+                    'recruit_count' => $recruitCount,
+                    'intern_count' => $internTotal,
+                    'ad_count' => $adCount
                 ];
 
                 $this->view('admin/viewCompany', $data);
@@ -99,7 +145,10 @@ class Admin extends BaseController
                     'account_status' => $account_status->account_status,
                     'modal_class' => '',
                     'element_status' => $elementStatus,
-                    'element_msg' => $elementMsg
+                    'element_msg' => $elementMsg,
+                    'recruit_count' => $recruitCount,
+                    'intern_count' => $internTotal,
+                    'ad_count' => $adCount
                 ];
                 $this->view('admin/viewCompany', $data);
             } else {
@@ -267,33 +316,534 @@ class Admin extends BaseController
         }
     }
 
-    public function pdcStaff()
+    public function pdcStaff($pg = NULL, $userID = NULL)
     {
         $staff = $this->adminModel->getPdcStaff();
-        $data = [
-            'staff' => $staff
-        ];
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($pg == 'view' && $userID != NULL) {
 
-        }else{
-            $this->view('admin/pdcStaff',$data);
+            $userDetails = $this->adminModel->getUserDetails($userID);
+
+            $data = [
+                'staff' => $staff,
+                'updateModelBox' => '',
+                'username' => $userDetails->username,
+                'useremail' => $userDetails->email,
+                'userID' => $userDetails->user_id
+
+            ];
+        } elseif ($pg == 'update' && $userID != NULL) {
+            # POST REQUEST TO UPDATE PDC USER
+            $data = [
+                'userID' => $userID,
+                'username' => trim($_POST['username']),
+                'email' => trim($_POST['email'])
+            ];
+
+            $this->adminModel->updateStaff($data);
+            flashMessage('pdcStaffMsg', 'Member details updated successfully!');
+            redirect('admin/pdc-staff');
+        } elseif ($pg == 'delete' && $userID != NULL) {
+            # DELETE PDC STAFF MEMBERS
+            $this->adminModel->deleteStaff($userID);
+            redirect('admin/pdc-staff');
+        } else {
+
+            $data = [
+                'staff' => $staff,
+                'updateModelBox' => 'hide-element',
+                'username' => '',
+                'useremail' => '',
+                'userID' => '',
+            ];
         }
-        
-        
+        $this->view('admin/pdcStaff', $data);
     }
 
-    public function test(){
+    public function complaint($complaintID = NULL, $userID = NULL)
+    {
+        if ($complaintID != NULL && $userID != NULL) {
+            //View Specific complaint
+            //Get complaint user details
+            $userDetails =  $this->userModel->getUserByUserID($userID);
+            $complaintDetails = $this->adminModel->getComplaintDetails($complaintID);
 
-        
-        $this->view('admin/viewPdcUser');
+            if ($userDetails->user_role == 'student') {
+                //Student Complaint
+                //Get student details
+                $studentID = $this->userModel->getStudentUserId($userID);
+                $studentDetails = $this->userModel->getStudentDetails($studentID);
+                $data = [
+                    'reference_number' => $complaintDetails->reference_number,
+                    'complaintID' => $complaintDetails->complaint_id,
+                    'description' => $complaintDetails->description,
+                    'date' => $complaintDetails->created_at,
+                    'subject' => $complaintDetails->subject,
+                    'status' => $complaintDetails->status,
+                    'username' => $userDetails->username,
+                    'additionalInputLabel' => 'Index Number',
+                    'additionalInputValue' => $studentDetails->index_number,
+                    'email' => $userDetails->email,
+                ];
+            } else {
+                //Company Complaint
+                //Get Company details
+                $companyID = $this->userModel->getCompanyUserId($userID);
+                $companyDetails = $this->userModel->getCompanyDetails($companyID);
 
+                $data = [
+                    'reference_number' => $complaintDetails->reference_number,
+                    'complaintID' => $complaintDetails->complaint_id,
+                    'description' => $complaintDetails->description,
+                    'date' => $complaintDetails->created_at,
+                    'subject' => $complaintDetails->subject,
+                    'status' => $complaintDetails->status,
+                    'username' => $userDetails->username,
+                    'additionalInputLabel' => 'Company Name',
+                    'additionalInputValue' => $companyDetails->company_name,
+                    'email' => $userDetails->email,
+                ];
+            }
+
+            $this->view('admin/viewComplaint', $data);
+        } else {
+            //View Complaints List
+            $complaintList = $this->adminModel->getComplaintList();
+            $data = [
+                'complaintList' => $complaintList
+            ];
+
+            $this->view('admin/complaintList', $data);
+        }
+    }
+
+    public function updateComplaintStatus($complaintID = NULL)
+    {
+        if ($complaintID == NULL) {
+            redirect('admin/complaint');
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $data = [
+                'complaintID' => $complaintID,
+                'status' => trim($_POST['status'])
+            ];
+
+            $this->adminModel->updateComplaintStatus($data);
+            flashMessage('complaintMsg', 'Complaint status updated successfully!');
+            redirect('admin/complaint');
+        } else {
+            redirect('admin/complaint');
+        }
+    }
+
+    public function changePassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Strip Tags in URL
+            stripTags();
+
+            $data = [
+                'oldPassword' => trim($_POST['user_old_password']),
+                'newPassword' =>  trim($_POST['user_new_password']),
+                'confirmPassword' =>  trim($_POST['user_confirm_password']),
+                'userID' =>  trim($_POST['user_id']),
+                'input_class' => ''
+            ];
+
+            //Check Whether the stored password is same as old password input value
+            $userDetails = $this->userModel->getUserByUserID($data['userID']);
+            $storedPassword = $userDetails->password;
+
+            if (password_verify($data['oldPassword'], $storedPassword)) {
+                #Password Match
+                // Hash Password
+                $hashPassword = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+                //Update Password
+                $data = [
+                    'password' => $hashPassword,
+                    'user_id' => $data['userID']
+                ];
+                $this->registerModel->updatePassword($data);
+                flashMessage('password_changed', 'Password changed successfully!', 'success-alert');
+                redirect('profiles/view-profile-details');
+            } else {
+                #Password Does not match
+                flashMessage('password_changed_error', 'The password you entered is incorrect. Please try again', 'danger-alert');
+                redirect('admin/change-password');
+            }
+        } else {
+            $this->view('admin/changePassword');
+        }
+    }
+
+
+    public function advertisements()
+    {
+        $advertisementList = $this->advertisementModel->getAdvertisementsList();
+
+        $data = [
+            'advertisementList' => $advertisementList
+        ];
+
+        $this->view('admin/advertisementList', $data);
+    }
+
+    public function report()
+    {
+        $this->view('admin/report');
+    }
+
+    public function getCompanyRegistrations($year = NULL)
+    {
+
+
+        if ($year != NULL) {
+            // All the companies by Year
+            $result = $this->adminModel->getCompanyByRegisteredYear($year);
+            $count = $result['count'];
+            $allCompanies = $result['result'];
+            $data = [
+                'allCompanies' => $allCompanies,
+                'count' => $count . ' Companies',
+                'countLabel' => 'Total Companies Registered in the year ' . $year,
+                'downloadBtnHref' => URLROOT . 'admin/companyRegReport/' . $year
+            ];
+            $this->view('admin/companyRegistration', $data);
+        } else {
+            // All the companies
+            $result = $this->adminModel->getAllCompanies();
+            $count = $result['count'];
+            $allCompanies = $result['result'];
+
+            $data = [
+                'allCompanies' => $allCompanies,
+                'count' => $count . ' Companies',
+                'countLabel' => 'Total Companies Registerd up to date : ',
+                'downloadBtnHref' => URLROOT . 'admin/companyRegReport/'
+            ];
+            $this->view('admin/companyRegistration', $data);
+        }
+    }
+
+    public function companyRegReport($year = NULL) //Download company registration report
+    {
+        $templatePath = (dirname(APPROOT)) . '\public\templates\companyRegTemplate.php';
+        $currentDate = date('Y-m-d');
+        $currentDateTime = date('Y-m-d H:i:s');
+
+        if ($year != NULL) {
+            // All the companies by Year
+            $result = $this->adminModel->getCompanyByRegisteredYear($year);
+            $count = $result['count'];
+            $allCompanies = $result['result'];
+            $pdf = new PdfHandler();
+
+            $yearLabel = 'Total Companies Registerd in the year of - ' . $year;
+            $pdf->companyRegistrations($allCompanies, $count, $yearLabel, $templatePath, $currentDateTime);
+        } else {
+
+            // All the companies
+            $result = $this->adminModel->getAllCompanies();
+            $count = $result['count'];
+            $allCompanies = $result['result'];
+            $pdf = new PdfHandler();
+        }
+
+
+        $yearLabel = 'Total Companies Registerd up to date - ' . $currentDate;
+
+        $pdf->companyRegistrations($allCompanies, $count, $yearLabel, $templatePath, $currentDateTime);
+    }
+
+    public function getAdvertisementReports($year = NULL)
+    {
+
+        if ($year != NULL) {
+            #Year provided
+            //Filter by the current Batch
+
+            $results = $this->adminModel->getAdvertisements($year);
+            $advertisementList = $results['result'];
+            $count = $results['count'];
+
+            $studentBatches = $this->adminModel->getStudentBatches();
+
+            $data = [
+                'selectedBatchYear' => $year,
+                'studentBatches' => $studentBatches,
+                'advertisementList' => $advertisementList,
+                'count' => $count,
+                'downloadBtnHref' => URLROOT . 'admin/advertisementByBatchYearPdf/' . $year
+            ];
+            $this->view('admin/advertisementReports', $data);
+        } else {
+            //Filter by the current Batch
+            $year = $_SESSION['batchYear'];
+
+            $results = $this->adminModel->getAdvertisements($year);
+            $advertisementList = $results['result'];
+            $count = $results['count'];
+
+
+            $studentBatches = $this->adminModel->getStudentBatches();
+
+            $data = [
+                'selectedBatchYear' => $year,
+                'studentBatches' => $studentBatches,
+                'advertisementList' => $advertisementList,
+                'count' => $count,
+                'downloadBtnHref' => URLROOT . 'admin/advertisementByBatchYearPdf/' . $year
+            ];
+            $this->view('admin/advertisementReports', $data);
+        }
+    }
+
+
+    public function advertisementByBatchYearPdf($year = NULL) //Download advertisements list by year report
+    {
+        $templatePath = (dirname(APPROOT)) . '\public\templates\AdByBatchYearTemplate.php';
+        $currentDateTime = date('Y-m-d H:i:s');
+
+
+        if ($year != NULL) {
+            // All the advertisements by Year
+            $result = $this->adminModel->getAdvertisements($year);
+            $count = $result['count'];
+            $advertisementList = $result['result'];
+
+            $pdf = new PdfHandler();
+
+            $yearLabel = 'Total Advertisements listed in the year of ' . $year;
+            $pdf->adsByBatchYear($advertisementList, $count, $yearLabel, $templatePath, $currentDateTime);
+        } else {
+            redirect('admin/get-advertisement-reports');
+        }
+    }
+
+    public function getStudentRegistrations($year = NULL)
+    {
+        $studentBatches = $this->adminModel->getStudentBatches();
+
+        if ($year != NULL) {
+            // All the Students by batch Year
+            $result = $this->adminModel->getStudentByRegisteredYear($year);
+            $count = $result['count'];
+            $allStudents = $result['result'];
+            $data = [
+
+                'selectedBatchYear' => $year,
+                'studentBatches' => $studentBatches,
+                'studentList' => $allStudents,
+                'count' => $count,
+                'downloadBtnHref' => URLROOT . 'admin/studentRegReport/' . $year
+            ];
+            $this->view('admin/studentRegistration', $data);
+        } else {
+
+            $year = $_SESSION['batchYear'];
+            // All the students by current batch year
+            $result = $this->adminModel->getStudentByRegisteredYear($year);
+            $count = $result['count'];
+            $allStudents = $result['result'];
+
+            $data = [
+                'selectedBatchYear' => $year,
+                'studentBatches' => $studentBatches,
+                'studentList' => $allStudents,
+                'count' => $count,
+                'downloadBtnHref' => URLROOT . 'admin/studentRegReport/'
+            ];
+            $this->view('admin/studentRegistration', $data);
+        }
+    }
+
+    public function studentRegReport($year = NULL) //Download company registration report
+    {
+        $templatePath = (dirname(APPROOT)) . '\public\templates\studentRegTemplate.php';
+        $currentDateTime = date('Y-m-d H:i:s');
+
+        if ($year != NULL) {
+            // All the companies by Year
+            $result = $this->adminModel->getStudentByRegisteredYear($year);
+            $count = $result['count'];
+            $studentList = $result['result'];
+            $pdf = new PdfHandler();
+
+            $pdf->studentRegistrations($studentList, $count, $templatePath, $currentDateTime, $year);
+        } else {
+
+            $year = $_SESSION['batchYear'];
+            // All the companies
+            $result = $this->adminModel->getStudentByRegisteredYear($year);
+            $count = $result['count'];
+            $studentList = $result['result'];
+            $pdf = new PdfHandler();
+            $pdf->studentRegistrations($studentList, $count, $templatePath, $currentDateTime, $year);
+        }
+    }
+
+    public function getRoundReports($batchYear = NULL, $round = NULL)
+    {
+        $studentBatches = $this->adminModel->getStudentBatches();
+
+
+        if ($batchYear == NULL && $round == NULL) {
+            //default view with current batch year and round 1
+            $batchYear = $_SESSION['batchYear'];
+            $round = 1;
+        }
+
+
+        $data = [
+            'batchYear' => $batchYear,
+            'round' => $round,
+            'stream' => 'IS'
+        ];
+
+        //IS Student List
+        $studentRequestsIS = $this->requestModel->getStudentRequestsByRound($data);
+
+        // Total IS Studetn Requests
+        $studentRequestsISCount = $this->adminModel->getStudentRequestsByRoundCount($data);
+
+        // Recruited Student List
+        $studentRequestsISRecruitedCount = $this->adminModel->getStudentRequestsByRoundRecruitCount($data);
+
+        $data = [
+            'batchYear' => $batchYear,
+            'round' => $round,
+            'stream' => 'CS'
+        ];
+
+        //CS Student List
+        $studentRequestsCS = $this->requestModel->getStudentRequestsByRound($data);
+
+        // Total IS Studetn Requests
+        $studentRequestsCSCount = $this->adminModel->getStudentRequestsByRoundCount($data);
+
+        // Recruited Student List
+        $studentRequestsCSRecruitedCount = $this->adminModel->getStudentRequestsByRoundRecruitCount($data);
+
+        $data = [
+            'round' => $round,
+            'studentRequestsIS' => $studentRequestsIS,
+            'studentRequestsCS' => $studentRequestsCS,
+            'selectOptionStatus' => 'selected', //For Round 1 and Round 2
+            'studentBatches' => $studentBatches,
+            'batchYear' => $batchYear,
+            'ISCount' => $studentRequestsISCount,
+            'ISRecruitedCount' => $studentRequestsISRecruitedCount,
+            'CSCount' => $studentRequestsCSCount,
+            'CSRecruitedCount' => $studentRequestsCSRecruitedCount
+        ];
+
+        $this->view('admin/reportRound', $data);
+    }
+
+    public function reportRound($round = NULL)
+    {
+        $studentBatches = $this->adminModel->getStudentBatches();
+
+
+        $batchYear = $_SESSION['batchYear'];
+
+        if ($round == 1 || $round == 2) {
+            $data = [
+                'batchYear' => $batchYear,
+                'round' => $round,
+                'stream' => 'IS'
+            ];
+
+            $studentRequestsIS = $this->requestModel->getStudentRequestsByRound($data);
+
+            $data = [
+                'batchYear' => $batchYear,
+                'round' => $round,
+                'stream' => 'CS'
+            ];
+
+            $studentRequestsCS = $this->requestModel->getStudentRequestsByRound($data);
+
+            $data = [
+                'round' => $round,
+                'studentBatches' => $studentBatches,
+                'studentRequestsIS' => $studentRequestsIS,
+                'studentRequestsCS' => $studentRequestsCS,
+                'selectOptionStatus' => 'selected' //For Round 1 and Round 2
+            ];
+
+            $this->view('admin/reportRound', $data);
+        } else {
+
+            $batchYear = $_SESSION['batchYear'];
+
+            $data = [
+                'batchYear' => $batchYear,
+                'round' => $round,
+                'stream' => 'IS'
+            ];
+
+            $studentRequestsIS = $this->requestModel->getStudentRequestsByRound($data);
+
+            $data = [
+                'batchYear' => $batchYear,
+                'round' => $round,
+                'stream' => 'CS'
+            ];
+
+            $studentRequestsCS = $this->requestModel->getStudentRequestsByRound($data);
+
+            $data = [
+                'round' => $round,
+                'studentBatches' => $studentBatches,
+                'studentRequestsIS' => $studentRequestsIS,
+                'studentRequestsCS' => $studentRequestsCS,
+                'selectOptionStatus' => 'selected' //For Round 1 and Round 2
+            ];
+            $this->view('admin/reportRound', $data);
+        };
+    }
+
+    // Download round reports
+    public function downloadRoundReport($batchYear = NULL, $round = NULL, $stream = NULL)
+    {
+        $templatePath = (dirname(APPROOT)) . '\public\templates\studentsRoundRepTemplate.php';
+        $currentDateTime = date('Y-m-d H:i:s');
+
+        if ($batchYear != NULL && $round != NULL && $stream != NULL) {
+
+            if ($stream == 'IS') {
+                $data = [
+                    'batchYear' => $batchYear,
+                    'round' => $round,
+                    'stream' => 'IS'
+                ];
+            } else {
+                $data = [
+                    'batchYear' => $batchYear,
+                    'round' => $round,
+                    'stream' => 'CS'
+                ];
+            }
+            //Student List
+            $studentList = $this->requestModel->getStudentRequestsByRound($data);
+            // Total IS Studetn Requests
+            $studentRequestsCount = $this->adminModel->getStudentRequestsByRoundCount($data);
+            // Recruited Student List
+            $studentRequestsRecruitedCount = $this->adminModel->getStudentRequestsByRoundRecruitCount($data);
+
+            $pdf = new PdfHandler();
+            $pdf->studentRoundReport($studentList, $studentRequestsCount, $studentRequestsRecruitedCount, $templatePath, $currentDateTime, $batchYear, $stream, $round);
+        } else {
+            // redirect('pdc/get-round-reports');\
+            echo 'error';
+        }
     }
 }
 
-    // public function complaint() //default method and view
-    // {
-    //     $this->view('admin/adminComplaint');
-    // }
+
+
+
 
     // public function viewcomplaint() //default method and view
     // {

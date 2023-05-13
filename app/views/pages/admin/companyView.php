@@ -14,10 +14,10 @@
                     <span class="material-symbols-rounded">
                         search
                     </span>
-                    <input class="common-input" type="text" name="search-item" id="pdc_search_company" placeholder="Search Company">
+                    <input class="common-input" type="text" name="search-item" id="admin_search_company" placeholder="Search Company">
                 </div>
 
-                <div class="common-search-result display-flex-col" id="pdc_company_result">
+                <div class="common-search-result display-flex-col" id="admin_company_result">
 
                 </div>
             </form>

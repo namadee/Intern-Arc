@@ -1,0 +1,9 @@
+SELECT sr.*, a.position, c.company_name
+FROM student_requests_tbl sr
+JOIN advertisement_tbl a ON sr.advertisement_id = a.advertisement_id
+JOIN company_tbl c ON a.company_id_fk = c.company_id
+WHERE sr.batch_year = 2020 AND c.company_id = 4
+GROUP BY sr.advertisement_id
+
+
+

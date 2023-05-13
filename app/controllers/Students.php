@@ -252,7 +252,8 @@ class Students extends BaseController
                         'add_modal_class' => '',
                         'change_access_modal_class' => 'hide-element',
                         'view-modal-class' => 'hide-element',
-                        'batch_list' => $batchList
+                        'batch_list' => $batchList,
+                        'batch_year' => ''
                     ];
 
                     $this->view('pdc/manageStudent', $data);
@@ -289,7 +290,8 @@ class Students extends BaseController
                 'add_modal_class' => 'hide-element',
                 'change_access_modal_class' => 'hide-element',
                 'view-modal-class' => 'hide-element',
-                'batch_list' => $batchList
+                'batch_list' => $batchList,
+                'batch_year' => ''
             ];
 
             $this->view('pdc/manageStudent', $data);
@@ -316,10 +318,20 @@ class Students extends BaseController
                     redirect('students/manage-student');
                 }
 
-                $this->studentModel->addStudentBatch($batch_year);
+            if (isset($_POST['selectBatchYear']) && $_POST['selectBatchYear'] == '1') {
+                    // Checkbox was checked
+                    $this->studentModel->addStudentBatch($batch_year);
+                    $this->studentModel->deselectAllBatchYears();
+                    $this->studentModel->updateCurrentBatchYear($batch_year);
 
-                flashMessage('student_batch_msg', 'Student Batch ' . $batch_year . ' added');
-                redirect('students/manage-student');
+                    flashMessage('student_batch_msg', 'Student Batch ' . $batch_year . ' added');
+                    redirect('students/manage-student');
+                    $_SESSION['batchYear'] = $batch_year;
+                } else {
+                    $this->studentModel->addStudentBatch($batch_year);
+                    flashMessage('student_batch_msg', 'Student Batch ' . $batch_year . ' added');
+                    redirect('students/manage-student');
+                }
             } else {
                 // Handle Changing Student Batch Status
                 $data = [

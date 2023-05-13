@@ -252,7 +252,6 @@ class Advertisements extends BaseController
 
             $text = explode("\r\n", trim($advertisement->requirements));
             $length = count($text);
-
             $emptyArray = array();
             for ($x = 0; $x < $length; $x++) {
                 $emptyArray[$x] = trim($text[$x]);
@@ -260,10 +259,18 @@ class Advertisements extends BaseController
             $completeString = implode("", $emptyArray);
             //BUTTON NAME : if user role is student apply btn else view requests btn
             //BUTTON LINK : if user role is student apply link else view requests link
+            //BUTTON NAME : if user role is student apply btn else view requests btn
+            //BUTTON LINK : if user role is student apply link else view requests link
             if ($_SESSION['user_role'] == 'student') {
+                $btnClass = '';
                 $btnName = 'Apply';
-            } else {
+            } else if($_SESSION['user_role'] == 'company') {
+                $btnClass = '';
                 $btnName = 'View Requests';
+            } else {
+                //PDC OR ADMIN
+                $btnClass = 'style = "display:none"';
+                $btnName = '';
             }
             $data = [
                 'className' => 'selectedTab',

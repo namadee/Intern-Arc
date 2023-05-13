@@ -73,7 +73,7 @@
             </div>
 
         </div>
-        <a href="<?php
+        <a <?php echo $data['buttonClass']; ?> href="<?php
                     if ($_SESSION['user_role'] == 'company') {
                         echo URLROOT . 'requests/showRequestsByAd/' . $data['advertisement_id'];
                     } else if ($_SESSION['user_role'] == 'student') {
