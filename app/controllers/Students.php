@@ -7,13 +7,14 @@ class Students extends BaseController
     public $studentData;
     public $reqCount;
     public $studentDetails;
+    public $requestModel;
+    public $advertisementModel;
 
     public function __construct()
     {
         $this->studentModel = $this->model('Student');
         $this->userModel = $this->model('User');
         $this->requestModel = $this->model('Request');
-        //$this->studentData = $this->studentModel->getStudentProfileData($studentId);
         $this->advertisementModel = $this->model('Advertisement');
     }
 
@@ -22,26 +23,21 @@ class Students extends BaseController
     {
         $student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
         $reqCount  = $this->requestModel->getRequestCountPerStudent($student_id);
-        //$studentDetails = $this->studentModel->getMainStudentDetails($student_id); 
         $studentDetails = $this->studentModel->getStudentData($student_id);
 
         $data2 = [
             'studentDetails' => $studentDetails
         ];
 
-        $data['reqCount']=$reqCount;
+        $data['reqCount'] = $reqCount;
 
         $data = array_merge($data, $data2);
-        // $data = [
-        //  'reqCount' => $this->$reqCount
-        //  ];
-         $this->view('student/dashboard', $data);
-         
-
+        $this->view('student/dashboard', $data);
     }
 
 
-    public function uploadCV(){
+    public function uploadCV()
+    {
 
 
         $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
@@ -49,7 +45,7 @@ class Students extends BaseController
         $cv_name = $this->studentModel->getCV($studentId);
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
+
 
             // Strip Tags
             //stripTags();
@@ -64,9 +60,9 @@ class Students extends BaseController
             //     $emptyArray[$x] = trim($text[$x]); 
             // }
             //$completeString = implode("", $emptyArray);
-       
 
-             //File upload path
+
+            //File upload path
             $targetDir = "uploads/cv/";
             //Change image file name - Unique Name for each user with the help of userId
             $fileName = 'user' . $_SESSION['user_id'] . '_cv' . rand(0, 100000);
@@ -77,7 +73,7 @@ class Students extends BaseController
             //TargetPath
             $targetFilePath = $targetDir . $basename;
 
-            
+
 
             $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
@@ -85,7 +81,7 @@ class Students extends BaseController
                 //Image Size in Bytes
                 $docSize =  $_FILES["cv"]["size"];
 
-                
+
                 //Check whether the uploaded image is below 500kb
                 if ($docSize >= 5000000) {
                     // Redirect
@@ -93,7 +89,6 @@ class Students extends BaseController
                     flashMessage('profile_update_status', $statusMsg, 'danger-alert');
                     redirect('profiles/student-profile');
                     exit;
-                    
                 }
 
                 // Allow certain file formats
@@ -108,7 +103,7 @@ class Students extends BaseController
                     // }
                     // Upload file to server
 
-                    
+
                     if (move_uploaded_file($_FILES["cv"]["tmp_name"], $targetFilePath)) {
 
                         // Insert image file name into database
@@ -117,8 +112,8 @@ class Students extends BaseController
                             'cv' => $targetFilePath
                         ];
 
-                        
-                        
+
+
 
                         //Execute - Adding new Img name and Path to user_tbl
                         $this->studentModel->uploadCV($data);
@@ -132,7 +127,7 @@ class Students extends BaseController
                         //     'cv' => ($_POST['cv']),
                         // ];
 
-                
+
                         //Execute - Adding other details to company_tbl
                         // $this->studentModel->EditStudentProfileDetails($data);
 
@@ -150,9 +145,8 @@ class Students extends BaseController
                     $statusMsg = 'Sorry, only PDF files are allowed to upload.';
                     flashMessage('profile_update_status', $statusMsg, 'danger-alert');
                     redirect('student/uploadCV');
-                } 
-
-            } 
+                }
+            }
             // else {
 
             //     //no pro pic uploaded
@@ -209,14 +203,11 @@ class Students extends BaseController
                 // 'personal_email' => $studentProfile->personal_email,
                 // 'github_link' => $studentProfile->github_link,
                 // 'linkedin_link'=> $studentProfile->linkedin_link,
-                
+
             ];
 
             $this->view('student/cvstatus', $data);
-
-            
         }
-
     }
 
 
@@ -236,7 +227,7 @@ class Students extends BaseController
     public function viewAppliedCompanyList()
     {
         $student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
-        $appliedAdvertisements = $this->requestModel->getAppliedAdvertisements($student_id); 
+        $appliedAdvertisements = $this->requestModel->getAppliedAdvertisements($student_id);
 
         $data = [
             'appliedAdvertisements' => $appliedAdvertisements
@@ -353,7 +344,7 @@ class Students extends BaseController
     public function studentProfile() //optional
     {
         $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
-        $studentProfile = $this->studentModel->getStudentProfileData($studentId); 
+        $studentProfile = $this->studentModel->getStudentProfileData($studentId);
         if ($studentId != NULL) {
             $studentProfile = $this->studentModel->getStudentProfileData($studentId);
 
@@ -374,23 +365,24 @@ class Students extends BaseController
             $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
             $studentProfile = $this->studentModel->getStudentProfileData($studentId);
 
-        $data = [
-            'experience' => $studentProfile->experience,
-            'interests' => $studentProfile->interests,
-            'qualifications' => $studentProfile->qualifications,
-            'school' => $studentProfile->school,
-            'contact' => $studentProfile->contact,
-            'stream' => $studentProfile->stream,
-            'profile_description' => $studentProfile->profile_description,
-            'profile_name' => $studentProfile->profile_name,
-            'personal_email'=> $studentProfile->personal_email,
-            'github_link' => $studentProfile->github_link,
-            'linkedin_link' => $studentProfile->linkedin_link,
-            'extracurricular' => $studentProfile->extracurricular,
-        ];
+            $data = [
+                'experience' => $studentProfile->experience,
+                'interests' => $studentProfile->interests,
+                'qualifications' => $studentProfile->qualifications,
+                'school' => $studentProfile->school,
+                'contact' => $studentProfile->contact,
+                'stream' => $studentProfile->stream,
+                'profile_description' => $studentProfile->profile_description,
+                'profile_name' => $studentProfile->profile_name,
+                'personal_email' => $studentProfile->personal_email,
+                'github_link' => $studentProfile->github_link,
+                'linkedin_link' => $studentProfile->linkedin_link,
+                'extracurricular' => $studentProfile->extracurricular,
+            ];
 
-        $this->view('student/studentprofile', $data);
-    }}
+            $this->view('student/studentprofile', $data);
+        }
+    }
 
     public function bookInterviewSlot($slotId)
     {
@@ -414,7 +406,7 @@ class Students extends BaseController
             redirect('schedule/');
         } else {
 
-            die('Something went wrong');
+            redirect('errors');
         }
     }
 
@@ -435,12 +427,4 @@ class Students extends BaseController
 
         $this->view('student/editprofile');
     }
-
-    // public function cvstatus()
-    // {
-
-    //     $this->view('student/cvstatus');
-    // }
-
-
 }

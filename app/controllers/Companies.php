@@ -18,62 +18,67 @@ class Companies extends BaseController
     //COMPANY USER DASHBOARD 
     public function index()
     {
-        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
-        $dashboardData = $this->companyModel->getRequestsbyCompany($companyId);
-        $requestArray = $this->requestModel->getStudentRequests(0);
+        if ($_SESSION['user_role'] == 'company') {
+            $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+            $dashboardData = $this->companyModel->getRequestsbyCompany($companyId);
+            $requestArray = $this->requestModel->getStudentRequests(0);
 
 
 
-        $data = [
-            'companyId' => $companyId,
-            'dashboard' => $dashboardData,
-        ];
-
-
-
-        $this->view('company/dashboard', $data);
+            $data = [
+                'companyId' => $companyId,
+                'dashboard' => $dashboardData,
+            ];
+            $this->view('company/dashboard', $data);
+        } else {
+            $this->view('error403');
+        }
     }
 
     // Manage Company- PDC - Ruchira
     public function manageCompany($pg = NULL)
     {
-        $companyList = $this->companyModel->getCompanyList();
-        $all_access = $this->companyModel->checkSystemAccessCompanies();
+        if ($_SESSION['user_role'] == 'pdc') {
+            $companyList = $this->companyModel->getCompanyList();
+            $all_access = $this->companyModel->checkSystemAccessCompanies();
 
-        if ($pg == 'deactivated') {
+            if ($pg == 'deactivated') {
 
-            $blacklistedCompanyList = $this->companyModel->getDeativatedCompanyList();
-            $data = [
-                'blacklisted_modal_class' => '',
-                'change_access_modal' => 'hide-element',
-                'company_list' => $companyList,
-                'blacklisted_list' => $blacklistedCompanyList,
-                'company_access' => $all_access->all_access
-            ];
+                $blacklistedCompanyList = $this->companyModel->getDeativatedCompanyList();
+                $data = [
+                    'blacklisted_modal_class' => '',
+                    'change_access_modal' => 'hide-element',
+                    'company_list' => $companyList,
+                    'blacklisted_list' => $blacklistedCompanyList,
+                    'company_access' => $all_access->all_access
+                ];
 
-            $this->view('pdc/manageCompany', $data);
-        } elseif ($pg == 'change-access') {
+                $this->view('pdc/manageCompany', $data);
+            } elseif ($pg == 'change-access') {
 
-            $data = [
-                'blacklisted_modal_class' => 'hide-element',
-                'company_list' => $companyList,
-                'blacklisted_list' => NULL,
-                'change_access_modal' => '',
-                'company_access' => $all_access->all_access
-            ];
+                $data = [
+                    'blacklisted_modal_class' => 'hide-element',
+                    'company_list' => $companyList,
+                    'blacklisted_list' => NULL,
+                    'change_access_modal' => '',
+                    'company_access' => $all_access->all_access
+                ];
 
-            $this->view('pdc/manageCompany', $data);
+                $this->view('pdc/manageCompany', $data);
+            } else {
+
+                $data = [
+                    'blacklisted_modal_class' => 'hide-element',
+                    'company_list' => $companyList,
+                    'blacklisted_list' => NULL,
+                    'change_access_modal' => 'hide-element',
+                    'company_access' => $all_access->all_access
+                ];
+
+                $this->view('pdc/manageCompany', $data);
+            }
         } else {
-
-            $data = [
-                'blacklisted_modal_class' => 'hide-element',
-                'company_list' => $companyList,
-                'blacklisted_list' => NULL,
-                'change_access_modal' => 'hide-element',
-                'company_access' => $all_access->all_access
-            ];
-
-            $this->view('pdc/manageCompany', $data);
+            $this->view('error403');
         }
     }
 
@@ -82,6 +87,8 @@ class Companies extends BaseController
     {
         $this->view('pdc/companyDetails');
     }
+
+    //I AM COMMENTING THESE BECAUSE I THINK THEY ARE NOT USED ANYWHERE - NAMADEE
 
     //View Company List - STUDENT
     public function viewCompanyList()
@@ -153,26 +160,34 @@ class Companies extends BaseController
 
     public function InterviewScheduleList()
     {
-        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
-        $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
-        $data = [
-            'advertisements' => $advertisements
-        ];
+        if ($_SESSION['user_role'] == 'company') {
+            $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+            $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+            $data = [
+                'advertisements' => $advertisements
+            ];
 
-        $this->view('company/InterviewScheduleList', $data);
+            $this->view('company/InterviewScheduleList', $data);
+        } else {
+            $this->view('error403');
+        }
     }
 
     public function InterviewScheduleCreate($advertisementId)
     {
+        if ($_SESSION['user_role'] == 'company') {
 
-        $timeslots = $this->advertisementModel->getInterviewSlots($advertisementId);
+            $timeslots = $this->advertisementModel->getInterviewSlots($advertisementId);
 
-        $data = [
-            'advertisment_id' => $advertisementId,
-            'timeslots' => $timeslots,
-            'formAction' => 'advertisements/createInterviewSlots/' . $advertisementId,
-        ];
-        $this->view('company/calander', $data);
+            $data = [
+                'advertisment_id' => $advertisementId,
+                'timeslots' => $timeslots,
+                'formAction' => 'advertisements/createInterviewSlots/' . $advertisementId,
+            ];
+            $this->view('company/calander', $data);
+        } else {
+            $this->view('error403');
+        }
     }
 
     public function InterviewSchedule()
@@ -183,82 +198,96 @@ class Companies extends BaseController
     //SHORTLIST STUDENTS
     public function shortlistStudent($id)
     {
-        if (isset($_POST["status"])) {
-            //Handling changing status to shortist or reject
-            $data = [
-                'request_id' => trim($_POST['request_id']),
-                'status' => trim($_POST['status'])
-            ];
+        if ($_SESSION['user_role'] == 'company') {
+            if (isset($_POST["status"])) {
+                //Handling changing status to shortist or reject
+                $data = [
+                    'request_id' => trim($_POST['request_id']),
+                    'status' => trim($_POST['status'])
+                ];
 
-            $this->companyModel->shortlistStudent($data);
-            flashMessage('shortlist_student_msg', 'Student Added to Shortlist');
-            redirect('requests/showRequestsByAd/' . $id);
+                $this->companyModel->shortlistStudent($data);
+                flashMessage('shortlist_student_msg', 'Student Added to Shortlist');
+                redirect('requests/showRequestsByAd/' . $id);
+            }
+        } else {
+            $this->view('error403');
         }
     }
 
     //DISPLAY ADVERTISEMENT LIST WITH RELEVENT SHORTLISTED STUDENTS COUNT
     public function getAdvertisementByStatus()
     {
-        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
-        $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+        if ($_SESSION['user_role'] == 'company') {
+            $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+            $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
 
-        $shortlistedCounts = array();
-        $x = 0;
-        foreach ($advertisements as $advertisement) {
-            $shortlists = $this->companyModel->getAdvertisementByStatus($advertisement->advertisement_id);
-            $shortlistedCounts[$x] = count($shortlists);
-            $positions[$x] = $advertisement->position;
-            $intern_counts[$x] = $advertisement->intern_count;
-            $x++;
+            $shortlistedCounts = array();
+            $x = 0;
+            foreach ($advertisements as $advertisement) {
+                $shortlists = $this->companyModel->getAdvertisementByStatus($advertisement->advertisement_id);
+                $shortlistedCounts[$x] = count($shortlists);
+                $positions[$x] = $advertisement->position;
+                $intern_counts[$x] = $advertisement->intern_count;
+                $x++;
+            }
+
+
+            $data = [
+                'count' => $shortlistedCounts,
+                'length' => count($shortlistedCounts),
+                'positions' => $positions,
+                'intern_counts' => $intern_counts,
+                'advertisements' => $advertisements,
+
+            ];
+
+            $this->view('company/shortlist', $data);
+        } else {
+            $this->view('error403');
         }
-
-
-        $data = [
-            'count' => $shortlistedCounts,
-            'length' => count($shortlistedCounts),
-            'positions' => $positions,
-            'intern_counts' => $intern_counts,
-            'advertisements' => $advertisements,
-
-        ];
-
-        $this->view('company/shortlist', $data);
     }
 
 
     //GET SHORTLISTED STUDENTS FOR RELEVENT ADVERTISEMENT
     public function getShortlistedStudents($advertisementId)
     {
-        $students = $this->companyModel->getShortlistedStudents($advertisementId);
+        if ($_SESSION['user_role'] == 'company') {
+            $students = $this->companyModel->getShortlistedStudents($advertisementId);
 
-        $data = [
-            'advertisement_id' => $advertisementId,
-            'student_name' => $students,
-        ];
+            $data = [
+                'advertisement_id' => $advertisementId,
+                'student_name' => $students,
+            ];
 
-        if ($this->companyModel->getShortlistedStudents($advertisementId)) {
+            if ($this->companyModel->getShortlistedStudents($advertisementId)) {
 
-            $this->view('company/shortlistedStudents', $data);
+                $this->view('company/shortlistedStudents', $data);
+            } else {
+                die('Something went wrong');
+            }
         } else {
-            die('Something went wrong');
+            $this->view('error403');
         }
     }
 
     //RECRUIT OR REJECT STUDENT FROM DROP DOWN
     public function recruitStudent($id)
     {
-        if (isset($_POST["recruit_status"])) {
-            //Handling changing status to shortist or reject
-            $data = [
-                'request_id' => trim($_POST['request_id']),
-                'recruit_status' => trim($_POST['recruit_status'])
-            ];
+        if ($_SESSION['user_role'] == 'company') {
+            if (isset($_POST["recruit_status"])) {
+                //Handling changing status to shortist or reject
+                $data = [
+                    'request_id' => trim($_POST['request_id']),
+                    'recruit_status' => trim($_POST['recruit_status'])
+                ];
 
-            $this->companyModel->recruitStudent($data);
-            flashMessage('recruit_student_msg', 'Student Recruited');
-            redirect('companies/get-shortlisted-students/' . $id);
+                $this->companyModel->recruitStudent($data);
+                flashMessage('recruit_student_msg', 'Student Recruited');
+                redirect('companies/get-shortlisted-students/' . $id);
+            }
+        } else {
+            $this->view('error403');
         }
     }
-
-    
 }

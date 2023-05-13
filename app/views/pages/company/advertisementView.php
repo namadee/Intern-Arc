@@ -3,13 +3,9 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section id="advertisement_page" class="main-content advertisement-main-content">
-<<<<<<< HEAD
-    <?php flashMessage('student_request_msg'); ?> 
-    <?php flashMessage('max_application'); ?> 
-    
-=======
     <?php flashMessage('student_request_msg'); ?>
->>>>>>> c0a39bc5a894d24be0d7d9a01dc10191a082093e
+    <?php flashMessage('max_application'); ?>
+
     <div class="advertisement-main-container">
         <div class="ad-header">
             <div class="display-flex-row ad-header-top">

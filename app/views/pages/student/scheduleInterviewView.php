@@ -69,7 +69,7 @@
 		</div>
 		<div class="display-flex-row">
 
-			<a id="book-btn" aria-disabled="true" class="common-blue-btn" href="">Reserve Slot</a>
+			<a id="book-btn" class="common-blue-btn" href="">Reserve Slot</a>
 			<a id="closePopup" class="common-blue-btn">Cancel</a>
 		</div>
 
@@ -114,7 +114,7 @@
 
 
 			let timeSlot = document.getElementById('time-slot-popup');
-
+			let url = '';
 			//function to popup when dat eis clicked
 			function popupTimeSlot(info) {
 				//access color value of event 
@@ -178,30 +178,22 @@
 				}
 
 
-				let url = info.event.extendedProps.slotId;
-				const bookBtn = document.getElementById('book-btn');
-				bookBtn.removeEventListener('click', confirmBooking);
-				const confirmed = false;
+				url = info.event.extendedProps.slotId;
 
-				function confirmBooking(event) {
+			}
+			const bookBtn = document.getElementById('book-btn');
 
-
-					const confirmed = window.confirm('Are you sure you want to Reserve this slot?');
-					console.log(confirmed);
-					bookBtn.removeEventListener('click', confirmBooking);
-
-					if (confirmed) {
-						bookBtn.href = "<?php echo URLROOT; ?>students/book-interview-slot/" + url;
-						bookBtn.removeEventListener('click', confirmBooking);
-					} else {
-						event.preventDefault();
-					}
-				}
-				bookBtn.removeEventListener('click', confirmBooking);
+			if (bookBtn) {
 				bookBtn.addEventListener('click', confirmBooking);
+			}
 
-
-
+			function confirmBooking(event) {
+				console.log('clicked');
+				if (confirm('Are you sure you want to Reserve this slot?')) {
+					bookBtn.href = "<?php echo URLROOT; ?>students/book-interview-slot/" + url;
+				} else {
+					event.preventDefault();
+				}
 			}
 
 
