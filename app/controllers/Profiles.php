@@ -114,131 +114,135 @@ class Profiles extends BaseController
     // Company Profile Update - Namadee
     public function updateCompanyProfile()
     {
+        if ($_SESSION['user_role'] == 'company') {
 
-        $companyId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
-        $company_details = $this->userModel->getCompanyDetails($companyId);
-        $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id']));
+            $companyId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
+            $company_details = $this->userModel->getCompanyDetails($companyId);
+            $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id']));
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $statusMsg = '';
+                $statusMsg = '';
 
-            // File upload path
-            $targetDir = "img/profile-img/";
-            //Change image file name - Unique Name for each user with the help of userId
-            $fileName = 'user' . $_SESSION['user_id'] . '_profileimg' . rand(0, 100000);
-            //Get the extension
-            $extension = pathinfo($_FILES["profile_image"]["name"], PATHINFO_EXTENSION);
-            //Full image name
-            $basename   = $fileName . "." . $extension; //user56_profile_img.jpg
-            //TargetPath
-            $targetFilePath = $targetDir . $basename;
+                // File upload path
+                $targetDir = "img/profile-img/";
+                //Change image file name - Unique Name for each user with the help of userId
+                $fileName = 'user' . $_SESSION['user_id'] . '_profileimg' . rand(0, 100000);
+                //Get the extension
+                $extension = pathinfo($_FILES["profile_image"]["name"], PATHINFO_EXTENSION);
+                //Full image name
+                $basename   = $fileName . "." . $extension; //user56_profile_img.jpg
+                //TargetPath
+                $targetFilePath = $targetDir . $basename;
 
-            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+                $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-            if (!empty($_FILES["profile_image"]["name"])) {
+                if (!empty($_FILES["profile_image"]["name"])) {
 
-                //Image Size in Bytes
-                $imageSize =  $_FILES["profile_image"]["size"];
+                    //Image Size in Bytes
+                    $imageSize =  $_FILES["profile_image"]["size"];
 
-                //Check whether the uploaded image is below 500kb
-                if ($imageSize >= 500000) {
-                    // Redirect
-                    $statusMsg = 'Sorry, Please upload an image below 500KB';
-                    flashMessage('profile_update_status', $statusMsg, 'danger-alert');
-                    redirect('profiles/update-company-profile');
-                    exit;
-                }
-
-                // Allow certain file formats
-                $allowTypes = array('jpg', 'png', 'jpeg');
-
-                if (in_array($fileType, $allowTypes)) {
-
-
-                    //Removing old image from storage
-                    //Must check if its the default img before removing
-                    //If its the default img then we skip unlink part
-                    if ($profile_image_name->profile_pic != 'img/profile-img/profile-icon.svg') {
-                        unlink(PROFILE_IMG_PATH . $profile_image_name->profile_pic);
+                    //Check whether the uploaded image is below 500kb
+                    if ($imageSize >= 500000) {
+                        // Redirect
+                        $statusMsg = 'Sorry, Please upload an image below 500KB';
+                        flashMessage('profile_update_status', $statusMsg, 'danger-alert');
+                        redirect('profiles/update-company-profile');
+                        exit;
                     }
 
-                    // Upload file to server
-                    if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetFilePath)) {
+                    // Allow certain file formats
+                    $allowTypes = array('jpg', 'png', 'jpeg');
 
-                        // Insert image file name into database
-                        $data = [
-                            'user_id' => $_SESSION['user_id'],
-                            'profile_pic' => $targetFilePath
-                        ];
-
-                        //Execute - Adding new Img name and Path to user_tbl
-                        $this->userModel->updateProfileImage($data);
-
-                        //To add the new photo session - top navbar profile photo
-                        //Update Image Session Value
-                        $_SESSION['profile_pic'] = $targetFilePath;
+                    if (in_array($fileType, $allowTypes)) {
 
 
-                        $data = [
-                            'company_name' => trim($_POST['company_name']),
-                            'company_address' => trim($_POST['company_address']),
-                            'company_slogan' => trim($_POST['company_slogan']),
-                            'company_email' => trim($_POST['company_email']),
-                            'company_description' => trim($_POST['company_description']),
-                            'company_id' => $companyId
-                        ];
+                        //Removing old image from storage
+                        //Must check if its the default img before removing
+                        //If its the default img then we skip unlink part
+                        if ($profile_image_name->profile_pic != 'img/profile-img/profile-icon.svg') {
+                            unlink(PROFILE_IMG_PATH . $profile_image_name->profile_pic);
+                        }
 
-                        //Execute - Adding other details to company_tbl
-                        $this->companyModel->updateCompanyProfile($data);
+                        // Upload file to server
+                        if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetFilePath)) {
 
-                        // Redirect - Profile Updared successfully
-                        $statusMsg = 'Profile Uploaded Successfully';
-                        flashMessage('profile_update_status', $statusMsg);
-                        redirect('profiles/company-profile');
+                            // Insert image file name into database
+                            $data = [
+                                'user_id' => $_SESSION['user_id'],
+                                'profile_pic' => $targetFilePath
+                            ];
+
+                            //Execute - Adding new Img name and Path to user_tbl
+                            $this->userModel->updateProfileImage($data);
+
+                            //To add the new photo session - top navbar profile photo
+                            //Update Image Session Value
+                            $_SESSION['profile_pic'] = $targetFilePath;
+
+
+                            $data = [
+                                'company_name' => trim($_POST['company_name']),
+                                'company_address' => trim($_POST['company_address']),
+                                'company_slogan' => trim($_POST['company_slogan']),
+                                'company_email' => trim($_POST['company_email']),
+                                'company_description' => trim($_POST['company_description']),
+                                'company_id' => $companyId
+                            ];
+
+                            //Execute - Adding other details to company_tbl
+                            $this->companyModel->updateCompanyProfile($data);
+
+                            // Redirect - Profile Updared successfully
+                            $statusMsg = 'Profile Uploaded Successfully';
+                            flashMessage('profile_update_status', $statusMsg);
+                            redirect('profiles/company-profile');
+                        } else {
+                            $statusMsg = "Sorry, there was an error uploading your file.";
+                            flashMessage('profile_update_status', $statusMsg, 'danger-alert');
+                            redirect('profiles/update-company-profile');
+                        }
                     } else {
-                        $statusMsg = "Sorry, there was an error uploading your file.";
+                        // Redirect
+                        $statusMsg = 'Sorry, only JPG, JPEG & PNG files are allowed to upload.';
                         flashMessage('profile_update_status', $statusMsg, 'danger-alert');
                         redirect('profiles/update-company-profile');
                     }
                 } else {
-                    // Redirect
-                    $statusMsg = 'Sorry, only JPG, JPEG & PNG files are allowed to upload.';
-                    flashMessage('profile_update_status', $statusMsg, 'danger-alert');
-                    redirect('profiles/update-company-profile');
+
+                    //No profile pic uploaded
+                    $data = [
+                        'company_name' => trim($_POST['company_name']),
+                        'company_address' => trim($_POST['company_address']),
+                        'company_slogan' => trim($_POST['company_slogan']),
+                        'company_email' => trim($_POST['company_email']),
+                        'company_description' => trim($_POST['company_description']),
+                        'company_id' => $companyId
+                    ];
+
+                    //Execute - Adding other details to company_tbl
+                    $this->companyModel->updateCompanyProfile($data);
+
+                    // Redirect - Profile Updated successfully
+                    $statusMsg = 'Profile Uploaded Successfully';
+                    flashMessage('profile_update_status', $statusMsg);
+                    redirect('profiles/company-profile');
                 }
             } else {
-
-                //No profile pic uploaded
                 $data = [
-                    'company_name' => trim($_POST['company_name']),
-                    'company_address' => trim($_POST['company_address']),
-                    'company_slogan' => trim($_POST['company_slogan']),
-                    'company_email' => trim($_POST['company_email']),
-                    'company_description' => trim($_POST['company_description']),
-                    'company_id' => $companyId
+                    'company_id' => $companyId,
+                    'company_name' => $company_details->company_name,
+                    'company_address' => $company_details->company_address,
+                    'company_slogan' => 'Hello',
+                    'company_email' => $company_details->company_email,
+                    'company_description' => $company_details->company_description,
+                    'image' => $profile_image_name->profile_pic
                 ];
 
-                //Execute - Adding other details to company_tbl
-                $this->companyModel->updateCompanyProfile($data);
-
-                // Redirect - Profile Updated successfully
-                $statusMsg = 'Profile Uploaded Successfully';
-                flashMessage('profile_update_status', $statusMsg);
-                redirect('profiles/company-profile');
+                $this->view('company/editProfile', $data);
             }
         } else {
-            $data = [
-                'company_id' => $companyId,
-                'company_name' => $company_details->company_name,
-                'company_address' => $company_details->company_address,
-                'company_slogan' => 'Hello',
-                'company_email' => $company_details->company_email,
-                'company_description' => $company_details->company_description,
-                'image' => $profile_image_name->profile_pic
-            ];
-
-            $this->view('company/editProfile', $data);
+            $this->view('error403');
         }
     }
 
