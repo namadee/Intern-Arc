@@ -26,21 +26,22 @@
 
     <div class="common_list_content">
 
-    <?php
-            if ($roundDataArray['roundNumber'] != NULL) {
-                // Need Round Constraints
-                $hrefStatus = $roundDataArray['hrefStatus'];
-                $elementClass = $roundDataArray['disabledClass'];
-            } else {
-                // No need of round constraints
-                $hrefStatus = URLROOT . 'advertisements/add-advertisement';
-                $elementClass = "";
-            }
-            ?>
+      <?php
+
+      if ($roundDataArray['roundNumber'] != NULL) {
+        // Need Round Constraints
+        $hrefStatus = $roundDataArray['hrefStatus'];
+        $elementClass = $roundDataArray['disabledClass'];
+      } else {
+        // No need of round constraints
+        $hrefStatus = URLROOT . 'advertisements/add-advertisement';
+        $elementClass = "";
+      }
+      ?>
 
       <div class="addBtn">
         <h3>Advertisement List</h3>
-        <a href="<?php echo $hrefStatus?>" class="<?php echo $elementClass?> common-blue-btn"><span id="addIcon" class="material-symbols-outlined">
+        <a href="<?php echo $hrefStatus ?>" class="common-blue-btn <?php echo $elementClass ?>"><span id="addIcon" class="material-symbols-outlined">
             library_add
           </span>Add</a>
       </div>
@@ -71,7 +72,7 @@
               <a class="common-view-btn" href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $advertisement->advertisement_id; ?>">View</a>
             </td>
             <?php
-            $roundDataArray['roundNumber'] = NULL ;
+
             if ($roundDataArray['roundNumber'] != NULL) {
               // Need Round Constraints
               $hrefStatus1 = $roundDataArray['hrefStatus'];

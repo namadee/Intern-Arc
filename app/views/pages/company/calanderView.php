@@ -5,12 +5,73 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 <section class="main-content">
   <div id='calendar'></div>
-  
+  <?php
+
+  $events = array();
+
+  foreach ($data['timeslots'] as $interviewslots) : {
+
+      //add $inteviewsslots->start_time $interveiwslots->end_time $interviewslots->date to events array
+      $events[] = array(
+        'title' => $interviewslots->position,
+        'date' => $interviewslots->slot_date,
+        'startTime' => $interviewslots->start_time,
+        'endTime' => $interviewslots->end_time,
+        'intervieweeName' => $interviewslots->profile_name,
+        'stdId' => $interviewslots->student_id,
+        'reserved' => $interviewslots->reserved,
+      );
+
+
+      // Do something with the start time, end time, and date
+      // For example, you can print them out like this:
+
+    }
+  ?><?php endforeach ?>
+
+  <?php
+  // Initialize an empty associative array to store events for each advertisement
+  $events_by_advertisement = array();
+
+  // Iterate over the interview slots and group them by advertisement id
+  foreach ($data['timeslots'] as $slot) : {
+      $advertisement_id = $slot->advertisement_id;
+
+      // If this is the first event for this advertisement, create a new array
+      if (!isset($events_by_advertisement[$advertisement_id])) {
+        $events_by_advertisement[$advertisement_id] = array();
+      }
+
+      // Add the event to the array for this advertisement
+      $events_by_advertisement[$advertisement_id][] = array(
+        'id' => $slot->advertisement_id,
+        'title' => $slot->position,
+        'date' => $slot->slot_date,
+        'slotStart' => $slot->start_time,
+        'slotEnd' => $slot->end_time,
+        'intervieweeName' => $slot->profile_name,
+        'stdId' => $slot->student_id,
+        'reserved' => $interviewslots->reserved,
+        'color' => '#054a91'
+      );
+    }
+
+
+  ?><?php endforeach; ?>
+
+  <!-- I have no idea how this works -->
+  <?php foreach ($events_by_advertisement as $advertisement_id => $events) : ?>
+  <?php endforeach; ?>
+
+
+
   <br>
   <form id="date-click-form" class="create-interview-form" action="<?php echo URLROOT . $data['formAction']; ?>" method="POST">
-   <div class="topic-head">Software Engineer - Virtusa</div>
-    
-    <div><h3>Create Interview</h3></div>
+    <div class="topic-head">Software Engineer - Virtusa</div>
+
+    <div>
+      <h3>Create Interview</h3>
+    </div>
 
     <div>
       <label for="sche-period">Start Date</label>
@@ -52,13 +113,44 @@
     </div>
 
     <input type="hidden" name="advertisement_id" value="<?php echo $data['advertisment_id'] ?>">
+    <input type="hidden" name="schedule_status" value="<?php echo 1 ?>">
 
-    <!-- <div>
-      <label for="description">Description:</label>
-      <textarea name="description" id="description"></textarea>
-    </div> -->
+
     <button class="common-blue-btn" type="submit">Submit</button>
   </form>
+
+  <div id="time-slot-popup" class="time-slot-popup display-flex-col">
+    <div class="display-flex-row">
+      <h3><span class="material-symbols-outlined">
+          date_range
+        </span></h3>
+      <h3 id="day"></h3>
+    </div>
+
+    <div class="display-flex-row">
+      <h3><span class="material-symbols-outlined">
+          person
+        </span></h3>
+      <h3>Interviewee: </h3>
+      <a id="std-name" href="#"></a>
+    </div>
+    <div class="display-flex-row">
+      <h3><span class="material-symbols-outlined">
+          work
+        </span></h3>
+      <h3>Position: </h3>
+      <span class="slot-popup-position-tag">
+        <p id="position"></p>
+      </span>
+    </div>
+    <div class="display-flex-row">
+      <h3><span class="material-symbols-outlined">
+          schedule
+        </span></h3>
+      <h3>Time: </h3>
+      <p id="my-start-time"> </p>-<p id="my-end-time"></p>
+    </div>
+
   </div>
 
 </section>
@@ -67,86 +159,131 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    // const eventSources = [
-    //   // your event source
-    //   {
-    //     ad_id: 'advertisement name',
-    //     events: [], // initialize the events array as empty
-    //     color: 'black', // an option!
-    //     textColor: 'yellow' // an option!
-    //   }
-    // ]
+
+      let calendarEl = document.getElementById('calendar');
+
+      let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth'
+        },
+        //add $events_by_advertisement as event sources
+        eventSources: [{
+          events: [
+            <?php foreach ($events as $event) : ?> {
+                title: '<?php echo $event['title']; ?>',
+                date: '<?php echo $event['date']; ?>',
+                color: '<?php echo $event['color']; ?>',
+                myStartTime: '<?php echo $event['slotStart'] ?>',
+                myEndTime: '<?php echo $event['slotEnd'] ?>',
+                intervieweeName: '<?php echo $event['intervieweeName'] ?>',
+                stdId: '<?php echo $event['stdId'] ?>',
+                reserved: '<?php echo $event['reserved'] ?>',
+
+              },
+            <?php endforeach; ?>
+          ],
 
 
+        }, ],
+        eventClick: function(info) {
+          popupTimeSlot(info);
 
+        },
+        dateClick: popupForm,
+        contentHeight: 700,
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        
+      });
 
-      },
-      
-      dateClick: popupForm,
-      contentHeight: 600,
-     
-    });
+      calendar.render();
 
+      form = document.getElementById('date-click-form');
 
-    calendar.render();
+      function popupForm(info) {
+        let date = info.dateStr;
+        if (form.style.display === 'none') {
 
-    form = document.getElementById('date-click-form');
+          form.style.display = 'block';
+        } else {
 
-    function popupForm(info) {
-      var date = info.dateStr;
-      if (form.style.display === 'none') {
+          form.style.display = 'none';
+        }
 
-        form.style.display = 'block';
-      } else {
-
-        form.style.display = 'none';
       }
-//       function setMinutesToClosest(input) {
-//   let d = new Date();
-//   d.setHours(input.value.split(':')[0], input.value.split(':')[1]);
-//   let m = d.getMinutes();
-//   if (m > 0 && m < 30) {
-//     d.setMinutes(30);
-//   } else if (m > 30 && m < 60) {
-//     d.setMinutes(0);
-//     d.setHours(d.getHours()+1);
-//   }
-//   input.value = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-// }
+
+      let timeSlot = document.getElementById('time-slot-popup');
+
+      //function to popup when dat eis clicked
+      function popupTimeSlot(info) {
+        console.log(info.event);
+        document.getElementById("position").innerHTML = info.event.title;
+
+        document.getElementById("day").innerHTML = info.event.start.toLocaleDateString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric"
+        });
+
+        document.getElementById("std-name").innerHTML = info.event.extendedProps.intervieweeName;
+
+        document.getElementById("std-name").href = "<?php echo URLROOT; ?>students/student-profile/" + info.event.extendedProps.stdId;
+
+        const formattedStartTime = new Date("2000-01-01T" + info.event.extendedProps.myStartTime + "Z").toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+          timeZone: "UTC" // Set the timezone to UTC
+        });
+        document.getElementById("my-start-time").innerHTML = formattedStartTime;
+
+        const formattedEndTime = new Date("2000-01-01T" + info.event.extendedProps.myEndTime + "Z").toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+          timeZone: "UTC" // Set the timezone to UTC
+        });
+        document.getElementById("my-end-time").innerHTML = formattedEndTime;
+
+
+        //console log all properties of the event
+        console.log(info.event.extendedProps);
 
 
 
-    }
 
-    const addPeriodBtn = document.getElementById('add-period');
-    const timeSlots = document.getElementById('time-slots');
+        if (timeSlot.style.display === 'none') {
+          timeSlot.style.display = 'block';
+        } else {
+          timeSlot.style.display = 'none';
+        }
+      }
+
+
+      const addPeriodBtn = document.getElementById('add-period');
+      const timeSlots = document.getElementById('time-slots');
 
 
 
-    //insert each start time and end time from each input generated into a data structure
-    addPeriodBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const div = document.createElement('div');
-      div.classList.add('display-flex-row', 'periods-box');
-      
+      //insert each start time and end time from each input generated into a data structure
+      addPeriodBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const div = document.createElement('div');
+        div.classList.add('display-flex-row', 'periods-box');
 
-      const index = timeSlots.children.length;
-      div.innerHTML = `
+
+        const index = timeSlots.children.length;
+        div.innerHTML = `
     <input type="time" step="900" min="09:00" max="18:00" class="period" name="start_time[${index}]" id="start_time_${index}">
     <input type="time" step="900" min="09:00" max="18:00" class="period" name="end_time[${index}]" id="end_time_${index}">
   `;
-      timeSlots.appendChild(div);
-    });
-  });
+        timeSlots.appendChild(div);
+      });
+
+    }
+
+  );
 
 
   // }

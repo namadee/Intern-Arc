@@ -4,6 +4,8 @@
 
 <section id="advertisement_page" class="main-content advertisement-main-content">
     <?php flashMessage('student_request_msg'); ?>
+    <?php flashMessage('max_application'); ?>
+
     <div class="advertisement-main-container">
         <div class="ad-header">
             <div class="display-flex-row ad-header-top">

@@ -101,7 +101,7 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, tex
 
 .common-edit-btn span {
   font-size: 1rem;
-  color: rgb(170, 169, 169);
+  color: var(--DarkBlue);
 
 }
 

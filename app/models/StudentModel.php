@@ -8,16 +8,53 @@ class StudentModel
     {
         $this->db = new Database;
     }
+    public function uploadCV($data)
+    {
+        $this->db->query('UPDATE student_tbl SET cv = :cv WHERE student_id = :student_id');
+        $this->db->bind(':student_id', $data['student_id']);
+        $this->db->bind(':cv', $data['cv']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getCV($studentId)
+    {
+        $this->db->query("SELECT cv FROM student_tbl WHERE student_id = :student_id");
+        $this->db->bind(':student_id', $studentId);
+
+        $cv_name = $this->db->single();
+
+        //Check Rows
+        if ($this->db->rowCount() > 0) {
+            return $cv_name;
+        } else {
+            return false;
+        }
+    }
+
+
+    // public function getStudentId($user_id)
+    // {
+    //     $this->db->query('SELECT student_tbl.student_id
+    //     FROM student_tbl
+    //     INNER JOIN user_tbl ON user_tbl.user_id = student_tbl.user_id_fk WHERE user_tbl.user_id=:user_id;');
+
+    //     // Bind Values
+    //     $this->db->bind(':user_id', $user_id);
+    //     return $this->db->single();
+    // }
 
     //Update student profile - student
     public function EditStudentProfileDetails($data)
     {
 
         $this->db->query('UPDATE student_tbl SET experience = :experience,
-      interests = :interests, qualifications = :qualifications, extracurricular= :extracurricular, contact= :contact, stream= :stream, profile_description= :profile_description, profile_name= :profile_name, personal_email= :personal_email, school= :school 
+      interests = :interests, github_link = :github_link, linkedin_link = :linkedin_link, qualifications = :qualifications, extracurricular= :extracurricular, contact= :contact, stream= :stream, profile_description= :profile_description, profile_name= :profile_name, personal_email= :personal_email, school= :school 
       WHERE student_id = :student_id');
-
-
         // Bind Values
         $this->db->bind(':experience', $data['experience-list']);
         $this->db->bind(':interests', $data['interests-list']);
@@ -29,6 +66,8 @@ class StudentModel
         $this->db->bind(':profile_description', $data['profile_description']);
         $this->db->bind(':profile_name', $data['profile_name']);
         $this->db->bind(':personal_email', $data['personal_email']);
+        $this->db->bind(':github_link', $data['github_link']);
+        $this->db->bind(':linkedin_link', $data['linkedin_link']);
         $this->db->bind(':student_id', $data['student_id']);
 
         //Execute
@@ -39,13 +78,13 @@ class StudentModel
         }
     }
 
-    public function getStudentProfileData()
+    public function getStudentProfileData($student_id)
     {
 
 
         //bIND STUDENT id
-        $this->db->query('SELECT * FROM student_tbl WHERE student_id= 69');
-        //$this->db->bind(':student_id', $data['student_id']);
+        $this->db->query('SELECT * FROM student_tbl WHERE student_id= :student_id'); //99
+        $this->db->bind(':student_id', $student_id); //comment krla thibune
 
         $row = $this->db->single();
         return $row;
@@ -177,6 +216,17 @@ class StudentModel
         return $this->db->single();
     }
 
+    public function getStudentData($std_id)
+    {
+        $this->db->query('SELECT student_tbl.registration_number, user_tbl.email, student_tbl.round, student_requests_tbl.recruit_status
+        FROM student_tbl
+        JOIN user_tbl ON student_tbl.user_id_fk = user_tbl.user_id
+        JOIN student_requests_tbl ON student_tbl.student_id = student_requests_tbl.student_id WHERE student_tbl.student_id=:student_id LIMIT 1;');
+
+        $this->db->bind(':student_id', $std_id);
+        return $this->db->resultset();
+    }
+
     // 11 Update main student information (PDC) - Ruchira
     public function updateMainStudentDetails($data)
     {
@@ -257,20 +307,47 @@ class StudentModel
             return false;
         }
     }
-
-    // 17 Deselect all batch years - Ruchira
-    public function deselectAllBatchYears()
+//book interview slots - Namadee
+    public function bookInterviewSlot($data)
     {
-        // Deselect all the batch years available
-        $this->db->query('UPDATE student_batch_tbl SET is_selected = 0 ');
 
-        //Execute
+        $this->db->query('INSERT INTO interviewslots_tbl(timeslot_fk, student_id_fk) VALUES (:timeslot_fk, :student_id_fk)');
+        $this->db->bind(':timeslot_fk', $data['slot_id']);
+        $this->db->bind(':student_id_fk', $data['student_id']);
+
         if ($this->db->execute()) {
+
+            $this->db->query('UPDATE timeslot_tbl SET reserved = 1 WHERE slot_id = :timeslot_fk');
+            $this->db->bind(':timeslot_fk', $data['slot_id']);
+            if ($this->db->execute()) {
+
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    //check if already booked the slot
+    public function checkInterviewBooked($slotId)
+    {
+        $this->db->query('SELECT timeslot_tbl.slot_id, timeslot_tbl.reserved, interviewslots_tbl.timeslot_fk 
+        FROM interviewslots_tbl 
+        JOIN timeslot_tbl
+        ON interviewslots_tbl.timeslot_fk = timeslot_tbl.slot_id
+        WHERE timeslot_tbl.reserved = 1 AND timeslot_fk= :timeslot_fk');
+        $this->db->bind(':timeslot_fk', $slotId);
+
+        $this->db->single();
+        if ($this->db->rowCount() > 0) {
             return true;
         } else {
             return false;
         }
     }
+
 
     // 18. Update is_selected status of the batch year - Ruchira
     public function updateCurrentBatchYear($batchYear)
@@ -300,5 +377,13 @@ class StudentModel
         }
 
         return $year->batch_year;
+    }
+
+    //get one interview slot
+    public function getOneInterviewSlot($slotId)
+    {
+        $this->db->query('SELECT * FROM interviewslots_tbl WHERE timeslot_fk = :timeslot_fk');
+        $this->db->bind(':timeslot_fk', $slotId);
+        return $this->db->single();
     }
 }

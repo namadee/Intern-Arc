@@ -52,6 +52,7 @@ class RequestModel
     {
         $this->db->query('SELECT * FROM student_requests_tbl WHERE advertisement_id = :advertisement_id AND student_id = :student_id');
 
+
         //bind values 
         $this->db->bind(':advertisement_id', $ad_id);
         $this->db->bind(':student_id', $std_id);
@@ -64,6 +65,33 @@ class RequestModel
         }
     }
 
+    public function getRequestCountPerStudent ($std_id){
+        $this->db->query('SELECT * FROM student_requests_tbl WHERE student_id = :student_id');
+
+        //bind values
+        $this->db->bind(':student_id', $std_id);
+
+        $result = $this->db->resultset();
+        $count = $this->db->rowCount();
+
+        return $count;
+
+
+    }
+
+    public function getAppliedAdvertisements ($std_id){
+        $this->db->query('SELECT company_tbl.company_name, advertisement_tbl.position, student_requests_tbl.status
+        FROM student_requests_tbl
+        JOIN advertisement_tbl ON student_requests_tbl.advertisement_id = advertisement_tbl.advertisement_id
+        JOIN company_tbl ON advertisement_tbl.company_id_fk = company_tbl.company_id
+        WHERE student_requests_tbl.student_id = :student_id;');
+
+        //bind values
+        $this->db->bind(':student_id', $std_id);
+
+        return $this->db->resultset();
+    }
+
 
     public function getStudentByRequest($advertisementId)
     {
@@ -73,6 +101,20 @@ class RequestModel
         ON student_tbl.student_id = student_requests_tbl.student_id
         WHERE student_requests_tbl.advertisement_id = :advertisement_id');
         $this->db->bind(':advertisement_id', $advertisementId);
+
+        return $this->db->resultset();
+    }
+
+    //get a list of shortlisted advertisements of a student - Namadee
+    public function shortlistedAds($studentId)
+    {
+        $this->db->query('SELECT student_requests_tbl.* , advertisement_tbl.*, student_requests_tbl.status as shortlist_status
+        FROM student_requests_tbl
+        JOIN advertisement_tbl
+        ON student_requests_tbl.advertisement_id = advertisement_tbl.advertisement_id
+        WHERE student_requests_tbl.status = "shortlisted" AND student_requests_tbl.recruit_status = "pending" AND student_requests_tbl.student_id = :student_id');
+        //bind values
+        $this->db->bind(':student_id', $studentId);
 
         return $this->db->resultset();
     }
