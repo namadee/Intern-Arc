@@ -114,7 +114,8 @@
 
 
 			let timeSlot = document.getElementById('time-slot-popup');
-			let url = '';
+			let slotid = '';
+			let advertisementid = '';
 			//function to popup when dat eis clicked
 			function popupTimeSlot(info) {
 				//access color value of event 
@@ -178,7 +179,8 @@
 				}
 
 
-				url = info.event.extendedProps.slotId;
+				slotid = info.event.extendedProps.slotId;
+				advertisementid = info.event.extendedProps.adId;
 
 			}
 			const bookBtn = document.getElementById('book-btn');
@@ -190,7 +192,7 @@
 			function confirmBooking(event) {
 				console.log('clicked');
 				if (confirm('Are you sure you want to Reserve this slot?')) {
-					bookBtn.href = "<?php echo URLROOT; ?>students/book-interview-slot/" + url;
+					bookBtn.href = "<?php echo URLROOT; ?>students/book-interview-slot/" + slotid + "/" + advertisementid;
 				} else {
 					event.preventDefault();
 				}
