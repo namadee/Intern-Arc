@@ -9,6 +9,34 @@ class StudentModel
         $this->db = new Database;
     }
 
+    public function uploadCV($data){
+    $this->db->query('UPDATE student_tbl SET cv = :cv WHERE student_id = :student_id');
+    $this->db->bind(':student_id', $data['student_id']);
+    $this->db->bind(':cv', $data['cv']);
+
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+
+    }
+
+    public function getCV($studentId)
+    {
+      $this->db->query("SELECT cv FROM student_tbl WHERE student_id = :student_id");
+      $this->db->bind(':student_id', $studentId);
+  
+      $cv_name = $this->db->single();
+  
+      //Check Rows
+      if ($this->db->rowCount() > 0) {
+        return $cv_name;
+      } else {
+        return false;
+      }
+    }
+
 
     // public function getStudentId($user_id)
     // {

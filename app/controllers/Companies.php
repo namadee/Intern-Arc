@@ -123,7 +123,7 @@ class Companies extends BaseController
             
                 $output .= '<tr>
                         <td class="view-companies-table-data">' . $res->company_name .'</td>
-                        <td class="view-companies-table-data"> <a href='. URLROOT.'students/company-profile'.'><button>view</button></a></td>
+                        <td class="view-companies-table-data"> <a href='. URLROOT.'students/company-profile'.'><button button class="common-view-btn">view</button></a></td>
                         </tr>';
             };
             $output .= '</tbody> </table>';

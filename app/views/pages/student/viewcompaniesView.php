@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/student.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/shared.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <?php $navSidebar = $_SESSION['user_role']; ?>
@@ -7,7 +8,7 @@
     sessionStorage.setItem("navSidebar", "<?php echo $navSidebar; ?>");
 </script>
 
-<section class="view-companies-container">
+<section class="view-companies-container"> 
 
 <br/><br/><br/>
 
@@ -21,8 +22,8 @@
 		</div>
 		<div class="view-companies-search">
 			<form class="view-companies-search-container">
-				<button class="view-companies-search-btn" type="submit"><i class="fa fa-search"></i></button>
-				<input type="text" placeholder="Search Company" name="search" id="search">
+				
+				<input type="text" placeholder="Search Company" name="search" id="search" class="common-search-bar">
 			</form>
 		</div>
 	</div>
@@ -39,7 +40,7 @@
 		<?php foreach ($data['listCompanies'] as $listCompanies) : ?>
 			<tr>
 				<td class="view-companies-table-data"><?php echo $listCompanies->company_name ?></td>
-				<td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button>view</button></a></td>
+				<td class="view-companies-table-data"><a href="<?php echo URLROOT.'students/company-profile';?>"><button class="common-view-btn">view</button></a></td>
 			</tr>
 
 			

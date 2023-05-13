@@ -19,8 +19,8 @@
 		<div class="cv-status-flex-wrap3">
 			<div class="cv-status-input-field">
 				<p>Attach file:</p>
-				<form>
-				<input type="file" id="myFile" name="filename">
+				<form action="<?php echo URLROOT?>students/uploadCV" method="POST" enctype="multipart/form-data">
+				<input type="file" id="myFile" name="cv">
 				<div class="cv-status-myCV">
 					<i class="fa fa-file"></i> myCV
 				</div>

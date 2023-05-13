@@ -3,6 +3,7 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content display-flex-col" id="student-main-profile">
+<?php flashMessage('profile_update_status'); ?>
 <?php echo $_SESSION['user_id'] ?>    
 <div class="student-profile-view display-flex-col">
         <div class="std-profile-container-top display-flex-col">
@@ -36,7 +37,7 @@
                         <h3>Interested Areas</h3>
                         <div class="display-flex-row interested-area-items">
                         <?php
-                        $text = explode("\n",$data['interests']);
+                        $text = explode(", ",$data['interests']);
                         $length = count($text);
                         //echo $length;
 
@@ -44,6 +45,7 @@
                         // for ($x = 0; $x < $length; $x++) {
                          
                         //}
+                            
 
                         for($x=0;$x<$length;$x++)
                         {
@@ -90,7 +92,7 @@
                 <?php if (!empty($data['experience'])): ?>
                 <h3>Experience</h3>
                 <?php
-                        $text = explode("\n",$data['experience']);
+                        $text = explode(", ",$data['experience']);
                         $length = count($text);
                         //echo $length;
 
@@ -141,7 +143,7 @@
                 </div>
             </div>
             <section class="std-profile-image">
-                        <img src="<?php echo URLROOT . 'img/profile-image.jpg'; ?>" alt="">
+                        <img src="<?php echo URLROOT . $data['image']; ?>" alt="">
 </section>
         </div>
 
@@ -183,7 +185,7 @@
             </div>
 
             <div class="bottom-right">
-                <a href="<?php echo URLROOT.'students/cvstatus';?>" class="display-flex-row">
+                <a href="<?php echo URLROOT.'students/uploadCV';?>" class="display-flex-row">
                     <span class="material-symbols-outlined">
                         upload
                     </span>
