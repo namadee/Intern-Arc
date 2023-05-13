@@ -15,78 +15,16 @@
           <th>Schedule</th>
          
         </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Scheduled</td>
-            <td><div class="scheduleBtn"><a href="<?php echo URLROOT; ?>companies/InterviewScheduleCreate" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Not Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Not Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Not Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Not Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
-        <tr>
-            <td>Web Development</td>
-            <td>7</td>
-            <td>Scheduled</td>
-            <td><div class="scheduleBtn"><a href="" class="common-blue-btn">Schedule</a></div></td>
-        </tr>
+
+        <?php foreach ($data['advertisements'] as $advertisement) : ?>
+            <tr>
+                <td><?php echo $advertisement->position ?></td>
+                <td><?php echo $advertisement->intern_count ?></td>
+                <td><?php echo $advertisement->schedule_status == 0 ? 'Not Scheduled' : 'Scheduled'; ?></td>
+                <td><div class="scheduleBtn"><a href="<?php echo URLROOT; ?>companies/interview-schedule-create/<?php echo $advertisement->advertisement_id; ?>" class="common-blue-btn">Schedule</a></div></td>
+            </tr>
+            
+        <?php endforeach; ?>
       </table>
     </div>
 

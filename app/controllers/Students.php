@@ -14,6 +14,7 @@ class Students extends BaseController
         $this->userModel = $this->model('User');
         $this->requestModel = $this->model('Request');
         //$this->studentData = $this->studentModel->getStudentProfileData($studentId);
+        $this->advertisementModel = $this->model('Advertisement');
     }
 
     //Student User Dashboard
@@ -325,7 +326,7 @@ class Students extends BaseController
                 }
 
                 $this->studentModel->addStudentBatch($batch_year);
-                
+
                 flashMessage('student_batch_msg', 'Student Batch ' . $batch_year . ' added');
                 redirect('students/manage-student');
             } else {
@@ -353,6 +354,25 @@ class Students extends BaseController
     {
         $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
         $studentProfile = $this->studentModel->getStudentProfileData($studentId); 
+        if ($studentId != NULL) {
+            $studentProfile = $this->studentModel->getStudentProfileData($studentId);
+
+            $data = [
+                'experience' => $studentProfile->experience,
+                'interests' => $studentProfile->interests,
+                'qualifications' => $studentProfile->qualifications,
+                'school' => $studentProfile->school,
+                'contact' => $studentProfile->contact,
+                'stream' => $studentProfile->stream,
+                'profile_description' => $studentProfile->profile_description,
+                'profile_name' => $studentProfile->profile_name,
+                'personal_email' => $studentProfile->personal_email,
+                'extracurricular' => $studentProfile->extracurricular,
+
+            ];
+        } else {
+            $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
+            $studentProfile = $this->studentModel->getStudentProfileData($studentId);
 
         $data = [
             'experience' => $studentProfile->experience,
@@ -370,17 +390,33 @@ class Students extends BaseController
         ];
 
         $this->view('student/studentprofile', $data);
+    }}
+
+    public function bookInterviewSlot($slotId)
+    {
+
+        $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
+
+        // $slot = $this->advertisementModel->getInterviewSlots($slotId);
+        $data = [
+
+            'slot_id' => $slotId,
+            'student_id' => $studentId
+        ];
+
+        //Execute
+        if ($this->studentModel->checkInterviewBooked($slotId)) {
+            flashMessage('Interview_msg', 'This time slot is already reserved!', 'danger-alert');
+            redirect('schedule/');
+        } else if ($this->studentModel->bookInterviewSlot($data)) {
+
+            flashMessage('Interview_msg', 'Reserved the Interview Slot Successfully!');
+            redirect('schedule/');
+        } else {
+
+            die('Something went wrong');
+        }
     }
-
-    // public function showStudentData(){                                                              need to search about this 
-    //     $studentData = $this->studentModel->getStudentProfileData();
-
-    //     $data = [
-    //         'studentData' => $this->studentData
-    //     ];
-    //     $this->view('student/viewcompanies', $data);
-
-    // }
 
     public function companyProfile()
     {

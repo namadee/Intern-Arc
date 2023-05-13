@@ -3,84 +3,87 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section id="advertisement_page" class="main-content advertisement-main-content">
+<<<<<<< HEAD
     <?php flashMessage('student_request_msg'); ?> 
     <?php flashMessage('max_application'); ?> 
     
+=======
+    <?php flashMessage('student_request_msg'); ?>
+>>>>>>> c0a39bc5a894d24be0d7d9a01dc10191a082093e
     <div class="advertisement-main-container">
         <div class="ad-header">
             <div class="display-flex-row ad-header-top">
                 <img class="ucsc-logo" src="<?php echo URLROOT ?>img/ucsc-logo.png">
-                <h1>University of Colombo School Of Computing</h1>
-                <img class="internarc-logo" src="<?php echo URLROOT ?>img/logo.png">
-            </div>
-            <div class="display-flex-col ad-header-bottom">
-                <h2>UCSC INDUSTRIAL PLACEMENTS-2024</h2>
-                <h3>Placement Advertisement</h3>
+                <!-- <h1>University of Colombo School Of Computing</h1> -->
+                <!-- <img class="internarc-logo" src="<?php echo URLROOT ?>img/logo.png"> -->
+
+                <div class="display-flex-col ad-header-bottom">
+                    <h1>University of Colombo School Of Computing</h1>
+                    <h2>UCSC INDUSTRIAL PLACEMENTS-2024</h2>
+                    <h3>Placement Advertisement</h3>
+                </div>
             </div>
         </div><br><br>
-        
-       <div class=" display-flex-row advertisement-container-body">
-        <div class="body-left">
-            <ul class="display-flex-col">
+
+        <div class=" display-flex-row advertisement-container-body">
+            <div class="body-left">
+                <ul class="display-flex-col">
                     <li class="display-flex-row">
-                        <p class="profile-item">Company Name</p>
-                        <span>Virtusa</span>
+                        <p class="profile-item">Company</p>
+                        <span></span>
                     </li>
                     <li class="display-flex-row">
                         <p class="profile-item">Position</p>
-                        <span>Software Engineering Intern</span>
+                        <span><?php echo $data['position'] ?></span>
                     </li>
                     <li class="display-flex-row">
                         <p>No of Interns</p>
-                        <span>15</span>
+                        <span><?php echo $data['no_of_interns'] ?></span>
                     </li>
                     <li class="display-flex-row">
                         <p>Applicable for</p>
-                        <span>4th year</span>
+                        <span><?php echo $data['required_year'] ?></span>
                     </li>
                     <li class="display-flex-row">
                         <p>Working Mode</p>
-                        <span>On site</span>
+                        <span><?php echo $data['working_mode'] ?></span>
                     </li><br><br>
                     <li class="display-flex-col period">
                         <h3>Internship Period</h3>
                         <div class="display-flex-row period-items">
-                            <span>2023.10.06</span>
-                            <span>2024.02.06</span>
+                            <span><?php echo $data['internship_start']  ?></span>
+                            <span><?php echo $data['internship_end'] ?></span>
                         </div>
-                        
-                    </li>
-                    
-                </ul> 
-            </div>
-       
 
-        <div class="body-right">
-            <div class="display-flex-col job-description">
+                    </li>
+
+                </ul>
+            </div>
+
+
+            <div class="body-right">
+                <div class="display-flex-col job-description">
                     <h3>Job Description</h3><br>
                     <div class="display-flex-col job-description-items">
-                        <p>We are looking for self-motivated, dedicated and fun-loving team players to be a part of our culture and gain eal-world experience in software engineering with our professionals</p>
+                        <p><?php echo $data['job_description'] ?></p>
                     </div>
-            </div><br>
-            <div class="display-flex-col job-description">
+                </div><br>
+                <div class="display-flex-col job-description">
                     <h3>Requirements</h3><br>
                     <div class="display-flex-col job-description-items">
-                        <p>Strong understanding of computer science fundamentals, including algorithms and data structures <br/> Experience with at least one programming language, such as Python, Java, C++, or Ruby</p>
+                        <p><?php echo $data["requirements"] ?></p>
                     </div>
+                </div>
             </div>
-       </div>
-       
-       </div>
-        <a href="<?php 
-            if($_SESSION['user_role'] == 'company'){
-                echo URLROOT . 'requests/showRequestsByAd/'.$data['advertisement_id'];
-            }else if($_SESSION['user_role'] == 'student'){
-                echo URLROOT . 'requests/addStudentRequest/' . $data['advertisement_id'];
 
-            }else{
-                echo '';
-            } ?>" class="common-blue-btn <?php echo $data['button_status_class']; ?>"><?php echo $data['button_name'] ?></a>
-    </div> 
+        </div>
+        <a href="<?php
+                    if ($_SESSION['user_role'] == 'company') {
+                        echo URLROOT . 'requests/showRequestsByAd/' . $data['advertisement_id'];
+                    } else if ($_SESSION['user_role'] == 'student') {
+                        echo URLROOT . 'requests/addStudentRequest/' . $data['advertisement_id'];
+                    } ?>" class="common-blue-btn apply-btn"><?php echo $data['button_name'] ?></a>
+    </div>
 
 </section>
 

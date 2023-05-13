@@ -7,20 +7,36 @@
     <?php flashMessage('advertisement_status'); ?>
     <div class="company-content-container display-flex-col pdc-advertisementlist">
         <div class="company-content-top display-flex-row">
-            <h2>Advertisement List</h2>
+            <div class="display-flex-row">
+                <h2>Advertisement List</h2>
+                <p class="display-flex-row" id="student-batch-current-year">
+                    <span id="student-batch-year-span" class="material-symbols-outlined">
+                        where_to_vote
+                    </span>
+                    Current Batch Year is <span id="current_batchyear_advertisement_span"><?php echo $_SESSION['batchYear'] ?></span>
+
+                </p>
+            </div>
+
             <!-- Common Search Bar Style-->
-            <form action="" class="common-search-bar display-flex-row">
-                <span class="material-symbols-rounded">
-                    search
-                </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
+            <form action="javascript:void(0)" class="common-search-bar display-flex-col">
+                <div class="display-flex-row">
+                    <span class="material-symbols-rounded">
+                        search
+                    </span>
+                    <input class="common-input" type="text" name="search-item" id="pdc_advertisement_search" placeholder="Search Advertisement">
+                </div>
+
+                <div class="common-search-result display-flex-col" id="pdc_advertisement_result">
+
+                </div>
             </form>
 
         </div>
         <div class="manage-company-table">
             <table>
                 <thead>
-                    <th>Advertisement Name</th>
+                    <th>Advertisement Position</th>
                     <th>Company Name</th>
                     <th>Interns</th>
                     <th>Status</th>

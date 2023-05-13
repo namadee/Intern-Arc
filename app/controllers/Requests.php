@@ -67,6 +67,18 @@ class Requests extends BaseController
         }
     }
 
+    //get a list of shortlisted advertisements of a student - Namadee
+    public function shortlistedAds()
+    {
+        $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
+        $advertisement_reqs = $this->requestModel->shortlistedAds($studentId);
+
+        $data = [
+            'advertisement_reqs' => $advertisement_reqs,
+        ];
+
+        $this->view('student/shortlistedAds', $data);
+    }
 
     public function shortlistedList()
     {

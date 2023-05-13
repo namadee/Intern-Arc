@@ -283,7 +283,7 @@ class Pdc extends BaseController
                 $data = [
                     'advertisement_id' => $advertisement_id,
                     'status' => trim($_POST['status']),
-                    'round' => 1
+                    'round' => NULL
                 ];
             }
 
@@ -411,7 +411,7 @@ class Pdc extends BaseController
             ];
 
             $studentRequestsIS = $this->requestModel->getStudentRequestsByRound($data);
-            
+
             $data = [
                 'batchYear' => $batchYear,
                 'round' => $round,
@@ -421,24 +421,76 @@ class Pdc extends BaseController
             $studentRequestsCS = $this->requestModel->getStudentRequestsByRound($data);
 
             $data = [
-                'round' => $round,  
+                'round' => $round,
                 'studentRequestsIS' => $studentRequestsIS,
                 'studentRequestsCS' => $studentRequestsCS,
                 'selectOptionStatus' => 'selected' //For Round 1 and Round 2
             ];
 
             $this->view('pdc/allStudentRequest', $data);
-
-            // $this->view('pdc/studentRequestsList', $data);
-
         } else {
             redirect('pdc/');
         }
     }
 
 
-        //17 Student requests list - Ruchira
-        public function viewRequestListByStudent($id = NULL){
+    //17 Student requests list - Ruchira
+    // All the requests of a student
+    public function requestListByStudent($round = NULL, $studentID = NULL)
+    {
 
+
+        if ($studentID != NULL && $round != NULL) {
+            $requestsList = $this->requestModel->retrieveStudentRequestsByStudentID($round, $studentID);
+
+            $data = [
+                'round' => $round,
+                'requestsList' => $requestsList
+            ];
+
+            $this->view('pdc/studentRequestsList', $data);
+        } else {
+            redirect('pdc/');
         }
+    }
+
+    public function changePassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Strip Tags in URL
+            stripTags();
+
+            $data = [
+                'oldPassword' => trim($_POST['user_old_password']),
+                'newPassword' =>  trim($_POST['user_new_password']),
+                'confirmPassword' =>  trim($_POST['user_confirm_password']),
+                'userID' =>  trim($_POST['user_id']),
+                'input_class' => ''
+            ];
+
+            //Check Whether the stored password is same as old password input value
+            $userDetails = $this->userModel->getUserByUserID($data['userID']);
+            $storedPassword = $userDetails->password;
+
+            if (password_verify($data['oldPassword'], $storedPassword)) {
+                #Password Match
+                // Hash Password
+                $hashPassword = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+                //Update Password
+                $data = [
+                    'password' => $hashPassword,
+                    'user_id' => $data['userID']
+                ];
+                $this->registerModel->updatePassword($data);
+                flashMessage('password_changed', 'Password changed successfully!', 'success-alert');
+                redirect('profiles/view-profile-details');
+            } else {
+                #Password Does not match
+                flashMessage('password_changed_error', 'The password you entered is incorrect. Please try again', 'danger-alert');
+                redirect('pdc/change-password');
+            }
+        } else {
+            $this->view('pdc/changePassword');
+        }
+    }
 }

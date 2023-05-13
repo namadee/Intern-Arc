@@ -1,88 +1,60 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>css/pdc.css">
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/admin.css">
+<script src="<?php echo URLROOT; ?>js/admin.js" defer></script>
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
-<section class="company-content">
-
-<br><br><br>
-        <div class="vtop">
-	
-            <div class="vflex-container">
-            
-                <div class="vflex-wrap2">
-                    <div>
-                        <h3>Company List</h3>
-                    </div>
-                    <div>
-                        <form id="coform">
-                            <input type="text" placeholder="Search Company" name="search">
-                        </form>
-                    </div>
+<section class="main-content display-flex-col">
+    <div class="company-content-container display-flex-col">
+        <div class="company-content-top display-flex-row">
+            <h2>Company List</h2>
+            <!-- Common Search Bar Style-->
+            <form action="javascript:void(0)" class="common-search-bar display-flex-col">
+                <div class="display-flex-row">
+                    <span class="material-symbols-rounded">
+                        search
+                    </span>
+                    <input class="common-input" type="text" name="search-item" id="pdc_search_company" placeholder="Search Company">
                 </div>
-            
-                <table class="co-table" >
-                    <tr>
-                      <th class="co-table-header">Company Name</th>
-                      <th class="co-table-header">Contact Person</th>
-                      <th class="co-table-header">Email</th>
-                      <th class="co-table-header">Contact Number</th>
-                      <th class="co-table-header"></th>
-                    </tr>
-            
-                    <tr>
-                      <td class="co-table-data">Virtusa</td>
-                      <td class="co-table-data">Ruchira Bogahawatta</td>
-                      <td class="co-table-data">ruchirab@virtusa</td>
-                      <td class="co-table-data">0712412545</td>
-                      <td class="co-table-data"><button> <a href="<?php echo URLROOT.'admin/viewCompany'; ?>">view</a>  </button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="co-table-data">WSO2</td>
-                        <td class="co-table-data">Geeth Weerasinghe</td>
-                        <td class="co-table-data">geeth@wso2</td>
-                        <td class="co-table-data">0712412545</td>
-                        <td class="co-table-data"><button> <a href="<?php echo URLROOT.'admin/viewCompany'; ?>">view</a>  </button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="co-table-data">Codegen International</td>
-                        <td class="co-table-data">Namadee Shakya</td>
-                        <td class="co-table-data">namadee@codegen</td>
-                        <td class="co-table-data">0712412545</td>
-                        <td class="co-table-data"><button> <a href="<?php echo URLROOT.'admin/viewCompany'; ?>">view</a>  </button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="co-table-data">Sysco Labs</td>
-                        <td class="co-table-data">Ravindu Viranga</td>
-                        <td class="co-table-data">ravinduviranga@syscolabs</td>
-                        <td class="co-table-data">0712412545</td>
-                        <td class="co-table-data"><button> <a href="<?php echo URLROOT.'admin/viewCompany'; ?>">view</a>  </button></td>
-                    </tr>
-            
-                    <!-- <tr>
-                        <td class="co-table-data">Tech Venturas</td>
-                        <td class="co-table-data">Namadee Shakya </td>
-                        <td class="co-table-data">namadee@techventuras</td>
-                        <td class="co-table-data">0712412545</td>
-                        <td class="co-table-data"><button><a href="<?php echo URLROOT.'admin/viewCompany'; ?>">view</a></button></td>
-                    </tr>
-            
-                    <tr>
-                        <td class="co-table-data">Commercial Technologies Plus</td>
-                        <td class="co-table-data">Ruchira Bogahawatta </td>
-                        <td class="co-table-data">ruchirab@ctp</td>
-                        <td class="co-table-data">0712412545</td>
-                        <td class="co-table-data"><button><a href="<?php echo URLROOT.'admin/viewCompany'; ?>">view</a></button></td>
-                    </tr> -->
-                    
-                  </table>
 
-                  <input class="company-list-blacklisted-button" type="submit" value="Blacklisted">
-                       
-            </div>
-            </div>
+                <div class="common-search-result display-flex-col" id="pdc_company_result">
 
+                </div>
+            </form>
+
+        </div>
+        <div class="manage-company-table">
+            <table>
+                <thead>
+                    <th>Company Name</th>
+                    <th>Contact Person</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                    <th id="action-th"></th>
+
+                </thead>
+                <tbody>
+                    <?php foreach ($data['company_list'] as $company) : ?>
+                        <tr>
+                            <td><?php echo $company->company_name ?></td>
+                            <td><?php echo $company->username ?></td>
+                            <td><?php echo $company->email ?></td>
+                            <td><?php echo $company->contact ?></td>
+                            <td><a href="<?php echo URLROOT . 'admin/main-company-details/' . $company->user_id; ?>">View</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div>
+        <button class="common-blue-btn blacklisted-company-btn" onclick="window.location.href = '<?php echo URLROOT . 'admin/deactivated-companies' ?>';">Deactivated Companies</button>
+    </div>
 </section>
+
+
+
+
+
 <?php require APPROOT . '/views/includes/footer.php'; ?>

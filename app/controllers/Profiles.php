@@ -69,7 +69,6 @@ class Profiles extends BaseController
             ];
 
             $this->view('company/profile', $data);
-
         } else {
             $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
             $company_details = $this->userModel->getCompanyDetails($companyId);
@@ -419,7 +418,6 @@ class Profiles extends BaseController
             $this->view('student/studentprofile', $data);
            
         }
-    
     }
 
     public function studentCompanyProfile()
@@ -454,7 +452,7 @@ class Profiles extends BaseController
             //     $emptyArray[$x] = trim($text[$x]); 
             // }
             //$completeString = implode("", $emptyArray);
-       
+
 
              //File upload path
             $targetDir = "img/profile-img/";
@@ -603,7 +601,7 @@ class Profiles extends BaseController
                 'stream' => $studentProfile->stream,
                 'profile_description' => $studentProfile->profile_description,
                 'profile_name' => $studentProfile->profile_name,
-                'personal_email'=>$studentProfile->personal_email,
+                'personal_email' => $studentProfile->personal_email,
                 'extracurricular' => $studentProfile->extracurricular,
                 'profile_name' => $studentProfile->profile_name,
                 'personal_email' => $studentProfile->personal_email,

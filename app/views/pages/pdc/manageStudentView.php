@@ -13,7 +13,7 @@
                     <span id="student-batch-year-span" class="material-symbols-outlined">
                         where_to_vote
                     </span>
-                    Current Batch Year is 2020
+                    Current Batch Year is <span id="current-batchyear-session-span"><?php echo $_SESSION['batchYear'] ?></span> 
 
                 </p>
             </div>

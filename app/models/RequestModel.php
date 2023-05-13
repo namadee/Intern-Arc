@@ -53,6 +53,7 @@ class RequestModel
     {
         $this->db->query('SELECT * FROM student_requests_tbl WHERE advertisement_id = :advertisement_id AND student_id = :student_id');
 
+
         //bind values 
         $this->db->bind(':advertisement_id', $ad_id);
         $this->db->bind(':student_id', $std_id);
@@ -105,6 +106,20 @@ class RequestModel
         return $this->db->resultset();
     }
 
+    //get a list of shortlisted advertisements of a student - Namadee
+    public function shortlistedAds($studentId)
+    {
+        $this->db->query('SELECT student_requests_tbl.* , advertisement_tbl.*, student_requests_tbl.status as shortlist_status
+        FROM student_requests_tbl
+        JOIN advertisement_tbl
+        ON student_requests_tbl.advertisement_id = advertisement_tbl.advertisement_id
+        WHERE student_requests_tbl.status = "shortlisted" AND student_requests_tbl.recruit_status = "pending" AND student_requests_tbl.student_id = :student_id');
+        //bind values
+        $this->db->bind(':student_id', $studentId);
+
+        return $this->db->resultset();
+    }
+
     //join advertisement and student request table
     public function getAdvertisementByRequest($advertisementId)
     {
@@ -118,7 +133,7 @@ class RequestModel
         return $this->db->resultset();
     }
 
-    // To get the student requests by round in the respective batch year
+    // To get the student requests by round in the respective batch year - Ruchira
     // Stream also considered
     public function getStudentRequestsByRound($data)
     {
@@ -133,6 +148,22 @@ class RequestModel
         $this->db->bind(':batch_year', $data['batchYear']);
         $this->db->bind(':round', $data['round']);
         $this->db->bind(':stream', $data['stream']);
+        return $this->db->resultset();
+    }
+
+    // To get the student requests by studentID - Ruchira
+    public function retrieveStudentRequestsByStudentID($round, $studentID)
+    {
+        $this->db->query('SELECT sr.*, st.*, a.*, u.*,c.*, sr.status as initial_status, sr.advertisement_id as ad_id
+        FROM student_requests_tbl sr
+        JOIN student_tbl st ON sr.student_id = st.student_id
+        JOIN advertisement_tbl a ON sr.advertisement_id = a.advertisement_id
+        JOIN user_tbl u ON st.user_id_fk = u.user_id
+        JOIN company_tbl c ON a.company_id_fk = c.company_id
+        WHERE sr.student_id = :student_id AND sr.round = :round;');
+        $this->db->bind(':student_id', $studentID);
+        $this->db->bind(':round', $round);
+
         return $this->db->resultset();
     }
 }

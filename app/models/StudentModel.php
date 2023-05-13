@@ -311,4 +311,53 @@ class StudentModel
             return false;
         }
     }
+
+    //book interview slots - Namadee
+    public function bookInterviewSlot($data)
+    {
+
+        $this->db->query('INSERT INTO interviewslots_tbl(timeslot_fk, student_id_fk) VALUES (:timeslot_fk, :student_id_fk)');
+        $this->db->bind(':timeslot_fk', $data['slot_id']);
+        $this->db->bind(':student_id_fk', $data['student_id']);
+
+        if ($this->db->execute()) {
+
+            $this->db->query('UPDATE timeslot_tbl SET reserved = 1 WHERE slot_id = :timeslot_fk');
+            $this->db->bind(':timeslot_fk', $data['slot_id']);
+            if ($this->db->execute()) {
+
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    //check if already booked the slot
+    public function checkInterviewBooked($slotId)
+    {
+        $this->db->query('SELECT timeslot_tbl.slot_id, timeslot_tbl.reserved, interviewslots_tbl.timeslot_fk 
+        FROM interviewslots_tbl 
+        JOIN timeslot_tbl
+        ON interviewslots_tbl.timeslot_fk = timeslot_tbl.slot_id
+        WHERE timeslot_tbl.reserved = 1 AND timeslot_fk= :timeslot_fk');
+        $this->db->bind(':timeslot_fk', $slotId);
+
+        $this->db->single();
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //get one interview slot
+    public function getOneInterviewSlot($slotId)
+    {
+        $this->db->query('SELECT * FROM interviewslots_tbl WHERE timeslot_fk = :timeslot_fk');
+        $this->db->bind(':timeslot_fk', $slotId);
+        return $this->db->single();
+    }
 }

@@ -1,4 +1,68 @@
-/*Admin Sign in Page*/
+.blacklist-btn-company:hover {
+  background-color: var(--DangerBackground) !important;
+  color: var(--DangerColor) !important;
+}
+
+.blacklisted-company-btn {
+  margin-top: 1rem !important;
+  padding: 0.5rem 1rem !important;
+}
+
+#delete-company_button {
+  color: var(--DangerColor);
+  border: 1px solid var(--DangerBackground);
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.3rem;
+  background-color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+
+#delete-company_button:hover {
+  background-color: var(--DangerBackground);
+  color: var(--DangerColor);
+  border: 1px solid var(--DangerBackground);
+  border: none;
+  transform: scale(1.02);
+}
+
+#admin-std-batch-tooltip{
+  left: -6rem !important;
+}
+
+#pdc_jobroles_page .jobroles-quickAdd form{
+  gap: 0.5rem !important;
+}
+
+.jobroles-rolesList table td:nth-child(1) {
+  width: fit-content;
+}
+
+.jobroles-quickAdd label {
+  flex: 1;
+}
+
+.jobroles-rolesList{
+  flex: 2;
+}
+
+.jobroles-rolesList table td:nth-child(3), .jobroles-rolesList table td:nth-child(4){
+  width: 10%;
+}
+
+.jobroles-rolesList table td:nth-child(2){
+  width: 45%;
+}
+
+#jobroles-modal-box label{
+  margin-top: 0.5rem !important;
+}
+
+#jobroles-modal-box h3{
+  margin-bottom: 1rem;
+}
+
+/* Admin Sign in Page
 .admin-signin-container {
   display: flex;
   width: 90%;
@@ -74,7 +138,7 @@
 
 /*Admin Update Profile Page*/
 
-.update-profile-container {
+/* .update-profile-container {
   padding: 2rem;
   width: 50%;
   margin: auto;
@@ -140,16 +204,15 @@
 }
 
 .admin-user-profile-icon #admin-profile-edit {
-  background-color: var(--primaryColor);;
+  background-color: var(--primaryColor);
   color: white;
   padding: 0.2rem 0.5rem;
   margin-top: 0.5rem;
   border-radius: 3px;
 }
 
-
 /* dashboard */
-
+/* 
 .dashboard-bottm-strip {
   display: flex;
   background-color: rgb(255, 255, 255);
@@ -158,7 +221,6 @@
   margin-left: 17%;
   gap: 4rem;
   height: 3.5rem;
-  
 }
 
 .bottm-strip-blue-line {
@@ -187,11 +249,11 @@
 
 .bottm-strip-number {
   color: #022f73;
-}
+} */
 
 /* complaint */
 
-.com-top {
+/* .com-top {
   background-color: rgb(255, 255, 255);
   padding: 30px;
   width: 65%;
@@ -199,12 +261,12 @@
   margin-top: 3rem;
 }
 
-.com-flex-wrap2 { 
-  display: flex; 
+.com-flex-wrap2 {
+  display: flex;
   width: 100%;
 }
 
-.com-descriptions{
+.com-descriptions {
   display: flex;
   gap: 1rem;
 }
@@ -215,7 +277,6 @@
 }
 
 .ccflex-container button {
- 
   color: #f86808;
   background-color: rgb(255, 255, 255);
   font-size: 16px;
@@ -224,7 +285,6 @@
   border-color: #f86808;
   display: inline-block;
   border: 1;
-
 }
 
 .com-table {
@@ -238,14 +298,14 @@
 }
 
 .com-table-header {
-  text-align:center;
+  text-align: center;
   padding: 8px;
   background-color: #f1f1f1;
-}
+} */
 
 /* view complaint */
 
-.view-com-top {
+/* .view-com-top {
   background-color: rgb(255, 255, 255);
   padding: 30px;
   width: 65%;
@@ -253,8 +313,8 @@
   margin-top: 3rem;
 }
 
-.view-com-flex-wrap2 { 
-  display: flex; 
+.view-com-flex-wrap2 {
+  display: flex;
   width: 100%;
 }
 
@@ -273,10 +333,10 @@
 }
 
 .comp-data {
-  background-color:#f1f1f1;
+  background-color: #f1f1f1;
   padding: 0.5rem;
-}
-
+} */
+/* 
 .view-com-reviewed-button {
   margin-top: 1rem;
   color: #ffffff;
@@ -289,11 +349,11 @@
   border: none;
   margin: 20px auto;
   align-items: center;
-}
+} */
 
- /* view company */
-    
- .vtop {
+/* view company */
+/* 
+.vtop {
   background-color: rgb(255, 255, 255);
   padding: 30px;
   width: 65%;
@@ -301,31 +361,29 @@
   margin-top: 0px;
 }
 
-.vflex-wrap2 { 
-  display: flex; 
+.vflex-wrap2 {
+  display: flex;
   width: 100%;
 }
 
 .vflex-wrap2 > * {
   box-sizing: border-box;
-  width: 100%; 
+  width: 100%;
 
- 
   background: rgb(255, 255, 255);
 }
 
-
-input[type=text], select, textarea {
+input[type="text"],
+select,
+textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  
 }
 
 .vflex-container button {
- 
   color: #f86808;
   background-color: rgb(255, 255, 255);
   font-size: 16px;
@@ -334,7 +392,6 @@ input[type=text], select, textarea {
   border-color: #f86808;
   display: inline-block;
   border: 1;
-
 }
 
 .co-table {
@@ -348,7 +405,7 @@ input[type=text], select, textarea {
 }
 
 .co-table-header {
-  text-align:center;
+  text-align: center;
   padding: 8px;
   background-color: #f1f1f1;
 }
@@ -366,491 +423,475 @@ input[type=text], select, textarea {
   display: inline-block;
   cursor: pointer;
   border: none;
-  }
+} */
 
-    /* view company details */
+/* view company details */
+/* 
+.view-co-top {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 65%;
+  margin: auto;
+  margin-top: 4rem;
+}
 
-    .view-co-top {
-      background-color: rgb(255, 255, 255);
-      padding: 30px;
-      width: 65%;
-      margin: auto;
-      margin-top: 4rem;
-    }
-    
-    .vbasic-details {
-      border-spacing: 0.5rem;
-      width: 90%;
-      padding: 0.5rem;
-    }
-    
-    .co-data {
-      background-color:#f1f1f1;
-      padding: 0.5rem;
-    }
-    
-    .view-co-descriptions{
-      display: flex;
-      gap: 1rem;
-    }
-    
-    .view-co-analysis {
-      background-color: #f1f1f1;
-      display: flex;
-    }
-    
-    .view-co-section{
-    width: 50%;
-    }
-    
-    .view-co-profile-button {
-      margin-top: 2rem;
-      color: #ffffff;
-      background-color: #022f73;
-      font-size: 16px;
-      padding: 6px 50px;
-      border-radius: 0px;
-      display: inline-block;
-      cursor: pointer;
-      border: none;
-    }
+.vbasic-details {
+  border-spacing: 0.5rem;
+  width: 90%;
+  padding: 0.5rem;
+}
 
-    .view-co-blacklist-button{
-      color: #ffffff;
-      background-color: #f17300;
-      font-size: 16px;
-      padding: 6px 50px;
-      border-radius: 0px;
-      display: inline-block;
-      cursor: pointer;
-      border: none;
-    }
+.co-data {
+  background-color: #f1f1f1;
+  padding: 0.5rem;
+}
 
-    .view-co-delete-button{
-      color: #ffffff;
-      background-color: #B83B3B;
-      font-size: 16px;
-      padding: 6px 50px;
-      border-radius: 0px;
-      display: inline-block;
-      cursor: pointer;
-      border: none;
-    }
+.view-co-descriptions {
+  display: flex;
+  gap: 1rem;
+}
 
-     
-    /* view batches */
+.view-co-analysis {
+  background-color: #f1f1f1;
+  display: flex;
+}
 
-    .s-top {
-      background-color: rgb(255, 255, 255);
-      padding: 50px;
-      
-      width: 55%;
-      margin-left: 20%;
-    }
-    
-    
-    .sflex-wrap2 { 
-      display: flex; 
-      width: 100%;
-    }
-    
-    .sflex-wrap2 > * {
-      box-sizing: border-box;
-      width: 50%; 
-    
-     
-      background: rgb(255, 255, 255);
-    }
-    
-    
-    input[type=text], select, textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      
-    }
-    
-    .s-flex-container button {
-     
-      color: #f86808;
-      font-size: 16px;
-      padding: 12px 40px;
-      border-radius: 5px;
-      border-color: #f86808;
-      display: inline-block;
-      border: 1;
-    
-    }
-    
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    
-    td {
-      text-align: center;
-      padding: 2px;
-    }
+.view-co-section {
+  width: 50%;
+}
 
-    /* view student list */
-  
-    .vstop {
-      background-color: rgb(255, 255, 255);
-      padding: 30px;
-      width: 65%;
-      margin: auto;
-      margin-top: 0px;
-    }
-    
-    .vsflex-wrap2 { 
-      display: flex; 
-      width: 100%;
-    }
-    
-    .vsflex-wrap2 > * {
-      box-sizing: border-box;
-      width: 100%; 
-    
-     
-      background: rgb(255, 255, 255);
-    }
-    
-    
-    input[type=text], select, textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      
-    }
-    
-    .vsflex-container button {
-     
-      color: #f86808;
-      background-color: rgb(255, 255, 255);
-      font-size: 16px;
-      padding: 12px 40px;
-      border-radius: 5px;
-      border-color: #f86808;
-      display: inline-block;
-      border: 1;
-    
-    }
-    
-    .st-table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    
-    .st-table-data {
-      text-align: center;
-      padding: 4px;
-    }
-    
-    .st-table-header {
-      text-align:center;
-      padding: 8px;
-      background-color: #f1f1f1;
-    }
+.view-co-profile-button {
+  margin-top: 2rem;
+  color: #ffffff;
+  background-color: #022f73;
+  font-size: 16px;
+  padding: 6px 50px;
+  border-radius: 0px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
 
-     /* view student  */
-  
-     .view-st-top {
-      background-color: rgb(255, 255, 255);
-      padding: 30px;
-      width: 65%;
-      margin: auto;
-      margin-top: 4rem;
-    }
-    
-    .vst-basic-details {
-      border-spacing: 0.5rem;
-      width: 90%;
-      padding: 0.5rem;
-    }
-    
-    .st-data {
-      background-color:#f1f1f1;
-      padding: 0.5rem;
-    }
-    
-    .view-st-profile-button {
-      margin-top: 2rem;
-      color: #ffffff;
-      background-color: #022f73;
-      font-size: 16px;
-      padding: 6px 50px;
-      border-radius: 0px;
-      display: inline-block;
-      cursor: pointer;
-      border: none;
-    }
+.view-co-blacklist-button {
+  color: #ffffff;
+  background-color: #f17300;
+  font-size: 16px;
+  padding: 6px 50px;
+  border-radius: 0px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
 
-    .view-st-delete-button{
-      color: #ffffff;
-      background-color: #B83B3B;
-      font-size: 16px;
-      padding: 6px 50px;
-      border-radius: 0px;
-      display: inline-block;
-      cursor: pointer;
-      border: none;
-    }
+.view-co-delete-button {
+  color: #ffffff;
+  background-color: #b83b3b;
+  font-size: 16px;
+  padding: 6px 50px;
+  border-radius: 0px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+} */
 
-    .vst-basic-details tr{
-      margin-top: 100px;
-    }
+/* view batches */
+/* 
+.s-top {
+  background-color: rgb(255, 255, 255);
+  padding: 50px;
 
-     /* view pdc staff */
+  width: 55%;
+  margin-left: 20%;
+}
 
-   .pdctop {
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    width: 65%;
-    margin: auto;
-    margin-top: 0px;
-  }
-  
-  .pflex-wrap2 { 
-    display: flex; 
-    width: 100%;
-  }
-  
-  .pflex-wrap2 > * {
-    box-sizing: border-box;
-    width: 100%; 
-  
-   
-    background: rgb(255, 255, 255);
-  }
-  
-  
-  input[type=text], select, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    
-  }
-  
-  .pflex-container button {
-   
-    color: #f86808;
-    background-color: rgb(255, 255, 255);
-    font-size: 16px;
-    padding: 12px 40px;
-    border-radius: 5px;
-    border-color: #f86808;
-    display: inline-block;
-    border: 1;
-  
-  }
-  
-  .pdc-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .pdc-table-data {
-    text-align: center;
-    padding: 4px;
-  }
-  
-  .pdc-table-header {
-    text-align:center;
-    padding: 8px;
-    background-color: #f1f1f1;
-  }
+.sflex-wrap2 {
+  display: flex;
+  width: 100%;
+}
 
-  .pdc-staff-add-button {
-    margin-left: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    color: rgb(255, 255, 255);
-    background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
-    font-size: 1rem;
-    padding: 6px 25px;
-    border-radius: 3px;
-    border-style: none;
-    display: inline-block;
-    cursor: pointer;
-    border: none;
-    }
+.sflex-wrap2 > * {
+  box-sizing: border-box;
+  width: 50%;
 
-    /* view pdc user */
+  background: rgb(255, 255, 255);
+}
 
-  .p-top {
-    background-color: rgb(255, 255, 255);
-    padding: 50px;
-    width: fit-content;
-    margin: auto;
-  }
-  
-  .pdc-flex-container {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    width: fit-content; 
-  }
-  
-  .btn{
-    display: flex;
-  }
-  
-  .view{
-    border: 1px solid #000000;
-  }
+input[type="text"],
+select,
+textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
-  .vpflex-container div {
-    background-color: #f1f1f1;
-    margin: 10px;
-    width: 100%;
-    padding: 10px;
-  }
-  
-  button {
-    color: #f86808;
-    font-size: 16px;
-    padding: 12px 85px;
-    border-radius: 10px;
-    border-color: #f17300;
-    display: inline-block;
-    border: 1;
-    box-shadow: 0px 1px 1px 0px #272727a6;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.s-flex-container button {
+  color: #f86808;
+  font-size: 16px;
+  padding: 12px 40px;
+  border-radius: 5px;
+  border-color: #f86808;
+  display: inline-block;
+  border: 1;
+}
 
-   /* report */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
-   .rtop {
-    background-color: rgb(255, 255, 255);
-    padding: 100px;
-    width: 75%;
-    margin-left: 10%;
-  }
-  
-  
-  .rflex-container button {
-    color: #f86808;
-    font-size: 16px;
-    padding: 12px 40px;
-    border-radius: 5px;
-    border-color: #f86808;
-    display: inline-block;
-    border: 1;
-  
-  }
-  
-  table {
-    border-collapse: collapse;
-    width: 90%;
-  }
-  
-  td {
-    text-align: center;
-    padding: 5px;
-  }
-  
-  th {
-    text-align:center;
-    padding: 8px;
-    background-color: #f1f1f1;
-  }
+td {
+  text-align: center;
+  padding: 2px;
+} */
 
-  /* registration report */
+/* view student list */
+/* 
+.vstop {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 65%;
+  margin: auto;
+  margin-top: 0px;
+}
 
-  .rrtop {
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    width: 65%;
-    margin: auto;
-    margin-top: 0px;
-  }
-  
-  .rrflex-wrap2 { 
-    display: flex; 
-    width: 100%;
-  }
-  
-  .rrflex-wrap2 > * {
-    box-sizing: border-box;
-    width: 100%; 
-  
-   
-    background: rgb(255, 255, 255);
-  }
-  
-  
-  input[type=text], select, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    
-  }
-  
-  .rrflex-container button {
-   
-    color: #f86808;
-    background-color: rgb(255, 255, 255);
-    font-size: 16px;
-    padding: 12px 40px;
-    border-radius: 5px;
-    border-color: #f86808;
-    display: inline-block;
-    border: 1;
-  
-  }
-  
-  .re-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .re-table-data {
-    text-align: center;
-    padding: 4px;
-  }
-  
-  .re-table-header {
-    text-align:center;
-    padding: 8px;
-    background-color: #f1f1f1;
-  }
+.vsflex-wrap2 {
+  display: flex;
+  width: 100%;
+}
 
-  .registration-report-download-button {
-    margin-left: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    color: rgb(255, 255, 255);
-    background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
-    font-size: 1rem;
-    padding: 6px 25px;
-    border-radius: 3px;
-    border-style: none;
-    display: inline-block;
-    cursor: pointer;
-    border: none;
-    }
+.vsflex-wrap2 > * {
+  box-sizing: border-box;
+  width: 100%;
 
-    .registration-report-filter-button {
-      margin-left: 2rem;
-      margin-top: 3rem;
-      margin-bottom: 1rem;
-      color: rgb(255, 255, 255);
-      background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
-      font-size: 1rem;
-      padding: 6px 25px;
-      border-radius: 3px;
-      border-style: none;
-      display: inline-block;
-      cursor: pointer;
-      border: none;
-      }
+  background: rgb(255, 255, 255);
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.vsflex-container button {
+  color: #f86808;
+  background-color: rgb(255, 255, 255);
+  font-size: 16px;
+  padding: 12px 40px;
+  border-radius: 5px;
+  border-color: #f86808;
+  display: inline-block;
+  border: 1;
+}
+
+.st-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.st-table-data {
+  text-align: center;
+  padding: 4px;
+}
+
+.st-table-header {
+  text-align: center;
+  padding: 8px;
+  background-color: #f1f1f1;
+} */
+
+/* view student  */
+/* 
+.view-st-top {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 65%;
+  margin: auto;
+  margin-top: 4rem;
+}
+
+.vst-basic-details {
+  border-spacing: 0.5rem;
+  width: 90%;
+  padding: 0.5rem;
+}
+
+.st-data {
+  background-color: #f1f1f1;
+  padding: 0.5rem;
+}
+
+.view-st-profile-button {
+  margin-top: 2rem;
+  color: #ffffff;
+  background-color: #022f73;
+  font-size: 16px;
+  padding: 6px 50px;
+  border-radius: 0px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+
+.view-st-delete-button {
+  color: #ffffff;
+  background-color: #b83b3b;
+  font-size: 16px;
+  padding: 6px 50px;
+  border-radius: 0px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+
+.vst-basic-details tr {
+  margin-top: 100px;
+} */
+
+/* view pdc staff */
+/* 
+.pdctop {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 65%;
+  margin: auto;
+  margin-top: 0px;
+}
+
+.pflex-wrap2 {
+  display: flex;
+  width: 100%;
+}
+
+.pflex-wrap2 > * {
+  box-sizing: border-box;
+  width: 100%;
+
+  background: rgb(255, 255, 255);
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.pflex-container button {
+  color: #f86808;
+  background-color: rgb(255, 255, 255);
+  font-size: 16px;
+  padding: 12px 40px;
+  border-radius: 5px;
+  border-color: #f86808;
+  display: inline-block;
+  border: 1;
+}
+
+.pdc-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.pdc-table-data {
+  text-align: center;
+  padding: 4px;
+}
+
+.pdc-table-header {
+  text-align: center;
+  padding: 8px;
+  background-color: #f1f1f1;
+}
+
+.pdc-staff-add-button {
+  margin-left: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  font-size: 1rem;
+  padding: 6px 25px;
+  border-radius: 3px;
+  border-style: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+} */
+
+/* view pdc user */
+/* 
+.p-top {
+  background-color: rgb(255, 255, 255);
+  padding: 50px;
+  width: fit-content;
+  margin: auto;
+}
+
+.pdc-flex-container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  width: fit-content;
+}
+
+.btn {
+  display: flex;
+}
+
+.view {
+  border: 1px solid #000000;
+}
+
+.vpflex-container div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+button {
+  color: #f86808;
+  font-size: 16px;
+  padding: 12px 85px;
+  border-radius: 10px;
+  border-color: #f17300;
+  display: inline-block;
+  border: 1;
+  box-shadow: 0px 1px 1px 0px #272727a6;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+/* report */
+/* 
+.rtop {
+  background-color: rgb(255, 255, 255);
+  padding: 100px;
+  width: 75%;
+  margin-left: 10%;
+}
+
+.rflex-container button {
+  color: #f86808;
+  font-size: 16px;
+  padding: 12px 40px;
+  border-radius: 5px;
+  border-color: #f86808;
+  display: inline-block;
+  border: 1;
+}
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+}
+
+td {
+  text-align: center;
+  padding: 5px;
+}
+
+th {
+  text-align: center;
+  padding: 8px;
+  background-color: #f1f1f1;
+} */
+
+/* registration report */
+/* 
+.rrtop {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 65%;
+  margin: auto;
+  margin-top: 0px;
+}
+
+.rrflex-wrap2 {
+  display: flex;
+  width: 100%;
+}
+
+.rrflex-wrap2 > * {
+  box-sizing: border-box;
+  width: 100%;
+
+  background: rgb(255, 255, 255);
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.rrflex-container button {
+  color: #f86808;
+  background-color: rgb(255, 255, 255);
+  font-size: 16px;
+  padding: 12px 40px;
+  border-radius: 5px;
+  border-color: #f86808;
+  display: inline-block;
+  border: 1;
+}
+
+.re-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.re-table-data {
+  text-align: center;
+  padding: 4px;
+}
+
+.re-table-header {
+  text-align: center;
+  padding: 8px;
+  background-color: #f1f1f1;
+}
+
+.registration-report-download-button {
+  margin-left: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  font-size: 1rem;
+  padding: 6px 25px;
+  border-radius: 3px;
+  border-style: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+
+.registration-report-filter-button {
+  margin-left: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  font-size: 1rem;
+  padding: 6px 25px;
+  border-radius: 3px;
+  border-style: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+} */
 
 /* #student_complaints_page .complaints-quickAdd,
 #student_complaints_page .complaints-list {
@@ -867,7 +908,7 @@ input[type=text], select, textarea {
   gap: 2rem;
   text-align: center;
 } */
-    /* .complaints-quickAdd {
+/* .complaints-quickAdd {
         height: fit-content;
       }
     .complaints-quickAdd #description{

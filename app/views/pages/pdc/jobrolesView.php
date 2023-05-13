@@ -20,6 +20,7 @@
     </div>
     <div class="jobroles-rolesList">
         <h3>Job Roles List</h3>
+
         <table class="jobroles">
             <?php foreach ($data['jobroles'] as $jobrole) : ?>
                 <tr>

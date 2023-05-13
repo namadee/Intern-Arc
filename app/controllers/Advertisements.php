@@ -22,7 +22,6 @@ class Advertisements extends BaseController
     public function index()
     {
         $advertisements = $this->advertisementModel->getAdvertisements();
-        //view pass data values $data
 
         $data = [
 
@@ -34,6 +33,24 @@ class Advertisements extends BaseController
         $this->view('company/advertisementList', $data);
     }
 
+
+    //Get advertisements by company - company - Namadee
+
+    public function getAdvertisementsByCompany()
+    {
+        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+        $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+
+        $data = [
+            'advertisements' => $ads,
+            'companyID' => $companyId,
+            'formAction' => 'Advertisements/add-advertisement'
+        ];
+
+        $this->view('company/advertisementList', $data);
+    }
+
+
     public function addAdvertisement()
     {
 
@@ -42,19 +59,15 @@ class Advertisements extends BaseController
 
             // Strip Tags
             stripTags();
-           
+
             $companyId = $this->userModel->getCompanyUserId(($_SESSION['user_id']));
             $text = explode("\r<\br>", trim($_POST['requirements-list']));
             $length = count($text);
 
             $emptyArray = array();
             for ($x = 0; $x < $length; $x++) {
-                $emptyArray[$x] = trim($text[$x]); 
+                $emptyArray[$x] = trim($text[$x]);
             }
-            //$completeString = implode("", $emptyArray);
-            
-
-
 
             $data = [
                 'company_id' => $companyId,
@@ -133,9 +146,8 @@ class Advertisements extends BaseController
 
             $emptyArray = array();
             for ($x = 0; $x < $length; $x++) {
-                $emptyArray[$x] = trim($text[$x]); 
+                $emptyArray[$x] = trim($text[$x]);
             }
-            //$completeString = implode("", $emptyArray);
 
             $data = [
                 'position' => trim($_POST['position']),
@@ -194,48 +206,45 @@ class Advertisements extends BaseController
 
         $data = array_merge($data, $data2, $data3);
         $this->view('student/advertisements', $data);
-
     }
 
 
     
 
     //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
-    public function showAdvertisementsByCompany(){
+    public function showAdvertisementsByCompany()
+    {
         $this->view('student/viewads');
     }
 
-        //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
-        public function showAdvertisementsDetails(){
-            $this->view('company/advertisement');
-        }
-    
+    //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
+    public function showAdvertisementsDetails()
+    {
+        $this->view('company/advertisement');
+        $this->view('company/advertisement');
+    }
+
     //load The advertisement UI of the relevant company 
-    public function viewAdvertisement($advertisementId){
+    public function viewAdvertisement($advertisementId)
+    {
         // $advertisementId = $_GET['adId'];
         $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
-       
-            $text = explode("\r\n", trim($advertisement->requirements));
-            $length = count($text);
 
-            $emptyArray = array();
-            for ($x = 0; $x < $length; $x++) {
-                $emptyArray[$x] = trim($text[$x]); 
-            }
-            $completeString = implode("", $emptyArray);
-            //BUTTON NAME : if user role is student apply btn else view requests btn
-            //BUTTON LINK : if user role is student apply link else view requests link
-            if($_SESSION['user_role'] == 'student'){ 
-                $btnName = 'Apply';
-                $btnStatusClass = 'apply-btn'; 
-            }else if ($_SESSION['user_role'] == 'company'){
-                $btnName = 'View Requests';
-                $btnStatusClass = 'apply-btn';
-            }else{
-                //PDC or Admin
-                $btnName = '';
-                $btnStatusClass = 'hide-element';
-            }
+        $text = explode("\r\n", trim($advertisement->requirements));
+        $length = count($text);
+
+        $emptyArray = array();
+        for ($x = 0; $x < $length; $x++) {
+            $emptyArray[$x] = trim($text[$x]);
+        }
+        $completeString = implode("", $emptyArray);
+        //BUTTON NAME : if user role is student apply btn else view requests btn
+        //BUTTON LINK : if user role is student apply link else view requests link
+        if ($_SESSION['user_role'] == 'student') {
+            $btnName = 'Apply';
+        } else {
+            $btnName = 'View Requests';
+        }
         $data = [
             'className' => 'selectedTab',
             'title' => 'Advertisements',
@@ -249,21 +258,130 @@ class Advertisements extends BaseController
             'required_year' => $advertisement->applicable_year,
             'internship_start' => $advertisement->start_date,
             'internship_end' => $advertisement->end_date,
-            'button_status_class' => $btnStatusClass
         ];
-        
+
         $this->view('company/advertisement', $data);
-        
-    }
-    
-    
-    public function test(){
-
-        $this->view('test');
-
     }
 
-    
+    //Create Interview slots - company  - Namadee
 
+    public function createInterviewSlots($advertisementId)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Strip Tags
+            $_POST['start_time'] = array_map('strip_tags', $_POST['start_time']);
+            $_POST['end_time'] = array_map('strip_tags', $_POST['end_time']);
+
+            $data = [
+                'advertisement_id' => $advertisementId,
+                'start_date' => trim($_POST['start_date']),
+                'end_date' => trim($_POST['end_date']),
+                'recurrence' => trim($_POST['recurrence']),
+                'interviewee_count' => trim($_POST['interviewee_count']),
+                'duration' => trim($_POST['duration']),
+                'schedule_status' => trim($_POST['schedule_status']),
+                'time_periods' => [],
+                'time_slots' => []
+            ];
+
+            // Combine start time and end time into time periods
+            foreach ($_POST['start_time'] as $index => $startTime) {
+                $endTime = $_POST['end_time'][$index];
+                $data['time_periods'][] = [
+                    'start_time' => $startTime,
+                    'end_time' => $endTime
+                ];
+            }
+            //break down time periods into time slots
+            $duration = $data['duration'];
+            $recurrence = $data['recurrence'];
+            $timePeriods = $data['time_periods'];
+
+            if ($recurrence == 'daily') {
+                //schedule start date 
+                $startDate = $data['start_date'];
+                //schedule end date
+                $endDate = $data['end_date'];
+                //while end date > start date
+                while ($endDate > $startDate) {
+                    //foreach timeperiods
+                    foreach ($timePeriods as $period) {
+                        // $startTime = $period['start_time'];
+                        // $endTime = $period['end_time'];
+
+                        $startTime = strtotime($period['start_time']);
+                        $endTime = strtotime($period['end_time']);
+                        $convertedDuration = $duration * 60;
+
+                        // Loop through each slot within the period
+                        while ($startTime < $endTime) {
+                            // Get the slot start time and end time
+                            $slotStart = date('h:i A', $startTime);
+                            $slotEnd = date('h:i A', $startTime + $convertedDuration);
+
+                            for ($i = 0; $i < $data['interviewee_count']; $i++) {
+                                $data['time_slots'][] = [
+                                    'start_time' => $slotStart,
+                                    'end_time' => $slotEnd,
+                                    'date' => $startDate
+                                ];
+                            }
+
+                            $startTime = $startTime + $convertedDuration;
+                        }
+                    }
+                    //increment start date by one day
+                    $startDate = date('Y-m-d', strtotime($startDate . ' +1 day'));
+                }
+            } else {
+                $startDate = $data['start_date'];
+                //schedule end date
+                $endDate = $data['end_date'];
+                //while end date > start date
+                while ($endDate > $startDate) {
+                    //foreach timeperiods
+                    foreach ($timePeriods as $period) {
+                        // $startTime = $period['start_time'];
+                        // $endTime = $period['end_time'];
+
+                        $startTime = strtotime($period['start_time']);
+                        $endTime = strtotime($period['end_time']);
+                        $convertedDuration = $duration * 60;
+
+                        // Loop through each slot within the period
+                        while ($startTime < $endTime) {
+                            // Get the slot start time and end time
+                            $slotStart = date('h:i A', $startTime);
+                            $slotEnd = date('h:i A', $startTime + $convertedDuration);
+
+                            //add time slots to timeslots[] array
+                            //multiply time slots by interviewee count
+                            for ($i = 0; $i < $data['interviewee_count']; $i++) {
+                                $data['time_slots'][] = [
+                                    'start_time' => $slotStart,
+                                    'end_time' => $slotEnd,
+                                    'date' => $startDate
+                                ];
+                            }
+
+
+                            $startTime = $startTime + $convertedDuration;
+                        }
+                    }
+                    //increment start date by one day
+                    $startDate = date('Y-m-d', strtotime($startDate . ' +7 day'));
+                }
+            }
+
+
+            //flashMessage('schedule_interview_msg', 'Interviews scheduled successfully');
+
+            //Execute
+            if ($this->advertisementModel->createInterviewSlots($data)) {
+                redirect('companies/interview-schedule-create/' . $advertisementId);
+            } else {
+                die('Something went wrong');
+            }
+        }
+    }
 }
-

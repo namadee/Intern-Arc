@@ -34,9 +34,9 @@ class CompanyModel
     }
 
 
-    //Retrieve main information of companies and only the companies who are not blacklisted
+    //Retrieve main information of companies and who are active
     //PDC - Ruchira
-    //blacklisted = 1 means Blacklisted  and 0 not Blacklisted
+
 
     public function getCompanyList()
     {
@@ -44,7 +44,7 @@ class CompanyModel
         FROM company_tbl 
         JOIN user_tbl
         ON user_tbl.user_id = company_tbl.user_id_fk
-        WHERE blacklisted = 0");
+        WHERE user_tbl.account_status = 'active'");
         $resultSet = $this->db->resultset();
         return $resultSet;
     }
@@ -58,7 +58,7 @@ class CompanyModel
 
     public function mainCompanyDetails($user_id)
     {
-        $this->db->query("SELECT user_tbl.username, user_tbl.user_id, user_tbl.email, company_tbl.company_name, company_tbl.contact 
+        $this->db->query("SELECT user_tbl.username, user_tbl.user_id, user_tbl.email, company_tbl.*
         FROM company_tbl 
         JOIN user_tbl
         ON user_tbl.user_id = :user_id AND company_tbl.user_id_fk = :user_id");
@@ -86,15 +86,15 @@ class CompanyModel
         return $this->db->execute();
     }
 
-    //Return Blacklisted Company List
-    //blacklisted = 1 means Blacklisted  and 0 not Blacklisted
-    public function getBlacklistedCompanyList()
+    //Return Deactivated Company List
+    // Simply the deativated accounts
+    public function getDeativatedCompanyList()
     {
-        $this->db->query("SELECT user_tbl.username, user_tbl.user_id, user_tbl.email, company_tbl.company_name, company_tbl.contact 
+        $this->db->query("SELECT user_tbl.*, company_tbl.*
         FROM company_tbl 
         JOIN user_tbl
         ON user_tbl.user_id = company_tbl.user_id_fk
-        WHERE blacklisted = 1");
+        WHERE user_tbl.account_status = 'deactivated'");
         $resultSet = $this->db->resultset();
         return $resultSet;
     }
@@ -212,4 +212,42 @@ class CompanyModel
         $all_access =  $this->db->single();
         return $all_access;
     }
+
+
+    //Check companies system access from users_tbl - Ruchira
+    public function updateCompanyBlacklistStatus($blacklistStatus, $userID, $accountStatus)
+    {
+        $this->db->query('UPDATE company_tbl
+        JOIN user_tbl ON company_tbl.user_id_fk = user_tbl.user_id
+        SET company_tbl.blacklisted = :blacklistStatus, user_tbl.account_status = :accountStatus
+        WHERE company_tbl.user_id_fk = :userID');
+        $this->db->bind(':accountStatus', $accountStatus);
+        $this->db->bind(':blacklistStatus', $blacklistStatus);
+        $this->db->bind(':userID', $userID);
+
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteCompany($userID)
+    {
+        //Only if no advertisements are listed if there are advertisements listed then only deactivate
+        $this->db->query('DELETE company_tbl, user_tbl
+        FROM company_tbl
+        JOIN user_tbl ON company_tbl.user_id_fk = user_tbl.user_id
+        WHERE company_tbl.user_id_fk = :userID');
+        $this->db->bind(':userID', $userID);
+
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

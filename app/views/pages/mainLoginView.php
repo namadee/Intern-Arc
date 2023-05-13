@@ -18,8 +18,13 @@
 
                     <input class="common-input" type="email" id="userName" name="email" placeholder="Enter your email" required>
 
+                    <div class="display-flex-row passwordBox">
+                        <input class="common-input" type="password" id="login_password" name="password" placeholder="Enter your password" required>
 
-                    <input class="common-input" type="password" id="pword" name="password" placeholder="Enter your password" required>
+                        <span class="material-symbols-outlined" id="toggleIconLoginForm">
+                            visibility_off
+                        </span>
+                    </div>
 
                     <a href="<?php echo URLROOT . 'login/forgot-password' ?>">Forgot your Password?</a>
 
