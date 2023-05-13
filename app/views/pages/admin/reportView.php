@@ -27,7 +27,11 @@
           chevron_right
         </span></a>
     </div>
-
+    <div class="report-item">
+      <a href="<?php echo URLROOT . 'admin/get-round-reports'; ?>" class="display-flex-row"> Round Reports<span class="material-symbols-outlined">
+          chevron_right
+        </span></a>
+    </div>
   </div>
 </section>
 

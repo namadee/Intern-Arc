@@ -118,4 +118,26 @@ class AjaxModel
 
         return array('result' => $result, 'count' => $count);
     }
+
+
+    public function searchComplaintFunction($searchItem)
+    {
+
+        // PDC - Company search including deactivated companies
+        // Prepare Query
+        $this->db->query("SELECT c.*, u.* FROM complaint_tbl c 
+        JOIN user_tbl u ON c.user_id_fk = u.user_id 
+        WHERE c.reference_number LIKE CONCAT('%', :reference, '%') LIMIT 10");
+        // Bind Values
+        $this->db->bind(':reference', $searchItem);
+
+        $result = $this->db->resultset();
+        //Execute
+        if ($this->db->rowCount() > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
 }

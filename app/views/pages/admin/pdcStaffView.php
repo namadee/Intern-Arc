@@ -16,7 +16,7 @@
             <label for="username">Username</label>
             <input type="text" class="common-input" name="username" id="username" required>
             <label for="email">Email</label>
-            <input type="text" class="common-input" name="email" id="email" required>
+            <input type="email" class="common-input" name="email" id="email" required>
             <button type="submit" class="common-blue-btn">
                 Register Member
             </button>

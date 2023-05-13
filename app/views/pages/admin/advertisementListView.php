@@ -15,7 +15,7 @@
                     <span id="student-batch-year-span" class="material-symbols-outlined">
                         where_to_vote
                     </span>
-                    Current Batch Year is <span id="current_batchyear_advertisement_span"><?php echo $_SESSION['batchYear'] ?></span>
+                    Current Batch Year is <span id="current_batchyear_advertisement_span_admin"><?php echo $_SESSION['batchYear'] ?></span>
 
                 </p>
             </div>
@@ -26,11 +26,10 @@
                     <span class="material-symbols-rounded">
                         search
                     </span>
-                    <input class="common-input" type="text" name="search-item" id="pdc_advertisement_search" placeholder="Search Advertisement">
+                    <input class="common-input" type="text" name="search-item" id="admin_advertisement_search" placeholder="Search Advertisement">
                 </div>
 
-                <div class="common-search-result display-flex-col" id="pdc_advertisement_result">
-
+                <div class="common-search-result display-flex-col" id="admin_advertisement_result">
                 </div>
             </form>
 

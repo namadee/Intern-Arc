@@ -249,4 +249,82 @@ class AdminModel
     $result = $this->db->single();
     return $result;
   }
+
+
+
+  public function getStudentRequestsByRoundCount($data)
+  {
+
+    $this->db->query('SELECT sr.*, st.*, a.*, c.*, st.status as student_status
+      FROM student_requests_tbl sr
+      JOIN student_tbl st ON sr.student_id = st.student_id
+      JOIN advertisement_tbl a ON sr.advertisement_id = a.advertisement_id
+      JOIN company_tbl c ON a.company_id_fk = c.company_id
+      WHERE sr.batch_year = :batch_year AND sr.round = :round AND st.stream = :stream
+      GROUP BY sr.student_id;');
+    $this->db->bind(':batch_year', $data['batchYear']);
+    $this->db->bind(':round', $data['round']);
+    $this->db->bind(':stream', $data['stream']);
+
+    $result = $this->db->resultset();
+    $count = $this->db->rowCount();
+
+    return $count;
+  }
+
+
+  public function getStudentRequestsByRoundRecruitCount($data)
+  {
+
+    $this->db->query('SELECT sr.*, st.*, a.*, c.*, st.status as student_status
+      FROM student_requests_tbl sr
+      JOIN student_tbl st ON sr.student_id = st.student_id
+      JOIN advertisement_tbl a ON sr.advertisement_id = a.advertisement_id
+      JOIN company_tbl c ON a.company_id_fk = c.company_id
+      WHERE sr.batch_year = :batch_year AND sr.round = :round AND st.stream = :stream 
+      AND sr.recruit_status = "recruited"
+      GROUP BY sr.student_id;');
+    $this->db->bind(':batch_year', $data['batchYear']);
+    $this->db->bind(':round', $data['round']);
+    $this->db->bind(':stream', $data['stream']);
+
+    $result = $this->db->resultset();
+    $count = $this->db->rowCount();
+
+    return $count;
+  }
+
+  public function getTopJobPositions($batchYear)
+  {
+    $this->db->query('SELECT advertisement_tbl.position, count(*) AS applications 
+    FROM student_requests_tbl
+    JOIN advertisement_tbl ON student_requests_tbl.advertisement_id = advertisement_tbl.advertisement_id 
+    WHERE student_requests_tbl.batch_year = :batchYear
+    GROUP BY student_requests_tbl.batch_year, position 
+    ORDER BY student_requests_tbl.batch_year, applications DESC
+    LIMIT 5');
+
+    $this->db->bind(':batchYear', $batchYear);
+    $result = $this->db->resultset();
+
+    return $result;
+  }
+
+
+  public function getTopCompanies($batchYear)
+  {
+    $this->db->query('SELECT c.company_name AS company_name, COUNT(*) AS applications
+    FROM student_requests_tbl srt
+    JOIN advertisement_tbl a ON srt.advertisement_id = a.advertisement_id
+    JOIN company_tbl c ON a.company_id_fk = c.company_id
+    WHERE srt.batch_year = :batchYear
+    GROUP BY c.company_name
+    ORDER BY applications DESC
+    LIMIT 5');
+
+    $this->db->bind(':batchYear', $batchYear);
+    $result = $this->db->resultset();
+
+    return $result;
+  }
 }

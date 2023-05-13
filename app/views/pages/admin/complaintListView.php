@@ -16,10 +16,10 @@
                     <span class="material-symbols-rounded">
                         search
                     </span>
-                    <input class="common-input" type="text" name="search-item" id="pdc_search_company" placeholder="Search Reference Num">
+                    <input class="common-input" type="text" name="search-item" id="admin_search_complaint" placeholder="Search Reference Num">
                 </div>
 
-                <div class="common-search-result display-flex-col" id="pdc_company_result">
+                <div class="common-search-result display-flex-col" id="admin_complaint_result">
 
                 </div>
             </form>

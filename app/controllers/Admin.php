@@ -4,7 +4,7 @@ use helpers\PdfHandler;
 
 class Admin extends BaseController
 {
-    public $adminModel, $userModel, $companyModel, $studentModel, $registerModel, $advertisementModel;
+    public $adminModel, $userModel, $companyModel, $studentModel, $registerModel, $advertisementModel, $requestModel, $pdcModel;
 
     public function __construct()
     {
@@ -14,14 +14,35 @@ class Admin extends BaseController
         $this->companyModel = $this->model('Company');
         $this->registerModel = $this->model('Register');
         $this->advertisementModel = $this->model('Advertisement');
+        $this->requestModel = $this->model('Request');
+        $this->pdcModel = $this->model('Pdc');
     }
 
-    public function index() //default method and view
+    public function index($batchYear = NULL) //default method and view
     {
+        if ($batchYear == NULL) {
+            $batchYear = $_SESSION['batchYear'];
+        }
 
-        $this->view('admin/dashboard');
+        $companyData = $this->adminModel->getTopCompanies($batchYear);
+        $studentBatches = $this->adminModel->getStudentBatches();
+        $jobPositionData = $this->adminModel->getTopJobPositions($batchYear);
+        $roundDetails = $this->pdcModel->getRoundPeriods();
+        $companyCount = $this->companyModel->getCompanyCount();
+        $studentCount = $this->studentModel->getStudentCount();
+        $data = [
+            'companyCount' => $companyCount->totalRows,
+            'studentCount' => $studentCount->totalRows,
+            'roundDetails' => $roundDetails,
+            'jobPositionData' => $jobPositionData,
+            'jobPositions' => array_column($jobPositionData, 'position'),
+            'studentBatches' => $studentBatches,
+            'batchYear' => $batchYear,
+            'companyData' => $companyData 
+        ];
+
+        $this->view('admin/dashboard', $data);
     }
-
 
     public function company() //View main company list - Ruchira
     {
@@ -71,7 +92,7 @@ class Admin extends BaseController
 
             if ($internCount->total_intern_count == NULL) {
                 $internTotal = 0;
-            }else {
+            } else {
                 $internTotal = $internCount->total_intern_count;
             }
 
@@ -92,7 +113,7 @@ class Admin extends BaseController
             //view main comapny details
             $companyDetails = $this->companyModel->mainCompanyDetails($user_id);
             $account_status = $this->userModel->getUserAccountStatus($user_id);
-            
+
             if ($user_id != NULL && $blacklist == NULL) {
                 $data = [
                     'username' => $companyDetails->username,
@@ -655,12 +676,166 @@ class Admin extends BaseController
             $pdf = new PdfHandler();
             $pdf->studentRegistrations($studentList, $count, $templatePath, $currentDateTime, $year);
         }
+    }
 
-        
+    public function getRoundReports($batchYear = NULL, $round = NULL)
+    {
+        $studentBatches = $this->adminModel->getStudentBatches();
+
+
+        if ($batchYear == NULL && $round == NULL) {
+            //default view with current batch year and round 1
+            $batchYear = $_SESSION['batchYear'];
+            $round = 1;
+        }
+
+
+        $data = [
+            'batchYear' => $batchYear,
+            'round' => $round,
+            'stream' => 'IS'
+        ];
+
+        //IS Student List
+        $studentRequestsIS = $this->requestModel->getStudentRequestsByRound($data);
+
+        // Total IS Studetn Requests
+        $studentRequestsISCount = $this->adminModel->getStudentRequestsByRoundCount($data);
+
+        // Recruited Student List
+        $studentRequestsISRecruitedCount = $this->adminModel->getStudentRequestsByRoundRecruitCount($data);
+
+        $data = [
+            'batchYear' => $batchYear,
+            'round' => $round,
+            'stream' => 'CS'
+        ];
+
+        //CS Student List
+        $studentRequestsCS = $this->requestModel->getStudentRequestsByRound($data);
+
+        // Total IS Studetn Requests
+        $studentRequestsCSCount = $this->adminModel->getStudentRequestsByRoundCount($data);
+
+        // Recruited Student List
+        $studentRequestsCSRecruitedCount = $this->adminModel->getStudentRequestsByRoundRecruitCount($data);
+
+        $data = [
+            'round' => $round,
+            'studentRequestsIS' => $studentRequestsIS,
+            'studentRequestsCS' => $studentRequestsCS,
+            'selectOptionStatus' => 'selected', //For Round 1 and Round 2
+            'studentBatches' => $studentBatches,
+            'batchYear' => $batchYear,
+            'ISCount' => $studentRequestsISCount,
+            'ISRecruitedCount' => $studentRequestsISRecruitedCount,
+            'CSCount' => $studentRequestsCSCount,
+            'CSRecruitedCount' => $studentRequestsCSRecruitedCount
+        ];
+
+        $this->view('admin/reportRound', $data);
+    }
+
+    public function reportRound($round = NULL)
+    {
+        $studentBatches = $this->adminModel->getStudentBatches();
+
+
+        $batchYear = $_SESSION['batchYear'];
+
+        if ($round == 1 || $round == 2) {
+            $data = [
+                'batchYear' => $batchYear,
+                'round' => $round,
+                'stream' => 'IS'
+            ];
+
+            $studentRequestsIS = $this->requestModel->getStudentRequestsByRound($data);
+
+            $data = [
+                'batchYear' => $batchYear,
+                'round' => $round,
+                'stream' => 'CS'
+            ];
+
+            $studentRequestsCS = $this->requestModel->getStudentRequestsByRound($data);
+
+            $data = [
+                'round' => $round,
+                'studentBatches' => $studentBatches,
+                'studentRequestsIS' => $studentRequestsIS,
+                'studentRequestsCS' => $studentRequestsCS,
+                'selectOptionStatus' => 'selected' //For Round 1 and Round 2
+            ];
+
+            $this->view('admin/reportRound', $data);
+        } else {
+
+            $batchYear = $_SESSION['batchYear'];
+
+            $data = [
+                'batchYear' => $batchYear,
+                'round' => $round,
+                'stream' => 'IS'
+            ];
+
+            $studentRequestsIS = $this->requestModel->getStudentRequestsByRound($data);
+
+            $data = [
+                'batchYear' => $batchYear,
+                'round' => $round,
+                'stream' => 'CS'
+            ];
+
+            $studentRequestsCS = $this->requestModel->getStudentRequestsByRound($data);
+
+            $data = [
+                'round' => $round,
+                'studentBatches' => $studentBatches,
+                'studentRequestsIS' => $studentRequestsIS,
+                'studentRequestsCS' => $studentRequestsCS,
+                'selectOptionStatus' => 'selected' //For Round 1 and Round 2
+            ];
+            $this->view('admin/reportRound', $data);
+        };
     }
 
 
+    // Download round reports
+    public function downloadRoundReport($batchYear = NULL, $round = NULL, $stream = NULL)
+    {
+        $templatePath = (dirname(APPROOT)) . '\public\templates\studentsRoundRepTemplate.php';
+        $currentDateTime = date('Y-m-d H:i:s');
 
+        if ($batchYear != NULL && $round != NULL && $stream != NULL) {
+
+            if ($stream == 'IS') {
+                $data = [
+                    'batchYear' => $batchYear,
+                    'round' => $round,
+                    'stream' => 'IS'
+                ];
+            } else {
+                $data = [
+                    'batchYear' => $batchYear,
+                    'round' => $round,
+                    'stream' => 'CS'
+                ];
+            }
+            //Student List
+            $studentList = $this->requestModel->getStudentRequestsByRound($data);
+            // Total IS Studetn Requests
+            $studentRequestsCount = $this->adminModel->getStudentRequestsByRoundCount($data);
+            // Recruited Student List
+            $studentRequestsRecruitedCount = $this->adminModel->getStudentRequestsByRoundRecruitCount($data);
+
+            $pdf = new PdfHandler();
+            $pdf->studentRoundReport($studentList, $studentRequestsCount, $studentRequestsRecruitedCount, $templatePath, $currentDateTime, $batchYear, $stream, $round);
+        } else {
+            // redirect('pdc/get-round-reports');\
+            echo 'error';
+        }
+    }
 }
 
 

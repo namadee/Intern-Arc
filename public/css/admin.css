@@ -239,11 +239,100 @@
   justify-content: space-between;
 }
 
-#pdc_jobroles_page .jobroles-quickAdd {
-  height: 50%;
-  margin-top: 5% ;
+#pdc_jobroles_page .adminReportsListDiv {
+  height: 60%;
+  margin-top: 5%;
 }
 
+.round-report-div .top-bar-1 {
+  justify-content: space-between;
+  width: 100%;
+}
+
+.round-report-div .top-bar-1 .download-report-btn {
+  margin: 0 !important;
+}
+
+.round-report-div .container-top {
+  padding: 1rem !important;
+}
+
+.round-report-div .student-request-top {
+  justify-content: space-between;
+}
+
+.round-report-div .top-round-select-div {
+  gap: 1rem;
+}
+
+.top-round-select-div .batchYearSelectDiv {
+  gap: 1rem;
+}
+
+.batchYearSelectDiv #secondary-grey-btn a {
+  color: var(--Black) !important;
+  padding: 0.3rem 0.5rem;
+}
+
+.round-report-div .batchYearSelectDiv #secondary-grey-btn a:hover {
+  background-color: var(--BackgroungColor);
+  border-radius: 0.5rem;
+}
+
+.round-report-div #report-round-search-btn {
+  margin: 0 !important;
+  padding: 0.3rem 1rem;
+}
+
+.round-report-div .top-header th {
+  background-color: var(--AlternateLightGrey);
+}
+
+.admin-dashboard .dashboard-topbar {
+  justify-content: space-around;
+}
+
+.admin-dashboard .dashboard-advertisement-list {
+  height: auto;
+  overflow: initial;
+  padding: 1.5rem 2rem;
+  width: 95%;
+  justify-content: space-around;
+}
+
+
+.admin-dashboard-bottom-div #myChart,
+.admin-dashboard-bottom-div #myChart2{
+  background-color: var(--BackgroungColor);
+  border-radius: 0.3rem;
+  padding: 1rem;
+  cursor: pointer; 
+  width: 22rem !important;
+  height: 22rem !important; 
+}
+
+.admin-dashboard-bottom-div .dash-bottom{
+  gap: 1rem;
+}
+
+.admin-dashboard-bottom-div .dash-bottom div{
+  gap: 1rem;
+}
+
+.admin-dashboard-selectYear{
+  margin: auto;
+  margin-top: 2rem;
+  width: fit-content;
+}
+
+
+.admin-dashboard  #student-batch-current-year{
+  color: var(--Black);
+}
+
+.admin-dashboard-bottom-div p {
+  margin: auto;
+}
 /* Admin Sign in Page
 .admin-signin-container {
   display: flex;

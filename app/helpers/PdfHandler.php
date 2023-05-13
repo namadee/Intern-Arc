@@ -60,8 +60,21 @@ class PdfHandler
         $this->dompdf->loadHtml($html);
         $this->dompdf->setPaper('A4', 'portrait');
         $this->dompdf->render();
-        $this->dompdf->stream('company-registrations.pdf', ['Attachment' => false]);
+        $this->dompdf->stream('student-registrations.pdf', ['Attachment' => false]);
     }
 
+    
+    public function studentRoundReport($studentList, $studentRequestsCount, $studentRequestsRecruitedCount ,$templatePath, $currentDateTime, $batchYear, $stream, $round)
+    {
+        ob_start();
+        require $templatePath;
+        $html = ob_get_contents();
+        ob_get_clean();
+
+        $this->dompdf->loadHtml($html);
+        $this->dompdf->setPaper('A4', 'portrait');
+        $this->dompdf->render();
+        $this->dompdf->stream('company-registrations.pdf', ['Attachment' => false]);
+    }
 
 }
