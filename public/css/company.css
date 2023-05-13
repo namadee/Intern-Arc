@@ -958,5 +958,51 @@ select:disabled {
   font-size: 1rem;
 }
 
+.time-slot-popup{
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 1rem;
+  z-index: 10;
+  border-radius: 8px;
+  background-color: #fff;
+  border: solid 1px var(--DarkBlue);
+  box-shadow: 0px 0px 10px 0px #0000001a;
+}
 
+.time-slot-popup div{
+  gap: 0.5rem;
 
+}
+
+.slot-popup-position-tag{
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  font-style: bold;
+  background-color: var(--AlternateLightGrey);
+}
+
+.time-slot-popup div .common-blue-btn{
+  margin: 0.5rem;
+  padding: 0.2rem 1rem;
+  border-radius: 2px;
+  border: none;
+  background-color: var(--DarkBlue);
+  color: #fff;
+}
+
+.confirm-box{
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  height: 4rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 2px solid red;
+  text-align: center;
+}

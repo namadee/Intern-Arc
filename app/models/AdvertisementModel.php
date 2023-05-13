@@ -151,6 +151,13 @@ class AdvertisementModel
     //Create Interview slots- Company  - Namadee
     public function createInterviewSlots($data)
     {
+        //Inseting schedule status into advertisement table
+        $this->db->query('UPDATE advertisement_tbl SET schedule_status = :schedule_status WHERE advertisement_id = :advertisement_id');
+        $this->db->bind(':schedule_status', $data['schedule_status']);
+        $this->db->bind(':advertisement_id', $data['advertisement_id']);
+        $this->db->execute();
+
+
         $this->db->query('INSERT INTO schedule_tbl (start_date, end_date, advertisement_id) VALUES (:start_date, :end_date, :advertisement_id)');
         $this->db->bind(':advertisement_id', $data['advertisement_id']);
         //bind values
@@ -199,33 +206,36 @@ class AdvertisementModel
         return true;
     }
 
-    //get schedule data and event data to fullcalndr event object - namadee
-    public function getCalanderEvents($advertisementId)
-    {
-        $this->db->query('SELECT a.position, s.advertisement_id, s.start_date, s.end_date, e.event
-        FROM schedule_tbl s
-        JOIN event_tbl e ON s.schedule_id = e.schedule_fk
-        JOIN advertisement_tbl a ON s.advertisement_id = a.advertisement_id
-        WHERE s.advertisement_id = :advertisement_id
-        ');
-
-        $this->db->bind(':advertisement_id', $advertisementId);
-        return $this->db->resultset();
-    }
 
     //Get time slots and connect schedule, event, time period tables - company calendar - Namadee
-    public function getInterviewSlots($advertisement_id)
+    public function getInterviewSlots($advertisement_id = NULL)
     {
-        $this->db->query('SELECT s.*, e.*,tp.*, ts.*,
+        if ($advertisement_id != NULL) {
+            $this->db->query('SELECT s.start_date as slotStartDate, s.end_date as slotEndDate, e.*, tp.*, ts.*, a.*, std.profile_name, std.student_id
+            FROM timeslot_tbl ts
+            JOIN timeperiod_tbl tp ON ts.timeperiod_fk = tp.timeperiod_id
+            JOIN event_tbl e ON tp.event_fk = e.event_id
+            JOIN schedule_tbl s ON e.schedule_fk = s.schedule_id
+            JOIN advertisement_tbl a ON s.advertisement_id = a.advertisement_id
+            LEFT JOIN interviewslots_tbl i ON ts.slot_id = i.timeslot_fk
+            LEFT JOIN student_tbl std ON i.student_id_fk = std.student_id
+            WHERE s.advertisement_id = :advertisement_id            
+        ');
+
+            $this->db->bind(':advertisement_id', $advertisement_id);
+            return $this->db->resultset();
+        } else {
+            $this->db->query('SELECT s.start_date as slotStartDate,s.end_date as slotEndDate , e.*,tp.*, ts.*, a.*, c.company_name
         FROM timeslot_tbl ts
         JOIN timeperiod_tbl tp ON ts.timeperiod_fk = tp.timeperiod_id
         JOIN event_tbl e ON tp.event_fk = e.event_id
-        JOIN schedule s ON e.schedule_fk = s.schedule_id
-        JOIN advertisement a ON s.advertisement_id = a.advertisement_id
+        JOIN schedule_tbl s ON e.schedule_fk = s.schedule_id
+        JOIN advertisement_tbl a ON s.advertisement_id = a.advertisement_id
+        JOIN company_tbl c ON a.company_id_fk = c.company_id
         
         ');
 
-        $this->db->bind(':advertisement_id', $advertisement_id);
-        return $this->db->resultset();
+            return $this->db->resultset();
+        }
     }
 }

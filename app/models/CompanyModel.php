@@ -242,4 +242,5 @@ class CompanyModel
             return false;
         }
     }
+
 }

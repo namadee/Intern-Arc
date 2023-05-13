@@ -53,6 +53,7 @@ class RequestModel
     {
         $this->db->query('SELECT * FROM student_requests_tbl WHERE advertisement_id = :advertisement_id AND student_id = :student_id');
 
+
         //bind values 
         $this->db->bind(':advertisement_id', $ad_id);
         $this->db->bind(':student_id', $std_id);
@@ -74,6 +75,20 @@ class RequestModel
         ON student_tbl.student_id = student_requests_tbl.student_id
         WHERE student_requests_tbl.advertisement_id = :advertisement_id');
         $this->db->bind(':advertisement_id', $advertisementId);
+
+        return $this->db->resultset();
+    }
+
+    //get a list of shortlisted advertisements of a student - Namadee
+    public function shortlistedAds($studentId)
+    {
+        $this->db->query('SELECT student_requests_tbl.* , advertisement_tbl.*, student_requests_tbl.status as shortlist_status
+        FROM student_requests_tbl
+        JOIN advertisement_tbl
+        ON student_requests_tbl.advertisement_id = advertisement_tbl.advertisement_id
+        WHERE student_requests_tbl.status = "shortlisted" AND student_requests_tbl.recruit_status = "pending" AND student_requests_tbl.student_id = :student_id');
+        //bind values
+        $this->db->bind(':student_id', $studentId);
 
         return $this->db->resultset();
     }
