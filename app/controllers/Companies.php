@@ -22,11 +22,18 @@ class Companies extends BaseController
             $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
             $dashboardData = $this->companyModel->getRequestsbyCompany($companyId);
             $requestArray = $this->requestModel->getStudentRequests(0);
-
-
+            $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+            //get the leangth f $ads
+            $length = count($ads);
+            $adcount = 0;
+            //loop through the $ads
+            for ($x = 0; $x < $length; $x++) {
+                $adcount++;
+            }
 
             $data = [
                 'companyId' => $companyId,
+                'total' => $adcount,
                 'dashboard' => $dashboardData,
             ];
             $this->view('company/dashboard', $data);
@@ -94,7 +101,7 @@ class Companies extends BaseController
     public function viewCompanyList()
     {
         $listCompanies = $this->companyModel->getCompanyList();
-        
+
         $data = [
             'listCompanies' => $listCompanies
         ];
@@ -106,15 +113,14 @@ class Companies extends BaseController
     {
         $search_res = null;
         $output = null;
-        if(isset($_POST['query'])){
+        if (isset($_POST['query'])) {
             $search = $_POST['query'];
             $search_res = $this->companyModel->searchCompanyList($search);
-        }
-        else{
+        } else {
             $search_res = $this->companyModel->getCompanyList();
         }
 
-        if($search_res){
+        if ($search_res) {
             $output = '<table class="view-companies-table" id="view-companies-table">
                 <thead>
                 <tr>
@@ -125,20 +131,17 @@ class Companies extends BaseController
                 <tbody>';
 
             foreach ($search_res as $res) {
-            
+
                 $output .= '<tr>
-                        <td class="view-companies-table-data">' . $res->company_name .'</td>
-                        <td class="view-companies-table-data"> <a href='. URLROOT.'students/company-profile'.'><button button class="common-view-btn">view</button></a></td>
+                        <td class="view-companies-table-data">' . $res->company_name . '</td>
+                        <td class="view-companies-table-data"> <a href=' . URLROOT . 'students/company-profile' . '><button button class="common-view-btn">view</button></a></td>
                         </tr>';
             };
             $output .= '</tbody> </table>';
-            
-        }
-        else{
+        } else {
             $output = '<h3>No search results<h3>';
         }
         echo $output;
-        
     }
 
     //View Applied Company List - STUDENT
@@ -221,7 +224,7 @@ class Companies extends BaseController
         if ($_SESSION['user_role'] == 'company') {
             $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
             $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
-
+            $intern_counts = array();
             $shortlistedCounts = array();
             $x = 0;
             foreach ($advertisements as $advertisement) {
@@ -231,7 +234,6 @@ class Companies extends BaseController
                 $intern_counts[$x] = $advertisement->intern_count;
                 $x++;
             }
-
 
             $data = [
                 'count' => $shortlistedCounts,

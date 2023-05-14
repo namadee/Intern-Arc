@@ -45,7 +45,7 @@
         <span class="blue-line"></span>
         <p>Total Advertisements</p>
       </div>
-      <p>40</p>
+      <p><?php echo $data['total'] ?></p>
     </div>
   </div>
 
@@ -70,7 +70,7 @@
 
       <tr>
         <th>Name</th>
-        <th>Academic year</th>
+        <th>Student Email</th>
         <th>Degree Program</th>
         <th>Advertisement</th>
         <th>Status</th>
@@ -81,7 +81,7 @@
         <tr>
           <td><?php echo $dashboard->profile_name ?></p>
           </td>
-          <td></td>
+          <td><?php echo $dashboard->personal_email ?></td>
           <td><?php echo $dashboard->stream ?></td>
           <td><?php echo $dashboard->position ?></td>
           <td>

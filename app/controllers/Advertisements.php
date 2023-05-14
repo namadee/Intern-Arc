@@ -37,9 +37,10 @@ class Advertisements extends BaseController
 
     //Get advertisements by company - company - Namadee
 
-    public function getAdvertisementsByCompany()
+    public function getAdvertisementsByCompany($companyId = NULL)
     {
-        if ($_SESSION['user_role'] == 'company') {
+        if ($_SESSION['user_role'] == 'company' && $companyId == NULL) {
+
             $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
             $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
 
@@ -51,6 +52,14 @@ class Advertisements extends BaseController
 
 
             $this->view('company/advertisementList', $data);
+        } else if ($_SESSION['user_role'] == 'student' && $companyId != NULL) {
+            $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+
+            $data = [
+                'advertisements' => $ads,
+                'companyID' => $companyId,
+            ];
+            $this->view('student/companyadlist', $data);
         } else {
             $this->view('error403');
         }
@@ -138,6 +147,7 @@ class Advertisements extends BaseController
             'internship_start' => $advertisement->start_date,
             'internship_end' => $advertisement->end_date,
             'jobroleList' => $this->jobroleList,
+            'buttonClass' => '',
             'formAction' => 'advertisements/update-advertisement/' . $advertisement->advertisement_id
         ];
 
@@ -207,7 +217,8 @@ class Advertisements extends BaseController
     }
 
     //SHOW All ADVERTISEMENTS FROM ALL COMPANIES - STUDENT
-    public function showStudentAdvertisements(){
+    public function showStudentAdvertisements()
+    {
         $listCompanies = $this->companyModel->getCompanyList();
         $jobroleList = $this->jobroleModel->getJobroles();
         $data2 = [
@@ -217,7 +228,7 @@ class Advertisements extends BaseController
         $data3 = [
             'jobroleList' => $jobroleList
         ];
-            
+
         $data = [
             'companyData' => $this->companyData
         ];
@@ -240,23 +251,25 @@ class Advertisements extends BaseController
     public function showAdvertisementsDetails()
     {
         $this->view('company/advertisement');
-        $this->view('company/advertisement');
     }
 
     //load The advertisement UI of the relevant company 
     public function viewAdvertisement($advertisementId)
     {
         if ($_SESSION['user_role'] == 'student' || $_SESSION['user_role'] == 'company' || $_SESSION['user_role'] == 'pdc') {
-            // $advertisementId = $_GET['adId'];
+
             $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
 
             $text = explode("\r\n", trim($advertisement->requirements));
             $length = count($text);
             $emptyArray = array();
             for ($x = 0; $x < $length; $x++) {
-                $emptyArray[$x] = trim($text[$x]);
+                $emptyArray[$x] = "* " . trim($text[$x]) . "<br>";
             }
             $completeString = implode("", $emptyArray);
+
+
+
             //BUTTON NAME : if user role is student apply btn else view requests btn
             //BUTTON LINK : if user role is student apply link else view requests link
             //BUTTON NAME : if user role is student apply btn else view requests btn
@@ -264,7 +277,7 @@ class Advertisements extends BaseController
             if ($_SESSION['user_role'] == 'student') {
                 $btnClass = '';
                 $btnName = 'Apply';
-            } else if($_SESSION['user_role'] == 'company') {
+            } else if ($_SESSION['user_role'] == 'company') {
                 $btnClass = '';
                 $btnName = 'View Requests';
             } else {
@@ -276,6 +289,8 @@ class Advertisements extends BaseController
                 'className' => 'selectedTab',
                 'title' => 'Advertisements',
                 'advertisement_id' => $advertisementId,
+                'company_name' => $advertisement->company_name,
+                'buttonClass' => '',
                 'button_name' => $btnName,
                 'position' => $advertisement->position,
                 'job_description' => $advertisement->job_description,

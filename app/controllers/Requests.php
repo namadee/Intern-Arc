@@ -48,22 +48,17 @@ class Requests extends BaseController
         ];
 
         //Execute
-        if($this->requestModel->checkStudentRequest($advertisementId, $studentId))
-        {
-            flashMessage('student_request_msg' , 'You have already applied to this advertisement!', 'danger-alert');
-            redirect('advertisements/viewAdvertisement/'. $advertisementId);
-            
-        }
-        else if($reqCount>=5) {
-            flashMessage('max_application' , 'Maximum application limit reached', 'danger-alert');
-            redirect('advertisements/viewAdvertisement/'. $advertisementId);
-        }
-        else if($this->requestModel->addStudentRequest($data)) {
-            flashMessage('student_request_msg' , 'Applied successfully');
-            redirect('advertisements/viewAdvertisement/'. $advertisementId);
-        }
-        else {
-            die('Something went wrong');
+        if ($this->requestModel->checkStudentRequest($advertisementId, $studentId)) {
+            flashMessage('student_request_msg', 'You have already applied to this advertisement!', 'danger-alert');
+            redirect('advertisements/viewAdvertisement/' . $advertisementId);
+        } else if ($reqCount >= 5) {
+            flashMessage('max_application', 'Maximum application limit reached', 'danger-alert');
+            redirect('advertisements/viewAdvertisement/' . $advertisementId);
+        } else if ($this->requestModel->addStudentRequest($data)) {
+            flashMessage('student_request_msg', 'Applied successfully');
+            redirect('advertisements/viewAdvertisement/' . $advertisementId);
+        } else {
+            redirect('errors');
         }
     }
 
@@ -110,6 +105,7 @@ class Requests extends BaseController
         $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
 
         $requestCounts = array();
+        $intern_counts = array();
         $x = 0;
         foreach ($advertisements as $advertisement) {
             $requests = $this->requestModel->getAdvertisementByRequest($advertisement->advertisement_id);
@@ -136,6 +132,6 @@ class Requests extends BaseController
     //     $reqCount  = $this->RequestModel->getRequestCountPerStudent ($std_id);
     // }
 
-    
+
 
 }

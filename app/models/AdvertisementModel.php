@@ -23,7 +23,12 @@ class AdvertisementModel
 
     public function showAdvertisementById($advertisementId)
     {
-        $this->db->query("SELECT * FROM advertisement_tbl WHERE advertisement_id = :advertisement_id");
+
+        $this->db->query("SELECT advertisement_tbl.* , company_tbl.company_name 
+        FROM advertisement_tbl 
+        JOIN company_tbl
+        ON company_tbl.company_id = advertisement_tbl.company_id_fk
+        WHERE advertisement_id = :advertisement_id");
         $this->db->bind(':advertisement_id', $advertisementId);
         $row = $this->db->single();
         return $row;
@@ -37,7 +42,7 @@ class AdvertisementModel
         // Bind Values
         $this->db->bind(':position', $data['position']);
         $this->db->bind(':job_description', $data['job_description']);
-        $this->db->bind(':requirements', $data['requirements']);
+        $this->db->bind(':requirements', $data['textElement']);
         $this->db->bind(':internship_start', $data['internship_start']);
         $this->db->bind(':internship_end', $data['internship_end']);
         $this->db->bind(':no_of_interns', $data['no_of_interns']);
@@ -45,9 +50,11 @@ class AdvertisementModel
         $this->db->bind(':required_year', $data['required_year']);
         $this->db->bind(':company_id_fk', $data['company_id']);
 
+
         //Adjustment 2 - Add the batch year of the advertisement
         //Get the current Batch
         $batchYear = $_SESSION['batchYear'];
+        $this->db->bind(':batch_year', $batchYear);
 
         //Execute
         if ($this->db->execute()) {
@@ -99,10 +106,10 @@ class AdvertisementModel
     //GET COMPANY DETAILS RELEVENT TO ADVERTISEMENT 
     public function getCompanyByAd()
     {
-        $this->db->query('SELECT advertisement_tbl.position, advertisement_tbl.advertisement_id, company_tbl.company_name 
+        $this->db->query('SELECT advertisement_tbl.position, advertisement_tbl.advertisement_id, company_tbl.company_name, student_requests_tbl.status 
         FROM company_tbl 
-        JOIN advertisement_tbl 
-        ON company_tbl.company_id = advertisement_tbl.company_id_fk');
+        JOIN advertisement_tbl ON company_tbl.company_id = advertisement_tbl.company_id_fk 
+        LEFT JOIN student_requests_tbl ON advertisement_tbl.advertisement_id = student_requests_tbl.advertisement_id;');
 
         return $this->db->resultset();
     }
@@ -110,7 +117,7 @@ class AdvertisementModel
     //SELECT ADVERTISEMENTS BASED ON COMPANY - Namadee
     public function getAdvertisementsByCompany($companyId)
     {
-        // $round = $roundDataArray['roundNumber'];
+        //$round = $roundDataArray['roundNumber'];
         $this->db->query('SELECT * FROM advertisement_tbl WHERE company_id_fk = :company_id');
         $this->db->bind(':company_id', $companyId);
         // $this->db->bind(':round', $round);

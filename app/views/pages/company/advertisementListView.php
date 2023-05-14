@@ -27,6 +27,7 @@
     <div class="common_list_content">
 
       <?php
+      $roundDataArray['roundNumber'] = NULL;
 
       if ($roundDataArray['roundNumber'] != NULL) {
         // Need Round Constraints
