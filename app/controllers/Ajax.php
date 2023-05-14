@@ -134,7 +134,8 @@ class Ajax extends BaseController
         }
     }
 
-    public function searchComplaint(){
+    public function searchComplaint()
+    {
         //Admin Complaint Search 
         if (isset($_POST['query'])) {
             $searchItem = $_POST['query'];
@@ -147,6 +148,31 @@ class Ajax extends BaseController
                 }
             } else {
                 echo '<a href="#">No Complaint found</a>';
+            }
+        } else {
+            redirect('errors');
+        }
+    }
+
+
+    public function companySearchAdByCompany()
+    {
+
+        //PDC Company Search 
+        if (isset($_POST['query'])) {
+            $searchItem = $_POST['query'];
+            $companyId = $_POST['companyId'];
+
+            if ($this->ajaxModel->searchAdvertisementsByCompany($companyId,$searchItem)) {
+                $resultList = $this->ajaxModel->searchAdvertisementsByCompany($companyId,$searchItem);
+                foreach ($resultList as $advertisement) {
+
+
+
+                    echo '<a href="' . URLROOT . '/advertisements/view-advertisement/' . $advertisement->advertisement_id . '">' . $advertisement->position . '</a>';
+                }
+            } else {
+                echo '<a href="#">No advertisements found</a>';
             }
         } else {
             redirect('errors');

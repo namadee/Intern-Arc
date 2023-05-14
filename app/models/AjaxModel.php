@@ -140,4 +140,23 @@ class AjaxModel
         }
     }
 
+
+    public function searchAdvertisementsByCompany($companyId, $searchTerm)
+    {
+        $batchYear = $_SESSION['batchYear'];
+    
+        $this->db->query('SELECT * FROM advertisement_tbl WHERE company_id_fk = :company_id AND batch_year = :batchYear AND position LIKE :searchTerm');
+        $this->db->bind(':company_id', $companyId);
+        $this->db->bind(':batchYear', $batchYear);
+        $this->db->bind(':searchTerm', '%'.$searchTerm.'%');
+        
+        $result = $this->db->resultset();
+
+        if ($this->db->rowCount() > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+       
+    }
 }
