@@ -1,12 +1,10 @@
 //Add requirements as a list
 
-
 let addReq = document.getElementById("addreq");
 
 if (addReq) {
   addReq.addEventListener("click", addRequirements);
 }
-
 
 function addRequirements() {
   var text = document.getElementById("requirements").value;
@@ -54,3 +52,13 @@ function searchCompanyPdc() {
     pdcResultCompany.style.display = "none";
   }
 }
+
+// Get references to the two input elements
+var startInput = document.getElementById('internship_start');
+var endInput = document.getElementById('internship_end');
+
+// Add an event listener to the start input that sets the min attribute of the end input
+startInput.addEventListener('change', function() {
+    endInput.min = startInput.value;
+});
+

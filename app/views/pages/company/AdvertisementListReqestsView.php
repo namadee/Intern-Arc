@@ -3,6 +3,7 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content" id="request-list">
+
   <div class="common_list">
     <div class="common-list-topbar">
       <form action="" class="common-search-bar display-flex-row">
@@ -36,8 +37,14 @@
           <th>Status</th>
         </tr>
 
+        <?php $visibility = ''; ?>
         <?php foreach ($data['student_name'] as $students) : ?>
-          <tr>
+          <?php if ($students->recruit_status == 'recruited') {
+            $visibility = 'none';
+          } else {
+            $visibility = '';
+          } ?>
+          <tr style="display: <?php echo $visibility ?>;">
             <td><?php echo $students->profile_name ?></p>
             </td>
             <td><?php echo $students->personal_email ?></td>
@@ -48,8 +55,10 @@
               <div class="common-status display-flex-row advertisement-status<?php echo $students->status == 'pending' ? 'yellow-status-font' : ($students->status == 'rejected' ? 'red-status-font' : ''); ?> ">
 
                 <span class="common-status-span <?php echo $students->status == 'pending' ? 'yellow-status' : ($students->status == 'rejected' ? 'red-status' : ''); ?>">
+
                 </span>
                 <?php echo ucfirst($students->status); ?>
+
               </div>
             </td>
 

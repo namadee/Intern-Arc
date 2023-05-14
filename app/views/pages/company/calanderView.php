@@ -75,7 +75,7 @@
 
     <div>
       <label for="sche-period">Start Date</label>
-      <input type="date" name="start_date" id="start-date-input">
+      <input type="date" name="start_date" value=""id="start-date-input">
     </div>
 
     <div>
@@ -159,6 +159,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    let date;
 
       let calendarEl = document.getElementById('calendar');
 
@@ -202,7 +203,8 @@
       form = document.getElementById('date-click-form');
 
       function popupForm(info) {
-        let date = info.dateStr;
+        date = info.dateStr;
+        console.log(date);
         if (form.style.display === 'none') {
 
           form.style.display = 'block';

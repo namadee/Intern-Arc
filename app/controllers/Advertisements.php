@@ -273,21 +273,16 @@ class Advertisements extends BaseController
     //load The advertisement UI of the relevant company 
     public function viewAdvertisement($advertisementId = NULL)
     {
-        if ($advertisementId == NULL) {
-            redirect('errors');
-        }
-
-        $companyDetails = $this->companyModel->getCompanyDetailFromAdID($advertisementId);
-        // $advertisementId = $_GET['adId'];
+  //company user access
         $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
-
-        $text = explode("\r\n", trim($advertisement->requirements));
+$text = explode("\r\n", trim($advertisement->requirements));
         $length = count($text);
         $emptyArray = array();
         for ($x = 0; $x < $length; $x++) {
-            $emptyArray[$x] = trim($text[$x]);
+            $emptyArray[$x] = "* " . trim($text[$x]) . "<br>";
         }
         $completeString = implode("", $emptyArray);
+
         //BUTTON NAME : if user role is student apply btn else view requests btn
         //BUTTON LINK : if user role is student apply link else view requests link
         //BUTTON NAME : if user role is student apply btn else view requests btn
@@ -307,6 +302,8 @@ class Advertisements extends BaseController
             'className' => 'selectedTab',
             'title' => 'Advertisements',
             'advertisement_id' => $advertisementId,
+            'company_name' => $advertisement->company_name,
+            'buttonClass' => '',
             'button_name' => $btnName,
             'position' => $advertisement->position,
             'job_description' => $advertisement->job_description,
@@ -316,16 +313,9 @@ class Advertisements extends BaseController
             'required_year' => $advertisement->applicable_year,
             'internship_start' => $advertisement->start_date,
             'internship_end' => $advertisement->end_date,
-            'buttonClass' => $btnClass,
-            'companyName' => $companyDetails->company_name
         ];
 
         $this->view('company/advertisement', $data);
-        // No need to check access here
-        // if ($_SESSION['user_role'] == 'student' || $_SESSION['user_role'] == 'company' || $_SESSION['user_role'] == 'pdc') {
-        // } else {
-        //     $this->view('error403');
-        // }
     }
 
     //Create Interview slots - company  - Namadee

@@ -754,12 +754,13 @@ body {
 .dashboard-statusbtn {
   margin: auto;
   color: rgb(255, 255, 255);
-  padding: 8px 5px;
+  padding: 0.3rem 0.5rem;
   font-size: 1rem;
   border-style: none;
-  background-color: rgb(22, 128, 27);
+  border-radius: 5px;
+  background-color:var(--DarkBlue); 
   margin-left: 0;
-  width: 30%;
+
 }
 
 .dashboard-profile-view-btn {
@@ -1386,3 +1387,123 @@ body {
 .arrow-btn{
   margin: auto;
 }
+
+.showerr{
+  display: block;
+}
+
+.student-details-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.student-details-left {
+  flex: 1;
+}
+
+.student-details-right {
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.student-details-right img {
+  border-radius: 50%;
+  max-width: 10rem;
+}
+.student-dashboard-bottom{
+  justify-content: center;
+  align-items: center;
+}
+
+.company-dashboard-box {
+  width: 40%;
+  height: 3rem;
+  padding-right: 1rem;
+  color: var(--DarkBlue);
+  background: #fff;
+  font-weight: 800;
+  border-radius: 0.3rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}
+.company-dashboard-box div {
+  display: flex;
+  gap: 0.5rem;
+}
+.company-dashboard-box p {
+  align-self: center;
+  font-weight: 600;
+}
+.blue-line {
+  width: 0.5rem;
+  height: 100%;
+  background: var(--DarkBlue);
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+
+.student-dashboard-div{
+  background-color: #fff;
+  padding: 2rem;
+ 
+}
+
+.company-dash-bottom-box{
+  align-self: center;
+}
+
+
+.dash-top-right,
+.dash-top-left {
+  align-items: center;
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  gap: 0.2rem;
+  color: var(--Black);
+}
+
+.dash-top-right a {
+  gap: 0.5rem;
+  color: white;
+}
+
+
+#dashboard-round-date-data {
+  gap: 0.3rem;
+  font-weight: 500;
+  width: 7rem;
+  padding: 0 0.5rem;
+}
+
+#dashboard-round-date {
+  /* flex-grow: 1; */
+  flex-shrink: 0;
+  background-color: var(--primaryColor);
+  color: white;
+  text-align: center;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  /* justify-content: center; */
+  gap: 0.3rem;
+}
+
+#dashboard-round-date-two {
+  background-color: var(--primaryColor);
+  color: white;
+  text-align: center;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  /* justify-content: center; */
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.student-details-right .common-blue-btn{
+  padding: 0.5rem;
+}
+

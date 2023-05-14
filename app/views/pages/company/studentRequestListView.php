@@ -5,11 +5,11 @@
 <section class="main-content">
   <div class="common_list">
     <div class="common-list-topbar">
-    <form action="" class="common-search-bar display-flex-row">
-                <span class="material-symbols-rounded">
-                    search
-                </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
+      <form action="" class="common-search-bar display-flex-row">
+        <span class="material-symbols-rounded">
+          search
+        </span>
+        <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
       </form>
       <div class="common-filter">
         <span class="material-symbols-rounded">
@@ -25,38 +25,39 @@
     </div>
 
     <div class="common_list_content">
-      
+
       <div class="addBtn">
-      <h3>Advertisement List-Student Requests</h3>
-</div>
+        <h3>Advertisement List-Student Requests</h3>
+      </div>
       <table class="common-table">
         <tr>
           <th>Advertisement Name</th>
           <th>No of Interns</th>
           <th>Total Requests</th>
-       
+
         </tr>
-        <?php $x =0; ?>
-        <?php foreach ($data['advertisements'] as $advertisement) :?> 
-          
+        <?php $x = 0; ?>
+        <?php foreach ($data['advertisements'] as $advertisement) : ?>
+
           <tr>
             <td><?php echo $data['positions'][$x] ?></td>
             <td><?php echo $data['intern_counts'][$x] ?></td>
             <td><?php echo $data['count'][$x] ?></td>
             <td>
-             <a class="common-view-btn" href="<?php 
-                                    if($data['count'][$x] != 0){ echo URLROOT.'requests/showRequestsByAd/'.$advertisement->advertisement_id; }
-                                    else{
-                                      echo URLROOT.'Errors/noData';
-                                    }
-                                    
-                                    ?>" >View</a>
+              <a class="common-view-btn" href="<?php
+                                                if ($data['count'][$x] != 0) {
+                                                  echo URLROOT . 'requests/show-requests-by-ad/' . $advertisement->advertisement_id;
+                                                } else {
+                                                  echo URLROOT . 'Errors/noData';
+                                                }
+
+                                                ?>">View</a>
             </td>
-            
+
           </tr>
-        <?php $x++ ?>
+          <?php $x++ ?>
         <?php endforeach; ?>
-       
+
       </table>
     </div>
 

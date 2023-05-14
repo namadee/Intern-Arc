@@ -3,6 +3,7 @@
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content">
+  <?php flashMessage('recruit_student_msg') ?>
   <div class="common_list">
     <div class="common-list-topbar">
       <form action="" class="common-search-bar display-flex-row">
@@ -46,11 +47,14 @@
               <a class="common-view-btn" href="<?php echo URLROOT . 'requests/show-requests-by-ad/' . $data['advertisement_id']; ?>">View</a>
             </td>
             <td>
+
               <div class="common-status display-flex-row <?php echo $students->recruit_status == 'pending' ? 'yellow-status-font' : ($students->recruit_status == 'rejected' ? 'red-status-font' : ''); ?> ">
 
                 <span class="common-status-span <?php echo $students->recruit_status == 'pending' ? 'yellow-status' : ($students->recruit_status == 'rejected' ? 'red-status' : ''); ?>">
                 </span>
-                <?php echo ucfirst($students->recruit_status); ?>
+                <?php
+
+                echo ucfirst($students->recruit_status); ?>
               </div>
             </td>
 
@@ -63,6 +67,7 @@
                   <option value="rejected">Reject</option>
                 </select>
                 <input type="hidden" name="request_id" value="<?php echo $students->student_request_id; ?>">
+                <input type="hidden" name="advertisement_id" value="<?php echo $students->advertisement_id; ?>">
                 <input type="hidden" name="student_id" value="<?php echo $students->student_id; ?>">
               </form>
             </td>
