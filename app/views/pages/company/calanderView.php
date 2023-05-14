@@ -51,8 +51,8 @@
         'slotEnd' => $slot->end_time,
         'intervieweeName' => $slot->profile_name,
         'stdId' => $slot->student_id,
-        'reserved' => $interviewslots->reserved,
-        'color' => '#054a91'
+        'reserved' => $slot->reserved,
+        'color' => ($slot->reserved == 1) ? '#054a91' : '#bbd9f7'
       );
     }
 
@@ -226,7 +226,8 @@
           day: "numeric"
         });
 
-        document.getElementById("std-name").innerHTML = info.event.extendedProps.intervieweeName;
+        document.getElementById("std-name").innerHTML = (info.event.backgroundColor == '#bbd9f7' ? "Not Reserved" : info.event.extendedProps.intervieweeName);
+
 
         document.getElementById("std-name").href = "<?php echo URLROOT; ?>students/student-profile/" + info.event.extendedProps.stdId;
 

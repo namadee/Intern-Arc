@@ -1,8 +1,9 @@
-<?php require APPROOT . '/views/includes/header.php'; ?>
+<!-- <?php require APPROOT . '/views/includes/header.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/student.css">
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <?php $navSidebar = $_SESSION['user_role']; ?>
+
 <script type="text/javascript">
     sessionStorage.setItem("navSidebar", "<?php echo $navSidebar; ?>");
 </script>
@@ -53,4 +54,4 @@
 </section>
 
 	
-<?php require APPROOT . '/views/includes/footer.php'; ?>
+<?php require APPROOT . '/views/includes/footer.php'; ?> -->

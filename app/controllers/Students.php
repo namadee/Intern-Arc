@@ -318,7 +318,7 @@ class Students extends BaseController
                     redirect('students/manage-student');
                 }
 
-            if (isset($_POST['selectBatchYear']) && $_POST['selectBatchYear'] == '1') {
+                if (isset($_POST['selectBatchYear']) && $_POST['selectBatchYear'] == '1') {
                     // Checkbox was checked
                     $this->studentModel->addStudentBatch($batch_year);
                     $this->studentModel->deselectAllBatchYears();
@@ -396,21 +396,19 @@ class Students extends BaseController
         }
     }
 
-    public function bookInterviewSlot($slotId)
+    public function bookInterviewSlot($slotId, $adId)
     {
 
         $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
-
-        // $slot = $this->advertisementModel->getInterviewSlots($slotId);
         $data = [
-
+            'ad_id' => $adId,
             'slot_id' => $slotId,
             'student_id' => $studentId
         ];
 
         //Execute
-        if ($this->studentModel->checkInterviewBooked($slotId)) {
-            flashMessage('Interview_msg', 'This time slot is already reserved!', 'danger-alert');
+        if ($this->studentModel->checkInterviewBooked($adId, $studentId)) {
+            flashMessage('Interview_msg', 'You have already reserved a time slot for this Ad!', 'danger-alert');
             redirect('schedule/');
         } else if ($this->studentModel->bookInterviewSlot($data)) {
 

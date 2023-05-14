@@ -26,7 +26,7 @@
                 <ul class="display-flex-col">
                     <li class="display-flex-row">
                         <p class="profile-item">Company</p>
-                        <span></span>
+                        <span><?php echo $data['company_name'] ?></span>
                     </li>
                     <li class="display-flex-row">
                         <p class="profile-item">Position</p>
@@ -58,27 +58,29 @@
 
 
             <div class="body-right">
-                <div class="display-flex-col job-description">
-                    <h3>Job Description</h3><br>
-                    <div class="display-flex-col job-description-items">
-                        <p><?php echo $data['job_description'] ?></p>
-                    </div>
-                </div><br>
-                <div class="display-flex-col job-description">
-                    <h3>Requirements</h3><br>
-                    <div class="display-flex-col job-description-items">
-                        <p><?php echo $data["requirements"] ?></p>
-                    </div>
-                </div>
+                <ul class="display-flex-col">
+                    <li class="display-flex-col job-description">
+                        <h3>Job Description</h3><br>
+                        <div class="display-flex-col job-description-items">
+                            <p><?php echo $data['job_description'] ?></p>
+                        </div>
+                    </li><br>
+                    <li class="display-flex-col job-description">
+                        <h3>Requirements</h3><br>
+                        <div class="display-flex-col job-description-items">
+                            <p><?php echo $data["requirements"] ?></p>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
         </div>
         <a <?php echo $data['buttonClass']; ?> href="<?php
-                    if ($_SESSION['user_role'] == 'company') {
-                        echo URLROOT . 'requests/showRequestsByAd/' . $data['advertisement_id'];
-                    } else if ($_SESSION['user_role'] == 'student') {
-                        echo URLROOT . 'requests/addStudentRequest/' . $data['advertisement_id'];
-                    } ?>" class="common-blue-btn apply-btn"><?php echo $data['button_name'] ?></a>
+                                                        if ($_SESSION['user_role'] == 'company') {
+                                                            echo URLROOT . 'requests/showRequestsByAd/' . $data['advertisement_id'];
+                                                        } else if ($_SESSION['user_role'] == 'student') {
+                                                            echo URLROOT . 'requests/addStudentRequest/' . $data['advertisement_id'];
+                                                        } ?>" class="common-blue-btn apply-btn"><?php echo $data['button_name'] ?></a>
     </div>
 
 </section>

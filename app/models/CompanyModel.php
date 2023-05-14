@@ -40,7 +40,7 @@ class CompanyModel
 
     public function getCompanyList()
     {
-        $this->db->query("SELECT user_tbl.username, user_tbl.user_id, user_tbl.email, company_tbl.company_name, company_tbl.contact 
+        $this->db->query("SELECT user_tbl.username, user_tbl.user_id, user_tbl.email, company_tbl.*
         FROM company_tbl 
         JOIN user_tbl
         ON user_tbl.user_id = company_tbl.user_id_fk
@@ -50,11 +50,11 @@ class CompanyModel
     }
 
     public function searchCompanyList($query)
-{
-    $this->db->query("SELECT company_name FROM company_tbl JOIN user_tbl ON user_tbl.user_id = company_tbl.user_id_fk WHERE blacklisted = 0 AND company_name LIKE '%$query%'");
-    $resultSet = $this->db->resultset();
-    return $resultSet;
-}
+    {
+        $this->db->query("SELECT company_name FROM company_tbl JOIN user_tbl ON user_tbl.user_id = company_tbl.user_id_fk WHERE blacklisted = 0 AND company_name LIKE '%$query%'");
+        $resultSet = $this->db->resultset();
+        return $resultSet;
+    }
 
     public function mainCompanyDetails($user_id)
     {
@@ -249,5 +249,4 @@ class CompanyModel
             return false;
         }
     }
-
 }
