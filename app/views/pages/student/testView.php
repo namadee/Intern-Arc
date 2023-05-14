@@ -6,12 +6,10 @@
 <section class="main-content display-flex-col" id="student-main-profile">
     <div class="student-profile-view display-flex-col">
         <div class="std-profile-container-top display-flex-col">
-
-            <h3>Student Profile</h3>
             <div class="student-profile-bio display-flex-row">
                 <div class="display-flex-col">
                     <h3>Hello! Im <span>Ruchira Bogahawatta</span></h3>
-                    <p>Award-winning web developer and instructor with 10+ years of well-rounded experience in LAMP development, object-oriented and user-centered design, seeks a position with a top technology firm.</p>
+                    <p></p>
                 </div>
             </div>
         </div>
@@ -53,7 +51,7 @@
                         </div>
 
                     </li>
-                </ul> 
+                </ul>
             </div>
 
 
@@ -86,8 +84,8 @@
                 </div>
             </div>
             <section class="std-profile-image">
-                        <img src="<?php echo URLROOT . 'img/profile-image.jpg'; ?>" alt="">
-</section>
+                <img src="<?php echo URLROOT . 'img/profile-image.jpg'; ?>" alt="">
+            </section>
         </div>
 
         <div class="std-profile-container-bottom display-flex-row">

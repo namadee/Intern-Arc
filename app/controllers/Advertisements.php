@@ -39,10 +39,15 @@ class Advertisements extends BaseController
 
     public function getAdvertisementsByCompany($companyId = NULL)
     {
+
+
+
         if ($_SESSION['user_role'] == 'company' && $companyId == NULL) {
 
             $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
             $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+
+
 
             $data = [
                 'advertisements' => $ads,
@@ -53,11 +58,14 @@ class Advertisements extends BaseController
 
             $this->view('company/advertisementList', $data);
         } else if ($_SESSION['user_role'] == 'student' && $companyId != NULL) {
+
+            $companyDetails = $this->companyModel->getCompanyDetailFromCompanyID($companyId);
             $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
 
             $data = [
                 'advertisements' => $ads,
                 'companyID' => $companyId,
+                'companyName' => $companyDetails->company_name,
             ];
             $this->view('student/companyadlist', $data);
         } else {
@@ -219,21 +227,36 @@ class Advertisements extends BaseController
     //SHOW All ADVERTISEMENTS FROM ALL COMPANIES - STUDENT
     public function showStudentAdvertisements()
     {
-        $listCompanies = $this->companyModel->getCompanyList();
-        $jobroleList = $this->jobroleModel->getJobroles();
-        $data2 = [
-            'listCompanies' => $listCompanies
-        ];
 
-        $data3 = [
-            'jobroleList' => $jobroleList
-        ];
+        // Recruited stuents can not view advertisements
+        if ($_SESSION['user_role'] == 'student' && $_SESSION['studentStatus'] == 1) {
+            flashMessage('recrtuited_noAccess', 'You are not allowed to access advertisement page', 'danger-alert');
+            redirect('students/');
+        }
+
+        $roundDataArray = roundCheckFunction();
+
+        // IF roundNumber is not set
+
+        if ($roundDataArray['roundNumber'] == NULL) {
+            $data = [
+
+                'status' => 0
+            ];
+            $this->view('student/advertisements', $data);
+        }
+
+        //Filter ads by round, batchYear and approved status
+        //Must filter by round also
+        $advertisementList = $this->advertisementModel->getAdvertisementsForStudents($roundDataArray['roundNumber'], $_SESSION['batchYear']);
 
         $data = [
-            'companyData' => $this->companyData
+
+            'advertisemetList' => $advertisementList,
+            'roundNumer' => $roundDataArray['roundNumber'],
+            'status' => 1
         ];
 
-        $data = array_merge($data, $data2, $data3);
         $this->view('student/advertisements', $data);
     }
 
@@ -247,16 +270,10 @@ class Advertisements extends BaseController
         }
     }
 
-    //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
-    public function showAdvertisementsDetails()
-    {
-        $this->view('company/advertisement');
-    }
-
     //load The advertisement UI of the relevant company 
     public function viewAdvertisement($advertisementId = NULL)
     {
-    if ($advertisementId == NULL) {            
+        if ($advertisementId == NULL) {
             redirect('errors');
         }
 

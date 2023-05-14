@@ -8,7 +8,8 @@
 </script>
 
 <section class="dashboard-container">
-
+	<?php flashMessage('recrtuited_noAccess');
+	?>
 	<br /><br />
 	<div class="dashboard-top">
 		<h3>My Dashboard</h3>
@@ -25,6 +26,8 @@
 					Round : <?php echo $studentDetails->round ?>
 			</div>
 		<?php endforeach; ?>
+
+
 		<div class="dashboard-btnarea">
 			<a href="<?php echo URLROOT . 'profiles/student-profile'; ?>">
 				<button class="dashboard-profile-view-btn">View my profile</button></a>
@@ -32,6 +35,9 @@
 		</div>
 	</div>
 	<br />
+	<p>
+
+	</p>
 	<div class="dashboard-bottom-strip">
 		<div class="bottom-strip-blue-line">
 			<p>1</p>

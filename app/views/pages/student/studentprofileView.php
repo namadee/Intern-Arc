@@ -8,14 +8,12 @@
     <?php flashMessage('profile_update_status'); ?>
     <div class="student-profile-view display-flex-col">
         <div class="std-profile-container-top display-flex-col">
-
-            <h3>Student Profile</h3> <br />
             <div class="student-profile-bio display-flex-row">
                 <div class="display-flex-col">
-                    <h3>Hello! Im <span><?php echo $data['profile_name'] ?></span></h3>
+                    <h3 style="text-align: left;" >Hello! Im <span><?php echo $data['profile_name'] ?></span></h3>
                     <?php echo $data['profile_description'] ?>
 
-                </div>
+                </div> 
             </div>
         </div>
         <div class="std-profile-container-body display-flex-row">
@@ -23,7 +21,8 @@
                 <ul class="display-flex-col">
                     <li class="display-flex-row">
                         <p class="profile-item">Stream</p>
-                        <span><?php echo $data['stream'] ?></span>
+                        <span><?php echo ($data['stream'] == 'IS') ? 'Information Systems' : 'Computer Systems'; ?>
+                        </span>
                     </li>
                     <li class="display-flex-row">
                         <p>Contact</p>
@@ -35,7 +34,7 @@
                     </li>
                     <li class="display-flex-col interested-areas" id="interests">
                         <h3>Interested Areas</h3>
-                        <div class="display-flex-row interested-area-items">
+                        <div class="display-flex-row interested-area-items" style="flex-wrap:wrap ;justify-content: normal;">
                             <?php
                             $text = explode(", ", $data['interests']);
                             $length = count($text);
@@ -44,32 +43,31 @@
                             for ($x = 0; $x < $length; $x++) {
                                 $emptyArray[$x] = trim($text[$x]);
                             ?>
-                                <span><?php echo $text[$x] ?></span>
+                                <span style="width: fit-content;"><?php echo $text[$x] ?></span>
                             <?php
                             }
                             ?>
 
                     </li>
                     <li class="display-flex-col extra-curricular">
-                        <h3>Extra Curricular</h3>
+                        <?php if (!empty($data['extracurricular'])) : ?>
+                            <h3>Extra Curricular</h3>
+                            <?php
+                            $text = explode(", ", $data['extracurricular']);
+                            $length = count($text);
+                            $emptyArray = array();
 
-                        <?php
-                        $text = explode("\n", $data['extracurricular']);
-                        $length = count($text);
-                        
 
-                        $emptyArray = array();
-
-                        for ($x = 0; $x < $length; $x++) {
-                            $emptyArray[$x] = trim($text[$x]);
-                        ?>
-                            <div class="display-flex-col experience-items">
-                                <?php echo $text[$x] ?>
-                            </div>
-                        <?php
-                        }
-                        ?>
-
+                            for ($x = 0; $x < $length; $x++) {
+                                $emptyArray[$x] = trim($text[$x]);
+                            ?>
+                                <div class="display-flex-col experience-items">
+                                    <?php echo $text[$x] ?>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </div>
@@ -83,12 +81,8 @@
                         <?php
                         $text = explode(", ", $data['experience']);
                         $length = count($text);
-                        //echo $length;
-
                         $emptyArray = array();
-                        // for ($x = 0; $x < $length; $x++) {
 
-                        //}
 
                         for ($x = 0; $x < $length; $x++) {
                             $emptyArray[$x] = trim($text[$x]);
@@ -105,27 +99,24 @@
 
                 </div>
                 <div class="display-flex-col student-experience">
-                    <h3>Qualifications</h3>
+                    <?php if (!empty($data['qualifications'])) : ?>
+                        <h3>Qualifications</h3>
+                        <?php
+                        $text = explode(", ", $data['qualifications']);
+                        $length = count($text);
+                        $emptyArray = array();
 
-                    <?php
-                    $text = explode("\n", $data['qualifications']);
-                    $length = count($text);
-                    //echo $length;
 
-                    $emptyArray = array();
-                    // for ($x = 0; $x < $length; $x++) {
-
-                    //}
-
-                    for ($x = 0; $x < $length; $x++) {
-                        $emptyArray[$x] = trim($text[$x]);
-                    ?>
-                        <div class="display-flex-col experience-items">
-                            <?php echo $text[$x] ?>
-                        </div>
-                    <?php
-                    }
-                    ?>
+                        for ($x = 0; $x < $length; $x++) {
+                            $emptyArray[$x] = trim($text[$x]);
+                        ?>
+                            <div class="display-flex-col experience-items">
+                                <?php echo $text[$x] ?>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    <?php endif; ?>
 
                 </div>
             </div>
@@ -167,7 +158,8 @@
                     <span class="material-symbols-outlined">
                         mail
                     </span>
-                    <?php echo $data['personal_email'] ?>
+                    <a style="color:#ffffff;" href="mailto:<?php echo $data['personal_email'] ?>"><?php echo $data['personal_email'] ?></a>
+
                 </div>
             </div>
 
@@ -176,7 +168,7 @@
                     <span class="material-symbols-outlined">
                         upload
                     </span>
-                    upload CV
+                    Upload CV
                 </a>
 
 
@@ -187,7 +179,7 @@
                     <span class="material-symbols-outlined">
                         edit
                     </span>
-                    edit profile
+                    Edit Profile
                 </a>
 
 
@@ -196,21 +188,6 @@
         </div>
     </div>
 
-
-
 </section>
-
-<!-- <script>
-  document.getElementById("addProfileDetails").onsubmit = function(){
-    var interests = document.getElementById("interests").value;
-
-    if (!interests) {
-      document.getElementById("interests").style.display = "none";
-    }
-
-    return false; 
-  }
-</script> -->
-
 
 <?php require APPROOT . '/views/includes/footer.php'; ?>

@@ -14,13 +14,14 @@ class Login extends BaseController
         $this->pdcModel = $this->model('Pdc');
         $this->companyModel = $this->model('Company');
         $this->studentModel = $this->model('Student');
+        $this->getRoundPeriodDetails();
     }
 
     public function index()
     {
         //Get Round Period Information each time a user logs in
         // This will trigger the function everytime someone visit the login page
-        $this->getRoundPeriodDetails();
+
 
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -53,6 +54,16 @@ class Login extends BaseController
                             redirect('pdc');
                             break;
                         case "student":
+
+                            //Check whether the student is rejected or not
+                            //To restrict the access to apply for the advertisements
+                            $studentDetails = $this->pdcModel->getStudentFromUserID($userDetails->user_id);
+                            if ($studentDetails->status == 0) {
+                                Session::setValues('studentStatus', 0);
+                            } else {
+                                Session::setValues('studentStatus', 1);
+                            }
+
                             redirect('students');
                             break;
                         case "company":
@@ -113,6 +124,7 @@ class Login extends BaseController
         Session::unset('roundTableData');
         Session::unset('systemAccess');
         Session::unset('batchYear');
+        Session::unset('studentStatus');
         Session::destroy();
         redirect('login');
     }
@@ -270,6 +282,13 @@ class Login extends BaseController
     public function getRoundPeriodDetails()
     {
 
+        //Get Current Batch year
+        $currentBatchYear = $this->studentModel->getCurrentBatchYear();
+
+        if (!$currentBatchYear) {
+            // skip if current batch year is not selected yet
+            return;
+        }
 
         $roundTableData = $this->pdcModel->getRoundPeriods();
         //Get Round Periods Details
@@ -287,6 +306,9 @@ class Login extends BaseController
             Session::setValues('systemAccess', 1);
             //Update Company System Access to 1 automatically when the round starts
             $this->companyModel->updateCompanyAccess(1);
+            // Set all the current year batch advetisements to round 1
+            $this->pdcModel->setAdvertisementRoundtoOne($roundNumber, $currentBatchYear);
+
 
             //Update all Students System Access to 1 automatically when the round starts
             $this->studentModel->updateStudentAccess(1);
@@ -297,6 +319,8 @@ class Login extends BaseController
             $this->companyModel->updateCompanyAccess(1);
             //Update all Students System Access to 1 automatically when the round starts
             $this->studentModel->updateStudentAccess(1);
+            // Set all the current year batch advetisements to round 2 after comparing intern count and recruited count
+            $this->setAdvertisementRound();
         } else {
             //Either round dates are not set or currentDate in not during the round period
             $roundNumber = NULL; //No need of constraints
@@ -312,6 +336,33 @@ class Login extends BaseController
             Session::setValues('batchYear', $currentBatchYear);
         } else {
             Session::setValues('batchYear', 'NOT SELECTED YET');
+        }
+    }
+
+
+    public function setAdvertisementRound()
+    {
+        $batchYear = $this->studentModel->getCurrentBatchYear();
+        if (!$batchYear) {
+            // skip if current batch year is not selected yet
+            return;
+        }
+
+
+        $advertisements = $this->pdcModel->getAdvertisements($batchYear);
+
+        foreach ($advertisements as $advertisement) {
+            $result =  $this->pdcModel->getRoundRecruitedCount($advertisement->advertisement_id, 1);
+
+            $recruitedCount = $result->count;
+
+            if ($recruitedCount < $advertisement->intern_count) {
+                // set round to 2
+                $this->pdcModel->setAdvertisementRoundNum($advertisement->advertisement_id, 2);
+            } else {
+                // set round to NULL which means the advertisement is closed
+                $this->pdcModel->setAdvertisementRoundNum($advertisement->advertisement_id, NULL);
+            }
         }
     }
 }

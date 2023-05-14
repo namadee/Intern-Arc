@@ -100,8 +100,10 @@ class Companies extends BaseController
         $this->view('pdc/companyDetails');
     }
 
+    //User id is passed to view student profile
+    //profiles/company-profile/56
     //I AM COMMENTING THESE BECAUSE I THINK THEY ARE NOT USED ANYWHERE - NAMADEE
-
+    //advertisements/viewAdvertisement/78
     //View Company List - STUDENT
     public function viewCompanyList()
     {

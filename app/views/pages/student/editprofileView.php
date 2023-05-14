@@ -20,12 +20,6 @@
                     <input style="margin: auto;" type="file" onchange="displayImageName(this.files[0].name)" name="profile_image" accept=".png , .jpg ,.jpeg">
                 </label>
 
-                <label for="stream">Stream:</label>
-                <select style="margin: auto;" id="stream" name="stream">
-                    <option value="Information Systems">Information Systems</option>
-                    <option value="Computer Science">Computer Science</option>
-                </select>
-
                 <label for="contact" style="margin-top: 0.5rem;">Contact Number: <small>(Use format 07XXXXXXXX)</small></label>
                 <input style="margin: auto;" type="tel" id="contact" name="contact" value="<?php echo $data['contact'] ?>" pattern="[0-9]{10}" required>
 
@@ -43,7 +37,7 @@
                 <input style="margin: auto;" type="text" id="school" name="school" value="<?php echo $data['school'] ?>" required>
 
                 <label for="profile_description">Profile Description:</label>
-                <textarea  id="profile_description" style="resize: none; width: 100%;" name="profile_description" rows="5" class="common-input" cols="10" required><?php echo $data['profile_description'] ?></textarea>
+                <textarea id="profile_description" style="resize: none; width: 100%;" name="profile_description" rows="5" class="common-input" cols="10" required><?php echo $data['profile_description'] ?></textarea>
 
 
 
@@ -56,7 +50,7 @@
 
                                                         $text = explode(", ", $data['interests']);
                                                         $length = count($text);
-                                                        for ($i = 0; $i < $length; $i++) { 
+                                                        for ($i = 0; $i < $length; $i++) {
                                                             $value = nl2br($text[$i]); ?>
                                 <input type='text' style="margin: 0.3rem;" class="interest-area" name="interests[]" value="<?php echo $value ?>">
 
@@ -66,7 +60,7 @@
 
                         </div>
                         <label style="cursor: pointer;" id="interested" for="add"><span id="add-interest-icon" class="material-symbols-outlined">library_add</span></label>
-                        <label style="cursor: pointer;" >
+                        <label style="cursor: pointer;">
                             <div onclick="deleteint()" id="delete-interest-icon" class="material-symbols-outlined">delete</div>
                         </label>
                     </div>
@@ -80,20 +74,21 @@
                     <div class="display-flex-row addreqs">
                         <div id="add-exp-area" style="width:100%;" class="display-flex-col">
                             <?php
-
                             $text = explode(", ", $data['experience']);
                             $length = count($text);
-                            for ($i = 0; $i < $length; $i++) { ?>
-                                <textarea style="margin: 0.3rem; resize: none;" cols=10 rows=3 id="experience-list" name="experiences[]" class="common-input"><?php echo $text[$i] ?></textarea>
+                            for ($i = 0; $i < $length; $i++) {
+                                $text[$i] = str_replace(array("<br />", "<br>"), "", $text[$i]);
+                                ?>
+                                <textarea style="margin: 0.3rem; resize: none;" cols="10" rows="3" id="experience-list" name="experiences[]" class="common-input"><?php echo $text[$i] ?></textarea>
                             <?php
                             }
                             ?>
 
 
                         </div>
-                        <label  style="cursor: pointer;" id="exp" for="add"><span id="addExpIcon" class="material-symbols-outlined">library_add</span></label>
+                        <label style="cursor: pointer;" id="exp" for="add"><span id="addExpIcon" class="material-symbols-outlined">library_add</span></label>
                         <label>
-                            <div  style="cursor: pointer;" onclick="deleteexp()" id="delete-interest-icon" class="material-symbols-outlined">delete</div>
+                            <div style="cursor: pointer;" onclick="deleteexp()" id="delete-interest-icon" class="material-symbols-outlined">delete</div>
                         </label>
                     </div>
 
@@ -104,12 +99,14 @@
                     <p><label for="qualifications">Qualifications</label></p>
                     <div class="display-flex-row addreqs">
                         <div id="add-qualification-area" style="width:100%;" class="display-flex-col">
-                            <?php
 
+                            <?php
                             $text = explode(", ", $data['qualifications']);
                             $length = count($text);
-                            for ($i = 0; $i < $length; $i++) { ?>
-                                <textarea style="margin: 0.3rem; resize: none;" cols=10 rows=3 id="qualification-list" name="qualifications[]" class="common-input"><?php echo $text[$i] ?></textarea>
+                            for ($i = 0; $i < $length; $i++) {
+                                $text[$i] = str_replace(array("<br />", "<br>"), "", $text[$i]);
+                                ?>
+                                <textarea style="margin: 0.3rem; resize: none;" cols="10" rows="3" id="qualification-list" name="qualifications[]" class="common-input"><?php echo $text[$i] ?></textarea>
                             <?php
                             }
                             ?>
@@ -127,12 +124,13 @@
                     <p><label for="extracurricular">Extra Curricular Activities</label></p>
                     <div class="display-flex-row addreqs">
                         <div id="add-extracurricular-area" style="width:100%;" class="display-flex-col">
-                            <?php
-
+                        <?php
                             $text = explode(", ", $data['extracurricular']);
                             $length = count($text);
-                            for ($i = 0; $i < $length; $i++) { ?>
-                                <textarea style="margin: 0.3rem; resize: none;" cols=10 rows=3 id="extracurricular-list" name="extracurricular[]" class="common-input"><?php echo $text[$i] ?></textarea>
+                            for ($i = 0; $i < $length; $i++) {
+                                $text[$i] = str_replace(array("<br />", "<br>"), "", $text[$i]);
+                                ?>
+                                <textarea style="margin: 0.3rem; resize: none;" cols="10" rows="2" id="extracurricular-list" name="extracurricular[]" class="common-input"><?php echo $text[$i] ?></textarea>
                             <?php
                             }
                             ?>

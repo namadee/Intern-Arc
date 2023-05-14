@@ -117,9 +117,12 @@ class AdvertisementModel
     //SELECT ADVERTISEMENTS BASED ON COMPANY - Namadee
     public function getAdvertisementsByCompany($companyId)
     {
+        $batchYear = $_SESSION['batchYear'];
         //$round = $roundDataArray['roundNumber'];
-        $this->db->query('SELECT * FROM advertisement_tbl WHERE company_id_fk = :company_id');
+        $this->db->query('SELECT * FROM advertisement_tbl WHERE company_id_fk = :company_id AND batch_year = :batchYear');
         $this->db->bind(':company_id', $companyId);
+        $this->db->bind(':batchYear', $batchYear);
+
         // $this->db->bind(':round', $round);
 
         return $this->db->resultset();
@@ -241,5 +244,21 @@ class AdvertisementModel
 
             return $this->db->resultset();
         }
+    }
+
+    //Get the advertisements by round, batch year and approved for students
+
+    public function getAdvertisementsForStudents($round, $batchYear)
+    {
+        $this->db->query('SELECT advertisement_tbl.*, company_tbl.*
+        FROM advertisement_tbl 
+        JOIN company_tbl ON advertisement_tbl.company_id_fk = company_tbl.company_id
+        WHERE advertisement_tbl.batch_year = :batch_year AND advertisement_tbl.round = :round AND advertisement_tbl.status = :status');
+
+        $this->db->bind(':batch_year', $batchYear);
+        $this->db->bind(':round', $round);
+        $this->db->bind(':status', 'approved');
+
+        return $this->db->resultset();
     }
 }

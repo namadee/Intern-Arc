@@ -1332,8 +1332,8 @@ input::-webkit-inner-spin-button {
 .student-profile-view .std-profile-container-top {
   background-color: white;
   justify-content: right;
-  padding: 2rem;
-  padding-bottom: 3.5rem;
+  padding: 1.5rem;
+  padding-top: 2.5rem;
 }
 
 .student-profile-view .std-profile-container-body {
@@ -1438,6 +1438,7 @@ input::-webkit-inner-spin-button {
 
 .std-profile-container-body .student-experience .experience-items {
   gap: 0.5rem;
+  width: 100%;
 }
 
 .std-profile-container-body .student-qualifications {
@@ -1834,13 +1835,12 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
-
-.student-request-container .download-rej-list{
+.student-request-container .download-rej-list {
   padding: 0.5rem 1rem;
   margin-left: 30%;
 }
 
-.student-request-container .download-rej-list a{
+.student-request-container .download-rej-list a {
   color: #ffffff;
 }
 

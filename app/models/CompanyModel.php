@@ -261,4 +261,15 @@ class CompanyModel
         return $this->db->single();
     }
 
+    //Get company details by companyID
+    public function getCompanyDetailFromCompanyID($companyID)
+    {
+        $this->db->query('SELECT * FROM company_tbl
+        WHERE company_tbl.company_id = :companyID');
+        $this->db->bind(':companyID', $companyID);
+
+        //Execute
+        return $this->db->single();
+    }
+
 }

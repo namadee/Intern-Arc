@@ -22,17 +22,7 @@
 				</span>
 				<input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
 			</form>
-			<div class="common-filter">
-				<span class="material-symbols-rounded">
-					filter_alt
-				</span>
-				<select name="filter-list" id="filterlist">
-					<option value="all" selected>All</option>
-					<option value="name">name</option>
-					<option value="name">name</option>
-					<option value="name">name</option>
-				</select>
-			</div>
+
 		</div>
 		<div class="common_list_content">
 			<h3>Advertisement List</h3>
@@ -40,33 +30,32 @@
 				<tr>
 					<th>Advertisement Name</th>
 					<th>Company Name</th>
-					<th>Status</th>
 					<th>View</th>
 
 				</tr>
 
-				<?php foreach ($data['companyData'] as $companyData) : ?>
+				<?php 
+				
+					if ($data['status'] == 0) {
+						echo "<tr><td colspan='3' style='text-align:center;'>No advertisements available since round is not started</td></tr>";
+					}else{
+						foreach ($data['advertisemetList'] as $advertisement) :
+					
+				
+				?>			
+
+				
 					<tr>
-						<td class="view-ads-table-data"><?php echo $companyData->position ?></td>
-						<td class="view-ads-table-data"><?php echo $companyData->company_name ?></td>
+						<td class="view-ads-table-data"><?php echo $advertisement->position ?></td>
+						<td class="view-ads-table-data"><?php echo $advertisement->company_name ?></td>
 						<td class="view-ads-table-data">
-							<div class="common-status display-flex-row advertisement-status <?php echo $companyData->status == 'pending' ? 'yellow-status-font' : ($companyData->status == 'rejected' ? 'red-status-font' : ''); ?> ">
-
-								<span class="common-status-span <?php echo $companyData->status == 'pending' ? 'yellow-status' : ($companyData->status == 'rejected' ? 'red-status' : ''); ?>">
-								</span>
-								<?php echo $companyData->status ?>
-
-							</div>
-
-						</td>
-						<td class="view-ads-table-data">
-							<a href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $companyData->advertisement_id; ?>"><button class="common-view-btn">view</button>
+							<a href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $advertisement->advertisement_id; ?>"><button class="common-view-btn">view</button>
 						</td>
 					</tr>
-				<?php endforeach; ?>
+				<?php endforeach; }?>
 			</table>
 
-			<div class="jobrole-popup display-flex-col">
+			<div class="jobrole-popup display-flex-col" style="display: none;">
 				<form>
 					<h3>Select Three Job Roles</h3>
 					</br>

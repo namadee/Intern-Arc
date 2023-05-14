@@ -18,17 +18,6 @@
 				</span>
 				<input class="common-input" type="text" name="search-item" placeholder="Search Company">
 			</form>
-			<div class="common-filter">
-				<span class="material-symbols-rounded">
-					filter_alt
-				</span>
-				<select name="filter-list" id="filterlist">
-					<option value="all" selected>All</option>
-					<option value="name">name</option>
-					<option value="name">name</option>
-					<option value="name">name</option>
-				</select>
-			</div>
 		</div>
 		<div class="common_list_content">
 			<h3>Company List</h3>
@@ -46,7 +35,7 @@
 					<?php foreach ($data['listCompanies'] as $listCompanies) : ?>
 						<tr>
 							<td><?php echo $listCompanies->company_name ?></td>
-							<td><a href="<?php echo URLROOT . 'students/company-profile'; ?>"><button class="common-view-btn">view</button></a></td>
+							<td><a href="<?php echo URLROOT . 'profiles/company-profile/'.$listCompanies->user_id; ?>"><button class="common-view-btn">View</button></a></td>
 							<td>
 								<a class="common-edit-btn arrow-btn" href="<?php echo URLROOT . 'advertisements/get-advertisements-by-company/' . $listCompanies->company_id; ?>">
 									<span class="material-symbols-outlined">arrow_forward_ios</span>
