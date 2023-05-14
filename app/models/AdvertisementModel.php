@@ -21,6 +21,12 @@ class AdvertisementModel
         return $this->db->resultset();
     }
 
+    public function getAdvertisementById($id){
+        $this->db->query('SELECT * FROM advertisement_tbl WHERE advertisement_id = :advertisement_id');
+        $this->db->bind(':advertisement_id', $id);
+        return $this->db->single();
+    }
+
     public function showAdvertisementById($advertisementId)
     {
 
@@ -118,9 +124,11 @@ class AdvertisementModel
     public function getAdvertisementsByCompany($companyId)
     {
         //$round = $roundDataArray['roundNumber'];
-        $this->db->query('SELECT * FROM advertisement_tbl WHERE company_id_fk = :company_id');
+        $this->db->query('SELECT * FROM advertisement_tbl WHERE company_id_fk = :company_id AND batch_year = :batch_year');
         $this->db->bind(':company_id', $companyId);
-        // $this->db->bind(':round', $round);
+
+        $batch =  $_SESSION['batchYear'];
+        $this->db->bind(':batch_year', $batch);
 
         return $this->db->resultset();
     }

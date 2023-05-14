@@ -256,56 +256,52 @@ class Advertisements extends BaseController
     //load The advertisement UI of the relevant company 
     public function viewAdvertisement($advertisementId)
     {
-        if ($_SESSION['user_role'] == 'student' || $_SESSION['user_role'] == 'company' || $_SESSION['user_role'] == 'pdc') {
+        //company user access
+        $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
 
-            $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
-
-            $text = explode("\r\n", trim($advertisement->requirements));
-            $length = count($text);
-            $emptyArray = array();
-            for ($x = 0; $x < $length; $x++) {
-                $emptyArray[$x] = "* " . trim($text[$x]) . "<br>";
-            }
-            $completeString = implode("", $emptyArray);
-
-
-
-            //BUTTON NAME : if user role is student apply btn else view requests btn
-            //BUTTON LINK : if user role is student apply link else view requests link
-            //BUTTON NAME : if user role is student apply btn else view requests btn
-            //BUTTON LINK : if user role is student apply link else view requests link
-            if ($_SESSION['user_role'] == 'student') {
-                $btnClass = '';
-                $btnName = 'Apply';
-            } else if ($_SESSION['user_role'] == 'company') {
-                $btnClass = '';
-                $btnName = 'View Requests';
-            } else {
-                //PDC OR ADMIN
-                $btnClass = 'style = "display:none"';
-                $btnName = '';
-            }
-            $data = [
-                'className' => 'selectedTab',
-                'title' => 'Advertisements',
-                'advertisement_id' => $advertisementId,
-                'company_name' => $advertisement->company_name,
-                'buttonClass' => '',
-                'button_name' => $btnName,
-                'position' => $advertisement->position,
-                'job_description' => $advertisement->job_description,
-                'requirements' => $completeString,
-                'no_of_interns' => $advertisement->intern_count,
-                'working_mode' => $advertisement->working_mode,
-                'required_year' => $advertisement->applicable_year,
-                'internship_start' => $advertisement->start_date,
-                'internship_end' => $advertisement->end_date,
-            ];
-
-            $this->view('company/advertisement', $data);
-        } else {
-            $this->view('error403');
+        $text = explode("\r\n", trim($advertisement->requirements));
+        $length = count($text);
+        $emptyArray = array();
+        for ($x = 0; $x < $length; $x++) {
+            $emptyArray[$x] = "* " . trim($text[$x]) . "<br>";
         }
+        $completeString = implode("", $emptyArray);
+
+
+
+        //BUTTON NAME : if user role is student apply btn else view requests btn
+        //BUTTON LINK : if user role is student apply link else view requests link
+        //BUTTON NAME : if user role is student apply btn else view requests btn
+        //BUTTON LINK : if user role is student apply link else view requests link
+        if ($_SESSION['user_role'] == 'student') {
+            $btnClass = '';
+            $btnName = 'Apply';
+        } else if ($_SESSION['user_role'] == 'company') {
+            $btnClass = '';
+            $btnName = 'View Requests';
+        } else {
+            //PDC OR ADMIN
+            $btnClass = 'style = "display:none"';
+            $btnName = '';
+        }
+        $data = [
+            'className' => 'selectedTab',
+            'title' => 'Advertisements',
+            'advertisement_id' => $advertisementId,
+            'company_name' => $advertisement->company_name,
+            'buttonClass' => '',
+            'button_name' => $btnName,
+            'position' => $advertisement->position,
+            'job_description' => $advertisement->job_description,
+            'requirements' => $completeString,
+            'no_of_interns' => $advertisement->intern_count,
+            'working_mode' => $advertisement->working_mode,
+            'required_year' => $advertisement->applicable_year,
+            'internship_start' => $advertisement->start_date,
+            'internship_end' => $advertisement->end_date,
+        ];
+
+        $this->view('company/advertisement', $data);
     }
 
     //Create Interview slots - company  - Namadee

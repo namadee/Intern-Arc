@@ -65,7 +65,8 @@ class RequestModel
         }
     }
 
-    public function getRequestCountPerStudent ($std_id){
+    public function getRequestCountPerStudent($std_id)
+    {
         $this->db->query('SELECT * FROM student_requests_tbl WHERE student_id = :student_id');
 
         //bind values
@@ -75,11 +76,10 @@ class RequestModel
         $count = $this->db->rowCount();
 
         return $count;
-
-
     }
 
-    public function getAppliedAdvertisements ($std_id){
+    public function getAppliedAdvertisements($std_id)
+    {
         $this->db->query('SELECT company_tbl.company_name, advertisement_tbl.position, student_requests_tbl.status
         FROM student_requests_tbl
         JOIN advertisement_tbl ON student_requests_tbl.advertisement_id = advertisement_tbl.advertisement_id
@@ -95,7 +95,7 @@ class RequestModel
 
     public function getStudentByRequest($advertisementId)
     {
-        $this->db->query('SELECT student_tbl.profile_name , student_tbl.stream ,student_tbl.personal_email, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round  
+        $this->db->query('SELECT student_tbl.profile_name , student_tbl.stream ,student_tbl.personal_email, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round , student_requests_tbl.recruit_status  
         FROM student_tbl 
         JOIN student_requests_tbl 
         ON student_tbl.student_id = student_requests_tbl.student_id
@@ -166,4 +166,19 @@ class RequestModel
 
         return $this->db->resultset();
     }
+
+    //get recruited count per advertisement - namadee
+    public function getRecruitCountPerAdvertisement($ad_id)
+    {
+        $this->db->query('SELECT * FROM student_requests_tbl WHERE advertisement_id = :advertisement_id AND recruit_status = "recruited"');
+
+        //bind values
+        $this->db->bind(':advertisement_id', $ad_id);
+
+        $result = $this->db->resultset();
+        $count = $this->db->rowCount();
+
+        return $count;
+    }
+
 }

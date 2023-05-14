@@ -128,10 +128,8 @@ class Requests extends BaseController
         $this->view('company/studentRequestList', $data);
     }
 
-    // public function showNumberRequested(){
-    //     $reqCount  = $this->RequestModel->getRequestCountPerStudent ($std_id);
-    // }
+    
 
-
+   
 
 }
