@@ -58,7 +58,7 @@ class StudentModel
         // Bind Values
         $this->db->bind(':experience', $data['experience-list']);
         $this->db->bind(':interests', $data['interests-list']);
-        $this->db->bind(':qualifications', $data['qualifications-list']);
+        $this->db->bind(':qualifications', $data['qualification-list']);
         $this->db->bind(':extracurricular', $data['extracurricular-list']);
         $this->db->bind(':school', $data['school']);
         $this->db->bind(':contact', $data['contact']);

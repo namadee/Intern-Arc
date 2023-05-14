@@ -38,6 +38,11 @@ class Companies extends BaseController
     // Manage Company- PDC - Ruchira
     public function manageCompany($pg = NULL)
     {
+        //Access Control
+        if ($_SESSION['user_role'] != 'pdc') {
+            redirect('errors/error403');
+        }
+
         if ($_SESSION['user_role'] == 'pdc') {
             $companyList = $this->companyModel->getCompanyList();
             $all_access = $this->companyModel->checkSystemAccessCompanies();
@@ -94,7 +99,7 @@ class Companies extends BaseController
     public function viewCompanyList()
     {
         $listCompanies = $this->companyModel->getCompanyList();
-        
+
         $data = [
             'listCompanies' => $listCompanies
         ];
@@ -106,15 +111,14 @@ class Companies extends BaseController
     {
         $search_res = null;
         $output = null;
-        if(isset($_POST['query'])){
+        if (isset($_POST['query'])) {
             $search = $_POST['query'];
             $search_res = $this->companyModel->searchCompanyList($search);
-        }
-        else{
+        } else {
             $search_res = $this->companyModel->getCompanyList();
         }
 
-        if($search_res){
+        if ($search_res) {
             $output = '<table class="view-companies-table" id="view-companies-table">
                 <thead>
                 <tr>
@@ -125,20 +129,17 @@ class Companies extends BaseController
                 <tbody>';
 
             foreach ($search_res as $res) {
-            
+
                 $output .= '<tr>
-                        <td class="view-companies-table-data">' . $res->company_name .'</td>
-                        <td class="view-companies-table-data"> <a href='. URLROOT.'students/company-profile'.'><button button class="common-view-btn">view</button></a></td>
+                        <td class="view-companies-table-data">' . $res->company_name . '</td>
+                        <td class="view-companies-table-data"> <a href=' . URLROOT . 'students/company-profile' . '><button button class="common-view-btn">view</button></a></td>
                         </tr>';
             };
             $output .= '</tbody> </table>';
-            
-        }
-        else{
+        } else {
             $output = '<h3>No search results<h3>';
         }
         echo $output;
-        
     }
 
     //View Applied Company List - STUDENT

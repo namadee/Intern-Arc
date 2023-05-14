@@ -50,11 +50,11 @@ class CompanyModel
     }
 
     public function searchCompanyList($query)
-{
-    $this->db->query("SELECT company_name FROM company_tbl JOIN user_tbl ON user_tbl.user_id = company_tbl.user_id_fk WHERE blacklisted = 0 AND company_name LIKE '%$query%'");
-    $resultSet = $this->db->resultset();
-    return $resultSet;
-}
+    {
+        $this->db->query("SELECT company_name FROM company_tbl JOIN user_tbl ON user_tbl.user_id = company_tbl.user_id_fk WHERE blacklisted = 0 AND company_name LIKE '%$query%'");
+        $resultSet = $this->db->resultset();
+        return $resultSet;
+    }
 
     public function mainCompanyDetails($user_id)
     {
@@ -250,4 +250,15 @@ class CompanyModel
         }
     }
 
+    //GET Company Details from Advertisement ID
+    public function getCompanyDetailFromAdID($adID)
+    {
+        $this->db->query('SELECT * FROM company_tbl
+        JOIN advertisement_tbl ON company_tbl.company_id = advertisement_tbl.company_id_fk
+        WHERE advertisement_tbl.advertisement_id = :adID');
+        $this->db->bind(':adID', $adID);
+
+        //Execute
+        return $this->db->single();
+    }
 }

@@ -15,6 +15,9 @@ class Register extends BaseController
 
     public function index()
     {
+        if ($_SESSION['user_role'] != 'admin') {
+            redirect('errors/error403');
+        }
         //Register PDC users
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -60,21 +63,28 @@ class Register extends BaseController
 
                     flashMessage('pdcStaffMsg', 'PDC Staff member registered successfully!');
                     redirect('admin/pdc-staff');
-                }else {
+                } else {
                     flashMessage('pdcStaffMsg', 'Email was not sent due to an error. Please try sending it again later', 'danger-alert');
                     redirect('admin/pdc-staff');
                 }
             }
-        } else{
+        } else {
             redirect('admin/pdc-staff');
         }
-    } 
+    }
 
 
 
 
     public function registerStudent($year = NULL, $stream = NULL) //Single Student User Registration - Ruchira
     {
+
+        //Access Control
+        if ($_SESSION['user_role'] != 'pdc') {
+            redirect('errors/error403');
+        }
+
+
         if ($year == NULL || $stream == NULL) {
             redirect('students/manage-student');
         }
@@ -176,6 +186,13 @@ class Register extends BaseController
 
     public function registerCompany() //Single Company User Registration - Ruchira
     {
+
+        //Access Control
+        if ($_SESSION['user_role'] != 'pdc') {
+            redirect('errors/error403');
+        }
+
+
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Update main student information/details
@@ -255,6 +272,10 @@ class Register extends BaseController
 
     public function registerCompanies()
     {
+        //Access Control
+        if ($_SESSION['user_role'] != 'pdc') {
+            redirect('errors/error403');
+        }
         //Checks whether a file is uploaded
         if (!is_uploaded_file($_FILES['company-csv']['tmp_name'])) {
             flashMessage('upload_file_error', 'Please select a csv file to register!', 'danger-alert');
@@ -311,7 +332,10 @@ class Register extends BaseController
 
     public function registerStudents()
     {
-
+        //Access Control
+        if ($_SESSION['user_role'] != 'pdc') {
+            redirect('errors/error403');
+        }
         $year = trim($_POST['year']);
         $stream = trim($_POST['stream']);
 
@@ -376,6 +400,11 @@ class Register extends BaseController
 
     public function resendStudentCredentials($year = NULL, $stream = NULL, $user_id = NULL) //Resend Student User Login Credentials - Ruchira
     {
+        //Access Control
+        if ($_SESSION['user_role'] != 'pdc' || $_SESSION['user_role'] != 'admin') {
+            redirect('errors/error403');
+        }
+
         if ($year == NULL || $stream == NULL || $user_id == NULL) {
             redirect('students/manage-student');
         }
@@ -415,6 +444,10 @@ class Register extends BaseController
 
     public function resendCompanyCredentials($user_id = NULL) //Resend Student User Login Credentials - Ruchira
     {
+        //Access Control
+        if ($_SESSION['user_role'] != 'pdc' || $_SESSION['user_role'] != 'admin') {
+            redirect('errors/error403');
+        }
         if ($user_id == NULL) {
             redirect('students/manage-student');
         }

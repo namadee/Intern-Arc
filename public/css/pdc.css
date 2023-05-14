@@ -1834,6 +1834,16 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
+
+.student-request-container .download-rej-list{
+  padding: 0.5rem 1rem;
+  margin-left: 30%;
+}
+
+.student-request-container .download-rej-list a{
+  color: #ffffff;
+}
+
 /********************************* Disable Style *********************************/
 .disabled-button-style {
   color: #8d8d8d !important;

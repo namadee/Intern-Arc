@@ -1,6 +1,7 @@
 <?php
 
 use helpers\Session;
+use helpers\PdfHandler;
 
 
 class Pdc extends BaseController
@@ -519,5 +520,18 @@ class Pdc extends BaseController
         } else {
             redirect('students/manage-student');
         }
+    }
+
+    public function downloadRejectedStudentList(){
+        //Current Year after 2nd round
+        $batchYear=$_SESSION['batchYear'];
+        $studentList = $this->pdcModel->getRejectedStudentList($batchYear);
+
+        $templatePath = (dirname(APPROOT)) . '\public\templates\rejectedStudentListTemplate.php';
+        $currentDateTime = date('Y-m-d H:i:s');
+        $pdf = new PdfHandler();
+        $pdf->rejectedStudentList($studentList, $templatePath, $currentDateTime, $batchYear);
+
+
     }
 }

@@ -240,6 +240,10 @@ class Students extends BaseController
     //Manage Students - PDC - Ruchira
     public function manageStudent($pg = NULL, $year = NULL)
     {
+        //Access Control
+        if ($_SESSION['user_role'] != 'pdc') {
+            redirect('errors/error403');
+        }
         //Get Batch List and respective student count of each IS and CS
         $batchList = $this->studentModel->getStudentBatches();
 
@@ -303,6 +307,10 @@ class Students extends BaseController
     //Add, Change Stats and Delete Batch Functions - Ruchira
     public function manageStudentBatch()
     {
+        //Access Control
+        if ($_SESSION['user_role'] != 'pdc') {
+            redirect('errors/error403');
+        }
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -318,7 +326,7 @@ class Students extends BaseController
                     redirect('students/manage-student');
                 }
 
-            if (isset($_POST['selectBatchYear']) && $_POST['selectBatchYear'] == '1') {
+                if (isset($_POST['selectBatchYear']) && $_POST['selectBatchYear'] == '1') {
                     // Checkbox was checked
                     $this->studentModel->addStudentBatch($batch_year);
                     $this->studentModel->deselectAllBatchYears();

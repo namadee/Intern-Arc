@@ -8,8 +8,9 @@ class Jobroles extends BaseController
     public function __construct()
     {
         $this->jobroleModel = $this->model('Jobrole');
+        //Access Control
         if ($_SESSION['user_role'] != 'pdc') {
-            redirect('errors');
+            redirect('errors/error403');
         }
     }
 

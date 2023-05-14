@@ -9,35 +9,6 @@ class PdcModel
         $this->db = new Database;
     }
 
-    // public function getPdcUsers(){
-    //     $this->db->query('SELECT * FROM pdc_users');
-
-    //     return $this->db->resultset();
-    // }
-
-    // public function getPdcJobroles()
-    // {
-    //     $this->db->query('SELECT * FROM pdc_jobroles');
-
-    //     return $this->db->resultset();
-    // }
-
-    // public function addJobrole($data)
-    // {
-    //     $this->db->query('INSERT INTO pdc_jobroles(name) 
-    //     VALUES (:jobrole)');
-
-    //     // Bind Values
-    //     $this->db->bind(':jobrole', $data['jobrole']);
-
-    //     //Execute
-    //     if ($this->db->execute()) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
     //Set round periods - When PDC set Round period durations
     public function setRoundPeriod($data)
     {
@@ -60,6 +31,16 @@ class PdcModel
     public function getRoundPeriods()
     {
         $this->db->query('SELECT * FROM round_tbl');
+        return $this->db->resultset();
+    }
+
+    public function getRejectedStudentList($batchYear)
+    {
+        $this->db->query('SELECT student_tbl.*, user_tbl.* FROM student_tbl 
+        JOIN user_tbl ON student_tbl.user_id_fk = user_tbl.user_id
+        WHERE student_tbl.status = 0 AND batch_year = :batchYear');
+
+        $this->db->bind(':batchYear', $batchYear);
         return $this->db->resultset();
     }
 

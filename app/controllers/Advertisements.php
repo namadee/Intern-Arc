@@ -207,7 +207,8 @@ class Advertisements extends BaseController
     }
 
     //SHOW All ADVERTISEMENTS FROM ALL COMPANIES - STUDENT
-    public function showStudentAdvertisements(){
+    public function showStudentAdvertisements()
+    {
         $listCompanies = $this->companyModel->getCompanyList();
         $jobroleList = $this->jobroleModel->getJobroles();
         $data2 = [
@@ -217,7 +218,7 @@ class Advertisements extends BaseController
         $data3 = [
             'jobroleList' => $jobroleList
         ];
-            
+
         $data = [
             'companyData' => $this->companyData
         ];
@@ -244,53 +245,61 @@ class Advertisements extends BaseController
     }
 
     //load The advertisement UI of the relevant company 
-    public function viewAdvertisement($advertisementId)
+    public function viewAdvertisement($advertisementId = NULL)
     {
-        if ($_SESSION['user_role'] == 'student' || $_SESSION['user_role'] == 'company' || $_SESSION['user_role'] == 'pdc') {
-            // $advertisementId = $_GET['adId'];
-            $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
-
-            $text = explode("\r\n", trim($advertisement->requirements));
-            $length = count($text);
-            $emptyArray = array();
-            for ($x = 0; $x < $length; $x++) {
-                $emptyArray[$x] = trim($text[$x]);
-            }
-            $completeString = implode("", $emptyArray);
-            //BUTTON NAME : if user role is student apply btn else view requests btn
-            //BUTTON LINK : if user role is student apply link else view requests link
-            //BUTTON NAME : if user role is student apply btn else view requests btn
-            //BUTTON LINK : if user role is student apply link else view requests link
-            if ($_SESSION['user_role'] == 'student') {
-                $btnClass = '';
-                $btnName = 'Apply';
-            } else if($_SESSION['user_role'] == 'company') {
-                $btnClass = '';
-                $btnName = 'View Requests';
-            } else {
-                //PDC OR ADMIN
-                $btnClass = 'style = "display:none"';
-                $btnName = '';
-            }
-            $data = [
-                'className' => 'selectedTab',
-                'title' => 'Advertisements',
-                'advertisement_id' => $advertisementId,
-                'button_name' => $btnName,
-                'position' => $advertisement->position,
-                'job_description' => $advertisement->job_description,
-                'requirements' => $completeString,
-                'no_of_interns' => $advertisement->intern_count,
-                'working_mode' => $advertisement->working_mode,
-                'required_year' => $advertisement->applicable_year,
-                'internship_start' => $advertisement->start_date,
-                'internship_end' => $advertisement->end_date,
-            ];
-
-            $this->view('company/advertisement', $data);
-        } else {
-            $this->view('error403');
+        if ($advertisementId == NULL) {
+            redirect('errors');
         }
+
+        $companyDetails = $this->companyModel->getCompanyDetailFromAdID($advertisementId);
+        // $advertisementId = $_GET['adId'];
+        $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
+
+        $text = explode("\r\n", trim($advertisement->requirements));
+        $length = count($text);
+        $emptyArray = array();
+        for ($x = 0; $x < $length; $x++) {
+            $emptyArray[$x] = trim($text[$x]);
+        }
+        $completeString = implode("", $emptyArray);
+        //BUTTON NAME : if user role is student apply btn else view requests btn
+        //BUTTON LINK : if user role is student apply link else view requests link
+        //BUTTON NAME : if user role is student apply btn else view requests btn
+        //BUTTON LINK : if user role is student apply link else view requests link
+        if ($_SESSION['user_role'] == 'student') {
+            $btnClass = '';
+            $btnName = 'Apply';
+        } else if ($_SESSION['user_role'] == 'company') {
+            $btnClass = '';
+            $btnName = 'View Requests';
+        } else {
+            //PDC OR ADMIN
+            $btnClass = 'style = "display:none"';
+            $btnName = '';
+        }
+        $data = [
+            'className' => 'selectedTab',
+            'title' => 'Advertisements',
+            'advertisement_id' => $advertisementId,
+            'button_name' => $btnName,
+            'position' => $advertisement->position,
+            'job_description' => $advertisement->job_description,
+            'requirements' => $completeString,
+            'no_of_interns' => $advertisement->intern_count,
+            'working_mode' => $advertisement->working_mode,
+            'required_year' => $advertisement->applicable_year,
+            'internship_start' => $advertisement->start_date,
+            'internship_end' => $advertisement->end_date,
+            'buttonClass' => $btnClass,
+            'companyName' => $companyDetails->company_name
+        ];
+
+        $this->view('company/advertisement', $data);
+        // No need to check access here
+        // if ($_SESSION['user_role'] == 'student' || $_SESSION['user_role'] == 'company' || $_SESSION['user_role'] == 'pdc') {
+        // } else {
+        //     $this->view('error403');
+        // }
     }
 
     //Create Interview slots - company  - Namadee

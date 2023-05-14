@@ -1,4 +1,3 @@
-
 /********************************* Disable Style *********************************/
 .disabled-button-style {
   color: #8d8d8d !important;
@@ -274,7 +273,7 @@ select:disabled {
 }
 
 .profile-left {
-  width: 50%;
+  width: 45%;
   padding: 2rem 1rem;
   background-color: #fff;
   display: flex;
@@ -298,7 +297,7 @@ select:disabled {
 }
 .profile-bottom {
   display: flex;
-  margin-top: 5rem;
+  margin-top: 3rem;
   padding: 0 1rem;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -329,6 +328,30 @@ select:disabled {
   outline: none;
 }
 
+/* Company Profile Adjustment */
+.company_profile_view .profile-main-container {
+  width: 95%;
+}
+
+.company_profile_view .profile-main-container .profile-left {
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+.company_profile_view .profile-main-container .profile-right {
+  border-radius: 0 0.3rem 0.3rem 0;
+}
+
+.company_profile_view .profile-main-container .icon-profiles {
+  color: var(--primaryColor);
+  margin-right: 0.5rem;
+}
+
+.company_profile_view .profile-main-container p.item a {
+  color: var(--Black);
+}
+
+.company_profile_view .profile-btn a {
+  color: var(--Black);
+}
 /*edit profile page*/
 
 .edit-profile-main-container {
@@ -726,12 +749,13 @@ select:disabled {
 /* view advertisement page */
 
 .advertisement-main-container {
-  width: 70%;
+  width: 80%;
   background: #fff;
   margin: auto;
   padding: 1rem 2rem;
   padding-bottom: 4rem;
   position: relative;
+  border-radius: 0.3rem;
 }
 
 #addreq {
@@ -769,7 +793,7 @@ select:disabled {
 
 .ad-header-top {
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .ad-header-bottom {
@@ -781,6 +805,7 @@ select:disabled {
   padding: 2rem;
   position: relative;
   border-radius: 5px;
+  margin-top: 1rem;
 }
 
 .advertisement-container-body .body-left {
@@ -872,8 +897,7 @@ select:disabled {
   margin-top: 1rem;
 }
 
-.add-period{
- 
+.add-period {
   padding: 0.5rem;
   color: #fff;
   background-color: var(--DarkBlue);
@@ -884,14 +908,14 @@ select:disabled {
   justify-content: center;
 }
 
-.period{
+.period {
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid var(--DarkBlue);
   color: var(--DarkBlue);
 }
 
-.periods-box{
+.periods-box {
   gap: 1rem;
 }
 
@@ -958,7 +982,7 @@ select:disabled {
   font-size: 1rem;
 }
 
-.time-slot-popup{
+.time-slot-popup {
   display: none;
   position: absolute;
   top: 50%;
@@ -972,19 +996,18 @@ select:disabled {
   box-shadow: 0px 0px 10px 0px #0000001a;
 }
 
-.time-slot-popup div{
+.time-slot-popup div {
   gap: 0.5rem;
-
 }
 
-.slot-popup-position-tag{
+.slot-popup-position-tag {
   padding: 0.2rem 0.5rem;
   border-radius: 8px;
   font-style: bold;
   background-color: var(--AlternateLightGrey);
 }
 
-.time-slot-popup div .common-blue-btn{
+.time-slot-popup div .common-blue-btn {
   margin: 0.5rem;
   padding: 0.2rem 1rem;
   border-radius: 2px;
@@ -993,7 +1016,7 @@ select:disabled {
   color: #fff;
 }
 
-.confirm-box{
+.confirm-box {
   display: none;
   position: absolute;
   top: 50%;

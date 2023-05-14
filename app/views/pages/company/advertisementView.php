@@ -14,19 +14,18 @@
                 <!-- <img class="internarc-logo" src="<?php echo URLROOT ?>img/logo.png"> -->
 
                 <div class="display-flex-col ad-header-bottom">
-                    <h1>University of Colombo School Of Computing</h1>
-                    <h2>UCSC INDUSTRIAL PLACEMENTS-2024</h2>
+                    <h2>UCSC INDUSTRIAL PLACEMENTS - BATCH YEAR <?php echo $_SESSION['batchYear']; ?> </h2>
                     <h3>Placement Advertisement</h3>
                 </div>
             </div>
-        </div><br><br>
+        </div>
 
         <div class=" display-flex-row advertisement-container-body">
             <div class="body-left">
                 <ul class="display-flex-col">
                     <li class="display-flex-row">
                         <p class="profile-item">Company</p>
-                        <span></span>
+                        <span><?php echo $data['companyName'] ?></span>
                     </li>
                     <li class="display-flex-row">
                         <p class="profile-item">Position</p>
@@ -74,11 +73,11 @@
 
         </div>
         <a <?php echo $data['buttonClass']; ?> href="<?php
-                    if ($_SESSION['user_role'] == 'company') {
-                        echo URLROOT . 'requests/showRequestsByAd/' . $data['advertisement_id'];
-                    } else if ($_SESSION['user_role'] == 'student') {
-                        echo URLROOT . 'requests/addStudentRequest/' . $data['advertisement_id'];
-                    } ?>" class="common-blue-btn apply-btn"><?php echo $data['button_name'] ?></a>
+                                                        if ($_SESSION['user_role'] == 'company') {
+                                                            echo URLROOT . 'requests/showRequestsByAd/' . $data['advertisement_id'];
+                                                        } else if ($_SESSION['user_role'] == 'student') {
+                                                            echo URLROOT . 'requests/addStudentRequest/' . $data['advertisement_id'];
+                                                        } ?>" class="common-blue-btn apply-btn"><?php echo $data['button_name'] ?></a>
     </div>
 
 </section>

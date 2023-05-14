@@ -18,7 +18,7 @@ class Admin extends BaseController
         $this->pdcModel = $this->model('Pdc');
 
         if ($_SESSION['user_role'] != 'admin') {
-            redirect('errors');
+            redirect('errors/error403');
         }
     }
 
