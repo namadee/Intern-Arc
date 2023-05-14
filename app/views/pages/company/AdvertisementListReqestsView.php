@@ -45,7 +45,7 @@
               <a class="common-view-btn" href="<?php echo URLROOT . 'requests/show-requests-by-ad/' . $data['advertisement_id']; ?>">View</a>
             </td>
             <td>
-              <div class="common-status display-flex-row <?php echo $students->status == 'pending' ? 'yellow-status-font' : ($students->status == 'rejected' ? 'red-status-font' : ''); ?> ">
+              <div class="common-status display-flex-row advertisement-status<?php echo $students->status == 'pending' ? 'yellow-status-font' : ($students->status == 'rejected' ? 'red-status-font' : ''); ?> ">
 
                 <span class="common-status-span <?php echo $students->status == 'pending' ? 'yellow-status' : ($students->status == 'rejected' ? 'red-status' : ''); ?>">
                 </span>

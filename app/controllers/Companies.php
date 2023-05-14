@@ -22,11 +22,18 @@ class Companies extends BaseController
             $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
             $dashboardData = $this->companyModel->getRequestsbyCompany($companyId);
             $requestArray = $this->requestModel->getStudentRequests(0);
-
-
+            $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+            //get the leangth f $ads
+            $length = count($ads);
+            $adcount = 0;
+            //loop through the $ads
+            for ($x = 0; $x < $length; $x++) {
+                $adcount++;
+            }
 
             $data = [
                 'companyId' => $companyId,
+                'total' => $adcount,
                 'dashboard' => $dashboardData,
             ];
             $this->view('company/dashboard', $data);
@@ -222,7 +229,7 @@ class Companies extends BaseController
         if ($_SESSION['user_role'] == 'company') {
             $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
             $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
-
+            $intern_counts = array();
             $shortlistedCounts = array();
             $x = 0;
             foreach ($advertisements as $advertisement) {
@@ -232,7 +239,6 @@ class Companies extends BaseController
                 $intern_counts[$x] = $advertisement->intern_count;
                 $x++;
             }
-
 
             $data = [
                 'count' => $shortlistedCounts,

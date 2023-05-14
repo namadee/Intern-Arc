@@ -7,12 +7,12 @@
     <?php flashMessage('profile_update_status'); ?>
     <div class="update-profile-container display-flex-col">
         <div class="display-flex-col">
-            <h2>Profile Details</h2>
+            <h2>Account Details</h2>
             <a href="<?php echo URLROOT . "profiles/company-profile" ?>" id="go-to-profile-btn" class="display-flex-row"><span class="material-symbols-outlined">
                     recent_actors
                 </span>Go to Profile</a>
         </div>
-        
+
 
         <form class="display-flex-col" method="POST" action="<?php echo URLROOT . "profiles/update-profile-details" ?> " enctype="multipart/form-data">
             <div class="main-user-profile-icon display-flex-col">

@@ -1,3 +1,37 @@
+/* TOOLTIP - Hover Effect*/
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-left: 0.3rem;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: fit-content;
+  background-color: rgb(73, 70, 70);
+  color: white;
+  text-align: center;
+  border-radius: 3px;
+  padding: 0.4rem;
+  font-size: 0.8rem;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: -3rem;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip:hover {
+  color: var(--primaryColor);
+}
+
 /********************************* Disable Style *********************************/
 .disabled-button-style {
   color: #8d8d8d !important;
@@ -175,6 +209,12 @@ select:disabled {
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
+}
+
+.advertisement-status{
+  width: 8rem;
+    margin: auto;
+
 }
 
 /*end of advertisement page*/
@@ -805,10 +845,15 @@ select:disabled {
   padding: 2rem;
   position: relative;
   border-radius: 5px;
-  margin-top: 1rem;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .advertisement-container-body .body-left {
+  width: 50%;
+}
+.advertisement-container-body .body-right {
   width: 50%;
 }
 
@@ -838,19 +883,10 @@ select:disabled {
   gap: 1rem;
 }
 
-.advertisement-container-body .body-right {
-  width: 50%;
-  gap: 2rem;
-  margin-left: 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 28rem;
-}
+
 
 .advertisement-container-body .body-right .job-description div {
   background-color: #eeeeee5b;
-  width: 80%;
   padding: 1rem;
   color: white;
   border-radius: 10px;
@@ -908,7 +944,7 @@ select:disabled {
   justify-content: center;
 }
 
-.period {
+.create-interview-form .period{
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid var(--DarkBlue);

@@ -57,18 +57,20 @@
 
 
             <div class="body-right">
-                <div class="display-flex-col job-description">
-                    <h3>Job Description</h3><br>
-                    <div class="display-flex-col job-description-items">
-                        <p><?php echo $data['job_description'] ?></p>
-                    </div>
-                </div><br>
-                <div class="display-flex-col job-description">
-                    <h3>Requirements</h3><br>
-                    <div class="display-flex-col job-description-items">
-                        <p><?php echo $data["requirements"] ?></p>
-                    </div>
-                </div>
+                <ul class="display-flex-col">
+                    <li class="display-flex-col job-description">
+                        <h3>Job Description</h3><br>
+                        <div class="display-flex-col job-description-items">
+                            <p><?php echo $data['job_description'] ?></p>
+                        </div>
+                    </li><br>
+                    <li class="display-flex-col job-description">
+                        <h3>Requirements</h3><br>
+                        <div class="display-flex-col job-description-items">
+                            <p><?php echo $data["requirements"] ?></p>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
         </div>

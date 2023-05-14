@@ -28,6 +28,9 @@ class Complaints extends BaseController
 
     public function addComplaint()
     {
+        $user_id = $_SESSION['user_id'];
+        $code = generateRefCode();
+        $finalRef = $user_id . "REF" . $code;
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -41,7 +44,8 @@ class Complaints extends BaseController
             $data = [
                 'student_id' => $studentId,
                 'subject' => trim($_POST['subject']),
-                'description' => trim($_POST['description'])
+                'description' => trim($_POST['description']),
+                'reference_code' => $finalRef
             ];
 
             //Execute
@@ -66,7 +70,7 @@ class Complaints extends BaseController
             $this->view('student/complaint', $data);
         }
     }
-        public function showComplaint($complaintId)
+    public function showComplaint($complaintId)
     {
         $complaints = $this->complaintModel->getComplaint();
         $complaint = $this->complaintModel->showComplaintById($complaintId); //To get the Advertisement Name
@@ -124,7 +128,8 @@ class Complaints extends BaseController
         $this->complaintModel->deleteComplaint($id);
     }
 
-    public function Complaint(){
+    public function Complaint()
+    {
         // Get Details
         $complaint = $this->complaintModel->getComplaint();
 

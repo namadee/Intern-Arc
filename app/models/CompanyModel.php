@@ -40,7 +40,7 @@ class CompanyModel
 
     public function getCompanyList()
     {
-        $this->db->query("SELECT user_tbl.username, user_tbl.user_id, user_tbl.email, company_tbl.company_name, company_tbl.contact 
+        $this->db->query("SELECT user_tbl.username, user_tbl.user_id, user_tbl.email, company_tbl.*
         FROM company_tbl 
         JOIN user_tbl
         ON user_tbl.user_id = company_tbl.user_id_fk
@@ -249,8 +249,7 @@ class CompanyModel
             return false;
         }
     }
-
-    //GET Company Details from Advertisement ID
+//GET Company Details from Advertisement ID
     public function getCompanyDetailFromAdID($adID)
     {
         $this->db->query('SELECT * FROM company_tbl
@@ -261,4 +260,5 @@ class CompanyModel
         //Execute
         return $this->db->single();
     }
+
 }

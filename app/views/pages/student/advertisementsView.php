@@ -8,92 +8,80 @@
 
 <?php $navSidebar = $_SESSION['user_role']; ?>
 <script type="text/javascript">
-    sessionStorage.setItem("navSidebar", "<?php echo $navSidebar; ?>");
+	sessionStorage.setItem("navSidebar", "<?php echo $navSidebar; ?>");
 </script>
 
-<section class="advertisements-view-container">
-
-<div class="published-ad-list-headingfloat">
-	<br/><br/><br/><br/>
-	<div class="published-ad-list-flex-wrap">
-		<div><h4>Round: 1st round</h4></div>
-		<div><h4>Ending date: 2022/09/22</h4></div>
-	</div>
-</div>
+<section id="advertisement-list" class="main-content">
 
 
-<div class="published-ad-list-top">
-	
-<div class="published-ad-list-flex-container">
-
-	<div class="published-ad-list-flex-wrap2">
-		<div class="published-ad-list-heading">
-			<h3>Advertisments</h3>
-		</div>
-
-
-
-    <div class="dropdown-items">
-				<div class="dropdown">
-					<button class="dropbtn">Company</button>
-					<div class="dropdown-content">
-			  		<!-- <a href="#">Link 1</a>
-			  		<a href="#">Link 2</a>
-			  		<a href="#">Link 3</a> -->
-            <?php foreach ($data['listCompanies'] as $listCompanies) : ?>
-              
-              
-				
-				<a href="#"><?php echo $listCompanies->company_name ?></a>
-			
-      <?php endforeach; ?>
-					</div>
-				</div>
-
-				<div class="dropdown">
-					<button class="dropbtn">Position</button>
-					<div class="dropdown-content">
-			  		<!-- <a href="#">Link 1</a>
-			  		<a href="#">Link 2</a>
-			  		<a href="#">Link 3</a> -->
-					  <?php foreach ($data['jobroleList'] as $jobroleList) : ?>
-              
-              
-				
-			  <a href="#"><?php echo $jobroleList->name ?></a>
-			  <?php endforeach; ?>
-				</div>
-			</div>
-
-
-  
-	</div>
-  <div class="published-ad-list-container">
-			<form id="search-form">
-				
-				<input type="text" placeholder="Search.." name="search" class="common-search-bar">
+	<div class="common_list">
+		<div class="common-list-topbar">
+			<form action="" class="common-search-bar display-flex-row">
+				<span class="material-symbols-rounded">
+					search
+				</span>
+				<input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
 			</form>
+			<div class="common-filter">
+				<span class="material-symbols-rounded">
+					filter_alt
+				</span>
+				<select name="filter-list" id="filterlist">
+					<option value="all" selected>All</option>
+					<option value="name">name</option>
+					<option value="name">name</option>
+					<option value="name">name</option>
+				</select>
+			</div>
 		</div>
-</div>
-	<table class="published-ad-list-ad-table">
-		<tr>
-		  <th>Company Name</th>
-		  <th>Advertisement Name</th>
-		  <th></th>
-		</tr>
-		
-			<?php foreach ($data['companyData'] as $companyData) : ?>
-			<tr>
-				<td class="view-ads-table-data"><?php echo $companyData->company_name ?></td>
-				<td class="view-ads-table-data"><?php echo $companyData->position ?></td>
-  				<td class="view-ads-table-data"><a href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $companyData->advertisement_id; ?>"><button class="common-view-btn">view</button></td>
-			</tr>
-			<?php endforeach; ?>
-	  </table>
-	       
+		<div class="common_list_content">
+			<h3>Advertisement List</h3>
+			<table class="common-table">
+				<tr>
+					<th>Advertisement Name</th>
+					<th>Company Name</th>
+					<th>Status</th>
+					<th>View</th>
 
+				</tr>
 
+				<?php foreach ($data['companyData'] as $companyData) : ?>
+					<tr>
+						<td class="view-ads-table-data"><?php echo $companyData->position ?></td>
+						<td class="view-ads-table-data"><?php echo $companyData->company_name ?></td>
+						<td class="view-ads-table-data">
+							<div class="common-status display-flex-row advertisement-status <?php echo $companyData->status == 'pending' ? 'yellow-status-font' : ($companyData->status == 'rejected' ? 'red-status-font' : ''); ?> ">
 
+								<span class="common-status-span <?php echo $companyData->status == 'pending' ? 'yellow-status' : ($companyData->status == 'rejected' ? 'red-status' : ''); ?>">
+								</span>
+								<?php echo $companyData->status ?>
+
+							</div>
+
+						</td>
+						<td class="view-ads-table-data">
+							<a href="<?php echo URLROOT; ?>advertisements/view-advertisement/<?php echo $companyData->advertisement_id; ?>"><button class="common-view-btn">view</button>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</table>
+
+			<div class="jobrole-popup display-flex-col">
+				<form>
+					<h3>Select Three Job Roles</h3>
+					</br>
+					<?php foreach ($data['jobroleList'] as $jobroleList) : ?>
+						<div>
+							<input type="radio" name="<?php echo $jobroleList->name ?>" value="<?php echo $jobroleList->name ?>">
+							<label for="jobrole"><?php echo $jobroleList->name ?></label>
+						</div>
+					<?php endforeach; ?>
+					</br>
+					<button class="common-blue-btn" type="submit">Submit</button>
+
+				</form>
+
+			</div>
 </section>
 
 <?php require APPROOT . '/views/includes/footer.php'; ?>

@@ -1255,4 +1255,134 @@ body {
   overflow: auto;
 }
 
+/*advertisement list UI - Namadee */
 
+
+.common_list {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.common_list_top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 3rem;
+  margin-bottom: 2rem;
+}
+
+.common-list-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 2rem;
+  margin: 1rem;
+}
+
+.advertisement-list-topbar .search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 15rem;
+  border: 1px solid var(--backgrund-color);
+  border-radius: 5px;
+  padding: 0.3rem 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: white;
+  color: var(--primary-color-1);
+}
+
+.advertisement-list-topbar .search-bar input {
+  border: none;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.common-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 7rem;
+  color: var(--primary-color-1);
+}
+
+.common-filter select {
+  border: 1px solid var(--backgrund-color);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.common-list-topbar .material-symbols-rounded {
+  fill: 1;
+  color: #f17300;
+}
+.common-list-topbar .material-symbols-rounded {
+  fill: 1;
+  color: #f17300;
+}
+
+.common_list_content {
+  width: 100%;
+  background-color: #fff;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.common_list_content table {
+  font-size: 0.9rem;
+  width: 90%;
+  margin-left: 3rem;
+  text-align: center;
+  table-layout: fixed;
+  word-wrap: normal;
+}
+
+.common_list_content table th {
+  /* height: 2rem;
+  background-color: #d9d9d9;
+  padding: 0.5rem; */
+
+  padding: 0.4rem;
+  background-color: var(--BackgroungColor);
+  border-radius: 0.3rem;
+  font-weight: 500;
+}
+
+.common_list_content table td {
+  padding: 0.3rem;
+}
+
+.advertisement-status{
+  width: 8rem;
+    margin: auto;
+
+}
+
+.jobrole-popup{
+  background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem 1rem;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+   
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+}
+
+.jobrole-popup .common-blue-btn{
+  padding: 0.2rem 1rem;
+  margin-left:3rem;
+}
+
+.arrow-btn{
+  margin: auto;
+}

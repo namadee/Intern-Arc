@@ -37,9 +37,10 @@ class Advertisements extends BaseController
 
     //Get advertisements by company - company - Namadee
 
-    public function getAdvertisementsByCompany()
+    public function getAdvertisementsByCompany($companyId = NULL)
     {
-        if ($_SESSION['user_role'] == 'company') {
+        if ($_SESSION['user_role'] == 'company' && $companyId == NULL) {
+
             $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
             $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
 
@@ -51,6 +52,14 @@ class Advertisements extends BaseController
 
 
             $this->view('company/advertisementList', $data);
+        } else if ($_SESSION['user_role'] == 'student' && $companyId != NULL) {
+            $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+
+            $data = [
+                'advertisements' => $ads,
+                'companyID' => $companyId,
+            ];
+            $this->view('student/companyadlist', $data);
         } else {
             $this->view('error403');
         }
@@ -138,6 +147,7 @@ class Advertisements extends BaseController
             'internship_start' => $advertisement->start_date,
             'internship_end' => $advertisement->end_date,
             'jobroleList' => $this->jobroleList,
+            'buttonClass' => '',
             'formAction' => 'advertisements/update-advertisement/' . $advertisement->advertisement_id
         ];
 
@@ -241,13 +251,12 @@ class Advertisements extends BaseController
     public function showAdvertisementsDetails()
     {
         $this->view('company/advertisement');
-        $this->view('company/advertisement');
     }
 
     //load The advertisement UI of the relevant company 
     public function viewAdvertisement($advertisementId = NULL)
     {
-        if ($advertisementId == NULL) {
+    if ($advertisementId == NULL) {            
             redirect('errors');
         }
 
