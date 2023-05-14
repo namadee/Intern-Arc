@@ -7,55 +7,68 @@
 	sessionStorage.setItem("navSidebar", "<?php echo $navSidebar; ?>");
 </script>
 
-<section class="dashboard-container">
+<section class="dashboard-container main-content">
 
-	<br /><br />
-	<div class="dashboard-top">
-		<h3>My Dashboard</h3>
-		<div class="dashboard-flex-container">
-			<div class="dashboard-textarea">
+	<div class="student-details-container">
 
-				<?php foreach ($data['studentDetails'] as $studentDetails) : ?>
-					Status : <button class="dashboard-statusbtn"><?php echo $studentDetails->recruit_status ?></button>
-					<br /><br />
-					Registration Number : <?php echo $studentDetails->registration_number ?>
-					<br /><br />
-					Email : <?php echo $studentDetails->email ?>
-					<br /><br />
-					Round : <?php echo $studentDetails->round ?>
+		<div class="display-flex-col">
+			<h1>Dashboard</h2>
+				<br />
+				<div class="dash-top-right display-flex-row">
+					<span class="material-symbols-outlined">
+						campaign
+					</span>
+					<p id="dashboard-round-date-data"> Round : <?php echo $roundDataArray['roundNumber'] ?></p>
+					<span id="dashboard-round-date" class="display-flex-row">
+						2023-05-25 to 2023-05-25
+					</span>
+				</div>
+				<br />
+				<div class="student-details-left">
+					<?php foreach ($data['studentDetails'] as $studentDetails) : ?>
+						Status : <button class="dashboard-statusbtn"><?php echo $studentDetails->recruit_status ?></button>
+						<br /><br />
+						Registration Number : <?php echo $studentDetails->registration_number ?>
+						<br /><br />
+						Email : <?php echo $studentDetails->email ?>
+						<br /><br />
+						Round : <?php echo $studentDetails->round ?>
+
+					<?php endforeach; ?>
+				</div>
+		</div>
+
+		<div class="student-details-right display-flex-col">
+
+			<img src="<?php echo $_SESSION['profile_pic'] ?>">
+			<a class="common-blue-btn">View Profile</a>
+		</div>
+	</div>
+
+	<div class="display-flex-col">
+		<div class="student-dashboard-bottom display-flex-row">
+			<div class="company-dashboard-box">
+				<div>
+					<span class="blue-line"></span>
+					<p>Applied Companies </p>
+				</div>
+				<p>10</p>
 			</div>
-		<?php endforeach; ?>
-		<div class="dashboard-btnarea">
-			<a href="<?php echo URLROOT . 'profiles/student-profile'; ?>">
-				<button class="dashboard-profile-view-btn">View my profile</button></a>
+			<div class="company-dashboard-box">
+				<div>
+					<span class="blue-line"></span>
+					<p>Total Requests</p>
+				</div>
+				<p><?php echo $data['reqCount'] ?></p>
+			</div>
 		</div>
-		</div>
-	</div>
-	<br />
-	<div class="dashboard-bottom-strip">
-		<div class="bottom-strip-blue-line">
-			<p>1</p>
-		</div>
-		<div class="bottom-strip-description">
-			<p>Applied Companies</p>
-		</div>
-		<div class="bottom-strip-number">
-			<p><?php echo $data['reqCount'] ?> </p>
-		</div>
-		<div class="bottom-strip-button"><a href="<?php echo URLROOT . 'students/view-applied-company-list'; ?>"> View </a> </div>
-	</div>
-	<br />
-	<div class="dashboard-bottom-strip">
-		<div class="bottom-strip-blue-line">
-			<p>1</p>
-		</div>
-		<div class="bottom-strip-description">
-			<p>Schedule Interview</p>
-		</div>
-		<div class="bottom-strip-number">
+		<div class="company-dash-bottom-box company-dashboard-box">
+			<div>
+				<span class="blue-line"></span>
+				<p>Scheduled Interviews</p>
+			</div>
 			<p>5</p>
 		</div>
-		<div class="bottom-strip-button"><a href="<?php echo URLROOT . 'schedule'; ?>">View</a> </div>
 	</div>
 
 </section>

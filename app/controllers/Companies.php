@@ -211,7 +211,7 @@ class Companies extends BaseController
 
                 $this->companyModel->shortlistStudent($data);
                 flashMessage('shortlist_student_msg', 'Student Added to Shortlist');
-                redirect('requests/showRequestsByAd/' . $id);
+                redirect('requests/show-requests-by-ad/' . $id);
             }
         } else {
             $this->view('error403');
@@ -273,19 +273,45 @@ class Companies extends BaseController
         }
     }
 
+    //check max recruitment limit
+    public function checkMaxRecruitmentLimit($advertisementId)
+    {
+
+        $advertisement = $this->advertisementModel->getAdvertisementById($advertisementId);
+        $internCount = $advertisement->intern_count;
+        $requests = $this->requestModel->getAdvertisementByRequest($advertisementId);
+        $requestCount = count($requests);
+
+        if ($requestCount >= $internCount) {
+            echo $internCount;
+            echo $requestCount;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //RECRUIT OR REJECT STUDENT FROM DROP DOWN
     public function recruitStudent($id)
     {
+
         if ($_SESSION['user_role'] == 'company') {
             if (isset($_POST["recruit_status"])) {
                 //Handling changing status to shortist or reject
                 $data = [
+                    'advertisement_id' => trim($_POST['advertisement_id']),
                     'request_id' => trim($_POST['request_id']),
                     'recruit_status' => trim($_POST['recruit_status'])
                 ];
-
-                $this->companyModel->recruitStudent($data);
-                flashMessage('recruit_student_msg', 'Student Recruited');
+                if ($this->checkMaxRecruitmentLimit($data['advertisement_id'])) {
+                    flashMessage('recruit_student_msg', 'Maximum recruitment limit reached', 'danger-alert');
+                } else if ($data['recruit_status'] == 'recruited') {
+                    if ($this->companyModel->recruitStudent($data)) {
+                        flashMessage('recruit_student_msg', 'Student Recruited');
+                    }
+                } else {
+                    flashMessage('recruit_student_msg', 'Student Rejected', 'danger-alert');
+                }
                 redirect('companies/get-shortlisted-students/' . $id);
             }
         } else {

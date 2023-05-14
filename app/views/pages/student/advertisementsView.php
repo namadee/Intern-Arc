@@ -64,24 +64,36 @@
 						</td>
 					</tr>
 				<?php endforeach; ?>
+
 			</table>
 
-			<div class="jobrole-popup display-flex-col">
-				<form>
-					<h3>Select Three Job Roles</h3>
-					</br>
-					<?php foreach ($data['jobroleList'] as $jobroleList) : ?>
-						<div>
-							<input type="radio" name="<?php echo $jobroleList->name ?>" value="<?php echo $jobroleList->name ?>">
-							<label for="jobrole"><?php echo $jobroleList->name ?></label>
-						</div>
-					<?php endforeach; ?>
-					</br>
-					<button class="common-blue-btn" type="submit">Submit</button>
+			<div id="my-div" class="common-modal-box">
+				<div class="std-batches-add display-flex-col">
 
-				</form>
+
+					<form action="" id="add-student-batch" class="display-flex-col common-modal-box-form" method="POST">
+						<a href="" id="modal-box-close">
+							<span class="material-symbols-outlined" class="common-modal-close">
+								close
+							</span></a>
+						<h3>Select Three Job Roles</h3>
+						<br>
+						<div class="display-flex-col">
+							<?php foreach ($data['jobroleList'] as $jobroleList) : ?>
+								<div>
+									<input type="checkbox" name="<?php echo $jobroleList->name ?>" value="<?php echo $jobroleList->name ?>">
+									<label for="jobrole"><?php echo $jobroleList->name ?></label>
+								</div>
+							<?php endforeach; ?>
+						</div>
+						<button type="submit" name="add_form_submit" class="common-blue-btn" id="modal-submit-btn" onclick='return validateForm();'>Add</button>
+					</form>
+					<span id="validate-error"></span>
+				</div>
+
 
 			</div>
+
 </section>
 
 <?php require APPROOT . '/views/includes/footer.php'; ?>

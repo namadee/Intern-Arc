@@ -337,6 +337,10 @@ class Pdc extends BaseController
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //send current date to notification table
+            //notification view status
+            //notification msg
+
 
             $round1StartDate = trim($_POST['first_round_start']);
             $round1EndDate = trim($_POST['first_round_end']);
