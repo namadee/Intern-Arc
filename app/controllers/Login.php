@@ -157,7 +157,7 @@ class Login extends BaseController
         Session::unset('systemAccess');
         Session::unset('batchYear');
         Session::unset('studentStatus');
-        Session::unset('roundNotification');
+        // Session::unset('roundNotification');
         Session::destroy();
         redirect('login');
     }
@@ -324,8 +324,8 @@ class Login extends BaseController
         }
 
         $roundTableData = $this->pdcModel->getRoundPeriods();
-        $round1Notification = $this->pdcModel->getRound1StartedNotification();
-        $round2Notification = $this->pdcModel->getRound2StartedNotification();
+        // $round1Notification = $this->pdcModel->getRound1StartedNotification();
+        // $round2Notification = $this->pdcModel->getRound2StartedNotification();
 
 
         //Get Round Periods Details
@@ -347,7 +347,7 @@ class Login extends BaseController
             $this->pdcModel->setAdvertisementRoundtoOne($roundNumber, $currentBatchYear);
 
 
-            Session::setValues('roundNotification', $round1Notification);
+            // Session::setValues('roundNotification', $round1Notification);
 
             //Update all Students System Access to 1 automatically when the round starts
             $this->studentModel->updateStudentAccess(1);
@@ -363,12 +363,12 @@ class Login extends BaseController
             $this->setAdvertisementRound();
 
 
-            Session::setValues('roundNotification', $round2Notification);
+            // Session::setValues('roundNotification', $round2Notification);
         } else {
             //Either round dates are not set or currentDate in not during the round period
             $roundNumber = NULL; //No need of constraints
             Session::setValues('systemAccess', 0);
-            Session::setValues('roundNotification', '');
+            // Session::setValues('roundNotification', '');
         }
     }
 
