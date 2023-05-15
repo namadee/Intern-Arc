@@ -9,6 +9,8 @@ class Students extends BaseController
     public $studentDetails;
     public $requestModel;
     public $advertisementModel;
+    public $jobroleModel;
+    public $pdcModel;
 
     public function __construct()
     {
@@ -16,22 +18,41 @@ class Students extends BaseController
         $this->userModel = $this->model('User');
         $this->requestModel = $this->model('Request');
         $this->advertisementModel = $this->model('Advertisement');
+        $this->jobroleModel = $this->model('Jobrole');
+        $this->pdcModel = $this->model('Pdc');
     }
 
     //Student User Dashboard
-    public function index()
+    public function index($pg = NULL)
     {
+        $jobroleList = $this->jobroleModel->getJobroles();
         $student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
         $reqCount  = $this->requestModel->getRequestCountPerStudent($student_id);
         $studentDetails = $this->studentModel->getStudentData($student_id);
+        //Round 2 Job role
+        if ($pg == 'round2') {
 
-        $data2 = [
-            'studentDetails' => $studentDetails
-        ];
+            if ($this->pdcModel->getStudentFromStdJobrole($student_id)) {
+                redirect('students');
+            } else {
+                $data = [
+                    'studentDetails' => $studentDetails,
+                    'reqCount' => $reqCount,
+                    'jobroleSelectModalClass' => '',
+                    'jobroleList' => $jobroleList
+                ];
+            }
+        } else {
 
-        $data['reqCount'] = $reqCount;
 
-        $data = array_merge($data, $data2);
+            $data = [
+                'studentDetails' => $studentDetails,
+                'reqCount' => $reqCount,
+                'jobroleSelectModalClass' => 'hide-element',
+                'jobroleList' => $jobroleList
+            ];
+        }
+
         $this->view('student/dashboard', $data);
     }
 
@@ -315,21 +336,23 @@ class Students extends BaseController
         }
     }
 
-    public function companyProfile()
+
+
+    public function setStudentJobRole()
     {
+        //Entering selected Job Roles
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $selectedJobRoleIDs = $_POST['jobRoleID'];
 
-        $this->view('student/companyprofile');
-    }
+            $studentID = $this->userModel->getStudentUserId($_SESSION['user_id']);
+            foreach ($selectedJobRoleIDs as $jobRoleID) {
+                $this->pdcModel->setStudentJobRole($studentID, $jobRoleID);
+            }
+            flashMessage('job_role_msg', 'Job Roles Updated Successfully!');
+            redirect('students');
+        } else {
 
-    public function test()
-    {
-
-        $this->view('student/test');
-    }
-
-    public function editProfile()
-    {
-
-        $this->view('student/editprofile');
+            redirect('students');
+        }
     }
 }

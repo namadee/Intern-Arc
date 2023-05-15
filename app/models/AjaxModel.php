@@ -144,12 +144,12 @@ class AjaxModel
     public function searchAdvertisementsByCompany($companyId, $searchTerm)
     {
         $batchYear = $_SESSION['batchYear'];
-    
+
         $this->db->query('SELECT * FROM advertisement_tbl WHERE company_id_fk = :company_id AND batch_year = :batchYear AND position LIKE :searchTerm');
         $this->db->bind(':company_id', $companyId);
         $this->db->bind(':batchYear', $batchYear);
-        $this->db->bind(':searchTerm', '%'.$searchTerm.'%');
-        
+        $this->db->bind(':searchTerm', '%' . $searchTerm . '%');
+
         $result = $this->db->resultset();
 
         if ($this->db->rowCount() > 0) {
@@ -157,6 +157,37 @@ class AjaxModel
         } else {
             return false;
         }
-       
+    }
+
+
+    public function searchAdvertisementsByPosition($companyID, $position)
+    {
+        $batchYear = $_SESSION['batchYear'];
+        //$round = $roundDataArray['roundNumber'];
+        $this->db->query('SELECT * FROM advertisement_tbl WHERE position LIKE :position AND batch_year = :batchYear AND company_id_fk = :company_id');
+        $this->db->bind(':position', '%' . $position . '%');
+        $this->db->bind(':batchYear', $batchYear);
+        $this->db->bind(':company_id', $companyID);
+
+
+        // $this->db->bind(':round', $round);
+        return $this->db->resultset();
+    }
+
+    public function searchShortlistedAdvertisementByPosition($companyID, $position)
+    {
+
+        $status = 'shortlisted';
+        $this->db->query('SELECT advertisement_tbl.position, advertisement_tbl.intern_count, student_requests_tbl.student_request_id, student_requests_tbl.student_id, student_requests_tbl.status, student_requests_tbl.advertisement_id, student_requests_tbl.round  
+            FROM advertisement_tbl 
+            JOIN student_requests_tbl 
+            ON advertisement_tbl.advertisement_id = student_requests_tbl.advertisement_id
+            WHERE advertisement_tbl.company_id_fk = :companyID AND advertisement_tbl.position LIKE :position
+            AND student_requests_tbl.status = :status');
+        $this->db->bind(':position', '%' . $position . '%');
+        $this->db->bind(':status', $status);
+        $this->db->bind(':companyID', $companyID);
+
+        return $this->db->resultset();
     }
 }

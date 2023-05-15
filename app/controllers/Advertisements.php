@@ -8,6 +8,8 @@ class Advertisements extends BaseController
     public $userModel;
     public $companyData;
     public $companyModel;
+    public $pdcModel;
+    public $studentModel;
 
 
     public function __construct()
@@ -18,6 +20,8 @@ class Advertisements extends BaseController
         $this->jobroleList = $this->jobroleModel->getJobroles();
         $this->userModel = $this->model('User');
         $this->companyData = $this->advertisementModel->getCompanyByAd();
+        $this->pdcModel = $this->model('Pdc');
+        $this->studentModel = $this->model('Student');
     }
 
     public function index()
@@ -243,21 +247,63 @@ class Advertisements extends BaseController
 
                 'status' => 0
             ];
+
             $this->view('student/advertisements', $data);
         }
 
         //Filter ads by round, batchYear and approved status
         //Must filter by round also
-        $advertisementList = $this->advertisementModel->getAdvertisementsForStudents($roundDataArray['roundNumber'], $_SESSION['batchYear']);
+        if ($roundDataArray['roundNumber'] == 1) {
+            $advertisementList = $this->advertisementModel->getAdvertisementsForStudents($roundDataArray['roundNumber'], $_SESSION['batchYear']);
 
-        $data = [
+            $data = [
 
-            'advertisemetList' => $advertisementList,
-            'roundNumer' => $roundDataArray['roundNumber'],
-            'status' => 1
-        ];
+                'advertisemetList' => $advertisementList,
+                'roundNumer' => $roundDataArray['roundNumber'],
+                'status' => 1
+            ];
 
-        $this->view('student/advertisements', $data);
+            $this->view('student/advertisements', $data);
+        } else {
+
+            $selectedJobRoleName = array();
+            // Round number is 2
+            $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
+
+            // Filter ads from selected Job roles form std_jbrole_tbl
+            $userSelectedJobRoles = $this->pdcModel->getSelectedJobRoles($studentId);
+            // return 3 rows
+            foreach ($userSelectedJobRoles as $userSelectedJobRole) {
+                $jobrole =  $this->pdcModel->getJobroleName($userSelectedJobRole->jobrole_id);
+                $selectedJobRoleName[] = $jobrole->name;
+            }
+
+            // Get three job role names
+            $jobrole1 = $selectedJobRoleName[0];
+            $jobrole2 = $selectedJobRoleName[1];
+            $jobrole3 = $selectedJobRoleName[2];
+
+            // Get advertisements for the selected job roles
+
+            $data = [
+                'batchYear' => $_SESSION['batchYear'],
+                'position1' => $jobrole1,
+                'position2' => $jobrole2,
+                'position3' => $jobrole3
+            ];
+
+            $advertisementList = $this->pdcModel->getFilteredAds($data);
+
+            $data = [
+
+                'advertisemetList' => $advertisementList,
+                'roundNumer' => $roundDataArray['roundNumber'],
+                'status' => 1
+            ];
+
+            $this->view('student/advertisements', $data);
+
+        }
     }
 
     //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
@@ -273,9 +319,9 @@ class Advertisements extends BaseController
     //load The advertisement UI of the relevant company 
     public function viewAdvertisement($advertisementId = NULL)
     {
-  //company user access
+        //company user access
         $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
-$text = explode("\r\n", trim($advertisement->requirements));
+        $text = explode("\r\n", trim($advertisement->requirements));
         $length = count($text);
         $emptyArray = array();
         for ($x = 0; $x < $length; $x++) {
@@ -313,6 +359,8 @@ $text = explode("\r\n", trim($advertisement->requirements));
             'required_year' => $advertisement->applicable_year,
             'internship_start' => $advertisement->start_date,
             'internship_end' => $advertisement->end_date,
+            'companyName' => $advertisement->company_name,
+            'buttonClass' => $btnClass,
         ];
 
         $this->view('company/advertisement', $data);

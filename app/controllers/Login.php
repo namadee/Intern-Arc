@@ -40,39 +40,71 @@ class Login extends BaseController
 
             // Check for user availability
             $userDetails = $this->userModel->getUserByEmail($data['email']);
+
             if ($userDetails) {
                 // User Found
                 if ($this->userModel->login($data['email'], $data['password'])) {
-                    //Password is correct
-                    $this->createSession($userDetails);
-                    //Get User Role to direct them to the Dashboard
-                    $userRole = Session::getUserRole();
+                    if ($this->userModel->checkAccess($data['email'], $data['password'])) {
+                        //Password is correct
+                        $this->createSession($userDetails);
+                        
+                        $this->setroundTableToNull();
+                        
+                        //Get User Role to direct them to the Dashboard
+                        $userRole = Session::getUserRole();
 
-                    switch ($userRole) {
-                        case "pdc":
-                            flashMessage('login_success', 'Login Successfully!');
-                            redirect('pdc');
-                            break;
-                        case "student":
+                        switch ($userRole) {
+                            case "pdc":
+                                flashMessage('login_success', 'Login Successfully!');
+                                redirect('pdc');
+                                break;
+                            case "student":
 
-                            //Check whether the student is rejected or not
-                            //To restrict the access to apply for the advertisements
-                            $studentDetails = $this->pdcModel->getStudentFromUserID($userDetails->user_id);
-                            if ($studentDetails->status == 0) {
-                                Session::setValues('studentStatus', 0);
-                            } else {
-                                Session::setValues('studentStatus', 1);
-                            }
+                                // Check whether the student is loggin in the second Round
+                                //Check whether the student is rejected or not
+                                //To restrict the access to apply for the advertisements
+                                $studentDetails = $this->pdcModel->getStudentFromUserID($userDetails->user_id);
+                                if ($studentDetails->status == 0) {
+                                    // Going to second round
+                                    // Student status is still pending
+                                    Session::setValues('studentStatus', 0);
+                                    if ($this->isRoundTwoSetFunction()) {
+                                        //Round 2 is set
+                                        // Now we need to check whether the student has selected 3 job roles
+                                        if ($this->pdcModel->getStudentFromStdJobrole($studentDetails->student_id)) {
+                                            //Student has selected 3 job roles
+                                            redirect('students');
+                                        } else {
+                                            //Student has not selected 3 job roles
+                                            //Redirect to the job role selection page
+                                            redirect('students/index/round2');
+                                        }
+                                    } else {
+                                        //Round 2 is not set yet
+                                        redirect('students');
+                                    }
+                                } else {
+                                    //Student status is recruited so can not apply for ads
+                                    Session::setValues('studentStatus', 1);
+                                    redirect('students');
+                                }
+                                break;
+                            case "company":
+                                redirect('companies');
+                                break;
+                            default:
+                                redirect('admin');
+                        }
+                    } else {
 
-                            redirect('students');
-                            break;
-                        case "company":
-                            redirect('companies');
-                            break;
-                        default:
-                            redirect('admin');
+                        $data = [
+                            'error_class' => 'signin-error-alert',
+                            'error_msg' => 'You dont have access to the system yet!',
+                            'input_class' => 'input-error'
+                        ];
                     }
                 } else {
+
                     //Password is incorrect
                     $data = [
                         'error_class' => 'signin-error-alert',
@@ -363,6 +395,40 @@ class Login extends BaseController
                 // set round to NULL which means the advertisement is closed
                 $this->pdcModel->setAdvertisementRoundNum($advertisement->advertisement_id, NULL);
             }
+        }
+    }
+
+    public function isRoundTwoSetFunction()
+    {
+        //Get Current Batch year
+        $currentBatchYear = $this->studentModel->getCurrentBatchYear();
+
+        if (!$currentBatchYear) {
+            // skip if current batch year is not selected yet
+            return false;
+        }
+
+        $roundTableData = $this->pdcModel->getRoundPeriods();
+        Session::setValues('roundTableData', $roundTableData);
+        date_default_timezone_set('Asia/Colombo');
+        $currentDate = date("Y-m-d");
+        $isRoundTwoSet = isCurrentDateWithinRound($roundTableData[1]->start_date, $roundTableData[1]->end_date);
+
+        if ($isRoundTwoSet) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //IF the current Date is > the round 2 end date, set round dates to null
+    public function setroundTableToNull()
+    {
+        $currentDate = date("Y-m-d");
+        $roundTableData = $this->pdcModel->getRoundPeriods();
+
+        if ($roundTableData[1]->end_date != NULL && $currentDate > $roundTableData[1]->end_date) {
+            $this->pdcModel->setRoundTableToNull();
         }
     }
 }

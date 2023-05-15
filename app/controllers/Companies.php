@@ -152,10 +152,10 @@ class Companies extends BaseController
     }
 
     //View Applied Company List - STUDENT
-    // public function viewAppliedCompanyList()
-    // {
-    //     $this->view('student/appliedcompanies');
-    // }
+    public function viewAppliedCompanyList()
+    {
+        $this->view('student/appliedcompanies');
+    }
 
     //View Applied Company List - STUDENT
     public function viewCompanyDetails()
@@ -312,13 +312,16 @@ class Companies extends BaseController
                 ];
                 if ($this->checkMaxRecruitmentLimit($data['advertisement_id'])) {
                     flashMessage('recruit_student_msg', 'Maximum recruitment limit reached', 'danger-alert');
-                } else if ($data['recruit_status'] == 'recruited') {
-                    if ($this->companyModel->recruitStudent($data)) {
-                        flashMessage('recruit_student_msg', 'Student Recruited');
-                    }
                 } else {
-                    flashMessage('recruit_student_msg', 'Student Rejected', 'danger-alert');
+                    if ($data['recruit_status'] == 'recruited') {
+                        $this->companyModel->recruitStudent($data);
+                        flashMessage('recruit_student_msg', 'Student Recruited');
+                    } else {
+                        $this->companyModel->recruitStudent($data);
+                        flashMessage('recruit_student_msg', 'Student Rejected', 'danger-alert');
+                    }
                 }
+
                 redirect('companies/get-shortlisted-students/' . $id);
             }
         } else {

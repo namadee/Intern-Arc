@@ -26,6 +26,28 @@ function validateContact(event) {
   }
 }
 
+const indexValidateMsg = document.getElementById("validate-error-indexNumber");
+const registerStudentFormElement = document.getElementById(
+  "student-register-form"
+);
+
+let indexNumberElement = document.getElementById("index_number");
+
+if (registerStudentFormElement) {
+  registerStudentFormElement.addEventListener("submit", validateIndexNumber);
+}
+
+function validateIndexNumber(event) {
+  const indexNum = indexNumberElement.value;
+  if (indexNum.length != 8) {
+    indexValidateMsg.textContent = "*Index Number must have 8 numbers!";
+    event.preventDefault();
+  } else {
+    indexValidateMsg.textContent = "";
+    event.submitter.disabled = true;
+  }
+}
+
 // 2. Showing Upload File Name
 
 const uploadFileName = document.getElementById("form-file-name");
@@ -387,8 +409,7 @@ function searchRequestByYearRoundIS() {
   }
 }
 
-
-// 9  Chnage password 
+// 9  Chnage password
 
 //Toggle Password Visibility Function - Forgot Password functionality
 const toggleIconChangePwd = document.getElementById("toggleIconChangePwd");
@@ -415,8 +436,10 @@ function togglePasswordVisibilityUser() {
 }
 
 //Validate Password
-const changePwdForm =  document.getElementById("change_password_pdc");
-const ChangePasswordValidateError = document.getElementById("changePwd_validate_error");
+const changePwdForm = document.getElementById("change_password_pdc");
+const ChangePasswordValidateError = document.getElementById(
+  "changePwd_validate_error"
+);
 if (changePwdForm) {
   changePwdForm.addEventListener("submit", checkConfirmPasswordFunction);
 }
@@ -426,20 +449,25 @@ const upperCaseFormat = new RegExp("(?=.*[A-Z])");
 
 function checkConfirmPasswordFunction(event) {
   const passwordInput = document.getElementById("user_new_password").value;
-  const confirmPasswordInput =
-    document.getElementById("user_confirm_password").value;
+  const confirmPasswordInput = document.getElementById(
+    "user_confirm_password"
+  ).value;
 
-  if (specialCharFormat.test(passwordInput) && upperCaseFormat.test(passwordInput)) {
+  if (
+    specialCharFormat.test(passwordInput) &&
+    upperCaseFormat.test(passwordInput)
+  ) {
     console.log("Special char found and Have Uppercase");
     if (passwordInput != confirmPasswordInput) {
       event.preventDefault();
-      ChangePasswordValidateError.textContent = "The Confirm Password does not match";
+      ChangePasswordValidateError.textContent =
+        "The Confirm Password does not match";
       ChangePasswordValidateError.style.display = "block";
     }
   } else {
     event.preventDefault();
     ChangePasswordValidateError.textContent =
       "The New Password must contain atleast 1 Uppercase Letter and any Special Character";
-      ChangePasswordValidateError.style.display = "block";
+    ChangePasswordValidateError.style.display = "block";
   }
 }

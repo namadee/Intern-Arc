@@ -56,32 +56,7 @@
 
 			</table>
 
-			<div id="my-div" class="common-modal-box">
-				<div class="std-batches-add display-flex-col">
 
-
-					<form action="" id="add-student-batch" class="display-flex-col common-modal-box-form" method="POST">
-						<a href="" id="modal-box-close">
-							<span class="material-symbols-outlined" class="common-modal-close">
-								close
-							</span></a>
-						<h3>Select Three Job Roles</h3>
-						<br>
-						<div class="display-flex-col">
-							<?php foreach ($data['jobroleList'] as $jobroleList) : ?>
-								<div>
-									<input type="checkbox" name="<?php echo $jobroleList->name ?>" value="<?php echo $jobroleList->name ?>">
-									<label for="jobrole"><?php echo $jobroleList->name ?></label>
-								</div>
-							<?php endforeach; ?>
-						</div>
-						<button type="submit" name="add_form_submit" class="common-blue-btn" id="modal-submit-btn" onclick='return validateForm();'>Add</button>
-					</form>
-					<span id="validate-error"></span>
-				</div>
-
-
-			</div>
 
 </section>
 

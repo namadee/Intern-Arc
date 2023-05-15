@@ -7,7 +7,7 @@
     <div class="display-flex-col student-requests-list-container">
         <div class="top-container display-flex-row">
             <h2>Applied Adevertisements - Round <?php echo $data['round']; ?></h2>
-            <a href="" class="common-blue-btn"> View Profile</a>
+            <a href="<?php echo URLROOT.'profiles/view-student-profile/'.$data['requestsList'][0]->user_id ?>" class="common-blue-btn"> View Profile</a>
         </div>
 
         <div class="middle-container display-flex-row">

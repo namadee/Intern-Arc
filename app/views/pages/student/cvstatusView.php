@@ -12,7 +12,7 @@
 	<div class="cv-status-top">
 
 		<div class="cv-status-flex-container" style="margin: auto;">
-			<div style="width: 40%;" class="csv-company-bottom">
+			<div style="width: 40%; margin: auto; margin-top: 5%;" class="csv-company-bottom">
 				<h3 style="text-align: center;">Upload your CV</h3>
 				<p style="color:var(--DangerColor); text-align: center; margin-bottom: 2rem;">Please note that only PDF files are allowed to upload</p>
 				<form  action="<?php echo URLROOT . "students/uploadCV"; ?>" name="uploadCv" enctype="multipart/form-data" method="POST" class="display-flex-col" id="csvFormRegistration">

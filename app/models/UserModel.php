@@ -120,6 +120,21 @@ class UserModel extends Database
       return false;
     }
   }
+  // Login Users [return true/false]
+  public function checkAccess($email, $password)
+  {
+    $this->db->query("SELECT * FROM user_tbl WHERE email = :email AND system_access = 1 AND account_status = 'active'");
+    $this->db->bind(':email', $email);
+
+        $this->db->single();
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+  }
+
+
 
 
   //Update User Details - Main User Table

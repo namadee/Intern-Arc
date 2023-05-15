@@ -11,9 +11,10 @@ class ComplaintModel
 
 
 
-    public function getComplaint()
+    public function getComplaint($userID)
     {
-        $this->db->query('SELECT * FROM complaint_tbl');
+        $this->db->query('SELECT * FROM complaint_tbl WHERE user_id_fk = :userID');
+        $this->db->bind(':userID', $userID);
 
         return $this->db->resultset();
     }

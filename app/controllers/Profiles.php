@@ -686,6 +686,46 @@ class Profiles extends BaseController
         }
     }
 
+
+    // To view student profiles
+
+    public function viewStudentProfile($userID = NULL)
+    {
+
+        if ($userID == NULL) {
+            redirect('errors');
+        }
+        $studentId = $this->userModel->getStudentUserId($userID);
+        $profile_image_name = $this->userModel->getProfileImageName($userID);
+        $studentProfile = $this->studentModel->getStudentProfileData($studentId);
+
+        if ($studentProfile->cv == NULL) {
+            $cv = 'javascript:void(0)';
+        }else{
+            $cv = URLROOT . $studentProfile->cv;
+        }
+
+        $data = [
+            'student_id' => $studentId,
+            'experience' => $studentProfile->experience,
+            'interests' => $studentProfile->interests,
+            'qualifications' => $studentProfile->qualifications,
+            'school' => $studentProfile->school,
+            'contact' => $studentProfile->contact,
+            'stream' => $studentProfile->stream,
+            'profile_description' => $studentProfile->profile_description,
+            'extracurricular' => $studentProfile->extracurricular,
+            'profile_name' => $studentProfile->profile_name,
+            'github_link' => $studentProfile->github_link,
+            'linkedin_link' => $studentProfile->linkedin_link,
+            'personal_email' => $studentProfile->personal_email,
+            'image' => $profile_image_name->profile_pic,
+            'cv' => $cv
+        ];
+
+        $this->view('student/viewStudentProfile', $data);
+    }
+
     // public function EditffffStudentProfileDetails()
     // {
 

@@ -35,7 +35,7 @@
                         <tr>
                             <td class="view-companies-table-data"><?php echo $ads->position ?></td>
                             <td class="view-companies-table-data"><?php echo $ads->intern_count ?></td>
-                            <td class="view-companies-table-data"><a href="<?php echo URLROOT . 'advertisements/view-advertisement/' . $data['companyID']; ?>"><button class="common-view-btn">view</button></a></td>
+                            <td class="view-companies-table-data"><a href="<?php echo URLROOT . 'advertisements/view-advertisement/' . $ads->advertisement_id; ?>"><button class="common-view-btn">view</button></a></td>
 
                         </tr>
 

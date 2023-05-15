@@ -23,12 +23,18 @@ class RequestModel
 
     public function addStudentRequest($data)
     {
-        $this->db->query('INSERT INTO student_requests_tbl (student_id,advertisement_id, batch_year)
-        VALUES (:student_id, :advertisement_id, :batch_year)');
+        //Get the round number
+        $roundDataArray = roundCheckFunction();
+
+        $round =  $roundDataArray['roundNumber'];
+
+        $this->db->query('INSERT INTO student_requests_tbl (student_id,advertisement_id, batch_year, round)
+        VALUES (:student_id, :advertisement_id, :batch_year, :round)');
 
         $this->db->bind('student_id', $data['student_id']);
         $this->db->bind('advertisement_id', $data['advertisement_id']);
         $this->db->bind('batch_year', $data['batch_year']);
+        $this->db->bind('round', $round);
 
         //Execute
         if ($this->db->execute()) {
@@ -95,10 +101,11 @@ class RequestModel
 
     public function getStudentByRequest($advertisementId)
     {
-        $this->db->query('SELECT student_tbl.profile_name , student_tbl.stream ,student_tbl.personal_email, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round , student_requests_tbl.recruit_status  
+        $this->db->query('SELECT user_tbl.user_id,student_tbl.profile_name , student_tbl.stream ,student_tbl.personal_email, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round , student_requests_tbl.recruit_status  
         FROM student_tbl 
         JOIN student_requests_tbl 
         ON student_tbl.student_id = student_requests_tbl.student_id
+        JOIN user_tbl ON user_tbl.user_id = student_tbl.user_id_fk
         WHERE student_requests_tbl.advertisement_id = :advertisement_id');
         $this->db->bind(':advertisement_id', $advertisementId);
 
@@ -180,5 +187,4 @@ class RequestModel
 
         return $count;
     }
-
 }

@@ -44,7 +44,7 @@
             </td>
             <td><?php echo $students->personal_email ?></td>
             <td>
-              <a class="common-view-btn" href="<?php echo URLROOT . 'requests/show-requests-by-ad/' . $data['advertisement_id']; ?>">View</a>
+              <a class="common-view-btn" href="<?php echo URLROOT . 'profiles/view-student-profile/' . $students->user_id ?>">View</a>
             </td>
             <td>
 

@@ -78,31 +78,42 @@ if (studentCV) {
   studentCV.addEventListener("change", showFileName);
 }
 
-
 function showFileName(event) {
   let filename = event.srcElement.files[0].name;
   uploadFileName.textContent = filename;
 }
 
-	function validateForm() {
-		// Get all the checkboxes
-		let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const jobRoleSelectForm = document.getElementById("job-role-select-form");
 
-		// Count the number of checkboxes that are checked
-		let checkedCount = 0;
-		for (let i = 0; i < checkboxes.length; i++) {
-			if (checkboxes[i].checked) {
-				checkedCount++;
-			}
-		}
+if (jobRoleSelectForm) {
+  jobRoleSelectForm.addEventListener("submit", validateForm);
+}
 
-		// Make sure exactly 3 checkboxes are checked
-		if (checkedCount !== 3) {
-			alert("Please select exactly three job roles.");
-			return false; // prevent form submission
-		}
+//Only 3 Job roles selected
 
-		// If we get here, the form is valid
-		return true;
-	}
-	// document.getElementById("modal-box-close").addEventListener("click", function() {
+function validateForm(event) {
+  // Get all the checkboxes
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  // Count the number of checkboxes that are checked
+  let checkedCount = 0;
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      checkedCount++;
+    }
+  }
+
+  // Make sure exactly 3 checkboxes are checked
+  if (checkedCount === 3) {
+    const confirmation = confirm(
+      "Are you sure you want to submit with these job roles? You can't change this again."
+    );
+
+    if (!confirmation) {
+      event.preventDefault(); // prevent form submission
+    }
+  } else {
+    event.preventDefault(); // prevent form submission
+    alert("Please select exactly 3 job roles.");
+  }
+}

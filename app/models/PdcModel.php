@@ -86,7 +86,7 @@ class PdcModel
     {
 
         $this->db->query('SELECT * FROM advertisement_tbl WHERE batch_year = :batchYear');
-        
+
         $this->db->bind(':batchYear', $batchYear);
         return $this->db->resultset();
     }
@@ -104,16 +104,18 @@ class PdcModel
     }
 
     //After the second round starts the students who are not recruited will be rejected
-    
+
     //Get all the students
-    public function getStudents($batchYear){
+    public function getStudents($batchYear)
+    {
         $this->db->query('SELECT * FROM student_tbl WHERE batch_year = :batchYear');
         $this->db->bind(':batchYear', $batchYear);
         return $this->db->resultset();
     }
 
     // Get the student status
-    public function getStudentStatus($studentID){
+    public function getStudentStatus($studentID)
+    {
         //student final status either 1 or 0
         // 1 means Recruited and 0 means not pending
         $this->db->query('SELECT status FROM student_tbl WHERE student_id = :studentID');
@@ -121,9 +123,10 @@ class PdcModel
         $result = $this->db->single();
         return $result;
     }
-    
+
     //get the student from userID
-    public function getStudentFromUserID($userID){
+    public function getStudentFromUserID($userID)
+    {
         $this->db->query('SELECT * FROM student_tbl WHERE user_id_fk = :userID');
         $this->db->bind(':userID', $userID);
         $result = $this->db->single();
@@ -131,4 +134,78 @@ class PdcModel
     }
 
 
+    public function getStudentFromStdJobrole($studentID)
+    {
+        $this->db->query('SELECT * FROM student_jobrole_tbl WHERE student_id = :studentID');
+        $this->db->bind(':studentID', $studentID);
+
+
+        $result = $this->db->resultset();
+        //Execute
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setStudentJobRole($studentID, $jobroleID)
+    {
+        $this->db->query("INSERT INTO student_jobrole_tbl (student_id, jobrole_id) VALUES (:studentID, :jobroleID)");
+        $this->db->bind(':studentID', $studentID);
+        $this->db->bind(':jobroleID', $jobroleID);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function getSelectedJobRoles($studentID)
+    {
+        $this->db->query('SELECT * FROM student_jobrole_tbl WHERE student_id = :studentID');
+        $this->db->bind(':studentID', $studentID);
+
+
+        $result = $this->db->resultset();
+        //Execute
+        return $result;
+    }
+
+    public function getJobroleName($jobroleID)
+    {
+        $this->db->query('SELECT * FROM jobrole_tbl WHERE jobrole_id = :jobroleID');
+        $this->db->bind(':jobroleID', $jobroleID);
+
+        $result = $this->db->single();
+        //Execute
+        return $result;
+    }
+
+    public function getFilteredAds($data)
+    {
+        $this->db->query('SELECT * FROM advertisement_tbl 
+        JOIN company_tbl ON advertisement_tbl.company_id_fk = company_tbl.company_id
+        WHERE batch_year = :batchYear AND advertisement_tbl.status = "approved" AND round = 2 AND (position = :position1 OR position = :position2 OR position = :position3)');
+        $this->db->bind(':batchYear', $data['batchYear']);
+        $this->db->bind(':position1', $data['position1']);
+        $this->db->bind(':position2', $data['position2']);
+        $this->db->bind(':position3', $data['position3']);
+
+        $result = $this->db->resultset();
+        // Execute
+        return $result;
+    }
+
+    public function setRoundTableToNull()
+    {
+        $this->db->query('UPDATE round_tbl SET start_date = NULL, end_date = NULL');
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

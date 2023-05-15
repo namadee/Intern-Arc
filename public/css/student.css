@@ -740,7 +740,7 @@ body {
   padding: 30px;
   width: 80%;
   height: 60%;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .dashboard-btnarea {
@@ -1477,7 +1477,7 @@ body {
   gap: 0.3rem;
   font-weight: 500;
   width: 7rem;
-  padding: 0 0.5rem;
+  /* padding: 0 0.5rem; */
 }
 
 #dashboard-round-date {
@@ -1507,3 +1507,6 @@ body {
   padding: 0.5rem;
 }
 
+.hide-element{
+  display: none;
+}
