@@ -34,6 +34,7 @@
           <th>Student Name</th>
           <th>Student Email</th>
           <th>View</th>
+          <th>Round</th>
           <th>Shortlisting Status</th>
           <th>Recruitment Status</th>
           <th>Shortlist / Reject</th>
@@ -46,9 +47,11 @@
             <td><?php echo $students->profile_name ?></p>
             </td>
             <td><?php echo $students->personal_email ?></td>
+
             <td>
               <a class="common-view-btn" href="<?php echo URLROOT . 'profiles/view-student-profile/' . $students->user_id ?>">View</a>
             </td>
+            <td><?php echo $students->round ?></td>
             <td>
               <div style="width: fit-content;" class=" common-status display-flex-row advertisement-status <?php echo $students->status == 'pending' ? 'yellow-status-font' : ($students->status == 'rejected' ? 'red-status-font' : ''); ?> ">
 

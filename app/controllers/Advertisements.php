@@ -241,16 +241,6 @@ class Advertisements extends BaseController
         $roundDataArray = roundCheckFunction();
 
         // IF roundNumber is not set
-
-        if ($roundDataArray['roundNumber'] == NULL) {
-            $data = [
-
-                'status' => 0
-            ];
-
-            $this->view('student/advertisements', $data);
-        }
-
         //Filter ads by round, batchYear and approved status
         //Must filter by round also
         if ($roundDataArray['roundNumber'] == 1) {
@@ -264,7 +254,7 @@ class Advertisements extends BaseController
             ];
 
             $this->view('student/advertisements', $data);
-        } else {
+        } else if ($roundDataArray['roundNumber'] == 2) {
 
             $selectedJobRoleName = array();
             // Round number is 2
@@ -302,7 +292,13 @@ class Advertisements extends BaseController
             ];
 
             $this->view('student/advertisements', $data);
+        } else {
+            $data = [
 
+                'status' => 0
+            ];
+
+            $this->view('student/advertisements', $data);
         }
     }
 

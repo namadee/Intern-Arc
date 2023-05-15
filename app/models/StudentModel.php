@@ -347,6 +347,35 @@ class StudentModel
     }
 
 
+    public function checkInterviewBookedRound2($adId, $std_id)
+    {
+        $this->db->query('SELECT * FROM interviewslots_tbl WHERE advertisement_id_fk = :advertisement_id_fk AND student_id_fk = :student_id_fk');
+        $this->db->bind(':advertisement_id_fk', $adId);
+        $this->db->bind(':student_id_fk', $std_id);
+
+        $this->db->single();
+        if ($this->db->rowCount() == 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    // 17 Deselect all batch years - Ruchira
+    public function deselectAllBatchYears()
+    {
+        // Deselect all the batch years available
+        $this->db->query('UPDATE student_batch_tbl SET is_selected = 0 ');
+
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // 18. Update is_selected status of the batch year - Ruchira
     public function updateCurrentBatchYear($batchYear)
     {
@@ -391,6 +420,20 @@ class StudentModel
         $this->db->query('UPDATE student_tbl SET cv = :cv WHERE student_id = :studentID');
         $this->db->bind(':cv', $data['cv']);
         $this->db->bind(':studentID', $data['studentID']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setStatusofStudent($studentID, $status)
+    {
+        // Set status 1 for student
+        $this->db->query('UPDATE student_tbl SET status = :status WHERE student_id = :studentID');
+        $this->db->bind(':studentID', $studentID);
+        $this->db->bind(':status', $status);
 
         if ($this->db->execute()) {
             return true;

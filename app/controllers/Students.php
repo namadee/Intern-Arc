@@ -25,9 +25,15 @@ class Students extends BaseController
     //Student User Dashboard
     public function index($pg = NULL)
     {
+
+        //GET THE ROUND Number
+        $roundDataArray = roundCheckFunction();
+
+        $round =  $roundDataArray['roundNumber'];
+
         $jobroleList = $this->jobroleModel->getJobroles();
         $student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
-        $reqCount  = $this->requestModel->getRequestCountPerStudent($student_id);
+        $reqCount  = $this->requestModel->getRequestCountPerStudent($student_id, $round);
         $studentDetails = $this->studentModel->getStudentData($student_id);
         //Round 2 Job role
         if ($pg == 'round2') {
@@ -315,24 +321,46 @@ class Students extends BaseController
     public function bookInterviewSlot($slotId, $adId)
     {
 
+        //GET THE ROUND
+        $roundDataArray = roundCheckFunction();
+
+        $round =  $roundDataArray['roundNumber'];
         $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
+
         $data = [
             'ad_id' => $adId,
             'slot_id' => $slotId,
             'student_id' => $studentId
         ];
 
-        //Execute
-        if ($this->studentModel->checkInterviewBooked($adId, $studentId)) {
-            flashMessage('Interview_msg', 'You have already reserved a time slot for this Ad!', 'danger-alert');
-            redirect('schedule/');
-        } else if ($this->studentModel->bookInterviewSlot($data)) {
+        if ($round == 1) {
+            //Execute
+            //Round 1
+            if ($this->studentModel->checkInterviewBooked($adId, $studentId)) {
+                flashMessage('Interview_msg', 'You have already reserved a time slot for this Ad!', 'danger-alert');
+                redirect('schedule/');
+            } else if ($this->studentModel->bookInterviewSlot($data)) {
 
-            flashMessage('Interview_msg', 'Reserved the Interview Slot Successfully!');
-            redirect('schedule/');
+                flashMessage('Interview_msg', 'Reserved the Interview Slot Successfully!');
+                redirect('schedule/');
+            } else {
+
+                redirect('errors');
+            }
         } else {
+            //Execute
+            //Round 1
+            if ($this->studentModel->checkInterviewBookedRound2($adId, $studentId)) {
+                flashMessage('Interview_msg', 'You have already reserved a time slot for this Ad!', 'danger-alert');
+                redirect('schedule/');
+            } else if ($this->studentModel->bookInterviewSlot($data)) {
 
-            redirect('errors');
+                flashMessage('Interview_msg', 'Reserved the Interview Slot Successfully!');
+                redirect('schedule/');
+            } else {
+
+                redirect('errors');
+            }
         }
     }
 

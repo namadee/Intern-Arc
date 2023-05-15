@@ -93,7 +93,7 @@
                         <label for="3rdyear">3rd year
                             <span class="material-symbols-outlined tooltip">
                                 error
-                                <p class="tooltiptext">Students who are completig the degree in 3 years</p>
+                                <p class="tooltiptext">Students who are completing the degree in 3 years</p>
                             </span>
                         </label>
                     </li>
@@ -104,7 +104,7 @@
                         <label for="4thyear">4th year
                             <span class="material-symbols-outlined tooltip">
                                 error
-                                <p class="tooltiptext">Students who are completig the degree in 4 years <br> Research students</p>
+                                <p class="tooltiptext">Students who are completing the degree in 4 years <br> Research students</p>
                             </span>
                         </label>
                     </li>

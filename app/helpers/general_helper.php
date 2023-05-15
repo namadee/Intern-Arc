@@ -36,21 +36,24 @@ function roundCheckFunction()
   date_default_timezone_set('Asia/Colombo');
   $currentDate = date("Y-m-d");
 
-  $disabledClass = "disabled-button-style";
-  $hrefStatus = "javascript:void(0)";
+ 
 
   $isRoundOneSet = isCurrentDateWithinRound($roundTableData[0]->start_date, $roundTableData[0]->end_date);
   $isRoundTwoSet = isCurrentDateWithinRound($roundTableData[1]->start_date, $roundTableData[1]->end_date);
 
   if ($isRoundOneSet) {
     $roundNumber = 1;
+    $disabledClass = "disabled-button-style";
+    $hrefStatus = "javascript:void(0)";
   } else if ($isRoundTwoSet) {
     $roundNumber = 2;
+    $disabledClass = "disabled-button-style";
+    $hrefStatus = "javascript:void(0)";
   } else {
     //Either round dates are not set or currentDate in not during the round period
     $roundNumber = NULL; //No need of constraints
-    $disabledClass = "";
-    $hrefStatus = "";
+    $disabledClass = "disabled-button-style";
+    $hrefStatus = "javascript:void(0)";
   }
 
 

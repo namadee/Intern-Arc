@@ -7,6 +7,7 @@ class Companies extends BaseController
     public $advertisementModel;
     public $requestModel;
     public $registerModel;
+    public $studentModel;
 
     public function __construct()
     {
@@ -15,6 +16,7 @@ class Companies extends BaseController
         $this->advertisementModel = $this->model('Advertisement');
         $this->requestModel = $this->model('Request');
         $this->registerModel = $this->model('Register');
+        $this->studentModel = $this->model('Student');
     }
 
     //COMPANY USER DASHBOARD 
@@ -235,13 +237,17 @@ class Companies extends BaseController
             $advertisements = $this->advertisementModel->getAdvertisementsByCompany($companyId);
             $intern_counts = array();
             $shortlistedCounts = array();
+            $positions = array(); // Initialize the $positions array
             $x = 0;
-            foreach ($advertisements as $advertisement) {
-                $shortlists = $this->companyModel->getAdvertisementByStatus($advertisement->advertisement_id);
-                $shortlistedCounts[$x] = count($shortlists);
-                $positions[$x] = $advertisement->position;
-                $intern_counts[$x] = $advertisement->intern_count;
-                $x++;
+
+            if (!empty($advertisements)) {
+                foreach ($advertisements as $advertisement) {
+                    $shortlists = $this->companyModel->getAdvertisementByStatus($advertisement->advertisement_id);
+                    $shortlistedCounts[$x] = count($shortlists);
+                    $positions[$x] = $advertisement->position;
+                    $intern_counts[$x] = $advertisement->intern_count;
+                    $x++;
+                }
             }
 
             $data = [
@@ -250,7 +256,6 @@ class Companies extends BaseController
                 'positions' => $positions,
                 'intern_counts' => $intern_counts,
                 'advertisements' => $advertisements,
-
             ];
 
             $this->view('company/shortlist', $data);
@@ -291,7 +296,7 @@ class Companies extends BaseController
         $requests = $this->requestModel->getRecruitedCountByAd($advertisementId);
         $requestCount = count($requests);
 
-        if ($requestCount >= $internCount) {
+        if ($requestCount <= $internCount) {
             echo $internCount;
             echo $requestCount;
             return true;
@@ -313,13 +318,21 @@ class Companies extends BaseController
                     'recruit_status' => trim($_POST['recruit_status'])
                 ];
 
+                $studentID = trim($_POST['student_id']);
+
+
                 if (trim($_POST['recruit_status']) == "recruited") {
-                    $this->checkMaxRecruitmentLimit($data['advertisement_id']);
-                    flashMessage('recruit_student_msg', 'Maximum recruitment limit reached', 'danger-alert');
-                    $this->companyModel->recruitStudent($data);
-                    flashMessage('recruit_student_msg', 'Student Recruited');
+
+                    if ($this->checkMaxRecruitmentLimit($data['advertisement_id'])) {
+                        $this->companyModel->recruitStudent($data);
+                        $this->studentModel->setStatusofStudent($studentID, 1);
+                        flashMessage('recruit_student_msg', 'Student Recruited');
+                    } else {
+                        flashMessage('recruit_student_msg', 'Maximum recruitment limit reached', 'danger-alert');
+                    }
                 } else {
                     $this->companyModel->recruitStudent($data);
+                    $this->studentModel->setStatusofStudent($studentID, 0);
                     flashMessage('recruit_student_msg', 'Student Rejected', 'danger-alert');
                 }
 

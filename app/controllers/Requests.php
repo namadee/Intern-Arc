@@ -35,7 +35,14 @@ class Requests extends BaseController
 
         // $advertisementId = $_GET['adId'];
         $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
-        $reqCount  = $this->requestModel->getRequestCountPerStudent($studentId);
+
+        //Request count in each round
+        //GET THE ROUND Number
+        $roundDataArray = roundCheckFunction();
+
+        $round =  $roundDataArray['roundNumber'];
+
+        $reqCount  = $this->requestModel->getRequestCountPerStudent($studentId, $round);
 
         //Adjustment 3 - Getting the batch year of the respective advertisement
         $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId);
@@ -49,8 +56,8 @@ class Requests extends BaseController
         ];
 
         //Execute
-        if ($this->requestModel->checkStudentRequest($advertisementId, $studentId)) {
-            flashMessage('student_request_msg', 'You have already applied to this advertisement!', 'danger-alert');
+        if ($this->requestModel->checkStudentRequest($advertisementId, $studentId, $round)) {
+            flashMessage('student_request_msg', 'You have already applied to this advertisement in this round!', 'danger-alert');
             redirect('advertisements/viewAdvertisement/' . $advertisementId);
         } else if ($reqCount >= 5) {
             flashMessage('max_application', 'Maximum application limit reached', 'danger-alert');
@@ -107,15 +114,18 @@ class Requests extends BaseController
 
         $requestCounts = array();
         $intern_counts = array();
+        $positions = array(); // Initialize the $positions array
         $x = 0;
-        foreach ($advertisements as $advertisement) {
-            $requests = $this->requestModel->getAdvertisementByRequest($advertisement->advertisement_id);
-            $requestCounts[$x] = count($requests);
-            $positions[$x] = $advertisement->position;
-            $intern_counts[$x] = $advertisement->intern_count;
-            $x++;
-        }
 
+        if (!empty($advertisements)) {
+            foreach ($advertisements as $advertisement) {
+                $requests = $this->requestModel->getAdvertisementByRequest($advertisement->advertisement_id);
+                $requestCounts[$x] = count($requests);
+                $positions[$x] = $advertisement->position;
+                $intern_counts[$x] = $advertisement->intern_count;
+                $x++;
+            }
+        }
 
         $data = [
             'count' => $requestCounts,
@@ -123,7 +133,6 @@ class Requests extends BaseController
             'positions' => $positions,
             'intern_counts' => $intern_counts,
             'advertisements' => $advertisements,
-
         ];
 
         $this->view('company/studentRequestList', $data);

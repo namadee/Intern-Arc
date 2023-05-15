@@ -224,7 +224,7 @@ class AdvertisementModel
     public function getInterviewSlots($advertisement_id = NULL)
     {
         if ($advertisement_id != NULL) {
-            $this->db->query('SELECT s.start_date as slotStartDate, s.end_date as slotEndDate, e.*, tp.*, ts.*, a.*, std.profile_name, std.student_id
+            $this->db->query('SELECT s.start_date as slotStartDate, s.end_date as slotEndDate, e.*, tp.*, ts.*, a.*, std.profile_name, std.student_id, u.user_id
             FROM timeslot_tbl ts
             JOIN timeperiod_tbl tp ON ts.timeperiod_fk = tp.timeperiod_id
             JOIN event_tbl e ON tp.event_fk = e.event_id
@@ -232,6 +232,7 @@ class AdvertisementModel
             JOIN advertisement_tbl a ON s.advertisement_id = a.advertisement_id
             LEFT JOIN interviewslots_tbl i ON ts.slot_id = i.timeslot_fk
             LEFT JOIN student_tbl std ON i.student_id_fk = std.student_id
+            LEFT JOIN user_tbl u ON std.user_id_fk = u.user_id
             WHERE s.advertisement_id = :advertisement_id            
         ');
 

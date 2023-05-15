@@ -90,7 +90,7 @@
             </div>
 
             <div class="container-btns display-flex-row">
-                <button id="view-btn" class="common-blue-btn"><a href="" id="view-btn">View Profile</a></button>
+                <button id="view-btn" class="common-blue-btn"><a href="<?php echo URLROOT . 'profiles/view-student-profile/'.$data['user_id']?>" id="view-btn">View Profile</a></button>
 
                 <form id="resend-login-credential-form" action="<?php echo URLROOT . 'register/resendStudentCredentials/' . $std_batch . '/' . $data['stream'] . '/' . $data['user_id']; ?>" onSubmit="if(!confirm('Before new login credentials are sent, Please ensure that the email address is updated correctly! Do you want to proceed?')){return false;}" method="POST">
                     <button type="submit" id="secondary-grey-btn" >Send Login Credentials Again? Press here</button>

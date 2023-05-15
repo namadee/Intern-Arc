@@ -54,14 +54,15 @@ class RequestModel
 
 
     //check if student request is repeated 
-    public function checkStudentRequest($ad_id, $std_id)
+    public function checkStudentRequest($ad_id, $std_id,$round)
     {
-        $this->db->query('SELECT * FROM student_requests_tbl WHERE advertisement_id = :advertisement_id AND student_id = :student_id');
+        $this->db->query('SELECT * FROM student_requests_tbl WHERE advertisement_id = :advertisement_id AND student_id = :student_id AND round = :round');
 
 
         //bind values 
         $this->db->bind(':advertisement_id', $ad_id);
         $this->db->bind(':student_id', $std_id);
+        $this->db->bind(':round', $round);
 
         $this->db->single();
         if ($this->db->rowCount() > 0) {
@@ -71,12 +72,14 @@ class RequestModel
         }
     }
 
-    public function getRequestCountPerStudent($std_id)
+    public function getRequestCountPerStudent($std_id, $round)
     {
-        $this->db->query('SELECT * FROM student_requests_tbl WHERE student_id = :student_id');
+        $this->db->query('SELECT * FROM student_requests_tbl WHERE student_id = :student_id AND round = :round');
 
         //bind values
         $this->db->bind(':student_id', $std_id);
+        $this->db->bind(':round', $round);
+
 
         $result = $this->db->resultset();
         $count = $this->db->rowCount();

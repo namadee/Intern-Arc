@@ -38,7 +38,7 @@
                             <td><?php echo $student->email  ?></td>
                             <td><?php echo $student->registration_number  ?></td>
                             <td><?php echo $student->index_number  ?></td>
-                            <td><a href="<?php echo URLROOT . 'profiles/view-student-profile/'. $student->user_id; ?>">View</a></td>
+                            <td><a href="<?php echo URLROOT . 'pdc/main-student-details/'. $student->user_id; ?>">View</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
