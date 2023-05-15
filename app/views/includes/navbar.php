@@ -68,23 +68,9 @@
             </div>
             <div class="topNav-right">
 
-                <div id="notfIcon" class="topNav-icon topNav-notif<?php echo count($_SESSION['roundNotification']) ? ' unread' : ''; ?>">
+                <div id="notfIcon" class="topNav-icon topNav-notif">
                     <span class="material-symbols-outlined">notifications</span>
-                    <?php if (count($_SESSION['roundNotification'])) : ?>
-                        <span class="unread-dot"></span>
-                    <?php endif; ?>
-                    <section>
-                        <ul id="notification-list" class="notification-list">
-                            <?php $notifications = $_SESSION['roundNotification'] ?>
-                            <?php foreach ($notifications as $notification) : ?>
-                                <li class="notification-item">
-                                    <h3><?php echo $notification->title ?></h3>
-                                    <p><?php echo $notification->message ?></p>
-                                </li>
-                            <?php endforeach; ?>
 
-                        </ul>
-                    </section>
 
                 </div>
                 <p><?php echo $_SESSION['username'] ?></p>
