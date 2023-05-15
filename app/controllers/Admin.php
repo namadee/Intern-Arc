@@ -42,7 +42,7 @@ class Admin extends BaseController
             'jobPositions' => array_column($jobPositionData, 'position'),
             'studentBatches' => $studentBatches,
             'batchYear' => $batchYear,
-            'companyData' => $companyData 
+            'companyData' => $companyData
         ];
 
         $this->view('admin/dashboard', $data);
@@ -838,6 +838,54 @@ class Admin extends BaseController
             // redirect('pdc/get-round-reports');\
             echo 'error';
         }
+    }
+
+    public function changeAdmin()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+
+            //Check for User
+            $user_id = $this->userModel->getUserId(trim($_POST['email']));
+
+            if ($user_id) {
+                //User available already -  Cant register
+                flashMessage('adminRegMsg', 'Entered email is already in use, please try a different email', 'danger-alert');
+                redirect('admin/change-admin');
+            }
+
+            //Random Password
+            $password = generatePassword();
+
+            // Hash Password
+            $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $email = new Email();
+
+            if ($email->sendAdminEmail(trim($_POST['email']), $password, $_POST['username'])) {
+                $data = [
+                    'username' => trim($_POST['username']),
+                    'email' => trim($_POST['email']),
+                    'password' => $hashPassword,
+                    'user_role' => 'admin',
+                    'system_access' => 1
+                ];
+                //Execute
+                $this->registerModel->registerUser($data);
+
+                flashMessage('adminRegMsg', 'New Admin registered successfully!');
+                redirect('profiles/view-profile-details');
+            } else {
+                flashMessage('adminRegMsg', 'Email was not sent due to an error. Please try sending it again later', 'danger-alert');
+                redirect('admin/change-admin');
+            }
+        } else {
+            $this->view('admin/changeAdmin');
+        }
+        // $data = [
+        //     'admin' => $this->adminModel->getAdmin()
+        // ];
     }
 }
 

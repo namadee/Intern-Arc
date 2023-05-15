@@ -35,7 +35,9 @@
           <th>Student Name</th>
           <th>Student Email</th>
           <th>View</th>
-          <th>Status</th>
+          <th>Recruitment Status</th>
+          <th>Recruit / Reject</th>
+
         </tr>
 
         <?php foreach ($data['student_name'] as $students) : ?>

@@ -34,17 +34,15 @@
           <th>Student Name</th>
           <th>Student Email</th>
           <th>View</th>
-          <th>Status</th>
+          <th>Shortlisting Status</th>
+          <th>Recruitment Status</th>
+          <th>Shortlist / Reject</th>
+
         </tr>
 
-        <?php $visibility = ''; ?>
         <?php foreach ($data['student_name'] as $students) : ?>
-          <?php if ($students->recruit_status == 'recruited') {
-            $visibility = 'none';
-          } else {
-            $visibility = '';
-          } ?>
-          <tr style="display: <?php echo $visibility ?>;">
+
+          <tr>
             <td><?php echo $students->profile_name ?></p>
             </td>
             <td><?php echo $students->personal_email ?></td>
@@ -61,10 +59,19 @@
 
               </div>
             </td>
+            <td>
+              <div style="width: fit-content;" class=" common-status display-flex-row advertisement-status <?php echo $students->recruit_status == 'pending' ? 'yellow-status-font' : ($students->recruit_status == 'rejected' ? 'red-status-font' : ''); ?> ">
 
+                <span class=" common-status-span <?php echo $students->recruit_status == 'pending' ? 'yellow-status' : ($students->recruit_status == 'rejected' ? 'red-status' : ''); ?>">
+
+                </span>
+                <?php echo ucfirst($students->recruit_status); ?>
+
+              </div>
+            </td>
             <td>
               <form action="<?php echo URLROOT . 'companies/shortlistStudent/' . $data['advertisement_id'] ?>" id="shortlist_student" method="POST">
-                <select name="status" id="status-dropdown" class="common-input" onchange="this.form.submit()">
+                <select <?php echo ($students->recruit_status == 'recruited') ? "disabled" : ""; ?> name="status" id="status-dropdown" class="common-input" onchange="this.form.submit()">
                   <!-- Add new status column -->
                   <option selected disabled></option>
                   <option value="shortlisted">Shortlist</option>

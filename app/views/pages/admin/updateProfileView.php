@@ -10,7 +10,7 @@
     <?php flashMessage('password_changed'); ?>
 
     <div class="update-profile-container display-flex-col">
-        <h2>Profile Details</h2>
+        <h2>Account Details</h2>
 
         <form class="display-flex-col" method="POST" action="<?php echo URLROOT . "profiles/update-profile-details" ?> " enctype="multipart/form-data">
             <div class="main-user-profile-icon display-flex-col">
@@ -43,6 +43,8 @@
             </div>
         </form>
         <button id="secondary-grey-btn" onclick="window.location.href='<?php echo URLROOT . "admin/change-password" ?>'">Change Password? Press here</button>
+        <button style="margin-top: -1rem;" id="secondary-grey-btn" onclick="window.location.href='<?php echo URLROOT . "admin/change-admin" ?>'">Add another administrator? Press here</button>
+
 
 
 

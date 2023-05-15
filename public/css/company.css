@@ -395,7 +395,7 @@ select:disabled {
 /*edit profile page*/
 
 .edit-profile-main-container {
-  width: 65%;
+  width: 80%;
   margin: auto;
   padding: 1rem 3rem;
 }
@@ -1064,4 +1064,29 @@ select:disabled {
   background: white;
   border: 2px solid red;
   text-align: center;
+}
+
+
+/********************************* Change Password Page *********************************/
+
+.change-password-container {
+  width: 50%;
+}
+
+#changePwd_validate_error {
+  color: var(--DangerColor);
+  background-color: var(--DangerBackground);
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: none;
+}
+
+.student-request-container .download-rej-list {
+  padding: 0.5rem 1rem;
+  margin-left: 30%;
+}
+
+.student-request-container .download-rej-list a {
+  color: #ffffff;
 }

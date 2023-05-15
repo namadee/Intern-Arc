@@ -139,6 +139,18 @@ class RequestModel
         return $this->db->resultset();
     }
 
+    public function getRecruitedCountByAd($advertisementId)
+    {
+        $this->db->query('SELECT advertisement_tbl.position , advertisement_tbl.intern_count, student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , student_requests_tbl.advertisement_id , student_requests_tbl.round  
+        FROM advertisement_tbl 
+        JOIN student_requests_tbl 
+        ON advertisement_tbl.advertisement_id = student_requests_tbl.advertisement_id
+        WHERE student_requests_tbl.advertisement_id = :advertisement_id AND student_requests_tbl.recruit_status = "recruited"');
+        $this->db->bind(':advertisement_id', $advertisementId);
+
+        return $this->db->resultset();
+    }
+
     // To get the student requests by round in the respective batch year - Ruchira
     // Stream also considered
     public function getStudentRequestsByRound($data)

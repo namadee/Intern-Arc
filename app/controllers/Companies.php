@@ -6,6 +6,7 @@ class Companies extends BaseController
     public $userModel;
     public $advertisementModel;
     public $requestModel;
+    public $registerModel;
 
     public function __construct()
     {
@@ -13,6 +14,7 @@ class Companies extends BaseController
         $this->userModel = $this->model('User');
         $this->advertisementModel = $this->model('Advertisement');
         $this->requestModel = $this->model('Request');
+        $this->registerModel = $this->model('Register');
     }
 
     //COMPANY USER DASHBOARD 
@@ -286,7 +288,7 @@ class Companies extends BaseController
 
         $advertisement = $this->advertisementModel->getAdvertisementById($advertisementId);
         $internCount = $advertisement->intern_count;
-        $requests = $this->requestModel->getAdvertisementByRequest($advertisementId);
+        $requests = $this->requestModel->getRecruitedCountByAd($advertisementId);
         $requestCount = count($requests);
 
         if ($requestCount >= $internCount) {
@@ -310,22 +312,62 @@ class Companies extends BaseController
                     'request_id' => trim($_POST['request_id']),
                     'recruit_status' => trim($_POST['recruit_status'])
                 ];
-                if ($this->checkMaxRecruitmentLimit($data['advertisement_id'])) {
+
+                if (trim($_POST['recruit_status']) == "recruited") {
+                    $this->checkMaxRecruitmentLimit($data['advertisement_id']);
                     flashMessage('recruit_student_msg', 'Maximum recruitment limit reached', 'danger-alert');
+                    $this->companyModel->recruitStudent($data);
+                    flashMessage('recruit_student_msg', 'Student Recruited');
                 } else {
-                    if ($data['recruit_status'] == 'recruited') {
-                        $this->companyModel->recruitStudent($data);
-                        flashMessage('recruit_student_msg', 'Student Recruited');
-                    } else {
-                        $this->companyModel->recruitStudent($data);
-                        flashMessage('recruit_student_msg', 'Student Rejected', 'danger-alert');
-                    }
+                    $this->companyModel->recruitStudent($data);
+                    flashMessage('recruit_student_msg', 'Student Rejected', 'danger-alert');
                 }
 
                 redirect('companies/get-shortlisted-students/' . $id);
             }
         } else {
             $this->view('error403');
+        }
+    }
+
+
+    public function changePassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Strip Tags in URL
+            stripTags();
+
+            $data = [
+                'oldPassword' => trim($_POST['user_old_password']),
+                'newPassword' =>  trim($_POST['user_new_password']),
+                'confirmPassword' =>  trim($_POST['user_confirm_password']),
+                'userID' =>  trim($_POST['user_id']),
+                'input_class' => ''
+            ];
+
+            //Check Whether the stored password is same as old password input value
+            $userDetails = $this->userModel->getUserByUserID($data['userID']);
+            $storedPassword = $userDetails->password;
+
+            if (password_verify($data['oldPassword'], $storedPassword)) {
+                #Password Match
+                // Hash Password
+                $hashPassword = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+                //Update Password
+                $data = [
+                    'password' => $hashPassword,
+                    'user_id' => $data['userID']
+                ];
+                $this->registerModel->updatePassword($data);
+                flashMessage('password_changed', 'Password changed successfully!', 'success-alert');
+                redirect('profiles/view-profile-details');
+            } else {
+                #Password Does not match
+                flashMessage('password_changed_error', 'The password you entered is incorrect. Please try again', 'danger-alert');
+                redirect('companies/changePassword');
+            }
+        } else {
+            $this->view('company/changePassword');
         }
     }
 }
