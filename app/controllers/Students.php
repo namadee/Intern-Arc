@@ -31,10 +31,13 @@ class Students extends BaseController
 
         $round =  $roundDataArray['roundNumber'];
 
+        $roundDetails = $this->pdcModel->getRoundPeriods();
         $jobroleList = $this->jobroleModel->getJobroles();
         $student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
         $reqCount  = $this->requestModel->getRequestCountPerStudent($student_id, $round);
         $studentDetails = $this->studentModel->getStudentData($student_id);
+        $appliedAdvertisements = $this->requestModel->getAppliedAdvertisements($student_id);
+        $count = count($appliedAdvertisements);
         //Round 2 Job role
         if ($pg == 'round2') {
 
@@ -45,7 +48,9 @@ class Students extends BaseController
                     'studentDetails' => $studentDetails,
                     'reqCount' => $reqCount,
                     'jobroleSelectModalClass' => '',
-                    'jobroleList' => $jobroleList
+                    'jobroleList' => $jobroleList,
+                    'roundDetails' => $roundDetails,
+                    'appliedCompanies' => $count,
                 ];
             }
         } else {
@@ -55,7 +60,9 @@ class Students extends BaseController
                 'studentDetails' => $studentDetails,
                 'reqCount' => $reqCount,
                 'jobroleSelectModalClass' => 'hide-element',
-                'jobroleList' => $jobroleList
+                'jobroleList' => $jobroleList,
+                'roundDetails' => $roundDetails,
+                'appliedCompanies' => $count,
             ];
         }
 

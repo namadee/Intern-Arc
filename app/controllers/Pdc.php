@@ -356,27 +356,34 @@ class Pdc extends BaseController
             $round2StartDate = trim($_POST['second_round_start']);
             $round2EndDate = trim($_POST['second_round_end']);
             //notification message format
-            // $notificationtitle1 = "Round 1 Started";
+        // $notificationtitle1 = "Round 1 Started";
             // $notificationtitle2 = "Round 2 Started";
-            // $notifcationMsg1 = "Round 1 of the placement process has started. \n" . "start date:" .  $round1StartDate  . "end date:" . $round1EndDate;
-            // $notifcationMsg2 = "Round 2 of the placement process has started. \n" . "start date:" .  $round2StartDate . "end date:" . $round2EndDate;
+
+            //$notifcationMsg1 = "Round 1 of the placement process has started. \n" . "start date:" .  $round1StartDate  . "end date:" . $round1EndDate;
+            //$notifcationMsg2 = "Round 2 of the placement process has started. \n" . "start date:" .  $round2StartDate . "end date:" . $round2EndDate;
 
 
             $data = [
                 'round_no' => 1,
                 'start_date' => $round1StartDate,
-                'end_date' => $round1EndDate
+                'end_date' => $round1EndDate,
+            // 'notification_title' => $notificationtitle1,
+                // 'notification_msg' => $notifcationMsg1,
+
             ];
 
             //Round 1
             $this->pdcModel->setRoundPeriod($data);
 
-            // $this->pdcModel->sendRoundStartedNotification($data);
+            //$this->pdcModel->sendRoundStartedNotification($data);
 
             $data = [
                 'round_no' => 2,
                 'start_date' => $round2StartDate,
                 'end_date' => $round2EndDate
+            // 'notification_title' => $notificationtitle2,
+                // 'notification_msg' => $notifcationMsg2,
+               
             ];
 
 
