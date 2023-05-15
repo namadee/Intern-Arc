@@ -323,6 +323,10 @@ class Login extends BaseController
         }
 
         $roundTableData = $this->pdcModel->getRoundPeriods();
+        $round1Notification = $this->pdcModel->getRound1StartedNotification();
+        $round2Notification = $this->pdcModel->getRound2StartedNotification();
+
+
         //Get Round Periods Details
         //Instance 1 - Round Session
         Session::setValues('roundTableData', $roundTableData);
@@ -338,11 +342,13 @@ class Login extends BaseController
             Session::setValues('systemAccess', 1);
             //Update Company System Access to 1 automatically when the round starts
             $this->companyModel->updateCompanyAccess(1);
-            // Set all the current year batch advetisements to round 1
+        // Set all the current year batch advetisements to round 1
             $this->pdcModel->setAdvertisementRoundtoOne($roundNumber, $currentBatchYear);
 
 
-            //Update all Students System Access to 1 automatically when the round starts
+            Session::setValues('roundNotification', $round1Notification);
+
+        //Update all Students System Access to 1 automatically when the round starts
             $this->studentModel->updateStudentAccess(1);
         } else if ($isRoundTwoSet) {
             $roundNumber = 2;
@@ -351,12 +357,18 @@ class Login extends BaseController
             $this->companyModel->updateCompanyAccess(1);
             //Update all Students System Access to 1 automatically when the round starts
             $this->studentModel->updateStudentAccess(1);
-            // Set all the current year batch advetisements to round 2 after comparing intern count and recruited count
+
+         // Set all the current year batch advetisements to round 2 after comparing intern count and recruited count
             $this->setAdvertisementRound();
+
+
+            Session::setValues('roundNotification', $round2Notification);
+
         } else {
             //Either round dates are not set or currentDate in not during the round period
             $roundNumber = NULL; //No need of constraints
             Session::setValues('systemAccess', 0);
+            Session::setValues('roundNotification', '');
         }
     }
 

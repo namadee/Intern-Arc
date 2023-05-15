@@ -333,6 +333,14 @@ class Pdc extends BaseController
         redirect('students/manage-student');
     }
 
+    public function sendRound1StartNotification(){
+        $notification = $this->pdcModel->getRound1StartedNotification();
+        $data = [
+            '$notification' => $notification,
+        ];
+        //pass this to navbar
+    }
+
     //16 set Round period - Ruchira
     public function setRoundPeriod()
     {
@@ -347,25 +355,38 @@ class Pdc extends BaseController
             $round1EndDate = trim($_POST['first_round_end']);
             $round2StartDate = trim($_POST['second_round_start']);
             $round2EndDate = trim($_POST['second_round_end']);
+            //notification message format
+            $notificationtitle1 = "Round 1 Started";
+            $notificationtitle2 = "Round 2 Started";
+            $notifcationMsg1 = "Round 1 of the placement process has started. \n" . "start date:" .  $round1StartDate  . "end date:" . $round1EndDate;
+            $notifcationMsg2 = "Round 2 of the placement process has started. \n" . "start date:" .  $round2StartDate . "end date:" . $round2EndDate;
 
 
             $data = [
                 'round_no' => 1,
                 'start_date' => $round1StartDate,
-                'end_date' => $round1EndDate
+                'end_date' => $round1EndDate,
+                'notification_title' => $notificationtitle1,
+                'notification_msg' => $notifcationMsg1,
             ];
 
             //Round 1
             $this->pdcModel->setRoundPeriod($data);
 
+            $this->pdcModel->sendRoundStartedNotification($data);
+
             $data = [
                 'round_no' => 2,
                 'start_date' => $round2StartDate,
-                'end_date' => $round2EndDate
+                'end_date' => $round2EndDate,
+                'notification_title' => $notificationtitle2,
+                'notification_msg' => $notifcationMsg2,
             ];
+
 
             //Round 2
             $this->pdcModel->setRoundPeriod($data);
+            $this->pdcModel->sendRoundStartedNotification($data);
             date_default_timezone_set('Asia/Colombo');
             $currentDate = date("Y-m-d");
 
@@ -373,7 +394,7 @@ class Pdc extends BaseController
             //Update Round Periods Details and set to session
             //Instance 2 - Round Session
             Session::setValues('roundTableData', $roundTableData);
-            //Update system access of all companies and students when the round starts
+
 
 
 
@@ -526,7 +547,7 @@ class Pdc extends BaseController
         }
     }
 
-    public function downloadRejectedStudentList(){
+public function downloadRejectedStudentList(){
         //Current Year after 2nd round
         $batchYear=$_SESSION['batchYear'];
         $studentList = $this->pdcModel->getRejectedStudentList($batchYear);

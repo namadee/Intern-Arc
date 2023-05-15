@@ -34,7 +34,8 @@ class PdcModel
         return $this->db->resultset();
     }
 
-    public function getRejectedStudentList($batchYear)
+
+public function getRejectedStudentList($batchYear)
     {
         $this->db->query('SELECT student_tbl.*, user_tbl.* FROM student_tbl 
         JOIN user_tbl ON student_tbl.user_id_fk = user_tbl.user_id
@@ -51,7 +52,7 @@ class PdcModel
     // Student and company deactivate buttons
     // 
 
-    //Set the advertisements to Round 1
+//Set the advertisements to Round 1
     public function setAdvertisementRoundtoOne($round, $batchYear)
     {
         $this->db->query('UPDATE advertisement_tbl SET round = :round WHERE batch_year = :batchYear ');
@@ -66,12 +67,23 @@ class PdcModel
             return false;
         }
     }
+
     //Set the advertisement round to Null or 2
     public function setAdvertisementRoundNum($advertisementID, $round)
     {
         $this->db->query('UPDATE advertisement_tbl SET round = :round WHERE advertisement_id = :advertisementID');
         $this->db->bind(':round', $round);
         $this->db->bind(':advertisementID', $advertisementID);
+    }
+    //store round period started notification
+    public function sendRoundStartedNotification($data)
+    {
+        $this->db->query('INSERT INTO notification_tbl (title, message) VALUES (:title, :message)');
+
+        // Bind Values
+        $this->db->bind(':title', $data['notification_title']);
+        $this->db->bind(':message', $data['notification_msg']);
+
 
         //Execute
         if ($this->db->execute()) {
@@ -80,6 +92,7 @@ class PdcModel
             return false;
         }
     }
+
 
     // Get all the advertisements by batch Year
     public function getAdvertisements($batchYear)
@@ -207,5 +220,18 @@ class PdcModel
         } else {
             return false;
         }
+    }
+
+    //send round period started notification
+    public function getRound1StartedNotification()
+    {
+        $this->db->query('SELECT * FROM notification_tbl WHERE title = "Round 1 Started"');
+        return $this->db->resultset();
+    }
+
+    public function getRound2StartedNotification()
+    {
+        $this->db->query('SELECT * FROM notification_tbl WHERE title = "Round 2 Started"');
+        return $this->db->resultset();
     }
 }

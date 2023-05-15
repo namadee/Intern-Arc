@@ -189,3 +189,11 @@ function checkConfirmPasswordFunction(event) {
     ChangePasswordValidateError.style.display = "block";
   }
 }
+
+function confirmDelete(event) {
+  event.preventDefault(); // Prevent the default behavior of the link
+
+  if (confirm("Are you sure you want to delete?")) {
+    window.location.href = event.target.href; // Proceed with the delete action
+  }
+}
