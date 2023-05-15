@@ -485,6 +485,11 @@ select:disabled {
   background: transparent;
   width: 3rem;
 }
+.common-table td:first-child {
+  padding-left: 1rem;
+  text-align: left; /* or any other desired alignment */
+}
+
 
 /*Schedule Interview Page 1 */
 
@@ -898,6 +903,9 @@ select:disabled {
 
 .create-interview-form {
   background-color: #fff;
+  
+
+
 }
 
 .create-interview-form div {
@@ -942,6 +950,7 @@ select:disabled {
   padding: 1rem 1rem;
   z-index: 10;
   border-radius: 8px;
+  box-shadow: 0px 0px 10px 5px #0000001a;
 }
 
 .fc .fc-button-primary {

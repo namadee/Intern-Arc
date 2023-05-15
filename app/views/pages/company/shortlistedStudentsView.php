@@ -48,7 +48,7 @@
             </td>
             <td>
 
-              <div class="common-status display-flex-row <?php echo $students->recruit_status == 'pending' ? 'yellow-status-font' : ($students->recruit_status == 'rejected' ? 'red-status-font' : ''); ?> ">
+              <div class="common-status display-flex-row advertisement-status <?php echo $students->recruit_status == 'pending' ? 'yellow-status-font' : ($students->recruit_status == 'rejected' ? 'red-status-font' : ''); ?> ">
 
                 <span class="common-status-span <?php echo $students->recruit_status == 'pending' ? 'yellow-status' : ($students->recruit_status == 'rejected' ? 'red-status' : ''); ?>">
                 </span>

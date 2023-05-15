@@ -272,6 +272,10 @@ class Login extends BaseController
 
 
         $roundTableData = $this->pdcModel->getRoundPeriods();
+        $round1Notification = $this->pdcModel->getRound1StartedNotification();
+        $round2Notification = $this->pdcModel->getRound2StartedNotification();
+
+
         //Get Round Periods Details
         //Instance 1 - Round Session
         Session::setValues('roundTableData', $roundTableData);
@@ -288,6 +292,8 @@ class Login extends BaseController
             //Update Company System Access to 1 automatically when the round starts
             $this->companyModel->updateCompanyAccess(1);
 
+            Session::setValues('roundNotification', $round1Notification);
+
             //Update all Students System Access to 1 automatically when the round starts
             $this->studentModel->updateStudentAccess(1);
         } else if ($isRoundTwoSet) {
@@ -297,10 +303,13 @@ class Login extends BaseController
             $this->companyModel->updateCompanyAccess(1);
             //Update all Students System Access to 1 automatically when the round starts
             $this->studentModel->updateStudentAccess(1);
+
+            Session::setValues('roundNotification', $round2Notification);
         } else {
             //Either round dates are not set or currentDate in not during the round period
             $roundNumber = NULL; //No need of constraints
             Session::setValues('systemAccess', 0);
+            Session::setValues('roundNotification', '');
         }
     }
 

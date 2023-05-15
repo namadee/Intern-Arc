@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
+<script src="<?php echo URLROOT; ?>js/company.js" defer></script>
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section id="advertisement-list" class="main-content">
@@ -27,7 +28,6 @@
     <div class="common_list_content">
 
       <?php
-      $roundDataArray['roundNumber'] = NULL;
 
       if ($roundDataArray['roundNumber'] != NULL) {
         // Need Round Constraints
@@ -94,7 +94,7 @@
               </a>
             </td>
             <td>
-              <a class="common-edit-btn <?php echo $elementClass; ?>" id="common-delete-btn" href="<?php echo $hrefStatus2; ?>" id="delete"><span class="material-symbols-outlined">
+              <a class="common-edit-btn <?php echo $elementClass; ?>" id="common-delete-btn" href="<?php echo $hrefStatus2; ?>" id="delete" onclick="confirmDelete(event)"><span class=" material-symbols-outlined">
                   delete
                 </span></a>
             </td>
