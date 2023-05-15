@@ -14,8 +14,8 @@
 
     //Call Round Check Function in general helper
     $roundDataArray = roundCheckFunction();
-    
 
+    //Call 
 
     ?>
     <nav class="display-flex-col" id="nav" class="">
@@ -67,10 +67,29 @@
                 <p></p>
             </div>
             <div class="topNav-right">
-                <div class="topNav-icon">
+
+                <div id="notfIcon" class="topNav-icon topNav-notif<?php echo count($_SESSION['roundNotification']) ? ' unread' : ''; ?>">
                     <span class="material-symbols-outlined">notifications</span>
+                    <?php if (count($_SESSION['roundNotification'])) : ?>
+                        <span class="unread-dot"></span>
+                    <?php endif; ?>
+                    <section>
+                        <ul id="notification-list" class="notification-list">
+                            <?php $notifications = $_SESSION['roundNotification'] ?>
+                            <?php foreach ($notifications as $notification) : ?>
+                                <li class="notification-item">
+                                    <h3><?php echo $notification->title ?></h3>
+                                    <p><?php echo $notification->message ?></p>
+                                </li>
+                            <?php endforeach; ?>
+
+                        </ul>
+                    </section>
+
                 </div>
                 <p><?php echo $_SESSION['username'] ?></p>
                 <img src="<?php echo URLROOT . $_SESSION['profile_pic'] ?>">
             </div>
+
+
         </section>

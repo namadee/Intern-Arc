@@ -406,21 +406,41 @@ main {
 .topNav-icon span {
   font-variation-settings: "wght" 400;
 }
+.topNav-notif {
+  position: relative;
+}
+.notification-list {
+  position: fixed;
+  opacity: 0;
+  top: -50px;
+  z-index: 1000;
+  left: 85%;
+  width: 200px;
+  background-color: white;
+  padding: 0.5rem;
+  list-style: none;
+  margin: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: block;
+}
 
+.notification-item {
+  padding: 0.5rem;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  color: black;
+}
+.notification-item h3{
+  color: var(--DarkBlue);
+}
+/* .topNav-notif:hover + .notification-list {
+  display: block;
+} */
 .topNav-right {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-}
-
-.topNav-notification {
-  background-color: var(--BackgroungColor);
-  border-radius: 50%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  padding: 0.5rem;
 }
 
 .topNav-right img {
@@ -429,11 +449,27 @@ main {
   height: 35px;
   object-fit: cover;
 }
+.toggle-notification{
+  opacity: 1;
+  top:50px;
+  transition-duration: 500ms;
+}
+
+.unread-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: red;
+  margin-left: 0px;
+  margin-top: -10px;
+}
 
 /********************************* Nav-Bar Menu Collapsing *********************************/
 
 .toggle-sidenavbar {
   left: -220px;
+  z-index: 1000;
 }
 
 .toggle-topnavbar {

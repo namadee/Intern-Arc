@@ -75,7 +75,7 @@
 
     <div>
       <label for="sche-period">Start Date</label>
-      <input type="date" name="start_date" value=""id="start-date-input">
+      <input type="date" name="start_date" value="" id="start-date-input">
     </div>
 
     <div>
@@ -159,11 +159,14 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    let date;
+      let date;
 
       let calendarEl = document.getElementById('calendar');
 
       let calendar = new FullCalendar.Calendar(calendarEl, {
+        validRange: {
+          start: new Date().toISOString().split('T')[0]
+        },
         initialView: 'dayGridMonth',
         headerToolbar: {
           left: 'prev,next today',
@@ -214,6 +217,15 @@
         }
 
       }
+      const startDateInput = document.getElementById('start-date-input');
+      const endDateInput = document.getElementById('end-date-input');
+      const today = new Date().toISOString().split('T')[0];
+      startDateInput.min = today;
+
+      startDateInput.addEventListener('input', () => {
+        endDateInput.min = startDateInput.value;
+      });
+
 
       let timeSlot = document.getElementById('time-slot-popup');
 
@@ -227,6 +239,9 @@
           month: "short",
           day: "numeric"
         });
+
+        //console log reserved from info
+        console.log(info.event.extendedProps.reserved);
 
         document.getElementById("std-name").innerHTML = (info.event.backgroundColor == '#bbd9f7' ? "Not Reserved" : info.event.extendedProps.intervieweeName);
 

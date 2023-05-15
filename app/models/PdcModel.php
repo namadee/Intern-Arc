@@ -63,13 +63,33 @@ class PdcModel
         return $this->db->resultset();
     }
 
-    //Check whether the roundPeriods are set or not
-    // If not set System access will be denied for students and companies
-    // If set System access will be granted for students and companies
-    // Constraints should be applied for Job roles edit, delete buttons
-    // Student and company deactivate buttons
-    // 
+    //store round period started notification
+    public function sendRoundStartedNotification($data)
+    {
+        $this->db->query('INSERT INTO notification_tbl (title, message) VALUES (:title, :message)');
 
-    //Get the roundPeriods are set or not
+        // Bind Values
+        $this->db->bind(':title', $data['notification_title']);
+        $this->db->bind(':message', $data['notification_msg']);
 
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //send round period started notification
+    public function getRound1StartedNotification()
+    {
+        $this->db->query('SELECT * FROM notification_tbl WHERE title = "Round 1 Started"');
+        return $this->db->resultset();
+    }
+
+    public function getRound2StartedNotification()
+    {
+        $this->db->query('SELECT * FROM notification_tbl WHERE title = "Round 2 Started"');
+        return $this->db->resultset();
+    }
 }

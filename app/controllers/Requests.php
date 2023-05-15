@@ -127,9 +127,4 @@ class Requests extends BaseController
 
         $this->view('company/studentRequestList', $data);
     }
-
-    
-
-   
-
 }
