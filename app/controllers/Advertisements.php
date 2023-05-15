@@ -8,6 +8,8 @@ class Advertisements extends BaseController
     public $userModel;
     public $companyData;
     public $companyModel;
+    public $pdcModel;
+    public $studentModel;
 
 
     public function __construct()
@@ -18,6 +20,8 @@ class Advertisements extends BaseController
         $this->jobroleList = $this->jobroleModel->getJobroles();
         $this->userModel = $this->model('User');
         $this->companyData = $this->advertisementModel->getCompanyByAd();
+        $this->pdcModel = $this->model('Pdc');
+        $this->studentModel = $this->model('Student');
     }
 
     public function index()
@@ -39,10 +43,15 @@ class Advertisements extends BaseController
 
     public function getAdvertisementsByCompany($companyId = NULL)
     {
+
+
+
         if ($_SESSION['user_role'] == 'company' && $companyId == NULL) {
 
             $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
             $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
+
+
 
             $data = [
                 'advertisements' => $ads,
@@ -53,11 +62,14 @@ class Advertisements extends BaseController
 
             $this->view('company/advertisementList', $data);
         } else if ($_SESSION['user_role'] == 'student' && $companyId != NULL) {
+
+            $companyDetails = $this->companyModel->getCompanyDetailFromCompanyID($companyId);
             $ads = $this->advertisementModel->getAdvertisementsByCompany($companyId);
 
             $data = [
                 'advertisements' => $ads,
                 'companyID' => $companyId,
+                'companyName' => $companyDetails->company_name,
             ];
             $this->view('student/companyadlist', $data);
         } else {
@@ -219,22 +231,79 @@ class Advertisements extends BaseController
     //SHOW All ADVERTISEMENTS FROM ALL COMPANIES - STUDENT
     public function showStudentAdvertisements()
     {
-        $listCompanies = $this->companyModel->getCompanyList();
-        $jobroleList = $this->jobroleModel->getJobroles();
-        $data2 = [
-            'listCompanies' => $listCompanies
-        ];
 
-        $data3 = [
-            'jobroleList' => $jobroleList
-        ];
+        // Recruited stuents can not view advertisements
+        if ($_SESSION['user_role'] == 'student' && $_SESSION['studentStatus'] == 1) {
+            flashMessage('recrtuited_noAccess', 'You are not allowed to access advertisement page', 'danger-alert');
+            redirect('students/');
+        }
 
-        $data = [
-            'companyData' => $this->companyData
-        ];
+        $roundDataArray = roundCheckFunction();
 
-        $data = array_merge($data, $data2, $data3);
-        $this->view('student/advertisements', $data);
+        // IF roundNumber is not set
+
+        if ($roundDataArray['roundNumber'] == NULL) {
+            $data = [
+
+                'status' => 0
+            ];
+
+            $this->view('student/advertisements', $data);
+        }
+
+        //Filter ads by round, batchYear and approved status
+        //Must filter by round also
+        if ($roundDataArray['roundNumber'] == 1) {
+            $advertisementList = $this->advertisementModel->getAdvertisementsForStudents($roundDataArray['roundNumber'], $_SESSION['batchYear']);
+
+            $data = [
+
+                'advertisemetList' => $advertisementList,
+                'roundNumer' => $roundDataArray['roundNumber'],
+                'status' => 1
+            ];
+
+            $this->view('student/advertisements', $data);
+        } else {
+
+            $selectedJobRoleName = array();
+            // Round number is 2
+            $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
+
+            // Filter ads from selected Job roles form std_jbrole_tbl
+            $userSelectedJobRoles = $this->pdcModel->getSelectedJobRoles($studentId);
+            // return 3 rows
+            foreach ($userSelectedJobRoles as $userSelectedJobRole) {
+                $jobrole =  $this->pdcModel->getJobroleName($userSelectedJobRole->jobrole_id);
+                $selectedJobRoleName[] = $jobrole->name;
+            }
+
+            // Get three job role names
+            $jobrole1 = $selectedJobRoleName[0];
+            $jobrole2 = $selectedJobRoleName[1];
+            $jobrole3 = $selectedJobRoleName[2];
+
+            // Get advertisements for the selected job roles
+
+            $data = [
+                'batchYear' => $_SESSION['batchYear'],
+                'position1' => $jobrole1,
+                'position2' => $jobrole2,
+                'position3' => $jobrole3
+            ];
+
+            $advertisementList = $this->pdcModel->getFilteredAds($data);
+
+            $data = [
+
+                'advertisemetList' => $advertisementList,
+                'roundNumer' => $roundDataArray['roundNumber'],
+                'status' => 1
+            ];
+
+            $this->view('student/advertisements', $data);
+
+        }
     }
 
     //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
@@ -247,18 +316,11 @@ class Advertisements extends BaseController
         }
     }
 
-    //SHOW ADVERTISEMENTS Under Specific Company- STUDENT
-    public function showAdvertisementsDetails()
-    {
-        $this->view('company/advertisement');
-    }
-
     //load The advertisement UI of the relevant company 
-    public function viewAdvertisement($advertisementId)
+    public function viewAdvertisement($advertisementId = NULL)
     {
         //company user access
         $advertisement = $this->advertisementModel->showAdvertisementById($advertisementId); //To get the Advertisement Name
-
         $text = explode("\r\n", trim($advertisement->requirements));
         $length = count($text);
         $emptyArray = array();
@@ -266,8 +328,6 @@ class Advertisements extends BaseController
             $emptyArray[$x] = "* " . trim($text[$x]) . "<br>";
         }
         $completeString = implode("", $emptyArray);
-
-
 
         //BUTTON NAME : if user role is student apply btn else view requests btn
         //BUTTON LINK : if user role is student apply link else view requests link
@@ -299,6 +359,8 @@ class Advertisements extends BaseController
             'required_year' => $advertisement->applicable_year,
             'internship_start' => $advertisement->start_date,
             'internship_end' => $advertisement->end_date,
+            'companyName' => $advertisement->company_name,
+            'buttonClass' => $btnClass,
         ];
 
         $this->view('company/advertisement', $data);

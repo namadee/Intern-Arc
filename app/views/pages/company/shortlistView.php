@@ -1,15 +1,24 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>css/company.css">
+<script src="<?php echo URLROOT; ?>js/company.js" defer></script>
+
 <?php require APPROOT . '/views/includes/navbar.php'; ?>
 
 <section class="main-content">
   <div class="common_list">
     <div class="common-list-topbar">
-    <form action="" class="common-search-bar display-flex-row">
-                <span class="material-symbols-rounded">
-                    search
-                </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
+      <!-- Common Search Bar Style-->
+      <form action="javascript:void(0)" class="common-search-bar display-flex-col">
+        <div class="display-flex-row">
+          <span class="material-symbols-rounded">
+            search
+          </span>
+          <input class="common-input" type="text" name="search-item" id="company_search_shortlist" placeholder="Search Shortlisted" >
+        </div>
+
+        <div class="common-search-result display-flex-col" id="company_shortlist_result">
+
+        </div>
       </form>
       <div class="common-filter">
         <span class="material-symbols-rounded">

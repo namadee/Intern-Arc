@@ -1,35 +1,30 @@
 /* submit complaint page*/
 
-
 .student-login-container {
-
   width: 100%;
   height: 100vh;
   margin: auto;
   position: absolute;
-  background: linear-gradient(135deg, #f18118 10%, #1904E5 100%);
+  background: linear-gradient(135deg, #f18118 10%, #1904e5 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-
-
 }
 .image-wrapper img {
   width: 67%;
-  float:right; 
+  float: right;
   margin: 0px 70px 0px 50px;
 }
 
 .box-form {
-
   margin: auto;
   width: 70%;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
   align-items: stretch;
-  justify-content:baseline;
+  justify-content: baseline;
   box-shadow: 0 0 20px 6px #3b3b3b85;
 }
 @media (max-width: 980px) {
@@ -98,12 +93,11 @@
   border: 5;
   outline: 0;
   border-radius: 7px;
-  border-color: #B0B3B9;
-  
+  border-color: #b0b3b9;
 }
 
 .box-form .right .login-btn {
-margin: auto;
+  margin: auto;
   color: rgb(255, 255, 255);
   padding: 12px 85px;
   font-size: 1rem;
@@ -115,11 +109,11 @@ margin: auto;
   width: 60%;
 }
 
-.main-signin-error-hide{
+.main-signin-error-hide {
   display: none;
 }
 
-.main-signin-error-alert{
+.main-signin-error-alert {
   padding: 0.2rem 0.5rem;
   color: var(--DangerColor);
   display: flex;
@@ -131,7 +125,6 @@ margin: auto;
   align-self: flex-start;
   background-color: var(--DangerBackground);
 }
-
 
 /* Job Roles List Page Student*/
 
@@ -158,7 +151,7 @@ margin: auto;
 .complaints-quickAdd {
   height: fit-content;
 }
-.complaints-quickAdd #description{
+.complaints-quickAdd #description {
   height: 200px;
 }
 #student_complaints_page h3 {
@@ -181,7 +174,6 @@ margin: auto;
 }
 
 .complaints-list {
-
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -227,66 +219,64 @@ margin: auto;
   color: var(--DangerColor);
 }
 
-
-
 /* added later with the UIs */
 
 /* published Advertiement list styles */
 
 /* .......................... */
 
-.dropdown-items{
+.dropdown-items {
   flex-direction: column;
-    width: 60%;
-    
-    
-  }
-  .dropbtn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: none;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  .dropdown:hover .dropdown-content {display: block;}
-  
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
-  
-  
-  /* ----------------------------------------------------------------------- */
+  width: 60%;
+}
+.dropbtn {
+  background-color: #04aa6d;
+  color: white;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+/* ----------------------------------------------------------------------- */
 
 /* ............................ */
 
-
-
 body {
-background-color: #f1f1f1;
-font-family: "Poppinns", sans-serif;
-
+  background-color: #f1f1f1;
+  font-family: "Poppinns", sans-serif;
 }
 
 .advertisements-view-container {
@@ -323,22 +313,20 @@ font-family: "Poppinns", sans-serif;
   padding-top: 10px;
   margin: auto;
   width: 68%;
-  }
+}
 
-
-.published-ad-list-flex-wrap { 
-  display: flex; 
+.published-ad-list-flex-wrap {
+  display: flex;
 }
 
 .published-ad-list-flex-wrap > * {
   box-sizing: border-box;
-  width: 50%; 
+  width: 50%;
   background: #f1f1f1;
-  
 }
 
-.published-ad-list-flex-wrap2 { 
-  display: flex; 
+.published-ad-list-flex-wrap2 {
+  display: flex;
   flex-direction: row;
   width: 100%;
   padding-bottom: 1rem;
@@ -355,16 +343,17 @@ font-family: "Poppinns", sans-serif;
 }
 
 .published-ad-list-container {
-  display:flex;
+  display: flex;
   width: 30%;
 }
 
-.published-ad-list-container input[type=text], select, textarea {
+.published-ad-list-container input[type="text"],
+select,
+textarea {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  
 }
 ::placeholder {
   font-family: "Open Sans", sans-serif;
@@ -381,13 +370,12 @@ font-family: "Poppinns", sans-serif;
 }
 
 .published-ad-list-ad-table th {
-  text-align:center;
+  text-align: center;
   padding: 8px;
   background-color: #f1f1f1;
 }
 
 .published-ad-list-ad-table button {
- 
   color: #f86808;
   background-color: rgb(255, 255, 255);
   font-size: 16px;
@@ -396,7 +384,6 @@ font-family: "Poppinns", sans-serif;
   border-color: #f86808;
   display: inline-block;
   border: 1;
-
 }
 
 /* .search-container {
@@ -434,13 +421,14 @@ font-family: "Poppinns", sans-serif;
   cursor: pointer;
 }
 
-.published-ad-list-dropbtn:hover, .published-ad-list-dropbtn:focus {
+.published-ad-list-dropbtn:hover,
+.published-ad-list-dropbtn:focus {
   background-color: #ddd;
 }
 
 #myInput {
   box-sizing: border-box;
-  background-image: url('searchicon.png');
+  background-image: url("searchicon.png");
   background-position: 14px 12px;
   background-repeat: no-repeat;
   font-size: 16px;
@@ -449,7 +437,9 @@ font-family: "Poppinns", sans-serif;
   border-bottom: 1px solid #ddd;
 }
 
-#myInput:focus {outline: 3px solid #ddd;}
+#myInput:focus {
+  outline: 3px solid #ddd;
+}
 
 .published-ad-list-dropdown {
   position: relative;
@@ -473,121 +463,119 @@ font-family: "Poppinns", sans-serif;
   display: block;
 }
 
-.published-ad-list-dropdown a:hover {background-color: #ddd;}
+.published-ad-list-dropdown a:hover {
+  background-color: #ddd;
+}
 
-.show {display: block;}
-
-
+.show {
+  display: block;
+}
 
 /* viewCompanies Styles */
 
 body {
-background-color: #f1f1f1;
-font-family: "Poppinns", sans-serif;
+  background-color: #f1f1f1;
+  font-family: "Poppinns", sans-serif;
 }
 
 .view-companies-top {
-background-color: rgb(255, 255, 255);
-padding: 30px;
-width: 55%;
-margin-left: 10%;
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 55%;
+  margin-left: 10%;
 }
 
 .view-companies-flex-container {
   background-color: rgb(255, 255, 255);
-/* display: flex;
+  /* display: flex;
 
 align-items: center;
 flex-direction: column; */
-height: 100%;
+  height: 100%;
 }
 
-.view-companies-flex-wrap { 
-display: flex; 
-width: 100%;
-flex-direction: row;
+.view-companies-flex-wrap {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
 }
 
 .view-companies-heading {
-display:flex;
-width: 50%;
+  display: flex;
+  width: 50%;
 }
 
 .view-companies-search {
-display: flex;
-width: 50%;
-align-items: center;
-justify-content: right;
+  display: flex;
+  width: 50%;
+  align-items: center;
+  justify-content: right;
 }
 
 .view-companies-search-container {
-display: flex;
-align-items: center;
-justify-content: center;
-width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
 }
 
-
-.view-companies-search-container input[type=text], select, textarea {
-padding: 12px;
-border: 1px solid #ccc;
-border-radius: 4px;
-box-sizing: border-box;
-width: 100%;
-
-
+.view-companies-search-container input[type="text"],
+select,
+textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%;
 }
 ::placeholder {
-font-family: "Open Sans", sans-serif;
-
+  font-family: "Open Sans", sans-serif;
 }
 
 .view-companies-table button {
-
-color: #f86808;
-font-size: 16px;
-padding: 12px 40px;
-border-radius: 5px;
-border-color: #f86808;
-display: inline-block;
-border: 1;
-
+  color: #f86808;
+  font-size: 16px;
+  padding: 12px 40px;
+  border-radius: 5px;
+  border-color: #f86808;
+  display: inline-block;
+  border: 1;
 }
 
 .view-companies-table {
-border-collapse: collapse;
-width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 .view-companies-table-data {
-text-align: center;
-padding: 4px;
+  text-align: center;
+  padding: 4px;
 }
 
 .view-companies-table-header {
-text-align:center;
-padding: 8px;
-background-color: #f1f1f1;
+  text-align: center;
+  padding: 8px;
+  background-color: #f1f1f1;
 }
 
 .view-companies-search-btn {
-padding: 12px;
-background: #ddd;
-font-size: 1rem;
-border: none;
-cursor: pointer;
-color: #f86808;
-display: inline-block;
+  padding: 12px;
+  background: #ddd;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  color: #f86808;
+  display: inline-block;
 }
 .view-companies-search-btn:hover {
-background: rgb(255, 255, 255);
+  background: rgb(255, 255, 255);
 }
 
 /* view ads styles */
 
 body {
-background-color: #f1f1f1;
-font-family: "Poppinns", sans-serif;
+  background-color: #f1f1f1;
+  font-family: "Poppinns", sans-serif;
 }
 
 .view-ads-top {
@@ -605,14 +593,14 @@ font-family: "Poppinns", sans-serif;
   height: 100%;
 }
 
-.view-ads-flex-wrap { 
-  display: flex; 
+.view-ads-flex-wrap {
+  display: flex;
   width: 100%;
   flex-direction: row;
 }
 
 .view-ads-heading {
-  display:flex;
+  display: flex;
   width: 50%;
 }
 
@@ -630,23 +618,20 @@ font-family: "Poppinns", sans-serif;
   width: 50%;
 }
 
-
-.view-ads-search-container input[type=text], select, textarea {
+.view-ads-search-container input[type="text"],
+select,
+textarea {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   width: 100%;
-
-  
 }
 ::placeholder {
   font-family: "Open Sans", sans-serif;
-
 }
 
 .view-ads-table button {
- 
   color: #f86808;
   font-size: 16px;
   padding: 12px 40px;
@@ -654,7 +639,6 @@ font-family: "Poppinns", sans-serif;
   border-color: #f86808;
   display: inline-block;
   border: 1;
-
 }
 
 .view-ads-table {
@@ -668,7 +652,7 @@ font-family: "Poppinns", sans-serif;
 }
 
 .view-ads-table-header {
-  text-align:center;
+  text-align: center;
   padding: 8px;
   background-color: #f1f1f1;
 }
@@ -689,8 +673,8 @@ font-family: "Poppinns", sans-serif;
 /* applied companies styles */
 
 body {
-background-color: #f1f1f1;
-font-family: "Poppinns", sans-serif;
+  background-color: #f1f1f1;
+  font-family: "Poppinns", sans-serif;
 }
 
 .applied-companies-top {
@@ -708,9 +692,7 @@ font-family: "Poppinns", sans-serif;
   height: 500px;
 }
 
-
 .applied-companies-statusbtn {
- 
   margin: auto;
   color: rgb(255, 255, 255);
   padding: 12px 20px;
@@ -721,8 +703,6 @@ font-family: "Poppinns", sans-serif;
   margin-left: 0;
   width: 60%;
 }
-
-
 
 .applied-companies-table {
   border-collapse: collapse;
@@ -735,7 +715,7 @@ font-family: "Poppinns", sans-serif;
 }
 
 .applied-companies-table th {
-  text-align:center;
+  text-align: center;
   padding: 8px;
   background-color: #f1f1f1;
 }
@@ -760,7 +740,7 @@ font-family: "Poppinns", sans-serif;
   padding: 30px;
   width: 80%;
   height: 60%;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .dashboard-btnarea {
@@ -772,7 +752,6 @@ font-family: "Poppinns", sans-serif;
 }
 
 .dashboard-statusbtn {
- 
   margin: auto;
   color: rgb(255, 255, 255);
   padding: 0.3rem 0.5rem;
@@ -785,7 +764,6 @@ font-family: "Poppinns", sans-serif;
 }
 
 .dashboard-profile-view-btn {
- 
   margin: auto;
   color: rgb(255, 255, 255);
   padding: 10px 20px;
@@ -810,7 +788,6 @@ font-family: "Poppinns", sans-serif;
   margin-left: 15%;
   gap: 4rem;
   height: 3.5rem;
-  
 }
 
 .bottom-strip-blue-line {
@@ -861,8 +838,8 @@ font-family: "Poppinns", sans-serif;
 /* CV status styles */
 
 body {
-background-color: #f1f1f1;
-font-family: "Poppinns", sans-serif;
+  background-color: #f1f1f1;
+  font-family: "Poppinns", sans-serif;
 }
 
 .cv-status-top {
@@ -881,21 +858,21 @@ font-family: "Poppinns", sans-serif;
   height: 100%;
 }
 
-.cv-status-flex-wrap2 { 
-  display: flex; 
+.cv-status-flex-wrap2 {
+  display: flex;
   width: 100%;
 }
 
 .cv-status-flex-wrap2 > * {
   box-sizing: border-box;
-  width: 50%; 
+  width: 50%;
   background: rgb(255, 255, 255);
 }
 
 .cv-status-flex-wrap3 {
   box-sizing: border-box;
   width: 100%;
-  height: 25rem; 
+  height: 25rem;
   background: #f1f1f1;
 }
 
@@ -905,7 +882,7 @@ font-family: "Poppinns", sans-serif;
 }
 
 .cv-status-myCV {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   width: 30%;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -927,8 +904,8 @@ font-family: "Poppinns", sans-serif;
 /* Company profile */
 
 body {
-background-color: #f1f1f1;
-font-family: "Poppinns", sans-serif;
+  background-color: #f1f1f1;
+  font-family: "Poppinns", sans-serif;
 }
 
 .company-profile-top {
@@ -947,8 +924,8 @@ font-family: "Poppinns", sans-serif;
   height: 100%;
 }
 
-.company-profile-flex-wrap2 { 
-  display: flex; 
+.company-profile-flex-wrap2 {
+  display: flex;
   width: 100%;
   margin-left: 4rem;
   margin-bottom: 1rem;
@@ -967,7 +944,6 @@ font-family: "Poppinns", sans-serif;
 .company-profile-description {
   display: flex;
   flex-direction: column;
-
 }
 .company-profile-logo-icon {
   border-radius: 100%;
@@ -977,7 +953,7 @@ font-family: "Poppinns", sans-serif;
 }
 
 .company-profile-bottom {
-  background-color:#054A91;
+  background-color: #054a91;
   padding: 30px;
   margin-left: 5rem;
   margin-right: 5rem;
@@ -995,12 +971,12 @@ font-family: "Poppinns", sans-serif;
 
 .company-contact {
   display: flex;
-  background-color:chartreuse;
+  background-color: chartreuse;
 }
 
 .technologies-btn {
   margin: auto;
-  color: #054A91;
+  color: #054a91;
   padding: 8px 5px;
   font-size: 1rem;
   border-style: none;
@@ -1011,10 +987,9 @@ font-family: "Poppinns", sans-serif;
   width: 25%;
 }
 
-
 .visit-web-btn {
   margin: auto;
-  color:darkorange;
+  color: darkorange;
   padding: 9px 20px;
   font-size: 1rem;
   border-style: none;
@@ -1032,7 +1007,7 @@ font-family: "Poppinns", sans-serif;
 
 .view-ads-btn {
   margin: auto;
-  color:rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
   padding: 9px 20px;
   font-size: 1rem;
   border-style: none;
@@ -1047,8 +1022,8 @@ font-family: "Poppinns", sans-serif;
 /* advertisement list styles */
 
 body {
-background-color: #f1f1f1;
-font-family: "Poppinns", sans-serif;
+  background-color: #f1f1f1;
+  font-family: "Poppinns", sans-serif;
 }
 
 .ad-list-top {
@@ -1065,7 +1040,6 @@ font-family: "Poppinns", sans-serif;
   flex-direction: column;
   height: 500px;
 }
-
 
 .ad-list-table button {
   margin: auto;
@@ -1090,37 +1064,36 @@ font-family: "Poppinns", sans-serif;
 }
 
 .ad-list-table th {
-  text-align:center;
+  text-align: center;
   padding: 8px;
   background-color: #f1f1f1;
 }
 
 /* schedule ad styles */
 
-  body {
-    background-color: #f1f1f1;
-    font-family: "Poppinns", sans-serif;
-  }
-  
-  .schedule-ad-top {
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    width: 80%;
-    margin: auto;
-  }
-  
-  .schedule-ad-flex-container {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    align-items: center;
-    flex-direction: column;
-    height: 500px;
-  }
+body {
+  background-color: #f1f1f1;
+  font-family: "Poppinns", sans-serif;
+}
 
-  .schedule-ad-form {
-    padding: 30px;
-  }
+.schedule-ad-top {
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 80%;
+  margin: auto;
+}
 
+.schedule-ad-flex-container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  flex-direction: column;
+  height: 500px;
+}
+
+.schedule-ad-form {
+  padding: 30px;
+}
 
 /* view ad styles */
 .view-advertisement-container {
@@ -1128,74 +1101,73 @@ font-family: "Poppinns", sans-serif;
   height: 100%;
 }
 
-
 .view-ad-top {
-background-color: rgb(255, 255, 255);
-padding: 30px;
-width: 65%;
-margin: auto;
-margin-top: 3rem;
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  width: 65%;
+  margin: auto;
+  margin-top: 3rem;
 }
 
-.view-ad-flex-wrap2 { 
-display: flex; 
-width: 100%;
+.view-ad-flex-wrap2 {
+  display: flex;
+  width: 100%;
 }
 
 .view-ad-flex-container {
-display: flex;
-background-color: rgb(255, 255, 255);
-align-items: center;
-flex-direction: column;
-height: 100%;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
 }
 
 .view-ad-basic-details-row {
-width: 50%; 
-} 
+  width: 50%;
+}
 
 .basic-details {
-border-spacing: 0.5rem;
-width: 90%;
-padding: 0.5rem;
+  border-spacing: 0.5rem;
+  width: 90%;
+  padding: 0.5rem;
 }
 
 .ad-data {
-background-color:#f1f1f1;
-padding: 0.5rem;
+  background-color: #f1f1f1;
+  padding: 0.5rem;
 }
 
-.view-ad-descriptions{
-display: flex;
-gap: 1rem;
+.view-ad-descriptions {
+  display: flex;
+  gap: 1rem;
 }
 
 .view-ad-requirements {
-background-color: #f1f1f1;
-display: flex;
+  background-color: #f1f1f1;
+  display: flex;
 }
 
-.view-ad-section{
-width: 50%;
+.view-ad-section {
+  width: 50%;
 }
 
 .view-ad-apply-button {
-margin-top: 1rem;
-color: #ffffff;
-background-color: #158811;
-font-size: 16px;
-padding: 6px 50px;
-border-radius: 0px;
-display: inline-block;
-cursor: pointer;
-border: none;
+  margin-top: 1rem;
+  color: #ffffff;
+  background-color: #158811;
+  font-size: 16px;
+  padding: 6px 50px;
+  border-radius: 0px;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
 }
 
 /* job roles styles */
 
 body {
-background-color: #f1f1f1;
-font-family: "Poppinns", sans-serif;
+  background-color: #f1f1f1;
+  font-family: "Poppinns", sans-serif;
 }
 
 .job-roles-top {
@@ -1214,27 +1186,27 @@ font-family: "Poppinns", sans-serif;
   height: 100%;
 }
 
-.job-roles-flex-wrap2 { 
-  display: flex; 
+.job-roles-flex-wrap2 {
+  display: flex;
   width: 100%;
 }
 
 .job-roles-flex-wrap2 > * {
   box-sizing: border-box;
-  width: 50%; 
+  width: 50%;
   background: rgb(255, 255, 255);
 }
 
 .job-roles-flex-wrap3 {
   box-sizing: border-box;
   width: 100%;
-  height: 100%; 
+  height: 100%;
   background: #f1f1f1;
 }
 
 .job-roles-select-data {
   border-collapse: collapse;
-width: 100%;
+  width: 100%;
 }
 
 .job-role-table-name {
@@ -1247,30 +1219,30 @@ width: 100%;
 }
 
 .job-role-table-header-name {
-  text-align:left;
+  text-align: left;
   padding: 0.8rem;
   background-color: #f1f1f1;
 }
 
 .job-role-table-header-select {
-  text-align:center;
+  text-align: center;
   padding: 0.8rem;
   background-color: #f1f1f1;
 }
 
 .job-role-submit-button {
-margin-left: 12rem;
-margin-top: 1rem;
-margin-bottom: 1rem;
-color: rgb(255, 255, 255);
-background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
-font-size: 1rem;
-padding: 6px 25px;
-border-radius: 3px;
-border-style: none;
-display: inline-block;
-cursor: pointer;
-border: none;
+  margin-left: 12rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(90deg, #022f73 0%, #1da6d4 100%);
+  font-size: 1rem;
+  padding: 6px 25px;
+  border-radius: 3px;
+  border-style: none;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
 }
 
 /* edit profile styles */
@@ -1505,7 +1477,7 @@ border: none;
   gap: 0.3rem;
   font-weight: 500;
   width: 7rem;
-  padding: 0 0.5rem;
+  /* padding: 0 0.5rem; */
 }
 
 #dashboard-round-date {
@@ -1535,3 +1507,6 @@ border: none;
   padding: 0.5rem;
 }
 
+.hide-element{
+  display: none;
+}

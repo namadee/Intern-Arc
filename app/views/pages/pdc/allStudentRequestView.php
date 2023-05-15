@@ -29,6 +29,7 @@
                 </div>
             </div>
 
+            <button class="common-blue-btn download-rej-list"><a href="<?php echo URLROOT.'pdc/downloadRejectedStudentList/' ?>" target="_blank">Download Rejected List</a></button>
         </div>
         <div class="display-flex-row student-request-body">
             <div class="student-requests-box display-flex-col">

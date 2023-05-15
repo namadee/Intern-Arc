@@ -64,6 +64,9 @@ class Profiles extends BaseController
                 'company_slogan' => $company_details->company_slogan,
                 'company_email' => $company_details->company_email,
                 'company_description' => $company_details->company_description,
+                'linkedlnUrl' => $company_details->linkedln,
+                'websiteLink' => $company_details->website_link,
+                'contact' => $company_details->contact,
                 'image' => $profile_image_name->profile_pic,
                 'formAction' => 'Profiles/update-company-profile/' . $company_details->company_id,
                 'edit_button_class' => 'none'
@@ -83,6 +86,9 @@ class Profiles extends BaseController
                 'company_email' => $company_details->company_email,
                 'company_description' => $company_details->company_description,
                 'image' => $profile_image_name->profile_pic,
+                'linkedlnUrl' => $company_details->linkedln,
+                'websiteLink' => $company_details->website_link,
+                'contact' => $company_details->contact,
                 'formAction' => 'Profiles/update-company-profile/' . $company_details->company_id,
                 'edit_button_class' => ''
             ];
@@ -360,44 +366,12 @@ class Profiles extends BaseController
         }
     }
 
-    // View Profile Details
-    public function studentProfile()                //($_SESSION['user_id'])
+    // View Profile Details - For all
+    public function studentProfile($userID = NULL)
     {
-        $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
-        $student_details = $this->userModel->getStudentDetails($studentId); //commented
-        $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id'])); // extra 1
-
-        // Check if POST
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            // Strip Tags
-            stripTags();
-
-            $data = [
-                'student_id' => $studentId,
-                'experience' => trim($_POST['experience']),
-                'interests' => trim($_POST['interests']),
-                'qualifications' => trim($_POST['qualifications']),
-                'school' => trim($_POST['school']),
-                'contact' => trim($_POST['contact']),
-                'stream' => trim($_POST['stream']),
-                'profile_description' => trim($_POST['profile_description']),
-                'extracurricular' => trim($_POST['extracurricular']),
-                'profile_name'=>trim($_POST['profile_name']),
-                'github_link' =>trim($_POST['github_link']),
-                'linkedin_link' =>trim($_POST['linkedin_link']),
-                'personal_email'=>trim($_POST['personal_email']),
-            ];
-
-            //Execute
-            if ($this->studentModel->EditStudentProfileDetails($data)) {
-
-                redirect('profiles/student-profile');
-            } else {
-                die('Something went wrong');
-            }
-        } else {
-
+        if ($userID == NULL) {
+            $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
+            $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id']));
             $studentProfile = $this->studentModel->getStudentProfileData($studentId);
 
 
@@ -413,17 +387,41 @@ class Profiles extends BaseController
                 'extracurricular' => $studentProfile->extracurricular,
                 'profile_name' => $studentProfile->profile_name,
                 'github_link' => $studentProfile->github_link,
-                'linkedin_link'=> $studentProfile->linkedin_link,
+                'linkedin_link' => $studentProfile->linkedin_link,
                 'personal_email' => $studentProfile->personal_email,
                 'image' => $profile_image_name->profile_pic,    //extra 2
             ];
 
-            // $this->view('student/editprofile',$data);
-
             $this->view('student/studentprofile', $data);
-           
+        } else {
+
+            $studentId = $this->userModel->getStudentUserId($userID);
+            $profile_image_name = $this->userModel->getProfileImageName($userID);
+            $studentProfile = $this->studentModel->getStudentProfileData($studentId);
+
+
+            $data = [
+                'student_id' => $studentId,
+                'experience' => $studentProfile->experience,
+                'interests' => $studentProfile->interests,
+                'qualifications' => $studentProfile->qualifications,
+                'school' => $studentProfile->school,
+                'contact' => $studentProfile->contact,
+                'stream' => $studentProfile->stream,
+                'profile_description' => $studentProfile->profile_description,
+                'extracurricular' => $studentProfile->extracurricular,
+                'profile_name' => $studentProfile->profile_name,
+                'github_link' => $studentProfile->github_link,
+                'linkedin_link' => $studentProfile->linkedin_link,
+                'personal_email' => $studentProfile->personal_email,
+                'image' => $profile_image_name->profile_pic
+            ];
+            $this->view('student/studentprofile', $data);
         }
     }
+
+
+
 
     public function studentCompanyProfile()
     {
@@ -431,12 +429,91 @@ class Profiles extends BaseController
     }
 
 
-    public function EditStudentProfileDetails() 
+    // public function EditStudentProfileDetails()
+    // {
+    //     $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
+    //     $studentProfile = $this->studentModel->getStudentProfileData($studentId);
+    //     $profile_image_name = $this->userModel->getProfileImageName(($_SESSION['user_id']));
+    //     // Check if POST
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+    //         //         //File upload path
+    //         //         $targetDir = "img/profile-img/";
+    //         //         //Change image file name - Unique Name for each user with the help of userId
+    //         //         $fileName = 'user' . $_SESSION['user_id'] . '_profileimg' . rand(0, 100000);
+    //         //         //Get the extension
+    //         //         $extension = pathinfo($_FILES["profile_image"]["name"], PATHINFO_EXTENSION);
+    //         //         //Full image name
+    //         //         $basename   = $fileName . "." . $extension; //user56_profile_img.jpg
+    //         //         //TargetPath
+    //         //         $targetFilePath = $targetDir . $basename;
+
+
+
+    //         $data = [
+
+    //             'student_id' => $studentId,
+    //             'experience-list' => ($_POST['experiences']),
+    //             'interests-list' => $_POST['interests'],
+    //             'school' => trim($_POST['school']),
+    //             'contact' => trim($_POST['contact']),
+    //             'profile_description' => trim($_POST['profile_description']),
+    //             'profile_name' => trim($_POST['profile_name']),
+    //             'personal_email' => trim($_POST['personal_email']),
+    //             'github_link' => trim($_POST['github_link']),
+    //             'linkedin_link' => trim($_POST['linkedin_link']),
+    //             'extracurricular-list' => ($_POST['extracurricular']),
+    //             'qualification-list' => ($_POST['qualifications']),
+    //         ];
+
+
+    //         // 1 Year Customer Relations<br />
+    //         // Commercial TP, 2 years Web Developer<br />
+    //         // IFS
+
+    //         $data['experience-list'] = implode(", ", $data['experience-list']);
+    //         $data['experience-list'] = nl2br($data['experience-list']);
+
+    //         $data['interests-list'] = implode(", ", $data['interests-list']);
+    //         $data['interests-list'] = nl2br($data['interests-list']);
+
+    //         $data['qualification-list'] = implode(", ", $data['qualification-list']);
+    //         $data['qualification-list'] = nl2br($data['qualification-list']);
+
+    //         $data['extracurricular-list'] = implode(", ", $data['extracurricular-list']);
+    //         $data['extracurricular-list'] = nl2br($data['extracurricular-list']);
+
+    //         //Execute - Adding other details to company_tbl
+    //         $this->studentModel->EditStudentProfileDetails($data);
+
+    //         redirect('profiles/student-profile');
+    //     } else {
+
+    //         $data = [
+    //             'experience' => $studentProfile->experience,
+    //             'interests' => $studentProfile->interests,
+    //             'qualifications' => $studentProfile->qualifications,
+    //             'school' => $studentProfile->school,
+    //             'contact' => $studentProfile->contact,
+    //             'stream' => $studentProfile->stream,
+    //             'profile_description' => $studentProfile->profile_description,
+    //             'profile_name' => $studentProfile->profile_name,
+    //             'personal_email' => $studentProfile->personal_email,
+    //             'extracurricular' => $studentProfile->extracurricular,
+    //             'profile_name' => $studentProfile->profile_name,
+    //             'personal_email' => $studentProfile->personal_email,
+    //             'github_link' => $studentProfile->github_link,
+    //             'linkedin_link' => $studentProfile->linkedin_link,
+
+    //         ];
+
+    //         $this->view('student/editprofile', $data);
+    //     }
+    // }
+
+    public function EditStudentProfileDetails()
     {
-
-        //$studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
-
-        //$student_details = $this->userModel->getStudentDetails($studentId);
 
         $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
         $studentProfile = $this->studentModel->getStudentProfileData($studentId);
@@ -444,22 +521,7 @@ class Profiles extends BaseController
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            // Strip Tags
-            //stripTags();
-
-            //$studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
-            //extra 3
-            // $text = explode("\r<\br>", trim($_POST['interests-list']));
-            // $length = count($text);
-
-            // $emptyArray = array();
-            // for ($x = 0; $x < $length; $x++) {
-            //     $emptyArray[$x] = trim($text[$x]); 
-            // }
-            //$completeString = implode("", $emptyArray);
-
-
-             //File upload path
+            //File upload path
             $targetDir = "img/profile-img/";
             //Change image file name - Unique Name for each user with the help of userId
             $fileName = 'user' . $_SESSION['user_id'] . '_profileimg' . rand(0, 100000);
@@ -510,34 +572,42 @@ class Profiles extends BaseController
                         //To add the new photo session - top navbar profile photo
                         //Update Image Session Value
                         $_SESSION['profile_pic'] = $targetFilePath;
+
                         $data = [
 
                             'student_id' => $studentId,
                             'experience-list' => ($_POST['experiences']),
                             'interests-list' => $_POST['interests'],
-                            'qualifications-list' => trim($_POST['qualifications-list']),
                             'school' => trim($_POST['school']),
                             'contact' => trim($_POST['contact']),
                             'stream' => trim($_POST['stream']),
                             'profile_description' => trim($_POST['profile_description']),
                             'profile_name' => trim($_POST['profile_name']),
                             'personal_email' => trim($_POST['personal_email']),
-                            'github_link' =>trim($_POST['github_link']),
-                            'linkedin_link' =>trim($_POST['linkedin_link']),
-                            'extracurricular-list' => trim($_POST['extracurricular-list']),
+                            'github_link' => trim($_POST['github_link']),
+                            'linkedin_link' => trim($_POST['linkedin_link']),
+                            'extracurricular-list' => ($_POST['extracurricular']),
+                            'qualification-list' => ($_POST['qualifications'])
                         ];
 
-                        $data['interests-list'] = implode(", ", $data['interests-list']);
-                        echo $data['interests-list'];
 
                         $data['experience-list'] = implode(", ", $data['experience-list']);
-                        echo $data['experience-list'];
+                        $data['experience-list'] = nl2br($data['experience-list']);
 
-                
-                        //Execute - Adding other details to company_tbl
+                        $data['interests-list'] = implode(", ", $data['interests-list']);
+                        $data['interests-list'] = nl2br($data['interests-list']);
+
+                        $data['qualification-list'] = implode(", ", $data['qualification-list']);
+                        $data['qualification-list'] = nl2br($data['qualification-list']);
+
+                        $data['extracurricular-list'] = implode(", ", $data['extracurricular-list']);
+                        $data['extracurricular-list'] = nl2br($data['extracurricular-list']);
+
+                        // Execute - Adding other details to company_tbl
                         $this->studentModel->EditStudentProfileDetails($data);
 
-                        // Redirect - Profile Updared successfully
+
+                        // // Redirect - Profile Updared successfully
                         $statusMsg = 'Profile Picture Uploaded Successfully';
                         flashMessage('profile_update_status', $statusMsg);
                         redirect('profiles/student-profile');
@@ -551,8 +621,7 @@ class Profiles extends BaseController
                     $statusMsg = 'Sorry, only JPG, JPEG & PNG files are allowed to upload.';
                     flashMessage('profile_update_status', $statusMsg, 'danger-alert');
                     redirect('profiles/edit-student-profile-Details');
-                } 
-
+                }
             } else {
 
                 //no pro pic uploaded
@@ -561,23 +630,29 @@ class Profiles extends BaseController
                     'student_id' => $studentId,
                     'experience-list' => ($_POST['experiences']),
                     'interests-list' => $_POST['interests'],
-                    'qualifications-list' => trim($_POST['qualifications-list']),
                     'school' => trim($_POST['school']),
                     'contact' => trim($_POST['contact']),
                     'stream' => trim($_POST['stream']),
                     'profile_description' => trim($_POST['profile_description']),
                     'profile_name' => trim($_POST['profile_name']),
                     'personal_email' => trim($_POST['personal_email']),
-                    'github_link' =>trim($_POST['github_link']),
-                    'linkedin_link' =>trim($_POST['linkedin_link']),
-                    'extracurricular-list' => trim($_POST['extracurricular-list']),
+                    'github_link' => trim($_POST['github_link']),
+                    'linkedin_link' => trim($_POST['linkedin_link']),
+                    'extracurricular-list' => ($_POST['extracurricular']),
+                    'qualification-list' => ($_POST['qualifications']),
                 ];
 
-                $data['interests-list'] = implode(", ", $data['interests-list']);
-                echo $data['interests-list'];
-
                 $data['experience-list'] = implode(", ", $data['experience-list']);
-                echo $data['experience-list'];
+                $data['experience-list'] = nl2br($data['experience-list']);
+
+                $data['interests-list'] = implode(", ", $data['interests-list']);
+                $data['interests-list'] = nl2br($data['interests-list']);
+
+                $data['qualification-list'] = implode(", ", $data['qualification-list']);
+                $data['qualification-list'] = nl2br($data['qualification-list']);
+
+                $data['extracurricular-list'] = implode(", ", $data['extracurricular-list']);
+                $data['extracurricular-list'] = nl2br($data['extracurricular-list']);
 
                 //Execute - Adding other details to company_tbl
                 $this->studentModel->EditStudentProfileDetails($data);
@@ -586,15 +661,7 @@ class Profiles extends BaseController
                 $statusMsg = 'Profile Uploaded Successfully';
                 flashMessage('profile_update_status', $statusMsg);
                 redirect('profiles/student-profile');
-
             }
-
-            //Execute
-            // if ($this->studentModel->EditStudentProfileDetails($data)) {
-            //     redirect('profiles/student-profile');
-            // } else {
-            //      die('Something went wrong');
-            //  }
         } else {
 
             $data = [
@@ -611,16 +678,53 @@ class Profiles extends BaseController
                 'profile_name' => $studentProfile->profile_name,
                 'personal_email' => $studentProfile->personal_email,
                 'github_link' => $studentProfile->github_link,
-                'linkedin_link'=> $studentProfile->linkedin_link,
-                
+                'linkedin_link' => $studentProfile->linkedin_link,
+
             ];
 
             $this->view('student/editprofile', $data);
-
-            
         }
     }
 
+
+    // To view student profiles
+
+    public function viewStudentProfile($userID = NULL)
+    {
+
+        if ($userID == NULL) {
+            redirect('errors');
+        }
+        $studentId = $this->userModel->getStudentUserId($userID);
+        $profile_image_name = $this->userModel->getProfileImageName($userID);
+        $studentProfile = $this->studentModel->getStudentProfileData($studentId);
+
+        if ($studentProfile->cv == NULL) {
+            $cv = 'javascript:void(0)';
+        }else{
+            $cv = URLROOT . $studentProfile->cv;
+        }
+
+        $data = [
+            'student_id' => $studentId,
+            'experience' => $studentProfile->experience,
+            'interests' => $studentProfile->interests,
+            'qualifications' => $studentProfile->qualifications,
+            'school' => $studentProfile->school,
+            'contact' => $studentProfile->contact,
+            'stream' => $studentProfile->stream,
+            'profile_description' => $studentProfile->profile_description,
+            'extracurricular' => $studentProfile->extracurricular,
+            'profile_name' => $studentProfile->profile_name,
+            'github_link' => $studentProfile->github_link,
+            'linkedin_link' => $studentProfile->linkedin_link,
+            'personal_email' => $studentProfile->personal_email,
+            'image' => $profile_image_name->profile_pic,
+            'cv' => $cv
+        ];
+
+        $this->view('student/viewStudentProfile', $data);
+    }
 
     // public function EditffffStudentProfileDetails()
     // {

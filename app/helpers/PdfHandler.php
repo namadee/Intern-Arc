@@ -77,4 +77,18 @@ class PdfHandler
         $this->dompdf->stream('company-registrations.pdf', ['Attachment' => false]);
     }
 
+
+    public function rejectedStudentList($studentList, $templatePath, $currentDateTime, $batchYear)
+    {
+        ob_start();
+        require $templatePath;
+        $html = ob_get_contents();
+        ob_get_clean();
+
+        $this->dompdf->loadHtml($html);
+        $this->dompdf->setPaper('A4', 'portrait');
+        $this->dompdf->render();
+        $this->dompdf->stream('rejected-student-list.pdf', ['Attachment' => false]);
+    }
+
 }

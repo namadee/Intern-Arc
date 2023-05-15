@@ -3,8 +3,8 @@
 
 <section class="main-content display-flex-row">
     <div class="no-access-page display-flex-col">
-        <h1>Oops Seems like you don't have access for this page!!</h1>
-        <img src="<?php echo URLROOT . "img/no-access.svg" ?>">
+        <h1>Oops!! seems like you don't have access for this page!!</h1>
+        <img style="width: 80%;" src="<?php echo URLROOT . "img/no-access.svg" ?>">
     </div>
 </section>
 

@@ -2,13 +2,16 @@
 
 class Ajax extends BaseController
 {
-    public $complaintModel, $ajaxModel, $userModel;
+    public $complaintModel, $ajaxModel, $userModel, $advertisementModel, $requestModel, $companyModel;
 
     public function __construct()
     {
         $this->complaintModel = $this->model('Complaint');
         $this->userModel = $this->model('User');
         $this->ajaxModel = $this->model('Ajax');
+        $this->advertisementModel = $this->model('Advertisement');
+        $this->requestModel = $this->model('Request');
+        $this->companyModel = $this->model('Company');
     }
 
     public function index()
@@ -134,7 +137,8 @@ class Ajax extends BaseController
         }
     }
 
-    public function searchComplaint(){
+    public function searchComplaint()
+    {
         //Admin Complaint Search 
         if (isset($_POST['query'])) {
             $searchItem = $_POST['query'];
@@ -151,5 +155,96 @@ class Ajax extends BaseController
         } else {
             redirect('errors');
         }
+    }
+
+
+    public function companySearchAdByCompany()
+    {
+
+        //PDC Company Search 
+        if (isset($_POST['query'])) {
+            $searchItem = $_POST['query'];
+            $companyId = $_POST['companyId'];
+
+            if ($this->ajaxModel->searchAdvertisementsByCompany($companyId, $searchItem)) {
+                $resultList = $this->ajaxModel->searchAdvertisementsByCompany($companyId, $searchItem);
+                foreach ($resultList as $advertisement) {
+
+
+
+                    echo '<a href="' . URLROOT . 'advertisements/view-advertisement/' . $advertisement->advertisement_id . '">' . $advertisement->position . '</a>';
+                }
+            } else {
+                echo '<a href="#">No advertisements found</a>';
+            }
+        } else {
+            redirect('errors');
+        }
+    }
+
+
+    public function AdvertisementListRequests()
+    {
+
+        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+
+        
+        if (isset($_POST['query'])) {
+            $searchItem = $_POST['query'];
+
+            if ($this->ajaxModel->searchAdvertisementsByPosition($companyId, $searchItem)) {
+                $resultList =$this->ajaxModel->searchAdvertisementsByPosition($companyId, $searchItem);
+                foreach ($resultList as $advertisement) {
+                    $requests = $this->requestModel->getAdvertisementByRequest($advertisement->advertisement_id);
+                    $requestCounts= count($requests);
+
+                    if ($requestCounts != 0) {
+                        echo '<a href="' . URLROOT . 'requests/show-requests-by-ad/' . $advertisement->advertisement_id . '">' . $advertisement->position . '</a>';
+                    }else {
+                        echo '<a href="' . URLROOT . 'errors/no-data">' . $advertisement->position . '</a>';
+                    }
+
+
+                }
+            } else {
+                echo '<a href="#">No advertisements found</a>';
+            }
+        } else {
+            redirect('errors');
+        }
+    
+    }
+
+
+    public function AdvertisementShortlistListRequests()
+    {
+
+        $companyId = $this->userModel->getCompanyUserId($_SESSION['user_id']);
+
+        
+        if (isset($_POST['query'])) {
+            $searchItem = $_POST['query'];
+
+            if ($this->ajaxModel->searchShortlistedAdvertisementByPosition($companyId, $searchItem)) {
+                $resultList =$this->ajaxModel->searchShortlistedAdvertisementByPosition($companyId, $searchItem);
+                foreach ($resultList as $advertisement) {
+                    $shortlists = $this->companyModel->getAdvertisementByStatus($advertisement->advertisement_id);
+                    $shortlistedCounts= count($shortlists);
+
+                    if ($shortlistedCounts != 0) {
+                        echo '<a href="' . URLROOT . 'companies/get-shortlisted-students/' . $advertisement->advertisement_id . '">' . $advertisement->position . '</a>';
+                    }else {
+                        echo '<a href="' . URLROOT . 'errors/no-data">' . $advertisement->position . '</a>';
+                    }
+
+
+                }
+            } else {
+                echo '<a href="#">No advertisements found</a>';
+            }
+        } else {
+            redirect('errors');
+        }
+    
     }
 }

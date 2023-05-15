@@ -164,22 +164,11 @@
             </div>
 
             <div class="bottom-right">
-                <a href="<?php echo URLROOT . 'students/uploadCV'; ?>" class="display-flex-row">
+                <a href="<?php echo $data['cv']; ?>" target="_blank" class="display-flex-row">
                     <span class="material-symbols-outlined">
-                        upload
+                        download
                     </span>
-                    Upload CV
-                </a>
-
-
-            </div>
-
-            <div class="bottom-right">
-                <a href="<?php echo URLROOT . 'Profiles/edit-student-profile-Details'; ?>" class="display-flex-row">
-                    <span class="material-symbols-outlined">
-                        edit
-                    </span>
-                    Edit Profile
+                    Download CV
                 </a>
 
 

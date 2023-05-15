@@ -141,10 +141,11 @@ class CompanyModel
     public function getShortlistedStudents($advertisementId)
     {
         $status = 'shortlisted';
-        $this->db->query('SELECT student_tbl.profile_name ,student_tbl.personal_email, student_requests_tbl.student_request_id , student_requests_tbl.student_id,student_requests_tbl.status, student_requests_tbl.recruit_status , student_requests_tbl.advertisement_id , student_requests_tbl.round  
+        $this->db->query('SELECT student_tbl.profile_name ,student_tbl.personal_email, student_requests_tbl.student_request_id , student_requests_tbl.student_id,student_requests_tbl.status, student_requests_tbl.recruit_status , student_requests_tbl.advertisement_id , student_requests_tbl.round, user_tbl.user_id 
         FROM student_tbl 
         JOIN student_requests_tbl 
         ON student_tbl.student_id = student_requests_tbl.student_id
+        JOIN user_tbl ON user_tbl.user_id = student_tbl.user_id_fk
         WHERE student_requests_tbl.advertisement_id = :advertisement_id
         AND student_requests_tbl.status = :status');
         $this->db->bind(':advertisement_id', $advertisementId);
@@ -248,5 +249,27 @@ class CompanyModel
         } else {
             return false;
         }
+    }
+    //GET Company Details from Advertisement ID
+    public function getCompanyDetailFromAdID($adID)
+    {
+        $this->db->query('SELECT * FROM company_tbl
+        JOIN advertisement_tbl ON company_tbl.company_id = advertisement_tbl.company_id_fk
+        WHERE advertisement_tbl.advertisement_id = :adID');
+        $this->db->bind(':adID', $adID);
+
+        //Execute
+        return $this->db->single();
+    }
+
+    //Get company details by companyID
+    public function getCompanyDetailFromCompanyID($companyID)
+    {
+        $this->db->query('SELECT * FROM company_tbl
+        WHERE company_tbl.company_id = :companyID');
+        $this->db->bind(':companyID', $companyID);
+
+        //Execute
+        return $this->db->single();
     }
 }

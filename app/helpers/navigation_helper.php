@@ -4,6 +4,8 @@
 function getNavigationByUser($userType)
 {
 
+  
+
 
   switch ($userType) {
 
@@ -34,14 +36,14 @@ function getNavigationByUser($userType)
       return $navigation;
       break;
 
+
+
     case 'student': //Student User Menu
       $navigation = array(
 
         array(URLROOT . 'students', 'dashboard', 'Dashboard'),
-        array(URLROOT . 'companies/view-company-list', 'cases', 'Companies'),
-        //array(URLROOT.'students/student-profile', 'manage_accounts', 'Profile'),
         array(URLROOT . 'profiles/student-profile', 'manage_accounts', 'Profile'),
-
+        array(URLROOT . 'companies/view-company-list', 'cases', 'Companies'),
         array(URLROOT . 'advertisements/show-student-advertisements', 'text_to_speech', 'Advertisements'),
         array(URLROOT . 'complaints', 'approval_delegation', 'Complaint'),
         array(URLROOT . 'schedule', 'calendar_month', 'Schedule')

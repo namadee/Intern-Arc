@@ -13,7 +13,9 @@ class Complaints extends BaseController
 
     public function index()
     {
-        $complaints = $this->complaintModel->getComplaint(); //Model function
+
+        $userID = $_SESSION['user_id'];
+        $complaints = $this->complaintModel->getComplaint($userID); //Model function
 
         $data = [
             'title' => 'Complaints',
@@ -72,7 +74,8 @@ class Complaints extends BaseController
     }
     public function showComplaint($complaintId)
     {
-        $complaints = $this->complaintModel->getComplaint();
+        $userID = $_SESSION['user_id'];
+        $complaints = $this->complaintModel->getComplaint($userID);
         $complaint = $this->complaintModel->showComplaintById($complaintId); //To get the Advertisement Name
 
         $data = [

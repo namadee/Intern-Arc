@@ -15,14 +15,14 @@
             keyboard_double_arrow_right
         </span>
         <div class="display-flex-row">Degree Programme
-            <p><?php echo $data['stream'] === 'IS'? 'Information Systems' : 'Computer Systems'; ?>        
-        </p>
+            <p><?php echo $data['stream'] === 'IS' ? 'Information Systems' : 'Computer Systems'; ?>
+            </p>
         </div>
     </div>
     <div class="add-student-container add-company-container display-flex-row">
         <div class="register-company display-flex-col">
             <h2>Register a Student</h2>
-            <form action="<?php echo URLROOT . "register/register-student/".$data['year']."/".$data['stream']; ?>" method="POST" class="display-flex-col" id="student-register-form">
+            <form action="<?php echo URLROOT . "register/register-student/" . $data['year'] . "/" . $data['stream']; ?>" method="POST" class="display-flex-col" id="student-register-form">
                 <ul class="display-flex-col">
                     <li class="display-flex-col">
                         <label for="username">Student Name</label>
@@ -48,7 +48,7 @@
                             <label for="index_number">Index Number</label>
                             <input type="text" name="index_number" id="index_number" class="common-input" required value="<?php echo $data['index_number']; ?>">
                         </div>
-                        <span class="input-validate-error"> <?php echo $data['credential_error']; ?></span>
+                        <span class="input-validate-error" id="validate-error-indexNumber"> <?php echo $data['credential_error']; ?></span>
                     </li>
                 </ul>
                 <button type="submit" class="common-blue-btn">Register Student</button>
@@ -94,12 +94,25 @@
                     <input type="file" name="students-csv" id="students-csv" accept=".csv">
                     <button type="submit" class="common-blue-btn">Register</button>
                     <input type="hidden" name="year" value="<?php echo $data['year']; ?>">
-                <input type="hidden" name="stream" value="<?php echo $data['stream']; ?>">
+                    <input type="hidden" name="stream" value="<?php echo $data['stream']; ?>">
                 </form>
             </div>
         </div>
     </div>
 </section>
+<script>
+    function checkMinLength() {
+        var indexNumberInputValidate = document.getElementById("index_number");
+        var valueInElement = input.valueInElement.toString();
 
+        if (valueInElement.length < 8) {
+            input.setCustomValidity("Index Number must be at least 8 digits long.");
+        } else {
+            valueInElement.setCustomValidity("");
+        }
+    }
+
+
+</script>
 
 <?php require APPROOT . '/views/includes/footer.php'; ?>

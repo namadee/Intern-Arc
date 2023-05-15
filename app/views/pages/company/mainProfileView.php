@@ -4,7 +4,9 @@
 
 
 <section id="update-main-profile" class="main-content">
-    <?php flashMessage('profile_update_status'); ?>
+    <?php flashMessage('profile_update_status');
+    flashMessage('password_changed')
+    ?>
     <div class="update-profile-container display-flex-col">
         <div class="display-flex-col">
             <h2>Account Details</h2>
@@ -36,7 +38,7 @@
                 <button class="common-blue-btn display-flex-row" type="reset" id="reset-btn"><span class="material-symbols-outlined">
                         restart_alt
                     </span>Reset</button>
-                <button class="common-blue-btn">Change Password</button>
+                <button class="common-blue-btn"> <a style="color: white;" href="<?php echo URLROOT . 'companies/changePassword' ?>">Change Password </a> </button>
             </div>
         </form>
 

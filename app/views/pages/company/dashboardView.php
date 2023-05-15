@@ -12,6 +12,9 @@
     $value = $roundTableData[0]->start_date;
   } else if (($roundDataArray) == 2) {
     $value = $roundTableData[1]->end_date;
+  }else {
+    $value = "Not set";
+
   }
   ?>
   <div class="company-top-notif">
@@ -55,17 +58,6 @@
     <table class="common-table">
       <div class="common-list-topbar">
         <h3>Student Requests</h3>
-        <div class="common-filter">
-          <span class="material-symbols-rounded">
-            filter_alt
-          </span>
-          <select name="filter-list" id="filterlist">
-            <option value="all" selected>All</option>
-            <option value="name">name</option>
-            <option value="name">name</option>
-            <option value="name">name</option>
-          </select>
-        </div>
 
       </div>
 

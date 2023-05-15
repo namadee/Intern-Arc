@@ -32,6 +32,7 @@ class Requests extends BaseController
     //Applying to advertisement
     public function addStudentRequest($advertisementId)
     {
+
         // $advertisementId = $_GET['adId'];
         $studentId =  $this->userModel->getStudentUserId($_SESSION['user_id']);
         $reqCount  = $this->requestModel->getRequestCountPerStudent($studentId);

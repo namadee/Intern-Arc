@@ -9,6 +9,8 @@ class Students extends BaseController
     public $studentDetails;
     public $requestModel;
     public $advertisementModel;
+    public $jobroleModel;
+    public $pdcModel;
 
     public function __construct()
     {
@@ -16,197 +18,103 @@ class Students extends BaseController
         $this->userModel = $this->model('User');
         $this->requestModel = $this->model('Request');
         $this->advertisementModel = $this->model('Advertisement');
+        $this->jobroleModel = $this->model('Jobrole');
+        $this->pdcModel = $this->model('Pdc');
     }
 
     //Student User Dashboard
-    public function index()
+    public function index($pg = NULL)
     {
+        $jobroleList = $this->jobroleModel->getJobroles();
         $student_id = $this->userModel->getStudentUserId($_SESSION['user_id']);
         $reqCount  = $this->requestModel->getRequestCountPerStudent($student_id);
         $studentDetails = $this->studentModel->getStudentData($student_id);
+        //Round 2 Job role
+        if ($pg == 'round2') {
 
-        $data2 = [
-            'studentDetails' => $studentDetails
-        ];
+            if ($this->pdcModel->getStudentFromStdJobrole($student_id)) {
+                redirect('students');
+            } else {
+                $data = [
+                    'studentDetails' => $studentDetails,
+                    'reqCount' => $reqCount,
+                    'jobroleSelectModalClass' => '',
+                    'jobroleList' => $jobroleList
+                ];
+            }
+        } else {
 
-        $data['reqCount'] = $reqCount;
 
-        $data = array_merge($data, $data2);
+            $data = [
+                'studentDetails' => $studentDetails,
+                'reqCount' => $reqCount,
+                'jobroleSelectModalClass' => 'hide-element',
+                'jobroleList' => $jobroleList
+            ];
+        }
+
         $this->view('student/dashboard', $data);
     }
 
 
     public function uploadCV()
     {
-
-
-        $studentId = $this->userModel->getStudentUserId($_SESSION['user_id']);
+        $studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
         $studentProfile = $this->studentModel->getStudentProfileData($studentId);
-        $cv_name = $this->studentModel->getCV($studentId);
-        // Check if POST
+
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-
-            // Strip Tags
-            //stripTags();
-
-            //$studentId = $this->userModel->getStudentUserId(($_SESSION['user_id']));
-            //extra 3
-            // $text = explode("\r<\br>", trim($_POST['interests-list']));
-            // $length = count($text);
-
-            // $emptyArray = array();
-            // for ($x = 0; $x < $length; $x++) {
-            //     $emptyArray[$x] = trim($text[$x]); 
-            // }
-            //$completeString = implode("", $emptyArray);
-
-
             //File upload path
-            $targetDir = "uploads/cv/";
+            $targetDir = "cv/";
             //Change image file name - Unique Name for each user with the help of userId
-            $fileName = 'user' . $_SESSION['user_id'] . '_cv' . rand(0, 100000);
+            $fileName = 'user' . $_SESSION['user_id'] . '_cv';
             //Get the extension
-            $extension = pathinfo($_FILES["cv"]["name"], PATHINFO_EXTENSION);
+            $extension = pathinfo($_FILES["myCvFile"]["name"], PATHINFO_EXTENSION);
             //Full image name
             $basename   = $fileName . "." . $extension; //user56_profile_img.jpg
             //TargetPath
             $targetFilePath = $targetDir . $basename;
 
-
-
             $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-            if (!empty($_FILES["cv"]["name"])) {
-                //Image Size in Bytes
-                $docSize =  $_FILES["cv"]["size"];
-
-
-                //Check whether the uploaded image is below 500kb
-                if ($docSize >= 5000000) {
-                    // Redirect
-                    $statusMsg = 'Sorry, Please upload an document below 5MB';
-                    flashMessage('profile_update_status', $statusMsg, 'danger-alert');
-                    redirect('profiles/student-profile');
-                    exit;
-                }
+            if (!empty($_FILES["myCvFile"]["name"])) {
 
                 // Allow certain file formats
                 $allowTypes = array('pdf');
 
                 if (in_array($fileType, $allowTypes)) {
-                    //Removing old image from storage
-                    //Must check if its the default img before removing
-                    //If its the default img then we skip unlink part
-                    // if ($cv_name->cv != 'img/profile-img/profile-icon.svg') {
-                    //     unlink(PROFILE_IMG_PATH . $cv_name->cv);
-                    // }
+                    if ($studentProfile->cv != NULL) {
+                        unlink(PROFILE_IMG_PATH . $studentProfile->cv);
+                    }
                     // Upload file to server
-
-
-                    if (move_uploaded_file($_FILES["cv"]["tmp_name"], $targetFilePath)) {
+                    if (move_uploaded_file($_FILES["myCvFile"]["tmp_name"], $targetFilePath)) {
 
                         // Insert image file name into database
                         $data = [
-                            'user_id' => $_SESSION['user_id'],
+                            'studentID' => $studentId,
                             'cv' => $targetFilePath
                         ];
 
-
-
-
-                        //Execute - Adding new Img name and Path to user_tbl
-                        $this->studentModel->uploadCV($data);
-
-                        //To add the new photo session - top navbar profile photo
-                        //Update Image Session Value
-                        // $_SESSION['cv'] = $targetFilePath;
-                        // $data = [
-
-                        //     'student_id' => $studentId,
-                        //     'cv' => ($_POST['cv']),
-                        // ];
-
-
-                        //Execute - Adding other details to company_tbl
-                        // $this->studentModel->EditStudentProfileDetails($data);
-
-                        // Redirect - Profile Updared successfully
+                        $this->studentModel->uploadStudentCv($data);
+                        // // Redirect - Profile Updared successfully
                         $statusMsg = 'CV Uploaded Successfully';
                         flashMessage('profile_update_status', $statusMsg);
                         redirect('profiles/student-profile');
                     } else {
                         $statusMsg = "Sorry, there was an error uploading your file.";
-                        flashMessage('profile_update_status', $statusMsg, 'danger-alert');
-                        redirect('student/uploadCV');
+                        flashMessage('cv_status', $statusMsg, 'danger-alert');
+                        redirect('students/upload-cv');
                     }
                 } else {
                     // Redirect
                     $statusMsg = 'Sorry, only PDF files are allowed to upload.';
-                    flashMessage('profile_update_status', $statusMsg, 'danger-alert');
-                    redirect('student/uploadCV');
+                    flashMessage('cv_status', $statusMsg, 'danger-alert');
+                    redirect('students/upload-cv');
                 }
             }
-            // else {
-
-            //     //no pro pic uploaded
-            //     $data = [
-
-            //         'student_id' => $studentId,
-            //         'experience-list' => trim($_POST['experience-list']),
-            //         'interests-list' => $_POST['interests'],
-            //         'qualifications-list' => trim($_POST['qualifications-list']),
-            //         'school' => trim($_POST['school']),
-            //         'contact' => trim($_POST['contact']),
-            //         'stream' => trim($_POST['stream']),
-            //         'profile_description' => trim($_POST['profile_description']),
-            //         'profile_name' => trim($_POST['profile_name']),
-            //         'personal_email' => trim($_POST['personal_email']),
-            //         'github_link' =>trim($_POST['github_link']),
-            //         'linkedin_link' =>trim($_POST['linkedin_link']),
-            //         'extracurricular-list' => trim($_POST['extracurricular-list']),
-            //     ];
-
-            //     $data['interests-list'] = implode(", ", $data['interests-list']);
-            //     echo $data['interests-list'];
-
-            //     //Execute - Adding other details to company_tbl
-            //     $this->studentModel->EditStudentProfileDetails($data);
-
-            //     // Redirect - Profile Updated successfully
-            //     $statusMsg = 'Profile Uploaded Successfully';
-            //     flashMessage('profile_update_status', $statusMsg);
-            //     redirect('profiles/student-profile');
-
-            // }
-
-            //Execute
-            // if ($this->studentModel->EditStudentProfileDetails($data)) {
-            //     redirect('profiles/student-profile');
-            // } else {
-            //      die('Something went wrong');
-            //  }
         } else {
-
-            $data = [
-                'cv' => $studentProfile->cv,
-                // 'interests' => $studentProfile->interests,
-                // 'qualifications' => $studentProfile->qualifications,
-                // 'school' => $studentProfile->school,
-                // 'contact' => $studentProfile->contact,
-                // 'stream' => $studentProfile->stream,
-                // 'profile_description' => $studentProfile->profile_description,
-                // 'profile_name' => $studentProfile->profile_name,
-                // 'personal_email'=>$studentProfile->personal_email,
-                // 'extracurricular' => $studentProfile->extracurricular,
-                // 'profile_name' => $studentProfile->profile_name,
-                // 'personal_email' => $studentProfile->personal_email,
-                // 'github_link' => $studentProfile->github_link,
-                // 'linkedin_link'=> $studentProfile->linkedin_link,
-
-            ];
-
-            $this->view('student/cvstatus', $data);
+            $this->view('student/cvstatus');
         }
     }
 
@@ -240,6 +148,10 @@ class Students extends BaseController
     //Manage Students - PDC - Ruchira
     public function manageStudent($pg = NULL, $year = NULL)
     {
+        //Access Control
+        if ($_SESSION['user_role'] != 'pdc') {
+            redirect('errors/error403');
+        }
         //Get Batch List and respective student count of each IS and CS
         $batchList = $this->studentModel->getStudentBatches();
 
@@ -303,6 +215,10 @@ class Students extends BaseController
     //Add, Change Stats and Delete Batch Functions - Ruchira
     public function manageStudentBatch()
     {
+        //Access Control
+        if ($_SESSION['user_role'] != 'pdc') {
+            redirect('errors/error403');
+        }
         // Check if POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -420,21 +336,23 @@ class Students extends BaseController
         }
     }
 
-    public function companyProfile()
+
+
+    public function setStudentJobRole()
     {
+        //Entering selected Job Roles
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $selectedJobRoleIDs = $_POST['jobRoleID'];
 
-        $this->view('student/companyprofile');
-    }
+            $studentID = $this->userModel->getStudentUserId($_SESSION['user_id']);
+            foreach ($selectedJobRoleIDs as $jobRoleID) {
+                $this->pdcModel->setStudentJobRole($studentID, $jobRoleID);
+            }
+            flashMessage('job_role_msg', 'Job Roles Updated Successfully!');
+            redirect('students');
+        } else {
 
-    public function viewads()
-    {
-
-        $this->view('student/viewads');
-    }
-
-    public function editProfile()
-    {
-
-        $this->view('student/editprofile');
+            redirect('students');
+        }
     }
 }

@@ -16,22 +16,11 @@
                 <span class="material-symbols-rounded">
                     search
                 </span>
-                <input class="common-input" type="text" name="search-item" placeholder="Search Company">
+                <input class="common-input" type="text" name="search-item" placeholder="Search Advertisement">
             </form>
-            <div class="common-filter">
-                <span class="material-symbols-rounded">
-                    filter_alt
-                </span>
-                <select name="filter-list" id="filterlist">
-                    <option value="all" selected>All</option>
-                    <option value="name">name</option>
-                    <option value="name">name</option>
-                    <option value="name">name</option>
-                </select>
-            </div>
         </div>
         <div class="common_list_content">
-            <h3>Company List</h3>
+            <h3 style="text-align: center; margin-bottom:1rem;"><?php echo $data['companyName'] ?> - Advertisement List in the current batch year <?php echo $_SESSION['batchYear'] ?></h3>
             <table class="common-table">
                 <tr>
                     <th>Position</th>
@@ -46,7 +35,7 @@
                         <tr>
                             <td class="view-companies-table-data"><?php echo $ads->position ?></td>
                             <td class="view-companies-table-data"><?php echo $ads->intern_count ?></td>
-                            <td class="view-companies-table-data"><a href="<?php echo URLROOT . 'advertisements/view-advertisement/' . $data['companyID']; ?>"><button class="common-view-btn">view</button></a></td>
+                            <td class="view-companies-table-data"><a href="<?php echo URLROOT . 'advertisements/view-advertisement/' . $ads->advertisement_id; ?>"><button class="common-view-btn">view</button></a></td>
 
                         </tr>
 

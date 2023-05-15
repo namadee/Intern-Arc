@@ -53,16 +53,15 @@ class StudentModel
     {
 
         $this->db->query('UPDATE student_tbl SET experience = :experience,
-      interests = :interests, github_link = :github_link, linkedin_link = :linkedin_link, qualifications = :qualifications, extracurricular= :extracurricular, contact= :contact, stream= :stream, profile_description= :profile_description, profile_name= :profile_name, personal_email= :personal_email, school= :school 
+      interests = :interests, github_link = :github_link, linkedin_link = :linkedin_link, qualifications = :qualifications, extracurricular= :extracurricular, contact= :contact, profile_description= :profile_description, profile_name= :profile_name, personal_email= :personal_email, school= :school 
       WHERE student_id = :student_id');
         // Bind Values
         $this->db->bind(':experience', $data['experience-list']);
         $this->db->bind(':interests', $data['interests-list']);
-        $this->db->bind(':qualifications', $data['qualifications-list']);
+        $this->db->bind(':qualifications', $data['qualification-list']);
         $this->db->bind(':extracurricular', $data['extracurricular-list']);
         $this->db->bind(':school', $data['school']);
         $this->db->bind(':contact', $data['contact']);
-        $this->db->bind(':stream', $data['stream']);
         $this->db->bind(':profile_description', $data['profile_description']);
         $this->db->bind(':profile_name', $data['profile_name']);
         $this->db->bind(':personal_email', $data['personal_email']);
@@ -384,5 +383,19 @@ class StudentModel
         $this->db->query('SELECT * FROM interviewslots_tbl WHERE timeslot_fk = :timeslot_fk');
         $this->db->bind(':timeslot_fk', $slotId);
         return $this->db->single();
+    }
+
+    // Upload Student CV
+    public function uploadStudentCv($data)
+    {
+        $this->db->query('UPDATE student_tbl SET cv = :cv WHERE student_id = :studentID');
+        $this->db->bind(':cv', $data['cv']);
+        $this->db->bind(':studentID', $data['studentID']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
