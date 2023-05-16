@@ -167,7 +167,7 @@ class Profiles extends BaseController
                         //Removing old image from storage
                         //Must check if its the default img before removing
                         //If its the default img then we skip unlink part
-                        if ($profile_image_name->profile_pic != 'img/profile-img/profile-icon.svg') {
+                        if ($profile_image_name->profile_pic != 'img/profile-img/profile-icon.jpeg') {
                             unlink(PROFILE_IMG_PATH . $profile_image_name->profile_pic);
                         }
 
@@ -298,7 +298,7 @@ class Profiles extends BaseController
                     //Must check if its the default img before removing
                     //If its the default img then we skip unlink part
 
-                    if ($profile_image_name->profile_pic != 'img/profile-img/profile-icon.svg') {
+                    if ($profile_image_name->profile_pic != 'img/profile-img/profile-icon.jpeg') {
                         unlink(PROFILE_IMG_PATH . $profile_image_name->profile_pic);
                     }
 
@@ -554,7 +554,7 @@ class Profiles extends BaseController
                     //Removing old image from storage
                     //Must check if its the default img before removing
                     //If its the default img then we skip unlink part
-                    if ($profile_image_name->profile_pic != 'img/profile-img/profile-icon.svg') {
+                    if ($profile_image_name->profile_pic != 'img/profile-img/profile-icon.jpeg') {
                         unlink(PROFILE_IMG_PATH . $profile_image_name->profile_pic);
                     }
                     // Upload file to server

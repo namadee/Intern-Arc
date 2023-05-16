@@ -91,7 +91,7 @@
               </a>
             </td>
             <td>
-              <a class="common-edit-btn <?php echo $elementClass; ?>" id="common-delete-btn" href="<?php echo $hrefStatus2; ?>" id="delete" onclick="confirmDelete(event)"><span class=" material-symbols-outlined">
+              <a class="common-edit-btn <?php echo $elementClass; ?>" id="common-delete-btn" href="<?php echo $hrefStatus2; ?>" onclick="return confirm('Are you sure you want to delete this item?');"><span class=" material-symbols-outlined">
                   delete
                 </span></a>
             </td>

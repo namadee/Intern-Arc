@@ -28,7 +28,7 @@
     <div class="common_list_content">
 
       <div class="addBtn">
-        <h3>Software Engineer - Shortlisted Students</h3>
+        <h3>Shortlisted Students</h3>
       </div>
       <table class="common-table">
         <tr>

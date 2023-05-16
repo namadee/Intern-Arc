@@ -97,7 +97,7 @@ class Students extends BaseController
                 $allowTypes = array('pdf');
 
                 if (in_array($fileType, $allowTypes)) {
-                    if ($studentProfile->cv != NULL) {
+                    if ($studentProfile->cv != NULL &&  $studentProfile->cv != 'cv/common_cv.pdf') {
                         unlink(PROFILE_IMG_PATH . $studentProfile->cv);
                     }
                     // Upload file to server
