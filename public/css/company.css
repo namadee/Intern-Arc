@@ -211,10 +211,9 @@ select:disabled {
   align-items: center;
 }
 
-.advertisement-status{
+.advertisement-status {
   width: 8rem;
-    margin: auto;
-
+  margin: auto;
 }
 
 /*end of advertisement page*/
@@ -513,7 +512,6 @@ select:disabled {
   padding-left: 1rem;
   text-align: left; /* or any other desired alignment */
 }
-
 
 /*Schedule Interview Page 1 */
 
@@ -888,8 +886,6 @@ select:disabled {
   gap: 1rem;
 }
 
-
-
 .advertisement-container-body .body-right .job-description div {
   background-color: #eeeeee5b;
   padding: 1rem;
@@ -928,9 +924,6 @@ select:disabled {
 
 .create-interview-form {
   background-color: #fff;
-  
-
-
 }
 
 .create-interview-form div {
@@ -952,7 +945,7 @@ select:disabled {
   justify-content: center;
 }
 
-.create-interview-form .period{
+.create-interview-form .period {
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid var(--DarkBlue);
@@ -1075,7 +1068,6 @@ select:disabled {
   text-align: center;
 }
 
-
 /********************************* Change Password Page *********************************/
 
 .change-password-container {
@@ -1098,4 +1090,8 @@ select:disabled {
 
 .student-request-container .download-rej-list a {
   color: #ffffff;
+}
+
+.fc-event {
+  cursor: pointer;
 }

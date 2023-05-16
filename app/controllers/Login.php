@@ -344,7 +344,7 @@ class Login extends BaseController
             //Update Company System Access to 1 automatically when the round starts
             $this->companyModel->updateCompanyAccess(1);
             // Set all the current year batch advetisements to round 1
-            $this->pdcModel->setAdvertisementRoundtoOne($roundNumber, $currentBatchYear);
+            $this->pdcModel->setAdvertisementRoundtoOne(1, $currentBatchYear);
 
 
             // Session::setValues('roundNotification', $round1Notification);
@@ -398,9 +398,9 @@ class Login extends BaseController
         foreach ($advertisements as $advertisement) {
             $result =  $this->pdcModel->getRoundRecruitedCount($advertisement->advertisement_id, 1);
 
-            $recruitedCount = $result->count;
+            $recruitedCount = $result->count; //1
 
-            if ($recruitedCount < $advertisement->intern_count) {
+            if ($recruitedCount <= $advertisement->intern_count) {
                 // set round to 2
                 $this->pdcModel->setAdvertisementRoundNum($advertisement->advertisement_id, 2);
             } else {

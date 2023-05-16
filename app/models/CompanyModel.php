@@ -175,14 +175,17 @@ class CompanyModel
     //DASHBOARD FUNCTION - CONNECT STUDENT AND STUDENT AND REQUEST TABLES AND SELECT ALL REQUESTS
     public function getRequestsbyCompany($companyId)
     {
+        $batchYear = $_SESSION['batchYear'];
         $this->db->query('SELECT student_tbl.* , 
         student_requests_tbl.student_request_id , student_requests_tbl.student_id, student_requests_tbl.status , 
         student_requests_tbl.advertisement_id , student_requests_tbl.round , advertisement_tbl.advertisement_id , advertisement_tbl.position , advertisement_tbl.company_id_fk
         FROM student_tbl 
         JOIN student_requests_tbl ON student_tbl.student_id = student_requests_tbl.student_id
         JOIN advertisement_tbl ON  student_requests_tbl.advertisement_id = advertisement_tbl.advertisement_id
-        WHERE advertisement_tbl.company_id_fk = :company_id');
+        WHERE advertisement_tbl.company_id_fk = :company_id AND advertisement_tbl.batch_year = :batchYear');
         $this->db->bind(':company_id', $companyId);
+        $this->db->bind(':batchYear', $batchYear);
+
         return $this->db->resultset();
     }
 

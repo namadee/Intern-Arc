@@ -35,7 +35,7 @@ class PdcModel
     }
 
 
-public function getRejectedStudentList($batchYear)
+    public function getRejectedStudentList($batchYear)
     {
         $this->db->query('SELECT student_tbl.*, user_tbl.* FROM student_tbl 
         JOIN user_tbl ON student_tbl.user_id_fk = user_tbl.user_id
@@ -52,7 +52,7 @@ public function getRejectedStudentList($batchYear)
     // Student and company deactivate buttons
     // 
 
-//Set the advertisements to Round 1
+    //Set the advertisements to Round 1
     public function setAdvertisementRoundtoOne($round, $batchYear)
     {
         $this->db->query('UPDATE advertisement_tbl SET round = :round WHERE batch_year = :batchYear ');
@@ -74,6 +74,12 @@ public function getRejectedStudentList($batchYear)
         $this->db->query('UPDATE advertisement_tbl SET round = :round WHERE advertisement_id = :advertisementID');
         $this->db->bind(':round', $round);
         $this->db->bind(':advertisementID', $advertisementID);
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
     //store round period started notification
     public function sendRoundStartedNotification($data)

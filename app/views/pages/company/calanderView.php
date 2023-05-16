@@ -20,6 +20,7 @@
         'intervieweeName' => $interviewslots->profile_name,
         'stdId' => $interviewslots->student_id,
         'reserved' => $interviewslots->reserved,
+        'userID' => $interviewslots->user_id
       );
 
 
@@ -52,6 +53,7 @@
         'intervieweeName' => $slot->profile_name,
         'stdId' => $slot->student_id,
         'reserved' => $slot->reserved,
+        'userID' => $slot->user_id,
         'color' => ($slot->reserved == 1) ? '#054a91' : '#bbd9f7'
       );
     }
@@ -75,17 +77,17 @@
 
     <div>
       <label for="sche-period">Start Date</label>
-      <input type="date" name="start_date" value="" id="start-date-input">
+      <input class="common-input" type="date" name="start_date" value="" id="start-date-input">
     </div>
 
     <div>
       <label for="sche-period">End Date</label>&nbsp;
-      <input type="date" name="end_date" id="end-date-input">
+      <input class="common-input" type="date" name="end_date" id="end-date-input">
     </div>
 
     <div>
       <label for="recurrence">Repeat</label>&nbsp;
-      <select name="recurrence" id="recurrence">
+      <select class="common-input" name="recurrence" id="recurrence">
         <option value="no_repeat">No Repeat</option>
         <option value="daily">Daily</option>
         <option value="weekly">Weekly</option>
@@ -95,12 +97,12 @@
 
     <div>
       <label for="interviewee_count">No. of interviewees you can interview within Same time slot</label>
-      <input type="number" name="interviewee_count" id="interviewee_count">
+      <input class="common-input" type="number" name="interviewee_count" id="interviewee_count">
     </div>
 
     <div>
       <label for="duration">Time slot Duration</label>&nbsp;
-      <select name="duration" id="duration">
+      <select class="common-input" name="duration" id="duration">
         <option value="15">15 minutes</option>
         <option value="30">30 minutes</option>
         <option value="60">1 Hour</option>
@@ -108,7 +110,7 @@
     </div>
 
     <div>
-      <button class="add-period" id="add-period">Add Time Period<span id="addIcon" class="material-symbols-outlined">library_add</span></button>
+      <button style="cursor: pointer;" class="add-period" id="add-period">Add Time Period<span id="addIcon" class="material-symbols-outlined">library_add</span></button>
       <div id="time-slots" class="display-flex-col"></div>
     </div>
 
@@ -185,6 +187,7 @@
                 intervieweeName: '<?php echo $event['intervieweeName'] ?>',
                 stdId: '<?php echo $event['stdId'] ?>',
                 reserved: '<?php echo $event['reserved'] ?>',
+                userID: '<?php echo $event['userID'] ?>',
 
               },
             <?php endforeach; ?>
@@ -242,11 +245,16 @@
 
         //console log reserved from info
         console.log(info.event.extendedProps.reserved);
+        if (info.event.extendedProps.reserved == 0) {
+          document.getElementById("std-name").href = "javascript:void(0)";
+
+        } else {
+          document.getElementById("std-name").href = "<?php echo URLROOT; ?>profiles/view-student-profile/" + info.event.extendedProps.userID;
+        }
 
         document.getElementById("std-name").innerHTML = (info.event.backgroundColor == '#bbd9f7' ? "Not Reserved" : info.event.extendedProps.intervieweeName);
 
 
-        document.getElementById("std-name").href = "<?php echo URLROOT; ?>students/student-profile/" + info.event.extendedProps.stdId;
 
         const formattedStartTime = new Date("2000-01-01T" + info.event.extendedProps.myStartTime + "Z").toLocaleTimeString("en-US", {
           hour: "numeric",
@@ -294,7 +302,7 @@
         const index = timeSlots.children.length;
         div.innerHTML = `
     <input type="time" step="900" min="09:00" max="18:00" class="period" name="start_time[${index}]" id="start_time_${index}">
-    <input type="time" step="900" min="09:00" max="18:00" class="period" name="end_time[${index}]" id="end_time_${index}">
+    <input type="time" step="900" min="09:00" max="18:00" class="period" name="end_time[${index}]" id="end_time_${index}" >
   `;
         timeSlots.appendChild(div);
       });

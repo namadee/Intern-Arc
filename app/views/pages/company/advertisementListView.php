@@ -7,19 +7,19 @@
 <section id="advertisement-list" class="main-content">
   <div class="common_list">
     <div class="common-list-topbar">
-            <!-- Common Search Bar Style-->
-            <form action="javascript:void(0)" class="common-search-bar display-flex-col">
-                <div class="display-flex-row">
-                    <span class="material-symbols-rounded">
-                        search
-                    </span>
-                    <input class="common-input" type="text" name="search-item" id="company_search_ad" placeholder="Search Advertisement" data-company-id="<?php echo $data['companyID'] ?>" >
-                </div>
+      <!-- Common Search Bar Style-->
+      <form action="javascript:void(0)" class="common-search-bar display-flex-col">
+        <div class="display-flex-row">
+          <span class="material-symbols-rounded">
+            search
+          </span>
+          <input class="common-input" type="text" name="search-item" id="company_search_ad" placeholder="Search Advertisement" data-company-id="<?php echo $data['companyID'] ?>">
+        </div>
 
-                <div class="common-search-result display-flex-col" id="company_ad_result">
+        <div class="common-search-result display-flex-col" id="company_ad_result">
 
-                </div>
-            </form>
+        </div>
+      </form>
     </div>
 
     <div class="common_list_content">
@@ -71,11 +71,11 @@
             </td>
             <?php
 
-            if ($roundDataArray['roundNumber'] != NULL) {
+            if ($roundDataArray['roundNumber'] != NULL || $advertisement->status == 'approved' ) {
               // Need Round Constraints
-              $hrefStatus1 = $roundDataArray['hrefStatus'];
-              $hrefStatus2 = $roundDataArray['hrefStatus'];
-              $elementClass = $roundDataArray['disabledClass'];
+              $hrefStatus1 = "javascript:void(0)";
+              $hrefStatus2 = "javascript:void(0)";
+              $elementClass = "disabled-button-style";
             } else {
               // No need of round constraints
               $hrefStatus1 = URLROOT . 'advertisements/show-advertisement-by-id/' . $advertisement->advertisement_id;
@@ -91,7 +91,7 @@
               </a>
             </td>
             <td>
-              <a class="common-edit-btn <?php echo $elementClass; ?>" id="common-delete-btn" href="<?php echo $hrefStatus2; ?>" id="delete" onclick="confirmDelete(event)"><span class=" material-symbols-outlined">
+              <a class="common-edit-btn <?php echo $elementClass; ?>" id="common-delete-btn" href="<?php echo $hrefStatus2; ?>" onclick="return confirm('Are you sure you want to delete this item?');"><span class=" material-symbols-outlined">
                   delete
                 </span></a>
             </td>

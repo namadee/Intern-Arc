@@ -47,8 +47,8 @@
             <table class="requests-by-student-table">
                 <tr>
                     <th>Advertisement</th>
-                    <th>Initial Screening</th>
-                    <th>Offer Consideration</th>
+                    <th>Shortlisting Status</th>
+                    <th>Recruitment Status</th>
                     <th class="action-btn"></th>
                 </tr>
                 <?php foreach ($data['requestsList'] as $request) : ?>

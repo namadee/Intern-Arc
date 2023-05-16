@@ -28,8 +28,16 @@
                     </form>
                 </div>
             </div>
+            <?php if ($roundDataArray['roundNumber'] == 1 || $roundDataArray['roundNumber'] == 2) {
+                $buttonStatus = "javascript:void(0)";
+            } else {
+                $buttonStatus = URLROOT . 'pdc/downloadRejectedStudentList/';
+            }
 
-            <button class="common-blue-btn download-rej-list"><a href="<?php echo URLROOT.'pdc/downloadRejectedStudentList/' ?>" target="_blank">Download Rejected List</a></button>
+
+            ?>
+
+            <button class="common-blue-btn download-rej-list"><a href="<?php echo $buttonStatus ?>" target="_blank">Download Rejected List</a></button>
         </div>
         <div class="display-flex-row student-request-body">
             <div class="student-requests-box display-flex-col">
