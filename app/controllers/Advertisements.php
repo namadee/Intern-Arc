@@ -115,7 +115,7 @@ class Advertisements extends BaseController
                 //Execute
                 if ($this->advertisementModel->addAdvertisement($data)) {
 
-                    redirect('advertisements');
+                    redirect('advertisements/get-advertisements-by-company');
                 } else {
                     die('Something went wrong');
                 }
@@ -199,7 +199,7 @@ class Advertisements extends BaseController
                 if ($this->advertisementModel->updateAdvertisement($data)) {
 
                     // Redirect
-                    redirect('advertisements');
+                    redirect('advertisements/get-advertisements-by-company');
                 } else {
                     die('Something went wrong');
                 }
