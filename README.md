@@ -32,7 +32,7 @@ Follow these steps to clone and run the Intern-Arc web application on your local
 
 2. **Import the Database:**
    - Open PHPMyAdmin or any other MySQL management tool you prefer.
-   - Create a new database (`intern_arc`).
+   - Create a new database (`intern-arc`).
    - Inside the newly created database, import the SQL file provided with the project. This file likely has an extension like `.sql` and should be located in the project's database folder.
 
 4. **Start the Web Server:**
@@ -41,15 +41,18 @@ Follow these steps to clone and run the Intern-Arc web application on your local
 5. **Access the Web Application:**
    - Open a web browser and enter the following URL in the address bar:
      ```
-     http://localhost/Intern-Arc
+     http://localhost/internarc
      ```
      (Note: The path may vary depending on where you cloned the project and your web server configuration.)
 
-6. **User Registration:**
-   - You may need to register as an admin or a regular user, depending on the application's access control.
-
-7. **Explore and Test:**
-   - Once you've registered and logged in, you can explore the features of the Intern-Arc web application as described in the README.
+6. **Login and Explore:**
+   - You can log in to the system using following credentials
+   - user email 1 : admin@gmail.com
+   - passowrd : admin
+   - user email 2 : namadee@gmail.com
+   - passowrd : namadee
+   - user email 3 : ruchira@gmail.com
+   - passowrd : ruchira
 
 That's it! You should now have the Intern-Arc web application running on your local machine. You can test its various features and functionalities as needed.
 
