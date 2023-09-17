@@ -6,12 +6,13 @@ A fully functional web application to automate the industry placement process of
 ## Main features of Intern-Arc include:
 
 - Login and registration
-- Uploading student CVs and showcasing their qualifications on a profile.
+- Uploading student CVs and showcasing their qualifications on a profile
+- Batch wise registration using a csv file
 - View and apply to advertisements added by companies
 - Scheduling interviews
 - Notifications throughout the whole process
 - Submit and review complaints
-- Generate reports summarizing statistics of the industry placement process of each year.
+- Generate reports summarizing statistics of the industry placement process of each year
 
 ## How to Clone and Run 
 
